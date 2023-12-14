@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "gsap": "^3.12.2",
+    "jquery.scrollto": "^2.1.3"
+  }
+}

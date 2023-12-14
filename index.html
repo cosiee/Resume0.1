@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Resume Andrew Costigan</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+    <script src="js/main.js" defer></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script> 
+
+    
+</head>
+<body>
+  
+<div class="scrollDist" ></div>
+<div class="main" 1200 38100>
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+
+    <mask id="m">
+      <g class="cloud1">
+        <rect fill="#fff" width="100%" height="801" y="799" />
+        <image xlink:href="assets/cl1.png" width="1200" height="850"/> -->
+      </g>
+    </mask>
+    
+    <image class="sky" xlink:href="assets/Sky.jpg"  width="1200" height="800" />
+    <image class="mountBg" xlink:href="assets/mtbg.png" width="1200" height="800"/> 
+    <image class="cloud2" xlink:href="assets/cl2.png" width="1200" height="800"/> 
+    <image class="mountBg2" xlink:href="assets/mtbg2.png" width="1200" height="800"/>  
+    <image class="cloud3" xlink:href="assets/cl4.png" width="1200" height="800"/> 
+    <image class="mountMg" xlink:href="assets/mtmg.png" width="1200" height="800"/>  
+    <image class="cloud4" xlink:href="assets/cl4.png" width="1200" height="800"/> 
+    <image class="mountMgF" xlink:href="assets/mtmfg.png" width="1200" height="800"/>     
+    <image class="mountFg" xlink:href="assets/mtfg.png" width="1200" height="800"/>  
+    <image class="cloud5" xlink:href="assets/cl4.png" width="1200" height="800"/>   
+    <image class="cloud1" xlink:href="assets/cl1.png" width="1200" height="850"/>     
+   
+    <text fill="#fff" x="500" y="200">SEE</text>
+    <path class="arrowDown" d="M590,250 L600,260 M610,250 L599,260 M600,260 L601,229 " class="arrow"  stroke="#fff" stroke-width="3"></path>
+    
+    <g mask="url(#m)">
+      <rect fill="#fff" width="100%" height="100%" />      
+      <text x="515" y="200" fill="#162a43">ME</text>
+      <!-- <polyline class="arrow" fill="#162a43"  stroke-width="200" points="599,289 590,279 590,282 600,292 610,282 610,279 601,289 601,250"/> -->
+      <path class="arrowUp" d="M590,262 L601,249  M610,262 L599,249 M600,250 L600, 280 " stroke="#162a43" stroke-width="3" fill="none"></path>
+      <!-- <text x="10" y="400" fill="#162a43">postioned inside svg</text> -->
+    </g>
+    <rect id="arrowBtn2" width="100" height="50" opacity="0" x="550" y="240" style="cursor:pointer"/>
+
+    <rect id="arrowBtn" width="100" height="50" opacity="0" x="550" y="210" style="cursor:pointer"/>
+
+    <!-- <text x="550" y="775" fill="#00ffcb">in svg</text> -->
+    <!-- <rect fill="#00ffcb" width="100%" height="100%" />     -->
+
+  </svg>
+  
+  outside svg
+  <!-- <svg newViewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    
+  
+
+</svg> -->
+   
+  
+  
+  
+</div>
+
+<p>outside div</p>
+</body>
+
+</html>
