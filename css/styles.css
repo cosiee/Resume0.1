@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
 
-body, html {
+.lrgtext {
   width:100%;
   height:100%;
   background:#ddd;

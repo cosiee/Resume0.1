@@ -15,14 +15,14 @@ gsap.timeline({scrollTrigger:{trigger:'.scrollDist', start:'top top', end:'botto
     .fromTo('.cloud1', {y: 595},{y:-750}, 0)
    
 
-    $(window).scroll(function() {
+    // $(window).scroll(function() {
   
-        if ($(window).scrollTop() > 50) {
-            $('.main_nav').addClass('sticky');
-        } else {
-            $('.main_nav').removeClass('sticky');
-        }
-      });
+    //     if ($(window).scrollTop() > 2200) {
+    //         $('.main_nav').addClass('sticky');
+    //     } else {
+    //         $('.main_nav').removeClass('sticky');
+    //     }
+    //   });
     
     $('#arrowBtn').on('mouseenter', (e)=>{ gsap.to('.arrowDown', {y:10, duration:0.8, ease:'back.inOut(3)', overwrite:'auto'}); })
     $('#arrowBtn').on('mouseleave', (e)=>{ gsap.to('.arrowDown', {y:0, duration:0.5, ease:'power3.out', overwrite:'auto'}); })
