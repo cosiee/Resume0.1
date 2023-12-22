@@ -47,7 +47,7 @@ $('.main_nav li a').click(function() {
 
 jQuery(document).ready(function($) {
 
-   $('.smoothscroll').on('click',function (e) {
+   $('.smoothscroll','.arrowDown','.arrowUp').on('click',function (e) {
 	    e.preventDefault();
 
 	    var target = this.hash,

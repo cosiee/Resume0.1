@@ -4,15 +4,15 @@ gsap.timeline({scrollTrigger:{trigger:'.scrollDist', start:'top top', end:'botto
    
     .fromTo('.sky', {y:-205},{y:-650}, 0)
     .fromTo('.mountBg', {y:0},{y:-600}, 0)
-    .fromTo('.cloud2', {y: 375},{y:-680}, 0)
+    .fromTo('.cloud2', {y: 325},{y:-680}, 0)
     .fromTo('.mountBg2', {y:80},{y:-670}, 0)
-    .fromTo('.cloud3', {y:265},{y:-800}, 0)
+    .fromTo('.cloud3', {y:235},{y:-900}, 0)
     .fromTo('.mountMg', {y:278},{y:-700}, 0)
-    .fromTo('.cloud4', {y:310},{y:-850}, 0)
+    .fromTo('.cloud4', {y:290},{y:-850}, 0)
     .fromTo('.mountMgF', {y:170},{y:-750}, 0) 
     .fromTo('.mountFg', {y:220},{y:-850}, 0)
     .fromTo('.cloud5', {y:380},{y:-950}, 0)
-    .fromTo('.cloud1', {y: 595},{y:-750}, 0)
+    .fromTo('.cloud1', {y: 595},{y:-800}, 0)
    
 
     // $(window).scroll(function() {
