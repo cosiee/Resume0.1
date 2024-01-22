@@ -26,7 +26,7 @@ gsap.timeline({scrollTrigger:{trigger:'.scrollDist', start:'top top', end:'botto
     
     $('#arrowBtn').on('mouseenter', (e)=>{ gsap.to('.arrowDown', {y:10, duration:0.8, ease:'back.inOut(3)', overwrite:'auto'}); })
     $('#arrowBtn').on('mouseleave', (e)=>{ gsap.to('.arrowDown', {y:0, duration:0.5, ease:'power3.out', overwrite:'auto'}); })
-    $('#arrowBtn').on('click', (e)=>{ gsap.to(window, {scrollTo:innerHeight, duration:4.5, ease:'power1.inOut'}); } ) // scrollTo requires the ScrollTo plugin (not to be confused w/ ScrollTrigger)
+    $('#arrowBtn').on('click', (e)=>{ gsap.to(window, {scrollTo:800, duration:4.5, ease:'power1.inOut'}); } ) // scrollTo requires the ScrollTo plugin (not to be confused w/ ScrollTrigger)
 
      $('#arrowBtn2').on('mouseenter', (e)=>{ gsap.to('.arrowUp', {y:0, duration:0.8, ease:'back.inOut(3)', overwrite:'auto'}); })
      $('#arrowBtn2').on('mouseleave', (e)=>{ gsap.to('.arrowUp', {y:10, duration:0.5, ease:'power3.out', overwrite:'auto'}); })
