@@ -3,17 +3,17 @@ gsap.set('.scrollDist', {width:'100%', height:'200%', background:'#ddd'})
 gsap.timeline({scrollTrigger:{trigger:'.scrollDist', start:'top top', end:'bottom bottom', scrub:1}})
    
     .fromTo('.sky', {y:-205},{y:-650}, 0)
-    .fromTo('.mountBg', {y:0},{y:-600}, 0)
-    .fromTo('.cloud2', {y: 325},{y:-680}, 0)
+    .fromTo('.mountBg', {y:-0},{y:-600}, 0)
+    .fromTo('.cloud2', {x: 400, y: 290},{x: -200, y:-600}, 0)
     .fromTo('.mountBg2', {y:80},{y:-670}, 0)
-    .fromTo('.cloud3', {y:235},{y:-900}, 0)
+    .fromTo('.cloud3', {x: -400, y:290},{x: 500, y:-1000}, 0)
     .fromTo('.mountMg', {y:278},{y:-700}, 0)
-    .fromTo('.cloud4', {y:290},{y:-850}, 0)
+    .fromTo('.cloud4', {x: -100, y:280},{x: -400, y:-850}, 0)
     .fromTo('.mountMgF', {y:170},{y:-750}, 0) 
     .fromTo('.mountFg', {y:220},{y:-850}, 0)
-    .fromTo('.cloud5', {y:380},{y:-950}, 0)
-    .fromTo('.cloud1', {y: 595},{y:-800}, 0)
-   
+    .fromTo('.cloud5', {scale: 1, x: -100, y:360},{scale: 3, x: 300, y:-950}, 0)
+    .fromTo('.cloud1', {y: 576},{y:-800}, 0)
+
 
     // $(window).scroll(function() {
   
