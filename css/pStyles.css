@@ -27,7 +27,7 @@ body {
 	line-height: 1.6;
 	font-weight: 400;
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-	color: #222;
+	color: #162a43;
 }
 /* Grid
 ********************************************************************* */  
@@ -219,10 +219,10 @@ p {
 /* Links
 ********************************************************************* */
 a {
-	color: #1EAEDB;
+	color: #162a43;
 }
 a:hover {
-	color: #0FA0CE;
+	color: #1a61b9;
 }
 /* Header Section
 ********************************************************************* */
@@ -300,7 +300,7 @@ a:hover {
 	color: #FFFFFF;
 	font-size: 50px;
 }
-.main_nav {
+/* .main_nav {
 	position: fixed;
 	top: 0px;
 	max-height: 50px;
@@ -314,7 +314,7 @@ a:hover {
 	opacity: 0;
 	top: -100px;
 	padding-bottom: 6px;
-}
+} */
 
 @media only screen and (max-width: 766px) {
 .main_nav {
@@ -393,17 +393,17 @@ nav ul a:hover {
 	display: block;
 }
 }
-.mobile-toggle span {
+/* .mobile-toggle span {
 	width: 30px;
 	height: 4px;
 	margin-bottom: 6px;
 	background: #000000;
 	display: block;
-}
+} */
 .scroll-down {
 	position: absolute;
 	left: 49.33%;
-	top: 22vh; 
+	top: 25vh; 
 	display:inline-block;
 	
 	width: 15px;
