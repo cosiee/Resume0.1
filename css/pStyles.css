@@ -228,7 +228,7 @@ a:hover {
 ********************************************************************* */
 
 
-/* header {
+header {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -244,7 +244,7 @@ a:hover {
 	background: -webkit-linear-gradient(-45deg, #e55d87 0%, #5fc3e4 100%);
 	background: linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%);
  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e55d87', endColorstr='#5fc3e4', GradientType=1 );
-} */
+}
 .title {
 	-webkit-align-self: center;
 	-ms-flex-item-align: center;
@@ -300,7 +300,7 @@ a:hover {
 	color: #FFFFFF;
 	font-size: 50px;
 }
-/* .main_nav {
+.main_nav {
 	position: fixed;
 	top: 0px;
 	max-height: 50px;
@@ -309,12 +309,12 @@ a:hover {
 	padding-top: 17px;
 	background: none;
 	overflow: hidden;
-	-webkit-transition: all 0.3s;
-	transition: all 0.3s;
+	/* -webkit-transition: all 0.3s; */
+	transition: all 0.8s;
 	opacity: 0;
-	top: -100px;
+	top: -700px;
 	padding-bottom: 6px;
-} */
+}
 
 @media only screen and (max-width: 766px) {
 .main_nav {
