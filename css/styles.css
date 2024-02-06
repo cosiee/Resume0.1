@@ -1,28 +1,32 @@
+
+/* Text SEE/ME */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
-
-.lrgtext {
-  width:100%;
-  height:100%;
-  background:#ddd;
+text {
   font-family: 'Montserrat', sans-serif;
-  font-size:99px;
-  text-align:center;
-  top: 18vh;
 }
-
- div {
-  /* position:absolute; */
+.lrgtext {
+  position:relative;
+  font-size:99px;
+  transform: translate(27vw, 25vh);
+}
+#dark {
+  transform: translate(28vw, 25vh);
+}
+div {
+  position:absolute;
 } 
+
+
 /* Arrows animated SECTION*************************** */
 .scroll-arrow {
 	position: absolute;
 	left: 49.33%; 
 	display:inline-block;
-	width: 15px;
-	height: 15px;
-	top: 26vh;
-  border-bottom: 3px solid #fff;
-	border-right: 3px solid #fff;
+	width: 22px;
+	height: 22px;
+	top: 30vh;
+  border-bottom: 4px solid #fff;
+	border-right: 4px solid #fff;
   animation: fade_move_down 3s ease-in-out infinite;
 }
 
@@ -45,18 +49,9 @@ opacity: 0;
 ********************************************************************* */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
 
-text.lrgtext {
-  width:100%;
-  height:100%;
-  background:#ddd;
-  font-family: 'Montserrat', sans-serif;
-  font-size:99px;
-  text-align:center;
-}
 
- div {
-  position:absolute;
-} 
+ 
+
 
 */
 html {
@@ -65,7 +60,7 @@ html {
 body {
 	font-size: 1.5em;
 	line-height: 1.6;
-	font-weight: 400;
+	font-weight: 500;
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 	color: #162a43;
 }
@@ -262,13 +257,13 @@ a {
 	color: #162a43;
 }
 a:hover {
-	color: #1a61b9;
+	color: #162a43;
 }
 /* Header Section
 ********************************************************************* */
 
 
-header {
+/* header {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -279,12 +274,12 @@ header {
 	justify-content: center;
  width: 100%%;
 	height: 100vh;
-	background: #e55d87;
+	/* background: #e55d87;
 	background: -moz-linear-gradient(-45deg, #e55d87 0%, #5fc3e4 100%);
 	background: -webkit-linear-gradient(-45deg, #e55d87 0%, #5fc3e4 100%);
 	background: linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%);
- filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e55d87', endColorstr='#5fc3e4', GradientType=1 );
-}
+ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e55d87', endColorstr='#5fc3e4', GradientType=1 ); */
+} */
 .title {
 	-webkit-align-self: center;
 	-ms-flex-item-align: center;
