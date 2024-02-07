@@ -1,3 +1,7 @@
+/* broke the animation today
+need to weed out the bootstrap from this file... that'll mainly involved looking at the 
+main-nav styling remove all that isn't required and styling for the differing sizes after that
+also the x-postion of ME/SEE and arrow need unifying so can be stayled on each media query  */
 
 /* Text SEE/ME */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
