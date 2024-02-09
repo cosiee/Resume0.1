@@ -4,63 +4,104 @@ main-nav styling remove all that isn't required and styling for the differing si
 also the x-postion of ME/SEE and arrow need unifying so can be stayled on each media query  */
 
 /* Text SEE/ME */
+
+
+/* Base Styles
+********************************************************************* */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
-text {
-  font-family: 'Montserrat', sans-serif;
-}
-.lrgtext {
-  position:relative;
-  font-size:99px;
-  transform: translate(27vw, 25vh);
-}
-#dark {
-  transform: translate(28vw, 25vh);
-}
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300");
+
 div {
-  position:absolute;
-} 
+	position: absolute;
+}
+
+text {
+	font-family: 'Montserrat', sans-serif;
+}
+
+.lrgtext {
+	position: relative;
+	font-size: 99px;
+	transform: translate(27vw, 25vh);
+}
+
+#dark {
+	transform: translate(28vw, 25vh);
+}
+
 
 
 /* Arrows animated SECTION*************************** */
 .scroll-arrow {
 	position: absolute;
-	left: 49.33%; 
-	display:inline-block;
+	left: 49.33%;
+	display: inline-block;
 	width: 22px;
 	height: 22px;
 	top: 30vh;
-  border-bottom: 4px solid #fff;
+	border-bottom: 4px solid #fff;
 	border-right: 4px solid #fff;
-  animation: fade_move_down 3s ease-in-out infinite;
+	animation: fade_move_down 3s ease-in-out infinite;
 }
 
 @keyframes fade_move_down {
 	0% {
-   transform:translate(0, -20px) rotate(45deg);
-   opacity: 0;
-   }
+		transform: translate(0, -20px) rotate(45deg);
+		opacity: 0;
+	}
+
 	50% {
-   opacity: 1;
-   }
+		opacity: 1;
+	}
+
 	100% {
-   transform:translate(0, 20px) rotate(45deg);
-   opacity: 0;
-   }
-   }
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300");
-
-/* Base Styles
-********************************************************************* */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+		transform: translate(0, 20px) rotate(45deg);
+		opacity: 0;
+	}
+}
 
 
- 
 
 
-*/
-html {
+
+/* X-Small devices (portrait phones, less than 576px)
+ No media query for `xs` since this is the default in Bootstrap */
+
+/* Small devices (landscape phones, 576px and up) 
+**************************************************************/
+@media (min-width: 576px) {
+	...
+}
+
+/*  Medium devices (tablets, 768px and up) 
+**************************************************************/
+@media (min-width: 768px) {
+	...
+}
+
+/* Large devices (desktops, 992px and up)
+**************************************************************/
+@media (min-width: 992px) {
+	...
+}
+
+/* X-Large devices (large desktops, 1200px and up)
+**************************************************************/
+@media (min-width: 1200px) {
+	...
+}
+
+/* XX-Large devices (larger desktops, 1400px and up)
+**************************************************************/
+@media (min-width: 1400px) {
+	...
+}
+
+
+*/ html {
 	font-size: 62.5%;
 }
+
 body {
 	font-size: 1.5em;
 	line-height: 1.6;
@@ -68,8 +109,9 @@ body {
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 	color: #162a43;
 }
+
 /* Grid
-********************************************************************* */  
+********************************************************************* */
 .container {
 	position: relative;
 	width: 100%;
@@ -84,6 +126,7 @@ body {
 nav ul a {
 	color: #162a43;
 }
+
 nav ul a:hover {
 	color: #6e6f79;
 }
@@ -110,16 +153,18 @@ nav ul a:hover {
 	opacity: 1;
 	top: 0px;
 }
+
 nav {
 	width: 100%;
 	margin-top: 5px;
 }
 
 @media only screen and (max-width: 766px) {
-nav {
-	width: 100%;
+	nav {
+		width: 100%;
+	}
 }
-}
+
 nav ul {
 	list-style: none;
 	overflow: hidden;
@@ -127,13 +172,14 @@ nav ul {
 }
 
 @media only screen and (max-width: 766px) {
-nav ul {
-	padding-top: 0px;
-	margin-bottom: 22px;
-	text-align: center;
-	width: 100%;
+	nav ul {
+		padding-top: 0px;
+		margin-bottom: 22px;
+		text-align: center;
+		width: 100%;
+	}
 }
-}
+
 nav ul li {
 	display: inline-block;
 	margin-left: 35px;
@@ -142,15 +188,17 @@ nav ul li {
 
 
 
-nav ul li {
-	width: 100%;
-	padding: 7px 0;
-	margin: 0;
+	nav ul li {
+		width: 100%;
+		padding: 7px 0;
+		margin: 0;
+	}
+
+	nav ul li:first-child {
+		margin-top: 70px;
+	}
 }
-nav ul li:first-child {
-	margin-top: 70px;
-}
-}
+
 nav ul a {
 	text-transform: uppercase;
 	font-size: 12px;
@@ -178,10 +226,13 @@ nav ul a {
 ol {
 	list-style: decimal inside;
 }
-ol, ul {
+
+ol,
+ul {
 	padding-left: 0;
 	margin-top: 0;
 }
+
 /* ul ul, ul ol, ol ol, ol ul {
 	margin: 1.5rem 0 1.5rem 3rem;
 	font-size: 90%;
