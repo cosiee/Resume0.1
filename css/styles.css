@@ -1,7 +1,6 @@
-/* broke the animation today
-need to weed out the bootstrap from this file... that'll mainly involved looking at the 
-main-nav styling remove all that isn't required and styling for the differing sizes after that
-also the x-postion of ME/SEE and arrow need unifying so can be stayled on each media query  */
+/* x-postion of ME/SEE and arrow need unifying so can be stayled on each media query  
+Try: https://www.w3schools.com/css/tryit.asp?filename=trycss_align_transform
+*/
 
 /* Text SEE/ME */
 
@@ -11,34 +10,45 @@ also the x-postion of ME/SEE and arrow need unifying so can be stayled on each m
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300");
 
-div {
-	position: absolute;
-}
+
 
 text {
 	font-family: 'Montserrat', sans-serif;
 }
 
-.lrgtext {
-	position: relative;
-	font-size: 99px;
-	transform: translate(27vw, 25vh);
+html body svg text.lrgtext {
+	width:100%;
+	height:100%;
+	background:#ddd;
+	font-family: 'Montserrat', sans-serif;
+	font-size:99px;
+	text-align:center;
+	
+	/* position: absolute;
+	text-align: center;
+	font-size: 99px;*/
+
+	
+/* 	
+	transform: translate(0, 25vh); */
+	
 }
 
-#dark {
-	transform: translate(28vw, 25vh);
+/* #dark {
+	transform: translate(50%, 25vh);
+} */
+
+div {
+	position: absolute;
 }
-
-
 
 /* Arrows animated SECTION*************************** */
 .scroll-arrow {
-	position: absolute;
 	left: 49.33%;
+	top: 10%;
 	display: inline-block;
 	width: 22px;
 	height: 22px;
-	top: 30vh;
 	border-bottom: 4px solid #fff;
 	border-right: 4px solid #fff;
 	animation: fade_move_down 3s ease-in-out infinite;
@@ -70,39 +80,57 @@ text {
 /* Small devices (landscape phones, 576px and up) 
 **************************************************************/
 @media (min-width: 576px) {
-	...
+	.scroll-arrow {
+		top: 13%;
+		width: 18px;
+		height: 18px;	
+		border-bottom: 3px solid #fff;
+		border-right: 3x solid #fff;
+	}
 }
 
 /*  Medium devices (tablets, 768px and up) 
 **************************************************************/
 @media (min-width: 768px) {
-	...
+	.scroll-arrow {
+		top: 21%;	
+		width: 18px;
+		height: 18px;	
+		border-bottom: 3px solid #fff;
+		border-right: 3x solid #fff;
+	}
 }
 
 /* Large devices (desktops, 992px and up)
 **************************************************************/
 @media (min-width: 992px) {
-	...
+	.scroll-arrow {
+		top: 24%;	
+	}
 }
 
 /* X-Large devices (large desktops, 1200px and up)
 **************************************************************/
 @media (min-width: 1200px) {
-	...
+	.scroll-arrow {
+		top: 26%;	
+	}
 }
 
 /* XX-Large devices (larger desktops, 1400px and up)
 **************************************************************/
 @media (min-width: 1400px) {
-	...
+	.scroll-arrow {
+		top: 27%;	
+	}
 }
 
 
-*/ html {
+/* */ html {
 	font-size: 62.5%;
-}
+} */
 
-body {
+header {
 	font-size: 1.5em;
 	line-height: 1.6;
 	font-weight: 500;
@@ -188,7 +216,7 @@ nav ul li {
 
 
 
-	nav ul li {
+nav ul li {
 		width: 100%;
 		padding: 7px 0;
 		margin: 0;

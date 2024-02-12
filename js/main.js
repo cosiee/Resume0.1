@@ -1,5 +1,7 @@
 // opening animation "SEE/ME" mountains and clouds
 
+// import { TimelineLite, Back } from "gsap/dist/gsap";
+
 gsap.set(".main", {
   position: "fixed",
   background: "#fff",
@@ -22,54 +24,54 @@ gsap
   })
 
   .fromTo(
-    ".sky",
-    { scale: 1, x: 0, y: -205 },
+    "#sky",
+    { scale: 1, x: 0, y: -180 },
     { scale: 1.3, x: -150, y: -650 },
     0
   )
   .fromTo(
-    ".mountBg",
-    { scale: 1, X: 0, y: -0 },
+    "#mountBg",
+    { scale: 1, x: 0, y: 70 },
     { scale: 1.3, x: -150, y: -600 },
     0
   )
-  .fromTo(".cloud2", { x: 400, y: 290 }, { x: -200, y: -600 }, 0)
+  .fromTo("#cloud2", { x: 400, y: 290 }, { x: -200, y: -600 }, 0)
   .fromTo(
-    ".mountBg2",
+    "#mountBg2",
     { scale: 1, X: 0, y: 80 },
     { scale: 1.3, x: -150, y: -670 },
     0
   )
-  .fromTo(".cloud3", { x: -400, y: 290 }, { x: 500, y: -1000 }, 0)
+  .fromTo("#cloud3", { x: -400, y: 290 }, { x: 500, y: -1000 }, 0)
   .fromTo(
-    ".mountMg",
-    { scale: 1, X: 0, y: 278 },
+    "#mountMg",
+    { scale: 1, X: 0, y: 298 },
     { scale: 1.3, x: -150, y: -700 },
     0
   )
-  .fromTo(".cloud4", { x: -100, y: 280 }, { x: -400, y: -850 }, 0)
+  .fromTo("#cloud4", { x: -100, y: 298 }, { x: -400, y: -850 }, 0)
   .fromTo(
-    ".mountMgF",
-    { scale: 1, X: 0, y: 170 },
+    "#mountMgF",
+    { scale: 1, X: 0, y: 200 },
     { scale: 1.3, x: -150, y: -750 },
     0
   )
   .fromTo(
-    ".mountFg",
+    "#mountFg",
     { scale: 1, X: 0, y: 220 },
     { scale: 1.3, x: -150, y: -850 },
     0
   )
   .fromTo(
-    ".cloud5",
-    { scale: 1, x: -100, y: 360 },
+    "#cloud5",
+    { scale: 1.5, x: -100, y: 360 },
     { scale: 3, x: 300, y: -950 },
     0
   )
   .fromTo(
-    ".cloud1",
-    { scale: 1, x: 0, y: 576 },
-    { scale: 2, x: -600, y: -690 },
+    "#cloud1",
+    { scale: 1.3, x: 0, y: 576 },
+    { scale: 2, x: -500, y: -690 },
     0
   );
 
