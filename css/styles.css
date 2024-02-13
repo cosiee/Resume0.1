@@ -5,6 +5,8 @@ Try: https://www.w3schools.com/css/tryit.asp?filename=trycss_align_transform
 /* Text SEE/ME */
 
 
+/* bring all style for main nav together and then bootstrap for different screens */
+
 /* Base Styles
 ********************************************************************* */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
@@ -23,20 +25,10 @@ html body svg text.lrgtext {
 	font-family: 'Montserrat', sans-serif;
 	font-size:99px;
 	text-align:center;
-	
-	/* position: absolute;
-	text-align: center;
-	font-size: 99px;*/
-
-	
-/* 	
-	transform: translate(0, 25vh); */
-	
+	transform: translate(500px, 22vh);
 }
 
-/* #dark {
-	transform: translate(50%, 25vh);
-} */
+
 
 div {
 	position: absolute;
@@ -45,7 +37,7 @@ div {
 /* Arrows animated SECTION*************************** */
 .scroll-arrow {
 	left: 49.33%;
-	top: 10%;
+	top: 23vh;
 	display: inline-block;
 	width: 22px;
 	height: 22px;
@@ -69,6 +61,9 @@ div {
 		opacity: 0;
 	}
 }
+div {
+	position: absolute;
+}
 
 
 
@@ -77,27 +72,50 @@ div {
 /* X-Small devices (portrait phones, less than 576px)
  No media query for `xs` since this is the default in Bootstrap */
 
-/* Small devices (landscape phones, 576px and up) 
-**************************************************************/
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 575px) {
+	.scroll-arrow {
+		top: 13vh;
+		width: 12px;
+		height: 12px;	
+		border-bottom: 3px solid #fff;
+		border-right: 3px solid #fff;
+	}
+	html body svg text.lrgtext {
+		
+		transform: translate(500px, 22%);
+	}
+
+}
+
 @media (min-width: 576px) {
 	.scroll-arrow {
-		top: 13%;
-		width: 18px;
-		height: 18px;	
+		top: 16.5%;
+		width: 12px;
+		height: 12px;	
 		border-bottom: 3px solid #fff;
-		border-right: 3x solid #fff;
+		border-right: 3px solid #fff;
 	}
+	html body svg text.lrgtext {
+		
+		transform: translate(500px, 22%);
+	}	
 }
 
 /*  Medium devices (tablets, 768px and up) 
 **************************************************************/
 @media (min-width: 768px) {
 	.scroll-arrow {
-		top: 21%;	
-		width: 18px;
-		height: 18px;	
-		border-bottom: 3px solid #fff;
-		border-right: 3x solid #fff;
+		top: 19%;	
+		width: 22px;
+		height: 22px;	
+		border-bottom: 4px solid #fff;
+		border-right: 4px solid #fff;
+	}
+	html body svg text.lrgtext {
+		
+		transform: translate(500px, 20vh);
+		
 	}
 }
 
@@ -107,6 +125,7 @@ div {
 	.scroll-arrow {
 		top: 24%;	
 	}
+	
 }
 
 /* X-Large devices (large desktops, 1200px and up)
@@ -115,6 +134,12 @@ div {
 	.scroll-arrow {
 		top: 26%;	
 	}
+	html body svg text.lrgtext {
+		
+		transform: translate(500px, 20vh);
+		
+	}
+
 }
 
 /* XX-Large devices (larger desktops, 1400px and up)

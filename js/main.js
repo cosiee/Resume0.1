@@ -35,21 +35,21 @@ gsap
     { scale: 1.3, x: -150, y: -600 },
     0
   )
-  .fromTo("#cloud2", { x: 400, y: 290 }, { x: -200, y: -600 }, 0)
+  .fromTo("#cloud2", { x: 400, y: 310 }, { x: -200, y: -600 }, 0)
   .fromTo(
     "#mountBg2",
-    { scale: 1, X: 0, y: 80 },
+    { scale: 1, X: 0, y: 110 },
     { scale: 1.3, x: -150, y: -670 },
     0
   )
-  .fromTo("#cloud3", { x: -400, y: 290 }, { x: 500, y: -1000 }, 0)
+  .fromTo("#cloud3", { x: -200, y: 300 }, { x: 500, y: -1000 }, 0)
   .fromTo(
     "#mountMg",
-    { scale: 1, X: 0, y: 298 },
+    { scale: 1, X: 0, y: 345 },
     { scale: 1.3, x: -150, y: -700 },
     0
   )
-  .fromTo("#cloud4", { x: -100, y: 298 }, { x: -400, y: -850 }, 0)
+  .fromTo("#cloud4", { x: 300, y: 320 }, { x: -400, y: -850 }, 0)
   .fromTo(
     "#mountMgF",
     { scale: 1, X: 0, y: 200 },
@@ -64,7 +64,7 @@ gsap
   )
   .fromTo(
     "#cloud5",
-    { scale: 1.5, x: -100, y: 360 },
+    { scale: 1.5, x: -100, y: 380 },
     { scale: 3, x: 300, y: -950 },
     0
   )
@@ -86,7 +86,7 @@ $(".scroll-arrow").on("click", (e) => {
 ------------------------------------------------------ */
 
 $(window).scroll(function () {
-  if ($(window).scrollTop() > 390) {
+  if ($(window).scrollTop() > 300) {
     $(".main_nav").addClass("sticky");
   } else {
     $(".main_nav").removeClass("sticky");
