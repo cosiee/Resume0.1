@@ -155,24 +155,24 @@ div {
 	font-size: 62.5%;
 } */
 
-header {
+/* header {
 	font-size: 1.5em;
 	line-height: 1.6;
 	font-weight: 500;
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 	color: #162a43;
-}
+} */
 
 /* Grid
 ********************************************************************* */
-.container {
+/* .container {
 	position: relative;
 	width: 100%;
 	max-width: 960px;
 	margin: 0 auto;
 	padding: 0 20px;
 	box-sizing: border-box;
-}
+} */
 
 /* Links
 ********************************************************************* */
@@ -184,7 +184,7 @@ nav ul a:hover {
 	color: #6e6f79;
 }
 
-.main_nav {
+/* .main_nav {
 	position: fixed;
 	top: 0px;
 	max-height: 50px;
@@ -197,9 +197,24 @@ nav ul a:hover {
 	transition: all 0.8s;
 	opacity: 0;
 	top: -700px;
-	padding-bottom: 6px;
-}
+	padding-bottom: 30px;
+} */
 
+.navbar {
+	position: fixed;
+	top: 0px;
+	max-height: 50px;
+	z-index: 1200;
+	width: 100%;
+	padding-top: 30px;
+	background: none;
+	overflow: hidden;
+	-webkit-transition: all 0.3s;
+	transition: all 0.8s;
+	opacity: 0;
+	top: -700px;
+	padding-bottom: 20px;
+}
 
 .sticky {
 	background-color: #ffffff;
@@ -293,3 +308,77 @@ ul {
 li {
 	margin-bottom: 1rem;
 }
+
+nav a .navbar .navbar-expand-lg .bg-body-tertiary #navmain{
+	/* --bs-navbar-padding-x: ; */
+
+	/* --bs-bg-opacity: 0; */
+	/* background-color:  #fff !important; */
+	
+}
+a.smoothscroll.nav-link#navmain{ 	
+	color: #162a43;
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-size: 1.5em;
+	line-height: 1.6;
+	font-weight: 500;
+	
+}
+
+a.smoothscroll.nav-link#navmain:hover{	
+	color: #6e6f79;
+	
+}
+a.nav-link.dropdown-toggle#navmain{
+	color: #162a43;
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-size: 1.5em;
+	line-height: 1.6;
+	font-weight: 500;
+
+}
+a.nav-link.dropdown-toggle#navmain:hover{	
+	color: #6e6f79;
+	
+}
+
+
+.bg-body-tertiary {
+    --bs-bg-opacity: 0;
+    background-color: none !important;
+}
+
+nav.navbar .navbar-expand-lg.bg-body-tertiary#navmain {
+	position: fixed;
+	top: 0px;
+	max-height: 50px;
+	z-index: 999;
+	width: 100%;
+	padding-top: 17px;
+	background: none;
+	overflow: hidden;
+	-webkit-transition: all 0.3s;
+	transition: all 0.8s;
+	opacity: 0;
+	top: -700px;
+	padding-bottom: 6px;
+}
+
+
+.sticky {
+	background-color: #ffffff;
+	opacity: 1;
+	top: 0px;
+}
+.container-fluid {
+	position: relative;
+	width: 100%;
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+
+/* ~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~ Z~ZZZZZZZ~~~~~~~~*/
+
+

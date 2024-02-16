@@ -12,7 +12,7 @@ gsap.set(".main", {
   left: "50%",
   x: "-50%",
 });
-gsap.set(".scrollDist", { width: "100%", height: "200%", background: "#ddd" });
+gsap.set(".scrollDist", { width: "100%", height: "200%", background: "#fff" });
 gsap
   .timeline({
     scrollTrigger: {
@@ -25,7 +25,7 @@ gsap
 
   .fromTo(
     "#sky",
-    { scale: 1, x: 0, y: -180 },
+    { scale: 1, x: 0, y: -80 },
     { scale: 1.3, x: -150, y: -650 },
     0
   )
@@ -73,12 +73,18 @@ gsap
     { scale: 1.3, x: 0, y: 576 },
     { scale: 2, x: -500, y: -690 },
     0
+  )
+  .fromTo(
+    ".container1",
+    { x: 455, y: 576 },
+    { x: 455, y: -570 },
+    0 
   );
 
 // $('#down').on('mouseenter', (e)=>{ gsap.to('#down', {y:10, duration:0.8, ease:'back.inOut(3)', overwrite:'auto'}); })
 // $('#down').on('mouseleave', (e)=>{ gsap.to('#down', {y:0, duration:0.5, ease:'power3.out', overwrite:'auto'}); })
 $(".scroll-arrow").on("click", (e) => {
-  gsap.to(window, { scrollTo: 600, duration: 3, ease: "power3.inOut" });
+  gsap.to(window, { scrollTo: 600, duration: 4, ease: "power3.inOut" });
 }); // scrollTo requires the ScrollTo plugin (not to be confused w/ ScrollTrigger)
 
 /*----------------------------------------------------*/
@@ -86,10 +92,10 @@ $(".scroll-arrow").on("click", (e) => {
 ------------------------------------------------------ */
 
 $(window).scroll(function () {
-  if ($(window).scrollTop() > 300) {
-    $(".main_nav").addClass("sticky");
+  if ($(window).scrollTop() > 320) {
+    $(".navbar").addClass("sticky");
   } else {
-    $(".main_nav").removeClass("sticky");
+    $(".navbar").removeClass("sticky");
   }
 });
 
@@ -131,3 +137,4 @@ $(window).scroll(function () {
 // });
 
 // TweenMax.staggerFrom(".heading", 0.8, {opacity: 0, y: 20, delay: 0.2}, 0.4);
+// 
