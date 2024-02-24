@@ -208,7 +208,7 @@ nav ul a:hover {
 	width: 100%;
 	padding-top: 30px;
 	background: none;
-	overflow: hidden;
+	overflow: visible;
 	-webkit-transition: all 0.3s;
 	transition: all 0.8s;
 	opacity: 0;
@@ -233,23 +233,23 @@ nav {
 	}
 }
 
-nav ul {
+/* nav ul {
 	list-style: none;
 	overflow: hidden;
 	text-align: center;
-}
+} */
 
-@media only screen and (max-width: 766px) {
+/* @media only screen and (max-width: 766px) { */
 	nav ul {
-		padding-top: 0px;
+		padding-top: 10px;
 		margin-bottom: 22px;
 		text-align: center;
 		width: 100%;
-	}
-}
+	} 
+
 
 nav ul li {
-	display: inline-block;
+	display: inline-block;;
 	margin-left: 35px;
 	line-height: 1.5;
 	letter-spacing: 1px;
@@ -258,23 +258,28 @@ nav ul li {
 
 nav ul li {
 		width: 100%;
-		padding: 7px 0;
+		padding: 70px 0;
 		margin: 0;
 	}
-
+/* 
 	nav ul li:first-child {
-		margin-top: 70px;
-	}
+		 margin-top: 70px; 
+	} */
 }
 
 nav ul a {
 	text-transform: uppercase;
-	font-size: 12px;
+	font-size: 13px;
 	text-decoration: none;
-}
+} */
 
 
-
+/* .show #navbarNavDropdown{
+	position:relative;
+	margin-top: -500px;
+	border-top-right-radius: 300px;
+	padding-top: 500px;
+} */
 
 
 
@@ -291,15 +296,15 @@ nav ul a {
 /* ul {
 	list-style: circle inside;
 } */
-ol {
+/* ol {
 	list-style: decimal inside;
-}
+} */
 
-ol,
+/* ol,
 ul {
 	padding-left: 0;
 	margin-top: 0;
-}
+} */
 
 /* ul ul, ul ol, ol ol, ol ul {
 	margin: 1.5rem 0 1.5rem 3rem;
@@ -356,7 +361,7 @@ nav.navbar .navbar-expand-lg.bg-body-tertiary#navmain {
 	width: 100%;
 	padding-top: 17px;
 	background: none;
-	overflow: hidden;
+	/* overflow: hidden; */
 	-webkit-transition: all 0.3s;
 	transition: all 0.8s;
 	opacity: 0;

@@ -7,45 +7,73 @@
     <title>Online Resume Andrew Costigan</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/pStyles.css">
     <link rel="stylesheet" href="css/styles.css">
 
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="js/main.js" defer></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"> -->
+    <!-- <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script> -->
+    <!-- <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  </head>
+  
   </head>
   <body>
     <div class="scrollDist"></div>
-    <header id="header">
-      <div class="main_nav">
-        <div class="container">
-          <div class="mobile-toggle">
-            <span></span> <span></span> <span></span>
-          </div>
-          <nav>
-            <ul>
-              
-              <li><a class="smoothscroll" href="#header">Home</a></li>
-              <li>
-                <a class="smoothscroll" href="MapOfSiteShowCasingElements.html"
-                  >Software</a
-                >
-              </li>
-              <li>
-                <a class="smoothscroll" href="photography.html">Photography</a>
-              </li>
-              <li>
-                <a class="smoothscroll" href="Videography.html">Videography</a>
-              </li>
-              <li><a class="smoothscroll" href="diy.html">DIY</a></li>
-              <li><a class="smoothscroll" href="#contact">Contact</a></li>
-            </ul>
+          <nav class="navbar navbar-expand-lg bg-body-tertiary navbat-default" id="navmain">
+            <div class="container-fluid" id="navmain">
+              <a class="navbar-brand" href="#">Navbar</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown navmain">
+                <ul class="navbar-nav" id="navmain">
+                  <li class="nav-item" id="navmain">
+                     <a class="smoothscroll nav-link" id="navmain"aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item" id="navmain">
+                    <a class="smoothscroll nav-link" id="navmain" href="MapOfSiteShowCasingElements.html">Software</a>
+                  </li>
+                  <li class="nav-item" id="navmain">
+                     <a class="smoothscroll nav-link" id="navmain" href="photography.html">Photography</a>
+                  </li>
+                  <li class="nav-item" id="navmain">
+                     <a class="smoothscroll nav-link" id="navmain" href="Videography.html">Videography</a> 
+                  </li>
+                  <li class="nav-item" id="navmain">
+                     <a class="smoothscroll nav-link" id="navmain" href="photography.html">DIY</a>
+                  </li>
+                  <li class="nav-item" id="navmain">
+                     <a class="smoothscroll nav-link" id="navmain" href="photography.html">Contact</a>
+                  </li>
+                  <li class="nav-item dropdown" id="navmain">
+                    <a class="nav-link dropdown-toggle" id="navmain"href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Software
+                    </a>
+                    <ul class="dropdown-menu" id="navmain">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </nav>
-        </div>
-      </div>
-      
-    </header>
+     
     <div class="main" 1200 38100>
       <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
         <mask id="m">
@@ -143,6 +171,18 @@
           <text class="lrgtext" id="me" fill="#162a43" >ME</text>
           
           <div class="scroll-arrow" id="down" x="455" y="330"></div>
+         
+          <div class="container1">
+            <div class="border" aria-hidden="true"></div>
+            <img src="assets/IMG_7594 (2).jpg" alt="spheres">
+           <div class="textOption" fill="#fff">Photography</div>
+          </div>
+          <svg width="0" height="0" viewBox="0 0 1 1">
+          <clipPath id="squircleClip" clipPathUnits="objectBoundingBox">
+            <path d="M 0,0.5 C 0,0 0,0 0.5,0 S 1,0 1,0.5 1,1 0.5,1 0,1 0,0.5"
+            />
+          </clipPath>
+        </svg>
 
           <!-- <polyline class="arrow" fill="#162a43"  stroke-width="200" points="599,289 590,279 590,282 600,292 610,282 610,279 601,289 601,250"/> -->
           <!-- <path class="arrowUp" d="M590,262 L601,249  M610,262 L599,249 M600,250 L600, 280 " stroke="#162a43" stroke-width="3" fill="none"></path> -->
@@ -165,6 +205,7 @@
     <p>outside div</p>
     
     
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+   
   </body>
 </html>
