@@ -1,217 +1,68 @@
+/* Navbar looking good but not finalised. finalise by over-writing BS styles from devTools
+this will achieve the look of the navbar, then Identify the behaviour from index.html - isolate
+to videography and get to work then bring to index styles and js */
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300");
 
 
+    nav {
+    width: auto;
+    }
 
-/* Links
-********************************************************************* */
-nav ul a {
-	color: #162a43;
-}
+    ul {
+            padding: 20px 0px 2px 0px;
+            width: 20%;
+    } 
 
-nav ul a:hover {
-	color: #6e6f79;
-}
+    nav ul li {
+        display: inline-block;
+        margin: 1px 30px 1px 20px;
+        line-height: 1.3;
+        letter-spacing: 1.3px;
+    }
 
-.main_nav {
-	position: fixed;
-	top: 0px;
-	max-height: 50px;
-	z-index: 999;
-	width: 100%;
-	padding-top: 17px;
-	background: none;
-	overflow: hidden;
-	-webkit-transition: all 0.3s;
-	transition: all 0.8s;
-	opacity: 0;
-	top: -700px;
-	padding-bottom: 30px;
-}
+    nav ul a {
+        text-transform: uppercase;
+        font-size: 13px;
+    } 
 
-/* .navbar {
-	position: fixed;
-	top: 0px;
-	max-height: 50px;
-	z-index: 1200;
-	width: 100%;
-	padding-top: 30px;
-	background: none;
-	overflow: visible;
-	-webkit-transition: all 0.3s;
-	transition: all 0.8s;
-	opacity: 0;
-	top: -700px;
-	padding-bottom: 20px;
-} */
+    .sticky {
+        background-color: #ffffff;
+        opacity: 1;
+        top: 0px;
+    }
 
-.sticky {
-	background-color: #ffffff;
-	opacity: 1;
-	top: 0px;
-}
+    .container-fluid {
+        width: 100%;
+        max-width: 960px;
+        
+        
+    }
+    a {
+        color: #162a43;
+        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+        font-size: 1.1em;
+        line-height: 1.6;
+        font-weight: 500; 
+    }
 
-nav {
-	width: 100%;
-	margin-top: 5px;
-}
+    a.nav-link:hover{
+        color: #6e6f79;
+        /* font-family: 'Open Sans', Helvetica, Arial, sans-serif; */
+        font-size: 1.1em;
+        /* line-height: 1.6; */
+        /* font-weight: 500;  */
+    }
 
-@media only screen and (max-width: 766px) {
-	nav {
-		width: 100%;
-	}
-}
-
-/* nav ul {
-	list-style: none;
-	overflow: hidden;
-	text-align: center;
-} */
-
-/* @media only screen and (max-width: 766px) { */
-	nav ul {
-		padding-top: 10px;
-		margin-bottom: 22px;
-		text-align: center;
-		width: 100%;
-	} 
-
-
-nav ul li {
-	display: inline-block;;
-	margin-left: 35px;
-	line-height: 1.5;
-	letter-spacing: 1px;
-
-
-
-nav ul li {
-		width: 100%;
-		padding: 70px 0;
-		margin: 0;
-	}
-/* 
-	nav ul li:first-child {
-		 margin-top: 70px; 
-	} */
-}
-
-nav ul a {
-	text-transform: uppercase;
-	font-size: 13px;
-	text-decoration: none;
-} */
-
-
-.show #navbarNavDropdown{
-	position:relative;
-	margin-top: -500px;
-	border-top-right-radius: 300px;
-	padding-top: 500px;
-}
-
-
-
-
-
-
-
-/* Footer Section
-********************************************************************* */
-
-
-/* Lists
-********************************************************************* */
-/* ul {
-	list-style: circle inside;
-} */
-/* ol {
-	list-style: decimal inside;
-} */
-
-/* ol,
-ul {
-	padding-left: 0;
-	margin-top: 0;
-} */
-
-/* ul ul, ul ol, ol ol, ol ul {
-	margin: 1.5rem 0 1.5rem 3rem;
-	font-size: 90%;
-} */
-li {
-	margin-bottom: 1rem;
-}
-
-nav a .navbar .navbar-expand-lg .bg-body-tertiary #navmain{
-	/* --bs-navbar-padding-x: ; */
-
-	/* --bs-bg-opacity: 0; */
-	/* background-color:  #fff !important; */
-	
-}
-a.smoothscroll.nav-link#navmain{ 	
-	color: #162a43;
-	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-	font-size: 1.5em;
-	line-height: 1.6;
-	font-weight: 500;
-	
-}
-
-a.smoothscroll.nav-link#navmain:hover{	
-	color: #6e6f79;
-	
-}
-a.nav-link.dropdown-toggle#navmain{
-	color: #162a43;
-	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-	font-size: 1.5em;
-	line-height: 1.6;
-	font-weight: 500;
-
-}
-a.nav-link.dropdown-toggle#navmain:hover{	
-	color: #6e6f79;
-	
-}
-
-
-.bg-body-tertiary {
-    --bs-bg-opacity: 0;
-    background-color: none !important;
-}
-
-nav.navbar .navbar-expand-lg.bg-body-tertiary#navmain {
-	position: fixed;
-	top: 0px;
-	max-height: 50px;
-	z-index: 999;
-	width: 100%;
-	padding-top: 17px;
-	background: none;
-	/* overflow: hidden; */
-	-webkit-transition: all 0.3s;
-	transition: all 0.8s;
-	opacity: 0;
-	top: -700px;
-	padding-bottom: 6px;
-}
-
-
-.sticky {
-	background-color: #ffffff;
-	opacity: 1;
-	top: 0px;
-}
-.container-fluid {
-	position: relative;
-	width: 100%;
-	max-width: 960px;
-	margin: 0 auto;
-	padding: 0 20px;
-	box-sizing: border-box;
-}
-
-/* ~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~ Z~ZZZZZZZ~~~~~~~~*/
+    .bg-Light {
+        background-color: transparent !important;
+    }
+    /* a#navbarDropdownMenuLink.nav-link.dropdown-toggle.show:hover{
+        color: #6e6f79;
+        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+        font-size: 1.3em;
+        /* line-height: 1.6;
+        font-weight: 500;  */
+    }  */
+   
