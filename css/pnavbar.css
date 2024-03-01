@@ -1,4 +1,7 @@
-/* Specifically for videography and other non index.html pages */
+/* Specifically styling for index.html navbar */
+/* Navbar looking good but not finalised. finalise by over-writing BS styles from devTools
+this will achieve the look of the navbar, then Identify the behaviour from index.html - isolate
+to videography and get to work then bring to index styles and js */
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300");
@@ -40,7 +43,7 @@
     a.nav-link {
         color: #6e6f79;
         font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-        font-size: 1.1em;
+        font-size: 1.6em;
         line-height: 1.6;
         font-weight: 500; 
     }
@@ -48,22 +51,30 @@
     a.nav-link:hover{
         color: #162a43;
         /* font-family: 'Open Sans', Helvetica, Arial, sans-serif; */
-        font-size: 1.2em;
+        font-size: 1.65em;
         /* line-height: 1.6; */
         /* font-weight: 500;  */
     }
     /* body {
         background-color: aqua;
     } */
-    /* ul.navbar-nav {
+    ul.navbar-nav {
         position: absolute;
         align-self: center;
-    } */
-   
-    a.dropdown-item:hover {
-        color: #162a43;
-        font-size: 1.01em;
+        /* -webkit-transition: all 0.9s;
+        transition: all 1s; */
+    }
+    a.dropdown-item{
+        font-size: 1em;
     }
 
-  
-   
+    a.dropdown-item:hover {
+        color: #162a43;
+        font-size: 1.05em;
+
+    }
+
+    dropdown-menu {
+        border: none;
+    }
+
