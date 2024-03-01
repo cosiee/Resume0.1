@@ -70,7 +70,7 @@ gsap
   )
   .fromTo(
     "#cloud1",
-    { scale: 1.3, x: 0, y: 576 },
+    { scale: 1.3, x: -10, y: 576 },
     { scale: 2, x: -500, y: -690 },
     0
   )

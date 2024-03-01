@@ -28,7 +28,9 @@ html body svg text.lrgtext {
 	transform: translate(500px, 22vh);
 }
 
-
+.lrgtext#me {
+	transform: translate(520px, 22vh);
+}
 
 div {
 	position: absolute;
@@ -75,15 +77,18 @@ div {
 /* Small devices (landscape phones, 576px and up) */
 @media (max-width: 575px) {
 	.scroll-arrow {
-		top: 13vh;
+		top: 15vh;
 		width: 12px;
 		height: 12px;	
 		border-bottom: 3px solid #fff;
 		border-right: 3px solid #fff;
 	}
 	html body svg text.lrgtext {
-		
-		transform: translate(500px, 22%);
+		font-size:150px;
+		transform: translate(450px, 32%);
+	}
+	.lrgtext#me {
+		transform: translate(470px, 32%);
 	}
 
 }
@@ -97,9 +102,11 @@ div {
 		border-right: 3px solid #fff;
 	}
 	html body svg text.lrgtext {
-		
 		transform: translate(500px, 22%);
 	}	
+	.lrgtext#me {
+		transform: translate(520px, 22%);
+	}
 }
 
 /*  Medium devices (tablets, 768px and up) 
@@ -113,9 +120,10 @@ div {
 		border-right: 4px solid #fff;
 	}
 	html body svg text.lrgtext {
-		
 		transform: translate(500px, 20vh);
-		
+	}
+	.lrgtext#me {
+		transform: translate(520px, 20vh);
 	}
 }
 
@@ -135,9 +143,10 @@ div {
 		top: 26%;	
 	}
 	html body svg text.lrgtext {
-		
 		transform: translate(500px, 20vh);
-		
+	}
+	.lrgtext#me {
+		transform: translate(520px, 20vh);
 	}
 
 }
@@ -155,29 +164,23 @@ div {
 	font-size: 62.5%;
 } */
 
-/* header {
-	font-size: 1.5em;
-	line-height: 1.6;
-	font-weight: 500;
-	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-	color: #162a43;
-} */
+
 
 
 /* Navbar base styles */
 ********************************************************************* */
-nav {
-    width: auto;
-    }
+	nav {
+		width: auto;
+	}
 
     ul {
             padding: 20px 0px 2px 0px;
-            width: 20%;
+            width: 30%;
     } 
 
     nav ul li {
         display: inline-block;
-        margin: 1px 30px 1px 20px;
+        margin: 1px 30px 1px 5px;
         line-height: 1.3;
         letter-spacing: 1.3px;
     }
@@ -193,12 +196,7 @@ nav {
         top: 0px;
     }
 
-    .container-fluid {
-        width: 100%;
-        max-width: 960px;
-        
-        
-    }
+   
     a.nav-link {
         color: #6e6f79;
         font-family: 'Open Sans', Helvetica, Arial, sans-serif;
@@ -238,31 +236,10 @@ nav {
     }
 
 
-nav ul a {
-	color: #162a43;
-}
-
-nav ul a:hover {
-	color: #6e6f79;
-}
 
 
 
-.navbar {
-	position: fixed;
-	top: 0px;
-	max-height: 50px;
-	z-index: 1200;
-	width: 100%;
-	padding-top: 30px;
-	background: none;
-	overflow: visible;
-	-webkit-transition: all 0.3s;
-	transition: all 0.8s;
-	opacity: 0;
-	top: -700px;
-	padding-bottom: 20px;
-}
+/*  */
 
 
 nav {
@@ -287,49 +264,11 @@ nav ul li {
 
 
 
-
-
-
-
-
-
-
-
-
-/* Footer Section
-********************************************************************* */
-
-
-/* Lists
-********************************************************************* */
-/* ul {
-	list-style: circle inside;
-} */
-/* ol {
-	list-style: decimal inside;
-} */
-
-/* ol,
-ul {
-	padding-left: 0;
-	margin-top: 0;
-} */
-
-/* ul ul, ul ol, ol ol, ol ul {
-	margin: 1.5rem 0 1.5rem 3rem;
-	font-size: 90%;
-} */
 li {
 	margin-bottom: 1rem;
 }
 
-nav a .navbar .navbar-expand-lg .bg-body-tertiary #navmain{
-	/* --bs-navbar-padding-x: ; */
 
-	/* --bs-bg-opacity: 0; */
-	/* background-color:  #fff !important; */
-	
-}
 a.smoothscroll.nav-link#navmain{ 	
 	color: #162a43;
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
@@ -362,21 +301,23 @@ a.nav-link.dropdown-toggle#navmain:hover{
     background-color: none !important;
 }
 
-nav.navbar .navbar-expand-lg.bg-body-tertiary#navmain {
+
+.navbar {
 	position: fixed;
 	top: 0px;
 	max-height: 50px;
-	z-index: 999;
+	z-index: 1200;
 	width: 100%;
-	padding-top: 17px;
+	padding-top: 30px;
 	background: none;
-	/* overflow: hidden; */
-	-webkit-transition: all 0.3s;
-	transition: all 0.8s;
+	overflow: visible;
+	-webkit-transition: all 1s;
+	transition: all 1s;
 	opacity: 0;
 	top: -700px;
-	padding-bottom: 6px;
+	padding-bottom: 20px;
 }
+
 
 
 .sticky {
@@ -384,12 +325,16 @@ nav.navbar .navbar-expand-lg.bg-body-tertiary#navmain {
 	opacity: 1;
 	top: 0px;
 }
+
+
 .container-fluid {
 	position: relative;
 	width: 100%;
-	max-width: 960px;
+	
+	max-width: 800px;
+	align-self: center;
 	margin: 0 auto;
-	padding: 0 20px;
+	padding: 10px 20px 5px 5px;
 	box-sizing: border-box;
 }
 
