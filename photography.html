@@ -9,23 +9,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/pStyles.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/thumbStyles.css"> 
 
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js" defer></script>
     <script src="js/main.js" defer></script>
     
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+   
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
     
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"> -->
-    <!-- <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script> -->
-    <!-- <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script> -->
-    <!-- <link rel="stylesheet" href="css/pnavbar.css"> -->
+    
+
   </head>
   
   </head>
@@ -40,7 +37,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="index.html">Home</a>
+              <a class="nav-link" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item dropdown">
               <a  class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -67,8 +64,9 @@
         </div>
       </div>
     </nav> 
+
      
-    <div class="main" 1200 38100>
+    <div class="main" 1200 800>
       <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
         <mask id="m">
           <g class="img-fluid" id="cloud1">
@@ -165,17 +163,33 @@
           <text class="lrgtext" id="me" fill="#162a43" >ME</text>
           
           <div class="scroll-arrow" id="down" x="455" y="330"></div>
-         
-          <div class="container1">
-            <div class="border" aria-hidden="true"></div>
-            <img src="assets/IMG_7594 (2).jpg" alt="spheres">
-           <div class="textOption" fill="#fff">Photography</div>
+
+         <a href="photography.html">
+          <div class="thumbs" id="photography">
+            <img src='https://picsum.photos/id/1011/200/200' class="thumbShape" />
           </div>
-          <svg width="0" height="0" viewBox="0 0 1 1">
-          <clipPath id="squircleClip" clipPathUnits="objectBoundingBox">
-            <path d="M 0,0.5 C 0,0 0,0 0.5,0 S 1,0 1,0.5 1,1 0.5,1 0,1 0,0.5"
-            />
-          </clipPath>
+        </a>
+
+        <a href="diy.html">
+          <div class="thumbs" id="diy">
+            <!-- <img src='https://picsum.photos/id/1011/200/200' /> -->
+            <!-- <rect width="100%" height="100%" fill="#41dddb"  clip-path="#SquircleClip"></rect> -->
+          </div>
+        </a>
+
+        
+        <!-- HIDDEN CLIPPATHS -->
+        <svg class="svgPath" viewBox="0 0 1 1" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <clipPath id="SquircleClip" clipPathUnits="objectBoundingBox">
+              <path d="M 0,0.5
+                        C 0,0.115  0.115,0  0.5,0
+                          0.885,0  1,0.115  1,0.5
+                          1,0.885  0.885,1  0.5,1
+                          0.115,1  0,0.885  0,0.5"></path>
+            </clipPath>
+            
+          </defs>
         </svg>
 
           <!-- <polyline class="arrow" fill="#162a43"  stroke-width="200" points="599,289 590,279 590,282 600,292 610,282 610,279 601,289 601,250"/> -->

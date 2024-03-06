@@ -75,17 +75,22 @@ gsap
     0
   )
   .fromTo(
-    ".container1",
+    ".thumbs#photography",
     { x: 455, y: 576 },
     { x: 455, y: -570 },
+    0 
+  )
+  .fromTo(
+    ".thumbs#diy",
+    { x: 455, y: 576 },
+    { x: 700, y: -570 },
     0 
   );
 
 // $('#down').on('mouseenter', (e)=>{ gsap.to('#down', {y:10, duration:0.8, ease:'back.inOut(3)', overwrite:'auto'}); })
 // $('#down').on('mouseleave', (e)=>{ gsap.to('#down', {y:0, duration:0.5, ease:'power3.out', overwrite:'auto'}); })
 $(".scroll-arrow").on("click", (e) => {
-  gsap.to(window, { scrollTo: 600, duration: 4, ease: "power3.inOut" });
-}); // scrollTo requires the ScrollTo plugin (not to be confused w/ ScrollTrigger)
+  gsap.to(window, { scrollTo: 600, duration: 3, ease: "power3.inOut" });}); // scrollTo requires the ScrollTo plugin (not to be confused w/ ScrollTrigger)
 
 /*----------------------------------------------------*/
 /* Main Navigation 

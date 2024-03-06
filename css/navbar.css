@@ -34,23 +34,25 @@
     .container-fluid {
         width: 100%;
         max-width: 960px;
+            /* text-align: center; */
         
         
     }
     a.nav-link {
-        color: #6e6f79;
+        /* text-align: center;  */
+        color: #162a43;
         font-family: 'Open Sans', Helvetica, Arial, sans-serif;
         font-size: 1.1em;
         line-height: 1.6;
         font-weight: 500; 
+        transition: all 0.3;
+        transform: scale(0.8);
+        opacity: 1;
     }
 
     a.nav-link:hover{
-        color: #162a43;
-        /* font-family: 'Open Sans', Helvetica, Arial, sans-serif; */
-        font-size: 1.2em;
-        /* line-height: 1.6; */
-        /* font-weight: 500;  */
+        transform: scale(1);
+        color: #6e6f79;
     }
     /* body {
         background-color: aqua;
@@ -61,8 +63,8 @@
     } */
    
     a.dropdown-item:hover {
-        color: #162a43;
-        font-size: 1.01em;
+        color: #6e6f79;
+        transform: scale(1.2);
     }
 
   

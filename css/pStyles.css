@@ -53,6 +53,7 @@
 	  inset -10px -10px 20px #162a43;
 	border-radius: calc(var(--size) / 6);
 	transition: 0.3s cubic-bezier(.51,.61,0,2.3);
+	
   }
   
   .container1:hover .border {
