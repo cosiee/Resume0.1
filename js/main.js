@@ -76,16 +76,23 @@ gsap
   )
   .fromTo(
     ".thumbs#photography",
-    { x: 455, y: 576 },
-    { x: 455, y: -570 },
+    { scale: 0.1, x: 455, y: 576 },
+    { scale: 1, x: 455, y: -570 },
     0 
   )
   .fromTo(
     ".thumbs#diy",
-    { x: 455, y: 576 },
-    { x: 700, y: -570 },
+    { scale: 0.1, x: 2000, y: -500 },
+    { scale: 1, x: 700, y: -770 },
+    0 
+  )
+  .fromTo(
+    ".thumbs1",
+    { scale: 0.3,x: -200, y: 576 },
+    { scale: 1, x: 200, y: -970 },
     0 
   );
+
 
 // $('#down').on('mouseenter', (e)=>{ gsap.to('#down', {y:10, duration:0.8, ease:'back.inOut(3)', overwrite:'auto'}); })
 // $('#down').on('mouseleave', (e)=>{ gsap.to('#down', {y:0, duration:0.5, ease:'power3.out', overwrite:'auto'}); })

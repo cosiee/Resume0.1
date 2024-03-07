@@ -7,10 +7,10 @@
   } */
   
   .container1 {
-	--size: min(80vmin, 300px);
+	/* --size: min(80vmin, 300px);
 	position: relative;
 	width: var(--size);
-	height: var(--size);
+	height: var(--size); */
 	
   }
   /* .container1 .textOption{
