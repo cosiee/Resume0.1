@@ -1,62 +1,65 @@
 .lrgtext#me:hover {
   /* fill: #fff; */
 }
+
 .thumbShape {
-	clip-path: url(#SquircleClip);
+  --size: min(80vmin, 250px);
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  overflow: hidden; /* Ensure content inside is clipped */
+  border-radius: 20%; /* Creates a circular clip path...
+  clip-path: url(#SquircleClip);  NOTE could not get this shape
+  working inconjunction with drop shadow */
 }
 
-.thumbs {
-  --size: min(80vmin, 300px);
+div.thumbs {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
-  position: relative;
-
-  width: var(--size);
-	height: var(--size);
-	filter: drop-shadow(0 0 0.1rem #162a43);
-  
-  background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat;
-} 
-
-.thumbs:hover {
+#software {
+  background-image: url('https://www.thewowstyle.com/wp-content/uploads/2015/02/now-i-am-free.jpg');
+  filter: drop-shadow(0 0 0.1rem #162a43);
+}
+#software:hover {
+  background-image: url('https://www.thewowstyle.com/wp-content/uploads/2015/01/free-beautiful-place-wallpaper-hd-173.jpg');
+  cursor: pointer;
   filter: drop-shadow(0 0 0.75rem #162a43);
 }
-/* .thumbs {
-  --size: min(80vmin, 200px);
 
-  position: relative;
-
-  width: var(--size);
-	height: var(--size);
-	filter: drop-shadow(0 0 0.1rem #162a43);
-  background-image: url('https://www.thewowstyle.com/wp-content/uploads/2015/02/now-i-am-free.jpg');
-  background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat;
-}
-.thumbs:hover {
-	filter: drop-shadow(0 0 0.75rem #162a43);
-} */
 #photography {
-    background-image: url('https://www.thewowstyle.com/wp-content/uploads/2015/02/now-i-am-free.jpg');
-
-     background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-  }
-.svgpath {
-    position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  clip-path: url(#SquircleClip);
-
-}  
-.svgPath clipPath {
-    fill: transparent
+  background-image: url('https://www.thewowstyle.com/wp-content/uploads/2015/02/now-i-am-free.jpg');
+  filter: drop-shadow(0 0 0.1rem #162a43);
 }
+#photography:hover {
+  background-image: url('https://www.thewowstyle.com/wp-content/uploads/2015/01/free-beautiful-place-wallpaper-hd-173.jpg');
+  cursor: pointer;
+  filter: drop-shadow(0 0 0.75rem #162a43);
+}
+
+#videography {
+  background-image: url('https://www.thewowstyle.com/wp-content/uploads/2015/02/now-i-am-free.jpg');
+  filter: drop-shadow(0 0 0.1rem #162a43);
+}
+#videography:hover {
+  background-image: url('https://www.thewowstyle.com/wp-content/uploads/2015/01/free-beautiful-place-wallpaper-hd-173.jpg');
+  cursor: pointer;
+  filter: drop-shadow(0 0 0.75rem #162a43);
+}
+
+#diy {
+  background-image: url('https://www.thewowstyle.com/wp-content/uploads/2015/02/now-i-am-free.jpg');
+  filter: drop-shadow(0 0 0.1rem #162a43);
+}
+#diy:hover {
+  background-image: url('https://www.thewowstyle.com/wp-content/uploads/2015/01/free-beautiful-place-wallpaper-hd-173.jpg');
+  cursor: pointer;
+  filter: drop-shadow(0 0 0.75rem #162a43);
+}
+
+
 
 
 
