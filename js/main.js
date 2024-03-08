@@ -76,26 +76,26 @@ gsap
   )
   .fromTo(
     ".thumbs#software",
-    { scale: 0.01, x: -1500, y: -570 },
-    { scale: 1, x: 330, y: -590 },
+    { scale: 2.5, x: -1500, y: -570 },
+    { scale: 1, x: 320, y: -570 },
     0 
   )
   .fromTo(
     ".thumbs#photography",
-    { scale: 0.1, x: 2400, y: -570 },
-    { scale: 1, x: 630, y: -590 },
+    { scale: 2.5, x: 2400, y: -570 },
+    { scale: 1, x: 620, y: -570 },
     0 
   )
   .fromTo(
     ".thumbs#diy",
-    { scale: 0.1, x: 2400, y: 800 },
-    { scale: 1, x: 630, y: -290 },
+    { scale: 2.5, x: 2400, y: 700 },
+    { scale: 1, x: 620, y: -270 },
     0 
   )
   .fromTo(
     ".thumbs#videography",
-    { scale: 0.1, x: -2200, y: 800 },
-    { scale: 1, x: 330, y: -290 },
+    { scale: 2.5, x: -1500, y: 700 },
+    { scale: 1, x: 320, y: -270 },
     0  
   );
 
