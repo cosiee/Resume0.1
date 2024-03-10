@@ -114,9 +114,14 @@
   opacity: 0;
   transition: opacity 0.6s ease;
 }
+ 
+#photography:hover .overlay ~ a.nav-link#photographyLink{ 
+	 color: #6e6f79;
+   transform: scale(1.2);
+	/* --bs-navbar-active-color: #f23506; */
 
-#photography:hover .overlay {
   opacity: 0.7;
+
 }
 
 #photography {
@@ -126,9 +131,12 @@
   filter: drop-shadow(0 0 0.1rem #162a43);
 }
 
-#photography:hover {
+#photography:hover ~ body nav li a#photographyLink{
   cursor: pointer;
   filter: drop-shadow(0 0 0.75rem #162a43);
+
+  color: #6e6f79;
+  transform: scale(1.2);
 }
 
 
@@ -169,7 +177,7 @@
 }
 
 #videography:hover .overlay {
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 #videography {
