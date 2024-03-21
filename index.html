@@ -1,21 +1,18 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Online Resume Andrew Costigan</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/pStyles.css">
     <link rel="stylesheet" href="css/styles.css">
+  
 
     <script src="http://code.jquery.com/jquery-1.11.0.min.js" defer></script>
     <script src="js/main.js" defer></script>
-    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-   
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
@@ -39,7 +36,7 @@
               <a class="nav-link" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item dropdown">
-              <a  class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink software" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a  class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink softwareLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Software  </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><a class="dropdown-item" href="#">html</a></li>
@@ -48,13 +45,13 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="photography" href="photography.html">Photography</a>
+              <a class="nav-link" id="photographyLink" href="photography.html">Photography</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id "videography" href="videography.html">Videography</a>
+              <a class="nav-link" id="videographyLink" href="videography.html">Videography</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id "diy" href="diy.html">Diy</a>
+              <a class="nav-link" id="diyLink" href="diy.html">Diy</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Contact</a>
@@ -78,7 +75,7 @@
         <image
           class="img-fluid" 
           id="sky"
-          xlink:href="assets/Sky.jpg"
+          xlink:href="/assets/sky.jpg"
           width="1200"
           height="800"
         />
@@ -162,41 +159,43 @@
           <text class="lrgtext" id="me" fill="#162a43" >ME</text>
           
           <div class="scroll-arrow" id="down" x="455" y="330"></div>
-         
-          <div class="container1">
-            <div class="border" aria-hidden="true"></div>
-            <img src="assets/IMG_7594 (2).jpg" alt="spheres">
-            <div class="textOption" fill="#fff">Photography</div>
-          </div>
-          <svg width="0" height="0" viewBox="0 0 1 1">
-          <clipPath id="squircleClip" clipPathUnits="objectBoundingBox">
-            <path d="M 0,0.5 C 0,0 0,0 0.5,0 S 1,0 1,0.5 1,1 0.5,1 0,1 0,0.5"
-            />
-          </clipPath>
-        </svg>
 
-          <!-- <polyline class="arrow" fill="#162a43"  stroke-width="200" points="599,289 590,279 590,282 600,292 610,282 610,279 601,289 601,250"/> -->
-          <!-- <path class="arrowUp" d="M590,262 L601,249  M610,262 L599,249 M600,250 L600, 280 " stroke="#162a43" stroke-width="3" fill="none"></path> -->
-          <!-- <text x="10" y="400" fill="#162a43">postioned inside svg</text> -->
-          <!-- <div class="scroll-arrow" id="up" ></div> -->
-          
-        </g>
-        <!-- <rect id="arrowBtn2" width="100" height="50" opacity="0" x="550" y="240" style="cursor:pointer"/>
-  
-      <rect id="arrowBtn" width="100" height="50" opacity="0" x="550" y="210" style="cursor:pointer"/> -->
+        
 
-        <!-- <text x="550" y="775" fill="#00ffcb">in svg</text> -->
-        <!-- <rect fill="#00ffcb" width="100%" height="100%" />     -->
+        <a class="thumbs" href="software.html">
+        <div class="thumbShape thumbs" id="software">
+          <!-- <img src="assets/Thumbnail-6.jpg"> -->
+          <div class="overlay"></div>
+        </div>
+        </a>
+       
+        <a class="thumbs" href="photography.html"> 
+        <div class="thumbShape thumbs" id="photography">
+          <!-- <img src="assets/Thumbnail-8.jpg"> -->
+          <div class="overlay"></div>
+
+        </div>
+        </a>
+
+        <a class="thumbs" href="videography.html">
+        <div class="thumbShape thumbs" id="videography">
+        <div class="overlay"></div>
+      </div>
+        </a>
+
+        <a class="thumbs" href="diy.html">
+        <div class="thumbShape thumbs" id="diy">
+          <div class="overlay"></div>
+        </div>
+        </a>
+     
         
       </svg>
 
       outside svg
       
 
-    <p>outside div</p>
-    
-    
 
-   
+
   </body>
 </html>

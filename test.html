@@ -1,42 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hover Effect</title>
-<style>
-  .hovered-element {
-    width: 100px;
-    height: 100px;
-    background-color: blue;
-    transition: transform 0.3s ease;
-  }
-
-  .target-element {
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    transition: background-color 0.3s ease;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/test.css">
+  <title>Split Screen Effect with CSS</title>
 </head>
 <body>
-
-<div class="hovered-element">Hover over me!</div>
-<div class="target-element"></div>
-
-<script>
-  const hoveredElement = document.querySelector('.hovered-element');
-  const targetElement = document.querySelector('.target-element');
-
-  hoveredElement.addEventListener('mouseenter', function() {
-    targetElement.style.backgroundColor = 'green'; // Change color when hovered
-  });
-
-  hoveredElement.addEventListener('mouseleave', function() {
-    targetElement.style.backgroundColor = 'red'; // Revert back to original color
-  });
-</script>
-
+ <div class="wrapper skewed">
+   <div class="panel bottom">
+     <div class="content">
+       <img src="/assets/orig/bg3.jpg" alt="">
+     </div>
+   </div>
+   <div class="panel top">
+     <div class="content">
+       <img src="/assets/orig/bg2.jpg" alt="">
+     </div>
+   </div>
+   <div class="handle"></div>
+ </div>
+ <script type="text/javascript" src="js/test.js"></script>
 </body>
 </html>
