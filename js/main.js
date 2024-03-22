@@ -12,7 +12,7 @@ gsap.set(".main", {
   left: "50%",
   x: "-50%",
 });
-gsap.set(".scrollDist", { width: "100%", height: "250%", background: "#fff" });
+gsap.set(".scrollDist", { width: "100%", height: "200%", background: "#fff" });
 gsap
   .timeline({
     scrollTrigger: {
@@ -20,6 +20,7 @@ gsap
       start: "top top",
       end: "bottom bottom",
       scrub: 1,
+      
     },
   })
 
@@ -101,14 +102,15 @@ gsap
     0
   );
 
-// $('#down').on('mouseenter', (e)=>{ gsap.to('#down', {y:10, duration:0.8, ease:'back.inOut(3)', overwrite:'auto'}); })
-// $('#down').on('mouseleave', (e)=>{ gsap.to('#down', {y:0, duration:0.5, ease:'power3.out', overwrite:'auto'}); })
+
+
 $(".sig, .close").on("click", (e) => {
-   
+
   gsap
-      .to(
+      .fromTo(
         ".thumbs#diy",
         { x: 620, y: -270 },
+        { x: 590, y: -290 },
         0
       )
   gsap    
@@ -129,11 +131,14 @@ $(".sig, .close").on("click", (e) => {
         { x: 620, y: -570 },
         0
       )
+
+ 
 }); 
 
 
 $(".meLink").on("click", (e) => {
-   
+  
+
   gsap
       .to(
         ".thumbs#diy",
@@ -159,6 +164,15 @@ $(".meLink").on("click", (e) => {
         0
       )
 }); 
+
+function toggleScroll() {
+  var body = document.body;
+  if (body.style.overflow === 'hidden') {
+      body.style.overflow = 'auto';
+  } else {
+      body.style.overflow = 'hidden';
+  }
+}
 
 $(".scroll-arrow").on("click", (e) => {
   gsap.to(window, { scrollTo: 600, duration: 3, ease: "power3.inOut" });

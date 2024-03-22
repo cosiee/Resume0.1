@@ -1,3 +1,9 @@
+
+<!-- bootstraping for thumbnails and statement needed. 
+  Scrolling needs to disabled and enabled in javascript on buttons around statement -->
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -158,7 +164,7 @@
 
         <g mask="url(#m)">
           <rect fill="#fff" width="100%" height="100%" />
-          <a class="meLink" href="#statmentContact">
+          <a class="meLink" onclick="toggleScroll()" href="#statmentContact">
           <text class="lrgtext"  id="me" fill="#162a43" >ME</text>
           </a>
           <div class="scroll-arrow" id="down" x="455" y="330"></div>
@@ -194,16 +200,21 @@
       </svg>
       <div class="modalbox" id="statmentContact">
         <div class="box">
-          <a class="close" id="close" href="#contactInfo">X</a>
+          <a class="close" onclick="toggleScroll()" href="#contactInfo">X</a>
           <p class="title">Hi</p>
           <div class="content">
           
-            <p>Thanks for having a look! Having secured a Degree in Computing I realised further
+            <p>Thank you for having a look! Having secured a 
+            Degree in Computing I realised further
               proof of a abilities might benefit the work cause. Not having a 'project' to so, along 
               with the advent self promotion requirements, this portfolio was decided on. Hope you like 
-              what you see, I look forward to hearing from you.
+              what you see,
+
+              <p>I look forward to hearing from you.</p>
+
+
                </p>
-               <a class "sig" href="#contactInfo"> 
+               <a class "sig" onclick="toggleScroll()" href="#contactInfo"> 
                <img class="sig" src="assets/sigw.png">
                </a>
           </div>

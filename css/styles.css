@@ -364,9 +364,10 @@ dropdown-menu {
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 	/* align-self: centre; */
 	background-color: rgba(0,0,0,0.4);
-	margin: 0 auto;
+	margin:  auto;
 	min-width: 210px;
 	padding: 40px;
+	
 	width: 500px;
 	height: 500px;
 	/* overflow: hidden; */
@@ -428,6 +429,7 @@ dropdown-menu {
 	padding-top: 400px;
 	padding-left: 15px;
 } */
+
 
 
 .link-modal a{
