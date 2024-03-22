@@ -107,8 +107,8 @@ $(".scroll-arrow").on("click", (e) => {
   gsap.to(window, { scrollTo: 600, duration: 3, ease: "power3.inOut" });
 }); // scrollTo requires the ScrollTo plugin (not to be confused w/ ScrollTrigger)
 
-/*----------------------------------------------------*/
-/* Main Navigation 
+// ==========================================================
+/* Main Navigation dropdown
 ------------------------------------------------------ */
 
 $(window).scroll(function () {
@@ -119,45 +119,6 @@ $(window).scroll(function () {
   }
 });
 
-// // Mobile Navigation
-// $('.mobile-toggle').click(function() {
-//     if ($('.main_nav').hasClass('open-nav')) {
-//         $('.main_nav').removeClass('open-nav');
-//     } else {
-//         $('.main_nav').addClass('open-nav');
-//     }
-// });
-
-// $('.main_nav li a').click(function() {
-//     if ($('.main_nav').hasClass('open-nav')) {
-//         $('.navigation').removeClass('open-nav');
-//         $('.main_nav').removeClass('open-nav');
-//     }
-// });
-
-/*----------------------------------------------------*/
-/* Smooth Scrolling
------------------------------------------------------- */
-
-// jQuery(document).ready(function($) {
-
-//    $('.smoothscroll','.arrowDown','.arrowUp').on('click',function (e) {
-// 	    e.preventDefault();
-
-// 	    var target = this.hash,
-// 	    $target = $(target);
-
-// 	    $('html, body').stop().animate({
-// 	        'scrollTop': $target.offset().top
-// 	    }, 800, 'swing', function () {
-// 	        window.location.hash = target;
-// 	    });
-// 	});
-
-// });
-
-// TweenMax.staggerFrom(".heading", 0.8, {opacity: 0, y: 20, delay: 0.2}, 0.4);
-//
 
 // ==========================================================
 // index.html animate thumbnails and navbar items
@@ -179,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   thumbPhoto.addEventListener("mouseenter", function () {
     console.log("Hello world!"+navbarPhoto);
-    navbarPhoto.style.scale = 1.2;
+    navbarPhoto.style.scale = 1.3;
     navbarPhoto.style.color = "#6e6f79";
     thumbPhoto.style.scale = 1.004;
   });
@@ -191,20 +152,20 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   navbarPhoto.addEventListener("mouseenter", function () {
-    navbarPhoto.style.scale = 1.02;
+    navbarPhoto.style.scale = 1.15;
     navbarPhoto.style.color = "#6e6f79";
-    thumbPhoto.style.scale = 1.004;
+    
   });
 
   navbarPhoto.addEventListener("mouseleave", function () {
     navbarPhoto.style.scale = 1;
     navbarPhoto.style.color = "#162a43";
-    thumbPhoto.style.scale = 1;
+    
   });
 
 
   thumbSoft.addEventListener("mouseenter", function () {
-    navbarSoft.style.scale = 1.2;
+    navbarSoft.style.scale = 1.3;
     navbarSoft.style.color = "#6e6f79";
     thumbSoft.style.scale = 1.004;
   });
@@ -216,20 +177,20 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   navbarSoft.addEventListener("mouseenter", function () {
-    navbarSoft.style.scale = 1.02;
+    navbarSoft.style.scale = 1.1;
     navbarSoft.style.color = "#6e6f79";
-    thumbSoft.style.scale = 1.004;
+    
   });
 
   navbarSoft.addEventListener("mouseleave", function () {
     navbarSoft.style.scale = 1;
     navbarSoft.style.color = "#162a43";
-    thumbSoft.style.scale = 1;
+    
   });
 
 
   thumbVid.addEventListener("mouseenter", function () {
-    navbarVid.style.scale = 1.2;
+    navbarVid.style.scale = 1.3;
     navbarVid.style.color = "#6e6f79";
     thumbVid.style.scale = 1.004;
   });
@@ -241,20 +202,20 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   navbarVid.addEventListener("mouseenter", function () {
-    navbarVid.style.scale = 1.02;
+    navbarVid.style.scale = 1.1;
     navbarVid.style.color = "#6e6f79";
-    thumbVid.style.scale = 1.004;
+    
   });
 
   navbarVid.addEventListener("mouseleave", function () {
     navbarVid.style.scale = 1;
     navbarVid.style.color = "#162a43";
-    thumbVid.style.scale = 1;
+  
   });
 
 
   thumbDiy.addEventListener("mouseenter", function () {
-    navbarDiy.style.scale = 1.2;
+    navbarDiy.style.scale = 1.3;
     navbarDiy.style.color = "#6e6f79";
     thumbDiy.style.scale = 1.004;
   });
@@ -266,14 +227,14 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   navbarDiy.addEventListener("mouseenter", function () {
-    navbarDiy.style.scale = 1.02;
+    navbarDiy.style.scale = 1.1;
     navbarDiy.style.color = "#6e6f79";
-    thumbDiy.style.scale = 1.004;
+  
   });
 
   navbarDiy.addEventListener("mouseleave", function () {
     navbarDiy.style.scale = 1;
     navbarDiy.style.color = "#162a43";
-    thumbDiy.style.scale = 1;
+
   });
 });

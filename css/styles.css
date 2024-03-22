@@ -15,7 +15,7 @@ text {
 	font-family: 'Montserrat', sans-serif;
 } */
 
-html body svg text.lrgtext {
+html body svg text.lrgtext{
 	width:100%;
 	height:100%;
 	background:#ddd;
@@ -27,6 +27,11 @@ html body svg text.lrgtext {
 
 .lrgtext#me {
 	transform: translate(520px, 22vh);
+}
+
+a{
+
+	text-decoration:none;
 }
 
 div {
@@ -107,10 +112,10 @@ nav ul a {
         opacity: 1;
     }
 
-    /* a.nav-link:hover{
-        transform: scale(1.2);
+    a.nav-link:hover{
+        transform: scale(1.15);
         color: #6e6f79;
-    } */
+    }
 
 a#navbarDropdownMenuLink.nav-link.dropdown-toggle {
 	color: #162a43;
@@ -137,6 +142,12 @@ a.dropdown-item:hover {
 	transform: scale(1.2);
 }
 
+/* rule to remove blue post click */
+a.dropdown-item:hover {
+	color: #6e6f79;
+	transform: scale(1.2);
+}
+
 dropdown-menu {
 	border: none;
 }
@@ -158,7 +169,7 @@ dropdown-menu {
 }
 
 .sticky {
-	background-color: #ffffff;
+	/* background-color: #ffffff; */
 	opacity: 1;
 	top: 0px;
 }
@@ -273,7 +284,7 @@ dropdown-menu {
    */
   
   
-  
+/*   
   
   #photography img {
 	width: 100%;
@@ -296,10 +307,7 @@ dropdown-menu {
    
   #photography:hover .overlay ~ a.nav-link#photographyLink{ 
 	   
-	/* color: #6e6f79;
-	 transform: scale(1.2); */
-  
-	  /* --bs-navbar-active-color: #f23506; */
+
   
 	opacity: 0.5;
   
@@ -316,24 +324,10 @@ dropdown-menu {
 	cursor: pointer;
 	filter: drop-shadow(0 0 0.75rem #162a43);
   
-	/* color: #6e6f79;
-	transform: scale(1.2); */
-  }
-  
-  
-  
-  
-  /* 
-  #photography {
-	background-image: url(assets/Thumbnail-8.jpg);
-	filter: drop-shadow(0 0 0.1rem #162a43);
-  }
-  #photography:hover {
-	background-image: url('https://www.thewowstyle.com/wp-content/uploads/2015/01/free-beautiful-place-wallpaper-hd-173.jpg');
-	cursor: pointer;
-	scale: 1.2;
-	filter: drop-shadow(0 0 0.75rem #162a43);
   } */
+  
+  
+  
   
   
   
@@ -373,27 +367,7 @@ dropdown-menu {
 	filter: drop-shadow(0 0 0.75rem #162a43);
   }
   
-  
-  /* #videography {
-	background-image: url(assets/Thumbnail-11.jpg);
-	filter: drop-shadow(0 0 0.1rem #162a43);
-  }
-  #videography:hover {
-	background-image: url('https://www.thewowstyle.com/wp-content/uploads/2015/01/free-beautiful-place-wallpaper-hd-173.jpg');
-	cursor: pointer;
-	filter: drop-shadow(0 0 0.75rem #162a43);
-  } */
-  
-  
-  /* #diy {
-	background-image: url(assets/Thumbnail-3.jpg);
-	filter: drop-shadow(0 0 0.1rem #162a43);
-  }
-  #diy:hover {
-	background-image: url('https://www.thewowstyle.com/wp-content/uploads/2015/01/free-beautiful-place-wallpaper-hd-173.jpg');
-	cursor: pointer;
-	filter: drop-shadow(0 0 0.75rem #162a43);
-  } */
+  /* __________________ */
   
   #diy img {
 	width: 100%;
