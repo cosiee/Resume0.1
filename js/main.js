@@ -12,7 +12,7 @@ gsap.set(".main", {
   left: "50%",
   x: "-50%",
 });
-gsap.set(".scrollDist", { width: "100%", height: "200%", background: "#fff" });
+gsap.set(".scrollDist", { width: "100%", height: "250%", background: "#fff" });
 gsap
   .timeline({
     scrollTrigger: {
@@ -74,14 +74,14 @@ gsap
     { scale: 2, x: -500, y: -690 },
     0
   )
-  // console.log("Hello world2!"+navbarSoft)
+ 
   .fromTo(
     ".thumbs#software",
     { scale: 2.5, x: -1500, y: -570 },
     { scale: 1, x: 320, y: -570 },
     0
   )
-  // console.log("Hello world3!"+navbarSoft)
+
   .fromTo(
     ".thumbs#photography",
     { scale: 2.5, x: 2400, y: -570 },
@@ -103,9 +103,66 @@ gsap
 
 // $('#down').on('mouseenter', (e)=>{ gsap.to('#down', {y:10, duration:0.8, ease:'back.inOut(3)', overwrite:'auto'}); })
 // $('#down').on('mouseleave', (e)=>{ gsap.to('#down', {y:0, duration:0.5, ease:'power3.out', overwrite:'auto'}); })
+$(".sig, .close").on("click", (e) => {
+   
+  gsap
+      .to(
+        ".thumbs#diy",
+        { x: 620, y: -270 },
+        0
+      )
+  gsap    
+      .to(
+        ".thumbs#videography",
+        { x: 320, y: -270 },
+        0
+      )
+  gsap
+      .to(
+        ".thumbs#software",
+        { x: 320, y: -570 },
+        0
+      )
+  gsap  
+      .to(
+        ".thumbs#photography",
+        { x: 620, y: -570 },
+        0
+      )
+}); 
+
+
+$(".meLink").on("click", (e) => {
+   
+  gsap
+      .to(
+        ".thumbs#diy",
+        { x: 590, y: -290 },
+        0
+      )
+  gsap    
+      .to(
+        ".thumbs#videography",
+        { x: 340, y: -290 },
+        0
+      )
+  gsap
+      .to(
+        ".thumbs#software",
+        { x: 340, y: -540 },
+        0
+      )
+  gsap  
+      .to(
+        ".thumbs#photography",
+        { x: 590, y: -540 },
+        0
+      )
+}); 
+
 $(".scroll-arrow").on("click", (e) => {
   gsap.to(window, { scrollTo: 600, duration: 3, ease: "power3.inOut" });
-}); // scrollTo requires the ScrollTo plugin (not to be confused w/ ScrollTrigger)
+});
 
 // ==========================================================
 /* Main Navigation dropdown
@@ -139,7 +196,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   thumbPhoto.addEventListener("mouseenter", function () {
-    console.log("Hello world!"+navbarPhoto);
     navbarPhoto.style.scale = 1.3;
     navbarPhoto.style.color = "#6e6f79";
     thumbPhoto.style.scale = 1.004;

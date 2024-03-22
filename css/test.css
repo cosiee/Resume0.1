@@ -1,11 +1,11 @@
-body {
+/* body {
     background: url('http://www.zpubeograd.com/system/offers/images/000/000/178/original/wallpaper-223479-6674799-5-8663787.jpg?1418203037');
-    }
+    } */
     
     
     .modalbox .box {
-        position: absolute
-        align-self: center;
+        position: absolute;
+        align-self: centre;
         background-color: rgba(0,0,0,0.3);
         margin: 0 auto;
         min-width: 210px;
