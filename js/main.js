@@ -107,29 +107,28 @@ gsap
 $(".sig, .close").on("click", (e) => {
 
   gsap
-      .fromTo(
+      .to(
         ".thumbs#diy",
         { x: 620, y: -270 },
-        { x: 590, y: -290 },
-        0
+        1
       )
   gsap    
       .to(
         ".thumbs#videography",
         { x: 320, y: -270 },
-        0
+        2
       )
   gsap
       .to(
         ".thumbs#software",
         { x: 320, y: -570 },
-        0
+        4
       )
   gsap  
       .to(
         ".thumbs#photography",
         { x: 620, y: -570 },
-        0
+        3
       )
 
  
@@ -143,25 +142,25 @@ $(".meLink").on("click", (e) => {
       .to(
         ".thumbs#diy",
         { x: 590, y: -290 },
-        0
+        2
       )
   gsap    
       .to(
         ".thumbs#videography",
         { x: 340, y: -290 },
-        0
+        3
       )
   gsap
       .to(
         ".thumbs#software",
         { x: 340, y: -540 },
-        0
+        5
       )
   gsap  
       .to(
         ".thumbs#photography",
         { x: 590, y: -540 },
-        0
+        4
       )
 }); 
 

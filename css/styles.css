@@ -363,7 +363,7 @@ dropdown-menu {
 	transform: translate(340px, 1vh);
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 	/* align-self: centre; */
-	background-color: rgba(0,0,0,0.5);
+	background-color: rgba(0,0,0,0.6);
 	margin:  auto;
 	min-width: 210px;
 	padding: 45px;
