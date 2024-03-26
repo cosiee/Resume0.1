@@ -1,135 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Images</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        .fade-container {
-            position: relative;
-            width: 300px;
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .fade-container img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-        
-        .fade-container img.active {
-            opacity: 1;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f3f3f3;
+    }
+    .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #fff;
+    }
+    input[type="text"], textarea {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        margin-top: 5px;
+    }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+    .error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+</style>
 </head>
 <body>
-    <div class="fade-container" id="container1">
-        <img src="" alt="Random Image 1">
-    </div>
-    <div class="fade-container" id="container2">
-        <img src="" alt="Random Image 2">
-    </div>
-    <div class="fade-container" id="container3">
-        <img src="" alt="Random Image 3">
-    </div>
-    <div class="fade-container" id="container4">
-        <img src="" alt="Random Image 4">
-    </div>
 
-    <script>
-        var images1 = [
-        'css/assets/y9.jpg',
-        'css/assets/y10.jpg',
-        'css/assets/y11.jpg',
-        'css/assets/Thumbnail-3.jpg',
-            // Add more image URLs as needed
-        ];
+<div class="container">
+    <h2 style="color: #fff;">Contact Us</h2>
+    <form id="contactForm">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            <div class="error-message" id="nameError"></div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email">
+            <div class="error-message" id="emailError"></div>
+        </div>
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5"></textarea>
+            <div class="error-message" id="messageError"></div>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+</div>
 
-        var images2 = [
-        'css/assets/y9.jpg',
-        'css/assets/y10.jpg',
-        'css/assets/y11.jpg',
-        'css/assets/Thumbnail-3.jpg',
-            // Add more image URLs as needed
-        ];
+<script>
+    const form = document.getElementById('contactForm');
 
-        var images3 = [
-        'css/assets/y9.jpg',
-        'css/assets/y10.jpg',
-        'css/assets/y11.jpg',
-        'css/assets/Thumbnail-3.jpg',
-            // Add more image URLs as needed
-        ];
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        if (validateForm()) {
+            // Here you can add code to submit the form data to your backend
+            alert('Form submitted successfully!');
+            // Reset form after submission
+            form.reset();
+        }
+    });
 
-        var images4 = [
-        'css/assets/y9.jpg',
-        'css/assets/y10.jpg',
-        'css/assets/y11.jpg',
-        'css/assets/Thumbnail-3.jpg',
-            // Add more image URLs as needed
-        ];
+    function validateForm() {
+        let isValid = true;
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const nameError = document.getElementById('nameError');
+        const emailError = document.getElementById('emailError');
+        const messageError = document.getElementById('messageError');
 
-        document.addEventListener("DOMContentLoaded", function() {
-            // Array of image URLs for each category
-            const softwareImages = [
-              "url('css/assets/y9.jpg')",
-              "url('css/assets/y10.jpg')",
-              "url('css/assets/y11.jpg')",
-              "url('css/assets/y1.jpg')"
-            ];
-      
-            const photographyImages = [
-            "url('css/assets/y9.jpg')",
-            "url('css/assets/y10.jpg')",
-            "url('css/assets/y11.jpg')",
-            "url('css/assets/y1.jpg')"
-            ];
-      
-            const videographyImages = [
-            "url('css/assets/y9.jpg')",
-            "url('css/assets/y10.jpg')",
-            "url('css/assets/y11.jpg')",
-            "url('css/assets/y1.jpg')"
-            ];
-      
-            const diyImages = [
-            "url('css/assets/y9.jpg')",
-            "url('css/assets/y10.jpg')",
-            "url('css/assets/y11.jpg')",
-            "url('css/assets/y1.jpg')"
-            ];
-      
-            // Function to randomly select an image URL from an array
-            function getRandomImage(imagesArray) {
-              return imagesArray[Math.floor(Math.random() * imagesArray.length)];
-            }
-      
-            // Function to set background image for a container and schedule next change
-            function setRandomBackground(containerId, imagesArray) {
-              const container = document.getElementById(containerId);
-              container.style.backgroundImage = getRandomImage(imagesArray);
-      
-              // Schedule next change after a random time (between 5 to 10 seconds)
-              const randomTime = Math.floor(Math.random() * (10000 - 5000)) + 5000;
-              setTimeout(() => setRandomBackground(containerId, imagesArray), randomTime);
-            }
-      
-            // Set initial background images and schedule changes
-            setRandomBackground("software", softwareImages);
-            setRandomBackground("photography", photographyImages);
-            setRandomBackground("videography", videographyImages);
-            setRandomBackground("diy", diyImages);
-          });
+        // Validate Name
+        if (name === '') {
+            nameError.textContent = 'Name is required';
+            isValid = false;
+        } else if (/\d/.test(name)) { // Check if name contains numbers
+            nameError.textContent = 'Name should not contain numbers';
+            isValid = false;
+        } else {
+            nameError.textContent = '';
+        }
 
-        // Call changeImage for each container with respective parameters
-        changeImage('container1', images1);
-        changeImage('container2', images2);
-        changeImage('container3', images3);
-        changeImage('container4', images4);
-    </script>
+        // Validate Email
+        if (email === '') {
+            emailError.textContent = 'Email is required';
+            isValid = false;
+        } else if (!isValidEmail(email)) {
+            emailError.textContent = 'Invalid email address';
+            isValid = false;
+        } else {
+            emailError.textContent = '';
+        }
+
+        // Validate Message
+        if (message === '') {
+            messageError.textContent = 'Message is required';
+            isValid = false;
+        } else {
+            messageError.textContent = '';
+        }
+
+        return isValid;
+    }
+
+    function isValidEmail(email) {
+        // Basic email validation regex
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        if (validateForm()) {
+            const formData = new FormData(form);
+            fetch('send_email.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Form submitted successfully!');
+                    form.reset();
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            })
+            .catch(error => {
+                console.error('Error occurred while submitting the form:', error);
+                alert('Error occurred while submitting the form. Please try again later.');
+            });
+        }
+    });
+</script>
+
 </body>
 </html>
