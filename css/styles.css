@@ -204,6 +204,7 @@ dropdown-menu {
 	height: 250px;
 	overflow: hidden;
 	border-radius: 24%;
+	transition: background-image 1.8s ease-in-out;
   }
   
   #software img {
@@ -225,11 +226,11 @@ dropdown-menu {
   }
   
   #software:hover .overlay {
-	opacity: 0.6;
+	opacity: 0.7;
   }
   
   #software {
-	background-image: url('assets/Thumbnail-6.jpg');
+	/* background-image: url('assets/Thumbnail-6.jpg'); */
 	background-size: cover;
 	background-position: center;
 	filter: drop-shadow(0 0 0.1rem #162a43);
@@ -264,11 +265,11 @@ dropdown-menu {
   }
   
   #photography:hover .overlay {
-	opacity: 0.5;
+	opacity: 0.7;
   }
   
   #photography {
-	background-image: url(assets/Thumbnail-8.jpg);
+	/* background-image: url(assets/Thumbnail-8.jpg); */
 	background-size: cover;
 	background-position: center;
 	filter: drop-shadow(0 0 0.1rem #162a43);
@@ -301,11 +302,11 @@ dropdown-menu {
   }
   
   #videography:hover .overlay {
-	opacity: 0.65;
+	opacity: 0.7;
   }
   
   #videography {
-	background-image: url(assets/Thumbnail-11.jpg);
+	/* background-image: url(assets/Thumbnail-11.jpg); */
 	background-size: cover;
 	background-position: center;
 	filter: drop-shadow(0 0 0.1rem #162a43);
@@ -338,11 +339,11 @@ dropdown-menu {
   }
   
   #diy:hover .overlay {
-	opacity: 0.6;
+	opacity: 0.7;
   }
   
   #diy {
-	background-image: url(assets/Thumbnail-3.jpg);
+	/* background-image: url(assets/Thumbnail-3.jpg); */
 	background-size: cover;
 	background-position: center;
 	filter: drop-shadow(0 0 0.1rem #162a43);
@@ -359,8 +360,8 @@ dropdown-menu {
 /* Modal Statement/Contact Base Styles ####################################### */
 
 .modalbox .box {
-	position: absolute;
-	transform: translate(340px, 1vh);
+	position: absolute; 
+	transform: translate(340px, 1.30vh);
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 	/* align-self: centre; */
 	background-color: rgba(0,0,0,0.6);

@@ -1,30 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   </head>
-<link rel="stylesheet" href="css/test.css"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Images</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .fade-container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .fade-container img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .fade-container img.active {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
-<div class="modalbox" id="statmentContact">
-  <div class="box">
-    <a class="close" href="#">X</a>
-    <p class="title">Hi</p>
-    <div class="content">
-    
-      <p>Thanks for having a look! Having secured a Degree in Computing I realised further
-        proof of a abilities might benefit the work cause. Not having a 'project' to so, along 
-        with the advent self promotion requirements, this portfolio was decided on. Hope you like 
-        what you see, I look forward to hearing from you.
-         </p>
-         <img class="sig" href="#" src="assets/sigw.png">
-
+    <div class="fade-container" id="container1">
+        <img src="" alt="Random Image 1">
     </div>
-  </div>
-</div>
-<div class="link-modal" id="linkmodal">
-<a href="#statmentContact">Click & See</a>
-</div>
+    <div class="fade-container" id="container2">
+        <img src="" alt="Random Image 2">
+    </div>
+    <div class="fade-container" id="container3">
+        <img src="" alt="Random Image 3">
+    </div>
+    <div class="fade-container" id="container4">
+        <img src="" alt="Random Image 4">
+    </div>
+
+    <script>
+        var images1 = [
+        'css/assets/y9.jpg',
+        'css/assets/y10.jpg',
+        'css/assets/y11.jpg',
+        'css/assets/Thumbnail-3.jpg',
+            // Add more image URLs as needed
+        ];
+
+        var images2 = [
+        'css/assets/y9.jpg',
+        'css/assets/y10.jpg',
+        'css/assets/y11.jpg',
+        'css/assets/Thumbnail-3.jpg',
+            // Add more image URLs as needed
+        ];
+
+        var images3 = [
+        'css/assets/y9.jpg',
+        'css/assets/y10.jpg',
+        'css/assets/y11.jpg',
+        'css/assets/Thumbnail-3.jpg',
+            // Add more image URLs as needed
+        ];
+
+        var images4 = [
+        'css/assets/y9.jpg',
+        'css/assets/y10.jpg',
+        'css/assets/y11.jpg',
+        'css/assets/Thumbnail-3.jpg',
+            // Add more image URLs as needed
+        ];
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Array of image URLs for each category
+            const softwareImages = [
+              "url('css/assets/y9.jpg')",
+              "url('css/assets/y10.jpg')",
+              "url('css/assets/y11.jpg')",
+              "url('css/assets/y1.jpg')"
+            ];
+      
+            const photographyImages = [
+            "url('css/assets/y9.jpg')",
+            "url('css/assets/y10.jpg')",
+            "url('css/assets/y11.jpg')",
+            "url('css/assets/y1.jpg')"
+            ];
+      
+            const videographyImages = [
+            "url('css/assets/y9.jpg')",
+            "url('css/assets/y10.jpg')",
+            "url('css/assets/y11.jpg')",
+            "url('css/assets/y1.jpg')"
+            ];
+      
+            const diyImages = [
+            "url('css/assets/y9.jpg')",
+            "url('css/assets/y10.jpg')",
+            "url('css/assets/y11.jpg')",
+            "url('css/assets/y1.jpg')"
+            ];
+      
+            // Function to randomly select an image URL from an array
+            function getRandomImage(imagesArray) {
+              return imagesArray[Math.floor(Math.random() * imagesArray.length)];
+            }
+      
+            // Function to set background image for a container and schedule next change
+            function setRandomBackground(containerId, imagesArray) {
+              const container = document.getElementById(containerId);
+              container.style.backgroundImage = getRandomImage(imagesArray);
+      
+              // Schedule next change after a random time (between 5 to 10 seconds)
+              const randomTime = Math.floor(Math.random() * (10000 - 5000)) + 5000;
+              setTimeout(() => setRandomBackground(containerId, imagesArray), randomTime);
+            }
+      
+            // Set initial background images and schedule changes
+            setRandomBackground("software", softwareImages);
+            setRandomBackground("photography", photographyImages);
+            setRandomBackground("videography", videographyImages);
+            setRandomBackground("diy", diyImages);
+          });
+
+        // Call changeImage for each container with respective parameters
+        changeImage('container1', images1);
+        changeImage('container2', images2);
+        changeImage('container3', images3);
+        changeImage('container4', images4);
+    </script>
 </body>
+</html>

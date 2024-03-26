@@ -1,86 +1,14 @@
-/* body {
-    background: url('http://www.zpubeograd.com/system/offers/images/000/000/178/original/wallpaper-223479-6674799-5-8663787.jpg?1418203037');
-    } */
-    
-    
-    .modalbox .box {
-        position: absolute;
-        align-self: centre;
-        background-color: rgba(0,0,0,0.3);
-        margin: 0 auto;
-        min-width: 210px;
-        padding: 40px;
-        width: 30%;
-        height: 40%;
-        margin-top: 100px;
-    
-        }
-        .modalbox .title {
-        border-bottom: 1px solid #ccc;
-        font-family: verdana;
-        font-size: 22px;
-        letter-spacing: 0.2em;
-        margin: 0;
-        padding: 0 0 10px;
-        text-transform: uppercase;
-        color: #fff;
-            }
-        .modalbox .content {
-        display: block;
-        font-family: Verdana;
-        font-size: 18px;
-        line-height: 22px;
-        padding: 10px 0 0;
-        color: #fff;
-            }
-        .modalbox .close {
-        color: #fff;
-        display: block;
-        float: right;
-        font-family: Verdana;
-        font-size: 22px;
-        height: 25px;
-        text-decoration: none;
-            }
-    
-    
-    .modalbox{
-        display: none;
-        position: fixed;
-        z-index: 9999;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        color:#333333;
-        }
-    
-    .modalbox:target {
-        display: block;
-        outline: none;
-    }
-    
-    
-    .link-modal{
-        width: 90%;
-        text-align: center;
-        margin: 0 auto;
-        padding-top: 400px;
-        padding-left: 15px;
-    }
-    
-    
-    .link-modal a{
-        border: 1px solid #fff;
-        color: #fff;
-        font-family: Verdana;
-        font-size: 20px;
-        letter-spacing: 0.3em;
-        padding: 10px;
-        text-decoration: none;
-        text-transform: uppercase;
-    }
-    .sig {
-        height: 100px;
-        width: auto;
-    }
+#image-container {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#random-image {
+    max-width: 100%;
+    max-height: 100%;
+}

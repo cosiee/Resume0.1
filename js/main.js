@@ -12,6 +12,92 @@ gsap.set(".main", {
   left: "50%",
   x: "-50%",
 });
+
+
+// Thumb randomisation
+document.addEventListener("DOMContentLoaded", function() {
+  // Array of image URLs for each category
+  const softwareImages = [
+    "url('css/assets/b1.jpg')",
+    "url('css/assets/b2.jpg')",
+    "url('css/assets/b3.jpg')",
+    "url('css/assets/b4.jpg')",
+    "url('css/assets/b5.jpg')",
+    "url('css/assets/b6.jpg')",
+    "url('css/assets/b7.jpg')",
+    "url('css/assets/b8.jpg')",
+    "url('css/assets/b9.jpg')",
+    "url('css/assets/b10.jpg')",
+    "url('css/assets/b12.jpg')",
+    "url('css/assets/b13.jpg')",
+    "url('css/assets/b14.jpg')"
+  ];
+
+  const photographyImages = [
+  "url('css/assets/r1.jpg')",
+  "url('css/assets/r2.jpg')",
+  "url('css/assets/r3.jpg')",
+  "url('css/assets/r4.jpg')",
+  "url('css/assets/r5.jpg')",
+  "url('css/assets/r6.jpg')",
+  "url('css/assets/r7.jpg')",
+  "url('css/assets/r8.jpg')",
+  "url('css/assets/r9.jpg')",
+  "url('css/assets/r10.jpg')",
+  "url('css/assets/r11.jpg')",
+  "url('css/assets/r12.jpg')"
+  ];
+
+  const videographyImages = [
+  "url('css/assets/g1.jpg')",
+  "url('css/assets/g2.jpg')",
+  "url('css/assets/g3.jpg')",
+  "url('css/assets/g4.jpg')",
+  "url('css/assets/g5.jpg')",
+  "url('css/assets/g6.jpg')",
+  "url('css/assets/g7.jpg')",
+  "url('css/assets/g8.jpg')",
+  "url('css/assets/g9.jpg')",
+  "url('css/assets/g10.jpg')"
+  ];
+
+  const diyImages = [
+  "url('css/assets/y1.jpg')",
+  "url('css/assets/y2.jpg')",
+  "url('css/assets/y3.jpg')",
+  "url('css/assets/y4.jpg')",
+  "url('css/assets/y5.jpg')",
+  "url('css/assets/y6.jpg')",
+  "url('css/assets/y7.jpg')",
+  "url('css/assets/y8.jpg')",
+  "url('css/assets/y9.jpg')",
+  "url('css/assets/y10.jpg')",
+  "url('css/assets/y11.jpg')"
+  ];
+
+  // Function to randomly select an image URL from an array
+  function getRandomImage(imagesArray) {
+    return imagesArray[Math.floor(Math.random() * imagesArray.length)];
+  }
+
+  // Function to set background image for a container and schedule next change
+  function setRandomBackground(containerId, imagesArray) {
+    const container = document.getElementById(containerId);
+    container.style.backgroundImage = getRandomImage(imagesArray);
+
+    // Schedule next change after a random time (between 5 to 10 seconds)
+    const randomTime = Math.floor(Math.random() * (10000 - 5000)) + 5000;
+    setTimeout(() => setRandomBackground(containerId, imagesArray), randomTime);
+  }
+
+  // Set initial background images and schedule changes
+  setRandomBackground("software", softwareImages);
+  setRandomBackground("photography", photographyImages);
+  setRandomBackground("videography", videographyImages);
+  setRandomBackground("diy", diyImages);
+});
+
+
 gsap.set(".scrollDist", { width: "100%", height: "200%", background: "#fff" });
 gsap
   .timeline({
