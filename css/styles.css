@@ -361,7 +361,7 @@ dropdown-menu {
 
 .modalbox .box {
 	position: absolute; 
-	transform: translate(340px, 1.30vh);
+	transform: translate(340px, 1vh);
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 	/* align-self: centre; */
 	background-color: rgba(0,0,0,0.6);
@@ -402,7 +402,7 @@ dropdown-menu {
 	font-family: Verdana;
 	font-size: 22px;
 	height: 25px;
-	text-decoration: none;
+	text-decoration: bold;
 		}
 
 

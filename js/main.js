@@ -116,52 +116,74 @@ gsap
     { scale: 1.3, x: -150, y: -650 },
     0
   )
+
   .fromTo(
     "#mountBg",
     { scale: 1, x: 0, y: 70 },
     { scale: 1.3, x: -150, y: -600 },
     0
   )
-  .fromTo("#cloud2", { x: 400, y: 310 }, { x: -200, y: -600 }, 0)
+
+  .fromTo("#cloud2",
+    { x: 400, y: 310 },
+    { x: -200, y: -600 },
+    0
+  )
+
   .fromTo(
     "#mountBg2",
     { scale: 1, X: 0, y: 110 },
     { scale: 1.3, x: -150, y: -670 },
     0
   )
-  .fromTo("#cloud3", { x: -200, y: 300 }, { x: 500, y: -1000 }, 0)
+
+  .fromTo("#cloud3",
+    { x: -200, y: 300 },
+    { x: 500, y: -1000 },
+    0
+  )
+
   .fromTo(
     "#mountMg",
     { scale: 1, X: 0, y: 345 },
     { scale: 1.3, x: -150, y: -700 },
     0
   )
-  .fromTo("#cloud4", { x: 300, y: 320 }, { x: -400, y: -850 }, 0)
+
+  .fromTo("#cloud4",
+   { x: 300, y: 320 }, 
+   { x: -400, y: -850 }, 
+   0
+  )
+
   .fromTo(
     "#mountMgF",
     { scale: 1, X: 0, y: 200 },
     { scale: 1.3, x: -150, y: -750 },
     0
   )
+
   .fromTo(
     "#mountFg",
     { scale: 1, X: 0, y: 220 },
     { scale: 1.3, x: -150, y: -850 },
     0
   )
+
   .fromTo(
     "#cloud5",
     { scale: 1.5, x: -100, y: 380 },
     { scale: 3, x: 300, y: -950 },
     0
   )
+
   .fromTo(
     "#cloud1",
     { scale: 1.3, x: -10, y: 576 },
     { scale: 2, x: -500, y: -690 },
     0
   )
- 
+
   .fromTo(
     ".thumbs#software",
     { scale: 2.5, x: -1500, y: -570 },
@@ -175,12 +197,14 @@ gsap
     { scale: 1, x: 620, y: -570 },
     0
   )
+
   .fromTo(
     ".thumbs#diy",
     { scale: 2.5, x: 2400, y: 700 },
     { scale: 1, x: 620, y: -270 },
     0
   )
+
   .fromTo(
     ".thumbs#videography",
     { scale: 2.5, x: -1500, y: 700 },
@@ -228,25 +252,25 @@ $(".meLink").on("click", (e) => {
       .to(
         ".thumbs#diy",
         { x: 590, y: -290 },
-        2
+        1
       )
   gsap    
       .to(
         ".thumbs#videography",
         { x: 340, y: -290 },
-        3
+        2
       )
   gsap
       .to(
         ".thumbs#software",
         { x: 340, y: -540 },
-        5
+        4
       )
   gsap  
       .to(
         ".thumbs#photography",
         { x: 590, y: -540 },
-        4
+        3
       )
 }); 
 
