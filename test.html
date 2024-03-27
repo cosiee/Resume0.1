@@ -82,15 +82,19 @@
 <script>
     const form = document.getElementById('contactForm');
 
-    form.addEventListener('submit', function(event) {
+    function handleSubmit(event) {
         event.preventDefault();
         if (validateForm()) {
             // Here you can add code to submit the form data to your backend
             alert('Form submitted successfully!');
             // Reset form after submission
             form.reset();
+            // Remove event listener to prevent validation on subsequent submissions
+            form.removeEventListener('submit', handleSubmit);
         }
-    });
+    }
+
+    form.addEventListener('submit', handleSubmit);
 
     function validateForm() {
         let isValid = true;
@@ -139,30 +143,8 @@
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return regex.test(email);
     }
-
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        if (validateForm()) {
-            const formData = new FormData(form);
-            fetch('send_email.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert('Form submitted successfully!');
-                    form.reset();
-                } else {
-                    throw new Error('Network response was not ok.');
-                }
-            })
-            .catch(error => {
-                console.error('Error occurred while submitting the form:', error);
-                alert('Error occurred while submitting the form. Please try again later.');
-            });
-        }
-    });
 </script>
+
 
 </body>
 </html>

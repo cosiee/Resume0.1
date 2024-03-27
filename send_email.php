@@ -5,7 +5,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $message = $_POST["message"];
     
     // Email settings
-    $to = "costigan.a@yahoo.com";
+    // $to = "costigan.a@yahoo.com";
+    $to = "andrewandnualac@hotmail.com";
     $subject = "From Site";
     $body = "Name: $name\nEmail: $email\nMessage: $message";
     
