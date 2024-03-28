@@ -59,7 +59,23 @@
 
 <div class="container">
     <h2 style="color: #fff;">Contact Us</h2>
-    <form id="contactForm">
+
+    <form
+  action="https://formspree.io/f/meqyreww"
+  method="POST"
+>
+  <label>
+    Your email:
+    <input type="email" name="email">
+  </label>
+  <label>
+    Your message:
+    <textarea name="message"></textarea>
+  </label>
+  <!-- your other form fields go here -->
+  <button type="submit">Send</button>
+</form>
+    <!-- <form id="contactForm">
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name">
@@ -76,7 +92,7 @@
             <div class="error-message" id="messageError"></div>
         </div>
         <input type="submit" value="Submit">
-    </form>
+    </form> -->
 </div>
 
 <script>
