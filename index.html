@@ -218,7 +218,7 @@
   
   
                  <br>
-                 <a class="sig" onclick="toggleScroll()" href="#contactInfo"> 
+                 <a class="sig" onclick="toggleScroll()" href="#contactForm"> 
                   <!--  -->
                  <img class="sig" src="assets/sigw.png">
                  </a>
@@ -227,9 +227,19 @@
         </div>
         outside svg
         
-        <div class="contactInfo">
-  
-        </div>
+        <div class="formDiv" id="contactForm">
+          <form action="https://formspree.io/f/meqyreww" method="POST">
+              <label> Your name:
+                  <input type="text" id="name" name="name" required>
+              </label>
+              <label> Your email:
+                  <input type="text" id="email" name="email" required>
+              </label>
+              <label>Your message:
+                  <textarea id="message" name="message" rows="5" required></textarea>
+              </label>
+              <button type="submit" id="formButton">Send</button>
+      </div>
   
   
     </body>
