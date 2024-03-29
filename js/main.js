@@ -274,6 +274,7 @@ $(".meLink").on("click", (e) => {
       )
 }); 
 
+//removes and adds scroll bar 
 function toggleScroll() {
   var body = document.body;
   if (body.style.overflow === 'hidden') {
@@ -281,6 +282,24 @@ function toggleScroll() {
   } else {
       body.style.overflow = 'hidden';
   }
+}
+// add removes contact form
+function showForm() {
+  document.getElementById('statmentContact').style.display = 'none';
+  document.getElementById('contactForm').style.display = 'block';
+}
+
+function hideForm() {
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('statmentContact').style.display = 'block';
+}
+
+function submitForm() {
+  // Handle form submission
+  // For example, you can use AJAX to submit the form data
+
+  // After form submission, hide the form and show the modal box
+  hideForm();
 }
 
 $(".scroll-arrow").on("click", (e) => {

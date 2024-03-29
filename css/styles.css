@@ -385,13 +385,11 @@ dropdown-menu {
   color: #fff;
 }
 
-.modalbox .close {
+ .modalbox .close {
   color: #fff;
   display: block;
   float: right;
-  font-family: Verdana;
-  font-size: 22px;
-  height: 25px;
+  font-size: 17px;
   text-decoration: bold;
 }
 
@@ -422,7 +420,6 @@ dropdown-menu {
 .link-modal a {
   border: 1px solid #fff;
   color: #fff;
-  font-family: Verdana;
   font-size: 20px;
   letter-spacing: 0.3em;
   padding: 10px;
@@ -458,16 +455,26 @@ dropdown-menu {
   opacity: 1;
 }
 
-.form-group {
+/* .form-group {
   margin-bottom: 20px;
-}
+} */
+.formTitle{
+	/* width: 100%; */
+	padding:0px;
 
+}
 label {
   display: block;
   margin: 10px;
   color: #070707;
 }
-
+.closeForm {
+color: #fff;
+  display: block;
+  float: right;
+  font-size: 17px;
+  text-decoration: bold;
+}
 input[type="text"],
 textarea {
   width: 95%;
