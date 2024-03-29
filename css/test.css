@@ -1,0 +1,14 @@
+#image-container {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#random-image {
+    max-width: 100%;
+    max-height: 100%;
+}

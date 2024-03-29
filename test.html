@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f3f3f3;
+    }
+    .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #fff;
+    }
+    input[type="text"], textarea {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        margin-top: 5px;
+    }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+    .error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2 style="color: #fff;">Contact Us</h2>
+
+    <form
+  action="https://formspree.io/f/meqyreww"
+  method="POST"
+>
+  <label>
+    Your email:
+    <input type="email" name="email">
+  </label>
+  <label>
+    Your message:
+    <textarea name="message"></textarea>
+  </label>
+  <!-- your other form fields go here -->
+  <button type="submit">Send</button>
+</form>
+    <!-- <form id="contactForm">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            <div class="error-message" id="nameError"></div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email">
+            <div class="error-message" id="emailError"></div>
+        </div>
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5"></textarea>
+            <div class="error-message" id="messageError"></div>
+        </div>
+        <input type="submit" value="Submit">
+    </form> -->
+</div>
+
+<script>
+    const form = document.getElementById('contactForm');
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        if (validateForm()) {
+            // Here you can add code to submit the form data to your backend
+            alert('Form submitted successfully!');
+            // Reset form after submission
+            form.reset();
+            // Remove event listener to prevent validation on subsequent submissions
+            form.removeEventListener('submit', handleSubmit);
+        }
+    }
+
+    form.addEventListener('submit', handleSubmit);
+
+    function validateForm() {
+        let isValid = true;
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const nameError = document.getElementById('nameError');
+        const emailError = document.getElementById('emailError');
+        const messageError = document.getElementById('messageError');
+
+        // Validate Name
+        if (name === '') {
+            nameError.textContent = 'Name is required';
+            isValid = false;
+        } else if (/\d/.test(name)) { // Check if name contains numbers
+            nameError.textContent = 'Name should not contain numbers';
+            isValid = false;
+        } else {
+            nameError.textContent = '';
+        }
+
+        // Validate Email
+        if (email === '') {
+            emailError.textContent = 'Email is required';
+            isValid = false;
+        } else if (!isValidEmail(email)) {
+            emailError.textContent = 'Invalid email address';
+            isValid = false;
+        } else {
+            emailError.textContent = '';
+        }
+
+        // Validate Message
+        if (message === '') {
+            messageError.textContent = 'Message is required';
+            isValid = false;
+        } else {
+            messageError.textContent = '';
+        }
+
+        return isValid;
+    }
+
+    function isValidEmail(email) {
+        // Basic email validation regex
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+</script>
+
+
+</body>
+</html>
