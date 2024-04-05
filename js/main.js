@@ -285,20 +285,21 @@ function toggleScroll() {
 }
 // add removes contact form
 function showForm() {
-  document.getElementById('statmentContact').style.display = 'none';
+
   document.getElementById('contactForm').style.display = 'block';
 }
 
 function hideForm() {
   document.getElementById('contactForm').style.display = 'none';
-  document.getElementById('statmentContact').style.display = 'block';
+  document.getElementById('statmentContact').style.display = 'none';
+}
+
+function hideForm2() {
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('statmentContact').style.display = 'none';
 }
 
 function submitForm() {
-  // Handle form submission
-  // For example, you can use AJAX to submit the form data
-
-  // After form submission, hide the form and show the modal box
   hideForm();
 }
 

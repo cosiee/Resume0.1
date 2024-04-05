@@ -5,124 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Form</title>
+
     <style>
-        .formDiv#contactForm {
-            position: absolute;
-            top: 50%;
-            right: 50%;
-            transform: translate(50%, -50%);
-            font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-            font-size: medium;
-            max-width: 450px;
-            margin: 50px auto;
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            background-color: rgba(208, 205, 205, 0.2);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.9);
-            opacity: 1;
+        @keyframes wiggle {
+            0% { transform: rotate(0deg); }
+           80% { transform: rotate(0deg); }
+           85% { transform: rotate(5deg); }
+           95% { transform: rotate(-5deg); }
+          100% { transform: rotate(0deg); }
         }
-
-        .form-group {
-            margin-bottom: 20px;
+        
+        text.lrgtext {
+          display: inline-block;
+          animation: wiggle 1.25s infinite;
         }
-
-        label {
-            display: block;
-            margin: 10px;
-            color: #070707;
-        }
-
-        input[type="text"],
-        textarea {
-            width: 95%;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            background-color: rgba(251, 248, 248, 0.5);
-            color: #070707f;
-
-        }
-
-        #formButton {
-            <!-- background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 15%; -->
-            transition: background-color 0.3s ease;
-            align-items: center;
-            appearance: none;
-            background-color: #3b3b3b;
-            background-image: linear-gradient(1deg, #49494a, #949595 99%);
-            background-size: calc(100% + 20px) calc(100% + 20px);
-            border-radius: 50px;
-            border-width: 0;
-            box-shadow: none;
-            box-sizing: border-box;
-            color: #FFF;
-            cursor: pointer;
-            display: inline-flex;
-            height: auto;
-            justify-content: center;
-            line-height: 1.5;
-            padding: 6px 20px;
-            position: relative;
-            text-align: center;
-            text-decoration: none;
-            transition: background-color .2s, background-position .2s;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-            vertical-align: top;
-            white-space: nowrap;
-
-        }
-
-
-        #formButton:hover {
-            background-position: -20px -20px;
-        }
-
-        #formButton:focus:not(:active) {
-            box-shadow: rgba(29, 29, 30, 0.25) 0 0 0 .125em;
-        }
-
-
-
-        #formButton:hover {
-            background-color: rgba(222, 240, 209, 0.5);
-            cursor: pointer;
-        }
-
-        .error-message {
-            color: rgb(173, 83, 10);
-            font-size: 14px;
-            margin-top: 5px;
+        
+        text.lrgtext:hover {
+          animation: none;
         }
     </style>
+    
 </head>
 
 <body>
-
-    <div class="formDiv" id="contactForm">
-        <form action="https://formspree.io/f/meqyreww" method="POST">
-            <label> Your name:
-                <input type="text" id="name" name="name" required>
-            </label>
-            <label> Your email:
-                <input type="text" id="email" name="email" required>
-            </label>
-            <label>Your message:
-                <textarea id="message" name="message" rows="5" required></textarea>
-            </label>
-            <button type="submit" id="formButton">Send</button>
-    </div>
-
-    <script>
-        
-    </script>
+    <text class="wiggle, lrgtext">
+        wiggle, wiggle
+      </h1>
+  
 
 
 </body>
