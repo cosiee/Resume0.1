@@ -339,11 +339,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const thumbDiy = document.querySelector("#diy");
   const navbarDiy = document.querySelector("#diyLink");
 
-  const meShaker = document.getElementById('meshaker');
   const meText = document.getElementById('me');
-
+  const meShaker = document.getElementById('meshaker');
   let angle = 0;
   let direction = 1;
+  let animationInterval = 4;
+
+  let defaultWiggleTimeFrame = 5000; // Default time frame: wiggle happens once every 5 seconds (5000 milliseconds)
+  let hoverWiggleFrequency = 50; 
 
   function wiggle() {
     angle += direction;
@@ -352,14 +355,30 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     meText.style.transform = `translate(520px, 22vh) rotate(${angle}deg)`;
   }
-  
-  meShaker.addEventListener("mouseenter", function () {
-    
-    meText.style.scale = 1.015;
-    // meText.animate();
-    console.log(meshaker);
-    setInterval(wiggle, 1);
-  })
+  function startWiggle() {
+    if (meShaker.matches(":hover")) {
+      clearInterval(animationInterval);
+      animationInterval = setInterval(wiggle, hoverWiggleFrequency);
+    } else {
+      clearInterval(animationInterval);
+      animationInterval = setInterval(function() {
+        wiggle();
+        setTimeout(startWiggle, defaultWiggleTimeFrame);
+      }, defaultWiggleTimeFrame);
+    }
+  }
+function stopWiggle() {
+  // Stop the wiggle animation and reset the rotation
+  clearInterval(animationInterval);
+  meText.style.transform = `translate(520px, 22vh) rotate(0deg)`;
+}
+
+meShaker.addEventListener("mouseenter", startWiggle);
+
+meShaker.addEventListener("mouseleave", stopWiggle);
+
+// Trigger startWiggle() initially to set up the correct frequency
+startWiggle();
 
   thumbPhoto.addEventListener("mouseenter", function () {
     navbarPhoto.style.scale = 1.3;

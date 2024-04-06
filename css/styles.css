@@ -40,25 +40,26 @@ html body svg text.lrgtext {
 }
 
 text.lrgtext#me {
-
+  
 display: inline-block;
-animation: wiggle 3s infinite;
+transform: translate(520px, 22vh);
+/* animation: wiggle 3s infinite; */
 transform-origin: 5% 15%; 
 }
 
-text.lrgtext#me:hover {
+ /* text.lrgtext#me:hover {
   transform: translate(520px, 22vh) scale(1.02);
 
   animation: none;
  
-}
+}  */
 #meshaker{
   position:absolute;
   z-index:70;
   width: 100%;
   height:99px;
-  transform: translate(99px, 11vh);
-  opacity:1;
+  transform: translate(99px, 13.5vh);
+  opacity:0;
 }
 a {
   text-decoration: none;
