@@ -321,7 +321,9 @@ $(window).scroll(function () {
 
 
 // ==========================================================
-// index.html animate thumbnails and navbar items
+// index.html animate thumbnails & navbar items & meshaker animating 'ME'
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -337,6 +339,27 @@ document.addEventListener("DOMContentLoaded", function () {
   const thumbDiy = document.querySelector("#diy");
   const navbarDiy = document.querySelector("#diyLink");
 
+  const meShaker = document.getElementById('meshaker');
+  const meText = document.getElementById('me');
+
+  let angle = 0;
+  let direction = 1;
+
+  function wiggle() {
+    angle += direction;
+    if (angle === 2 || angle === -2) {
+      direction *= -1;
+    }
+    meText.style.transform = `translate(520px, 22vh) rotate(${angle}deg)`;
+  }
+  
+  meShaker.addEventListener("mouseenter", function () {
+    
+    meText.style.scale = 1.015;
+    // meText.animate();
+    console.log(meshaker);
+    setInterval(wiggle, 1);
+  })
 
   thumbPhoto.addEventListener("mouseenter", function () {
     navbarPhoto.style.scale = 1.3;
