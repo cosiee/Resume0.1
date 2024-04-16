@@ -340,14 +340,71 @@ document.addEventListener("DOMContentLoaded", function () {
   const navbarDiy = document.querySelector("#diyLink");
 
   // ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-
-const meText = document.getElementById('me');
-let animationInterval;
-let isIdleWiggling = false; // Flag to track idle wiggle animation
+  const meText = document.getElementById('me');
+  const meShaker = document.getElementById('meshaker');
+  let hoverAnimationInterval;
+  let isHoverWiggling = false;
+  let angle = 0; // Declare angle variable outside of hoverWiggle function
+  let animationInterval;
+  let isIdleWiggling = false; // Flag to track idle wiggle animation
 
 let initialTransform = window.getComputedStyle(meText).getPropertyValue('transform');
 
+  
+  // Function to stop the hover wiggle animation
+  function stopHoverWiggle() {
+      console.log("Stopping hover wiggle animation.");
+      clearInterval(hoverAnimationInterval);
+      isHoverWiggling = false;
+      console.log("Hover wiggle animation stopped.");
+      meText.style.transform = `translate(520px, 22vh) rotate(0deg)`; // Reset the position
+  }
+  
+  // Function to start the hover wiggle animation
+  function startHoverWiggle() {
+      console.log("Starting hover wiggle animation.");
+      if (!isHoverWiggling) {
+          isHoverWiggling = true;
+          hoverAnimationInterval = setInterval(hoverWiggle, 30);
+          console.log("Hover wiggle animation started.");
+      }
+  }
+  
+  // Function to handle the hover event
+  function handleHover(event) {
+      if (event.type === "mouseenter") {
+          startHoverWiggle();
+      } else if (event.type === "mouseleave") {
+          stopHoverWiggle();
+      }
+  }
+  
+  // Function to handle the hover wiggle animation
+  function hoverWiggle() {
+    // Update the rotation angle
+    angle += 1;
+    if (angle === 1 || angle === -1) {
+        angle *= -1; // Reverse direction when angle reaches 1 or -1
+    }
+    meText.style.transform = `translate(520px, 22vh) rotate(${angle}deg)`; // Apply the transformation
+}
+  
+  // Event listener for mouse enter and mouse leave to handle hover
+  meShaker.addEventListener("mouseenter", handleHover);
+  meShaker.addEventListener("mouseleave", handleHover);
+        
+  meShaker.addEventListener("mouseleave", handleHover);
+  
+  
+  
+  
+  
+  
+  
 
+
+
+// TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
 
 // Function to start the idle wiggle animation
 function startIdleWiggle() {
@@ -415,8 +472,15 @@ startIdleWiggle();
 // ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
   
   
+  meText.addEventListener("mouseenter", function () {
+    meText.style.scale = 1.2;
+  
+  });
 
-
+  meText.addEventListener("mouseleave", function () {
+    meText.style.scale = 1;
+  
+  });
 
   thumbPhoto.addEventListener("mouseenter", function () {
     navbarPhoto.style.scale = 1.3;

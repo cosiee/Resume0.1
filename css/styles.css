@@ -50,7 +50,7 @@ transform-origin: 5% 15%;
  text.lrgtext#me:hover {
   transform: translate(520px, 22vh) scale(1.02);
 
-  animation: none;
+  /* animation: none; */
  
 } 
 #meshaker{
