@@ -339,46 +339,84 @@ document.addEventListener("DOMContentLoaded", function () {
   const thumbDiy = document.querySelector("#diy");
   const navbarDiy = document.querySelector("#diyLink");
 
-  const meText = document.getElementById('me');
-  const meShaker = document.getElementById('meshaker');
-  let angle = 0;
-  let direction = 1;
-  let animationInterval = 4;
+  // ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
 
-  let defaultWiggleTimeFrame = 5000; // Default time frame: wiggle happens once every 5 seconds (5000 milliseconds)
-  let hoverWiggleFrequency = 50; 
+const meText = document.getElementById('me');
+let animationInterval;
+let isIdleWiggling = false; // Flag to track idle wiggle animation
 
-  function wiggle() {
-    angle += direction;
-    if (angle === 2 || angle === -2) {
-      direction *= -1;
-    }
-    meText.style.transform = `translate(520px, 22vh) rotate(${angle}deg)`;
+let initialTransform = window.getComputedStyle(meText).getPropertyValue('transform');
+
+
+
+// Function to start the idle wiggle animation
+function startIdleWiggle() {
+  if (!isIdleWiggling) {
+    isIdleWiggling = true;
+    idleWiggle();
   }
-  function startWiggle() {
-    if (meShaker.matches(":hover")) {
-      clearInterval(animationInterval);
-      animationInterval = setInterval(wiggle, hoverWiggleFrequency);
-    } else {
-      clearInterval(animationInterval);
-      animationInterval = setInterval(function() {
-        wiggle();
-        setTimeout(startWiggle, defaultWiggleTimeFrame);
-      }, defaultWiggleTimeFrame);
-    }
-  }
-function stopWiggle() {
-  // Stop the wiggle animation and reset the rotation
-  clearInterval(animationInterval);
-  meText.style.transform = `translate(520px, 22vh) rotate(0deg)`;
 }
 
-meShaker.addEventListener("mouseenter", startWiggle);
+// Function to stop the idle wiggle animation
+function stopIdleWiggle() {
+  if (isIdleWiggling) {
+    console.log("stopIdleWiggle is running now: " + isIdleWiggling);
+    clearInterval(animationInterval);
+    isIdleWiggling = false;
+    console.log("stopIdleWiggle is running now: " + isIdleWiggling);
+    
+    // Reset meText to its initial position
+    meText.style.transform = initialTransform;
+  }
+}
 
-meShaker.addEventListener("mouseleave", stopWiggle);
 
-// Trigger startWiggle() initially to set up the correct frequency
-startWiggle();
+// Function to handle the idle wiggle animation
+function idleWiggle() {
+  wiggle(); // Start the wiggle animation
+  setTimeout(() => {
+    stopIdleWiggle(); // Stop idle wiggle animation after 0.7 second
+    setTimeout(startIdleWiggle, Math.floor(Math.random() * (16000 - 7000 + 1)) + 7000); // Restart idle wiggle animation after random interval
+  }, 700);
+}
+
+// Function to handle the wiggle animation
+function wiggle() {
+  let angle = 0;
+  let direction = 1;
+
+  // Perform one iteration of the wiggle animation
+  function performWiggle() {
+    angle += direction;
+    if (angle === 1 || angle === -1) {
+      direction *= -1;
+    }
+    meText.style.transform = `translate(520px, 22vh) rotate(${angle}deg)`; // Apply the transformation
+  }
+
+  // Start the animation interval
+  animationInterval = setInterval(performWiggle, 30);
+}
+
+// Start idle wiggle animation initially
+startIdleWiggle();
+
+  
+  
+  
+  
+
+  
+  
+
+
+  
+  
+// ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+  
+  
+
+
 
   thumbPhoto.addEventListener("mouseenter", function () {
     navbarPhoto.style.scale = 1.3;

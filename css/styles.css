@@ -47,12 +47,12 @@ transform: translate(520px, 22vh);
 transform-origin: 5% 15%; 
 }
 
- /* text.lrgtext#me:hover {
+ text.lrgtext#me:hover {
   transform: translate(520px, 22vh) scale(1.02);
 
   animation: none;
  
-}  */
+} 
 #meshaker{
   position:absolute;
   z-index:70;
