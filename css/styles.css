@@ -14,6 +14,7 @@ text {
 } */
 html {
 	font-size: 62.5%;
+  scroll-behavior:smooth;
 } 
 
 html body svg text.lrgtext {
@@ -25,7 +26,7 @@ html body svg text.lrgtext {
   text-align: center;
   transform: translate(500px, 22vh);
 }
-@keyframes wiggle {
+/* @keyframes wiggle {
   0% { transform: translate(520px, 22vh) rotate(0deg); }
   70% { transform: translate(520px, 22vh) rotate(1deg); }
   80% { transform: translate(520px, 22vh) rotate(-1deg);}
@@ -37,22 +38,20 @@ html body svg text.lrgtext {
   98% { transform: translate(520px, 22vh) rotate(-1deg); }
   100% { transform: translate(520px, 22vh) rotate(0deg); }
 
-}
+} */
 
 text.lrgtext#me {
   
 display: inline-block;
-transform: translate(520px, 22vh);
-/* animation: wiggle 3s infinite; */
+/* transform: translate(520px, 20vh); */
 transform-origin: 5% 15%; 
 }
+#me:hover {
+  cursor: pointer;
+}
 
- text.lrgtext#me:hover {
-  transform: translate(520px, 22vh) scale(1.02);
 
-  /* animation: none; */
  
-} 
 #meshaker{
   position:absolute;
   z-index:70;
@@ -421,6 +420,9 @@ dropdown-menu {
   font-size: 17px;
   text-decoration: bold;
 }
+.close:hover{
+  cursor: pointer;
+}
 
 .modalbox {
   display: none;
@@ -461,6 +463,10 @@ dropdown-menu {
   width: auto;
 }
 
+.sig:hover {
+  cursor: pointer;
+}
+
 /*###################### End of Modal Statement/Contact Base Styles ############################ */
 
 /*Begining of Base Styles Contact Form ##################################################################### */
@@ -495,7 +501,7 @@ dropdown-menu {
 label {
   display: block;
   margin: 10px;
-  color: #070707;
+  color: #fff;
 }
 .closeForm {
 color: #fff;

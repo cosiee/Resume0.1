@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
   setRandomBackground("diy", diyImages);
 });
 
-
+// opening Animations ##################################################################
 gsap.set(".scrollDist", { width: "100%", height: "200%", background: "#fff" });
 gsap
   .timeline({
@@ -213,8 +213,8 @@ gsap
   );
 
 
-
-$(".sig, .close").on("click", (e) => {
+// thumb Animations on clicks############################################################
+$(".close").on("click", (e) => {
 
   gsap
       .to(
@@ -245,7 +245,7 @@ $(".sig, .close").on("click", (e) => {
 }); 
 
 
-$(".meLink").on("click", (e) => {
+$(".sig, .meLink, #contactLink").on("click", (e) => {
   
 
   gsap
@@ -274,38 +274,58 @@ $(".meLink").on("click", (e) => {
       )
 }); 
 
-//removes and adds scroll bar 
-function toggleScroll() {
-  var body = document.body;
-  if (body.style.overflow === 'hidden') {
-      body.style.overflow = 'auto';
-  } else {
-      body.style.overflow = 'hidden';
-  }
-}
-// add removes contact form
-function showForm() {
 
+$(".scroll-arrow").on("click", (e) => {
+  gsap.to(window, { scrollTo: 600, duration: 3, ease: "power3.inOut" });
+});
+
+
+// Begining of Scroll Bar Display control ##################################################
+
+// Function to hide the scrollbar
+function hideScrollBar() {
+  document.documentElement.style.overflow = 'hidden';  // Hide scroll on the entire document
+}
+
+// Function to show the scrollbar
+function showScrollBar() {
+  document.documentElement.style.overflow = '';  // Show scroll on the entire document
+}
+
+
+// End of Scroll Bar Display control ###################################################
+
+// Navigation between index.html#thumbs, modalBox(statementContact) & Contact Form
+
+function showForm() {
   document.getElementById('contactForm').style.display = 'block';
+}
+
+function showStatementContact(){
+  document.getElementById('statementContact').style.display = 'block';
+  document.getElementById('contactForm').style.display = 'none';
+}
+
+function showThumbs(){
+  document.getElementById('statementContact').style.display = 'none';
+  document.getElementById('thumbs').style.display = 'block';
 }
 
 function hideForm() {
   document.getElementById('contactForm').style.display = 'none';
-  document.getElementById('statmentContact').style.display = 'none';
+  document.getElementById('statementContact').style.display = 'block';
 }
 
 function hideForm2() {
   document.getElementById('contactForm').style.display = 'none';
-  document.getElementById('statmentContact').style.display = 'none';
+  document.getElementById('#thumbs').style.display = 'block';
 }
 
 function submitForm() {
   hideForm();
 }
 
-$(".scroll-arrow").on("click", (e) => {
-  gsap.to(window, { scrollTo: 600, duration: 3, ease: "power3.inOut" });
-});
+
 
 // ==========================================================
 /* Main Navigation dropdown
@@ -321,7 +341,7 @@ $(window).scroll(function () {
 
 
 // ==========================================================
-// index.html animate thumbnails & navbar items & meshaker animating 'ME'
+// #########   index.html animate thumbnails & navbar items & meshaker animating 'ME'  ###
 
 
 
@@ -339,7 +359,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const thumbDiy = document.querySelector("#diy");
   const navbarDiy = document.querySelector("#diyLink");
 
-  // ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+  // ################ Begining of MeText Animations ############################################
+
   const meText = document.getElementById('me');
   const meShaker = document.getElementById('meshaker');
   let hoverAnimationInterval;
@@ -393,7 +414,7 @@ let initialTransform = window.getComputedStyle(meText).getPropertyValue('transfo
   meShaker.addEventListener("mouseenter", handleHover);
   meShaker.addEventListener("mouseleave", handleHover);
         
-  meShaker.addEventListener("mouseleave", handleHover);
+
   
   
   
@@ -404,7 +425,6 @@ let initialTransform = window.getComputedStyle(meText).getPropertyValue('transfo
 
 
 
-// TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
 
 // Function to start the idle wiggle animation
 function startIdleWiggle() {
@@ -469,16 +489,16 @@ startIdleWiggle();
 
   
   
-// ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-  
+// ################ END of MeText Animations ############################################
+   
   
   meText.addEventListener("mouseenter", function () {
-    meText.style.scale = 1.2;
-  
+    meText.style.transform = `translate(520px, 22vh) scale(1.015)`;
+    // meText.style.shadowColor = grey;
   });
 
   meText.addEventListener("mouseleave", function () {
-    meText.style.scale = 1;
+    meText.style.transform = `translate(520px, 22vh) scale(1)`;
   
   });
 
@@ -581,3 +601,6 @@ startIdleWiggle();
 
   });
 });
+
+// ==========================================================
+// #########  END of  index.html animate thumbnails & navbar items & meshaker animating 'ME'  ###

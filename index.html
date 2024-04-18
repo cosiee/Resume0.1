@@ -65,7 +65,7 @@
             <a class="nav-link" id="diyLink" href="diy.html">Diy</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" id="contactLink" onclick="hideScrollBar(); showStatementContact(); showForm()">Contact</a>
           </li>
         </ul>
       </div>
@@ -102,13 +102,13 @@
       <g mask="url(#m)">
         <rect fill="#fff" width="100%" height="100%" />
         <rect id="meshaker"/>
-        <a class="meLink" onclick="toggleScroll()" href="#statmentContact">
+        <a class="meLink" onclick="hideScrollBar(); showStatementContact()">
           <text class="lrgtext" id="me" fill="#162a43">ME</text>
         </a>
         <div class="scroll-arrow" id="down" x="455" y="330"></div>
 
 
-
+        <div>
         <a class="thumbs" href="software.html">
           <div class="thumbShape thumbs" id="software">
             <div class="overlay"></div>
@@ -134,19 +134,19 @@
           </div>
         </a>
 
+      </div>
 
     </svg>
-    <div class="modalbox" id="statmentContact">
+    <div class="modalbox" id="statementContact" style="display: none;">
       <div class="box">
-        <a class="close" onclick="toggleScroll()" href="#thumbs">X</a>
-        <!-- href="#contactInfo" -->
+        <a class="close" onclick="showScrollBar(); showThumbs()">X</a>
         <p class="title">Welcome</p>
         <div class="content">
           <br>
           <p>Thank you for taking the time to have a look at this site!</p>
           <br>
           <p>To continue to look at this site, click the 'X' on the top
-            right of message.</p>
+            right of this message.</p>
           <br>
           <p>To get in touch, click the signature below.</p>
           <br>
@@ -163,7 +163,7 @@
 
 
     <div class="formDiv" id="contactForm" style="display: none;">
-      <a class="closeForm" href="#statementContact" onclick="hideForm()">X</a>
+      <a class="closeForm" onclick="hideForm()" href="#statementContact">X</a>
       <form action="https://formspree.io/f/meqyreww" method="POST">
           <label> Your name:
               <input type="text" id="name" name="name" required>
@@ -174,7 +174,7 @@
           <label>Your message:
               <textarea id="message" name="message" rows="5" required></textarea>
           </label>
-          <button type="submit" id="formButton" onclick="hideForm2()" href="#thumbs">Send</button>
+          <button type="submit" id="formButton" onclick="hideForm()">Send</button>
   </div>
   
   <!-- above code sends message, below code doesn't send message but has frontend behaviour
