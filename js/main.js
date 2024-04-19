@@ -378,7 +378,7 @@ let initialTransform = window.getComputedStyle(meText).getPropertyValue('transfo
       clearInterval(hoverAnimationInterval);
       isHoverWiggling = false;
       console.log("Hover wiggle animation stopped.");
-      meText.style.transform = `translate(520px, 22vh) rotate(0deg)`; // Reset the position
+      meText.style.transform = `translate(520px, 20vh) rotate(0deg)`; // Reset the position
   }
   
   // Function to start the hover wiggle animation
@@ -407,7 +407,7 @@ let initialTransform = window.getComputedStyle(meText).getPropertyValue('transfo
     if (angle === 1 || angle === -1) {
         angle *= -1; // Reverse direction when angle reaches 1 or -1
     }
-    meText.style.transform = `translate(520px, 22vh) rotate(${angle}deg)`; // Apply the transformation
+    meText.style.transform = `translate(520px, 20vh) rotate(${angle}deg)`; // Apply the transformation
 }
   
   // Event listener for mouse enter and mouse leave to handle hover
@@ -468,7 +468,7 @@ function wiggle() {
     if (angle === 1 || angle === -1) {
       direction *= -1;
     }
-    meText.style.transform = `translate(520px, 22vh) rotate(${angle}deg)`; // Apply the transformation
+    meText.style.transform = `translate(520px, 20vh)rotate(${angle}deg)`; // Apply the transformation
   }
 
   // Start the animation interval
@@ -493,12 +493,12 @@ startIdleWiggle();
    
   
   meText.addEventListener("mouseenter", function () {
-    meText.style.transform = `translate(520px, 22vh) scale(1.015)`;
+    meText.style.transform = `translate(520px, 20vh) scale(1.015)`;
     // meText.style.shadowColor = grey;
   });
 
   meText.addEventListener("mouseleave", function () {
-    meText.style.transform = `translate(520px, 22vh) scale(1)`;
+    meText.style.transform = `translate(520px, 20vh) scale(1)`;
   
   });
 

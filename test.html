@@ -1,39 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Form</title>
-
-    <style>
-        @keyframes wiggle {
-            0% { transform: rotate(0deg); }
-           80% { transform: rotate(0deg); }
-           85% { transform: rotate(5deg); }
-           95% { transform: rotate(-5deg); }
-          100% { transform: rotate(0deg); }
-        }
-        
-        text.lrgtext {
-          display: inline-block;
-          animation: wiggle 1.25s infinite;
-        }
-        
-        text.lrgtext:hover {
-          animation: none;
-        }
-    </style>
-    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thumbnail Animation Example</title>
+<link rel="stylesheet" href="test.css">
 </head>
-
 <body>
-    <text class="wiggle, lrgtext">
-        wiggle, wiggle
-      </h1>
-  
 
+  <div class="thumbnails">
+    <!-- Software Thumbnail -->
+    <a href="software.html" class="thumb-link">
+      <div class="thumb software">
+        <img src="assets/software-thumbnail.jpg" alt="Software Thumbnail">
+        <div class="overlay"></div>
+      </div>
+    </a>
 
+    <!-- Photography Thumbnail -->
+    <a href="photography.html" class="thumb-link">
+      <div class="thumb photography">
+        <img src="assets/photography-thumbnail.jpg" alt="Photography Thumbnail">
+        <div class="overlay"></div>
+      </div>
+    </a>
+
+    <!-- Videography Thumbnail -->
+    <a href="videography.html" class="thumb-link">
+      <div class="thumb videography">
+        <img src="assets/videography-thumbnail.jpg" alt="Videography Thumbnail">
+        <div class="overlay"></div>
+      </div>
+    </a>
+
+    <!-- DIY Thumbnail -->
+    <a href="diy.html" class="thumb-link">
+      <div class="thumb diy">
+        <img src="assets/diy-thumbnail.jpg" alt="DIY Thumbnail">
+        <div class="overlay"></div>
+      </div>
+    </a>
+  </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script src="test.js"></script>
 </body>
-
 </html>

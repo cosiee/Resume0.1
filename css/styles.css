@@ -43,11 +43,12 @@ html body svg text.lrgtext {
 text.lrgtext#me {
   
 display: inline-block;
-/* transform: translate(520px, 20vh); */
+/* transform: translate(520px, 24vh); */
 transform-origin: 5% 15%; 
 }
 #me:hover {
   cursor: pointer;
+  text-shadow: 2px 2px 2px #162a43;
 }
 
 
@@ -171,9 +172,10 @@ a.dropdown-item:hover {
   transform: scale(1.2);
 }
 
-/* rule to remove blue post click */
-a.dropdown-item:hover {
-  color: #6e6f79;
+
+a.dropdown-item:active {
+  background-color: #6e6f79;
+  color: #fff;
   transform: scale(1.2);
 }
 
@@ -217,20 +219,31 @@ dropdown-menu {
 
 /* Thumbnails Base Styles  ###################################################### */
 
+:root {
+  --thumb-width: 250px;
+  --thumb-height: 250px;
+
+}
 
 .thumbs {
   display: block;
   text-decoration: none;
-  /* Add any other styles for the anchor element if needed */
+  position: relative;
 }
 
 .thumbShape {
   position: absolute;
+  width: var(--thumb-width); /* Use custom property for width */
+  height: var(--thumb-height); /* Use custom property for height */
+  overflow: hidden;
+  border-radius: 24%;
+  transition: background-image 1.8s ease-in-out;
+  /* position: absolute;
   width: 250px;
   height: 250px;
   overflow: hidden;
   border-radius: 24%;
-  transition: background-image 1.8s ease-in-out;
+  transition: background-image 1.8s ease-in-out; */
 }
 
 #software img {
@@ -260,6 +273,8 @@ dropdown-menu {
   background-size: cover;
   background-position: center;
   filter: drop-shadow(0 0 0.1rem #162a43);
+  transform-origin: bottom right;
+}
 }
 
 #software:hover {
@@ -295,6 +310,7 @@ dropdown-menu {
   background-size: cover;
   background-position: center;
   filter: drop-shadow(0 0 0.1rem #162a43);
+  transform-origin: bottom left;
 }
 
 #photography:hover {
@@ -332,6 +348,7 @@ dropdown-menu {
   background-size: cover;
   background-position: center;
   filter: drop-shadow(0 0 0.1rem #162a43);
+  transform-origin: top right;
 }
 
 #videography:hover {
@@ -369,6 +386,7 @@ dropdown-menu {
   background-size: cover;
   background-position: center;
   filter: drop-shadow(0 0 0.1rem #162a43);
+  transform-origin: top left;
 }
 
 #diy:hover {
@@ -490,9 +508,6 @@ dropdown-menu {
   opacity: 1;
 }
 
-/* .form-group {
-  margin-bottom: 20px;
-} */
 .formTitle{
 	/* width: 100%; */
 	padding:0px;
@@ -588,6 +603,10 @@ textarea {
   .lrgtext#me {
     transform: translate(470px, 32%);
   }
+  .thumbShape {
+    width: calc(var(--thumb-width) * 0.5); /* Adjust width proportionally for smaller screens */
+    height: calc(var(--thumb-height) * 0.5); /* Adjust height proportionally for smaller screens */
+  }
 }
 
 @media (min-width: 576px) {
@@ -603,6 +622,10 @@ textarea {
   }
   .lrgtext#me {
     transform: translate(520px, 22%);
+  }
+  .thumbShape {
+    width: calc(var(--thumb-width) * 0.7); /* Adjust width proportionally for smaller screens */
+    height: calc(var(--thumb-height) * 0.7); /* Adjust height proportionally for smaller screens */
   }
 }
 
@@ -622,6 +645,11 @@ textarea {
   .lrgtext#me {
     transform: translate(520px, 20vh);
   }
+  .thumbShape {
+    width: calc(var(--thumb-width) * 0.8); /* Adjust width proportionally for smaller screens */
+    height: calc(var(--thumb-height) * 0.8); /* Adjust height proportionally for smaller screens */
+  }
+
 }
 
 /* Large devices (desktops, 992px and up)
@@ -630,7 +658,13 @@ textarea {
   .scroll-arrow {
     top: 24%;
   }
+
+  .thumbShape {
+    width: calc(var(--thumb-width) * 1); /* Adjust width proportionally for smaller screens */
+    height: calc(var(--thumb-height) * 1); /* Adjust height proportionally for smaller screens */
+  }
 }
+
 
 /* X-Large devices (large desktops, 1200px and up)
 **************************************************************/

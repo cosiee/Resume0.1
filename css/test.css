@@ -1,14 +1,74 @@
-#image-container {
-    width: 300px;
-    height: 300px;
-    margin: 20px auto;
-    border: 1px solid #ccc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#random-image {
-    max-width: 100%;
-    max-height: 100%;
-}
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Style for the thumbnails container */
+  .thumbnails {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  /* Style for each thumbnail link */
+  .thumb-link {
+    display: block;
+    text-decoration: none;
+  }
+  
+  /* Style for the thumbnail container */
+  .thumb {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24%;
+    transition: transform 0.5s ease;
+  }
+  
+  /* Style for the thumbnail image */
+  .thumb img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  
+  /* Style for the overlay */
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  /* Style for the overlay on hover */
+  .thumb:hover .overlay {
+    opacity: 1;
+  }
+  
+  /* Style for software thumbnail */
+  .software {
+    background-color: #3498db; /* Example background color */
+  }
+  
+  /* Style for photography thumbnail */
+  .photography {
+    background-color: #2ecc71; /* Example background color */
+  }
+  
+  /* Style for videography thumbnail */
+  .videography {
+    background-color: #f39c12; /* Example background color */
+  }
+  
+  /* Style for DIY thumbnail */
+  .diy {
+    background-color: #e74c3c; /* Example background color */
+  }
+  
