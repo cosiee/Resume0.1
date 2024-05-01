@@ -99,6 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // opening Animations ##################################################################
 gsap.set(".scrollDist", { width: "100%", height: "200%", background: "#fff" });
+
 gsap
   .timeline({
     scrollTrigger: {
@@ -182,35 +183,88 @@ gsap
     { scale: 1.3, x: -10, y: 576 },
     { scale: 2, x: -500, y: -690 },
     0
-  )
-
-  .fromTo(
-    ".thumbs#software",
-    { scale: 2.5, x: -1500, y: -570 },
-    { scale: 1, x: 320, y: -570 },
-    0
-  )
-
-  .fromTo(
-    ".thumbs#photography",
-    { scale: 2.5, x: 2400, y: -570 },
-    { scale: 1, x: 620, y: -570 },
-    0
-  )
-
-  .fromTo(
-    ".thumbs#diy",
-    { scale: 2.5, x: 2400, y: 700 },
-    { scale: 1, x: 620, y: -270 },
-    0
-  )
-
-  .fromTo(
-    ".thumbs#videography",
-    { scale: 2.5, x: -1500, y: 700 },
-    { scale: 1, x: 320, y: -270 },
-    0
   );
+
+
+  // #######################################################################
+
+  function getComputedStyleValue(element, property) {
+    return parseInt(window.getComputedStyle(element).getPropertyValue(property));
+}
+
+const svg = document.querySelector('svg'); // Select the SVG element
+const thumbElement = document.querySelector('.thumbShape'); // Select the thumbnail element
+let thumbWidth = getComputedStyleValue(thumbElement, 'width'); // Get the width of the thumbnail
+console.log(thumbWidth); // Output: 250
+
+// Calculate the midpoint of the SVG element's x-axis
+let screenWidthHalved = svg.viewBox.baseVal.width / 2;
+
+// Calculate the midpoint of the screen's y-axis
+let screenHeightHalved = window.innerHeight / 2;
+
+const thumbMargin = 12.5; // Margin between thumbnails as defined in CSS
+let endLeftX; // Define endLeftX variable
+let endRightX; // Define endRightX variable
+
+// Function to update thumbWidth and screenWidthHalved based on window size
+function updateDimensions() {
+    thumbWidth = Math.min(250, window.innerWidth / 6); // Update thumbWidth while ensuring it doesn't exceed a certain maximum value
+    screenWidthHalved = window.innerWidth / 2; // Update half-width of the screen
+
+    const totalThumbWidth = thumbWidth + 2 * thumbMargin; // Total width including margins
+
+    // Calculate the x-coordinate of the leftmost thumb's end position
+    endLeftX = screenWidthHalved - totalThumbWidth; 
+
+    // Calculate the x-coordinate of the rightmost thumb's end position
+    endRightX = screenWidthHalved + totalThumbWidth;
+}
+
+console.log("endLeftX: " + endLeftX + " screenWidthHalved: " + screenWidthHalved);
+
+// Initial call to updateDimensions to set initial values
+updateDimensions();
+
+// Event listener for window resize
+window.addEventListener('resize', updateDimensions);
+
+
+gsap.timeline({
+    scrollTrigger: {
+        trigger: ".scrollDist",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1,
+    },
+})
+.fromTo(
+    "#software",
+    { scale: 2.5, x: endLeftX - 1500, y: -570 },
+    { scale: 1, x: endLeftX, y: -570 },
+    0
+)
+.fromTo(
+    "#photography",
+    { scale: 2.5, x: endRightX + 2400, y: -570 },
+    { scale: 1, x: endRightX, y: -570 },
+    0
+)
+.fromTo(
+    "#diy",
+    { scale: 2.5, x: endRightX + 2400, y: 700 },
+    { scale: 1, x: endRightX, y: (-270 / 1080) * window.innerHeight },
+    0
+)
+.fromTo(
+    "#videography",
+    { scale: 2.5, x: endLeftX - 1500, y: 700 },
+    { scale: 1, x: endLeftX, y: (-270 / 1080) * window.innerHeight },
+    0
+);
+
+
+  // #######################################################################
 
 
 // thumb Animations on clicks############################################################

@@ -17,7 +17,24 @@ html {
   scroll-behavior:smooth;
 } 
 
-html body svg text.lrgtext {
+body{
+
+}
+
+main{
+poso
+}
+
+#mountains {
+  margin: 0;
+  padding: 0;
+  width: 1200px;
+}
+svg {
+  width: 100%;
+}
+
+text.lrgtext {
   width: 100%;
   height: 100%;
   background: #ddd;
@@ -26,19 +43,7 @@ html body svg text.lrgtext {
   text-align: center;
   transform: translate(500px, 22vh);
 }
-/* @keyframes wiggle {
-  0% { transform: translate(520px, 22vh) rotate(0deg); }
-  70% { transform: translate(520px, 22vh) rotate(1deg); }
-  80% { transform: translate(520px, 22vh) rotate(-1deg);}
-  85% { transform: translate(520px, 22vh) rotate(0deg); }
-  87% { transform: translate(520px, 22vh) rotate(1deg); }
-  89% { transform: translate(520px, 22vh) rotate(-1deg); }
-  92% { transform: translate(520px, 22vh) rotate(0deg); }
-  95% { transform: translate(520px, 22vh) rotate(1deg); }
-  98% { transform: translate(520px, 22vh) rotate(-1deg); }
-  100% { transform: translate(520px, 22vh) rotate(0deg); }
 
-} */
 
 text.lrgtext#me {
   
@@ -225,6 +230,11 @@ dropdown-menu {
 
 }
 
+.mountains{
+  /* position: inherit; */
+  width: 2000px ;
+  height: auto;
+}
 .thumbs {
   display: block;
   text-decoration: none;
@@ -235,15 +245,11 @@ dropdown-menu {
   position: absolute;
   width: var(--thumb-width); /* Use custom property for width */
   height: var(--thumb-height); /* Use custom property for height */
+  margin: 12.5px;
   overflow: hidden;
   border-radius: 24%;
   transition: background-image 1.8s ease-in-out;
-  /* position: absolute;
-  width: 250px;
-  height: 250px;
-  overflow: hidden;
-  border-radius: 24%;
-  transition: background-image 1.8s ease-in-out; */
+
 }
 
 #software img {
@@ -275,7 +281,7 @@ dropdown-menu {
   filter: drop-shadow(0 0 0.1rem #162a43);
   transform-origin: bottom right;
 }
-}
+
 
 #software:hover {
   cursor: pointer;
@@ -596,7 +602,7 @@ textarea {
     border-bottom: 3px solid #fff;
     border-right: 3px solid #fff;
   }
-  html body svg text.lrgtext {
+   text.lrgtext {
     font-size: 150px;
     transform: translate(450px, 32%);
   }
@@ -617,7 +623,7 @@ textarea {
     border-bottom: 3px solid #fff;
     border-right: 3px solid #fff;
   }
-  html body svg text.lrgtext {
+  text.lrgtext {
     transform: translate(500px, 22%);
   }
   .lrgtext#me {
@@ -639,7 +645,7 @@ textarea {
     border-bottom: 4px solid #fff;
     border-right: 4px solid #fff;
   }
-  html body svg text.lrgtext {
+  text.lrgtext {
     transform: translate(500px, 20vh);
   }
   .lrgtext#me {
@@ -672,7 +678,7 @@ textarea {
   .scroll-arrow {
     top: 26%;
   }
-  html body svg text.lrgtext {
+  text.lrgtext {
     transform: translate(500px, 20vh);
   }
   .lrgtext#me {
