@@ -21,9 +21,9 @@ body{
 
 }
 
-main{
+/* main{
 poso
-}
+} */
 
 #mountains {
   margin: 0;
@@ -35,6 +35,8 @@ svg {
 }
 
 text.lrgtext {
+  /* position: absolute;
+  z-index: 3; */
   width: 100%;
   height: 100%;
   background: #ddd;
@@ -45,12 +47,12 @@ text.lrgtext {
 }
 
 
-text.lrgtext#me {
+/* text.lrgtext#me {
   
 display: inline-block;
 /* transform: translate(520px, 24vh); */
 transform-origin: 5% 15%; 
-}
+} */
 #me:hover {
   cursor: pointer;
   text-shadow: 2px 2px 2px #162a43;
@@ -63,7 +65,7 @@ transform-origin: 5% 15%;
   z-index:70;
   width: 100%;
   height:99px;
-  transform: translate(99px, 13.5vh);
+  transform: translate(0px, 13.5vh);
   opacity:0;
 }
 a {
@@ -225,8 +227,8 @@ dropdown-menu {
 /* Thumbnails Base Styles  ###################################################### */
 
 :root {
-  --thumb-width: 250px;
-  --thumb-height: 250px;
+  --thumb-width: 300px;
+  --thumb-height: 300px;
 
 }
 
@@ -235,10 +237,16 @@ dropdown-menu {
   width: 2000px ;
   height: auto;
 }
+
+.thumbnails{
+  position:absolute;
+
+}
+
 .thumbs {
   display: block;
   text-decoration: none;
-  position: relative;
+  /* position: relative; */
 }
 
 .thumbShape {
@@ -266,6 +274,7 @@ dropdown-menu {
   width: 100%;
   height: 100%;
   background-image: url("assets/binary-min.png");
+  background-repeat: no-repeat;
   opacity: 0;
   transition: opacity 0.6s ease;
 }
@@ -279,7 +288,7 @@ dropdown-menu {
   background-size: cover;
   background-position: center;
   filter: drop-shadow(0 0 0.1rem #162a43);
-  transform-origin: bottom right;
+ 
 }
 
 
@@ -302,6 +311,7 @@ dropdown-menu {
   width: 100%;
   height: 100%;
   background-image: url("assets/photography-min.png");
+  background-repeat: no-repeat;
   background-position: center;
   opacity: 0;
   transition: opacity 0.6s ease;
@@ -316,7 +326,7 @@ dropdown-menu {
   background-size: cover;
   background-position: center;
   filter: drop-shadow(0 0 0.1rem #162a43);
-  transform-origin: bottom left;
+ 
 }
 
 #photography:hover {
@@ -326,7 +336,7 @@ dropdown-menu {
 
 /* ___________________ */
 
-#videoography img {
+#videography img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -340,6 +350,7 @@ dropdown-menu {
   width: 100%;
   height: 100%;
   background-image: url(assets/videography-min.png);
+  background-repeat: no-repeat;
   background-position: center;
   opacity: 0;
   transition: opacity 0.6s ease;
@@ -354,7 +365,7 @@ dropdown-menu {
   background-size: cover;
   background-position: center;
   filter: drop-shadow(0 0 0.1rem #162a43);
-  transform-origin: top right;
+
 }
 
 #videography:hover {
@@ -378,6 +389,7 @@ dropdown-menu {
   width: 100%;
   height: 100%;
   background-image: url(assets/diy-min.png);
+  background-repeat: no-repeat;
   background-position: center;
   opacity: 0;
   transition: opacity 0.6s ease;
@@ -392,7 +404,7 @@ dropdown-menu {
   background-size: cover;
   background-position: center;
   filter: drop-shadow(0 0 0.1rem #162a43);
-  transform-origin: top left;
+  
 }
 
 #diy:hover {

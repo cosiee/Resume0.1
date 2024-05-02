@@ -2,7 +2,7 @@
 
 // import { TimelineLite, Back } from "gsap/dist/gsap";
 
-gsap.set(".main", {
+gsap.set("#mountains", {
   position: "fixed",
   background: "#fff",
   width: "100%",
@@ -13,9 +13,8 @@ gsap.set(".main", {
   x: "-50%",
 });
 
-
 // Thumb randomisation
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Array of image URLs for each category
   const softwareImages = [
     "url('css/assets/b1.jpg')",
@@ -30,49 +29,49 @@ document.addEventListener("DOMContentLoaded", function() {
     "url('css/assets/b10.jpg')",
     "url('css/assets/b12.jpg')",
     "url('css/assets/b13.jpg')",
-    "url('css/assets/b14.jpg')"
+    "url('css/assets/b14.jpg')",
   ];
 
   const photographyImages = [
-  "url('css/assets/r1.jpg')",
-  "url('css/assets/r2.jpg')",
-  "url('css/assets/r3.jpg')",
-  "url('css/assets/r4.jpg')",
-  "url('css/assets/r5.jpg')",
-  "url('css/assets/r6.jpg')",
-  "url('css/assets/r7.jpg')",
-  "url('css/assets/r8.jpg')",
-  "url('css/assets/r9.jpg')",
-  "url('css/assets/r10.jpg')",
-  "url('css/assets/r11.jpg')",
-  "url('css/assets/r12.jpg')"
+    "url('css/assets/r1.jpg')",
+    "url('css/assets/r2.jpg')",
+    "url('css/assets/r3.jpg')",
+    "url('css/assets/r4.jpg')",
+    "url('css/assets/r5.jpg')",
+    "url('css/assets/r6.jpg')",
+    "url('css/assets/r7.jpg')",
+    "url('css/assets/r8.jpg')",
+    "url('css/assets/r9.jpg')",
+    "url('css/assets/r10.jpg')",
+    "url('css/assets/r11.jpg')",
+    "url('css/assets/r12.jpg')",
   ];
 
   const videographyImages = [
-  "url('css/assets/g1.jpg')",
-  "url('css/assets/g2.jpg')",
-  "url('css/assets/g3.jpg')",
-  "url('css/assets/g4.jpg')",
-  "url('css/assets/g5.jpg')",
-  "url('css/assets/g6.jpg')",
-  "url('css/assets/g7.jpg')",
-  "url('css/assets/g8.jpg')",
-  "url('css/assets/g9.jpg')",
-  "url('css/assets/g10.jpg')"
+    "url('css/assets/g1.jpg')",
+    "url('css/assets/g2.jpg')",
+    "url('css/assets/g3.jpg')",
+    "url('css/assets/g4.jpg')",
+    "url('css/assets/g5.jpg')",
+    "url('css/assets/g6.jpg')",
+    "url('css/assets/g7.jpg')",
+    "url('css/assets/g8.jpg')",
+    "url('css/assets/g9.jpg')",
+    "url('css/assets/g10.jpg')",
   ];
 
   const diyImages = [
-  "url('css/assets/y1.jpg')",
-  "url('css/assets/y2.jpg')",
-  "url('css/assets/y3.jpg')",
-  "url('css/assets/y4.jpg')",
-  "url('css/assets/y5.jpg')",
-  "url('css/assets/y6.jpg')",
-  "url('css/assets/y7.jpg')",
-  "url('css/assets/y8.jpg')",
-  "url('css/assets/y9.jpg')",
-  "url('css/assets/y10.jpg')",
-  "url('css/assets/y11.jpg')"
+    "url('css/assets/y1.jpg')",
+    "url('css/assets/y2.jpg')",
+    "url('css/assets/y3.jpg')",
+    "url('css/assets/y4.jpg')",
+    "url('css/assets/y5.jpg')",
+    "url('css/assets/y6.jpg')",
+    "url('css/assets/y7.jpg')",
+    "url('css/assets/y8.jpg')",
+    "url('css/assets/y9.jpg')",
+    "url('css/assets/y10.jpg')",
+    "url('css/assets/y11.jpg')",
   ];
 
   // Function to randomly select an image URL from an array
@@ -107,7 +106,6 @@ gsap
       start: "top top",
       end: "bottom bottom",
       scrub: 1,
-      
     },
   })
 
@@ -125,11 +123,7 @@ gsap
     0
   )
 
-  .fromTo("#cloud2",
-    { x: 400, y: 310 },
-    { x: -200, y: -600 },
-    0
-  )
+  .fromTo("#cloud2", { x: 400, y: 310 }, { x: -200, y: -600 }, 0)
 
   .fromTo(
     "#mountBg2",
@@ -138,11 +132,7 @@ gsap
     0
   )
 
-  .fromTo("#cloud3",
-    { x: -200, y: 300 },
-    { x: 500, y: -1000 },
-    0
-  )
+  .fromTo("#cloud3", { x: -200, y: 300 }, { x: 500, y: -1000 }, 0)
 
   .fromTo(
     "#mountMg",
@@ -151,11 +141,7 @@ gsap
     0
   )
 
-  .fromTo("#cloud4",
-   { x: 300, y: 320 }, 
-   { x: -400, y: -850 }, 
-   0
-  )
+  .fromTo("#cloud4", { x: 300, y: 320 }, { x: -400, y: -850 }, 0)
 
   .fromTo(
     "#mountMgF",
@@ -185,201 +171,164 @@ gsap
     0
   );
 
-
-  // #######################################################################
-
-  function getComputedStyleValue(element, property) {
-    return parseInt(window.getComputedStyle(element).getPropertyValue(property));
+// #######################################################################
+// Function to retrieve computed style value of an element
+function getComputedStyleValue(element, property) {
+  return parseInt(window.getComputedStyle(element).getPropertyValue(property));
 }
 
-const svg = document.querySelector('svg'); // Select the SVG element
-const thumbElement = document.querySelector('.thumbShape'); // Select the thumbnail element
-let thumbWidth = getComputedStyleValue(thumbElement, 'width'); // Get the width of the thumbnail
-console.log(thumbWidth); // Output: 250
+// Function to calculate the total width of the thumbnail including margin
+function getThumbWidthWithMargin() {
+  const thumbElement = document.querySelector(".thumbShape"); // Select the thumbnail element
+  const computedStyle = window.getComputedStyle(thumbElement); // Get the computed style
+  const thumbWidth = parseFloat(computedStyle.getPropertyValue("width")); // Get the width of the thumbnail
+  const thumbMargin = parseFloat(computedStyle.getPropertyValue("margin-right")); // Get the right margin of the thumbnail
 
-// Calculate the midpoint of the SVG element's x-axis
-let screenWidthHalved = svg.viewBox.baseVal.width / 2;
+  // Calculate total width including margin
+  const thumbWidthWithMargin = thumbWidth + (thumbMargin*2);
 
-// Calculate the midpoint of the screen's y-axis
-let screenHeightHalved = window.innerHeight / 2;
+  return thumbWidthWithMargin;
+}
 
-const thumbMargin = 12.5; // Margin between thumbnails as defined in CSS
+// Initialization of variables
+const svg = document.querySelector("svg"); // Select the SVG element
+const thumbElement = document.querySelector(".thumbShape"); // Select the thumbnail element
+let thumbWidth = getComputedStyleValue(thumbElement, "width"); // Get the width of the thumbnail
+let screenWidthHalved = svg.viewBox.baseVal.width / 2; // Calculate the midpoint of the SVG element's x-axis
+let screenHeightHalved = svg.viewBox.baseVal.height / 2;
 let endLeftX; // Define endLeftX variable
 let endRightX; // Define endRightX variable
+let endTopY; // Define endLeftY variable
+let endBottomY; // Define endRightY variable
 
 // Function to update thumbWidth and screenWidthHalved based on window size
 function updateDimensions() {
-    thumbWidth = Math.min(250, window.innerWidth / 6); // Update thumbWidth while ensuring it doesn't exceed a certain maximum value
-    screenWidthHalved = window.innerWidth / 2; // Update half-width of the screen
+  thumbWidth = Math.min(300, window.innerWidth / 6); // Update thumbWidth while ensuring it doesn't exceed a certain maximum value
+  screenWidthHalved = window.innerWidth / 2; // Update half-width of the screen
+  screenHeightHalved = window.innerHeight / 2;
+  const totalThumbWidth = getThumbWidthWithMargin(); // Total width including margins
 
-    const totalThumbWidth = thumbWidth + 2 * thumbMargin; // Total width including margins
+  // Calculate the x&ycoordinates of the leftmost thumbs end positions
+  endLeftX = screenWidthHalved - totalThumbWidth;
+  endTopY = window.innerHeight*1.25 ;
 
-    // Calculate the x-coordinate of the leftmost thumb's end position
-    endLeftX = screenWidthHalved - totalThumbWidth; 
+  console.log("totalThumbWidth: " +totalThumbWidth);
+  console.log("window.innerHeight: " +window.innerHeight);
+  console.log("endTopY: " +endTopY);
 
-    // Calculate the x-coordinate of the rightmost thumb's end position
-    endRightX = screenWidthHalved + totalThumbWidth;
+
+  // Calculate the x-coordinate of the rightmost thumb's end position
+  endRightX = screenWidthHalved;
+  endBottomY = window.innerHeight*1.25 + totalThumbWidth;
+  console.log("endBottomY: " +endBottomY);
 }
-
-console.log("endLeftX: " + endLeftX + " screenWidthHalved: " + screenWidthHalved);
 
 // Initial call to updateDimensions to set initial values
 updateDimensions();
 
 // Event listener for window resize
-window.addEventListener('resize', updateDimensions);
+window.addEventListener("resize", updateDimensions);
 
-
-gsap.timeline({
+gsap
+  .timeline({
     scrollTrigger: {
-        trigger: ".scrollDist",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1,
+      trigger: ".scrollDist",
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 1,
     },
-})
-.fromTo(
+  })
+  .fromTo(
     "#software",
-    { scale: 2.5, x: endLeftX - 1500, y: -570 },
-    { scale: 1, x: endLeftX, y: -570 },
+    { scale: 2.5, x: endLeftX - 1500, y: endTopY-1200 },
+    { scale: 1, x: endLeftX, y: endTopY },
     0
-)
-.fromTo(
+  )
+  .fromTo(
     "#photography",
-    { scale: 2.5, x: endRightX + 2400, y: -570 },
-    { scale: 1, x: endRightX, y: -570 },
+    { scale: 2.5, x: endRightX + 1500, y: endTopY-1200 },
+    { scale: 1, x: endRightX, y: endTopY },
     0
-)
-.fromTo(
+  )
+  .fromTo(
     "#diy",
-    { scale: 2.5, x: endRightX + 2400, y: 700 },
-    { scale: 1, x: endRightX, y: (-270 / 1080) * window.innerHeight },
+    { scale: 2.5, x: endRightX + 1500, y: endBottomY+1440 },
+    { scale: 1, x: endRightX, y: endBottomY},
     0
-)
-.fromTo(
+  )
+  .fromTo(
     "#videography",
-    { scale: 2.5, x: endLeftX - 1500, y: 700 },
-    { scale: 1, x: endLeftX, y: (-270 / 1080) * window.innerHeight },
+    { scale: 2.5, x: endLeftX - 1500, y: endBottomY+1440 },
+    { scale: 1, x: endLeftX, y: endBottomY },
     0
-);
+  );
 
 
-  // #######################################################################
 
+// #######################################################################
 
 // thumb Animations on clicks############################################################
 $(".close").on("click", (e) => {
-
-  gsap
-      .to(
-        ".thumbs#diy",
-        { x: 620, y: -270 },
-        1
-      )
-  gsap    
-      .to(
-        ".thumbs#videography",
-        { x: 320, y: -270 },
-        2
-      )
-  gsap
-      .to(
-        ".thumbs#software",
-        { x: 320, y: -570 },
-        4
-      )
-  gsap  
-      .to(
-        ".thumbs#photography",
-        { x: 620, y: -570 },
-        3
-      )
-
- 
-}); 
-
+  gsap.to(".thumbs#diy", { x: 620, y: -270 }, 1);
+  gsap.to(".thumbs#videography", { x: 320, y: -270 }, 2);
+  gsap.to(".thumbs#software", { x: 320, y: -570 }, 4);
+  gsap.to(".thumbs#photography", { x: 620, y: -570 }, 3);
+});
 
 $(".sig, .meLink, #contactLink").on("click", (e) => {
-  
-
-  gsap
-      .to(
-        ".thumbs#diy",
-        { x: 590, y: -290 },
-        1
-      )
-  gsap    
-      .to(
-        ".thumbs#videography",
-        { x: 340, y: -290 },
-        2
-      )
-  gsap
-      .to(
-        ".thumbs#software",
-        { x: 340, y: -540 },
-        4
-      )
-  gsap  
-      .to(
-        ".thumbs#photography",
-        { x: 590, y: -540 },
-        3
-      )
-}); 
-
+  gsap.to(".thumbs#diy", { x: 590, y: -290 }, 1);
+  gsap.to(".thumbs#videography", { x: 340, y: -290 }, 2);
+  gsap.to(".thumbs#software", { x: 340, y: -540 }, 4);
+  gsap.to(".thumbs#photography", { x: 590, y: -540 }, 3);
+});
 
 $(".scroll-arrow").on("click", (e) => {
   gsap.to(window, { scrollTo: 600, duration: 3, ease: "power3.inOut" });
 });
 
-
 // Begining of Scroll Bar Display control ##################################################
 
 // Function to hide the scrollbar
 function hideScrollBar() {
-  document.documentElement.style.overflow = 'hidden';  // Hide scroll on the entire document
+  document.documentElement.style.overflow = "hidden"; // Hide scroll on the entire document
 }
 
 // Function to show the scrollbar
 function showScrollBar() {
-  document.documentElement.style.overflow = '';  // Show scroll on the entire document
+  document.documentElement.style.overflow = ""; // Show scroll on the entire document
 }
-
 
 // End of Scroll Bar Display control ###################################################
 
 // Navigation between index.html#thumbs, modalBox(statementContact) & Contact Form
 
 function showForm() {
-  document.getElementById('contactForm').style.display = 'block';
+  document.getElementById("contactForm").style.display = "block";
 }
 
-function showStatementContact(){
-  document.getElementById('statementContact').style.display = 'block';
-  document.getElementById('contactForm').style.display = 'none';
+function showStatementContact() {
+  document.getElementById("statementContact").style.display = "block";
+  document.getElementById("contactForm").style.display = "none";
 }
 
-function showThumbs(){
-  document.getElementById('statementContact').style.display = 'none';
-  document.getElementById('thumbs').style.display = 'block';
+function showThumbs() {
+  document.getElementById("statementContact").style.display = "none";
+  document.getElementById("thumbs").style.display = "block";
 }
 
 function hideForm() {
-  document.getElementById('contactForm').style.display = 'none';
-  document.getElementById('statementContact').style.display = 'block';
+  document.getElementById("contactForm").style.display = "none";
+  document.getElementById("statementContact").style.display = "block";
 }
 
 function hideForm2() {
-  document.getElementById('contactForm').style.display = 'none';
-  document.getElementById('#thumbs').style.display = 'block';
+  document.getElementById("contactForm").style.display = "none";
+  document.getElementById("#thumbs").style.display = "block";
 }
 
 function submitForm() {
   hideForm();
 }
-
-
 
 // ==========================================================
 /* Main Navigation dropdown
@@ -393,14 +342,10 @@ $(window).scroll(function () {
   }
 });
 
-
 // ==========================================================
 // #########   index.html animate thumbnails & navbar items & meshaker animating 'ME'  ###
 
-
-
 document.addEventListener("DOMContentLoaded", function () {
-
   const thumbSoft = document.querySelector("#software");
   const navbarSoft = document.querySelector(".dropdown-toggle");
 
@@ -415,137 +360,116 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ################ Begining of MeText Animations ############################################
 
-  const meText = document.getElementById('me');
-  const meShaker = document.getElementById('meshaker');
+  const meText = document.getElementById("me");
+  const meShaker = document.getElementById("meshaker");
   let hoverAnimationInterval;
   let isHoverWiggling = false;
   let angle = 0; // Declare angle variable outside of hoverWiggle function
   let animationInterval;
   let isIdleWiggling = false; // Flag to track idle wiggle animation
 
-let initialTransform = window.getComputedStyle(meText).getPropertyValue('transform');
+  let initialTransform = window
+    .getComputedStyle(meText)
+    .getPropertyValue("transform");
 
-  
   // Function to stop the hover wiggle animation
   function stopHoverWiggle() {
-      console.log("Stopping hover wiggle animation.");
-      clearInterval(hoverAnimationInterval);
-      isHoverWiggling = false;
-      console.log("Hover wiggle animation stopped.");
-      meText.style.transform = `translate(520px, 20vh) rotate(0deg)`; // Reset the position
+    console.log("Stopping hover wiggle animation.");
+    clearInterval(hoverAnimationInterval);
+    isHoverWiggling = false;
+    console.log("Hover wiggle animation stopped.");
+    meText.style.transform = `translate(520px, 20vh) rotate(0deg)`; // Reset the position
   }
-  
+
   // Function to start the hover wiggle animation
   function startHoverWiggle() {
-      console.log("Starting hover wiggle animation.");
-      if (!isHoverWiggling) {
-          isHoverWiggling = true;
-          hoverAnimationInterval = setInterval(hoverWiggle, 30);
-          console.log("Hover wiggle animation started.");
-      }
+    console.log("Starting hover wiggle animation.");
+    if (!isHoverWiggling) {
+      isHoverWiggling = true;
+      hoverAnimationInterval = setInterval(hoverWiggle, 30);
+      console.log("Hover wiggle animation started.");
+    }
   }
-  
+
   // Function to handle the hover event
   function handleHover(event) {
-      if (event.type === "mouseenter") {
-          startHoverWiggle();
-      } else if (event.type === "mouseleave") {
-          stopHoverWiggle();
-      }
+    if (event.type === "mouseenter") {
+      startHoverWiggle();
+    } else if (event.type === "mouseleave") {
+      stopHoverWiggle();
+    }
   }
-  
+
   // Function to handle the hover wiggle animation
   function hoverWiggle() {
     // Update the rotation angle
     angle += 1;
     if (angle === 1 || angle === -1) {
-        angle *= -1; // Reverse direction when angle reaches 1 or -1
+      angle *= -1; // Reverse direction when angle reaches 1 or -1
     }
     meText.style.transform = `translate(520px, 20vh) rotate(${angle}deg)`; // Apply the transformation
-}
-  
+  }
+
   // Event listener for mouse enter and mouse leave to handle hover
   meShaker.addEventListener("mouseenter", handleHover);
   meShaker.addEventListener("mouseleave", handleHover);
-        
 
-  
-  
-  
-  
-  
-  
-  
-
-
-
-
-// Function to start the idle wiggle animation
-function startIdleWiggle() {
-  if (!isIdleWiggling) {
-    isIdleWiggling = true;
-    idleWiggle();
-  }
-}
-
-// Function to stop the idle wiggle animation
-function stopIdleWiggle() {
-  if (isIdleWiggling) {
-    console.log("stopIdleWiggle is running now: " + isIdleWiggling);
-    clearInterval(animationInterval);
-    isIdleWiggling = false;
-    console.log("stopIdleWiggle is running now: " + isIdleWiggling);
-    
-    // Reset meText to its initial position
-    meText.style.transform = initialTransform;
-  }
-}
-
-
-// Function to handle the idle wiggle animation
-function idleWiggle() {
-  wiggle(); // Start the wiggle animation
-  setTimeout(() => {
-    stopIdleWiggle(); // Stop idle wiggle animation after 0.7 second
-    setTimeout(startIdleWiggle, Math.floor(Math.random() * (16000 - 7000 + 1)) + 7000); // Restart idle wiggle animation after random interval
-  }, 700);
-}
-
-// Function to handle the wiggle animation
-function wiggle() {
-  let angle = 0;
-  let direction = 1;
-
-  // Perform one iteration of the wiggle animation
-  function performWiggle() {
-    angle += direction;
-    if (angle === 1 || angle === -1) {
-      direction *= -1;
+  // Function to start the idle wiggle animation
+  function startIdleWiggle() {
+    if (!isIdleWiggling) {
+      isIdleWiggling = true;
+      idleWiggle();
     }
-    meText.style.transform = `translate(520px, 20vh)rotate(${angle}deg)`; // Apply the transformation
   }
 
-  // Start the animation interval
-  animationInterval = setInterval(performWiggle, 30);
-}
+  // Function to stop the idle wiggle animation
+  function stopIdleWiggle() {
+    if (isIdleWiggling) {
+      console.log("stopIdleWiggle is running now: " + isIdleWiggling);
+      clearInterval(animationInterval);
+      isIdleWiggling = false;
+      console.log("stopIdleWiggle is running now: " + isIdleWiggling);
 
-// Start idle wiggle animation initially
-startIdleWiggle();
+      // Reset meText to its initial position
+      meText.style.transform = initialTransform;
+    }
+  }
 
-  
-  
-  
-  
+  // Function to handle the idle wiggle animation
+  function idleWiggle() {
+    wiggle(); // Start the wiggle animation
+    setTimeout(() => {
+      stopIdleWiggle(); // Stop idle wiggle animation after 0.7 second
+      setTimeout(
+        startIdleWiggle,
+        Math.floor(Math.random() * (16000 - 7000 + 1)) + 7000
+      ); // Restart idle wiggle animation after random interval
+    }, 700);
+  }
 
-  
-  
+  // Function to handle the wiggle animation
+  function wiggle() {
+    let angle = 0;
+    let direction = 1;
 
+    // Perform one iteration of the wiggle animation
+    function performWiggle() {
+      angle += direction;
+      if (angle === 1 || angle === -1) {
+        direction *= -1;
+      }
+      meText.style.transform = `translate(520px, 20vh)rotate(${angle}deg)`; // Apply the transformation
+    }
 
-  
-  
-// ################ END of MeText Animations ############################################
-   
-  
+    // Start the animation interval
+    animationInterval = setInterval(performWiggle, 30);
+  }
+
+  // Start idle wiggle animation initially
+  startIdleWiggle();
+
+  // ################ END of MeText Animations ############################################
+
   meText.addEventListener("mouseenter", function () {
     meText.style.transform = `translate(520px, 20vh) scale(1.015)`;
     // meText.style.shadowColor = grey;
@@ -553,7 +477,6 @@ startIdleWiggle();
 
   meText.addEventListener("mouseleave", function () {
     meText.style.transform = `translate(520px, 20vh) scale(1)`;
-  
   });
 
   thumbPhoto.addEventListener("mouseenter", function () {
@@ -571,15 +494,12 @@ startIdleWiggle();
   navbarPhoto.addEventListener("mouseenter", function () {
     navbarPhoto.style.scale = 1.15;
     navbarPhoto.style.color = "#6e6f79";
-    
   });
 
   navbarPhoto.addEventListener("mouseleave", function () {
     navbarPhoto.style.scale = 1;
     navbarPhoto.style.color = "#162a43";
-    
   });
-
 
   thumbSoft.addEventListener("mouseenter", function () {
     navbarSoft.style.scale = 1.3;
@@ -596,15 +516,12 @@ startIdleWiggle();
   navbarSoft.addEventListener("mouseenter", function () {
     navbarSoft.style.scale = 1.1;
     navbarSoft.style.color = "#6e6f79";
-    
   });
 
   navbarSoft.addEventListener("mouseleave", function () {
     navbarSoft.style.scale = 1;
     navbarSoft.style.color = "#162a43";
-    
   });
-
 
   thumbVid.addEventListener("mouseenter", function () {
     navbarVid.style.scale = 1.3;
@@ -621,15 +538,12 @@ startIdleWiggle();
   navbarVid.addEventListener("mouseenter", function () {
     navbarVid.style.scale = 1.1;
     navbarVid.style.color = "#6e6f79";
-    
   });
 
   navbarVid.addEventListener("mouseleave", function () {
     navbarVid.style.scale = 1;
     navbarVid.style.color = "#162a43";
-  
   });
-
 
   thumbDiy.addEventListener("mouseenter", function () {
     navbarDiy.style.scale = 1.3;
@@ -646,13 +560,11 @@ startIdleWiggle();
   navbarDiy.addEventListener("mouseenter", function () {
     navbarDiy.style.scale = 1.1;
     navbarDiy.style.color = "#6e6f79";
-  
   });
 
   navbarDiy.addEventListener("mouseleave", function () {
     navbarDiy.style.scale = 1;
     navbarDiy.style.color = "#162a43";
-
   });
 });
 
