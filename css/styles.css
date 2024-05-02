@@ -47,12 +47,12 @@ text.lrgtext {
 }
 
 
-/* text.lrgtext#me {
+text.lrgtext#me {
   
 display: inline-block;
 /* transform: translate(520px, 24vh); */
 transform-origin: 5% 15%; 
-} */
+}
 #me:hover {
   cursor: pointer;
   text-shadow: 2px 2px 2px #162a43;
@@ -79,6 +79,7 @@ div {
 /* ************************* Arrows animated SECTION*************************** */
 
 .scroll-arrow {
+  /* align-self: center; */
   left: 49.33%;
   top: 23vh;
   display: inline-block;
@@ -87,9 +88,13 @@ div {
   border-bottom: 4px solid #fff;
   border-right: 4px solid #fff;
   animation: fade_move_down 3s ease-in-out infinite;
+  opacity: 1;
+  transform: translate(0, -20px) rotate(45deg);
+  transform: translate(0, 20px) rotate(45deg);
+
 }
 
-@keyframes fade_move_down {
+/* @keyframes fade_move_down {
   0% {
     transform: translate(0, -20px) rotate(45deg);
     opacity: 0;
@@ -103,12 +108,12 @@ div {
     transform: translate(0, 20px) rotate(45deg);
     opacity: 0;
   }
-}
+} */
 /* div {
 	position: absolute;
 } */
 
-/* ************************* Arrows animated SECTION*************************** */
+/* ************************* End of Arrows animated SECTION*************************** */
 
 /* ############################ Navbar base styles ################################*/
 nav {
@@ -251,8 +256,8 @@ dropdown-menu {
 
 .thumbShape {
   position: absolute;
-  width: var(--thumb-width); /* Use custom property for width */
-  height: var(--thumb-height); /* Use custom property for height */
+  width: var(--thumb-width); 
+  height: var(--thumb-height); 
   margin: 12.5px;
   overflow: hidden;
   border-radius: 24%;
@@ -288,7 +293,6 @@ dropdown-menu {
   background-size: cover;
   background-position: center;
   filter: drop-shadow(0 0 0.1rem #162a43);
- 
 }
 
 

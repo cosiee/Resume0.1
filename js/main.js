@@ -171,8 +171,18 @@ gsap
     0
   );
 
-// #######################################################################
+// End of Cloud & Mountains animation #######################################################################
+
+// Begining of Thumbnails animation #######################################################################
+
 // Function to retrieve computed style value of an element
+let resizeTimer;
+
+window.addEventListener("resize", function () {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(updateDimensions, 250); // Adjust the debounce delay as needed
+});
+
 function getComputedStyleValue(element, property) {
   return parseInt(window.getComputedStyle(element).getPropertyValue(property));
 }
@@ -235,31 +245,31 @@ gsap
       trigger: ".scrollDist",
       start: "top top",
       end: "bottom bottom",
-      scrub: 1,
+      scrub: 0.5,
     },
   })
   .fromTo(
     "#software",
-    { scale: 2.5, x: endLeftX - 1500, y: endTopY-1200 },
-    { scale: 1, x: endLeftX, y: endTopY },
+    { scale: 2, x: endLeftX - 1500, y: endTopY-500 },
+    { scale: 1, x: endLeftX, y: endTopY, ease: "power2.out"},
     0
   )
   .fromTo(
     "#photography",
-    { scale: 2.5, x: endRightX + 1500, y: endTopY-1200 },
-    { scale: 1, x: endRightX, y: endTopY },
+    { scale: 2.5, x: endRightX + 1500, y: endTopY-500 },
+    { scale: 1, x: endRightX, y: endTopY, ease: "power2.out"},
     0
   )
   .fromTo(
     "#diy",
-    { scale: 2.5, x: endRightX + 1500, y: endBottomY+1440 },
-    { scale: 1, x: endRightX, y: endBottomY},
+    { scale: 2, x: endRightX + 1500, y: endBottomY+1440 },
+    { scale: 1, x: endRightX, y: endBottomY, ease: "power2.out"},
     0
   )
   .fromTo(
     "#videography",
     { scale: 2.5, x: endLeftX - 1500, y: endBottomY+1440 },
-    { scale: 1, x: endLeftX, y: endBottomY },
+    { scale: 1, x: endLeftX, y: endBottomY, ease: "power2.out"},
     0
   );
 
@@ -282,9 +292,35 @@ $(".sig, .meLink, #contactLink").on("click", (e) => {
   gsap.to(".thumbs#photography", { x: 590, y: -540 }, 3);
 });
 
-$(".scroll-arrow").on("click", (e) => {
-  gsap.to(window, { scrollTo: 600, duration: 3, ease: "power3.inOut" });
+// $(".scroll-arrow").on("click", (e) => {
+//   gsap.to(window, { scrollTo: 1000, duration: 3, ease: "power3.inOut" });
+// });
+
+$(".scroll-arrow").on("click", function() {
+  // Disable pointer events to prevent click during animation
+  $(this).css("pointer-events", "none");
+
+  // Start the CSS animation
+  $(this).addClass("scroll-animation");
+
+  // Delay the scroll animation until after the CSS animation completes
+  setTimeout(() => {
+    // Re-enable pointer events
+    $(this).css("pointer-events", "auto");
+
+    // Trigger the scroll animation
+    gsap.to(window, { scrollTo: 1000, duration: 3, ease: "power3.inOut", onComplete: function() {
+      // Animation complete, do any additional tasks here if needed
+    } });
+
+    // Remove the CSS animation class
+    $(this).removeClass("scroll-animation");
+  }, 3000); // Adjust the delay to match the CSS animation duration
 });
+
+
+
+
 
 // Begining of Scroll Bar Display control ##################################################
 
