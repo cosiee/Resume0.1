@@ -123,7 +123,12 @@ gsap
     0
   )
 
-  .fromTo("#cloud2", { x: 400, y: 310 }, { x: -200, y: -600 }, 0)
+  .fromTo(
+    "#cloud2", 
+    { x: 400, y: 310 }, 
+    { x: -200, y: -600 }, 
+    0
+  )
 
   .fromTo(
     "#mountBg2",
@@ -212,32 +217,57 @@ let endTopY; // Define endLeftY variable
 let endBottomY; // Define endRightY variable
 
 // Function to update thumbWidth and screenWidthHalved based on window size
+// Function to update thumb positions and sizes based on window size
 function updateDimensions() {
-  thumbWidth = Math.min(300, window.innerWidth / 6); // Update thumbWidth while ensuring it doesn't exceed a certain maximum value
-  screenWidthHalved = window.innerWidth / 2; // Update half-width of the screen
+  thumbWidth = Math.min(300, window.innerWidth / 6);
+  screenWidthHalved = window.innerWidth / 2;
   screenHeightHalved = window.innerHeight / 2;
-  const totalThumbWidth = getThumbWidthWithMargin(); // Total width including margins
+  const totalThumbWidth = getThumbWidthWithMargin();
 
-  // Calculate the x&ycoordinates of the leftmost thumbs end positions
   endLeftX = screenWidthHalved - totalThumbWidth;
-  endTopY = window.innerHeight*1.25 ;
-
-  console.log("totalThumbWidth: " +totalThumbWidth);
-  console.log("window.innerHeight: " +window.innerHeight);
-  console.log("endTopY: " +endTopY);
-
-
-  // Calculate the x-coordinate of the rightmost thumb's end position
+  endTopY = window.innerHeight * 1.25;
   endRightX = screenWidthHalved;
-  endBottomY = window.innerHeight*1.25 + totalThumbWidth;
-  console.log("endBottomY: " +endBottomY);
+  endBottomY = window.innerHeight * 1.25 + totalThumbWidth;
+
+  // Update the position of thumbnails
+  gsap.to("#software", { x: endLeftX, y: endTopY });
+  gsap.to("#photography", { x: endRightX, y: endTopY });
+  gsap.to("#diy", { x: endRightX, y: endBottomY });
+  gsap.to("#videography", { x: endLeftX, y: endBottomY });
+  console.log("2");
 }
 
-// Initial call to updateDimensions to set initial values
-updateDimensions();
-
-// Event listener for window resize
+// Call updateDimensions function when the window is resized or page is loaded
 window.addEventListener("resize", updateDimensions);
+ window.addEventListener("DOMContentLoaded", updateDimensions);
+
+
+// function updateDimensions() {
+//   thumbWidth = Math.min(300, window.innerWidth / 6); // Update thumbWidth while ensuring it doesn't exceed a certain maximum value
+//   screenWidthHalved = window.innerWidth / 2; // Update half-width of the screen
+//   screenHeightHalved = window.innerHeight / 2;
+//   const totalThumbWidth = getThumbWidthWithMargin(); // Total width including margins
+
+//   // Calculate the x&ycoordinates of the leftmost thumbs end positions
+//   endLeftX = screenWidthHalved - totalThumbWidth;
+//   endTopY = window.innerHeight*1.25 ;
+
+//   console.log("totalThumbWidth: " +totalThumbWidth);
+//   console.log("window.innerHeight: " +window.innerHeight);
+//   console.log("endTopY: " +endTopY);
+
+
+//   // Calculate the x-coordinate of the rightmost thumb's end position
+//   endRightX = screenWidthHalved;
+//   endBottomY = window.innerHeight*1.25 + totalThumbWidth;
+//   console.log("endBottomY: " +endBottomY);
+// }
+
+// // Initial call to updateDimensions to set initial values
+// updateDimensions();
+
+// // Event listener for window resize
+// window.addEventListener("resize", updateDimensions);
 
 gsap
   .timeline({
@@ -248,32 +278,35 @@ gsap
       scrub: 0.5,
     },
   })
+
+ 
   .fromTo(
     "#software",
-    { scale: 2, x: endLeftX - 1500, y: endTopY-500 },
+    { scale: 1.5, x: endLeftX - 2500, y: endTopY },
     { scale: 1, x: endLeftX, y: endTopY, ease: "power2.out"},
     0
   )
+  
   .fromTo(
     "#photography",
-    { scale: 2.5, x: endRightX + 1500, y: endTopY-500 },
+    { scale: 1.5, x: endRightX + 2500, y: endTopY },
     { scale: 1, x: endRightX, y: endTopY, ease: "power2.out"},
     0
   )
   .fromTo(
     "#diy",
-    { scale: 2, x: endRightX + 1500, y: endBottomY+1440 },
+    { scale: 1.5, x: endRightX + 2500, y: endBottomY+1440 },
     { scale: 1, x: endRightX, y: endBottomY, ease: "power2.out"},
     0
   )
   .fromTo(
     "#videography",
-    { scale: 2.5, x: endLeftX - 1500, y: endBottomY+1440 },
+    { scale: 1.5, x: endLeftX - 2500, y: endBottomY+1440 },
     { scale: 1, x: endLeftX, y: endBottomY, ease: "power2.out"},
     0
   );
-
-
+  console.log("1");
+ 
 
 // #######################################################################
 
@@ -292,31 +325,22 @@ $(".sig, .meLink, #contactLink").on("click", (e) => {
   gsap.to(".thumbs#photography", { x: 590, y: -540 }, 3);
 });
 
-// $(".scroll-arrow").on("click", (e) => {
-//   gsap.to(window, { scrollTo: 1000, duration: 3, ease: "power3.inOut" });
-// });
+$(".scroll-arrow").on("click", function(event) {
+  // Prevent default click behavior (including browser scroll)
+  event.preventDefault();
 
-$(".scroll-arrow").on("click", function() {
-  // Disable pointer events to prevent click during animation
-  $(this).css("pointer-events", "none");
+  // Calculate the scroll position relative to the document
+  const targetElement = document.getElementById("svg");
+  const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
 
-  // Start the CSS animation
-  $(this).addClass("scroll-animation");
-
-  // Delay the scroll animation until after the CSS animation completes
-  setTimeout(() => {
-    // Re-enable pointer events
-    $(this).css("pointer-events", "auto");
-
-    // Trigger the scroll animation
-    gsap.to(window, { scrollTo: 1000, duration: 3, ease: "power3.inOut", onComplete: function() {
-      // Animation complete, do any additional tasks here if needed
-    } });
-
-    // Remove the CSS animation class
-    $(this).removeClass("scroll-animation");
-  }, 3000); // Adjust the delay to match the CSS animation duration
+  // Trigger smooth scroll animation
+  gsap.to(window, { scrollTo: targetPosition, duration: 4, ease: "power3.inOut", onComplete: function() {
+    // Animation complete, do any additional tasks here if needed
+  } });
 });
+
+
+
 
 
 
@@ -395,125 +419,255 @@ document.addEventListener("DOMContentLoaded", function () {
   const navbarDiy = document.querySelector("#diyLink");
 
   // ################ Begining of MeText Animations ############################################
-
   const meText = document.getElementById("me");
-  const meShaker = document.getElementById("meshaker");
-  let hoverAnimationInterval;
-  let isHoverWiggling = false;
-  let angle = 0; // Declare angle variable outside of hoverWiggle function
-  let animationInterval;
-  let isIdleWiggling = false; // Flag to track idle wiggle animation
+const meShaker = document.getElementById("meshaker");
+let hoverAnimationInterval;
+let isHoverWiggling = false;
+let angle = 0; // Declare angle variable outside of hoverWiggle function
+let animationInterval;
+let isIdleWiggling = false; // Flag to track idle wiggle animation
 
-  let initialTransform = window
-    .getComputedStyle(meText)
-    .getPropertyValue("transform");
+let initialTransform; // Declare initialTransform without assigning a value initial
 
-  // Function to stop the hover wiggle animation
-  function stopHoverWiggle() {
-    console.log("Stopping hover wiggle animation.");
-    clearInterval(hoverAnimationInterval);
-    isHoverWiggling = false;
-    console.log("Hover wiggle animation stopped.");
-    meText.style.transform = `translate(520px, 20vh) rotate(0deg)`; // Reset the position
+// Capture the initial transform when the DOM content is loaded
+document.addEventListener("DOMContentLoaded", function () {
+  captureInitialTransform();
+
+  function captureInitialTransform() {
+
+    console.log("meText:", meText);
+    initialTransform = window
+      .getComputedStyle(meText)
+      .getPropertyValue("transform");
+      console.log("transform: "+initialTransform);
   }
+});
 
-  // Function to start the hover wiggle animation
-  function startHoverWiggle() {
-    console.log("Starting hover wiggle animation.");
-    if (!isHoverWiggling) {
-      isHoverWiggling = true;
-      hoverAnimationInterval = setInterval(hoverWiggle, 30);
-      console.log("Hover wiggle animation started.");
-    }
+// Function to stop the hover wiggle animation
+function stopHoverWiggle() {
+  console.log("Stopping hover wiggle animation.");
+  clearInterval(hoverAnimationInterval);
+  isHoverWiggling = false;
+  console.log("Hover wiggle animation stopped.");
+  meText.style.transform = `translate(520px, 20vh) rotate(0deg)`;
+}
+
+// Function to start the hover wiggle animation
+function startHoverWiggle() {
+  console.log("Starting hover wiggle animation.");
+  if (!isHoverWiggling) {
+    isHoverWiggling = true;
+    hoverAnimationInterval = setInterval(hoverWiggle, 30);
+    // console.log("Hover wiggle animation started.");
   }
+}
 
-  // Function to handle the hover event
-  function handleHover(event) {
-    if (event.type === "mouseenter") {
-      startHoverWiggle();
-    } else if (event.type === "mouseleave") {
-      stopHoverWiggle();
-    }
+// Function to handle the hover event
+function handleHover(event) {
+  if (event.type === "mouseenter") {
+    startHoverWiggle();
+  } else if (event.type === "mouseleave") {
+    stopHoverWiggle();
   }
+}
 
-  // Function to handle the hover wiggle animation
-  function hoverWiggle() {
-    // Update the rotation angle
-    angle += 1;
+// Function to handle the hover wiggle animation
+function hoverWiggle() {
+  // Update the rotation angle
+  angle += 1;
+  if (angle === 1 || angle === -1) {
+    angle *= -1; // Reverse direction when angle reaches 1 or -1
+  }
+  meText.style.transform = `translate(520px, 20vh) rotate(${angle}deg)`; // Apply the transformation
+}
+
+// Event listener for mouse enter and mouse leave to handle hover
+meShaker.addEventListener("mouseenter", handleHover);
+meShaker.addEventListener("mouseleave", handleHover);
+
+// Function to start the idle wiggle animation
+function startIdleWiggle() {
+  if (!isIdleWiggling) {
+    isIdleWiggling = true;
+    idleWiggle();
+  }
+}
+
+// Function to stop the idle wiggle animation
+function stopIdleWiggle() {
+  if (isIdleWiggling) {
+    clearInterval(animationInterval);
+    isIdleWiggling = false;
+
+    // Reset meText rotation to 0 degrees
+    meText.style.transform = `translate(520px, 20vh) rotate(0deg)`;
+  }
+}
+
+
+// Function to handle the idle wiggle animation
+function idleWiggle() {
+  wiggle(); // Start the wiggle animation
+  setTimeout(() => {
+    stopIdleWiggle(); // Stop idle wiggle animation after 0.7 second
+    setTimeout(
+      startIdleWiggle,
+      Math.floor(Math.random() * (16000 - 7000 + 1)) + 7000
+    ); // Restart idle wiggle animation after random interval
+  }, 700);
+}
+
+// Function to handle the wiggle animation
+function wiggle() {
+  let angle = 0;
+  let direction = 1;
+
+  // Perform one iteration of the wiggle animation
+  function performWiggle() {
+    angle += direction;
     if (angle === 1 || angle === -1) {
-      angle *= -1; // Reverse direction when angle reaches 1 or -1
+      direction *= -1;
     }
-    meText.style.transform = `translate(520px, 20vh) rotate(${angle}deg)`; // Apply the transformation
+    meText.style.transform = `translate(520px, 20vh)rotate(${angle}deg)`; // Apply the transformation
   }
 
-  // Event listener for mouse enter and mouse leave to handle hover
-  meShaker.addEventListener("mouseenter", handleHover);
-  meShaker.addEventListener("mouseleave", handleHover);
+  // Start the animation interval
+  animationInterval = setInterval(performWiggle, 30);
+}
 
-  // Function to start the idle wiggle animation
-  function startIdleWiggle() {
-    if (!isIdleWiggling) {
-      isIdleWiggling = true;
-      idleWiggle();
-    }
-  }
+// Start idle wiggle animation initially
+startIdleWiggle();
 
-  // Function to stop the idle wiggle animation
-  function stopIdleWiggle() {
-    if (isIdleWiggling) {
-      console.log("stopIdleWiggle is running now: " + isIdleWiggling);
-      clearInterval(animationInterval);
-      isIdleWiggling = false;
-      console.log("stopIdleWiggle is running now: " + isIdleWiggling);
+// ################ END of MeText Animations ############################################
 
-      // Reset meText to its initial position
-      meText.style.transform = initialTransform;
-    }
-  }
+meText.addEventListener("mouseenter", function () {
+  meText.style.transform = `translate(520px, 20vh) scale(1.015)`;
+  // meText.style.shadowColor = grey;
+});
 
-  // Function to handle the idle wiggle animation
-  function idleWiggle() {
-    wiggle(); // Start the wiggle animation
-    setTimeout(() => {
-      stopIdleWiggle(); // Stop idle wiggle animation after 0.7 second
-      setTimeout(
-        startIdleWiggle,
-        Math.floor(Math.random() * (16000 - 7000 + 1)) + 7000
-      ); // Restart idle wiggle animation after random interval
-    }, 700);
-  }
+meText.addEventListener("mouseleave", function () {
+  meText.style.transform = `translate(520px, 20vh) scale(1)`;
+});
 
-  // Function to handle the wiggle animation
-  function wiggle() {
-    let angle = 0;
-    let direction = 1;
+  
+//   const meText = document.getElementById("me");
+//   const meShaker = document.getElementById("meshaker");
+//   let hoverAnimationInterval;
+//   let isHoverWiggling = false;
+//   let angle = 0; // Declare angle variable outside of hoverWiggle function
+//   let animationInterval;
+//   let isIdleWiggling = false; // Flag to track idle wiggle animation
 
-    // Perform one iteration of the wiggle animation
-    function performWiggle() {
-      angle += direction;
-      if (angle === 1 || angle === -1) {
-        direction *= -1;
-      }
-      meText.style.transform = `translate(520px, 20vh)rotate(${angle}deg)`; // Apply the transformation
-    }
+//   let initialTransform = window
+//     .getComputedStyle(meText)
+//     .getPropertyValue("transform");
 
-    // Start the animation interval
-    animationInterval = setInterval(performWiggle, 30);
-  }
+//   // Function to stop the hover wiggle animation
+//   function stopHoverWiggle() {
+//     console.log("Stopping hover wiggle animation.");
+//     clearInterval(hoverAnimationInterval);
+//     isHoverWiggling = false;
+//     console.log("Hover wiggle animation stopped.");
+//     meText.style.transform = `translate(520px, 20vh) rotate(0deg)`; // Reset the position
+//   }
 
-  // Start idle wiggle animation initially
-  startIdleWiggle();
+//   // Function to start the hover wiggle animation
+//   function startHoverWiggle() {
+//     console.log("Starting hover wiggle animation.");
+//     if (!isHoverWiggling) {
+//       isHoverWiggling = true;
+//       hoverAnimationInterval = setInterval(hoverWiggle, 30);
+//       // console.log("Hover wiggle animation started.");
+//     }
+//   }
 
-  // ################ END of MeText Animations ############################################
+//   // Function to handle the hover event
+//   function handleHover(event) {
+//     if (event.type === "mouseenter") {
+//       startHoverWiggle();
+//     } else if (event.type === "mouseleave") {
+//       stopHoverWiggle();
+//     }
+//   }
 
-  meText.addEventListener("mouseenter", function () {
-    meText.style.transform = `translate(520px, 20vh) scale(1.015)`;
-    // meText.style.shadowColor = grey;
-  });
+//   // Function to handle the hover wiggle animation
+//   function hoverWiggle() {
+//     // Update the rotation angle
+//     angle += 1;
+//     if (angle === 1 || angle === -1) {
+//       angle *= -1; // Reverse direction when angle reaches 1 or -1
+//     }
+//     meText.style.transform = `translate(520px, 20vh) rotate(${angle}deg)`; // Apply the transformation
+//   }
 
-  meText.addEventListener("mouseleave", function () {
-    meText.style.transform = `translate(520px, 20vh) scale(1)`;
-  });
+//   // Event listener for mouse enter and mouse leave to handle hover
+//   meShaker.addEventListener("mouseenter", handleHover);
+//   meShaker.addEventListener("mouseleave", handleHover);
+
+//   // Function to start the idle wiggle animation
+//   function startIdleWiggle() {
+//     if (!isIdleWiggling) {
+//       isIdleWiggling = true;
+//       idleWiggle();
+//     }
+//   }
+
+//   // Function to stop the idle wiggle animation
+// // Function to stop the idle wiggle animation
+// function stopIdleWiggle() {
+//   if (isIdleWiggling) {
+//     clearInterval(animationInterval);
+//     isIdleWiggling = false;
+
+//     // Reset meText to its initial position
+//     meText.style.transform = initialTransform;
+//   }
+// }
+
+
+//   // Function to handle the idle wiggle animation
+//   function idleWiggle() {
+//     wiggle(); // Start the wiggle animation
+//     setTimeout(() => {
+//       stopIdleWiggle(); // Stop idle wiggle animation after 0.7 second
+//       setTimeout(
+//         startIdleWiggle,
+//         Math.floor(Math.random() * (16000 - 7000 + 1)) + 7000
+//       ); // Restart idle wiggle animation after random interval
+//     }, 700);
+//   }
+
+//   // Function to handle the wiggle animation
+//   function wiggle() {
+//     let angle = 0;
+//     let direction = 1;
+
+//     // Perform one iteration of the wiggle animation
+//     function performWiggle() {
+//       angle += direction;
+//       if (angle === 1 || angle === -1) {
+//         direction *= -1;
+//       }
+//       meText.style.transform = `translate(520px, 20vh)rotate(${angle}deg)`; // Apply the transformation
+//     }
+
+//     // Start the animation interval
+//     animationInterval = setInterval(performWiggle, 30);
+//   }
+
+//   // Start idle wiggle animation initially
+//   startIdleWiggle();
+
+//   // ################ END of MeText Animations ############################################
+
+//   meText.addEventListener("mouseenter", function () {
+//     meText.style.transform = `translate(520px, 20vh) scale(1.015)`;
+//     // meText.style.shadowColor = grey;
+//   });
+
+//   meText.addEventListener("mouseleave", function () {
+//     meText.style.transform = `translate(520px, 20vh) scale(1)`;
+//   });
 
   thumbPhoto.addEventListener("mouseenter", function () {
     navbarPhoto.style.scale = 1.3;
