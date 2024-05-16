@@ -3,46 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thumbnail Animation Example</title>
-<link rel="stylesheet" href="test.css">
+<title>Combined Approach with Mask</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  #content {
+    height: 2000px; /* For demonstration */
+  }
+  #me {
+    position: fixed;
+    top: 50%; /* Center vertically in the viewport */
+    left: 50%; /* Center horizontally in the viewport */
+    transform: translate(-50%, -50%);
+    width: 200px; /* Adjust as needed */
+    height: 200px; /* Adjust as needed */
+    background-color: red; /* For demonstration */
+    visibility: hidden; /* Initially hidden */
+    clip-path: circle(0% at 50% 50%); /* Start hidden */
+    transition: clip-path 3s ease-out; /* Smooth transition */
+  }
+  
+  #me.visible {
+    clip-path: circle(100% at 50% 50%); /* Fully revealed */
+  }
+</style>
 </head>
 <body>
+<div id="content">
+  <!-- Dynamic content goes here -->
+</div>
+<div id="me">I'm #me</div>
 
-  <div class="thumbnails">
-    <!-- Software Thumbnail -->
-    <a href="software.html" class="thumb-link">
-      <div class="thumb software">
-        <img src="assets/software-thumbnail.jpg" alt="Software Thumbnail">
-        <div class="overlay"></div>
-      </div>
-    </a>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const me = document.querySelector('#me');
 
-    <!-- Photography Thumbnail -->
-    <a href="photography.html" class="thumb-link">
-      <div class="thumb photography">
-        <img src="assets/photography-thumbnail.jpg" alt="Photography Thumbnail">
-        <div class="overlay"></div>
-      </div>
-    </a>
+  // Function to handle scroll events and adjust visibility using a mask
+  function handleScroll() {
+    const rect = me.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+  
+    if (rect.top >= 0 && rect.bottom <= windowHeight && rect.left >= 0 && rect.right <= windowWidth) {
+      me.classList.add('visible');
+      me.style.visibility = 'visible';
+    } else {
+      me.classList.remove('visible');
+      me.style.visibility = 'hidden';
+    }
+  }
 
-    <!-- Videography Thumbnail -->
-    <a href="videography.html" class="thumb-link">
-      <div class="thumb videography">
-        <img src="assets/videography-thumbnail.jpg" alt="Videography Thumbnail">
-        <div class="overlay"></div>
-      </div>
-    </a>
+  // Mutation Observer to handle dynamic content changes
+  const targetNode = document.querySelector('#content'); // Adjust the target node as needed
+  const config = { childList: true, subtree: true };
 
-    <!-- DIY Thumbnail -->
-    <a href="diy.html" class="thumb-link">
-      <div class="thumb diy">
-        <img src="assets/diy-thumbnail.jpg" alt="DIY Thumbnail">
-        <div class="overlay"></div>
-      </div>
-    </a>
-  </div>
+  const mutationCallback = (mutationsList, observer) => {
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'childList') {
+        handleScroll(); // Adjust visibility on content change
+      }
+    }
+  };
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-<script src="test.js"></script>
+  const mutationObserver = new MutationObserver(mutationCallback);
+  mutationObserver.observe(targetNode, config);
+
+  // Scroll event listener
+  window.addEventListener('scroll', handleScroll);
+
+  // Initial visibility check
+  handleScroll();
+});
+</script>
 </body>
 </html>

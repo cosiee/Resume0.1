@@ -99,88 +99,35 @@ document.addEventListener("DOMContentLoaded", function () {
 // opening Animations ##################################################################
 gsap.set(".scrollDist", { width: "100%", height: "200%", background: "#fff" });
 
-gsap
-  .timeline({
-    scrollTrigger: {
-      trigger: ".scrollDist",
-      start: "top top",
-      end: "bottom bottom",
-      scrub: 1,
-    },
-  })
+gsap.timeline({
+  scrollTrigger: {
+    trigger: ".scrollDist",
+    start: "top top",
+    end: "bottom bottom",
+    scrub: 1,
+  },
+})
+.fromTo("#sky", { scale: 1, x: 0, y: -80 }, { scale: 1.3, x: -150, y: -650 }, 0)
+.fromTo("#mountBg", { scale: 1, x: 0, y: 70 }, { scale: 1.3, x: -150, y: -600 }, 0)
+.fromTo("#cloud2", { x: 400, y: 310 }, { x: -200, y: -600 }, 0)
+.fromTo("#mountBg2", { scale: 1, x: 0, y: 110 }, { scale: 1.3, x: -150, y: -670 }, 0)
+.fromTo("#cloud3", { x: -200, y: 300 }, { x: 500, y: -1000 }, 0)
+.fromTo("#mountMg", { scale: 1, x: 0, y: 345 }, { scale: 1.3, x: -150, y: -700 }, 0)
+.fromTo("#cloud4", { x: 300, y: 320 }, { x: -400, y: -850 }, 0)
+.fromTo("#mountMgF", { scale: 1, x: 0, y: 200 }, { scale: 1.3, x: -150, y: -750 }, 0)
+.fromTo("#mountFg", { scale: 1, x: 0, y: 220 }, { scale: 1.3, x: -150, y: -850 }, 0)
+.fromTo("#cloud5", { scale: 1.5, x: -100, y: 380 }, { scale: 3, x: 300, y: -950 }, 0)
+.fromTo("#cloud1", { scale: 1.3, x: -10, y: 576 }, { scale: 2, x: -500, y: -690 }, 0);
 
-  .fromTo(
-    "#sky",
-    { scale: 1, x: 0, y: -80 },
-    { scale: 1.3, x: -150, y: -650 },
-    0
-  )
-
-  .fromTo(
-    "#mountBg",
-    { scale: 1, x: 0, y: 70 },
-    { scale: 1.3, x: -150, y: -600 },
-    0
-  )
-
-  .fromTo(
-    "#cloud2", 
-    { x: 400, y: 310 }, 
-    { x: -200, y: -600 }, 
-    0
-  )
-
-  .fromTo(
-    "#mountBg2",
-    { scale: 1, X: 0, y: 110 },
-    { scale: 1.3, x: -150, y: -670 },
-    0
-  )
-
-  .fromTo("#cloud3", { x: -200, y: 300 }, { x: 500, y: -1000 }, 0)
-
-  .fromTo(
-    "#mountMg",
-    { scale: 1, X: 0, y: 345 },
-    { scale: 1.3, x: -150, y: -700 },
-    0
-  )
-
-  .fromTo("#cloud4", { x: 300, y: 320 }, { x: -400, y: -850 }, 0)
-
-  .fromTo(
-    "#mountMgF",
-    { scale: 1, X: 0, y: 200 },
-    { scale: 1.3, x: -150, y: -750 },
-    0
-  )
-
-  .fromTo(
-    "#mountFg",
-    { scale: 1, X: 0, y: 220 },
-    { scale: 1.3, x: -150, y: -850 },
-    0
-  )
-
-  .fromTo(
-    "#cloud5",
-    { scale: 1.5, x: -100, y: 380 },
-    { scale: 3, x: 300, y: -950 },
-    0
-  )
-
-  .fromTo(
-    "#cloud1",
-    { scale: 1.3, x: -10, y: 576 },
-    { scale: 2, x: -500, y: -690 },
-    0
-  );
 
 // End of Cloud & Mountains animation #######################################################################
 
 // Begining of Thumbnails animation #######################################################################
 
 // Function to retrieve computed style value of an element
+
+
+
 let resizeTimer;
 
 window.addEventListener("resize", function () {
@@ -216,8 +163,10 @@ let endRightX; // Define endRightX variable
 let endTopY; // Define endLeftY variable
 let endBottomY; // Define endRightY variable
 
-// Function to update thumbWidth and screenWidthHalved based on window size
+
+
 // Function to update thumb positions and sizes based on window size
+
 function updateDimensions() {
   thumbWidth = Math.min(300, window.innerWidth / 6);
   screenWidthHalved = window.innerWidth / 2;
@@ -230,44 +179,21 @@ function updateDimensions() {
   endBottomY = window.innerHeight * 1.25 + totalThumbWidth;
 
   // Update the position of thumbnails
-  gsap.to("#software", { x: endLeftX, y: endTopY });
-  gsap.to("#photography", { x: endRightX, y: endTopY });
-  gsap.to("#diy", { x: endRightX, y: endBottomY });
-  gsap.to("#videography", { x: endLeftX, y: endBottomY });
-  console.log("2");
+  gsap.to("#software", { x: endLeftX, y: endTopY, duration: 1, ease: "power2.out" });
+  gsap.to("#photography", { x: endRightX, y: endTopY, duration: 1, ease: "power2.out" });
+  gsap.to("#diy", { x: endRightX, y: endBottomY, duration: 1, ease: "power2.out" });
+  gsap.to("#videography", { x: endLeftX, y: endBottomY, duration: 1, ease: "power2.out" });
 }
 
 // Call updateDimensions function when the window is resized or page is loaded
 window.addEventListener("resize", updateDimensions);
- window.addEventListener("DOMContentLoaded", updateDimensions);
+window.addEventListener("DOMContentLoaded", updateDimensions);
+
+// Initial call to updateDimensions to set initial positions
+updateDimensions();
 
 
-// function updateDimensions() {
-//   thumbWidth = Math.min(300, window.innerWidth / 6); // Update thumbWidth while ensuring it doesn't exceed a certain maximum value
-//   screenWidthHalved = window.innerWidth / 2; // Update half-width of the screen
-//   screenHeightHalved = window.innerHeight / 2;
-//   const totalThumbWidth = getThumbWidthWithMargin(); // Total width including margins
 
-//   // Calculate the x&ycoordinates of the leftmost thumbs end positions
-//   endLeftX = screenWidthHalved - totalThumbWidth;
-//   endTopY = window.innerHeight*1.25 ;
-
-//   console.log("totalThumbWidth: " +totalThumbWidth);
-//   console.log("window.innerHeight: " +window.innerHeight);
-//   console.log("endTopY: " +endTopY);
-
-
-//   // Calculate the x-coordinate of the rightmost thumb's end position
-//   endRightX = screenWidthHalved;
-//   endBottomY = window.innerHeight*1.25 + totalThumbWidth;
-//   console.log("endBottomY: " +endBottomY);
-// }
-
-// // Initial call to updateDimensions to set initial values
-// updateDimensions();
-
-// // Event listener for window resize
-// window.addEventListener("resize", updateDimensions);
 
 gsap
   .timeline({
@@ -282,30 +208,30 @@ gsap
  
   .fromTo(
     "#software",
-    { scale: 1.5, x: endLeftX - 2500, y: endTopY },
-    { scale: 1, x: endLeftX, y: endTopY, ease: "power2.out"},
+    { scale: 1.5, x: endLeftX - 1750, y: endTopY - 750},
+    { scale: 1, x: endLeftX, y: endTopY},
     0
   )
   
   .fromTo(
     "#photography",
-    { scale: 1.5, x: endRightX + 2500, y: endTopY },
-    { scale: 1, x: endRightX, y: endTopY, ease: "power2.out"},
+    { scale: 1.5, x: endRightX + 1250, y: endTopY - 750},
+    { scale: 1, x: endRightX, y: endTopY},
     0
   )
   .fromTo(
     "#diy",
-    { scale: 1.5, x: endRightX + 2500, y: endBottomY+1440 },
-    { scale: 1, x: endRightX, y: endBottomY, ease: "power2.out"},
+    { scale: 1.5, x: endRightX + 1250, y: endBottomY + 740 },
+    { scale: 1, x: endRightX, y: endBottomY},
     0
   )
   .fromTo(
     "#videography",
-    { scale: 1.5, x: endLeftX - 2500, y: endBottomY+1440 },
-    { scale: 1, x: endLeftX, y: endBottomY, ease: "power2.out"},
+    { scale: 1.5, x: endLeftX - 1750, y: endBottomY + 700 },
+    { scale: 1, x: endLeftX, y: endBottomY},
     0
   );
-  console.log("1");
+  // console.log("1");
  
 
 // #######################################################################
@@ -325,20 +251,192 @@ $(".sig, .meLink, #contactLink").on("click", (e) => {
   gsap.to(".thumbs#photography", { x: 590, y: -540 }, 3);
 });
 
+
+// Set initial styling and function for meText element
+gsap.set("#me", { visibility: "hidden" });
+
+// Event listener for scroll
+window.addEventListener('scroll', () => {
+  const me = document.querySelector('#me');
+  const rect = me.getBoundingClientRect();
+  const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+  if (rect.top >= 0 && rect.bottom <= windowHeight) {
+    me.style.visibility = 'visible';
+  } else {
+    me.style.visibility = 'hidden';
+  }
+});
+
+// window.addEventListener("scroll", function() {
+//   // Get the height of the entire document
+//   const documentHeight = $(document).height();
+
+//   // Calculate the position that is 7/8 down the page
+//   const targetPosition = documentHeight * (5 / 8);
+ 
+// logCalculations();
+
+//   // Check if the scroll position has reached 7/8 down the page
+//   if (window.scrollY >= targetPosition) {
+//     // If so, enable the styling and function of the meText element
+//     gsap.set("#me", { visibility: "visible" });
+
+//     // Add any additional styling or function here if needed
+
+//     // Remove the scroll event listener to prevent further checks
+//     window.removeEventListener("scroll", arguments.callee);
+//   }
+// });
+
+// Function to log the current calculations
+        // Function to calculate and log the current values
+        function logCalculations() {
+          let docHeight = document.documentElement.scrollHeight;
+          let targetPosition = calculateTargetPosition(docHeight);
+          const thumbWidth = 264.5;
+          const screenHeightHalved = window.innerHeight / 2;
+          const endTopY = 1207.5;
+          const endBottomY = 1532.5;
+
+          console.log(`doc h: ${docHeight}`);
+          console.log(`Target P: ${targetPosition}`);
+          console.log(`thumbWidth: ${thumbWidth}`);
+          console.log(`screenHeightHalved: ${screenHeightHalved}`);
+          console.log(`endTopY: ${endTopY}`);
+          console.log(`endBottomY: ${endBottomY}`);
+      }
+
+      // Example function to calculate the target position
+      function calculateTargetPosition(docHeight) {
+          return docHeight * 0.625;
+      }
+
+      // Initial call to log calculations
+      logCalculations();
+
+      // Call logCalculations on window resize
+      window.addEventListener('resize', logCalculations);
+
+logCalculations();
+
+// Example function to calculate the target position
+function calculateTargetPosition(docHeight) {
+  // Your logic to calculate the target position
+  // This is just a placeholder and should be replaced with your actual logic
+  return docHeight * 0.625;
+}
+
+// Initial call to log calculations
+logCalculations();
+
+// Call logCalculations on window resize
+window.addEventListener('resize', logCalculations);
+
+
+
 $(".scroll-arrow").on("click", function(event) {
   // Prevent default click behavior (including browser scroll)
   event.preventDefault();
 
-  // Calculate the scroll position relative to the document
-  const targetElement = document.getElementById("svg");
-  const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+  // Get the height of the entire document
+  const documentHeight = $(document).height();
 
-  // Trigger smooth scroll animation
-  gsap.to(window, { scrollTo: targetPosition, duration: 4, ease: "power3.inOut", onComplete: function() {
+  // Trigger smooth scroll animation to the bottom of the page
+  gsap.to(window, { scrollTo: documentHeight, duration: 2.5, ease: "power1.inOut", onComplete: function() {
     // Animation complete, do any additional tasks here if needed
   } });
 });
 
+// Target element to monitor for changes in value
+const targetElement = document.getElementById('cloud1');
+
+// Element to change disabled property
+const meElement = document.getElementById('me');
+
+// Set the value threshold for enabling/disabling
+const thresholdValue = 100; // Change this value to your desired threshold
+
+// Create a MutationObserver to watch for changes in the target element's value
+const observer = new MutationObserver(mutationsList => {
+    for(let mutation of mutationsList) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'value') {
+            const targetValue = parseInt(targetElement.value);
+            if (targetValue >= thresholdValue) {
+                meElement.disabled = false; // Enable #me
+            } else {
+                meElement.disabled = true; // Disable #me
+            }
+        }
+    }
+});
+
+// Configuration of the MutationObserver
+const observerConfig = { attributes: true };
+
+// Start observing the target element
+observer.observe(targetElement, observerConfig);
+
+// Event listener for scroll events (assuming scrolling on window)
+window.addEventListener('scroll', () => {
+    // Check the position of the target element
+    const targetPosition = targetElement.getBoundingClientRect().top;
+    // If the target element is in the viewport
+    if (targetPosition >= 0 && targetPosition <= window.innerHeight) {
+        // Check its value and update disabled property of #me accordingly
+        const targetValue = parseInt(targetElement.value);
+        if (targetValue >= thresholdValue) {
+            meElement.disabled = false; // Enable #me
+        } else {
+            meElement.disabled = true; // Disable #me
+        }
+    }
+});
+
+// /// Target element to monitor for changes in value
+// const targetElement = document.getElementById('cloud1');
+
+// // Element to change visibility
+// const meElement = document.getElementById('me');
+
+// // Set the value threshold for visibility change
+// const thresholdValue = 60; // Change this value to your desired threshold
+
+// // Create a MutationObserver to watch for changes in the target element's value
+// const observer = new MutationObserver(mutationsList => {
+//     for(let mutation of mutationsList) {
+//         if (mutation.type === 'attributes' && mutation.attributeName === 'value') {
+//             const targetValue = parseInt(targetElement.value);
+//             if (targetValue >= thresholdValue) {
+//                 meElement.style.visibility = 'visible';
+//             } else {
+//                 meElement.style.visibility = 'hidden';
+//             }
+//         }
+//     }
+// });
+
+// // Configuration of the MutationObserver
+// const observerConfig = { attributes: true };
+
+// // Start observing the target element
+// observer.observe(targetElement, observerConfig);
+
+// // Event listener for scroll events (assuming scrolling on window)
+// window.addEventListener('scroll', () => {
+//     // Check the position of the target element
+//     const targetPosition = targetElement.getBoundingClientRect().top;
+//     // If the target element is in the viewport
+//     if (targetPosition >= 0 && targetPosition <= window.innerHeight) {
+//         // Check its value and update visibility of #me accordingly
+//         const targetValue = parseInt(targetElement.value);
+//         if (targetValue >= thresholdValue) {
+//             meElement.style.visibility = 'visible';
+//         } else {
+//             meElement.style.visibility = 'hidden';
+//         }
+//     }
+// });
 
 
 
@@ -439,22 +537,22 @@ document.addEventListener("DOMContentLoaded", function () {
     initialTransform = window
       .getComputedStyle(meText)
       .getPropertyValue("transform");
-      console.log("transform: "+initialTransform);
+      // console.log("transform: "+initialTransform);
   }
 });
 
 // Function to stop the hover wiggle animation
 function stopHoverWiggle() {
-  console.log("Stopping hover wiggle animation.");
+  // console.log("Stopping hover wiggle animation.");
   clearInterval(hoverAnimationInterval);
   isHoverWiggling = false;
-  console.log("Hover wiggle animation stopped.");
+  // console.log("Hover wiggle animation stopped.");
   meText.style.transform = `translate(520px, 20vh) rotate(0deg)`;
 }
 
 // Function to start the hover wiggle animation
 function startHoverWiggle() {
-  console.log("Starting hover wiggle animation.");
+  // console.log("Starting hover wiggle animation.");
   if (!isHoverWiggling) {
     isHoverWiggling = true;
     hoverAnimationInterval = setInterval(hoverWiggle, 30);
@@ -549,125 +647,7 @@ meText.addEventListener("mouseleave", function () {
   meText.style.transform = `translate(520px, 20vh) scale(1)`;
 });
 
-  
-//   const meText = document.getElementById("me");
-//   const meShaker = document.getElementById("meshaker");
-//   let hoverAnimationInterval;
-//   let isHoverWiggling = false;
-//   let angle = 0; // Declare angle variable outside of hoverWiggle function
-//   let animationInterval;
-//   let isIdleWiggling = false; // Flag to track idle wiggle animation
 
-//   let initialTransform = window
-//     .getComputedStyle(meText)
-//     .getPropertyValue("transform");
-
-//   // Function to stop the hover wiggle animation
-//   function stopHoverWiggle() {
-//     console.log("Stopping hover wiggle animation.");
-//     clearInterval(hoverAnimationInterval);
-//     isHoverWiggling = false;
-//     console.log("Hover wiggle animation stopped.");
-//     meText.style.transform = `translate(520px, 20vh) rotate(0deg)`; // Reset the position
-//   }
-
-//   // Function to start the hover wiggle animation
-//   function startHoverWiggle() {
-//     console.log("Starting hover wiggle animation.");
-//     if (!isHoverWiggling) {
-//       isHoverWiggling = true;
-//       hoverAnimationInterval = setInterval(hoverWiggle, 30);
-//       // console.log("Hover wiggle animation started.");
-//     }
-//   }
-
-//   // Function to handle the hover event
-//   function handleHover(event) {
-//     if (event.type === "mouseenter") {
-//       startHoverWiggle();
-//     } else if (event.type === "mouseleave") {
-//       stopHoverWiggle();
-//     }
-//   }
-
-//   // Function to handle the hover wiggle animation
-//   function hoverWiggle() {
-//     // Update the rotation angle
-//     angle += 1;
-//     if (angle === 1 || angle === -1) {
-//       angle *= -1; // Reverse direction when angle reaches 1 or -1
-//     }
-//     meText.style.transform = `translate(520px, 20vh) rotate(${angle}deg)`; // Apply the transformation
-//   }
-
-//   // Event listener for mouse enter and mouse leave to handle hover
-//   meShaker.addEventListener("mouseenter", handleHover);
-//   meShaker.addEventListener("mouseleave", handleHover);
-
-//   // Function to start the idle wiggle animation
-//   function startIdleWiggle() {
-//     if (!isIdleWiggling) {
-//       isIdleWiggling = true;
-//       idleWiggle();
-//     }
-//   }
-
-//   // Function to stop the idle wiggle animation
-// // Function to stop the idle wiggle animation
-// function stopIdleWiggle() {
-//   if (isIdleWiggling) {
-//     clearInterval(animationInterval);
-//     isIdleWiggling = false;
-
-//     // Reset meText to its initial position
-//     meText.style.transform = initialTransform;
-//   }
-// }
-
-
-//   // Function to handle the idle wiggle animation
-//   function idleWiggle() {
-//     wiggle(); // Start the wiggle animation
-//     setTimeout(() => {
-//       stopIdleWiggle(); // Stop idle wiggle animation after 0.7 second
-//       setTimeout(
-//         startIdleWiggle,
-//         Math.floor(Math.random() * (16000 - 7000 + 1)) + 7000
-//       ); // Restart idle wiggle animation after random interval
-//     }, 700);
-//   }
-
-//   // Function to handle the wiggle animation
-//   function wiggle() {
-//     let angle = 0;
-//     let direction = 1;
-
-//     // Perform one iteration of the wiggle animation
-//     function performWiggle() {
-//       angle += direction;
-//       if (angle === 1 || angle === -1) {
-//         direction *= -1;
-//       }
-//       meText.style.transform = `translate(520px, 20vh)rotate(${angle}deg)`; // Apply the transformation
-//     }
-
-//     // Start the animation interval
-//     animationInterval = setInterval(performWiggle, 30);
-//   }
-
-//   // Start idle wiggle animation initially
-//   startIdleWiggle();
-
-//   // ################ END of MeText Animations ############################################
-
-//   meText.addEventListener("mouseenter", function () {
-//     meText.style.transform = `translate(520px, 20vh) scale(1.015)`;
-//     // meText.style.shadowColor = grey;
-//   });
-
-//   meText.addEventListener("mouseleave", function () {
-//     meText.style.transform = `translate(520px, 20vh) scale(1)`;
-//   });
 
   thumbPhoto.addEventListener("mouseenter", function () {
     navbarPhoto.style.scale = 1.3;
