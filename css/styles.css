@@ -1,12 +1,10 @@
-
-
 /* ******************************************************************
 *********************************************************************
  Base Styles
 ********************************************************************* 
 ********************************************************************* */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300");
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ SEE/ME Base Styles $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
@@ -14,28 +12,73 @@
 text {
 	font-family: 'Montserrat', sans-serif;
 } */
+html {
+	font-size: 62.5%;
+  scroll-behavior:smooth;
+} 
 
-html body svg text.lrgtext{
-	width:100%;
-	height:100%;
-	background:#ddd;
-	font-family: 'Montserrat', sans-serif;
-	font-size:99px;
-	text-align:center;
-	transform: translate(500px, 22vh);
+/* body{
+
+} */
+
+/* main{
+poso
+} */
+#mountains, .scrollDist {
+  height: 100%;
+  /* other necessary styles */
 }
 
-.lrgtext#me {
-	transform: translate(520px, 22vh);
+
+#mountains {
+  margin: 0;
+  padding: 0;
+  width: 1200px;
+}
+svg {
+  width: 100%;
 }
 
-a{
+text.lrgtext {
+    position: fixed;
+    z-index: 3;
+  width: 100%;
+  height: 100%;
+  background: #ddd;
+  font-family: "Montserrat", sans-serif;
+  font-size: 99px;
+  text-align: center;
+  transform: translate(500px, 22vh);
+}
 
-	text-decoration:none;
+
+text.lrgtext#me {
+  
+display: inline-block;
+/* transform: translate(520px, 24vh); */
+transform-origin: 5% 15%; 
+}
+#me:hover {
+  cursor: pointer;
+  text-shadow: 2px 2px 2px #162a43;
+}
+
+
+ 
+#meshaker{
+  position:absolute;
+  z-index:70;
+  width: 100%;
+  height:99px;
+  transform: translate(0px, 13.5vh);
+  opacity:0;
+}
+a {
+  text-decoration: none;
 }
 
 div {
-	position: absolute;
+  position: absolute;
 }
 
 /* ************************* Arrows animated SECTION*************************** */
@@ -50,503 +93,616 @@ div {
 	border-right: 4px solid #fff;
 	animation: fade_move_down 3s ease-in-out infinite;
 }
-
+.scroll-arrow:hover{
+  cursor: pointer;
+}
 @keyframes fade_move_down {
 	0% {
 		transform: translate(0, -20px) rotate(45deg);
 		opacity: 0;
 	}
-
 	50% {
 		opacity: 1;
 	}
-
 	100% {
 		transform: translate(0, 20px) rotate(45deg);
 		opacity: 0;
 	}
 }
-/* div {
-	position: absolute;
-} */
 
-/* ************************* Arrows animated SECTION*************************** */
+/* ************************* End of Arrows animated SECTION*************************** */
 
 /* ############################ Navbar base styles ################################*/
 nav {
-	width: auto;
+  width: auto;
 }
 
 ul {
-		padding: 20px 0px 2px 0px;
-		width: 30%;
-} 
+  padding: 20px 0px 2px 0px;
+  width: 30%;
+}
 
 nav ul li {
-	display: inline-block;
-	margin: 1px 30px 1px 5px;
-	line-height: 1.3;
-	letter-spacing: 1.3px;
+  display: inline-block;
+  margin: 1px 30px 1px 5px;
+  line-height: 1.3;
+  letter-spacing: 1.3px;
 }
 
 nav ul a {
-	text-transform: uppercase;
-	font-size: 13px;
-} 
+  text-transform: uppercase;
+  font-size: 13px;
+}
 
 .sticky {
-	background-color: #ffffff;
-	opacity: 1;
-	top: 0px;
+  background-color: #ffffff;
+  opacity: 1;
+  top: 0px;
 }
 
+a.nav-link {
+  color: #162a43;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 1.6em;
+  line-height: 1.6;
+  font-weight: 500;
+  transition: all 0.3;
+  transform: scale(1);
+  opacity: 1;
+}
 
- a.nav-link {
-        color: #162a43;
-        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-        font-size: 1.6em;
-        line-height: 1.6;
-        font-weight: 500; 
-        transition: all 0.3;
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    a.nav-link:hover{
-        transform: scale(1.15);
-        color: #6e6f79;
-    }
+a.nav-link:hover {
+  transform: scale(1.15);
+  color: #6e6f79;
+}
 
 a#navbarDropdownMenuLink.nav-link.dropdown-toggle {
-	color: #162a43;
-	/* --bs-navbar-active-color: #f23506; */
+  color: #162a43;
+  /* --bs-navbar-active-color: #f23506; */
 }
 a#navbarDropdownMenuLink.nav-link.dropdown-toggle:hover {
-	color: #6e6f79;
+  color: #6e6f79;
 }
 
 ul.navbar-nav {
-	position: absolute;
-	align-self: center;
-	/* -webkit-transition: all 0.9s;
+  position: absolute;
+  align-self: center;
+  /* -webkit-transition: all 0.9s;
 	transition: all 1s; */
 }
-a.dropdown-item{
-	color: #162a43;
-	font-size: 0.9em;
-	/* transform: scale(1); */
+a.dropdown-item {
+  color: #162a43;
+  font-size: 0.9em;
+  /* transform: scale(1); */
 }
 
 a.dropdown-item:hover {
-	color: #6e6f79;
-	transform: scale(1.2);
+  color: #6e6f79;
+  transform: scale(1.2);
 }
 
-/* rule to remove blue post click */
-a.dropdown-item:hover {
-	color: #6e6f79;
-	transform: scale(1.2);
+
+a.dropdown-item:active {
+  background-color: #6e6f79;
+  color: #fff;
+  transform: scale(1.2);
 }
 
 dropdown-menu {
-	border: none;
+  border: none;
 }
 
 .navbar {
-	position: fixed;
-	top: 0px;
-	max-height: 50px;
-	z-index: 1200;
-	width: 100%;
-	padding-top: 30px;
-	background: none;
-	overflow: visible;
-	-webkit-transition: all 1s;
-	transition: all 1s;
-	opacity: 0;
-	top: -700px;
-	padding-bottom: 20px;
+  position: fixed;
+  top: 0px;
+  max-height: 50px;
+  z-index: 11;
+  width: 100%;
+  padding-top: 30px;
+  background: none;
+  overflow: visible;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  opacity: 0;
+  top: -700px;
+  padding-bottom: 20px;
 }
 
 .sticky {
-	/* background-color: #ffffff; */
-	opacity: 1;
-	top: 0px;
+  /* background-color: #ffffff; */
+  opacity: 1;
+  top: 0px;
 }
 
 .container-fluid {
-	position: relative;
-	width: 100%;
-	max-width: 800px;
-	align-self: center;
-	margin: 0 auto;
-	padding: 10px 20px 5px 5px;
-	box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  align-self: center;
+  margin: 0 auto;
+  padding: 10px 20px 5px 5px;
+  box-sizing: border-box;
 }
 
 /*###################### End of Navbar Base Styles ############################ */
 
 /* Thumbnails Base Styles  ###################################################### */
 
-.lrgtext#me:hover {
-	/* fill: #fff; */
-	filter: drop-shadow(0 0 0.25rem #162a43);
-  }
-  .thumbs {
-	display: block;
-	text-decoration: none;
-	/* Add any other styles for the anchor element if needed */
-  }
+:root {
+  --thumb-width: 300px;
+  --thumb-height: 300px;
+
+}
+
+.mountains{
+  /* position: inherit; */
+  width: 2000px ;
+  height: auto;
+}
+
+.thumbnails{
+  position:absolute;
+
+}
+
+.thumbs {
+  display: block;
+  text-decoration: none;
+  /* position: relative; */
+}
+
+.thumbShape {
+  position: absolute;
+  width: var(--thumb-width); 
+  height: var(--thumb-height); 
+  margin: 12.5px;
+  overflow: hidden;
+  border-radius: 24%;
+  transition: background-image 1.8s ease-in-out;
+
+}
+
+#software img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+#software .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("assets/binary-min.png");
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+#software:hover .overlay {
+  opacity: 0.7;
+}
+
+#software {
+  /* background-image: url('assets/Thumbnail-6.jpg'); */
+  background-size: cover;
+  background-position: center;
+  filter: drop-shadow(0 0 0.1rem #162a43);
+}
+
+
+#software:hover {
+  cursor: pointer;
+  filter: drop-shadow(0 0 0.75rem #162a43);
+}
+
+#photography img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+#photography .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("assets/photography-min.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+#photography:hover .overlay {
+  opacity: 0.7;
+}
+
+#photography {
+  /* background-image: url(assets/Thumbnail-8.jpg); */
+  background-size: cover;
+  background-position: center;
+  filter: drop-shadow(0 0 0.1rem #162a43);
+ 
+}
+
+#photography:hover {
+  cursor: pointer;
+  filter: drop-shadow(0 0 0.75rem #162a43);
+}
+
+/* ___________________ */
+
+#videography img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+#videography .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(assets/videography-min.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+#videography:hover .overlay {
+  opacity: 0.7;
+}
+
+#videography {
+  /* background-image: url(assets/Thumbnail-11.jpg); */
+  background-size: cover;
+  background-position: center;
+  filter: drop-shadow(0 0 0.1rem #162a43);
+
+}
+
+#videography:hover {
+  cursor: pointer;
+  filter: drop-shadow(0 0 0.75rem #162a43);
+}
+
+/* __________________ */
+
+#diy img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+#diy .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(assets/diy-min.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+#diy:hover .overlay {
+  opacity: 0.7;
+}
+
+#diy {
+  /* background-image: url(assets/Thumbnail-3.jpg); */
+  background-size: cover;
+  background-position: center;
+  filter: drop-shadow(0 0 0.1rem #162a43);
   
-  .thumbShape {
-	position: absolute;
-	width: 250px;
-	height: 250px;
-	overflow: hidden;
-	border-radius: 24%;
-	transition: background-image 1.8s ease-in-out;
-  }
-  
-  #software img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	display: block;
-  }
-  
-  #software .overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-image: url('assets/binary-min.png');
-	opacity: 0;
-	transition: opacity 0.6s ease;
-  }
-  
-  #software:hover .overlay {
-	opacity: 0.7;
-  }
-  
-  #software {
-	/* background-image: url('assets/Thumbnail-6.jpg'); */
-	background-size: cover;
-	background-position: center;
-	filter: drop-shadow(0 0 0.1rem #162a43);
-  }
-  
-  #software:hover {
-	cursor: pointer;
-	filter: drop-shadow(0 0 0.75rem #162a43);
-  }
-  
-  
-  
-  
-  
-  #photography img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	display: block;
-  }
-  
-  #photography .overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-image: url('assets/photography-min.png');
-	background-position: center;
-	opacity: 0;
-	transition: opacity 0.6s ease;
-  }
-  
-  #photography:hover .overlay {
-	opacity: 0.7;
-  }
-  
-  #photography {
-	/* background-image: url(assets/Thumbnail-8.jpg); */
-	background-size: cover;
-	background-position: center;
-	filter: drop-shadow(0 0 0.1rem #162a43);
-  }
-  
-  #photography:hover {
-	cursor: pointer;
-	filter: drop-shadow(0 0 0.75rem #162a43);
-  }
-  
-  /* ___________________ */
-  
-  #videoography img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	display: block;
-  }
-  
-  #videography .overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-image: url(assets/videography-min.png);
-	background-position: center;
-	opacity: 0;
-	transition: opacity 0.6s ease;
-  }
-  
-  #videography:hover .overlay {
-	opacity: 0.7;
-  }
-  
-  #videography {
-	/* background-image: url(assets/Thumbnail-11.jpg); */
-	background-size: cover;
-	background-position: center;
-	filter: drop-shadow(0 0 0.1rem #162a43);
-  }
-  
-  #videography:hover {
-	cursor: pointer;
-	filter: drop-shadow(0 0 0.75rem #162a43);
-  }
-  
-  /* __________________ */
-  
-  #diy img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	display: block;
-  }
-  
-  #diy .overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-image: url(assets/diy-min.png);
-	background-position: center;
-	opacity: 0;
-	transition: opacity 0.6s ease;
-  }
-  
-  #diy:hover .overlay {
-	opacity: 0.7;
-  }
-  
-  #diy {
-	/* background-image: url(assets/Thumbnail-3.jpg); */
-	background-size: cover;
-	background-position: center;
-	filter: drop-shadow(0 0 0.1rem #162a43);
-  }
-  
-  #diy:hover {
-	cursor: pointer;
-	filter: drop-shadow(0 0 0.75rem #162a43);
-  }
-  
+}
+
+#diy:hover {
+  cursor: pointer;
+  filter: drop-shadow(0 0 0.75rem #162a43);
+}
 
 /*###################### End of Thumbnail Base Styles ############################ */
 
 /* Modal Statement/Contact Base Styles ####################################### */
 
 .modalbox .box {
-	position: absolute; 
-	transform: translate(340px, 1vh);
-	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-	/* align-self: centre; */
-	background-color: rgba(0,0,0,0.6);
-	margin:  auto;
-	min-width: 210px;
-	padding: 45px;
-	
-	width: 500px;
-	height: 500px;
-	overflow: hidden;
-	border-radius: 12%;
-	margin-top: 250px;
+  position: absolute;
+  right: 50%;
+  transform: translate(48%, 1vh);
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  background-color: rgba(0, 0, 0, 0.6);
+  margin: auto;
+  min-width: 210px;
+  padding: 45px;
+  width: 500px;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 12%;
+  margin-top: 250px;
+}
+.modalbox .title {
+  border-bottom: 1px solid #ccc;
+  font-size: 22px;
+  letter-spacing: 0.1em;
+  margin: 0;
+  padding: 0 0 10px;
+  color: #fff;
+}
+.modalbox .content {
+  display: block;
+  z-index:10;
+  font-size: 18px;
+  line-height: 22px;
+  padding: 10px 40px 40px 0px;
+  text-align: unset;
+  color: #fff;
+}
 
-	}
-	.modalbox .title {
-	border-bottom: 1px solid #ccc;
-	/* font-family: verdana; */
-	font-size: 22px;
-	letter-spacing: 0.1em;
-	margin: 0;
-	padding: 0 0 10px;
-	/* text-transform: uppercase; */
-	color: #fff;
-		}
-	.modalbox .content {
-	display: block;
-	font-size: 18px;
-	line-height: 22px;
-	padding: 10px 40px 40px 0px;
-	text-align:unset;
-	color: #fff;
-		}
+ .modalbox .close {
+  color: #fff;
+  display: block;
+  float: right;
+  font-size: 17px;
+  text-decoration: bold;
+}
+.close:hover{
+  cursor: pointer;
+}
 
-	.modalbox .close {
-	color: #fff;
-	display: block;
-	float: right;
-	font-family: Verdana;
-	font-size: 22px;
-	height: 25px;
-	text-decoration: bold;
-		}
-
-
-.modalbox{
-	display: none;
-	position: fixed;
-	z-index: 1;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	color:#333333;
-	}
+.modalbox {
+  display: none;
+  position: fixed;
+  z-index: 8;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  color: #333333;
+}
 
 .modalbox:target {
-	display: block;
-	outline: none;
+  display: block;
+  outline: none;
 }
 
+.link-modal {
+  width: 90%;
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 400px;
+  padding-left: 15px;
+}
 
- .link-modal{
-	width: 90%;
-	text-align: center;
-	margin: 0 auto;
-	padding-top: 400px;
-	padding-left: 15px;
-} 
-
-
-
-.link-modal a{
-	border: 1px solid #fff;
-	color: #fff;
-	font-family: Verdana;
-	font-size: 20px;
-	letter-spacing: 0.3em;
-	padding: 10px;
-	text-decoration: none;
-	text-transform: uppercase;
+.link-modal a {
+  border: 1px solid #fff;
+  color: #fff;
+  font-size: 20px;
+  letter-spacing: 0.3em;
+  padding: 10px;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 .sig {
-	position: relative;
-	height: 90px;
-	width: auto;
+  position: relative;
+  height: 90px;
+  width: auto;
+}
+
+.sig:hover {
+  cursor: pointer;
 }
 
 /*###################### End of Modal Statement/Contact Base Styles ############################ */
 
+/*Begining of Base Styles Contact Form ##################################################################### */
+
+.formDiv#contactForm {
+  position: absolute;
+  z-index: 12;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: medium;
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  background-color: rgba(208, 205, 205, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.9);
+  opacity: 1;
+}
+
+.formTitle{
+	/* width: 100%; */
+	padding:0px;
+
+}
+label {
+  display: block;
+  margin: 10px;
+  color: #fff;
+}
+.closeForm {
+color: #fff;
+  display: block;
+  float: right;
+  font-size: 17px;
+  text-decoration: bold;
+}
+input[type="text"],
+textarea {
+  width: 95%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: rgba(251, 248, 248, 0.5);
+  color: #070707f;
+}
+
+#formButton {
+  transition: background-color 0.3s ease;
+  align-items: center;
+  appearance: none;
+  background-color: #3b3b3b;
+  background-image: linear-gradient(1deg, #49494a, #949595 99%);
+  background-size: calc(100% + 20px) calc(100% + 20px);
+  border-radius: 50px;
+  border-width: 0;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  height: auto;
+  justify-content: center;
+  line-height: 1.5;
+  padding: 6px 20px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s, background-position 0.2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+#formButton:hover {
+  background-position: -20px -20px;
+}
+
+#formButton:focus:not(:active) {
+  box-shadow: rgba(29, 29, 30, 0.25) 0 0 0 0.125em;
+}
+
+#formButton:hover {
+  background-color: rgba(222, 240, 209, 0.5);
+  cursor: pointer;
+}
+
+.error-message {
+  color: rgb(173, 83, 10);
+  font-size: 14px;
+  margin-top: 5px;
+}
+/*##################################  Base Styles Contact Form ###################################*/
 
 /* X-Small devices (portrait phones, less than 576px)
  No media query for `xs` since this is the default in Bootstrap */
 
 /* Small devices (landscape phones, 576px and up) */
 @media (max-width: 575px) {
-	.scroll-arrow {
-		top: 15vh;
-		width: 12px;
-		height: 12px;	
-		border-bottom: 3px solid #fff;
-		border-right: 3px solid #fff;
-	}
-	html body svg text.lrgtext {
-		font-size:150px;
-		transform: translate(450px, 32%);
-	}
-	.lrgtext#me {
-		transform: translate(470px, 32%);
-	}
-
+  .scroll-arrow {
+    top: 15vh;
+    width: 12px;
+    height: 12px;
+    border-bottom: 3px solid #fff;
+    border-right: 3px solid #fff;
+  }
+   text.lrgtext {
+    font-size: 150px;
+    transform: translate(450px, 32%);
+  }
+  .lrgtext#me {
+    transform: translate(470px, 32%);
+  }
+  .thumbShape {
+    width: calc(var(--thumb-width) * 0.5); /* Adjust width proportionally for smaller screens */
+    height: calc(var(--thumb-height) * 0.5); /* Adjust height proportionally for smaller screens */
+  }
 }
 
 @media (min-width: 576px) {
-	.scroll-arrow {
-		top: 16.5%;
-		width: 12px;
-		height: 12px;	
-		border-bottom: 3px solid #fff;
-		border-right: 3px solid #fff;
-	}
-	html body svg text.lrgtext {
-		transform: translate(500px, 22%);
-	}	
-	.lrgtext#me {
-		transform: translate(520px, 22%);
-	}
+  .scroll-arrow {
+    top: 16.5%;
+    width: 12px;
+    height: 12px;
+    border-bottom: 3px solid #fff;
+    border-right: 3px solid #fff;
+  }
+  text.lrgtext {
+    transform: translate(500px, 22%);
+  }
+  .lrgtext#me {
+    transform: translate(520px, 22%);
+  }
+  .thumbShape {
+    width: calc(var(--thumb-width) * 0.7); /* Adjust width proportionally for smaller screens */
+    height: calc(var(--thumb-height) * 0.7); /* Adjust height proportionally for smaller screens */
+  }
 }
 
 /*  Medium devices (tablets, 768px and up) 
 **************************************************************/
 @media (min-width: 768px) {
-	.scroll-arrow {
-		top: 19%;	
-		width: 22px;
-		height: 22px;	
-		border-bottom: 4px solid #fff;
-		border-right: 4px solid #fff;
-	}
-	html body svg text.lrgtext {
-		transform: translate(500px, 20vh);
-	}
-	.lrgtext#me {
-		transform: translate(520px, 20vh);
-	}
+  .scroll-arrow {
+    top: 19%;
+    width: 22px;
+    height: 22px;
+    border-bottom: 4px solid #fff;
+    border-right: 4px solid #fff;
+  }
+  text.lrgtext {
+    transform: translate(500px, 20vh);
+  }
+  .lrgtext#me {
+    transform: translate(520px, 20vh);
+  }
+  .thumbShape {
+    width: calc(var(--thumb-width) * 0.8); /* Adjust width proportionally for smaller screens */
+    height: calc(var(--thumb-height) * 0.8); /* Adjust height proportionally for smaller screens */
+  }
+
 }
 
 /* Large devices (desktops, 992px and up)
 **************************************************************/
 @media (min-width: 992px) {
-	.scroll-arrow {
-		top: 24%;	
-	}
-	
+  .scroll-arrow {
+    top: 24%;
+  }
+
+  .thumbShape {
+    width: calc(var(--thumb-width) * 1); /* Adjust width proportionally for smaller screens */
+    height: calc(var(--thumb-height) * 1); /* Adjust height proportionally for smaller screens */
+  }
 }
+
 
 /* X-Large devices (large desktops, 1200px and up)
 **************************************************************/
 @media (min-width: 1200px) {
-	.scroll-arrow {
-		top: 26%;	
-	}
-	html body svg text.lrgtext {
-		transform: translate(500px, 20vh);
-	}
-	.lrgtext#me {
-		transform: translate(520px, 20vh);
-	}
-
+  .scroll-arrow {
+    top: 26%;
+  }
+  text.lrgtext {
+    transform: translate(500px, 20vh);
+  }
+  .lrgtext#me {
+    transform: translate(520px, 20vh);
+  }
 }
 
 /* XX-Large devices (larger desktops, 1400px and up)
 **************************************************************/
 @media (min-width: 1400px) {
-	.scroll-arrow {
-		top: 27%;	
-	}
+  .scroll-arrow {
+    top: 27%;
+  }
 }
-
-
-/* */ html {
-	font-size: 62.5%;
-} */
-
-
-
-
-
-
