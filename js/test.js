@@ -117,7 +117,7 @@ gsap.set("#mountains", {
   .fromTo("#mountMgF", { scale: 1, x: 0, y: 200 }, { scale: 1.3, x: -150, y: -750 }, 0)
   .fromTo("#mountFg", { scale: 1, x: 0, y: 220 }, { scale: 1.3, x: -150, y: -850 }, 0)
   .fromTo("#cloud5", { scale: 1.5, x: -100, y: 380 }, { scale: 3, x: 300, y: -950 }, 0)
-  .fromTo("#cloud1, cloud1M", { scale: 1.3, x: -10, y: 576 }, { scale: 2, x: -500, y: -690 }, 0);
+  .fromTo("#cloud1", { scale: 1.3, x: -10, y: 576 }, { scale: 2, x: -500, y: -690 }, 0);
   
   
   // End of Cloud & Mountains animation #######################################################################
@@ -335,7 +335,7 @@ gsap.set("#mountains", {
   
   
   
-  $(".scroll-arrow").on("click", function(event) {
+  $(".scroll-arrow#down").on("click", function(event) {
     // Prevent default click behavior (including browser scroll)
     event.preventDefault();
   
@@ -426,125 +426,6 @@ gsap.set("#mountains", {
       console.log("Document already loaded");
       updateMeElement();
   }
-  
-  
-  // // Target element to monitor for changes in scale
-  // const targetElement = document.getElementById('cloud1');
-  
-  // // Element to change disabled property
-  // const meElement = document.getElementById('me');
-  
-  // // Set the scale threshold for enabling/disabling
-  // const thresholdScale = 1.98; // Change this value to your desired threshold
-  
-  // // Function to get the scale value from the transform property
-  // function getScaleValue(element) {
-  //     const transform = window.getComputedStyle(element).transform;
-  //     if (transform !== 'none') {
-  //         const match = transform.match(/matrix.*\((.+)\)/);
-  //         if (match) {
-  //             const values = match[1].split(', ');
-  //             const scaleX = parseFloat(values[0]);
-  //             return scaleX; // Assuming uniform scaling
-  //         }
-  //     }
-  //     return 1; // Default scale value if not transformed
-  // }
-  
-  // // Function to check and update the disabled property of meElement
-  // function updateMeElement() {
-  //     const scaleValue = getScaleValue(targetElement);
-  //     console.log("Scale Value:", scaleValue);
-  
-  //     if (scaleValue >= thresholdScale) {
-  //         meElement.disabled = false; // Enable #me
-  //         console.log("Enabled due to scale threshold");
-  //     } else {
-  //         meElement.disabled = true; // Disable #me
-  //         console.log("Disabled due to scale threshold");
-  //     }
-  // }
-  
-  // // Create a MutationObserver to watch for changes in the target element's style
-  // const observer = new MutationObserver(mutationsList => {
-  //     for (let mutation of mutationsList) {
-  //         if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
-  //             console.log("Mutation observed");
-  //             updateMeElement();
-  //         }
-  //     }
-  // });
-  
-  // // Configuration of the MutationObserver
-  // const observerConfig = { attributes: true, attributeFilter: ['style'] };
-  
-  // // Start observing the target element
-  // observer.observe(targetElement, observerConfig);
-  
-  // // Initial check on page load
-  // document.addEventListener('DOMContentLoaded', () => {
-  //     console.log("DOMContentLoaded event fired");
-  //     updateMeElement();
-  // });
-  
-  // // Event listener for scroll events
-  // window.addEventListener('scroll', updateMeElement);
-  
-  // // Initial check in case content is already loaded
-  // if (document.readyState === 'complete' || document.readyState !== 'loading' && !document.documentElement.doScroll) {
-  //     console.log("Document already loaded");
-  //     updateMeElement();
-  // }
-  
-  
-  
-  
-  
-  
-  // /// Target element to monitor for changes in value
-  // const targetElement = document.getElementById('cloud1');
-  
-  // // Element to change visibility
-  // const meElement = document.getElementById('me');
-  
-  // // Set the value threshold for visibility change
-  // const thresholdValue = 60; // Change this value to your desired threshold
-  
-  // // Create a MutationObserver to watch for changes in the target element's value
-  // const observer = new MutationObserver(mutationsList => {
-  //     for(let mutation of mutationsList) {
-  //         if (mutation.type === 'attributes' && mutation.attributeName === 'value') {
-  //             const targetValue = parseInt(targetElement.value);
-  //             if (targetValue >= thresholdValue) {
-  //                 meElement.style.visibility = 'visible';
-  //             } else {
-  //                 meElement.style.visibility = 'hidden';
-  //             }
-  //         }
-  //     }
-  // });
-  
-  // // Configuration of the MutationObserver
-  // const observerConfig = { attributes: true };
-  
-  // // Start observing the target element
-  // observer.observe(targetElement, observerConfig);
-  
-  // // Event listener for scroll events (assuming scrolling on window)
-  // window.addEventListener('scroll', () => {
-  //     // Check the position of the target element
-  //     const targetPosition = targetElement.getBoundingClientRect().top;
-  //     // If the target element is in the viewport
-  //     if (targetPosition >= 0 && targetPosition <= window.innerHeight) {
-  //         // Check its value and update visibility of #me accordingly
-  //         const targetValue = parseInt(targetElement.value);
-  //         if (targetValue >= thresholdValue) {
-  //             meElement.style.visibility = 'visible';
-  //         } else {
-  //             meElement.style.visibility = 'hidden';
-  //         }
-  //     }
-  // });
   
   
   

@@ -67,42 +67,37 @@ gsap.timeline({
 .fromTo("#cloud5", { scale: 1.5, x: -100, y: 380 }, { scale: 3, x: 300, y: -950 }, 0)
 .fromTo("#cloud1, #cloud1M", { scale: 1.3, x: -10, y: 576 }, { scale: 2, x: -500, y: -690 }, 0);
 
-// Thumbnails Modalbox and Form positioning based on window size ########################################
+
+// ###################################################################################
 
 
 
-// Helper function to get computed style value
+// Thumbnails positioning based on window size
 function getComputedStyleValue(element, property) {
   return parseInt(window.getComputedStyle(element).getPropertyValue(property));
 }
 
-// Function to get thumbnail width including margin
 function getThumbWidthWithMargin() {
   const thumbElement = document.querySelector(".thumbShape");
-  if (!thumbElement) return 0;
   const computedStyle = window.getComputedStyle(thumbElement);
   const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
   const thumbMargin = parseFloat(computedStyle.getPropertyValue("margin-right"));
+  console.log("ThumbW  getThumbWidthWithMargin: ", thumbWidth + (thumbMargin * 2));
   return thumbWidth + (thumbMargin * 2);
+  
 }
 
-// Function to get thumbnail width without margin
-function getThumbWidthWithoutMargin() {
-  const thumbElement = document.querySelector(".thumbShape");
-  if (!thumbElement) return 0;
-  const computedStyle = window.getComputedStyle(thumbElement);
-  const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
-  return thumbWidth;
-}
 
-// Initial setup
+
 const svg = document.querySelector("svg");
 let thumbWidth = getComputedStyleValue(document.querySelector(".thumbShape"), "width");
 let screenWidthHalved = svg.viewBox.baseVal.width / 2;
 let screenHeightHalved = svg.viewBox.baseVal.height / 2;
 let endLeftX, endRightX, endTopY, endBottomY;
 
-// Function to update dimensions for elements
+
+
+
 function updateDimensions() {
   thumbWidth = Math.min(300, window.innerWidth / 6);
   screenWidthHalved = window.innerWidth / 2;
@@ -118,131 +113,68 @@ function updateDimensions() {
   gsap.to("#photography", { x: endRightX, y: endTopY, duration: 1, ease: "power2.out" });
   gsap.to("#diy", { x: endRightX, y: endBottomY, duration: 1, ease: "power2.out" });
   gsap.to("#videography", { x: endLeftX, y: endBottomY, duration: 1, ease: "power2.out" });
+
+  console.log("updateDimensions :", endLeftX);
 }
 
-// Event listeners for initial load and window resize
-window.addEventListener("resize", updateDimensions);
+function getThumbWidthWithoutMargin() {
+  const thumbElement = document.querySelector(".thumbShape");
+  const computedStyle = window.getComputedStyle(thumbElement);
+  const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
+
+  console.log("getThumbWidthWithoutMargin    ThumbWO: ", thumbWidth);
+  return thumbWidth;
+}
+function getThumbMargin() {
+  const thumbElement = document.querySelector(".thumbShape");
+  const computedStyle = window.getComputedStyle(thumbElement);
+  const thumbMargin = parseFloat(computedStyle.getPropertyValue("margin-right"));
+  return thumbMargin;
+}
+
+function updateDimensionsNoMargins() {
+  thumbWidth = Math.min(300, window.innerWidth / 6);
+  screenWidthHalved = window.innerWidth / 2;
+  screenHeightHalved = window.innerHeight / 2;
+  const widthThumb = getThumbWidthWithoutMargin();
+  const marginWidth = getThumbMargin();
+
+  endLeftX = screenWidthHalved - (widthThumb + marginWidth);
+  endTopY = (window.innerHeight * 1.25) + marginWidth;
+  endRightX = screenWidthHalved - marginWidth;
+  endBottomY = (window.innerHeight * 1.25) + (widthThumb + marginWidth);
+
+  gsap.to("#software", { x: endLeftX, y: endTopY, duration: 1, ease: "power2.out" });
+  gsap.to("#photography", { x: endRightX, y: endTopY, duration: 1, ease: "power2.out" });
+  gsap.to("#diy", { x: endRightX, y: endBottomY, duration: 1, ease: "power2.out" });
+  gsap.to("#videography", { x: endLeftX, y: endBottomY, duration: 1, ease: "power2.out" });
+
+  console.log("updateDimensionsNoMargins :", endLeftX);
+}
+
+
+window.addEventListener("resize", updateDimensions, updateDimensionsNoMargins);
 document.addEventListener("DOMContentLoaded", updateDimensions);
 updateDimensions();
 
-// Function to update modal dimensions and position dynamically
-function updateModalDimensions() {
-  const modalBox = document.querySelector(".modalbox .box");
-  const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
-  
-  if (!modalBox) return;
-
-  // Example calculations for dynamic width and height
-  const newWidth = Math.max(thumbWidthWithoutMargin * 2, 300); 
-  const newHeight = newWidth; 
-
-  // Update modal dimensions
-  modalBox.style.width = `${newWidth}px`;
-  modalBox.style.height = `${newHeight}px`;
-
-  // Calculate new positions
-  const windowWidth = window.innerWidth;
-  const windowHeight = window.innerHeight;
-  const newLeft = (windowWidth - newWidth) / 2;
-  const newTop = (windowHeight - newHeight) / 8;
-
-  // Update modal position
-  modalBox.style.left = `${newLeft}px`;
-  modalBox.style.top = `${newTop}px`;
-}
-
-// Event listeners for initial load and window resize
-window.addEventListener("resize", updateModalDimensions);
-document.addEventListener("DOMContentLoaded", updateModalDimensions);
-updateModalDimensions();
-
-
-
-
-// function getComputedStyleValue(element, property) {
-//   return parseInt(window.getComputedStyle(element).getPropertyValue(property));
-// }
-
-// function getThumbWidthWithMargin() {
-//   const thumbElement = document.querySelector(".thumbShape");
-//   if (!thumbElement) return 0;
-//   const computedStyle = window.getComputedStyle(thumbElement);
-//   const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
-//   const thumbMargin = parseFloat(computedStyle.getPropertyValue("margin-right"));
-//   return thumbWidth + (thumbMargin * 2);
-// }
-
-// function getThumbWidthWithoutMargin() {
-//   const thumbElement = document.querySelector(".thumbShape");
-//   if (!thumbElement) return 0;
-//   const computedStyle = window.getComputedStyle(thumbElement);
-//   const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
-//   const thumbMargin = parseFloat(computedStyle.getPropertyValue("margin-right"));
-//   return thumbWidth;
-// }
-
-// const svg = document.querySelector("svg");
-// let thumbWidth = getComputedStyleValue(document.querySelector(".thumbShape"), "width");
-// let screenWidthHalved = svg.viewBox.baseVal.width / 2;
-// let screenHeightHalved = svg.viewBox.baseVal.height / 2;
-// let endLeftX, endRightX, endTopY, endBottomY;
-
-// function updateDimensions() {
-//   thumbWidth = Math.min(300, window.innerWidth / 6);
-//   screenWidthHalved = window.innerWidth / 2;
-//   screenHeightHalved = window.innerHeight / 2;
-//   const totalThumbWidth = getThumbWidthWithMargin();
-
-//   endLeftX = screenWidthHalved - totalThumbWidth;
-//   endTopY = window.innerHeight * 1.25;
-//   endRightX = screenWidthHalved;
-//   endBottomY = window.innerHeight * 1.25 + totalThumbWidth;
-
-//   gsap.to("#software", { x: endLeftX, y: endTopY, duration: 1, ease: "power2.out" });
-//   gsap.to("#photography", { x: endRightX, y: endTopY, duration: 1, ease: "power2.out" });
-//   gsap.to("#diy", { x: endRightX, y: endBottomY, duration: 1, ease: "power2.out" });
-//   gsap.to("#videography", { x: endLeftX, y: endBottomY, duration: 1, ease: "power2.out" });
-// }
-
-// window.addEventListener("resize", updateDimensions);
-// document.addEventListener("DOMContentLoaded", updateDimensions);
-// updateDimensions();
-
-// function updateModalDimensions() {
-//   const modalBox = document.querySelector(".modalbox .box");
-//   const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
-  
-//   if (!modalBox) return;
-  
-//   // Example calculations for dynamic width and height
-//   const newWidth = Math.max(thumbWidthWithoutMargin*2, 300); 
-//   const newHeight = newWidth; 
-
-//   modalBox.style.width = `${newWidth}px`;
-//   modalBox.style.height = `${newHeight}px`;
-// }
-
-// window.addEventListener("resize", updateModalDimensions);
-// document.addEventListener("DOMContentLoaded", updateModalDimensions);
-// updateModalDimensions();
-
-// gsap.timeline({
-//   scrollTrigger: {
-//     trigger: ".scrollDist",
-//     start: "top top",
-//     end: "bottom bottom",
-//     scrub: 0.5,
-//   },
-// })
-// .fromTo("#software", { scale: 1.5, x: endLeftX - 1750, y: endTopY - 750 }, { scale: 1, x: endLeftX, y: endTopY }, 0)
-// .fromTo("#photography", { scale: 1.5, x: endRightX + 1250, y: endTopY - 750 }, { scale: 1, x: endRightX, y: endTopY }, 0)
-// .fromTo("#diy", { scale: 1.5, x: endRightX + 1250, y: endBottomY + 750 }, { scale: 1, x: endRightX, y: endBottomY }, 0)
-// .fromTo("#videography", { scale: 1.5, x: endLeftX - 1750, y: endBottomY + 750 }, { scale: 1, x: endLeftX, y: endBottomY }, 0);
+gsap.timeline({
+  scrollTrigger: {
+    trigger: ".scrollDist",
+    start: "top top",
+    end: "bottom bottom",
+    scrub: 0.5,
+  },
+})
+.fromTo("#software", { scale: 1.5, x: endLeftX - 1750, y: endTopY - 750 }, { scale: 1, x: endLeftX, y: endTopY }, 0)
+.fromTo("#photography", { scale: 1.5, x: endRightX + 1250, y: endTopY - 750 }, { scale: 1, x: endRightX, y: endTopY }, 0)
+.fromTo("#diy", { scale: 1.5, x: endRightX + 1250, y: endBottomY + 750 }, { scale: 1, x: endRightX, y: endBottomY }, 0)
+.fromTo("#videography", { scale: 1.5, x: endLeftX - 1750, y: endBottomY + 750 }, { scale: 1, x: endLeftX, y: endBottomY }, 0);
 
 
 // #############################################################################################
 
-
+// Correctly reference the single element with ID "cloud1"
+// const cloud1 = document.getElementById("cloud1");
 console.log("Cloud1:", cloud1);
 // Check if meElement is disabled on load
 console.log("meElement disabled on load:", meElement.disabled);
@@ -296,8 +228,8 @@ function updateMeElement() {
 }
 
 
-// Initial call to update the state based on current scale
-updateMeElement();
+
+
 
 // MutationObserver for #cloud1 element to track changes
 const observer = new MutationObserver(updateMeElement);
@@ -326,6 +258,50 @@ function showScrollBar() {
 
 
 
+// ####################### ME click scroll function 
+
+function scrollToBottom() {
+  window.scrollTo({
+    top: document.documentElement.scrollHeight,
+    behavior: 'smooth'
+  });
+}
+
+// function scrollToBottom() {
+//   document.querySelectorAll("#me").forEach((btn, index) => {
+//     btn.addEventListener("click", () => {
+//       gsap.to(window, {duration: 2, scrollTo:{y:"#bottom" + (index + 1), offsetY:70}});
+//     });
+//   });
+  
+// }
+
+// function scrollToBottom(duration) {
+//   const start = window.scrollY;
+//   const distance = document.body.scrollHeight - window.innerHeight - start;
+//   const startTime = performance.now();
+
+//   function ease(t) {
+//     return t<0.5 ? 2*t*t : -1+(4-2*t)*t; // Easing function for smooth scrolling
+//   }
+
+//   function scroll(time) {
+//     const elapsed = time - startTime;
+//     const progress = Math.min(elapsed / duration, 1);
+//     window.scrollTo(0, start + distance * ease(progress));
+
+//     if (elapsed < duration) {
+//       requestAnimationFrame(scroll);
+//     }
+//   }
+
+//   requestAnimationFrame(scroll);
+// }
+
+
+
+
+
 // Navigation between index.html#thumbs, modalBox(statementContact) & Contact Form
   
 function showForm() {
@@ -337,9 +313,16 @@ function showStatementContact() {
   document.getElementById("contactForm").style.display = "none";
 }
 
+function centreThumbs(){
+  gsap.to("#software", { x: endLeftX, y: endTopY, duration: 1, ease: "power2.out" });
+  gsap.to("#photography", { x: endRightX, y: endTopY, duration: 1, ease: "power2.out" });
+  gsap.to("#diy", { x: endRightX, y: endBottomY, duration: 1, ease: "power2.out" });
+  gsap.to("#videography", { x: endLeftX, y: endBottomY, duration: 1, ease: "power2.out" });
+}
+
 function showThumbs() {
   document.getElementById("statementContact").style.display = "none";
-  document.getElementById("thumbs").style.display = "block";
+  document.getElementById("thumbnails").style.display = "block";
 }
 
 function hideForm() {
@@ -358,7 +341,7 @@ function submitForm() {
 
 
   // ################ Begining of MeText Animations ############################################
-  
+  // const meElement = document.getElementById("me");
   const meShaker = document.getElementById("meshaker");
   let hoverAnimationInterval;
   let isHoverWiggling = false;
