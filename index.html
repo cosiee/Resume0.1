@@ -3,188 +3,188 @@
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Online Resume Andrew Costigan</title>
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/styles.css">
-
-  <!-- <link rel="stylesheet" href="css/test.css">  -->
-
-
-  <script src="http://code.jquery.com/jquery-1.11.0.min.js" defer></script>
-  <script src="js/main.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
-
-
-
-</head>
-
-</head>
-
-<body>
-  <div class="scrollDist"></div>
-  <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
-    <div class="container-fluid">
-      <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink softwareLink" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Software </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">html</a></li>
-              <li><a class="dropdown-item" href="#">css</a></li>
-              <li><a class="dropdown-item" href="#">javascript</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="photographyLink" href="photography.html">Photography</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="videographyLink" href="videography.html">Videography</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="diyLink" href="diy.html">Diy</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="contactLink"
-              onclick="hideScrollBar(); showStatementContact(); showForm()">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-
-  <!-- <div class="main"> -->
-
-    <div class="container-fluid" id="mountains">
-
-      <svg viewBox="0 0 1200 800" id="svg" xmlns="http://www.w3.org/2000/svg">
-        <mask id="m">
-          <g class="img-fluid" id="cloud1M">
-            <rect fill="#fff" width="100%" height="800" y="1200" />
-            <image xlink:href="assets/cl1.png" width="1200" height="800" />
-
-          </g>
-        </mask>
-
-        <image class="img-fluid" id="sky" xlink:href="/assets/sky.jpg" width="1200" height="800" />
-        <image class="img-fluid" id="mountBg" xlink:href="assets/mtbg.png" width="1200" height="800" />
-        <image class="img-fluid" id="cloud2" xlink:href="assets/cl2.png" width="1200" height="800" />
-        <image class="img-fluid" id="mountBg2" xlink:href="assets/mtbg2.png" width="1200" height="800" />
-        <image class="img-fluid" id="cloud3" xlink:href="assets/cl4.png" width="1200" height="800" />
-        <image class="img-fluid" id="mountMg" xlink:href="assets/mtmg.png" width="1200" height="800" />
-        <image class="img-fluid" id="cloud4" xlink:href="assets/cl4.png" width="1200" height="800" />
-        <image class="img-fluid" id="mountMgF" xlink:href="assets/mtmfg.png" width="1200" height="800" />
-        <image class="img-fluid" id="mountFg" xlink:href="assets/mtfg.png" width="1200" height="800" />
-        <image class="img-fluid" id="cloud5" xlink:href="assets/cl4.png" width="1200" height="800" />
-        <image class="img-fluid" id="cloud1" xlink:href="assets/cl1.png" width="1200" height="850" />
-
-        <text class="lrgtext" fill="#fff">SEE</text>
-        <!-- <path class="arrowDown" d="M590,250 L600,260 M610,250 L599,260 M600,260 L601,229 " class="arrow"  stroke="#fff" stroke-width="3"></path> -->
-
-        <g mask="url(#m)">
-          <rect fill="#fff" width="100%" height="100%" />
-          <rect id="meshaker" />
-          <a class="meLink" onclick="hideScrollBar(); showStatementContact()">
-            <text class="lrgtext" id="me" fill="#162a43">ME</text>
-          </a>
-          <div class="scroll-arrow" id="down" x="455" y="330"></div>
-
-    </div>
-    <div class="container-fluid thumbnails" id="thumbnails">
-      <a class="thumbs" href="software.html">
-        <div class="thumbShape thumbs" id="software">
-          <div class="overlay"></div>
-        </div>
-      </a>
-
-      <a class="thumbs" href="photography.html">
-        <div class="thumbShape thumbs" id="photography">
-          <div class="overlay"></div>
-
-        </div>
-      </a>
-
-      <a class="thumbs" href="videography.html">
-        <div class="thumbShape thumbs" id="videography">
-          <div class="overlay"></div>
-        </div>
-      </a>
-
-      <a class="thumbs" href="diy.html">
-        <div class="thumbShape thumbs" id="diy">
-          <div class="overlay"></div>
-        </div>
-      </a>
-
-    </div>
-    </svg>
-   
-    <div class="modalbox" id="statementContact" style="display: none;">
-      <div class="box">
-        <a class="close" onclick="showScrollBar(); showThumbs()">X</a>
-        <p class="title">Welcome</p>
-        <div class="content">
-          <br>
-          <p>Thank you for taking the time to have a look at this site!</p>
-          <br>
-          <p>To continue to look at this site, click the 'X' on the top
-            right of this message.</p>
-          <br>
-          <p>To get in touch, click the signature below.</p>
-          <br>
-          <p>All the Best!</p>
-          <br>
-          <a class="sig" onclick="showForm()">
-
-            <img class="sig" src="assets/sigw.png">
-          </a>
-        </div>
-      </div>
-    </div>
-
-
-
-    <div class="formDiv" id="contactForm" style="display: none;">
-      <a class="closeForm" onclick="hideForm()" href="#statementContact">X</a>
-      <form action="https://formspree.io/f/meqyreww" method="POST">
-        <label> Your name:
-          <input type="text" id="name" name="name" required>
-        </label>
-        <label> Your email:
-          <input type="text" id="email" name="email" required>
-        </label>
-        <label>Your message:
-          <textarea id="message" name="message" rows="5" required></textarea>
-        </label>
-        <button type="submit" id="formButton" onclick="hideForm()">Send</button>
-    </div>
-
-  <!-- </div> -->
-
-  <!-- <script src="js/main.js" defer></script> -->
-
+  <!DOCTYPE html>
+  <html lang="en">
   
-</body>
-
-</html>
+  <head>
+    <meta charset="UTF-8" />
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Resume Andrew Costigan</title>
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+  
+    <!-- <link rel="stylesheet" href="css/test.css">  -->
+  
+  
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+  
+  
+  
+  </head>
+  
+  </head>
+  
+  <body>
+    <div class="scrollDist"></div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+      <div class="container-fluid">
+        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink softwareLink" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Software </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="#">html</a></li>
+                <li><a class="dropdown-item" href="#">css</a></li>
+                <li><a class="dropdown-item" href="#">javascript</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="photographyLink" href="photography.html">Photography</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="videographyLink" href="videography.html">Videography</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="diyLink" href="diy.html">Diy</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="contactLink"
+                onclick="hideScrollBar(); showStatementContact(); showForm()">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  
+  
+    <div class="svg-container">
+  
+      <div class="container-fluid" id="mountains">
+  
+        <svg viewBox="0 0 1200 800" id="svg" xmlns="http://www.w3.org/2000/svg">
+          <mask id="m">
+            <g class="img-fluid" id="cloud1">
+              <rect fill="#fff" width="100%" height="800" y="1200" />
+              <image xlink:href="assets/cl1.png" width="1200" height="800" />
+  
+            </g>
+          </mask>
+  
+          <image class="img-fluid" id="sky" xlink:href="/assets/sky.jpg" width="1200" height="800" />
+          <image class="img-fluid" id="mountBg" xlink:href="assets/mtbg.png" width="1200" height="800" />
+          <image class="img-fluid" id="cloud2" xlink:href="assets/cl2.png" width="1200" height="800" />
+          <image class="img-fluid" id="mountBg2" xlink:href="assets/mtbg2.png" width="1200" height="800" />
+          <image class="img-fluid" id="cloud3" xlink:href="assets/cl4.png" width="1200" height="800" />
+          <image class="img-fluid" id="mountMg" xlink:href="assets/mtmg.png" width="1200" height="800" />
+          <image class="img-fluid" id="cloud4" xlink:href="assets/cl4.png" width="1200" height="800" />
+          <image class="img-fluid" id="mountMgF" xlink:href="assets/mtmfg.png" width="1200" height="800" />
+          <image class="img-fluid" id="mountFg" xlink:href="assets/mtfg.png" width="1200" height="800" />
+          <image class="img-fluid" id="cloud5" xlink:href="assets/cl4.png" width="1200" height="800" />
+          <image class="img-fluid" id="cloud1" xlink:href="assets/cl1.png" width="1200" height="850" />
+  
+          <text class="lrgtext" fill="#fff">SEE</text>
+          <!-- <path class="arrowDown" d="M590,250 L600,260 M610,250 L599,260 M600,260 L601,229 " class="arrow"  stroke="#fff" stroke-width="3"></path> -->
+  
+          <g mask="url(#m)">
+            <rect fill="#fff" width="100%" height="100%" />
+            <rect id="meshaker" />
+            <a class="meLink" onclick="scrollToBottom(); hideScrollBar(); updateDimensionsNoMargins(); showStatementContact()">
+              <text class="lrgtext" id="me" fill="#162a43">ME</text>
+            </a>
+            <div class="scroll-arrow" id="down" x="455" y="330"></div>
+  
+      </div>
+      <div class="container-fluid thumbnails" id="thumbnails">
+        <a class="thumbs" href="software.html">
+          <div class="thumbShape thumbs" id="software">
+            <div class="overlay"></div>
+          </div>
+        </a>
+  
+        <a class="thumbs" href="photography.html">
+          <div class="thumbShape thumbs" id="photography">
+            <div class="overlay"></div>
+  
+          </div>
+        </a>
+  
+        <a class="thumbs" href="videography.html">
+          <div class="thumbShape thumbs" id="videography">
+            <div class="overlay"></div>
+          </div>
+        </a>
+  
+        <a class="thumbs" href="diy.html">
+          <div class="thumbShape thumbs" id="diy">
+            <div class="overlay"></div>
+          </div>
+        </a>
+  
+      </div>
+      </svg>
+    </div>   
+      <div class="modalbox" id="statementContact" style="display: none;">
+        <div class="box">
+          <a class="close" onclick="showScrollBar(); showThumbs(); updateDimensions()">X</a>
+          <p class="title">Welcome</p>
+          <div class="content">
+            <br>
+            <p>Thank you for taking the time to have a look at this site!</p>
+            <br>
+            <p>To continue to look at this site, click the 'X' on the top
+              right of this message.</p>
+            <br>
+            <p>To get in touch, click the signature below.</p>
+            <br>
+            <p>All the Best!</p>
+            <br>
+            <a class="sig" onclick="showForm()">
+  
+              <img class="sig" src="assets/sigw.png">
+            </a>
+          </div>
+        </div>
+      </div>
+  
+  
+  
+      <div class="formDiv" id="contactForm" style="display: none;">
+        <a class="closeForm" onclick="hideForm()" href="#statementContact">X</a>
+        <form action="https://formspree.io/f/meqyreww" method="POST">
+          <label> Your name:
+            <input type="text" id="name" name="name" required>
+          </label>
+          <label> Your email:
+            <input type="text" id="email" name="email" required>
+          </label>
+          <label>Your message:
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </label>
+          <button type="submit" id="formButton" onclick="hideForm()">Send</button>
+      </div>
+  
+    <!-- </div> -->
+  
+    <!-- <script src="js/main.js" defer></script> -->
+  
+    
+  </body>
+  
+  </html>
