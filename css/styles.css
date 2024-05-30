@@ -243,13 +243,15 @@ dropdown-menu {
 }
 
 .mountains{
-  /* position: inherit; */
+  position: absolute;
   width: 2000px ;
   height: auto;
 }
-
+.container-fluid #thumbnails{
+  position: absolute;
+}
 .thumbnails{
-  position:absolute;
+  position: absolute;
 
 }
 
