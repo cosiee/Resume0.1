@@ -153,9 +153,41 @@ function updateDimensionsNoMargins() {
 }
 
 
-window.addEventListener("resize", updateDimensions, updateDimensionsNoMargins);
-document.addEventListener("DOMContentLoaded", updateDimensions);
+function updateModalDimensions() {
+  const modalBox = document.querySelector(".modalbox .box");
+  const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
+
+  if (!modalBox) return;
+
+  //  calculations for dynamic width and height
+  const newWidth = Math.max(thumbWidthWithoutMargin * 2, 300);
+  const newHeight = newWidth;
+
+  // Update modal dimensions
+  modalBox.style.width = `${newWidth}px`;
+  modalBox.style.height = `${newHeight}px`;
+
+  // Calculate new positions based on thumbnail positions
+  const thumbElement = document.querySelector(".thumbShape");
+  if (!thumbElement) return;
+
+  const thumbRect = thumbElement.getBoundingClientRect();
+  const svgRect = svg.getBoundingClientRect();
+
+  // Center the modal box over the thumbnail relative to the SVG container
+  const newLeft = svgRect.left + (thumbRect.left - svgRect.left) + (thumbRect.width - newWidth) / 2;
+  const newTop = svgRect.top + (thumbRect.top - svgRect.top) + (thumbRect.height - newHeight) / 2;
+
+  // Update modal position
+  modalBox.style.left = `${newLeft}px`;
+  modalBox.style.top = `${newTop}px`;
+}
+
+window.addEventListener("resize", updateDimensions, updateDimensionsNoMargins, updateModalDimensions);
+document.addEventListener("DOMContentLoaded", updateDimensions, updateDimensionsNoMargins ,updateModalDimensions);
 updateDimensions();
+
+// updateDimensionsNoMargins();
 
 gsap.timeline({
   scrollTrigger: {
