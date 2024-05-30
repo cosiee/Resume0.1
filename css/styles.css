@@ -8,25 +8,16 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300");
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ SEE/ME Base Styles $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* 
-text {
-	font-family: 'Montserrat', sans-serif;
-} */
+
 html {
 	font-size: 62.5%;
   scroll-behavior:smooth;
 } 
 
-/* body{
 
-} */
-
-/* main{
-poso
-} */
 #mountains, .scrollDist {
   height: 100%;
-  /* other necessary styles */
+ 
 }
 
 
@@ -35,7 +26,8 @@ poso
   padding: 0;
   width: 1200px;
 }
-svg {
+.svg-container {
+  position: absolute;
   width: 100%;
 }
 
@@ -80,9 +72,9 @@ a {
 div {
   position: absolute;
 }
-/* suggested rules to mitigate modal positioning issues #########################################*/
 
 
+/* ##############Suggested improvement to correctly handle positioning of modalbox and form */
 
 
 
@@ -92,6 +84,7 @@ div {
 /* ************************* Arrows animated SECTION*************************** */
 
 .scroll-arrow {
+  position: absolute;
 	left: 49.33%;
 	top: 23vh;
 	display: inline-block;
@@ -117,6 +110,13 @@ div {
 		opacity: 0;
 	}
 }
+
+
+
+
+
+
+
 
 /* ************************* End of Arrows animated SECTION*************************** */
 
