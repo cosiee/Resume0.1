@@ -4,7 +4,7 @@ meElement.disabled = true;
 
 // Correctly reference the single element with ID "cloud1"
 const cloud1 = document.getElementById("cloud1");
-console.log("Cloud1:", cloud1);
+
 
 
 
@@ -82,7 +82,7 @@ function getThumbWidthWithMargin() {
   const computedStyle = window.getComputedStyle(thumbElement);
   const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
   const thumbMargin = parseFloat(computedStyle.getPropertyValue("margin-right"));
-  console.log("ThumbW  getThumbWidthWithMargin: ", thumbWidth + (thumbMargin * 2));
+
   return thumbWidth + (thumbMargin * 2);
   
 }
@@ -114,7 +114,7 @@ function updateDimensions() {
   gsap.to("#diy", { x: endRightX, y: endBottomY, duration: 1, ease: "power2.out" });
   gsap.to("#videography", { x: endLeftX, y: endBottomY, duration: 1, ease: "power2.out" });
 
-  console.log("updateDimensions :", endLeftX);
+
 }
 
 function getThumbWidthWithoutMargin() {
@@ -122,7 +122,6 @@ function getThumbWidthWithoutMargin() {
   const computedStyle = window.getComputedStyle(thumbElement);
   const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
 
-  console.log("getThumbWidthWithoutMargin    ThumbWO: ", thumbWidth);
   return thumbWidth;
 }
 function getThumbMargin() {
@@ -132,8 +131,10 @@ function getThumbMargin() {
   return thumbMargin;
 }
 
+
 function updateDimensionsNoMargins() {
   scrollToBottom();
+
   thumbWidth = Math.min(300, window.innerWidth / 6);
   screenWidthHalved = window.innerWidth / 2;
   screenHeightHalved = window.innerHeight / 2;
@@ -145,19 +146,136 @@ function updateDimensionsNoMargins() {
   endRightX = screenWidthHalved - marginWidth;
   endBottomY = (window.innerHeight * 1.25) + (widthThumb + marginWidth);
 
-  console.log("EndTopY: ",endTopY );
+  console.log("Thumb Y EndTopY: ", endTopY);
 
   gsap.to("#software", { x: endLeftX, y: endTopY, duration: 1, ease: "power2.out" });
   gsap.to("#photography", { x: endRightX, y: endTopY, duration: 1, ease: "power2.out" });
   gsap.to("#diy", { x: endRightX, y: endBottomY, duration: 1, ease: "power2.out" });
   gsap.to("#videography", { x: endLeftX, y: endBottomY, duration: 1, ease: "power2.out" });
 
-  console.log("updateDimensionsNoMargins :", endLeftX);
+  updateModalDimensions(endTopY);  // Pass endTopY to updateModalDimensions
+}
+
+function updateModalDimensions(endTopY) {
+  const modalBox = document.querySelector(".modalbox .box");
+  const thumbElement = document.querySelector(".thumbShape");
+
+  if (!modalBox || !thumbElement) return;
+
+  const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
+
+  // Calculate new width and height for the modal box
+  const newWidth = Math.max(thumbWidthWithoutMargin * 2, 300);
+  const newHeight = newWidth; // Assuming we want a square modal
+
+  // Update modal dimensions
+  modalBox.style.width = `${newWidth}px`;
+  modalBox.style.height = `${newHeight}px`;
+
+  // Calculate the center of the screen
+  const centerX = window.innerWidth / 2;
+
+  // Calculate the new left position to center the modal box
+  const newLeft = centerX - (newWidth / 2);
+
+  // Use the passed endTopY for the new top position
+  const newTop = endTopY+22.5
+  ;
+  // - (newHeight / 2)
+
+  console.log("Modal Y NewTop: ", newTop);
+
+  // Update modal position
+  modalBox.style.position = 'absolute';
+  modalBox.style.left = `${newLeft}px`;
+  modalBox.style.top = `${newTop}px`;
+
+  showStatementContact();
+
+  // modalBox.style.display = "block";
+
 }
 
 
-// Function to update modal dimensions and position
-// Function to update modal dimensions and position
+
+//  this works without Y
+// function updateDimensionsNoMargins() {
+//   scrollToBottom();
+
+//   thumbWidth = Math.min(300, window.innerWidth / 6);
+//   screenWidthHalved = window.innerWidth / 2;
+//   screenHeightHalved = window.innerHeight / 2;
+//   const widthThumb = getThumbWidthWithoutMargin();
+//   const marginWidth = getThumbMargin();
+
+//   endLeftX = screenWidthHalved - (widthThumb + marginWidth);
+//   endTopY = (window.innerHeight * 1.25) + marginWidth;
+//   endRightX = screenWidthHalved - marginWidth;
+//   endBottomY = (window.innerHeight * 1.25) + (widthThumb + marginWidth);
+
+//   console.log("Thumb Y EndTopY: ",endTopY );
+
+//   gsap.to("#software", { x: endLeftX, y: endTopY, duration: 1, ease: "power2.out" });
+//   gsap.to("#photography", { x: endRightX, y: endTopY, duration: 1, ease: "power2.out" });
+//   gsap.to("#diy", { x: endRightX, y: endBottomY, duration: 1, ease: "power2.out" });
+//   gsap.to("#videography", { x: endLeftX, y: endBottomY, duration: 1, ease: "power2.out" });
+
+//   updateModalDimensions();
+// }
+
+// function updateModalDimensions() {
+//   const modalBox = document.querySelector(".modalbox .box");
+//   const thumbElement = document.querySelector(".thumbShape");
+
+//   if (!modalBox || !thumbElement) return;
+
+//   const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
+
+//   // Calculate new width and height for the modal box
+//   const newWidth = Math.max(thumbWidthWithoutMargin * 2, 300);
+//   const newHeight = newWidth; // Assuming we want a square modal
+
+//   // Update modal dimensions
+//   modalBox.style.width = `${newWidth}px`;
+//   modalBox.style.height = `${newHeight}px`;
+
+//   // Calculate the center of the screen
+//   const centerX = window.innerWidth / 2;
+
+//   // Get the bounding rectangle of the thumb element
+//   const thumbRect = thumbElement.getBoundingClientRect();
+
+//   // Calculate the new left and top position to align with the thumb element
+//   const newLeft = centerX - (newWidth / 2);
+//   const newTop = thumbRect.top + window.scrollY - (newHeight / 2) + (thumbRect.height / 2);
+
+//   console.log("Modal Y NewTop: ", newTop);
+
+//   // Update modal position
+//   modalBox.style.position = 'absolute';
+//   modalBox.style.left = `${newLeft}px`;
+//   modalBox.style.top = `${newTop}px`;
+// }
+
+// Ensure updateDimensionsNoMargins is called on resize and DOM content load
+window.addEventListener("resize", () => {
+  
+  updateDimensions();
+  updateModalDimensions();
+  updateDimensionsNoMargins()
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateDimensions();
+  updateModalDimensions();
+});
+
+// Initial call
+updateDimensions();
+updateModalDimensions();
+
+
+
 // function updateModalDimensions() {
 //   const modalBox = document.querySelector(".modalbox .box");
 //   const thumbElement = document.querySelector(".thumbShape");
@@ -178,63 +296,29 @@ function updateDimensionsNoMargins() {
 //   const centerX = window.innerWidth / 2;
 //   const centerY = window.innerHeight / 2;
 
-//   // Calculate new positions to center the modal box around the center of the screen
+//   // Get the bounding rectangle of the thumb element
+//   const thumbRect = thumbElement.getBoundingClientRect();
+
+//   // Calculate the new top position to align with the thumb element
 //   const newLeft = centerX - (newWidth / 2);
-//   const newTop = centerY - (newHeight / 2);
+//   const newTop = (thumbRect.top + (thumbRect.height + (newHeight)))-16.5;
+//   console.log("Modal Y NewTop: ",newTop );
 
 //   // Update modal position
 //   modalBox.style.position = 'absolute';
 //   modalBox.style.left = `${newLeft}px`;
-//   modalBox.style.top = `${newTop}px`;
+//   modalBox.style.top = `${newTop}px`; 
+  
 // }
-function updateModalDimensions() {
-  const modalBox = document.querySelector(".modalbox .box");
-  const thumbElement = document.querySelector(".thumbShape");
-
-  if (!modalBox || !thumbElement) return;
-
-  const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
-
-  // Calculate new width and height for the modal box
-  const newWidth = Math.max(thumbWidthWithoutMargin * 2, 300);
-  const newHeight = newWidth; // Assuming we want a square modal
-
-  // Update modal dimensions
-  modalBox.style.width = `${newWidth}px`;
-  modalBox.style.height = `${newHeight}px`;
-
-  // Calculate the center of the screen
-  const centerX = window.innerWidth / 2;
-  const centerY = window.innerHeight / 2;
-
-  // Get the bounding rectangle of the thumb element
-  const thumbRect = thumbElement.getBoundingClientRect();
-
-  // Calculate the new top position to align with the thumb element
-  const newLeft = centerX - (newWidth / 2);
-  const newTop = thumbRect.top + (thumbRect.height + (newHeight));
-  console.log("NewTop: ",newTop );
-
-  // Update modal position
-  modalBox.style.position = 'absolute';
-  modalBox.style.left = `${newLeft}px`;
-  modalBox.style.top = `${newTop}px`;
-}
 
 
 
 
-// Add event listener to update modal dimensions when window is resized
-window.addEventListener("resize", updateModalDimensions);
 
-// Call updateModalDimensions initially to set modal dimensions and position
-updateModalDimensions();
+// window.addEventListener("resize", updateDimensions, updateModalDimensions);
+// document.addEventListener("DOMContentLoaded", updateDimensions);
+// updateDimensions();
 
-
-window.addEventListener("resize", updateDimensions, updateModalDimensions);
-document.addEventListener("DOMContentLoaded", updateDimensions, updateModalDimensions);
-updateDimensions();
-updateModalDimensions();
 
 
 
@@ -254,11 +338,7 @@ gsap.timeline({
 
 // #############################################################################################
 
-// Correctly reference the single element with ID "cloud1"
-// const cloud1 = document.getElementById("cloud1");
-console.log("Cloud1:", cloud1);
-// Check if meElement is disabled on load
-console.log("meElement disabled on load:", meElement.disabled);
+
 
 const thresholdScale = 1.5589;
 
@@ -293,14 +373,14 @@ function updateMeElement() {
   if (scaleValue >= thresholdScale) {
     if (meElement.style.display === "none") {
       meElement.style.display = "block"; // Enable #me
-      console.log("Enabled due to scale threshold");
+  
       // Re-enable event listeners if necessary
       meElement.addEventListener('click', hideScrollBar);
     }
   } else {
     if (meElement.style.display !== "none") {
       meElement.style.display = "none"; // Disable #me
-      console.log("Disabled due to scale threshold");
+  
       // Disable or remove event listeners
       meElement.removeEventListener('click', hideScrollBar);
     }
@@ -437,7 +517,7 @@ function submitForm() {
   
     function captureInitialTransform() {
   
-      console.log("meElement:", meElement);
+      
       initialTransform = window
         .getComputedStyle(meElement)
         .getPropertyValue("transform");
