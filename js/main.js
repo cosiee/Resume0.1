@@ -133,6 +133,7 @@ function getThumbMargin() {
 }
 
 function updateDimensionsNoMargins() {
+  scrollToBottom();
   thumbWidth = Math.min(300, window.innerWidth / 6);
   screenWidthHalved = window.innerWidth / 2;
   screenHeightHalved = window.innerHeight / 2;
@@ -144,6 +145,8 @@ function updateDimensionsNoMargins() {
   endRightX = screenWidthHalved - marginWidth;
   endBottomY = (window.innerHeight * 1.25) + (widthThumb + marginWidth);
 
+  console.log("EndTopY: ",endTopY );
+
   gsap.to("#software", { x: endLeftX, y: endTopY, duration: 1, ease: "power2.out" });
   gsap.to("#photography", { x: endRightX, y: endTopY, duration: 1, ease: "power2.out" });
   gsap.to("#diy", { x: endRightX, y: endBottomY, duration: 1, ease: "power2.out" });
@@ -153,41 +156,87 @@ function updateDimensionsNoMargins() {
 }
 
 
+// Function to update modal dimensions and position
+// Function to update modal dimensions and position
+// function updateModalDimensions() {
+//   const modalBox = document.querySelector(".modalbox .box");
+//   const thumbElement = document.querySelector(".thumbShape");
+
+//   if (!modalBox || !thumbElement) return;
+
+//   const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
+
+//   // Calculate new width and height for the modal box
+//   const newWidth = Math.max(thumbWidthWithoutMargin * 2, 300);
+//   const newHeight = newWidth; // Assuming we want a square modal
+
+//   // Update modal dimensions
+//   modalBox.style.width = `${newWidth}px`;
+//   modalBox.style.height = `${newHeight}px`;
+
+//   // Calculate the center of the screen
+//   const centerX = window.innerWidth / 2;
+//   const centerY = window.innerHeight / 2;
+
+//   // Calculate new positions to center the modal box around the center of the screen
+//   const newLeft = centerX - (newWidth / 2);
+//   const newTop = centerY - (newHeight / 2);
+
+//   // Update modal position
+//   modalBox.style.position = 'absolute';
+//   modalBox.style.left = `${newLeft}px`;
+//   modalBox.style.top = `${newTop}px`;
+// }
 function updateModalDimensions() {
   const modalBox = document.querySelector(".modalbox .box");
+  const thumbElement = document.querySelector(".thumbShape");
+
+  if (!modalBox || !thumbElement) return;
+
   const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
 
-  if (!modalBox) return;
-
-  //  calculations for dynamic width and height
+  // Calculate new width and height for the modal box
   const newWidth = Math.max(thumbWidthWithoutMargin * 2, 300);
-  const newHeight = newWidth;
+  const newHeight = newWidth; // Assuming we want a square modal
 
   // Update modal dimensions
   modalBox.style.width = `${newWidth}px`;
   modalBox.style.height = `${newHeight}px`;
 
-  // Calculate new positions based on thumbnail positions
-  const thumbElement = document.querySelector(".thumbShape");
-  if (!thumbElement) return;
+  // Calculate the center of the screen
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
 
+  // Get the bounding rectangle of the thumb element
   const thumbRect = thumbElement.getBoundingClientRect();
-  const svgRect = svg.getBoundingClientRect();
 
-  // Center the modal box over the thumbnail relative to the SVG container
-  const newLeft = svgRect.left + (thumbRect.left - svgRect.left) + (thumbRect.width - newWidth) / 2;
-  const newTop = svgRect.top + (thumbRect.top - svgRect.top) + (thumbRect.height - newHeight) / 2;
+  // Calculate the new top position to align with the thumb element
+  const newLeft = centerX - (newWidth / 2);
+  const newTop = thumbRect.top + (thumbRect.height + (newHeight));
+  console.log("NewTop: ",newTop );
 
   // Update modal position
+  modalBox.style.position = 'absolute';
   modalBox.style.left = `${newLeft}px`;
   modalBox.style.top = `${newTop}px`;
 }
 
-window.addEventListener("resize", updateDimensions, updateDimensionsNoMargins, updateModalDimensions);
-document.addEventListener("DOMContentLoaded", updateDimensions, updateDimensionsNoMargins ,updateModalDimensions);
-updateDimensions();
 
-// updateDimensionsNoMargins();
+
+
+// Add event listener to update modal dimensions when window is resized
+window.addEventListener("resize", updateModalDimensions);
+
+// Call updateModalDimensions initially to set modal dimensions and position
+updateModalDimensions();
+
+
+window.addEventListener("resize", updateDimensions, updateModalDimensions);
+document.addEventListener("DOMContentLoaded", updateDimensions, updateModalDimensions);
+updateDimensions();
+updateModalDimensions();
+
+
 
 gsap.timeline({
   scrollTrigger: {
@@ -212,8 +261,7 @@ console.log("Cloud1:", cloud1);
 console.log("meElement disabled on load:", meElement.disabled);
 
 const thresholdScale = 1.5589;
-// 1.67;
-console.log("Threshold Scale Value:", thresholdScale);
+
 
 function getScaleValue(element) {
   if (!element) {
@@ -240,7 +288,7 @@ function getScaleValue(element) {
 
 function updateMeElement() {
   const scaleValue = getScaleValue(cloud1);
-  console.log("Scale Value:", scaleValue);
+  
 
   if (scaleValue >= thresholdScale) {
     if (meElement.style.display === "none") {
