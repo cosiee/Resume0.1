@@ -1,81 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Combined Approach with Mask</title>
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-  }
-  #content {
-    height: 2000px; /* For demonstration */
-  }
-  #me {
-    position: fixed;
-    top: 50%; /* Center vertically in the viewport */
-    left: 50%; /* Center horizontally in the viewport */
-    transform: translate(-50%, -50%);
-    width: 200px; /* Adjust as needed */
-    height: 200px; /* Adjust as needed */
-    background-color: red; /* For demonstration */
-    visibility: hidden; /* Initially hidden */
-    clip-path: circle(0% at 50% 50%); /* Start hidden */
-    transition: clip-path 3s ease-out; /* Smooth transition */
-  }
-  
-  #me.visible {
-    clip-path: circle(100% at 50% 50%); /* Fully revealed */
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal Positioning over SVG</title>
+  <style>
+    body {
+      height: 2000px; /* To create a scrollable page */
+    }
+    .svg-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+    svg {
+      width: 100%;
+      height: auto;
+    }
+    .modalbox {
+      position: absolute;
+      display: none;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 20px;
+    }
+    .thumbShape {
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-<div id="content">
-  <!-- Dynamic content goes here -->
-</div>
-<div id="me">I'm #me</div>
+  <div class="svg-container">
+    <svg viewBox="0 0 1200 800" id="svg" xmlns="http://www.w3.org/2000/svg" style="border: 1px solid black;">
+      <circle cx="600" cy="400" r="50" fill="coral" class="thumbShape" id="software" />
+      <circle cx="300" cy="200" r="50" fill="lightblue" class="thumbShape" id="photography" />
+      <circle cx="900" cy="600" r="50" fill="lightgreen" class="thumbShape" id="videography" />
+      <circle cx="150" cy="700" r="50" fill="lightpink" class="thumbShape" id="diy" />
+    </svg>
+  </div>
+  <div class="modalbox" id="modal">I'm a modal box!</div>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const me = document.querySelector('#me');
+  <script>
+    function showModalOverElement(elementId) {
+      const svgElement = document.getElementById(elementId);
+      const modal = document.getElementById('modal');
 
-  // Function to handle scroll events and adjust visibility using a mask
-  function handleScroll() {
-    const rect = me.getBoundingClientRect();
-    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-    const windowWidth = window.innerWidth || document.documentElement.clientWidth;
-  
-    if (rect.top >= 0 && rect.bottom <= windowHeight && rect.left >= 0 && rect.right <= windowWidth) {
-      me.classList.add('visible');
-      me.style.visibility = 'visible';
-    } else {
-      me.classList.remove('visible');
-      me.style.visibility = 'hidden';
+      // Get bounding box of the SVG element
+      const rect = svgElement.getBoundingClientRect();
+
+      // Calculate position relative to the entire document
+      const top = rect.top + window.scrollY;
+      const left = rect.left + window.scrollX;
+
+      // Set modal position
+      modal.style.top = `${top}px`;
+      modal.style.left = `${left}px`;
+      modal.style.width = `${rect.width}px`; // Optional: match the width
+      modal.style.height = `${rect.height}px`; // Optional: match the height
+      modal.style.display = 'block';
     }
-  }
 
-  // Mutation Observer to handle dynamic content changes
-  const targetNode = document.querySelector('#content'); // Adjust the target node as needed
-  const config = { childList: true, subtree: true };
+    // Example of attaching event listeners to each thumbnail
+    document.querySelectorAll('.thumbShape').forEach(el => {
+      el.addEventListener('click', () => showModalOverElement(el.id));
+    });
 
-  const mutationCallback = (mutationsList, observer) => {
-    for (const mutation of mutationsList) {
-      if (mutation.type === 'childList') {
-        handleScroll(); // Adjust visibility on content change
+    // Adjust modal position on scroll and resize
+    window.addEventListener('scroll', () => {
+      const activeElement = document.querySelector('.thumbShape.active');
+      if (activeElement) {
+        showModalOverElement(activeElement.id);
       }
-    }
-  };
-
-  const mutationObserver = new MutationObserver(mutationCallback);
-  mutationObserver.observe(targetNode, config);
-
-  // Scroll event listener
-  window.addEventListener('scroll', handleScroll);
-
-  // Initial visibility check
-  handleScroll();
-});
-</script>
+    });
+    window.addEventListener('resize', () => {
+      const activeElement = document.querySelector('.thumbShape.active');
+      if (activeElement) {
+        showModalOverElement(activeElement.id);
+      }
+    });
+  </script>
 </body>
 </html>
