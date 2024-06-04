@@ -10,29 +10,30 @@
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ SEE/ME Base Styles $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
 html {
-  font-size: 62.5%;
-  scroll-behavior: smooth;
+	font-size: 62.5%;
+  scroll-behavior:smooth;
+} 
+
+
+#mountains, .scrollDist {
+  height: 100%;
+ 
 }
 
-#mountains,
-.scrollDist {
-  height: 100%;
-}
 
 #mountains {
   margin: 0;
   padding: 0;
   width: 1200px;
 }
-
 .svg-container {
   position: absolute;
   width: 100%;
 }
 
 text.lrgtext {
-  position: fixed;
-  z-index: 3;
+    position: fixed;
+    z-index: 3;
   width: 100%;
   height: 100%;
   background: #ddd;
@@ -42,27 +43,28 @@ text.lrgtext {
   transform: translate(500px, 22vh);
 }
 
+
 text.lrgtext#me {
-  display: inline-block;
-
-  transform-origin: 5% 15%;
-  /* transform: translate(550px, 22vh); */
+  
+display: inline-block;
+/* transform: translate(520px, 24vh); */
+transform-origin: 5% 15%; 
 }
-
 #me:hover {
   cursor: pointer;
   text-shadow: 2px 2px 2px #162a43;
 }
 
-#meshaker {
-  position: absolute;
-  z-index: 2;
-  width: 100%;
-  height: 99px;
-  transform: translate(0px, 13.5vh);
-  opacity: 0;
-}
 
+ 
+#meshaker{
+  position:absolute;
+  z-index:70;
+  width: 100%;
+  height:99px;
+  transform: translate(0px, 13.5vh);
+  opacity:0;
+}
 a {
   text-decoration: none;
 }
@@ -71,6 +73,7 @@ div {
   position: absolute;
 }
 
+
 /* ##############Suggested improvement to correctly handle positioning of modalbox and form */
 * {
   margin: 0;
@@ -78,9 +81,9 @@ div {
   box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
   height: 100%;
+ 
 }
 
 .container {
@@ -92,40 +95,47 @@ body {
   height: 100%;
 }
 
+
+
+
+
 /* suggested rules to mitigate modal positioning issues #########################################*/
 /* ************************* Arrows animated SECTION*************************** */
 
 .scroll-arrow {
   position: absolute;
-  left: 49.33%;
-  top: 23vh;
-  display: inline-block;
-  width: 22px;
-  height: 22px;
-  border-bottom: 4px solid #fff;
-  border-right: 4px solid #fff;
-  animation: fade_move_down 3s ease-in-out infinite;
+	left: 49.33%;
+	top: 23vh;
+	display: inline-block;
+	width: 22px;
+	height: 22px;
+	border-bottom: 4px solid #fff;
+	border-right: 4px solid #fff;
+	animation: fade_move_down 3s ease-in-out infinite;
 }
-
-.scroll-arrow:hover {
+.scroll-arrow:hover{
   cursor: pointer;
 }
-
 @keyframes fade_move_down {
-  0% {
-    transform: translate(0, -20px) rotate(45deg);
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: translate(0, 20px) rotate(45deg);
-    opacity: 0;
-  }
+	0% {
+		transform: translate(0, -20px) rotate(45deg);
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		transform: translate(0, 20px) rotate(45deg);
+		opacity: 0;
+	}
 }
+
+
+
+
+
+
+
 
 /* ************************* End of Arrows animated SECTION*************************** */
 
@@ -177,7 +187,6 @@ a#navbarDropdownMenuLink.nav-link.dropdown-toggle {
   color: #162a43;
   /* --bs-navbar-active-color: #f23506; */
 }
-
 a#navbarDropdownMenuLink.nav-link.dropdown-toggle:hover {
   color: #6e6f79;
 }
@@ -188,7 +197,6 @@ ul.navbar-nav {
   /* -webkit-transition: all 0.9s;
 	transition: all 1s; */
 }
-
 a.dropdown-item {
   color: #162a43;
   font-size: 0.9em;
@@ -199,6 +207,7 @@ a.dropdown-item:hover {
   color: #6e6f79;
   transform: scale(1.2);
 }
+
 
 a.dropdown-item:active {
   background-color: #6e6f79;
@@ -214,7 +223,7 @@ dropdown-menu {
   position: fixed;
   top: 0px;
   max-height: 50px;
-  z-index: 5;
+  z-index: 11;
   width: 100%;
   padding-top: 30px;
   background: none;
@@ -249,21 +258,20 @@ dropdown-menu {
 :root {
   --thumb-width: 300px;
   --thumb-height: 300px;
+
 }
 
-.mountains {
+.mountains{
   position: absolute;
-  width: 2000px;
+  width: 2000px ;
   height: auto;
 }
-
-.container-fluid #thumbnails {
+.container-fluid #thumbnails{
   position: absolute;
 }
-
-.thumbnails {
+.thumbnails{
   position: absolute;
-  z-index: 10;
+
 }
 
 .thumbs {
@@ -274,17 +282,130 @@ dropdown-menu {
 
 .thumbShape {
   position: absolute;
-  width: var(--thumb-width);
-  height: var(--thumb-height);
+  width: var(--thumb-width); 
+  height: var(--thumb-height); 
   margin: 12.5px;
   overflow: hidden;
   border-radius: 24%;
   transition: background-image 1.8s ease-in-out;
 }
 
-#software img,
-#photography img,
-#videography img,
+
+
+#software img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
+#software .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("assets/binary-min.png");
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+#software:hover .overlay {
+  opacity: 0.7;
+}
+
+#software {
+  /* background-image: url('assets/Thumbnail-6.jpg'); */
+  background-size: cover;
+  background-position: center;
+  filter: drop-shadow(0 0 0.1rem #162a43);
+}
+
+
+#software:hover {
+  cursor: pointer;
+  filter: drop-shadow(0 0 0.75rem #162a43);
+}
+
+#photography img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+#photography .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("assets/photography-min.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+#photography:hover .overlay {
+  opacity: 0.7;
+}
+
+#photography {
+  /* background-image: url(assets/Thumbnail-8.jpg); */
+  background-size: cover;
+  background-position: center;
+  filter: drop-shadow(0 0 0.1rem #162a43);
+ 
+}
+
+#photography:hover {
+  cursor: pointer;
+  filter: drop-shadow(0 0 0.75rem #162a43);
+}
+
+/* ___________________ */
+
+#videography img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+#videography .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(assets/videography-min.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+#videography:hover .overlay {
+  opacity: 0.7;
+}
+
+#videography {
+  /* background-image: url(assets/Thumbnail-11.jpg); */
+  background-size: cover;
+  background-position: center;
+  filter: drop-shadow(0 0 0.1rem #162a43);
+
+}
+
+#videography:hover {
+  cursor: pointer;
+  filter: drop-shadow(0 0 0.75rem #162a43);
+}
+
+/* __________________ */
+
 #diy img {
   width: 100%;
   height: 100%;
@@ -292,59 +413,34 @@ dropdown-menu {
   display: block;
 }
 
-#software:hover .overlay,
-#photography:hover .overlay,
-#videography:hover .overlay,
-#diy:hover .overlay {
-  opacity: 0.7;
-}
-
-#software,
-#photography,
-#videography,
-#diy {
-  background-size: cover;
-  background-position: center;
-  filter: drop-shadow(0 0 0.1rem #162a43);
-}
-
-#software:hover,
-#photography:hover,
-#videography:hover,
-#diy:hover {
-  cursor: pointer;
-  filter: drop-shadow(0 0 0.75rem #162a43);
-}
-
-#software .overlay,
-#photography .overlay,
-#videography .overlay,
 #diy .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  background-image: url(assets/diy-min.png);
   background-repeat: no-repeat;
   background-position: center;
   opacity: 0;
   transition: opacity 0.6s ease;
 }
 
-#software .overlay {
-  background-image: url("assets/binary-min.png");
+#diy:hover .overlay {
+  opacity: 0.7;
 }
 
-#photography .overlay {
-  background-image: url("assets/photography-min.png");
+#diy {
+  /* background-image: url(assets/Thumbnail-3.jpg); */
+  background-size: cover;
+  background-position: center;
+  filter: drop-shadow(0 0 0.1rem #162a43);
+  
 }
 
-#videography .overlay {
-  background-image: url("assets/videography-min.png");
-}
-
-#diy .overlay {
-  background-image: url("assets/diy-min.png");
+#diy:hover {
+  cursor: pointer;
+  filter: drop-shadow(0 0 0.75rem #162a43);
 }
 
 /*###################### End of Thumbnail Base Styles ############################ */
@@ -372,10 +468,8 @@ dropdown-menu {
 } */
 
 .modalbox .box {
-  position: absolute;
-  /* Ensure it is positioned absolutely within its container */
-  transition: transform 0.3s, width 0.3s, height 0.3s;
-  /* Smooth transition for position and size changes */
+  position: absolute; /* Ensure it is positioned absolutely within its container */
+  transition: transform 0.3s, width 0.3s, height 0.3s; /* Smooth transition for position and size changes */
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   background-color: rgba(0, 0, 0, 0.6);
   margin: auto;
@@ -385,10 +479,8 @@ dropdown-menu {
   height: 500px;
   overflow: hidden;
   border-radius: 12%;
-  /* z-index: 12; */
-  /* Ensure it appears above other elements */
-  color: #fff;
-  /* Ensure text is visible */
+  z-index: 12; /* Ensure it appears above other elements */
+  color: #fff; /* Ensure text is visible */
 }
 
 .modalbox .title {
@@ -399,10 +491,9 @@ dropdown-menu {
   padding: 0 0 10px;
   color: #fff;
 }
-
 .modalbox .content {
   display: block;
-  /* z-index: 12; */
+  z-index:10;
   font-size: 18px;
   line-height: 22px;
   padding: 10px 40px 40px 0px;
@@ -410,22 +501,21 @@ dropdown-menu {
   color: #fff;
 }
 
-.modalbox .close {
+ .modalbox .close {
   color: #fff;
   display: block;
   float: right;
   font-size: 17px;
   text-decoration: bold;
 }
-
-.close:hover {
+.close:hover{
   cursor: pointer;
 }
 
 .modalbox {
   position: absolute;
   display: none;
-  z-index: 12;
+  z-index: 8;
   width: 100%;
   height: 100%;
   top: 0;
@@ -438,7 +528,7 @@ dropdown-menu {
   outline: none;
 }
 
-/* .link-modal {
+.link-modal {
   width: 90%;
   text-align: center;
   margin: 0 auto;
@@ -454,31 +544,7 @@ dropdown-menu {
   padding: 10px;
   text-decoration: none;
   text-transform: uppercase;
-} */
-
-.link-modal {
-  width: 90%;
-  text-align: center;
-  margin: 0 auto;
-  padding: 1rem;
-  background: #ffffff;
-  text-decoration: none;
-  color: #162a43;
-  display: inline-block;
-  transition: all 0.4s ease-in-out;
-  transform: translateX(0px);
 }
-
-.link-modal:hover {
-  transform: translateX(1.5rem);
-  color: #6e6f79;
-  cursor: pointer;
-}
-
-.hidden {
-  display: none;
-}
-
 .sig {
   position: relative;
   height: 90px;
@@ -495,7 +561,7 @@ dropdown-menu {
 
 .formDiv#contactForm {
   position: absolute;
-  z-index: 14;
+  z-index: 12;
   top: 50%;
   right: 50%;
   transform: translate(50%, -50%);
@@ -512,25 +578,23 @@ dropdown-menu {
   opacity: 1;
 }
 
-.formTitle {
-  /* width: 100%; */
-  padding: 0px;
-}
+.formTitle{
+	/* width: 100%; */
+	padding:0px;
 
+}
 label {
   display: block;
   margin: 10px;
   color: #fff;
 }
-
 .closeForm {
-  color: #fff;
+color: #fff;
   display: block;
   float: right;
   font-size: 17px;
   text-decoration: bold;
 }
-
 input[type="text"],
 textarea {
   width: 95%;
@@ -588,7 +652,6 @@ textarea {
   font-size: 14px;
   margin-top: 5px;
 }
-
 /*##################################  Base Styles Contact Form ###################################*/
 
 /* X-Small devices (portrait phones, less than 576px)
@@ -603,21 +666,17 @@ textarea {
     border-bottom: 3px solid #fff;
     border-right: 3px solid #fff;
   }
-
-  text.lrgtext {
+   text.lrgtext {
     font-size: 150px;
     transform: translate(450px, 32%);
   }
-
   .lrgtext#me {
     transform: translate(470px, 32%);
   }
-
   .thumbShape {
-    width: calc(var(--thumb-width) * 0.5);
-    /* Adjust width proportionally for smaller screens */
-    height: calc(var(--thumb-height) * 0.5);
-    /* Adjust height proportionally for smaller screens */
+    width: calc(var(--thumb-width) * 0.5); /* Adjust width proportionally for smaller screens */
+    height: calc(var(--thumb-height) * 0.5); /* Adjust height proportionally for smaller screens */
+    
   }
 }
 
@@ -629,20 +688,15 @@ textarea {
     border-bottom: 3px solid #fff;
     border-right: 3px solid #fff;
   }
-
   text.lrgtext {
     transform: translate(500px, 22%);
   }
-
   .lrgtext#me {
     transform: translate(520px, 22%);
   }
-
   .thumbShape {
-    width: calc(var(--thumb-width) * 0.7);
-    /* Adjust width proportionally for smaller screens */
-    height: calc(var(--thumb-height) * 0.7);
-    /* Adjust height proportionally for smaller screens */
+    width: calc(var(--thumb-width) * 0.7); /* Adjust width proportionally for smaller screens */
+    height: calc(var(--thumb-height) * 0.7); /* Adjust height proportionally for smaller screens */
   }
 }
 
@@ -656,21 +710,17 @@ textarea {
     border-bottom: 4px solid #fff;
     border-right: 4px solid #fff;
   }
-
   text.lrgtext {
     transform: translate(500px, 20vh);
   }
-
   .lrgtext#me {
     transform: translate(520px, 20vh);
   }
-
   .thumbShape {
-    width: calc(var(--thumb-width) * 0.8);
-    /* Adjust width proportionally for smaller screens */
-    height: calc(var(--thumb-height) * 0.8);
-    /* Adjust height proportionally for smaller screens */
+    width: calc(var(--thumb-width) * 0.8); /* Adjust width proportionally for smaller screens */
+    height: calc(var(--thumb-height) * 0.8); /* Adjust height proportionally for smaller screens */
   }
+
 }
 
 /* Large devices (desktops, 992px and up)
@@ -681,12 +731,11 @@ textarea {
   }
 
   .thumbShape {
-    width: calc(var(--thumb-width) * 1);
-    /* Adjust width proportionally for smaller screens */
-    height: calc(var(--thumb-height) * 1);
-    /* Adjust height proportionally for smaller screens */
+    width: calc(var(--thumb-width) * 1); /* Adjust width proportionally for smaller screens */
+    height: calc(var(--thumb-height) * 1); /* Adjust height proportionally for smaller screens */
   }
 }
+
 
 /* X-Large devices (large desktops, 1200px and up)
 **************************************************************/
@@ -694,11 +743,9 @@ textarea {
   .scroll-arrow {
     top: 26%;
   }
-
   text.lrgtext {
     transform: translate(500px, 20vh);
   }
-
   .lrgtext#me {
     transform: translate(520px, 20vh);
   }
