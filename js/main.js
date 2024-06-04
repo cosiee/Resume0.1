@@ -133,8 +133,10 @@ function getThumbMargin() {
 
 
 function updateDimensionsNoMargins() {
+  hideScrollBar();
   scrollToBottom();
 
+setTimeout(() => {
   thumbWidth = Math.min(300, window.innerWidth / 6);
   screenWidthHalved = window.innerWidth / 2;
   screenHeightHalved = window.innerHeight / 2;
@@ -154,6 +156,10 @@ function updateDimensionsNoMargins() {
   gsap.to("#videography", { x: endLeftX, y: endBottomY, duration: 1, ease: "power2.out" });
 
   updateModalDimensions(endTopY);  // Pass endTopY to updateModalDimensions
+}, 50);  // Small delay to ensure scrollbar removal takes effect
+
+  // updateModalDimensions(endTopY);  // Pass endTopY to updateModalDimensions
+
 }
 
 function updateModalDimensions(endTopY) {
@@ -165,7 +171,7 @@ function updateModalDimensions(endTopY) {
   const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
 
   // Calculate new width and height for the modal box
-  const newWidth = Math.max(thumbWidthWithoutMargin * 2, 300);
+  const newWidth = Math.max((thumbWidthWithoutMargin * 2)+4, 300);
   const newHeight = newWidth; // Assuming we want a square modal
 
   // Update modal dimensions
@@ -173,89 +179,29 @@ function updateModalDimensions(endTopY) {
   modalBox.style.height = `${newHeight}px`;
 
   // Calculate the center of the screen
-  const centerX = window.innerWidth / 2;
+  const centerX = (window.innerWidth / 2)+4.4;
 
   // Calculate the new left position to center the modal box
   const newLeft = centerX - (newWidth / 2);
 
   // Use the passed endTopY for the new top position
-  const newTop = endTopY+22.5
-  ;
-  // - (newHeight / 2)
+  const newTop = endTopY+20.5; // 22.5 works for alignment on y axis
+  
+ 
 
-  console.log("Modal Y NewTop: ", newTop);
+
 
   // Update modal position
   modalBox.style.position = 'absolute';
   modalBox.style.left = `${newLeft}px`;
   modalBox.style.top = `${newTop}px`;
 
-  showStatementContact();
+  
 
   // modalBox.style.display = "block";
 
 }
 
-
-
-//  this works without Y
-// function updateDimensionsNoMargins() {
-//   scrollToBottom();
-
-//   thumbWidth = Math.min(300, window.innerWidth / 6);
-//   screenWidthHalved = window.innerWidth / 2;
-//   screenHeightHalved = window.innerHeight / 2;
-//   const widthThumb = getThumbWidthWithoutMargin();
-//   const marginWidth = getThumbMargin();
-
-//   endLeftX = screenWidthHalved - (widthThumb + marginWidth);
-//   endTopY = (window.innerHeight * 1.25) + marginWidth;
-//   endRightX = screenWidthHalved - marginWidth;
-//   endBottomY = (window.innerHeight * 1.25) + (widthThumb + marginWidth);
-
-//   console.log("Thumb Y EndTopY: ",endTopY );
-
-//   gsap.to("#software", { x: endLeftX, y: endTopY, duration: 1, ease: "power2.out" });
-//   gsap.to("#photography", { x: endRightX, y: endTopY, duration: 1, ease: "power2.out" });
-//   gsap.to("#diy", { x: endRightX, y: endBottomY, duration: 1, ease: "power2.out" });
-//   gsap.to("#videography", { x: endLeftX, y: endBottomY, duration: 1, ease: "power2.out" });
-
-//   updateModalDimensions();
-// }
-
-// function updateModalDimensions() {
-//   const modalBox = document.querySelector(".modalbox .box");
-//   const thumbElement = document.querySelector(".thumbShape");
-
-//   if (!modalBox || !thumbElement) return;
-
-//   const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
-
-//   // Calculate new width and height for the modal box
-//   const newWidth = Math.max(thumbWidthWithoutMargin * 2, 300);
-//   const newHeight = newWidth; // Assuming we want a square modal
-
-//   // Update modal dimensions
-//   modalBox.style.width = `${newWidth}px`;
-//   modalBox.style.height = `${newHeight}px`;
-
-//   // Calculate the center of the screen
-//   const centerX = window.innerWidth / 2;
-
-//   // Get the bounding rectangle of the thumb element
-//   const thumbRect = thumbElement.getBoundingClientRect();
-
-//   // Calculate the new left and top position to align with the thumb element
-//   const newLeft = centerX - (newWidth / 2);
-//   const newTop = thumbRect.top + window.scrollY - (newHeight / 2) + (thumbRect.height / 2);
-
-//   console.log("Modal Y NewTop: ", newTop);
-
-//   // Update modal position
-//   modalBox.style.position = 'absolute';
-//   modalBox.style.left = `${newLeft}px`;
-//   modalBox.style.top = `${newTop}px`;
-// }
 
 // Ensure updateDimensionsNoMargins is called on resize and DOM content load
 window.addEventListener("resize", () => {
@@ -267,6 +213,7 @@ window.addEventListener("resize", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   updateDimensions();
+  // updateDimensionsNoMargins();
   updateModalDimensions();
 });
 
@@ -276,48 +223,6 @@ updateModalDimensions();
 
 
 
-// function updateModalDimensions() {
-//   const modalBox = document.querySelector(".modalbox .box");
-//   const thumbElement = document.querySelector(".thumbShape");
-
-//   if (!modalBox || !thumbElement) return;
-
-//   const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
-
-//   // Calculate new width and height for the modal box
-//   const newWidth = Math.max(thumbWidthWithoutMargin * 2, 300);
-//   const newHeight = newWidth; // Assuming we want a square modal
-
-//   // Update modal dimensions
-//   modalBox.style.width = `${newWidth}px`;
-//   modalBox.style.height = `${newHeight}px`;
-
-//   // Calculate the center of the screen
-//   const centerX = window.innerWidth / 2;
-//   const centerY = window.innerHeight / 2;
-
-//   // Get the bounding rectangle of the thumb element
-//   const thumbRect = thumbElement.getBoundingClientRect();
-
-//   // Calculate the new top position to align with the thumb element
-//   const newLeft = centerX - (newWidth / 2);
-//   const newTop = (thumbRect.top + (thumbRect.height + (newHeight)))-16.5;
-//   console.log("Modal Y NewTop: ",newTop );
-
-//   // Update modal position
-//   modalBox.style.position = 'absolute';
-//   modalBox.style.left = `${newLeft}px`;
-//   modalBox.style.top = `${newTop}px`; 
-  
-// }
-
-
-
-
-
-// window.addEventListener("resize", updateDimensions, updateModalDimensions);
-// document.addEventListener("DOMContentLoaded", updateDimensions);
-// updateDimensions();
 
 
 
@@ -400,10 +305,13 @@ updateMeElement();
 
 // Scroll event listener to toggle sticky navbar
 $(window).scroll(function () {
+  
   if ($(window).scrollTop() > 320) {
+    
     $(".navbar").addClass("sticky");
   } else {
     $(".navbar").removeClass("sticky");
+    
   }
 });
 // Function to hide the scrollbar
