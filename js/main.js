@@ -367,14 +367,95 @@ function showScrollBar() {
 
 
 
-// ####################### ME click scroll function 
+// ####################### ME click scroll-arrow function 
 
 function scrollToBottom() {
   window.scrollTo({
     top: document.documentElement.scrollHeight,
     behavior: 'smooth'
+
   });
 }
+// ################################################################
+
+document.addEventListener('DOMContentLoaded', function() {
+  var downButton = document.getElementById('down');
+  console.log('downButton:', downButton); // This will log the downButton element or null
+  
+  if (downButton) {
+      downButton.onclick = function() {
+          console.log('Down arrow clicked!');
+          // Add your scroll logic here, for example:
+          scrollTo(document.documentElement.scrollHeight, 130000);          
+          console.log("0 document.documentElement.scrollHeight:  ", document.documentElement.scrollHeight);
+        };
+  } else {
+      console.log('Element with id "down" not found');
+  }
+});
+
+function scrollTo(element, duration) {
+  var e = document.documentElement;
+
+  console.log("1 scrollTo   Element: ",element + "  Duration:  ", duration);
+
+  if (e.scrollTop <= 50) {
+      var t = e.scrollTop;
+      --e.scrollTop;
+      e = t + 1 === e.scrollTop-- ? e : document.body;
+  }
+  scrollToC(e, e.scrollTop, element, duration);
+  console.log("2 scrollTo   Element: ",e + "  Duration:  ", duration + " From: ", t + " To: ",element);
+}
+
+function scrollToC(element, from, to, duration) {
+
+  if (duration <= 0) return;
+  if (typeof from === "object") from = from.offsetTop;
+  console.log("3 scrollToC  from: ", from );
+  if (typeof to === "object") to = to.offsetTop;
+  console.log("4 scrollToC  to: ", to );
+
+  // Choose one effect like easeInOutCirc
+  scrollToX(element, from, to, 0, 1 / duration, 2, easeInOutCirc);
+
+  console.log("5 scrollToC: element :   ", element + "  from: ", from + "  To: ",to + " t01: ",0 + " speed: ", 1/duration + " step: ",2 + " motion: ",easeInOutCirc  );
+}
+
+function scrollToX(element, xFrom, xTo, t01, speed, step, motion) {
+  if (t01 < 0 || t01 > 1 || speed <= 0) {
+      element.scrollTop = xTo;
+      return;
+  }
+  element.scrollTop = xFrom +  xTo * motion(t01);
+  t01 += speed * step;
+
+  setTimeout(function() {
+      scrollToX(element, xFrom, xTo, t01, speed, step, motion);
+  }, step);
+
+  console.log("6 scrollToX: element :   ", element + "  from: ", xFrom + "  To: ",xTo + " t01: ",0 + " speed: ", speed + " step: ", step + " motion: ", motion  );
+
+}
+
+function easeInOutCirc(t) {
+  t /= 0.5;
+  if (t < 1) return -(Math.sqrt(1 - t * t) - 1) / 2;
+  t -= 2;
+  return (Math.sqrt(1 - t * t) + 1) / 2;
+}
+
+
+
+
+
+
+
+
+
+
+// ################################################################
+
 
 // function scrollToBottom() {
 //   document.querySelectorAll("#me").forEach((btn, index) => {

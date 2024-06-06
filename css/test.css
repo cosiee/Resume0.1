@@ -1,74 +1,40 @@
-/* Reset default margin and padding */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Style for the thumbnails container */
-  .thumbnails {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  /* Style for each thumbnail link */
-  .thumb-link {
+html {
+  padding: 26px;
+}
+
+body {
+  margin: auto;
+  max-width: 690px;
+  border: 8px solid whitesmoke;
+}
+
+h1, h2 {
+    font-size: 22.5px;
+    text-align: center;
+}
+
+img {
+    margin: auto;
     display: block;
-    text-decoration: none;
-  }
-  
-  /* Style for the thumbnail container */
-  .thumb {
-    position: relative;
-    overflow: hidden;
-    border-radius: 24%;
-    transition: transform 0.5s ease;
-  }
-  
-  /* Style for the thumbnail image */
-  .thumb img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.5s ease;
-  }
-  
-  /* Style for the overlay */
-  .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-  
-  /* Style for the overlay on hover */
-  .thumb:hover .overlay {
-    opacity: 1;
-  }
-  
-  /* Style for software thumbnail */
-  .software {
-    background-color: #3498db; /* Example background color */
-  }
-  
-  /* Style for photography thumbnail */
-  .photography {
-    background-color: #2ecc71; /* Example background color */
-  }
-  
-  /* Style for videography thumbnail */
-  .videography {
-    background-color: #f39c12; /* Example background color */
-  }
-  
-  /* Style for DIY thumbnail */
-  .diy {
-    background-color: #e74c3c; /* Example background color */
-  }
-  
+    width: 526px;
+}
+
+div {
+  margin: 69px;
+  text-align: justify;
+}
+
+center {
+  margin: 26px;
+}
+
+button {
+  font-size: 13px;
+  min-width: 269px;
+  padding: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 13px;
+  border-style: ridge;
+  background: #ffeb00e0;
+}
