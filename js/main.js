@@ -155,7 +155,9 @@ setTimeout(() => {
   gsap.to("#diy", { x: endRightX, y: endBottomY, duration: 1, ease: "power2.out" });
   gsap.to("#videography", { x: endLeftX, y: endBottomY, duration: 1, ease: "power2.out" });
 
-  updateModalDimensions(endTopY);  // Pass endTopY to updateModalDimensions
+  updateModalDimensions(endTopY); 
+  formControl(endTopY);
+   // Pass endTopY to updateModalDimensions
 }, 50);  // Small delay to ensure scrollbar removal takes effect
 
   // updateModalDimensions(endTopY);  // Pass endTopY to updateModalDimensions
@@ -179,7 +181,7 @@ function updateModalDimensions(endTopY) {
   modalBox.style.height = `${newHeight}px`;
 
   // Calculate the center of the screen
-  const centerX = (window.innerWidth / 2)+4.4;
+  const centerX = (window.innerWidth / 2)+4.4;//refining positioning
 
   // Calculate the new left position to center the modal box
   const newLeft = centerX - (newWidth / 2);
@@ -196,11 +198,50 @@ function updateModalDimensions(endTopY) {
   modalBox.style.left = `${newLeft}px`;
   modalBox.style.top = `${newTop}px`;
 
+
   
 
   // modalBox.style.display = "block";
 
 }
+function formControl(endTopY){
+  const contactForm = document.querySelector(".formDiv#contactForm");
+  
+  
+
+
+  // const modalBox = document.querySelector(".modalbox .box");
+
+
+  if (!contactForm) return;
+
+
+  const computedStyleForm = window.getComputedStyle(contactForm);
+  const formWidth = parseFloat(computedStyleForm.getPropertyValue("width"));
+  const formHeight = parseFloat(computedStyleForm.getPropertyValue("height"));
+
+ 
+
+  // Calculate the center of the screen
+  const formX = (window.innerWidth / 2)-(formWidth);
+console.log("formX: ", formX);
+console.log("form width:", formWidth +"   form height: ", formHeight);
+  // Use the passed endTopY for the new top position
+  const formY = endTopY+250; 
+  
+  
+ 
+
+
+
+
+    // Update modal position
+  contactForm.style.position = 'absolute';
+  contactForm.style.left = `${formX}px`;
+  contactForm.style.top = `${formY}px`;
+  
+
+} 
 
 
 // Ensure updateDimensionsNoMargins is called on resize and DOM content load
@@ -373,6 +414,7 @@ function scrollToBottom() {
 // Navigation between index.html#thumbs, modalBox(statementContact) & Contact Form
   
 function showForm() {
+  formControl();
   document.getElementById("contactForm").style.display = "block";
 }
 

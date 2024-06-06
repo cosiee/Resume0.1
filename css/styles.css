@@ -501,8 +501,9 @@ dropdown-menu {
   transform: translate(50%, -50%);
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: medium;
-  max-width: 450px;
-  margin: 50px auto;
+  max-width: 400px;
+  min-width: 270px;
+  /* margin: 50px auto; */
   padding: 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 10px;
