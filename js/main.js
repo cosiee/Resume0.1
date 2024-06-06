@@ -160,7 +160,7 @@ setTimeout(() => {
    // Pass endTopY to updateModalDimensions
 }, 50);  // Small delay to ensure scrollbar removal takes effect
 
-  // updateModalDimensions(endTopY);  // Pass endTopY to updateModalDimensions
+ 
 
 }
 
@@ -181,13 +181,13 @@ function updateModalDimensions(endTopY) {
   modalBox.style.height = `${newHeight}px`;
 
   // Calculate the center of the screen
-  const centerX = (window.innerWidth / 2)+4.4;//refining positioning
+  const centerX = (window.innerWidth / 2)+6;//refining positioning
 
   // Calculate the new left position to center the modal box
   const newLeft = centerX - (newWidth / 2);
 
   // Use the passed endTopY for the new top position
-  const newTop = endTopY+20.5; // 22.5 works for alignment on y axis
+  const newTop = endTopY+21.5; // 22.5 works for alignment on y axis
   
  
 
@@ -419,6 +419,7 @@ function showForm() {
 }
 
 function showStatementContact() {
+  updateDimensionsNoMargins();
   document.getElementById("statementContact").style.display = "block";
   document.getElementById("contactForm").style.display = "none";
 }
