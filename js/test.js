@@ -6,21 +6,7 @@ document.getElementById("btn-go-top").onclick = function () {
   }
 }
 
-// // Bind your button click, scroll direction and effect speed
-// document.getElementById("scroll-arrow").onclick = function () {
-// 	// Check if it's really on the floor
-// 	if(document.documentElement.scrollTop <= 50) {
-//     console.log("document.documentElement.scrollHeight: ", document.documentElement.scrollHeight + "   ")
-// 		scrollTo(0, 13000);
-//   }
-// }
 
-// // Check if it's really at the top
-// document.getElementById("btn-go-floor").onclick = function () {
-// 	if(document.documentElement.scrollTop === 0) {
-// 			scrollTo(document.documentElement.scrollHeight-document.documentElement.clientHeight, 4269);
-//     }
-// }
 
 /*--------------------------------------------
  Functions to make scroll with speed control

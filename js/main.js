@@ -378,22 +378,27 @@ function scrollToBottom() {
 }
 // ################################################################
 
-document.addEventListener('DOMContentLoaded', function() {
-  var downButton = document.getElementById('down');
-  console.log('downButton:', downButton); // This will log the downButton element or null
-  
-  if (downButton) {
-      downButton.onclick = function() {
-          console.log('Down arrow clicked!');
-          // Add your scroll logic here, for example:
-          scrollTo(document.documentElement.scrollHeight, 130000);          
-          console.log("0 document.documentElement.scrollHeight:  ", document.documentElement.scrollHeight);
-        };
-  } else {
-      console.log('Element with id "down" not found');
-  }
-});
 
+
+// Check if it's really at the top
+document.getElementById("down").onclick = function () {
+	if(document.documentElement.scrollTop <= 50) {
+
+    console.log("0-document.documentElement.scrollHeight",document.documentElement.scrollHeight + " MINUS document.documentElement.clientHeight", document.documentElement.clientHeight 
+  + "= ", document.documentElement.scrollHeight-document.documentElement.clientHeight + " ", document.documentElement);
+
+    scrollTo(document.documentElement.scrollHeight-document.documentElement.clientHeight, 4269); 
+   
+    
+   
+}
+}
+
+/*--------------------------------------------
+ Functions to make scroll with speed control
+---------------------------------------------*/
+
+// Element or Position to move + Time in ms (milliseconds)
 function scrollTo(element, duration) {
   var e = document.documentElement;
 
@@ -408,35 +413,41 @@ function scrollTo(element, duration) {
   console.log("2 scrollTo   Element: ",e + "  Duration:  ", duration + " From: ", t + " To: ",element);
 }
 
+// Element to move, element or px from, element or px to, time in ms to animate
 function scrollToC(element, from, to, duration) {
+    if (duration <= 0) return;
+    
+    if(typeof from === "object")from=from.offsetTop;
 
-  if (duration <= 0) return;
-  if (typeof from === "object") from = from.offsetTop;
-  console.log("3 scrollToC  from: ", from );
-  if (typeof to === "object") to = to.offsetTop;
-  console.log("4 scrollToC  to: ", to );
+    console.log("3 scrollToC  from: ", from );
 
-  // Choose one effect like easeInOutCirc
-  scrollToX(element, from, to, 0, 1 / duration, 2, easeInOutCirc);
+    if(typeof to === "object")to=to.offsetTop;
 
-  console.log("5 scrollToC: element :   ", element + "  from: ", from + "  To: ",to + " t01: ",0 + " speed: ", 1/duration + " step: ",2 + " motion: ",easeInOutCirc  );
+    console.log("4 scrollToC  to: ", to );
+
+		// Choose one effect like easeInQuart
+    scrollToX(element, from, to, 0, 1/duration, 20, easeInOutCirc);
+
+       console.log("5 scrollToC: element :   ", element + "  from: ", from + "  To: ",to + " t01: ",0 + " speed: ", 1/duration + " step: ",2 + " motion: ",easeInOutCirc  );
+
 }
 
 function scrollToX(element, xFrom, xTo, t01, speed, step, motion) {
-  if (t01 < 0 || t01 > 1 || speed <= 0) {
-      element.scrollTop = xTo;
-      return;
-  }
-  element.scrollTop = xFrom +  xTo * motion(t01);
-  t01 += speed * step;
-
-  setTimeout(function() {
-      scrollToX(element, xFrom, xTo, t01, speed, step, motion);
-  }, step);
-
-  console.log("6 scrollToX: element :   ", element + "  from: ", xFrom + "  To: ",xTo + " t01: ",0 + " speed: ", speed + " step: ", step + " motion: ", motion  );
-
+    if (t01 < 0 || t01 > 1 || speed<= 0) {
+       element.scrollTop = xTo;
+        return;
+    }
+	element.scrollTop = xFrom - (xFrom - xTo) * motion(t01);
+	t01 += speed * step;
+	
+	setTimeout(function() {
+    console.log("6 scrollToX: element :   ", element + "  from: ", xFrom + "  To: ",xTo + " t01: ",0 + " speed: ", speed + " step: ", step + " motion: ", motion  );
+		scrollToX(element, xFrom, xTo, t01, speed, step, motion);
+	}, step);
 }
+
+
+
 
 function easeInOutCirc(t) {
   t /= 0.5;
@@ -466,27 +477,6 @@ function easeInOutCirc(t) {
   
 // }
 
-// function scrollToBottom(duration) {
-//   const start = window.scrollY;
-//   const distance = document.body.scrollHeight - window.innerHeight - start;
-//   const startTime = performance.now();
-
-//   function ease(t) {
-//     return t<0.5 ? 2*t*t : -1+(4-2*t)*t; // Easing function for smooth scrolling
-//   }
-
-//   function scroll(time) {
-//     const elapsed = time - startTime;
-//     const progress = Math.min(elapsed / duration, 1);
-//     window.scrollTo(0, start + distance * ease(progress));
-
-//     if (elapsed < duration) {
-//       requestAnimationFrame(scroll);
-//     }
-//   }
-
-//   requestAnimationFrame(scroll);
-// }
 
 
 
