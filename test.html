@@ -1,72 +1,32 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Online Resume Andrew Costigan</title>
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/test.css">
-
-  <!-- <link rel="stylesheet" href="css/test.css">  -->
-
-
-  <script src="http://code.jquery.com/jquery-1.11.0.min.js" defer></script>
-  <script src="js/test.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
-
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controlled Scroll Action</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        section {
+            height: 100vh;
+            padding: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+        .button-container {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
 </head>
-
-</head>
-
 <body>
-  <center>
-    <button id="btn-go-floor" type="button">Click & Go FAST to the FLOOR!</button>
-  </center>
-  
-  <h1>Pure JavaScript NewsPaper</h1>
-  
-  <img width="636" src="https://miro.medium.com/max/700/0*oYERjNNFMUQoiKJt.png"/>
-  
-  <h2>Scroll Direction & Speed Control with pure JavaScript</h2>
-  
-  <div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lorem mauris, lobortis sit amet ex ac, eleifend vestibulum ante. Mauris tincidunt, nunc interdum porttitor euismod, risus elit consectetur ligula, id fringilla erat sem eu neque. Integer tellus mi, vulputate condimentum ipsum vel, mollis dignissim dui. Nunc non ante odio. Maecenas id purus aliquam, ultrices lorem vel, vulputate tortor. Phasellus ut elementum felis, vel posuere sapien. Curabitur luctus leo quam, a mollis justo dignissim vitae. Integer venenatis elit et justo congue porta ut eu nisi.</p>
-    <p>Fusce quis quam non magna hendrerit tempus ut eget diam. Nunc posuere convallis magna, eu rhoncus leo aliquam id. Integer vestibulum in purus quis semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et metus tortor. Quisque ante elit, tristique quis magna eu, blandit porttitor ex. In suscipit dui at urna ullamcorper finibus. Vivamus porttitor felis lectus, ultricies dignissim ex tristique a. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce venenatis diam et leo feugiat elementum. Aliquam pulvinar lobortis sapien non ultricies. Maecenas aliquam ipsum eget sem congue lobortis.</p>
-    <p>Maecenas feugiat vitae quam quis facilisis. In sit amet nisi ut est ultricies porttitor. Pellentesque tortor erat, congue at odio sit amet, pharetra lacinia mi. Sed ac massa magna. Curabitur rhoncus dignissim ex, at tempus lacus molestie vel. Sed maximus quam in sagittis tincidunt. Aliquam erat volutpat. Nulla at justo sapien. Duis accumsan diam sed tempus mattis. Fusce eu neque venenatis, interdum justo in, blandit ante. Integer ut ante nibh.</p>
-    <p>Etiam iaculis purus sollicitudin ornare eleifend. Duis tincidunt, sem quis dapibus molestie, arcu ipsum tristique diam, commodo suscipit sapien lacus et eros. Ut sed posuere augue. Nam quis elit tristique odio fermentum ultricies id eu turpis. Morbi pellentesque congue nisl sed blandit. Sed sed nibh arcu. Curabitur quis risus at tortor tristique porttitor eget dapibus tellus. Cras elit eros, sollicitudin sed tempus dictum, consequat vel nulla. Nulla ac turpis non erat suscipit semper ut in enim. Nam feugiat erat eu neque semper aliquet. Suspendisse augue dui, venenatis eu metus in, ultricies varius ante. Sed magna ligula, lobortis nec interdum sed, ornare sed risus. Fusce venenatis euismod tortor, non vestibulum ligula placerat sit amet. Nullam placerat risus ut libero semper, vitae lobortis tortor pharetra. Quisque in ex in ante egestas imperdiet a eu ligula.</p>
-    <p>Vivamus sit amet enim at ligula elementum interdum. Integer imperdiet neque luctus, convallis lacus a, consectetur turpis. Aenean rhoncus sodales diam, non elementum augue fermentum sed. Cras eu dui quis dolor finibus laoreet. Vestibulum ut nisl venenatis, imperdiet leo sit amet, mollis nisi. Ut venenatis magna et nisl tincidunt, at porta ante sodales. Nullam dignissim viverra massa eu faucibus. Cras diam nisl, dignissim nec euismod non, iaculis id mauris. Cras sed ex vitae nibh ornare tempor aliquet quis leo.</p>
-    <p>Aliquam a placerat velit, at semper dui. Praesent sed odio in sem ultrices tincidunt et nec nulla. Sed sed auctor neque. Nunc ultricies erat malesuada erat rutrum, placerat convallis lacus luctus. Morbi sit amet ligula quis purus varius commodo posuere euismod sem. Donec vestibulum sollicitudin dui, sit amet dapibus urna consectetur vel. Integer congue dui id elit consectetur, vitae lobortis turpis gravida.</p>
-    <p>Cras ut mauris interdum, pulvinar justo ut, elementum diam. Fusce feugiat dolor malesuada, imperdiet justo ac, convallis magna. Pellentesque et libero ac diam efficitur pulvinar sed vitae erat. Praesent id placerat quam. Praesent consectetur turpis mauris, ut rutrum elit malesuada egestas. Donec volutpat eu augue vel sollicitudin. Sed egestas scelerisque lobortis. Praesent venenatis faucibus risus. Ut semper malesuada nibh vel facilisis. Phasellus lobortis faucibus velit, nec viverra arcu cursus sed. Cras fringilla eros velit, eget molestie velit tempor vel. Aliquam consectetur suscipit orci, ut tristique nibh commodo nec. In sollicitudin dignissim mi vel rutrum. Mauris elementum, dolor quis cursus aliquet, urna sapien pharetra mi, nec egestas ligula risus quis felis. Nam consectetur est in quam gravida dictum. Sed at nisi aliquet, mollis mi eget, gravida neque.</p>
-    <p>Nulla est massa, fringilla vitae consequat in, congue eget purus. Etiam et erat lacus. Nulla interdum, lorem vel eleifend hendrerit, ex elit hendrerit elit, vitae auctor leo nisl vehicula dolor. Nullam porttitor odio turpis, tempus commodo tellus lacinia aliquet. Mauris malesuada ut tellus vel maximus. Quisque ut venenatis nulla. Etiam scelerisque suscipit pretium. Aliquam sed dapibus nibh. Pellentesque varius, enim ut facilisis ultrices, ipsum libero dignissim velit, eu sollicitudin orci tellus rhoncus ante. Nunc sed egestas ex, vel consectetur quam. Nullam at dignissim ante, ut hendrerit purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus suscipit a dolor et tincidunt. Cras eros diam, laoreet in mattis eget, luctus in lorem. Ut eget massa dictum, facilisis libero sit amet, feugiat tortor.</p>
-    <p>Donec vehicula a orci in lacinia. Fusce sed tellus non erat vulputate aliquam et gravida odio. Proin at mauris facilisis ex eleifend ullamcorper. Proin ultrices vehicula eros, quis viverra orci hendrerit ultricies. Aliquam blandit sagittis felis porttitor aliquet. Cras sollicitudin pharetra pulvinar. Quisque et ipsum magna. Aliquam aliquet eros eget ligula dignissim aliquet. Vivamus interdum velit et sem ultricies facilisis. Quisque felis ipsum, laoreet sit amet est ut, molestie tristique tortor. Duis sapien neque, pharetra eget malesuada nec, porta tempor velit. Vestibulum non lobortis erat. Proin non orci augue. Donec ultrices tincidunt dolor, sit amet commodo est.</p>
-    <p>Mauris ut venenatis orci. Maecenas eget justo dui. Vestibulum ut dolor vulputate, tincidunt velit vel, consectetur neque. Sed erat odio, condimentum sed sollicitudin eu, tincidunt quis urna. Pellentesque ut porta sapien. Maecenas semper sagittis mi sed consectetur. Ut lorem erat, lacinia nec tellus id, imperdiet dictum purus. Aenean malesuada vitae eros ut vulputate. Donec sapien metus, sollicitudin ut tellus vitae, condimentum consectetur eros. Integer eu odio leo. Proin ultricies, purus quis dignissim eleifend, lectus odio ullamcorper est, id accumsan nibh risus sed dolor. Fusce non dolor eu ligula mattis dignissim non id risus. Praesent at erat dui. Mauris mattis aliquam pretium.</p>
-    <p>Nulla at turpis in mauris venenatis dapibus. Etiam condimentum egestas congue. Vivamus posuere ornare nunc nec finibus. Ut ultrices neque eu diam aliquam iaculis eu non odio. Morbi tempus purus in felis tempor vestibulum. Morbi sed sapien pretium, maximus magna sed, feugiat felis. Fusce id lectus in tortor convallis porta eget sit amet massa. Fusce est ligula, pulvinar vitae elementum molestie, lobortis a elit. Sed a ligula urna. Integer pellentesque, tellus quis dignissim elementum, dui sem efficitur orci, et interdum massa ante at est. Vestibulum quis pulvinar quam. Curabitur sollicitudin, ipsum ut facilisis gravida, ex massa hendrerit orci, eu accumsan enim diam quis est.</p>
-    <p>In vehicula euismod rutrum. Nulla imperdiet magna vitae est sodales vestibulum. Praesent posuere justo ac mauris auctor ullamcorper. Ut rutrum magna id felis tincidunt dictum. Phasellus rhoncus condimentum enim in consequat. Mauris pulvinar velit libero, a rhoncus metus tincidunt vitae. Etiam efficitur eget diam pellentesque imperdiet. Ut efficitur ipsum a dui cursus egestas. Nulla id lacus pellentesque ex rutrum eleifend. Aliquam tincidunt egestas rhoncus.</p>
-    <p>Donec sit amet diam a arcu dignissim laoreet eu non augue. Nam bibendum eleifend sapien, eget luctus justo feugiat vel. Maecenas vitae consectetur ex, ut tempor urna. Donec elementum dictum laoreet. Curabitur eleifend lacus sed pretium commodo. Mauris arcu tellus, luctus eget pretium fermentum, ornare at libero. Praesent rutrum, elit et eleifend iaculis, ligula sapien fermentum ex, vel accumsan arcu augue vel lorem.</p>
-    <p>Praesent ipsum dolor, auctor ac dolor at, facilisis aliquet tellus. Aenean gravida turpis at varius viverra. Nullam in massa ut mi luctus iaculis. Maecenas porta mauris nibh, ut facilisis sem ultricies eu. Suspendisse vestibulum luctus pellentesque. Duis accumsan risus ut risus iaculis malesuada. Praesent sodales risus at velit elementum, in dictum nunc tempus. Maecenas accumsan tempus enim, quis tristique turpis. Nullam efficitur rutrum tortor a facilisis. Cras pulvinar eu dolor et tincidunt. Sed maximus sodales imperdiet.</p>
-    <p>Pellentesque elementum tellus neque, quis luctus eros placerat nec. Aenean dictum ligula sed leo tempor molestie. Pellentesque rutrum molestie quam, ac maximus odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam eu efficitur nisi. Aliquam condimentum diam vel ligula volutpat, sit amet egestas ipsum condimentum. Aenean volutpat elit quis accumsan laoreet. Mauris elementum ultrices nisl, sit amet pretium elit. Mauris ut purus a ligula convallis auctor.</p>
-    <p>Ut ornare dolor at risus suscipit molestie. Nunc laoreet molestie justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ullamcorper sem tortor, vitae eleifend libero consequat quis. Cras congue dictum risus. Vivamus efficitur ullamcorper cursus. Nam et ipsum quis justo tempor ultricies vel ac sem.</p>
-    <p>Maecenas vel commodo erat. Nullam nec molestie est. Aenean eleifend semper arcu, in consequat augue ultricies sed. Nam vehicula dictum ligula, ac laoreet libero convallis in. Nunc in elit sit amet sem egestas feugiat. Aliquam sagittis consequat dolor. Praesent condimentum varius tortor et tincidunt. Nunc diam felis, varius et elementum non, bibendum at ex. Nam bibendum vulputate justo.</p>
-    <p>Aliquam sed urna ut massa convallis dignissim. Sed gravida imperdiet est, sed scelerisque libero maximus id. Fusce sit amet fermentum magna. Fusce congue, enim vel lacinia molestie, magna sem bibendum diam, vel sodales lectus ipsum in arcu. Vestibulum scelerisque, tellus a facilisis facilisis, ligula arcu bibendum eros, iaculis faucibus ex eros vel magna. Ut non convallis diam, ac venenatis nisi. Nunc vel velit quis diam placerat lacinia. Phasellus laoreet dapibus convallis. Nunc sit amet faucibus purus. Nulla et sapien enim. Vivamus quis sem non quam faucibus vulputate. Nam venenatis urna neque, sed gravida tellus eleifend nec. In tincidunt dui dignissim, auctor ipsum non, varius felis. Fusce vel fringilla nisl, et porttitor velit.</p>
-    <p>Curabitur augue massa, molestie ac nulla id, sagittis condimentum enim. In ullamcorper velit et sapien ornare, at bibendum lorem consectetur. Pellentesque ultrices felis quis dolor luctus, nec sagittis libero suscipit. Nunc consequat leo ut tincidunt pharetra. Sed pellentesque pharetra mauris. Aenean rhoncus massa odio, et porta neque pulvinar quis. Donec pharetra metus eget lorem malesuada molestie. Nam vel cursus lorem. Mauris dui elit, fermentum eu dapibus in, volutpat ut arcu. Nunc a porttitor felis, et tempus ligula.</p>
-    <p>Morbi vestibulum interdum elementum. Pellentesque purus erat, posuere ac finibus id, congue eu nibh. Vestibulum placerat metus non tortor gravida, interdum pellentesque metus tincidunt. In a dui vel lectus ornare laoreet. Etiam varius elit sit amet accumsan semper. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut nec vestibulum est, a hendrerit ligula. Morbi nec congue sem. In at mattis orci, ut efficitur risus. Suspendisse nec luctus purus. Quisque convallis nunc nisl, non posuere dui sodales a.</p>  
-  </div>
-  
-  <h2>Wait finish the scroll effect & Click in the button on the floor</h2>
-  
-  <img width="636" src="https://miro.medium.com/max/700/0*oYERjNNFMUQoiKJt.png"/>
-  
-  <center>
-    <button id="btn-go-top" type="button">Click & Go SLOW to the TOP!</button>
-  </center>
-</body> 
+    <div class="button-container">
+        <button id="down">Scroll Down</button>
+    </div>
+    <section id="section1">Section 1</section>
+    <section id="section2">Section 2</section>
+    <section id="section3">Section 3</section>
+    <script src="js/test.js"></script>
+</body>
+</html>

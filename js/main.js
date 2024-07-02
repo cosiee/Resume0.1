@@ -134,7 +134,7 @@ function getThumbMargin() {
 
 function updateDimensionsNoMargins() {
   hideScrollBar();
-  scrollToBottom();
+  // scrollToBottom();
 
 setTimeout(() => {
   thumbWidth = Math.min(300, window.innerWidth / 6);
@@ -150,10 +150,10 @@ setTimeout(() => {
 
   console.log("Thumb Y EndTopY: ", endTopY);
 
-  gsap.to("#software", { x: endLeftX, y: endTopY, duration: 1, ease: "power2.out" });
-  gsap.to("#photography", { x: endRightX, y: endTopY, duration: 1, ease: "power2.out" });
-  gsap.to("#diy", { x: endRightX, y: endBottomY, duration: 1, ease: "power2.out" });
-  gsap.to("#videography", { x: endLeftX, y: endBottomY, duration: 1, ease: "power2.out" });
+  gsap.to("#software", {scale: 1, x: endLeftX, y: endTopY, duration: 1, ease: "power2.out" });
+  gsap.to("#photography", {scale: 1, x: endRightX, y: endTopY, duration: 1, ease: "power2.out" });
+  gsap.to("#diy", {scale: 1, x: endRightX, y: endBottomY, duration: 1, ease: "power2.out" });
+  gsap.to("#videography", {scale: 1, x: endLeftX, y: endBottomY, duration: 1, ease: "power2.out" });
 
   updateModalDimensions(endTopY); 
   formControl(endTopY);
@@ -369,29 +369,25 @@ function showScrollBar() {
 
 // ####################### ME click scroll-arrow function 
 
-function scrollToBottom() {
-  window.scrollTo({
-    top: document.documentElement.scrollHeight,
-    behavior: 'smooth'
+// function scrollToBottom() {
+//   window.scrollTo({
+//     top: document.documentElement.scrollHeight,
+//     behavior: 'smooth'
 
-  });
-}
+//   });
+// }
 // ################################################################
 
 
 
 // Check if it's really at the top
 document.getElementById("down").onclick = function () {
-	if(document.documentElement.scrollTop <= 50) {
+  if (document.documentElement.scrollTop <= 100) {
+      console.log("%%%%scrollTop: ", document.documentElement.scrollTop);
+      console.log("0-document.documentElement.scrollHeight", document.documentElement.scrollHeight + " MINUS document.documentElement.clientHeight", document.documentElement.clientHeight + "= ", document.documentElement.scrollHeight + " ", document.documentElement);
 
-    console.log("0-document.documentElement.scrollHeight",document.documentElement.scrollHeight + " MINUS document.documentElement.clientHeight", document.documentElement.clientHeight 
-  + "= ", document.documentElement.scrollHeight-document.documentElement.clientHeight + " ", document.documentElement);
-
-    scrollTo(document.documentElement.scrollHeight-document.documentElement.clientHeight, 4269); 
-   
-    
-   
-}
+      scrollTo(document.documentElement.scrollHeight - document.documentElement.clientHeight, 5000); // Adjusted duration to 1000ms for testing
+  }
 }
 
 /*--------------------------------------------
@@ -399,61 +395,29 @@ document.getElementById("down").onclick = function () {
 ---------------------------------------------*/
 
 // Element or Position to move + Time in ms (milliseconds)
-function scrollTo(element, duration) {
-  var e = document.documentElement;
+function scrollTo(to, duration) {
+  const start = document.documentElement.scrollTop;
+  const change = to - start;
+  const startTime = performance.now();
 
-  console.log("1 scrollTo   Element: ",element + "  Duration:  ", duration);
+  function animateScroll(currentTime) {
+      const timeElapsed = currentTime - startTime;
+      const run = easeInOutCirc(timeElapsed, start, change, duration);
+      document.documentElement.scrollTop = run;
 
-  if (e.scrollTop <= 50) {
-      var t = e.scrollTop;
-      --e.scrollTop;
-      e = t + 1 === e.scrollTop-- ? e : document.body;
+      if (timeElapsed < duration) {
+          requestAnimationFrame(animateScroll);
+      }
   }
-  scrollToC(e, e.scrollTop, element, duration);
-  console.log("2 scrollTo   Element: ",e + "  Duration:  ", duration + " From: ", t + " To: ",element);
+
+  requestAnimationFrame(animateScroll);
 }
 
-// Element to move, element or px from, element or px to, time in ms to animate
-function scrollToC(element, from, to, duration) {
-    if (duration <= 0) return;
-    
-    if(typeof from === "object")from=from.offsetTop;
-
-    console.log("3 scrollToC  from: ", from );
-
-    if(typeof to === "object")to=to.offsetTop;
-
-    console.log("4 scrollToC  to: ", to );
-
-		// Choose one effect like easeInQuart
-    scrollToX(element, from, to, 0, 1/duration, 20, easeInOutCirc);
-
-       console.log("5 scrollToC: element :   ", element + "  from: ", from + "  To: ",to + " t01: ",0 + " speed: ", 1/duration + " step: ",2 + " motion: ",easeInOutCirc  );
-
-}
-
-function scrollToX(element, xFrom, xTo, t01, speed, step, motion) {
-    if (t01 < 0 || t01 > 1 || speed<= 0) {
-       element.scrollTop = xTo;
-        return;
-    }
-	element.scrollTop = xFrom - (xFrom - xTo) * motion(t01);
-	t01 += speed * step;
-	
-	setTimeout(function() {
-    console.log("6 scrollToX: element :   ", element + "  from: ", xFrom + "  To: ",xTo + " t01: ",0 + " speed: ", speed + " step: ", step + " motion: ", motion  );
-		scrollToX(element, xFrom, xTo, t01, speed, step, motion);
-	}, step);
-}
-
-
-
-
-function easeInOutCirc(t) {
-  t /= 0.5;
-  if (t < 1) return -(Math.sqrt(1 - t * t) - 1) / 2;
+function easeInOutCirc(t, b, c, d) {
+  t /= d / 2;
+  if (t < 1) return -c / 2 * (Math.sqrt(1 - t * t) - 1) + b;
   t -= 2;
-  return (Math.sqrt(1 - t * t) + 1) / 2;
+  return c / 2 * (Math.sqrt(1 - t * t) + 1) + b;
 }
 
 
