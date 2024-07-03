@@ -99,7 +99,7 @@
           <image class="img-fluid" id="cloud5" xlink:href="assets/cl4.png" width="1200" height="800" />
           <image class="img-fluid" id="cloud1" xlink:href="assets/cl1.png" width="1200" height="850" />
   
-          <text class="lrgtext" fill="#fff">SEE</text>
+          <text class="lrgtext" id="see" fill="#fff" onclick="setupScrollButton('see')">SEE</text>
           <!-- <path class="arrowDown" d="M590,250 L600,260 M610,250 L599,260 M600,260 L601,229 " class="arrow"  stroke="#fff" stroke-width="3"></path> -->
   
           <g mask="url(#m)">
@@ -109,7 +109,7 @@
               <text class="lrgtext" id="me" fill="#162a43">ME</text>
             </a>
             <div class="scroll-arrow" id="down" x="455" y="330"></div>
-  
+  <!--  -->
       </div>
       <div class="container-fluid thumbnails" id="thumbnails">
         <a class="thumbs" href="software.html">
@@ -166,7 +166,7 @@
   
   
       <div class="formDiv" id="contactForm" style="display: none;">
-        <a class="closeForm" onclick="showStatementContact()" href="#statementContact">X</a>
+        <a class="closeForm" onclick="showStatementContact()"" href="#statementContact">X</a>
         <form action="https://formspree.io/f/meqyreww" method="POST">
           <label> Your name:
             <input type="text" id="name" name="name" required>
@@ -177,7 +177,7 @@
           <label>Your message:
             <textarea id="message" name="message" rows="5" required></textarea>
           </label>
-          <button type="submit" id="formButton" onclick="hideForm()">Send</button>
+          <button type="submit" id="formButton" onclick="showThumbs()">Send</button>
       </div>
   
     <!-- </div> -->

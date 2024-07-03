@@ -41,6 +41,11 @@ text.lrgtext {
   text-align: center;
   transform: translate(500px, 22vh);
 }
+#lrgtext:hover {
+  cursor: pointer;
+  /* text-shadow: 2px 2px 2px #162a43; */
+}
+
 
 text.lrgtext#me {
   display: inline-block;
@@ -51,7 +56,7 @@ text.lrgtext#me {
 
 #me:hover {
   cursor: pointer;
-  text-shadow: 2px 2px 2px #162a43;
+  text-shadow: 1px 1px 1px #162a43;
 }
 
 #meshaker {

@@ -148,7 +148,7 @@ setTimeout(() => {
   endRightX = screenWidthHalved - marginWidth;
   endBottomY = (window.innerHeight * 1.25) + (widthThumb + marginWidth);
 
-  console.log("Thumb Y EndTopY: ", endTopY);
+  // console.log("Thumb Y EndTopY: ", endTopY);
 
   gsap.to("#software", {scale: 1, x: endLeftX, y: endTopY, duration: 1, ease: "power2.out" });
   gsap.to("#photography", {scale: 1, x: endRightX, y: endTopY, duration: 1, ease: "power2.out" });
@@ -224,8 +224,8 @@ function formControl(endTopY){
 
   // Calculate the center of the screen
   const formX = (window.innerWidth / 2)-(formWidth);
-console.log("formX: ", formX);
-console.log("form width:", formWidth +"   form height: ", formHeight);
+// console.log("formX: ", formX);
+// console.log("form width:", formWidth +"   form height: ", formHeight);
   // Use the passed endTopY for the new top position
   const formY = endTopY+250; 
   
@@ -367,28 +367,45 @@ function showScrollBar() {
 
 
 
-// ####################### ME click scroll-arrow function 
+// ####################### see/me/arrow click scroll-down function 
 
-// function scrollToBottom() {
-//   window.scrollTo({
-//     top: document.documentElement.scrollHeight,
-//     behavior: 'smooth'
 
-//   });
-// }
+
+const downScroll = document.querySelector("#down");
+const seeScroll = document.querySelector("#see");
+
+
+downScroll.addEventListener("click", scrollDown );
+seeScroll.addEventListener("click", scrollDown );
+meElement.addEventListener("click",scrollToBottom);
+
+// ################################################################
+
+
+function scrollToBottom() {
+ 
+console.log("window Height: " + document.documentElement.scrollHeight - document.documentElement.clientHeight)
+}
+
+
+
+
+
 // ################################################################
 
 
 
-// Check if it's really at the top
-document.getElementById("down").onclick = function () {
-  if (document.documentElement.scrollTop <= 100) {
-      console.log("%%%%scrollTop: ", document.documentElement.scrollTop);
-      console.log("0-document.documentElement.scrollHeight", document.documentElement.scrollHeight + " MINUS document.documentElement.clientHeight", document.documentElement.clientHeight + "= ", document.documentElement.scrollHeight + " ", document.documentElement);
 
-      scrollTo(document.documentElement.scrollHeight - document.documentElement.clientHeight, 5000); // Adjusted duration to 1000ms for testing
+function scrollDown() {
+  // document.getElementById(buttonId).onclick = function () {
+      if (document.documentElement.scrollTop <= 500) {
+          // const targetElement = document.getElementById(scrollToId);
+          // const scrollPosition = targetElement.offsetTop - document.documentElement.clientHeight;
+          scrollTo(document.documentElement.scrollHeight - document.documentElement.clientHeight, 4000);
+      // }
   }
 }
+
 
 /*--------------------------------------------
  Functions to make scroll with speed control
@@ -429,25 +446,9 @@ function easeInOutCirc(t, b, c, d) {
 
 
 
-// ################################################################
-
-
-// function scrollToBottom() {
-//   document.querySelectorAll("#me").forEach((btn, index) => {
-//     btn.addEventListener("click", () => {
-//       gsap.to(window, {duration: 2, scrollTo:{y:"#bottom" + (index + 1), offsetY:70}});
-//     });
-//   });
-  
-// }
-
-
-
-
-
-
 // Navigation between index.html#thumbs, modalBox(statementContact) & Contact Form
-  
+ 
+
 function showForm() {
   formControl();
   document.getElementById("contactForm").style.display = "block";
@@ -460,15 +461,16 @@ function showStatementContact() {
 }
 
 function centreThumbs(){
-  gsap.to("#software", { x: endLeftX, y: endTopY, duration: 1, ease: "power2.out" });
-  gsap.to("#photography", { x: endRightX, y: endTopY, duration: 1, ease: "power2.out" });
-  gsap.to("#diy", { x: endRightX, y: endBottomY, duration: 1, ease: "power2.out" });
-  gsap.to("#videography", { x: endLeftX, y: endBottomY, duration: 1, ease: "power2.out" });
+  gsap.to("#software", { scale: 1, x: endLeftX, y: endTopY, duration: 1, ease: "power2.out" });
+  gsap.to("#photography", { scale: 1, x: endRightX, y: endTopY, duration: 1, ease: "power2.out" });
+  gsap.to("#diy", { scale: 1, x: endRightX, y: endBottomY, duration: 1, ease: "power2.out" });
+  gsap.to("#videography", { scale: 1, x: endLeftX, y: endBottomY, duration: 1, ease: "power2.out" });
 }
 
 function showThumbs() {
   document.getElementById("statementContact").style.display = "none";
   document.getElementById("thumbnails").style.display = "block";
+  showScrollBar();
 }
 
 function hideForm() {
@@ -476,18 +478,17 @@ function hideForm() {
   document.getElementById("statementContact").style.display = "block";
 }
 
-function hideForm2() {
-  document.getElementById("contactForm").style.display = "none";
-  document.getElementById("#thumbs").style.display = "block";
+function hideForm2() {hideForm()
+  
 }
-
+hideForm()
 function submitForm() {
   hideForm();
 }
 
 
   // ################ Begining of MeText Animations ############################################
-  // const meElement = document.getElementById("me");
+ 
   const meShaker = document.getElementById("meshaker");
   let hoverAnimationInterval;
   let isHoverWiggling = false;
