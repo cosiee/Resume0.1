@@ -3,30 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controlled Scroll Action</title>
+    <title>Scroll to Bottom Example</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-        }
-        section {
-            height: 100vh;
-            padding: 20px;
-            border-bottom: 1px solid #ccc;
-        }
-        .button-container {
-            position: fixed;
-            top: 10px;
-            right: 10px;
+            height: 3000px; /* Ensure the body is tall enough to scroll */
+            background: linear-gradient(to bottom, #fff, #ccc);
         }
     </style>
 </head>
 <body>
-    <div class="button-container">
-        <button id="down">Scroll Down</button>
-    </div>
-    <section id="section1">Section 1</section>
-    <section id="section2">Section 2</section>
-    <section id="section3">Section 3</section>
-    <script src="js/test.js"></script>
+    <button onclick="scrollToBottom()">Scroll to Bottom</button>
+
+    <script>
+        function scrollToBottom() {
+            const scrollHeight = Math.max(
+                document.body.scrollHeight,
+                document.documentElement.scrollHeight,
+                document.body.offsetHeight,
+                document.documentElement.offsetHeight,
+                document.body.clientHeight,
+                document.documentElement.clientHeight
+            );
+
+            window.scrollTo({
+                top: scrollHeight,
+                behavior: 'smooth'  // Optional: for smooth scrolling
+            });
+
+            console.log("Scroll height: " + scrollHeight);
+        }
+    </script>
 </body>
 </html>

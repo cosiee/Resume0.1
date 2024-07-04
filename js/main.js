@@ -321,7 +321,7 @@ function updateMeElement() {
       meElement.style.display = "block"; // Enable #me
   
       // Re-enable event listeners if necessary
-      meElement.addEventListener('click', hideScrollBar);
+      meElement.addEventListener('click', hideScrollBar, scrollToBottom);
     }
   } else {
     if (meElement.style.display !== "none") {
@@ -377,15 +377,29 @@ const seeScroll = document.querySelector("#see");
 
 downScroll.addEventListener("click", scrollDown );
 seeScroll.addEventListener("click", scrollDown );
-meElement.addEventListener("click",scrollToBottom);
+// meElement.addEventListener("click",scrollToBottom);
 
 // ################################################################
 
 
 function scrollToBottom() {
- 
-console.log("window Height: " + document.documentElement.scrollHeight - document.documentElement.clientHeight)
+  const scrollHeight = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight,
+      document.body.clientHeight,
+      document.documentElement.clientHeight
+  );
+
+  window.scrollTo({
+      top: scrollHeight,
+      behavior: 'smooth'  // Optional: for smooth scrolling
+  });
+
+  console.log("Scroll height: " + scrollHeight);
 }
+
 
 
 
@@ -478,10 +492,11 @@ function hideForm() {
   document.getElementById("statementContact").style.display = "block";
 }
 
-function hideForm2() {hideForm()
+function hideForm2() {
+  hideForm()
   
 }
-hideForm()
+
 function submitForm() {
   hideForm();
 }
