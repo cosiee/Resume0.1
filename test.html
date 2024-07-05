@@ -3,18 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scroll to Bottom Example</title>
+    <title>Scroll Test</title>
     <style>
         body {
-            height: 3000px; /* Ensure the body is tall enough to scroll */
-            background: linear-gradient(to bottom, #fff, #ccc);
+            height: 3000px; /* Simulating a long page */
+        }
+        #me {
+            display: block; /* Ensure the element is visible for testing */
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background-color: #ff0;
+            padding: 10px;
         }
     </style>
 </head>
 <body>
-    <button onclick="scrollToBottom()">Scroll to Bottom</button>
-
+    <div id="down" class="scroll-arrow">Scroll Down</div>
+    <div id="see" class="lrgtext">SEE</div>
+    <div id="me" class="lrgtext">ME</div>
+    
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const downScroll = document.querySelector("#down");
+            const seeScroll = document.querySelector("#see");
+            const meElement = document.querySelector("#me");
+        
+            // Logging the element selections
+            console.log('downScroll:', downScroll);
+            console.log('seeScroll:', seeScroll);
+            console.log('meElement:', meElement);
+        
+            // Adding event listeners
+            if (downScroll) {
+                downScroll.addEventListener("click", scrollDown);
+            }
+            if (seeScroll) {
+                seeScroll.addEventListener("click", scrollDown);
+            }
+            if (meElement) {
+                meElement.addEventListener("click", scrollToBottom);
+            }
+        });
+        
         function scrollToBottom() {
             const scrollHeight = Math.max(
                 document.body.scrollHeight,
@@ -24,14 +55,56 @@
                 document.body.clientHeight,
                 document.documentElement.clientHeight
             );
-
+        
+            // Logging the scroll height to debug
+            console.log("scrollHeight: " + scrollHeight);
+        
+            // Scroll to the bottom
             window.scrollTo({
                 top: scrollHeight,
-                behavior: 'smooth'  // Optional: for smooth scrolling
+                behavior: "smooth" // Optional: for smooth scrolling
             });
-
-            console.log("Scroll height: " + scrollHeight);
+        
+            // Confirm the action in the console
+            console.log("Scrolling to height: " + scrollHeight);
         }
+        
+        function scrollDown() {
+            console.log("scrollDown function called");
+            if (document.documentElement.scrollTop <= 500) {
+                scrollTo(
+                    document.documentElement.scrollHeight - document.documentElement.clientHeight,
+                    4000
+                );
+            }
+        }
+        
+        // Element or Position to move + Time in ms (milliseconds)
+        function scrollTo(to, duration) {
+            console.log("scrollTo function called with to: " + to + ", duration: " + duration);
+            const start = document.documentElement.scrollTop;
+            const change = to - start;
+            const startTime = performance.now();
+        
+            function animateScroll(currentTime) {
+                const timeElapsed = currentTime - startTime;
+                const run = easeInOutCirc(timeElapsed, start, change, duration);
+                document.documentElement.scrollTop = run;
+        
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animateScroll);
+                }
+            }
+            requestAnimationFrame(animateScroll);
+        }
+        
+        function easeInOutCirc(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return (-c / 2) * (Math.sqrt(1 - t * t) - 1) + b;
+            t -= 2;
+            return (c / 2) * (Math.sqrt(1 - t * t) + 1) + b;
+        }
+        
     </script>
 </body>
 </html>

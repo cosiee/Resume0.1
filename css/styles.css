@@ -41,7 +41,7 @@ text.lrgtext {
   text-align: center;
   transform: translate(500px, 22vh);
 }
-#lrgtext:hover {
+.lrgtext:hover {
   cursor: pointer;
   /* text-shadow: 2px 2px 2px #162a43; */
 }
@@ -64,7 +64,7 @@ text.lrgtext#me {
   z-index: 2;
   width: 100%;
   height: 99px;
-  transform: translate(0px, 13.5vh);
+  transform: translate(0px, 12vh);
   opacity: 0;
 }
 
@@ -328,8 +328,11 @@ dropdown-menu {
   position: absolute;
   top: 0;
   left: 0;
+  display: block;
   width: 100%;
   height: 100%;
+  
+  
   background-repeat: no-repeat;
   background-position: center;
   opacity: 0;
@@ -356,25 +359,7 @@ dropdown-menu {
 
 /* Modal Statement/Contact Base Styles ####################################### */
 
-/* .modalbox .box {
- 
- 
-  position: absolute; 
-  transition: transform 0.3s;
-  
-  right: 50%;
-  transform: translate(48%, 1vh);
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
-  background-color: rgba(0, 0, 0, 0.6);
-  margin: auto;
-  min-width: 210px;
-  padding: 45px;
-  width: 500px;
-  height: 500px;
-  overflow: hidden;
-  border-radius: 12%;
-  margin-top: 250px;
-} */
+
 
 .modalbox .box {
   position: absolute;
@@ -544,7 +529,7 @@ textarea {
   border: none;
   border-radius: 4px;
   background-color: rgba(251, 248, 248, 0.5);
-  color: #070707f;
+  color: #07070f;
 }
 
 #formButton {
@@ -595,6 +580,8 @@ textarea {
   margin-top: 5px;
 }
 
+
+
 /*##################################  Base Styles Contact Form ###################################*/
 
 /* X-Small devices (portrait phones, less than 576px)
@@ -625,6 +612,24 @@ textarea {
     height: calc(var(--thumb-height) * 0.5);
     /* Adjust height proportionally for smaller screens */
   }
+  .overlay {
+  
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+   
+  }
+
+  #software:hover .overlay,
+#photography:hover .overlay,
+#videography:hover .overlay,
+#diy:hover .overlay {
+  width: 100%;
+    height: 100%;
+  opacity: 0.7;
+}
+
 }
 
 @media (min-width: 576px) {
@@ -650,6 +655,7 @@ textarea {
     height: calc(var(--thumb-height) * 0.7);
     /* Adjust height proportionally for smaller screens */
   }
+
 }
 
 /*  Medium devices (tablets, 768px and up) 
