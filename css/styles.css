@@ -331,12 +331,11 @@ dropdown-menu {
   display: block;
   width: 100%;
   height: 100%;
-  
-  
   background-repeat: no-repeat;
   background-position: center;
   opacity: 0;
   transition: opacity 0.6s ease;
+  background-size: contain;
 }
 
 #software .overlay {
@@ -599,11 +598,10 @@ textarea {
 
   text.lrgtext {
     font-size: 150px;
-    transform: translate(450px, 32%);
+    transform: translate(500px, 22vh);
   }
-
   .lrgtext#me {
-    transform: translate(470px, 32%);
+    transform: translate(520px, 22vh);
   }
 
   .thumbShape {
@@ -612,23 +610,7 @@ textarea {
     height: calc(var(--thumb-height) * 0.5);
     /* Adjust height proportionally for smaller screens */
   }
-  .overlay {
   
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-   
-  }
-
-  #software:hover .overlay,
-#photography:hover .overlay,
-#videography:hover .overlay,
-#diy:hover .overlay {
-  width: 100%;
-    height: 100%;
-  opacity: 0.7;
-}
 
 }
 
@@ -670,11 +652,11 @@ textarea {
   }
 
   text.lrgtext {
-    transform: translate(500px, 20vh);
+    transform: translate(500px, 22vh);
   }
 
   .lrgtext#me {
-    transform: translate(520px, 20vh);
+    transform: translate(520px, 22vh);
   }
 
   .thumbShape {
@@ -708,11 +690,11 @@ textarea {
   }
 
   text.lrgtext {
-    transform: translate(500px, 20vh);
+    transform: translate(500px, 22vh);
   }
 
   .lrgtext#me {
-    transform: translate(520px, 20vh);
+    transform: translate(520px, 22vh);
   }
 }
 

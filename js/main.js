@@ -240,8 +240,8 @@ function getThumbMargin() {
 }
 
 function updateDimensionsNoMargins() {
-  scrollToBottom();
-  hideScrollBar();
+  
+  
   
   setTimeout(() => {
     thumbWidth = Math.min(300, window.innerWidth / 6);
@@ -433,14 +433,14 @@ function updateMeElement() {
       meElement.style.display = "block"; // Enable #me
 
       // Re-enable event listeners if necessary
-      meElement.addEventListener("click", updateDimensionsNoMargins);
+      meElement.addEventListener("click", hideScrollBar, scrollToBottom, updateDimensionsNoMargins);
     }
   } else {
     if (meElement.style.display !== "none") {
       meElement.style.display = "none"; // Disable #me
 
       // Disable or remove event listeners
-      meElement.removeEventListener("click", updateDimensionsNoMargins);
+      meElement.removeEventListener("click", hideScrollBar, scrollToBottom, updateDimensionsNoMargins);
     }
   }
 }
@@ -594,9 +594,11 @@ function centreThumbs() {
 }
 
 function showThumbs() {
+  document.getElementById("contactForm").style.display = "none";
   document.getElementById("statementContact").style.display = "none";
   document.getElementById("thumbnails").style.display = "block";
   showScrollBar();
+  updateDimensions();
 }
 
 function hideForm() {
@@ -605,13 +607,13 @@ function hideForm() {
   
 }
 
-function hideForm2() {
-  hideForm();
-}
+// function hideForm2() {
+//   hideForm();
+// }
 
-function submitForm() {
-  hideForm();
-}
+// function submitForm() {
+//   hideForm();
+// }
 
 // ################ Begining of MeText Animations ############################################
 
@@ -642,7 +644,7 @@ function stopHoverWiggle() {
   clearInterval(hoverAnimationInterval);
   isHoverWiggling = false;
   // console.log("Hover wiggle animation stopped.");
-  meElement.style.transform = `translate(520px, 20vh) rotate(0deg)`;
+  meElement.style.transform = `translate(520px, 22vh) rotate(0deg)`;
 }
 
 // Function to start the hover wiggle animation
@@ -671,7 +673,7 @@ function hoverWiggle() {
   if (angle === 1 || angle === -1) {
     angle *= -1; // Reverse direction when angle reaches 1 or -1
   }
-  meElement.style.transform = `translate(520px, 20vh) rotate(${angle}deg)`; // Apply the transformation
+  meElement.style.transform = `translate(520px, 22vh) rotate(${angle}deg)`; // Apply the transformation
 }
 
 // Event listener for mouse enter and mouse leave to handle hover
@@ -693,7 +695,7 @@ function stopIdleWiggle() {
     isIdleWiggling = false;
 
     // Reset meElement rotation to 0 degrees
-    meElement.style.transform = `translate(520px, 20vh) rotate(0deg)`;
+    meElement.style.transform = `translate(520px, 22vh) rotate(0deg)`;
   }
 }
 
@@ -720,7 +722,7 @@ function wiggle() {
     if (angle === 1 || angle === -1) {
       direction *= -1;
     }
-    meElement.style.transform = `translate(520px, 20vh)rotate(${angle}deg)`; // Apply the transformation
+    meElement.style.transform = `translate(520px, 22vh)rotate(${angle}deg)`; // Apply the transformation
   }
 
   // Start the animation interval
@@ -731,12 +733,12 @@ function wiggle() {
 startIdleWiggle();
 
 meElement.addEventListener("mouseenter", function () {
-  meElement.style.transform = `translate(520px, 20vh) scale(1.015)`;
+  meElement.style.transform = `translate(520px, 22vh) scale(1.015)`;
   // meElement.style.shadowColor = grey;
 });
 
 meElement.addEventListener("mouseleave", function () {
-  meElement.style.transform = `translate(520px, 20vh) scale(1)`;
+  meElement.style.transform = `translate(520px, 22vh) scale(1)`;
 });
 
 // Beginning of Handling hover on Thumbs Triggering Navbar elements ###############################
