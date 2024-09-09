@@ -401,7 +401,7 @@ gsap
 
 // #############################################################################################
 
-const thresholdScale = 1.5589;
+ const thresholdScale = 1.5; //set to the lower scale value, to allow for the crossing-fading effect
 
 function getScaleValue(element) {
   if (!element) {

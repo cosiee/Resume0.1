@@ -88,14 +88,14 @@ body {
   height: 100%;
 }
 
-.container {
+/* .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-}
+} */
 
 /* suggested rules to mitigate modal positioning issues #########################################*/
 /* ************************* Arrows animated SECTION*************************** */

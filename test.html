@@ -1,110 +1,189 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scroll Test</title>
-    <style>
-        body {
-            height: 3000px; /* Simulating a long page */
-        }
-        #me {
-            display: block; /* Ensure the element is visible for testing */
-            position: fixed;
-            bottom: 10px;
-            left: 10px;
-            background-color: #ff0;
-            padding: 10px;
-        }
-    </style>
-</head>
-<body>
-    <div id="down" class="scroll-arrow">Scroll Down</div>
-    <div id="see" class="lrgtext">SEE</div>
-    <div id="me" class="lrgtext">ME</div>
+<!-- bootstraping for thumbnails and statement needed. 
+  Scrolling needs to disabled and enabled in javascript on buttons around statement -->
+
+
+
+  <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+    <meta charset="UTF-8" />
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Resume Andrew Costigan</title>
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+  
+    <!-- <link rel="stylesheet" href="css/test.css">  -->
+  
+  
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js" defer></script>
+    <script src="js/test.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+  
+  
+  
+  </head>
+  
+  </head>
+  
+  <body>
+    <div class="scrollDist"></div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+        <div class="container-fluid" id="navbar">
+        
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink softwareLink" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Software </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="#">html</a></li>
+                <li><a class="dropdown-item" href="#">css</a></li>
+                <li><a class="dropdown-item" href="#">javascript</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="photographyLink" href="photography.html">Photography</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="videographyLink" href="videography.html">Videography</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="diyLink" href="diy.html">Diy</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="contactLink"
+                onclick="hideScrollBar(); showStatementContact(); showForm()">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  
+  
+    <div class="svg-container">
+  
+      <div class="container-fluid" id="mountains">
+  
+        <svg viewBox="0 0 1200 800" id="svg" xmlns="http://www.w3.org/2000/svg">
+          <mask id="m">
+            <g class="img-fluid" id="cloud1">
+              <rect fill="#fff" width="100%" height="800" y="1200" />
+              <image xlink:href="assets/cl1.png" width="1200" height="800" />
+  
+            </g>
+          </mask>
+  
+          <image class="img-fluid" id="sky" xlink:href="/assets/sky.jpg" width="1200" height="800" />
+          <image class="img-fluid" id="mountBg" xlink:href="assets/mtbg.png" width="1200" height="800" />
+          <image class="img-fluid" id="cloud2" xlink:href="assets/cl2.png" width="1200" height="800" />
+          <image class="img-fluid" id="mountBg2" xlink:href="assets/mtbg2.png" width="1200" height="800" />
+          <image class="img-fluid" id="cloud3" xlink:href="assets/cl4.png" width="1200" height="800" />
+          <image class="img-fluid" id="mountMg" xlink:href="assets/mtmg.png" width="1200" height="800" />
+          <image class="img-fluid" id="cloud4" xlink:href="assets/cl4.png" width="1200" height="800" />
+          <image class="img-fluid" id="mountMgF" xlink:href="assets/mtmfg.png" width="1200" height="800" />
+          <image class="img-fluid" id="mountFg" xlink:href="assets/mtfg.png" width="1200" height="800" />
+          <image class="img-fluid" id="cloud5" xlink:href="assets/cl4.png" width="1200" height="800" />
+          <image class="img-fluid" id="cloud1" xlink:href="assets/cl1.png" width="1200" height="850" />
+  
+          <text class="lrgtext" id="see" fill="#fff" onclick="scrollToBottom()">SEE</text>
+  
+          <g mask="url(#m)">
+            <rect fill="#fff" width="100%" height="100%" />
+            <rect id="meshaker" />
+            <a class="meLink" onclick="showStatementContact(); ">
+              <text class="lrgtext" id="me" fill="#162a43">ME</text>
+            </a>
+            <div class="scroll-arrow" id="down" x="455" y="330" onclick="scrollToBottom()"></div>
+          </g>    
+      </div>
+      <div class="container-fluid thumbnails" id="thumbnails">
+        <a class="thumbs" href="software.html">
+          <div class="thumbShape thumbs" id="software">
+            <div class="overlay"></div>
+          </div>
+        </a>
+  
+        <a class="thumbs" href="photography.html">
+          <div class="thumbShape thumbs" id="photography">
+            <div class="overlay"></div>
+  
+          </div>
+        </a>
+  
+        <a class="thumbs" href="videography.html">
+          <div class="thumbShape thumbs" id="videography">
+            <div class="overlay"></div>
+          </div>
+        </a>
+  
+        <a class="thumbs" href="diy.html">
+          <div class="thumbShape thumbs" id="diy">
+            <div class="overlay"></div>
+          </div>
+        </a>
+  
+      </div>
+      </svg>
+    </div>    
+      <div class="modalbox" id="statementContact" style="display: none;">
+          <div class="box">
+            <a class="close" onclick="showScrollBar(); showThumbs(); updateDimensions()">X</a>
+            <p class="title">Welcome</p>
+            <div class="content">
+              <br>
+              <p>Thank you for taking the time to have a look at this site!</p>
+              <br>
+              <p>To continue to look at this site, click the 'X' on the top
+                right of this message.</p>
+              <br>
+              <p>To get in touch, click the signature below.</p>
+              <br>
+              <p>All the Best!</p>
+              <br>
+              <a class="sig" onclick="showForm();">
     
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const downScroll = document.querySelector("#down");
-            const seeScroll = document.querySelector("#see");
-            const meElement = document.querySelector("#me");
-        
-            // Logging the element selections
-            console.log('downScroll:', downScroll);
-            console.log('seeScroll:', seeScroll);
-            console.log('meElement:', meElement);
-        
-            // Adding event listeners
-            if (downScroll) {
-                downScroll.addEventListener("click", scrollDown);
-            }
-            if (seeScroll) {
-                seeScroll.addEventListener("click", scrollDown);
-            }
-            if (meElement) {
-                meElement.addEventListener("click", scrollToBottom);
-            }
-        });
-        
-        function scrollToBottom() {
-            const scrollHeight = Math.max(
-                document.body.scrollHeight,
-                document.documentElement.scrollHeight,
-                document.body.offsetHeight,
-                document.documentElement.offsetHeight,
-                document.body.clientHeight,
-                document.documentElement.clientHeight
-            );
-        
-            // Logging the scroll height to debug
-            console.log("scrollHeight: " + scrollHeight);
-        
-            // Scroll to the bottom
-            window.scrollTo({
-                top: scrollHeight,
-                behavior: "smooth" // Optional: for smooth scrolling
-            });
-        
-            // Confirm the action in the console
-            console.log("Scrolling to height: " + scrollHeight);
-        }
-        
-        function scrollDown() {
-            console.log("scrollDown function called");
-            if (document.documentElement.scrollTop <= 500) {
-                scrollTo(
-                    document.documentElement.scrollHeight - document.documentElement.clientHeight,
-                    4000
-                );
-            }
-        }
-        
-        // Element or Position to move + Time in ms (milliseconds)
-        function scrollTo(to, duration) {
-            console.log("scrollTo function called with to: " + to + ", duration: " + duration);
-            const start = document.documentElement.scrollTop;
-            const change = to - start;
-            const startTime = performance.now();
-        
-            function animateScroll(currentTime) {
-                const timeElapsed = currentTime - startTime;
-                const run = easeInOutCirc(timeElapsed, start, change, duration);
-                document.documentElement.scrollTop = run;
-        
-                if (timeElapsed < duration) {
-                    requestAnimationFrame(animateScroll);
-                }
-            }
-            requestAnimationFrame(animateScroll);
-        }
-        
-        function easeInOutCirc(t, b, c, d) {
-            t /= d / 2;
-            if (t < 1) return (-c / 2) * (Math.sqrt(1 - t * t) - 1) + b;
-            t -= 2;
-            return (c / 2) * (Math.sqrt(1 - t * t) + 1) + b;
-        }
-        
-    </script>
-</body>
-</html>
+                <img class="sig" src="assets/sigw.png">
+              </a>
+            </div>
+          </div>
+      </div>
+  
+  
+  
+      <div class="formDiv" id="contactForm" style="display: none;">
+        <a class="closeForm" onclick="showThumbs()" href="#statementContact">X</a>
+        <form action="https://formspree.io/f/meqyreww" method="POST">
+          <label> Your name:
+            <input type="text" id="name" name="name" required>
+          </label>
+          <label> Your email:
+            <input type="text" id="email" name="email" required>
+          </label>
+          <label>Your message:
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </label>
+          <button type="submit" id="formButton" onclick="showThumbs()">Send</button>
+      </div>
+  
+    <!-- </div> -->
+  
+    <!-- <script src="js/test.js" defer></script> -->
+  
+    
+  </body>
+  
+  </html>
