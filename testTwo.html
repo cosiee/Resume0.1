@@ -33,30 +33,33 @@
             // Reset scroll position to the top before starting animation
             window.scrollTo(0, 0); // Force scroll to top
 
-            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            // Add a small delay before calculating maxScroll to ensure everything is loaded
+            setTimeout(() => {
+                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 
-            if (maxScroll <= 0) {
-                console.log("No scrollable space");
-                return; // Exit if there's no scrollable space
-            }
+                if (maxScroll <= 0) {
+                    console.log("No scrollable space");
+                    return; // Exit if there's no scrollable space
+                }
 
-            console.log("autoScroll-maxScroll", maxScroll);
-            console.log("autoScroll1");
+                console.log("autoScroll-maxScroll", maxScroll);
+                console.log("autoScroll1");
 
-            // Automatically scroll to the bottom over 4 seconds on page load
-            gsap.to(document.documentElement, { // Explicitly target document root for scrolling
-                scrollTo: {
-                    y: maxScroll, // Scroll to the bottom of the page dynamically
-                    autoKill: true // Prevent other scroll-related issues
-                },
-                duration: 5, // Scroll over # seconds
-                ease: "power2.inOut", // Easing function for smooth scrolling
-                onStart: () => console.log('Auto-scrolling started'),
-                onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
-                onComplete: () => console.log('Auto-scrolling completed')
-            });
+                // Automatically scroll to the bottom over 4 seconds on page load
+                gsap.to(document.documentElement, { // Explicitly target document root for scrolling
+                    scrollTo: {
+                        y: maxScroll, // Scroll to the bottom of the page dynamically
+                        autoKill: false // Disable autoKill to prevent interruptions
+                    },
+                    duration: 5, // Scroll over 5 seconds
+                    ease: "power2.inOut", // Easing function for smooth scrolling
+                    onStart: () => console.log('Auto-scrolling started'),
+                    onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
+                    onComplete: () => console.log('Auto-scrolling completed')
+                });
 
-            console.log("autoScroll2");
+                console.log("autoScroll2");
+            }, 200); // Add a delay of 200ms before starting the scroll to let the layout settle
         }
 
         window.addEventListener('load', function () {
