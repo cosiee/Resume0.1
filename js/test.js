@@ -98,12 +98,56 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // GSAP timeline for scroll-triggered animations
+        // Disable automatic scroll restoration on page reload
+        window.history.scrollRestoration = 'manual';
+
+        function autoScroll() {
+            // Reset scroll position to the top before starting animation
+            window.scrollTo(0, 0); // Force scroll to top
+
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+            if (maxScroll <= 0) {
+                console.log("No scrollable space");
+                return; // Exit if there's no scrollable space
+            }
+
+            console.log("autoScroll-maxScroll", maxScroll);
+            console.log("autoScroll1");
+
+            // Automatically scroll to the bottom over 4 seconds on page load
+            gsap.to(document.documentElement, { // Explicitly target document root for scrolling
+                scrollTo: {
+                    y: maxScroll, // Scroll to the bottom of the page dynamically
+                    autoKill: true // Prevent other scroll-related issues
+                },
+                duration: 6.5, // Scroll over # seconds
+                ease: "power2.inOut", // Easing function for smooth scrolling
+                onStart: () => console.log('Auto-scrolling started'),
+                onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
+                onComplete: () => console.log('Auto-scrolling completed')
+            });
+
+            console.log("autoScroll2");
+        }
+
+        window.addEventListener('load', function () {
+            console.log("load-event");
+            autoScroll(); // Run the scroll after the page has fully loaded
+        });
+
+
+
+
+
+function mountainSkyAni(){
 gsap
   .timeline({
     scrollTrigger: {
       trigger: ".scrollDist",
       start: "top top",
       end: "bottom bottom",
+      duration: 4,
       scrub: 1,
     },
   })
@@ -158,7 +202,7 @@ gsap
     { scale: 2, x: -500, y: -690 },
     0
   );
-
+}
 // ###################################################################################
 
 // Thumbnails positioning based on window size
@@ -196,7 +240,10 @@ function updateDimensions() {
   endTopY = window.innerHeight * 1.25;
   endRightX = screenWidthHalved;
   endBottomY = window.innerHeight * 1.25 + totalThumbWidth;
+  spaceoutThumbs();
+}
 
+function spaceoutThumbs(){
   gsap.to("#software", {
     x: endLeftX,
     y: endTopY,
@@ -221,6 +268,7 @@ function updateDimensions() {
     duration: 1,
     ease: "power2.out",
   });
+
 }
 
 function getThumbWidthWithoutMargin() {
@@ -240,9 +288,7 @@ function getThumbMargin() {
 }
 
 function updateDimensionsNoMargins() {
-  
-  
-  
+
   setTimeout(() => {
     thumbWidth = Math.min(300, window.innerWidth / 6);
     screenWidthHalved = window.innerWidth / 2;
@@ -257,39 +303,43 @@ function updateDimensionsNoMargins() {
 
     // console.log("Thumb Y EndTopY: ", endTopY);
 
-    gsap.to("#software", {
-      scale: 1,
-      x: endLeftX,
-      y: endTopY,
-      duration: 1,
-      ease: "power2.out",
-    });
-    gsap.to("#photography", {
-      scale: 1,
-      x: endRightX,
-      y: endTopY,
-      duration: 1,
-      ease: "power2.out",
-    });
-    gsap.to("#diy", {
-      scale: 1,
-      x: endRightX,
-      y: endBottomY,
-      duration: 1,
-      ease: "power2.out",
-    });
-    gsap.to("#videography", {
-      scale: 1,
-      x: endLeftX,
-      y: endBottomY,
-      duration: 1,
-      ease: "power2.out",
-    });
+    collectThumbs();
 
     updateModalDimensions(endTopY);
     formControl(endTopY);
     // Pass endTopY to updateModalDimensions
   }, 450); // Small delay to ensure scrollbar removal takes effect
+}
+
+function collectThumbs(){
+  gsap.to("#software", {
+    scale: 1,
+    x: endLeftX,
+    y: endTopY,
+    duration: 1,
+    ease: "power2.out",
+  });
+  gsap.to("#photography", {
+    scale: 1,
+    x: endRightX,
+    y: endTopY,
+    duration: 1,
+    ease: "power2.out",
+  });
+  gsap.to("#diy", {
+    scale: 1,
+    x: endRightX,
+    y: endBottomY,
+    duration: 1,
+    ease: "power2.out",
+  });
+  gsap.to("#videography", {
+    scale: 1,
+    x: endLeftX,
+    y: endBottomY,
+    duration: 1,
+    ease: "power2.out",
+  });
 }
 
 function updateModalDimensions(endTopY) {
@@ -359,12 +409,18 @@ document.addEventListener("DOMContentLoaded", () => {
   updateDimensions();
   // updateDimensionsNoMargins();
   updateModalDimensions();
+  
+  animateThumbs();
+  // autoScroll();
+  
 });
 
 // Initial call
 updateDimensions();
 updateModalDimensions();
 
+// initial thumb centreing animation, called in a DOMContentLoaded
+function animateThumbs(){
 gsap
   .timeline({
     scrollTrigger: {
@@ -398,7 +454,7 @@ gsap
     { scale: 1, x: endLeftX, y: endBottomY },
     0
   );
-
+}
 // #############################################################################################
 
  const thresholdScale = 1.5; //set to the lower scale value, to allow for the crossing-fading effect
@@ -433,14 +489,14 @@ function updateMeElement() {
       meElement.style.display = "block"; // Enable #me
 
       // Re-enable event listeners if necessary
-      meElement.addEventListener("click", hideScrollBar, scrollToBottom, updateDimensionsNoMargins);
+       meElement.addEventListener("click", hideScrollBar, updateDimensionsNoMargins); //, scrollToBottom
     }
   } else {
     if (meElement.style.display !== "none") {
       meElement.style.display = "none"; // Disable #me
 
       // Disable or remove event listeners
-      meElement.removeEventListener("click", hideScrollBar, scrollToBottom, updateDimensionsNoMargins);
+      meElement.removeEventListener("click", hideScrollBar, updateDimensionsNoMargins);//, scrollToBottom
     }
   }
 }
@@ -471,98 +527,160 @@ function showScrollBar() {
 }
 
 // ####################### see/me/arrow click scroll-down function
-document.addEventListener('DOMContentLoaded', function () {
-  const downScroll = document.querySelector("#down");
-  const seeScroll = document.querySelector("#see");
-  const meElement = document.querySelector("#me");
 
-  // Logging the element selections
-  console.log('downScroll:', downScroll);
-  console.log('seeScroll:', seeScroll);
-  console.log('meElement:', meElement);
+// document.addEventListener('DOMContentLoaded', function () {
+//   const downScroll = document.querySelector("#down");
+//   const seeScroll = document.querySelector("#see");
+//   const meElement = document.querySelector("#me");
 
-  // Adding event listeners
-  if (downScroll) {
-    downScroll.addEventListener("click", scrollDown);
-  }
-  if (seeScroll) {
-    seeScroll.addEventListener("click", scrollDown);
-  }
+//   // Logging the element selections
+// //   console.log('downScroll:', downScroll);
+// //   console.log('seeScroll:', seeScroll);
+// //   console.log('meElement:', meElement);
 
-});
+//   // Adding event listeners
 
-function scrollToBottom() {
+// //   if (downScroll) {
+// //     downScroll.addEventListener("onclick", scrollDown);
+// //   }
+// //   if (seeScroll) {
+// //     seeScroll.addEventListener("onclick", scrollDown);
+// //   }
 
-  if (document.documentElement.scrollTop <= 4000) {
-    scrollTo(
-      document.documentElement.scrollHeight -
-      document.documentElement.clientHeight,
-      200
-    );
-  }
-}
+// });
+
+
 
 // #############################################################
-// ### scroll control, initiated by 'me' and 'down' arrow
+// ### scroll control, initiated by load 'me' and 'down' arrow
 
-function scrollDown() {
-  // document.getElementById(buttonId).onclick = function () {
-  if (document.documentElement.scrollTop <= 500) {
-    // const targetElement = document.getElementById(scrollToId);
-    // const scrollPosition = targetElement.offsetTop - document.documentElement.clientHeight;
-    scrollTo(
-      document.documentElement.scrollHeight -
-      document.documentElement.clientHeight,
-      4000
-    );
-    
-    // }
-  }
-}
-
-/*--------------------------------------------
- Functions to make scroll with speed control, used for the 'down' arrow
----------------------------------------------*/
-
-// Element or Position to move + Time in ms (milliseconds)
-function scrollTo(to, duration) {
-  const start = document.documentElement.scrollTop;
-  const change = to - start;
-  const startTime = performance.now();
-
-  console.log(document.documentElement.scrollHeight);
-  console.log(document.documentElement.clientHeight);
-  console.log(document.documentElement.scrollHeight -
-    document.documentElement.clientHeight);
-
-  function animateScroll(currentTime) {
-    const timeElapsed = currentTime - startTime;
-    const run = easeInOutCirc(timeElapsed, start, change, duration);
-    document.documentElement.scrollTop = run;
-
-    
-
-    if (timeElapsed < duration) {
-      requestAnimationFrame(animateScroll);
+// function scrollDown() {
+//     if (document.documentElement.scrollTop <= document.documentElement.scrollHeight) {
+//         const duration = 4000;
+//         const to = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+//       scrollToBottom(to, duration); 
+//         console.log("scrollDown-clientHeight: ", document.documentElement.clientHeight);
+//         console.log("scrollDown-SCROLLhEIGHT: ",document.documentElement.scrollHeight);
+//         console.log("scrollDown-SCROLLhEIGHT-CLIENThEIGHT: ",document.documentElement.scrollHeight - document.documentElement.clientHeight);
+//         console.log("scrollDown-To: ",to);
+//         console.log("scrollDown-duration: ",duration);
+        
+      
+//     }
+//   }
+  
 
 
-    }
-  }
-  requestAnimationFrame(animateScroll);
-}
+// //   ##################################################################################
+//   /*--------------------------------------------
+//    Functions to make scroll with linear speed control for debugging
+//   ---------------------------------------------*/
 
-function easeInOutCirc(t, b, c, d) {
-  t /= d / 2;
-  if (t < 1) return (-c / 2) * (Math.sqrt(1 - t * t) - 1) + b;
-  t -= 2;
+//   // Scroll down function triggered by 'me' and 'down' arrow
+//   let isAnimating = false;  // Add a flag to lock the scroll during animation
 
-//   console.log(document.documentElement.scrollHeight);
-//   console.log(document.documentElement.clientHeight);
-//   console.log(document.documentElement.scrollHeight -
-//     document.documentElement.clientHeight);
+//   function scrollDown() {
+//       const documentElement = document.documentElement;
+  
+//       if (documentElement.scrollTop <= documentElement.scrollHeight && !isAnimating) {
+//           const duration = 4000;
+//           const to = documentElement.scrollHeight - documentElement.clientHeight;
+  
+//           // Log the scroll details for debugging
+//           console.log("scrollDown-clientHeight: ", documentElement.clientHeight);
+//           console.log("scrollDown-SCROLLHEIGHT: ", documentElement.scrollHeight);
+//           console.log("scrollDown-SCROLLHEIGHT-CLIENTHEIGHT: ", documentElement.scrollHeight - documentElement.clientHeight);
+//           console.log("scrollDown-To: ", to);
+//           console.log("scrollDown-duration: ", duration);
+  
+//           // Start the scroll animation
+//           isAnimating = true;
+//           scrollToBottom(to, duration);
+//       }
+//   }
+  
+//   // Easing function for smooth animation
+//   function easeInOutQuad(t, b, c, d) {
+//       t /= d / 2;
+//       if (t < 1) return c / 2 * t * t + b;
+//       t--;
+//       return -c / 2 * (t * (t - 2) - 1) + b;
+//   }
+  
+//   // Scroll to the specified position (to) over the given duration (in ms)
+//   function scrollToBottom(to, duration) {
+//       const start = document.documentElement.scrollTop;
+//       const change = to - start;
+//       const startTime = performance.now();
+  
+//       // Use requestAnimationFrame for smooth scrolling
+//       function animateScroll(currentTime) {
+//           const timeElapsed = currentTime - startTime;
+//           const time = Math.min(timeElapsed, duration);
+//           const run = Math.round(easeInOutQuad(time, start, change, duration));
+  
+//           // Lock the scroll position during the animation
+//           if (isAnimating) {
+//               window.scrollTo(0, run);
+  
+//               // Only log if scrollTop changes and avoid alternate jumps
+//               if (document.documentElement.scrollTop !== run) {
+//                   console.log('scrollTop (updated):', run);
+//               }
+//           }
+  
+//           // Continue the animation if within duration
+//           if (time < duration) {
+//               requestAnimationFrame(animateScroll);
+//           } else {
+//               // Ensure the final scroll position is correct
+//               window.scrollTo(0, to);
+//               console.log("Animation finished at scrollTop:", document.documentElement.scrollTop);
+//               isAnimating = false;  // Unlock the scroll
+//           }
+//       }
+  
+//       requestAnimationFrame(animateScroll);
+//   }
+  
 
-  return (c / 2) * (Math.sqrt(1 - t * t) + 1) + b;
-}
+  // List all event listeners on window and document for debugging
+// function logEventListeners() {
+//   console.log("Logging event listeners for debugging:");
+
+//   // List event listeners on window
+//   if (window.getEventListeners) {
+//       console.log("Window Event Listeners:", window.getEventListeners(window));
+//   }
+
+//   // List event listeners on document
+//   if (document.getEventListeners) {
+//       console.log("Document Event Listeners:", document.getEventListeners(document));
+//   }
+// }
+// const observer2 = new MutationObserver(mutations => {
+//   mutations.forEach(mutation => {
+//       console.log('DOM changed during scroll:', mutation);
+//   });
+// });
+
+// observer2.observe(document.body, {
+//   childList: true,   // Watch for child node changes
+//   subtree: true,     // Watch for changes within the whole subtree
+//   attributes: true   // Watch for attribute changes
+// });
+// Call this function before starting the scroll animation
+// logEventListeners();
+
+  // Start the scroll animation
+  // scrollDown();
+  
+
+
+// ##########################################################################
+
+
+
 
 //################ Navigation between index.html#thumbs, 
 // modalBox(statementContact) & Contact Form ###########
@@ -645,7 +763,8 @@ let initialTransform; // Declare initialTransform without assigning a value init
 // Capture the initial transform when the DOM content is loaded
 document.addEventListener("DOMContentLoaded", function () {
   captureInitialTransform();
-
+  mountainSkyAni();
+  //  scrollDown();
   function captureInitialTransform() {
     initialTransform = window
       .getComputedStyle(meElement)
