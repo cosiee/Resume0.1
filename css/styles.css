@@ -47,6 +47,7 @@ text.lrgtext {
   text-align: center;
   transform: translate(500px, 22vh);
 }
+
 .lrgtext:hover {
   cursor: pointer;
   /* text-shadow: 2px 2px 2px #162a43; */
@@ -196,7 +197,8 @@ nav ul a {
 }
 
 a.nav-link {
-  color: #162a43;
+ 
+  color: #6e6f79;
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 1.6em;
   line-height: 1.6;
@@ -206,10 +208,10 @@ a.nav-link {
   opacity: 1;
 }
 
-a.nav-link:hover {
+/* a.nav-link:hover {
   transform: scale(1.15);
-  color: #6e6f79;
-}
+  color: #162a43;
+} */
 
 #navbarNavDropdown {
   display: block; 
@@ -220,29 +222,28 @@ a.nav-link:hover {
 
 
 a#navbarDropdownMenuLink.nav-link.dropdown-toggle {
-  color: #162a43;
+  color: #6e6f79;
   /* --bs-navbar-active-color: #f23506; */
 }
 
 a#navbarDropdownMenuLink.nav-link.dropdown-toggle:hover {
-  color: #6e6f79;
+  color: #162a43;
 }
 
 ul.navbar-nav {
   position: absolute;
   align-self: center;
-  /* -webkit-transition: all 0.9s;
-	transition: all 1s; */
+  
 }
 
 a.dropdown-item {
-  color: #162a43;
+  color: #6e6f79;
   font-size: 0.9em;
-  /* transform: scale(1); */
+  
 }
 
 a.dropdown-item:hover {
-  color: #6e6f79;
+  color: #162a43;
   transform: scale(1.2);
 }
 
@@ -260,7 +261,7 @@ dropdown-menu {
   position: fixed;
   top: 0px;
   max-height: 50px;
-  z-index: 5;
+  z-index: 54;
   width: 100%;
   padding-top: 30px;
   background: none;
@@ -347,7 +348,7 @@ dropdown-menu {
 #photography:hover .overlay,
 #videography:hover .overlay,
 #diy:hover .overlay {
-  opacity: 0.7;
+opacity: 0.7;
 }
 
 #software,

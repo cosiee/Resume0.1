@@ -761,7 +761,7 @@ let initialTransform; // Declare initialTransform without assigning a value init
 
 
 
-// Function to stop the hover wiggle animation
+//MeElement-Function to stop the hover wiggle animation
 function stopHoverWiggle() {
   // console.log("Stopping hover wiggle animation.");
   clearInterval(hoverAnimationInterval);
@@ -770,7 +770,7 @@ function stopHoverWiggle() {
   meElement.style.transform = `translate(520px, 22vh) rotate(0deg)`;
 }
 
-// Function to start the hover wiggle animation
+//MeElement-Function to start the hover wiggle animation
 function startHoverWiggle() {
   // console.log("Starting hover wiggle animation.");
   if (!isHoverWiggling) {
@@ -780,7 +780,7 @@ function startHoverWiggle() {
   }
 }
 
-// Function to handle the hover event
+//MeElement-Function to handle the hover event
 function handleHover(event) {
   if (event.type === "mouseenter") {
     startHoverWiggle();
@@ -789,7 +789,7 @@ function handleHover(event) {
   }
 }
 
-// Function to handle the hover wiggle animation
+//MeElement-Function to handle the hover wiggle animation
 function hoverWiggle() {
   // Update the rotation angle
   angle += 1;
@@ -879,91 +879,95 @@ const thumbDiy = document.querySelector("#diy");
 const navbarDiy = document.querySelector("#diyLink");
 
 thumbPhoto.addEventListener("mouseenter", function () {
+  navbarPhoto.style.color = "#162a43";
   navbarPhoto.style.scale = 1.3;
-  navbarPhoto.style.color = "#6e6f79";
   thumbPhoto.style.scale = 1.004;
 });
 
 thumbPhoto.addEventListener("mouseleave", function () {
   navbarPhoto.style.scale = 1;
-  navbarPhoto.style.color = "#162a43";
+  navbarPhoto.style.color = "#6e6f79";
   thumbPhoto.style.scale = 1;
 });
 
-navbarPhoto.addEventListener("mouseenter", function () {
-  navbarPhoto.style.scale = 1.15;
-  navbarPhoto.style.color = "#6e6f79";
-});
+// navbarPhoto.addEventListener("mouseenter", function () {
+//   navbarPhoto.style.scale = 1.15;
+//   navbarPhoto.style.color = "#162a43";
+  
+// });
 
-navbarPhoto.addEventListener("mouseleave", function () {
-  navbarPhoto.style.scale = 1;
-  navbarPhoto.style.color = "#162a43";
-});
+// navbarPhoto.addEventListener("mouseleave", function () {
+//   navbarPhoto.style.scale = 1;
+//   navbarPhoto.style.color = "#6e6f79";
+// });
 
 thumbSoft.addEventListener("mouseenter", function () {
   navbarSoft.style.scale = 1.3;
-  navbarSoft.style.color = "#6e6f79";
+  navbarSoft.style.color = "#162a43";
   thumbSoft.style.scale = 1.004;
 });
 
 thumbSoft.addEventListener("mouseleave", function () {
   navbarSoft.style.scale = 1;
-  navbarSoft.style.color = "#162a43";
+  navbarSoft.style.color = "#6e6f79";
   thumbSoft.style.scale = 1;
 });
 
 navbarSoft.addEventListener("mouseenter", function () {
   navbarSoft.style.scale = 1.1;
-  navbarSoft.style.color = "#6e6f79";
+  navbarSoft.style.color = "#162a43";
+  
 });
 
 navbarSoft.addEventListener("mouseleave", function () {
   navbarSoft.style.scale = 1;
-  navbarSoft.style.color = "#162a43";
+  navbarSoft.style.color = "#6e6f79";
 });
 
 thumbVid.addEventListener("mouseenter", function () {
   navbarVid.style.scale = 1.3;
-  navbarVid.style.color = "#6e6f79";
+  navbarVid.style.color = "#162a43";
   thumbVid.style.scale = 1.004;
 });
 
 thumbVid.addEventListener("mouseleave", function () {
   navbarVid.style.scale = 1;
-  navbarVid.style.color = "#162a43";
+  navbarVid.style.color = "#6e6f79";
   thumbVid.style.scale = 1;
 });
 
 navbarVid.addEventListener("mouseenter", function () {
   navbarVid.style.scale = 1.1;
-  navbarVid.style.color = "#6e6f79";
+  navbarVid.style.color = "#162a43";
+ 
 });
 
 navbarVid.addEventListener("mouseleave", function () {
   navbarVid.style.scale = 1;
-  navbarVid.style.color = "#162a43";
+  navbarVid.style.color = "#6e6f79"; 
 });
 
 thumbDiy.addEventListener("mouseenter", function () {
   navbarDiy.style.scale = 1.3;
-  navbarDiy.style.color = "#6e6f79";
+  navbarDiy.style.color = "#162a43";
   thumbDiy.style.scale = 1.004;
 });
 
 thumbDiy.addEventListener("mouseleave", function () {
   navbarDiy.style.scale = 1;
-  navbarDiy.style.color = "#162a43";
+  navbarDiy.style.color = "#6e6f79";
   thumbDiy.style.scale = 1;
 });
 
 navbarDiy.addEventListener("mouseenter", function () {
   navbarDiy.style.scale = 1.1;
-  navbarDiy.style.color = "#6e6f79";
+  navbarDiy.style.color = "#162a43";
+  
 });
 
 navbarDiy.addEventListener("mouseleave", function () {
   navbarDiy.style.scale = 1;
-  navbarDiy.style.color = "#162a43";
+  navbarDiy.style.color = "#6e6f79";
 });
 
 // ==========================================================
