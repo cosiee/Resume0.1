@@ -158,7 +158,7 @@ body {
 /* ############################ Navbar base styles ################################*/
 
 nav.navbar {
-  height: 50px;
+  height: auto;
   overflow: hidden;
 }
 
@@ -196,10 +196,20 @@ nav ul a {
   top: 0px;
 }
 
+
+/* element.style{
+  color: #6e6f79;
+} 
+
+element.style:hover {
+  transform: scale(1.15);
+  color: #162a43;
+} */
+
 a.nav-link {
  
   color: #6e6f79;
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans";
   font-size: 1.6em;
   line-height: 1.6;
   font-weight: 500;
@@ -208,15 +218,17 @@ a.nav-link {
   opacity: 1;
 }
 
-/* a.nav-link:hover {
-  transform: scale(1.15);
+ 
+a.nav-link:hover {
   color: #162a43;
-} */
+  transform: scale(1.15);
+  
+}
 
 #navbarNavDropdown {
   display: block; 
   height: 50px;
-  /* overflow: hidden; /*this causing the navbar to not appear*/*/
+  
 } 
 
 

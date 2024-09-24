@@ -878,6 +878,18 @@ const navbarVid = document.querySelector("#videographyLink");
 const thumbDiy = document.querySelector("#diy");
 const navbarDiy = document.querySelector("#diyLink");
 
+const navLinks = document.querySelector("nav-link");
+
+navLinks.addEventListener("mouseenter", function () {
+  navbarPhoto.style.color = "#162a43";
+  navbarPhoto.style.scale = 1.15;
+});
+
+navLinks.addEventListener("mouseleaves", function (){ 
+  navbarPhoto.style.color = "#6e6f79";
+  navbarPhoto.style.scale = 1;
+});
+
 thumbPhoto.addEventListener("mouseenter", function () {
   navbarPhoto.style.color = "#162a43";
   navbarPhoto.style.scale = 1.3;
@@ -886,19 +898,21 @@ thumbPhoto.addEventListener("mouseenter", function () {
 
 thumbPhoto.addEventListener("mouseleave", function () {
   navbarPhoto.style.scale = 1;
-  navbarPhoto.style.color = "#6e6f79";
+  navbarPhoto.style.color =  "#6e6f79";
   thumbPhoto.style.scale = 1;
 });
 
 // navbarPhoto.addEventListener("mouseenter", function () {
+//   navbarPhoto.style.color = (22,42,67);
 //   navbarPhoto.style.scale = 1.15;
-//   navbarPhoto.style.color = "#162a43";
+  
   
 // });
 
 // navbarPhoto.addEventListener("mouseleave", function () {
+//   navbarPhoto.style.color = (110,111,121);
 //   navbarPhoto.style.scale = 1;
-//   navbarPhoto.style.color = "#6e6f79";
+ 
 // });
 
 thumbSoft.addEventListener("mouseenter", function () {
@@ -913,16 +927,16 @@ thumbSoft.addEventListener("mouseleave", function () {
   thumbSoft.style.scale = 1;
 });
 
-navbarSoft.addEventListener("mouseenter", function () {
-  navbarSoft.style.scale = 1.1;
-  navbarSoft.style.color = "#162a43";
+// navbarSoft.addEventListener("mouseenter", function () {
+//   navbarSoft.style.scale = 1.1;
+//   navbarSoft.style.color = "#162a43";
   
-});
+// });
 
-navbarSoft.addEventListener("mouseleave", function () {
-  navbarSoft.style.scale = 1;
-  navbarSoft.style.color = "#6e6f79";
-});
+// navbarSoft.addEventListener("mouseleave", function () {
+//   navbarSoft.style.scale = 1;
+//   navbarSoft.style.color = "#6e6f79";
+// });
 
 thumbVid.addEventListener("mouseenter", function () {
   navbarVid.style.scale = 1.3;
@@ -936,16 +950,16 @@ thumbVid.addEventListener("mouseleave", function () {
   thumbVid.style.scale = 1;
 });
 
-navbarVid.addEventListener("mouseenter", function () {
-  navbarVid.style.scale = 1.1;
-  navbarVid.style.color = "#162a43";
+// navbarVid.addEventListener("mouseenter", function () {
+//   navbarVid.style.scale = 1.1;
+//   navbarVid.style.color = "#162a43";
  
-});
+// });
 
-navbarVid.addEventListener("mouseleave", function () {
-  navbarVid.style.scale = 1;
-  navbarVid.style.color = "#6e6f79"; 
-});
+// navbarVid.addEventListener("mouseleave", function () {
+//   navbarVid.style.scale = 1;
+//   navbarVid.style.color = "#6e6f79"; 
+// });
 
 thumbDiy.addEventListener("mouseenter", function () {
   navbarDiy.style.scale = 1.3;
@@ -959,16 +973,16 @@ thumbDiy.addEventListener("mouseleave", function () {
   thumbDiy.style.scale = 1;
 });
 
-navbarDiy.addEventListener("mouseenter", function () {
-  navbarDiy.style.scale = 1.1;
-  navbarDiy.style.color = "#162a43";
+// navbarDiy.addEventListener("mouseenter", function () {
+//   navbarDiy.style.scale = 1.1;
+//   navbarDiy.style.color = "#162a43";
   
-});
+// });
 
-navbarDiy.addEventListener("mouseleave", function () {
-  navbarDiy.style.scale = 1;
-  navbarDiy.style.color = "#6e6f79";
-});
+// navbarDiy.addEventListener("mouseleave", function () {
+//   navbarDiy.style.scale = 1;
+//   navbarDiy.style.color = "#6e6f79";
+// });
 
 // ==========================================================
 // #########  END of  index.html animate thumbnails & navbar items & meshaker animating 'ME'  ###
