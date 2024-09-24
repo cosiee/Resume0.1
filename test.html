@@ -144,7 +144,7 @@
     </div>    
       <div class="modalbox" id="statementContact" style="display: none;">
           <div class="box">
-            <a class="close" onclick="showScrollBar(); showThumbs(); updateDimensions()">X</a>
+            <a class="close" onclick="showScrollBar(); showThumbs(); updateDimensions(); spaceoutThumbs();">X</a>
             <p class="title">Welcome</p>
             <div class="content">
               <br>
@@ -168,7 +168,7 @@
   
   
       <div class="formDiv" id="contactForm" style="display: none;">
-        <a class="closeForm" onclick="showThumbs()" href="#statementContact">X</a>
+        <a class="closeForm" onclick="showThumbs(); spaceoutThumbs();" href="#statementContact">X</a>
         <form action="https://formspree.io/f/meqyreww" method="POST">
           <label> Your name:
             <input type="text" id="name" name="name" required>
@@ -179,7 +179,7 @@
           <label>Your message:
             <textarea id="message" name="message" rows="5" required></textarea>
           </label>
-          <button type="submit" id="formButton" onclick="showThumbs()">Send</button>
+          <button type="submit" id="formButton" onclick="showThumbs(); spaceoutThumbs();">Send</button>
       </div>
   
     <!-- </div> -->

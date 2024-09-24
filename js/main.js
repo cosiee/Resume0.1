@@ -1,4 +1,4 @@
-// document.addEventListener('DOMContentLoaded', function() {
+
 // Ensure #me element is initially disabled
 const meElement = document.getElementById("me");
 meElement.disabled = true;
@@ -7,7 +7,6 @@ meElement.disabled = true;
 const cloud1 = document.getElementById("cloud1");
 
 
-// });
 
 // GSAP initial setups
 gsap.set("#mountains", {
@@ -21,9 +20,13 @@ gsap.set("#mountains", {
   x: "-50%",
 });
 
-gsap.set(".scrollDist", { width: "100%", height: "200%", background: "#fff" });
+gsap.set(".scrollDist", {
+  width: "100%",
+  height: "200%",
+  background: "#fff"
+});
 
-// Random background images for containers
+// Random background images for thumbnails
 document.addEventListener("DOMContentLoaded", function () {
   const softwareImages = [
     "url('css/assets/b1.jpg')",
@@ -98,67 +101,114 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // GSAP timeline for scroll-triggered animations
-gsap
-  .timeline({
-    scrollTrigger: {
-      trigger: ".scrollDist",
-      start: "top top",
-      end: "bottom bottom",
-      scrub: 1,
-    },
-  })
-  .fromTo(
-    "#sky",
-    { scale: 1, x: 0, y: -80 },
-    { scale: 1.3, x: -150, y: -650 },
-    0
-  )
-  .fromTo(
-    "#mountBg",
-    { scale: 1, x: 0, y: 70 },
-    { scale: 1.3, x: -150, y: -600 },
-    0
-  )
-  .fromTo("#cloud2", { x: 400, y: 310 }, { x: -200, y: -600 }, 0)
-  .fromTo(
-    "#mountBg2",
-    { scale: 1, x: 0, y: 110 },
-    { scale: 1.3, x: -150, y: -670 },
-    0
-  )
-  .fromTo("#cloud3", { x: -200, y: 300 }, { x: 500, y: -1000 }, 0)
-  .fromTo(
-    "#mountMg",
-    { scale: 1, x: 0, y: 345 },
-    { scale: 1.3, x: -150, y: -700 },
-    0
-  )
-  .fromTo("#cloud4", { x: 300, y: 320 }, { x: -400, y: -850 }, 0)
-  .fromTo(
-    "#mountMgF",
-    { scale: 1, x: 0, y: 200 },
-    { scale: 1.3, x: -150, y: -750 },
-    0
-  )
-  .fromTo(
-    "#mountFg",
-    { scale: 1, x: 0, y: 220 },
-    { scale: 1.3, x: -150, y: -850 },
-    0
-  )
-  .fromTo(
-    "#cloud5",
-    { scale: 1.5, x: -100, y: 380 },
-    { scale: 3, x: 300, y: -950 },
-    0
-  )
-  .fromTo(
-    "#cloud1, #cloud1M",
-    { scale: 1.3, x: -10, y: 576 },
-    { scale: 2, x: -500, y: -690 },
-    0
-  );
+// Disable automatic scroll restoration on page reload
+window.history.scrollRestoration = 'manual';
 
+function autoScroll() {
+  // Reset scroll position to the top before starting animation
+  window.scrollTo(0, 0); // Force scroll to top
+
+  // Add a small delay before calculating maxScroll to ensure everything is loaded
+  setTimeout(() => {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+    if (maxScroll <= 0) {
+      console.log("No scrollable space");
+      return; // Exit if there's no scrollable space
+    }
+
+    // Automatically scroll to the bottom over # seconds on page load
+    gsap.to(document.documentElement, { // Explicitly target document root for scrolling
+      scrollTo: {
+        y: maxScroll, // Scroll to the bottom of the page dynamically
+        autoKill: false // Disable autoKill to prevent interruptions
+      },
+      duration: 6.8, // Scroll over 5 seconds
+      ease: CustomEase.create("custom", "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "),// Easing function for smooth scrolling
+      // onStart: () => console.log('Auto-scrolling started'),
+      // onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
+      // onComplete: () => console.log('Auto-scrolling completed')
+    });
+
+
+  }, 3400); // Add a delay of 200ms before starting the scroll to let the layout settle
+}
+
+window.addEventListener('load', function () {
+  autoScroll();
+  mountainSkyAni();
+  updateDimensions();
+  updateModalDimensions();
+  animateThumbs();
+});
+
+
+
+
+
+function mountainSkyAni() {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: ".scrollDist",
+        start: "top top",
+        end: "bottom bottom",
+        duration: 4,
+        scrub: 1,
+      },
+    })
+    .fromTo(
+      "#sky",
+      { scale: 1, x: 0, y: -80 },
+      { scale: 1.3, x: -150, y: -650 },
+      0
+    )
+    .fromTo(
+      "#mountBg",
+      { scale: 1, x: 0, y: 70 },
+      { scale: 1.3, x: -150, y: -600 },
+      0
+    )
+    .fromTo("#cloud2", { x: 400, y: 310 }, { x: -200, y: -600 }, 0)
+    .fromTo(
+      "#mountBg2",
+      { scale: 1, x: 0, y: 110 },
+      { scale: 1.3, x: -150, y: -670 },
+      0
+    )
+    .fromTo("#cloud3", { x: -200, y: 300 }, { x: 500, y: -1000 }, 0)
+    .fromTo(
+      "#mountMg",
+      { scale: 1, x: 0, y: 345 },
+      { scale: 1.3, x: -150, y: -700 },
+      0
+    )
+    .fromTo("#cloud4", { x: 300, y: 320 }, { x: -400, y: -850 }, 0)
+    .fromTo(
+      "#mountMgF",
+      { scale: 1, x: 0, y: 200 },
+      { scale: 1.3, x: -150, y: -750 },
+      0
+    )
+    .fromTo(
+      "#mountFg",
+      { scale: 1, x: 0, y: 220 },
+      { scale: 1.3, x: -150, y: -850 },
+      0
+    )
+    .fromTo(
+      "#cloud5",
+      { scale: 1.5, x: -100, y: 380 },
+      { scale: 3, x: 300, y: -950 },
+      0
+    )
+    .fromTo(
+      "#cloud1, #cloud1M",
+      { scale: 1.3, x: -10, y: 576 },
+      { scale: 2, x: -500, y: -690 },
+      0
+    );
+}
 // ###################################################################################
 
 // Thumbnails positioning based on window size
@@ -196,7 +246,10 @@ function updateDimensions() {
   endTopY = window.innerHeight * 1.25;
   endRightX = screenWidthHalved;
   endBottomY = window.innerHeight * 1.25 + totalThumbWidth;
+  
+}
 
+function spaceoutThumbs() {
   gsap.to("#software", {
     x: endLeftX,
     y: endTopY,
@@ -221,6 +274,7 @@ function updateDimensions() {
     duration: 1,
     ease: "power2.out",
   });
+
 }
 
 function getThumbWidthWithoutMargin() {
@@ -240,9 +294,7 @@ function getThumbMargin() {
 }
 
 function updateDimensionsNoMargins() {
-  
-  
-  
+
   setTimeout(() => {
     thumbWidth = Math.min(300, window.innerWidth / 6);
     screenWidthHalved = window.innerWidth / 2;
@@ -257,39 +309,43 @@ function updateDimensionsNoMargins() {
 
     // console.log("Thumb Y EndTopY: ", endTopY);
 
-    gsap.to("#software", {
-      scale: 1,
-      x: endLeftX,
-      y: endTopY,
-      duration: 1,
-      ease: "power2.out",
-    });
-    gsap.to("#photography", {
-      scale: 1,
-      x: endRightX,
-      y: endTopY,
-      duration: 1,
-      ease: "power2.out",
-    });
-    gsap.to("#diy", {
-      scale: 1,
-      x: endRightX,
-      y: endBottomY,
-      duration: 1,
-      ease: "power2.out",
-    });
-    gsap.to("#videography", {
-      scale: 1,
-      x: endLeftX,
-      y: endBottomY,
-      duration: 1,
-      ease: "power2.out",
-    });
+    collectThumbs();
 
     updateModalDimensions(endTopY);
     formControl(endTopY);
     // Pass endTopY to updateModalDimensions
   }, 450); // Small delay to ensure scrollbar removal takes effect
+}
+
+function collectThumbs() {
+  gsap.to("#software", {
+    scale: 1,
+    x: endLeftX,
+    y: endTopY,
+    duration: 1,
+    ease: "power2.out",
+  });
+  gsap.to("#photography", {
+    scale: 1,
+    x: endRightX,
+    y: endTopY,
+    duration: 1,
+    ease: "power2.out",
+  });
+  gsap.to("#diy", {
+    scale: 1,
+    x: endRightX,
+    y: endBottomY,
+    duration: 1,
+    ease: "power2.out",
+  });
+  gsap.to("#videography", {
+    scale: 1,
+    x: endLeftX,
+    y: endBottomY,
+    duration: 1,
+    ease: "power2.out",
+  });
 }
 
 function updateModalDimensions(endTopY) {
@@ -355,53 +411,52 @@ window.addEventListener("resize", () => {
   updateDimensionsNoMargins();
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  updateDimensions();
-  // updateDimensionsNoMargins();
-  updateModalDimensions();
-});
+
 
 // Initial call
 updateDimensions();
 updateModalDimensions();
 
-gsap
-  .timeline({
-    scrollTrigger: {
-      trigger: ".scrollDist",
-      start: "top top",
-      end: "bottom bottom",
-      scrub: 0.5,
-    },
-  })
-  .fromTo(
-    "#software",
-    { scale: 1.5, x: endLeftX - 1750, y: endTopY - 750 },
-    { scale: 1, x: endLeftX, y: endTopY },
-    0
-  )
-  .fromTo(
-    "#photography",
-    { scale: 1.5, x: endRightX + 1250, y: endTopY - 750 },
-    { scale: 1, x: endRightX, y: endTopY },
-    0
-  )
-  .fromTo(
-    "#diy",
-    { scale: 1.5, x: endRightX + 1250, y: endBottomY + 750 },
-    { scale: 1, x: endRightX, y: endBottomY },
-    0
-  )
-  .fromTo(
-    "#videography",
-    { scale: 1.5, x: endLeftX - 1750, y: endBottomY + 750 },
-    { scale: 1, x: endLeftX, y: endBottomY },
-    0
-  );
-
+// initial thumb centreing animation, called in a DOMContentLoaded
+function animateThumbs() {
+  console.log("animateThumbs-");
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: ".scrollDist",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 0.5,
+      },
+    })
+    .fromTo(
+      "#software",
+      { scale: 0.2, x: endLeftX - 1750, y: endTopY - 750 },
+      { scale: 1, x: endLeftX, y: endTopY },
+      0
+    )
+    .fromTo(
+      "#photography",
+      { scale: 0.2, x: endRightX + 1250, y: endTopY - 750 },
+      { scale: 1, x: endRightX, y: endTopY },
+      0
+    )
+    .fromTo(
+      "#diy",
+      { scale: 3, x: endRightX + 1250, y: endBottomY + 750 },
+      { scale: 1, x: endRightX, y: endBottomY },
+      0
+    )
+    .fromTo(
+      "#videography",
+      { scale: 3, x: endLeftX - 1750, y: endBottomY + 750 },
+      { scale: 1, x: endLeftX, y: endBottomY },
+      0
+    );
+}
 // #############################################################################################
 
- const thresholdScale = 1.5; //set to the lower scale value, to allow for the crossing-fading effect
+const thresholdScale = 1.5; //set to the lower scale value, to allow for the crossing-fading effect
 
 function getScaleValue(element) {
   if (!element) {
@@ -433,14 +488,14 @@ function updateMeElement() {
       meElement.style.display = "block"; // Enable #me
 
       // Re-enable event listeners if necessary
-      meElement.addEventListener("click", hideScrollBar, scrollToBottom, updateDimensionsNoMargins);
+      meElement.addEventListener("click", hideScrollBar, updateDimensionsNoMargins); //, scrollToBottom
     }
   } else {
     if (meElement.style.display !== "none") {
       meElement.style.display = "none"; // Disable #me
 
       // Disable or remove event listeners
-      meElement.removeEventListener("click", hideScrollBar, scrollToBottom, updateDimensionsNoMargins);
+      meElement.removeEventListener("click", hideScrollBar, updateDimensionsNoMargins);//, scrollToBottom
     }
   }
 }
@@ -471,82 +526,160 @@ function showScrollBar() {
 }
 
 // ####################### see/me/arrow click scroll-down function
-document.addEventListener('DOMContentLoaded', function () {
-  const downScroll = document.querySelector("#down");
-  const seeScroll = document.querySelector("#see");
-  const meElement = document.querySelector("#me");
 
-  // Logging the element selections
-  console.log('downScroll:', downScroll);
-  console.log('seeScroll:', seeScroll);
-  console.log('meElement:', meElement);
+// document.addEventListener('DOMContentLoaded', function () {
+//   const downScroll = document.querySelector("#down");
+//   const seeScroll = document.querySelector("#see");
+//   const meElement = document.querySelector("#me");
 
-  // Adding event listeners
-  if (downScroll) {
-    downScroll.addEventListener("click", scrollDown);
-  }
-  if (seeScroll) {
-    seeScroll.addEventListener("click", scrollDown);
-  }
+//   // Logging the element selections
+// //   console.log('downScroll:', downScroll);
+// //   console.log('seeScroll:', seeScroll);
+// //   console.log('meElement:', meElement);
 
-});
+//   // Adding event listeners
 
-function scrollToBottom() {
+// //   if (downScroll) {
+// //     downScroll.addEventListener("onclick", scrollDown);
+// //   }
+// //   if (seeScroll) {
+// //     seeScroll.addEventListener("onclick", scrollDown);
+// //   }
 
-  if (document.documentElement.scrollTop <= 3500) {
-    scrollTo(
-      document.documentElement.scrollHeight -
-      document.documentElement.clientHeight,
-      200
-    );
-  }
-}
+// });
+
+
 
 // #############################################################
-// ### scroll control, initiated by 'me' and 'down' arrow
+// ### scroll control, initiated by load 'me' and 'down' arrow
 
-function scrollDown() {
-  // document.getElementById(buttonId).onclick = function () {
-  if (document.documentElement.scrollTop <= 500) {
-    // const targetElement = document.getElementById(scrollToId);
-    // const scrollPosition = targetElement.offsetTop - document.documentElement.clientHeight;
-    scrollTo(
-      document.documentElement.scrollHeight -
-      document.documentElement.clientHeight,
-      4000
-    );
-    // }
-  }
-}
+// function scrollDown() {
+//     if (document.documentElement.scrollTop <= document.documentElement.scrollHeight) {
+//         const duration = 4000;
+//         const to = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+//       scrollToBottom(to, duration); 
+//         console.log("scrollDown-clientHeight: ", document.documentElement.clientHeight);
+//         console.log("scrollDown-SCROLLhEIGHT: ",document.documentElement.scrollHeight);
+//         console.log("scrollDown-SCROLLhEIGHT-CLIENThEIGHT: ",document.documentElement.scrollHeight - document.documentElement.clientHeight);
+//         console.log("scrollDown-To: ",to);
+//         console.log("scrollDown-duration: ",duration);
 
-/*--------------------------------------------
- Functions to make scroll with speed control, used for the 'down' arrow
----------------------------------------------*/
 
-// Element or Position to move + Time in ms (milliseconds)
-function scrollTo(to, duration) {
-  const start = document.documentElement.scrollTop;
-  const change = to - start;
-  const startTime = performance.now();
+//     }
+//   }
 
-  function animateScroll(currentTime) {
-    const timeElapsed = currentTime - startTime;
-    const run = easeInOutCirc(timeElapsed, start, change, duration);
-    document.documentElement.scrollTop = run;
 
-    if (timeElapsed < duration) {
-      requestAnimationFrame(animateScroll);
-    }
-  }
-  requestAnimationFrame(animateScroll);
-}
 
-function easeInOutCirc(t, b, c, d) {
-  t /= d / 2;
-  if (t < 1) return (-c / 2) * (Math.sqrt(1 - t * t) - 1) + b;
-  t -= 2;
-  return (c / 2) * (Math.sqrt(1 - t * t) + 1) + b;
-}
+// //   ##################################################################################
+//   /*--------------------------------------------
+//    Functions to make scroll with linear speed control for debugging
+//   ---------------------------------------------*/
+
+//   // Scroll down function triggered by 'me' and 'down' arrow
+//   let isAnimating = false;  // Add a flag to lock the scroll during animation
+
+//   function scrollDown() {
+//       const documentElement = document.documentElement;
+
+//       if (documentElement.scrollTop <= documentElement.scrollHeight && !isAnimating) {
+//           const duration = 4000;
+//           const to = documentElement.scrollHeight - documentElement.clientHeight;
+
+//           // Log the scroll details for debugging
+//           console.log("scrollDown-clientHeight: ", documentElement.clientHeight);
+//           console.log("scrollDown-SCROLLHEIGHT: ", documentElement.scrollHeight);
+//           console.log("scrollDown-SCROLLHEIGHT-CLIENTHEIGHT: ", documentElement.scrollHeight - documentElement.clientHeight);
+//           console.log("scrollDown-To: ", to);
+//           console.log("scrollDown-duration: ", duration);
+
+//           // Start the scroll animation
+//           isAnimating = true;
+//           scrollToBottom(to, duration);
+//       }
+//   }
+
+//   // Easing function for smooth animation
+//   function easeInOutQuad(t, b, c, d) {
+//       t /= d / 2;
+//       if (t < 1) return c / 2 * t * t + b;
+//       t--;
+//       return -c / 2 * (t * (t - 2) - 1) + b;
+//   }
+
+//   // Scroll to the specified position (to) over the given duration (in ms)
+//   function scrollToBottom(to, duration) {
+//       const start = document.documentElement.scrollTop;
+//       const change = to - start;
+//       const startTime = performance.now();
+
+//       // Use requestAnimationFrame for smooth scrolling
+//       function animateScroll(currentTime) {
+//           const timeElapsed = currentTime - startTime;
+//           const time = Math.min(timeElapsed, duration);
+//           const run = Math.round(easeInOutQuad(time, start, change, duration));
+
+//           // Lock the scroll position during the animation
+//           if (isAnimating) {
+//               window.scrollTo(0, run);
+
+//               // Only log if scrollTop changes and avoid alternate jumps
+//               if (document.documentElement.scrollTop !== run) {
+//                   console.log('scrollTop (updated):', run);
+//               }
+//           }
+
+//           // Continue the animation if within duration
+//           if (time < duration) {
+//               requestAnimationFrame(animateScroll);
+//           } else {
+//               // Ensure the final scroll position is correct
+//               window.scrollTo(0, to);
+//               console.log("Animation finished at scrollTop:", document.documentElement.scrollTop);
+//               isAnimating = false;  // Unlock the scroll
+//           }
+//       }
+
+//       requestAnimationFrame(animateScroll);
+//   }
+
+
+// List all event listeners on window and document for debugging
+// function logEventListeners() {
+//   console.log("Logging event listeners for debugging:");
+
+//   // List event listeners on window
+//   if (window.getEventListeners) {
+//       console.log("Window Event Listeners:", window.getEventListeners(window));
+//   }
+
+//   // List event listeners on document
+//   if (document.getEventListeners) {
+//       console.log("Document Event Listeners:", document.getEventListeners(document));
+//   }
+// }
+// const observer2 = new MutationObserver(mutations => {
+//   mutations.forEach(mutation => {
+//       console.log('DOM changed during scroll:', mutation);
+//   });
+// });
+
+// observer2.observe(document.body, {
+//   childList: true,   // Watch for child node changes
+//   subtree: true,     // Watch for changes within the whole subtree
+//   attributes: true   // Watch for attribute changes
+// });
+// Call this function before starting the scroll animation
+// logEventListeners();
+
+// Start the scroll animation
+// scrollDown();
+
+
+
+// ##########################################################################
+
+
+
 
 //################ Navigation between index.html#thumbs, 
 // modalBox(statementContact) & Contact Form ###########
@@ -604,7 +737,7 @@ function showThumbs() {
 function hideForm() {
   document.getElementById("contactForm").style.display = "none";
   // document.getElementById("statementContact").style.display = "block";
-  
+
 }
 
 // function hideForm2() {
@@ -626,17 +759,7 @@ let isIdleWiggling = false; // Flag to track idle wiggle animation
 
 let initialTransform; // Declare initialTransform without assigning a value initial
 
-// Capture the initial transform when the DOM content is loaded
-document.addEventListener("DOMContentLoaded", function () {
-  captureInitialTransform();
 
-  function captureInitialTransform() {
-    initialTransform = window
-      .getComputedStyle(meElement)
-      .getPropertyValue("transform");
-    // console.log("transform: "+initialTransform);
-  }
-});
 
 // Function to stop the hover wiggle animation
 function stopHoverWiggle() {

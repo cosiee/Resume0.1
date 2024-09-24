@@ -20,10 +20,10 @@ gsap.set("#mountains", {
   x: "-50%",
 });
 
-gsap.set(".scrollDist", { 
-  width: "100%", 
-  height: "200%", 
-  background: "#fff" 
+gsap.set(".scrollDist", {
+  width: "100%",
+  height: "200%",
+  background: "#fff"
 });
 
 // Random background images for thumbnails
@@ -101,113 +101,113 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // GSAP timeline for scroll-triggered animations
-        // Disable automatic scroll restoration on page reload
-        window.history.scrollRestoration = 'manual';
+// Disable automatic scroll restoration on page reload
+window.history.scrollRestoration = 'manual';
 
-        function autoScroll() {
-            // Reset scroll position to the top before starting animation
-            window.scrollTo(0, 0); // Force scroll to top
+function autoScroll() {
+  // Reset scroll position to the top before starting animation
+  window.scrollTo(0, 0); // Force scroll to top
 
-            // Add a small delay before calculating maxScroll to ensure everything is loaded
-            setTimeout(() => {
-                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  // Add a small delay before calculating maxScroll to ensure everything is loaded
+  setTimeout(() => {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 
-                if (maxScroll <= 0) {
-                    console.log("No scrollable space");
-                    return; // Exit if there's no scrollable space
-                }
+    if (maxScroll <= 0) {
+      console.log("No scrollable space");
+      return; // Exit if there's no scrollable space
+    }
 
-                // Automatically scroll to the bottom over # seconds on page load
-                gsap.to(document.documentElement, { // Explicitly target document root for scrolling
-                    scrollTo: {
-                        y: maxScroll, // Scroll to the bottom of the page dynamically
-                        autoKill: false // Disable autoKill to prevent interruptions
-                    },
-                    duration: 6.8, // Scroll over 5 seconds
-                    ease: CustomEase.create("custom", "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "),// Easing function for smooth scrolling
-                    // onStart: () => console.log('Auto-scrolling started'),
-                    // onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
-                    // onComplete: () => console.log('Auto-scrolling completed')
-                });
-
-                
-            }, 3400); // Add a delay of 200ms before starting the scroll to let the layout settle
-        }
-
-        window.addEventListener('load', function () {
-            autoScroll(); 
-            mountainSkyAni();
-            updateDimensions();
-            updateModalDimensions();
-            animateThumbs();
-        });
+    // Automatically scroll to the bottom over # seconds on page load
+    gsap.to(document.documentElement, { // Explicitly target document root for scrolling
+      scrollTo: {
+        y: maxScroll, // Scroll to the bottom of the page dynamically
+        autoKill: false // Disable autoKill to prevent interruptions
+      },
+      duration: 6.8, // Scroll over 5 seconds
+      ease: CustomEase.create("custom", "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "),// Easing function for smooth scrolling
+      // onStart: () => console.log('Auto-scrolling started'),
+      // onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
+      // onComplete: () => console.log('Auto-scrolling completed')
+    });
 
 
+  }, 3400); // Add a delay of 200ms before starting the scroll to let the layout settle
+}
+
+window.addEventListener('load', function () {
+  autoScroll();
+  mountainSkyAni();
+  updateDimensions();
+  updateModalDimensions();
+  animateThumbs();
+});
 
 
 
-function mountainSkyAni(){
-gsap
-  .timeline({
-    scrollTrigger: {
-      trigger: ".scrollDist",
-      start: "top top",
-      end: "bottom bottom",
-      duration: 4,
-      scrub: 1,
-    },
-  })
-  .fromTo(
-    "#sky",
-    { scale: 1, x: 0, y: -80 },
-    { scale: 1.3, x: -150, y: -650 },
-    0
-  )
-  .fromTo(
-    "#mountBg",
-    { scale: 1, x: 0, y: 70 },
-    { scale: 1.3, x: -150, y: -600 },
-    0
-  )
-  .fromTo("#cloud2", { x: 400, y: 310 }, { x: -200, y: -600 }, 0)
-  .fromTo(
-    "#mountBg2",
-    { scale: 1, x: 0, y: 110 },
-    { scale: 1.3, x: -150, y: -670 },
-    0
-  )
-  .fromTo("#cloud3", { x: -200, y: 300 }, { x: 500, y: -1000 }, 0)
-  .fromTo(
-    "#mountMg",
-    { scale: 1, x: 0, y: 345 },
-    { scale: 1.3, x: -150, y: -700 },
-    0
-  )
-  .fromTo("#cloud4", { x: 300, y: 320 }, { x: -400, y: -850 }, 0)
-  .fromTo(
-    "#mountMgF",
-    { scale: 1, x: 0, y: 200 },
-    { scale: 1.3, x: -150, y: -750 },
-    0
-  )
-  .fromTo(
-    "#mountFg",
-    { scale: 1, x: 0, y: 220 },
-    { scale: 1.3, x: -150, y: -850 },
-    0
-  )
-  .fromTo(
-    "#cloud5",
-    { scale: 1.5, x: -100, y: 380 },
-    { scale: 3, x: 300, y: -950 },
-    0
-  )
-  .fromTo(
-    "#cloud1, #cloud1M",
-    { scale: 1.3, x: -10, y: 576 },
-    { scale: 2, x: -500, y: -690 },
-    0
-  );
+
+
+function mountainSkyAni() {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: ".scrollDist",
+        start: "top top",
+        end: "bottom bottom",
+        duration: 4,
+        scrub: 1,
+      },
+    })
+    .fromTo(
+      "#sky",
+      { scale: 1, x: 0, y: -80 },
+      { scale: 1.3, x: -150, y: -650 },
+      0
+    )
+    .fromTo(
+      "#mountBg",
+      { scale: 1, x: 0, y: 70 },
+      { scale: 1.3, x: -150, y: -600 },
+      0
+    )
+    .fromTo("#cloud2", { x: 400, y: 310 }, { x: -200, y: -600 }, 0)
+    .fromTo(
+      "#mountBg2",
+      { scale: 1, x: 0, y: 110 },
+      { scale: 1.3, x: -150, y: -670 },
+      0
+    )
+    .fromTo("#cloud3", { x: -200, y: 300 }, { x: 500, y: -1000 }, 0)
+    .fromTo(
+      "#mountMg",
+      { scale: 1, x: 0, y: 345 },
+      { scale: 1.3, x: -150, y: -700 },
+      0
+    )
+    .fromTo("#cloud4", { x: 300, y: 320 }, { x: -400, y: -850 }, 0)
+    .fromTo(
+      "#mountMgF",
+      { scale: 1, x: 0, y: 200 },
+      { scale: 1.3, x: -150, y: -750 },
+      0
+    )
+    .fromTo(
+      "#mountFg",
+      { scale: 1, x: 0, y: 220 },
+      { scale: 1.3, x: -150, y: -850 },
+      0
+    )
+    .fromTo(
+      "#cloud5",
+      { scale: 1.5, x: -100, y: 380 },
+      { scale: 3, x: 300, y: -950 },
+      0
+    )
+    .fromTo(
+      "#cloud1, #cloud1M",
+      { scale: 1.3, x: -10, y: 576 },
+      { scale: 2, x: -500, y: -690 },
+      0
+    );
 }
 // ###################################################################################
 
@@ -246,10 +246,10 @@ function updateDimensions() {
   endTopY = window.innerHeight * 1.25;
   endRightX = screenWidthHalved;
   endBottomY = window.innerHeight * 1.25 + totalThumbWidth;
-  spaceoutThumbs();
+  
 }
 
-function spaceoutThumbs(){
+function spaceoutThumbs() {
   gsap.to("#software", {
     x: endLeftX,
     y: endTopY,
@@ -317,7 +317,7 @@ function updateDimensionsNoMargins() {
   }, 450); // Small delay to ensure scrollbar removal takes effect
 }
 
-function collectThumbs(){
+function collectThumbs() {
   gsap.to("#software", {
     scale: 1,
     x: endLeftX,
@@ -418,44 +418,45 @@ updateDimensions();
 updateModalDimensions();
 
 // initial thumb centreing animation, called in a DOMContentLoaded
-function animateThumbs(){
-gsap
-  .timeline({
-    scrollTrigger: {
-      trigger: ".scrollDist",
-      start: "top top",
-      end: "bottom bottom",
-      scrub: 0.5,
-    },
-  })
-  .fromTo(
-    "#software",
-    { scale: 1.5, x: endLeftX - 1750, y: endTopY - 750 },
-    { scale: 1, x: endLeftX, y: endTopY },
-    0
-  )
-  .fromTo(
-    "#photography",
-    { scale: 1.5, x: endRightX + 1250, y: endTopY - 750 },
-    { scale: 1, x: endRightX, y: endTopY },
-    0
-  )
-  .fromTo(
-    "#diy",
-    { scale: 1.5, x: endRightX + 1250, y: endBottomY + 750 },
-    { scale: 1, x: endRightX, y: endBottomY },
-    0
-  )
-  .fromTo(
-    "#videography",
-    { scale: 1.5, x: endLeftX - 1750, y: endBottomY + 750 },
-    { scale: 1, x: endLeftX, y: endBottomY },
-    0
-  );
+function animateThumbs() {
+  console.log("animateThumbs-");
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: ".scrollDist",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 0.5,
+      },
+    })
+    .fromTo(
+      "#software",
+      { scale: 0.2, x: endLeftX - 1750, y: endTopY - 750 },
+      { scale: 1, x: endLeftX, y: endTopY },
+      0
+    )
+    .fromTo(
+      "#photography",
+      { scale: 0.2, x: endRightX + 1250, y: endTopY - 750 },
+      { scale: 1, x: endRightX, y: endTopY },
+      0
+    )
+    .fromTo(
+      "#diy",
+      { scale: 3, x: endRightX + 1250, y: endBottomY + 750 },
+      { scale: 1, x: endRightX, y: endBottomY },
+      0
+    )
+    .fromTo(
+      "#videography",
+      { scale: 3, x: endLeftX - 1750, y: endBottomY + 750 },
+      { scale: 1, x: endLeftX, y: endBottomY },
+      0
+    );
 }
 // #############################################################################################
 
- const thresholdScale = 1.5; //set to the lower scale value, to allow for the crossing-fading effect
+const thresholdScale = 1.5; //set to the lower scale value, to allow for the crossing-fading effect
 
 function getScaleValue(element) {
   if (!element) {
@@ -487,7 +488,7 @@ function updateMeElement() {
       meElement.style.display = "block"; // Enable #me
 
       // Re-enable event listeners if necessary
-       meElement.addEventListener("click", hideScrollBar, updateDimensionsNoMargins); //, scrollToBottom
+      meElement.addEventListener("click", hideScrollBar, updateDimensionsNoMargins); //, scrollToBottom
     }
   } else {
     if (meElement.style.display !== "none") {
@@ -562,11 +563,11 @@ function showScrollBar() {
 //         console.log("scrollDown-SCROLLhEIGHT-CLIENThEIGHT: ",document.documentElement.scrollHeight - document.documentElement.clientHeight);
 //         console.log("scrollDown-To: ",to);
 //         console.log("scrollDown-duration: ",duration);
-        
-      
+
+
 //     }
 //   }
-  
+
 
 
 // //   ##################################################################################
@@ -579,24 +580,24 @@ function showScrollBar() {
 
 //   function scrollDown() {
 //       const documentElement = document.documentElement;
-  
+
 //       if (documentElement.scrollTop <= documentElement.scrollHeight && !isAnimating) {
 //           const duration = 4000;
 //           const to = documentElement.scrollHeight - documentElement.clientHeight;
-  
+
 //           // Log the scroll details for debugging
 //           console.log("scrollDown-clientHeight: ", documentElement.clientHeight);
 //           console.log("scrollDown-SCROLLHEIGHT: ", documentElement.scrollHeight);
 //           console.log("scrollDown-SCROLLHEIGHT-CLIENTHEIGHT: ", documentElement.scrollHeight - documentElement.clientHeight);
 //           console.log("scrollDown-To: ", to);
 //           console.log("scrollDown-duration: ", duration);
-  
+
 //           // Start the scroll animation
 //           isAnimating = true;
 //           scrollToBottom(to, duration);
 //       }
 //   }
-  
+
 //   // Easing function for smooth animation
 //   function easeInOutQuad(t, b, c, d) {
 //       t /= d / 2;
@@ -604,29 +605,29 @@ function showScrollBar() {
 //       t--;
 //       return -c / 2 * (t * (t - 2) - 1) + b;
 //   }
-  
+
 //   // Scroll to the specified position (to) over the given duration (in ms)
 //   function scrollToBottom(to, duration) {
 //       const start = document.documentElement.scrollTop;
 //       const change = to - start;
 //       const startTime = performance.now();
-  
+
 //       // Use requestAnimationFrame for smooth scrolling
 //       function animateScroll(currentTime) {
 //           const timeElapsed = currentTime - startTime;
 //           const time = Math.min(timeElapsed, duration);
 //           const run = Math.round(easeInOutQuad(time, start, change, duration));
-  
+
 //           // Lock the scroll position during the animation
 //           if (isAnimating) {
 //               window.scrollTo(0, run);
-  
+
 //               // Only log if scrollTop changes and avoid alternate jumps
 //               if (document.documentElement.scrollTop !== run) {
 //                   console.log('scrollTop (updated):', run);
 //               }
 //           }
-  
+
 //           // Continue the animation if within duration
 //           if (time < duration) {
 //               requestAnimationFrame(animateScroll);
@@ -637,12 +638,12 @@ function showScrollBar() {
 //               isAnimating = false;  // Unlock the scroll
 //           }
 //       }
-  
+
 //       requestAnimationFrame(animateScroll);
 //   }
-  
 
-  // List all event listeners on window and document for debugging
+
+// List all event listeners on window and document for debugging
 // function logEventListeners() {
 //   console.log("Logging event listeners for debugging:");
 
@@ -670,9 +671,9 @@ function showScrollBar() {
 // Call this function before starting the scroll animation
 // logEventListeners();
 
-  // Start the scroll animation
-  // scrollDown();
-  
+// Start the scroll animation
+// scrollDown();
+
 
 
 // ##########################################################################
@@ -736,7 +737,7 @@ function showThumbs() {
 function hideForm() {
   document.getElementById("contactForm").style.display = "none";
   // document.getElementById("statementContact").style.display = "block";
-  
+
 }
 
 // function hideForm2() {
