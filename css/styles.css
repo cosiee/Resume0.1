@@ -159,7 +159,7 @@ body {
 
 nav.navbar {
   height: auto;
-  overflow: hidden;
+  overflow: visible;
 }
 
 
