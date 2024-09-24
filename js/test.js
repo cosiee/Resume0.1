@@ -1,4 +1,4 @@
-// document.addEventListener('DOMContentLoaded', function() {
+
 // Ensure #me element is initially disabled
 const meElement = document.getElementById("me");
 meElement.disabled = true;
@@ -7,7 +7,6 @@ meElement.disabled = true;
 const cloud1 = document.getElementById("cloud1");
 
 
-// });
 
 // GSAP initial setups
 gsap.set("#mountains", {
@@ -21,9 +20,13 @@ gsap.set("#mountains", {
   x: "-50%",
 });
 
-gsap.set(".scrollDist", { width: "100%", height: "200%", background: "#fff" });
+gsap.set(".scrollDist", { 
+  width: "100%", 
+  height: "200%", 
+  background: "#fff" 
+});
 
-// Random background images for containers
+// Random background images for thumbnails
 document.addEventListener("DOMContentLoaded", function () {
   const softwareImages = [
     "url('css/assets/b1.jpg')",
@@ -114,29 +117,29 @@ document.addEventListener("DOMContentLoaded", function () {
                     return; // Exit if there's no scrollable space
                 }
 
-                console.log("autoScroll-maxScroll", maxScroll);
-                console.log("autoScroll1");
-
-                // Automatically scroll to the bottom over 4 seconds on page load
+                // Automatically scroll to the bottom over # seconds on page load
                 gsap.to(document.documentElement, { // Explicitly target document root for scrolling
                     scrollTo: {
                         y: maxScroll, // Scroll to the bottom of the page dynamically
                         autoKill: false // Disable autoKill to prevent interruptions
                     },
                     duration: 6.8, // Scroll over 5 seconds
-                    ease: "power2.inOut", // Easing function for smooth scrolling
-                    onStart: () => console.log('Auto-scrolling started'),
-                    onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
-                    onComplete: () => console.log('Auto-scrolling completed')
+                    ease: CustomEase.create("custom", "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "),// Easing function for smooth scrolling
+                    // onStart: () => console.log('Auto-scrolling started'),
+                    // onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
+                    // onComplete: () => console.log('Auto-scrolling completed')
                 });
 
-                console.log("autoScroll2");
+                
             }, 3400); // Add a delay of 200ms before starting the scroll to let the layout settle
         }
 
         window.addEventListener('load', function () {
-            console.log("load-event");
-            autoScroll(); // Run the scroll after the page has fully loaded
+            autoScroll(); 
+            mountainSkyAni();
+            updateDimensions();
+            updateModalDimensions();
+            animateThumbs();
         });
 
 
@@ -408,15 +411,7 @@ window.addEventListener("resize", () => {
   updateDimensionsNoMargins();
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  updateDimensions();
-  // updateDimensionsNoMargins();
-  updateModalDimensions();
-  
-  animateThumbs();
-  // autoScroll();
-  
-});
+
 
 // Initial call
 updateDimensions();
@@ -763,18 +758,7 @@ let isIdleWiggling = false; // Flag to track idle wiggle animation
 
 let initialTransform; // Declare initialTransform without assigning a value initial
 
-// Capture the initial transform when the DOM content is loaded
-document.addEventListener("DOMContentLoaded", function () {
-  captureInitialTransform();
-  mountainSkyAni();
-  //  scrollDown();
-  function captureInitialTransform() {
-    initialTransform = window
-      .getComputedStyle(meElement)
-      .getPropertyValue("transform");
-    // console.log("transform: "+initialTransform);
-  }
-});
+
 
 // Function to stop the hover wiggle animation
 function stopHoverWiggle() {
