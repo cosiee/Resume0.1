@@ -104,6 +104,34 @@ document.addEventListener("DOMContentLoaded", function () {
 // Disable automatic scroll restoration on page reload
 window.history.scrollRestoration = 'manual';
 
+function autoScrollNow() {
+  // Reset scroll position to the top before starting animation
+  window.scrollTo(0, 0);
+  
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+    if (maxScroll <= 0) {
+      console.log("No scrollable space");
+      return; // Exit if there's no scrollable space
+    }
+
+    // Automatically scroll to the bottom over # seconds on page load
+    gsap.to(document.documentElement, { // Explicitly target document root for scrolling
+      scrollTo: {
+        y: maxScroll, // Scroll to the bottom of the page dynamically
+        autoKill: false // Disable autoKill to prevent interruptions
+      },
+      duration: 6.8, // Scroll over 5 seconds
+      ease: CustomEase.create("custom", "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "),// Easing function for smooth scrolling
+      onStart: () => console.log('Auto-scrolling Now started'),
+      onUpdate: () => console.log('Scrolling NOW in progress: ', window.scrollY), // Check the scroll progress
+      onComplete: () => console.log('Auto-scrolling completed')
+    });
+
+
+   // Add a delay of 200ms before starting the scroll to let the layout settle
+}
+
 function autoScroll() {
   // Reset scroll position to the top before starting animation
   window.scrollTo(0, 0); // Force scroll to top
