@@ -419,7 +419,7 @@ updateModalDimensions();
 
 // initial thumb centreing animation, called in a DOMContentLoaded
 function animateThumbs() {
-  console.log("animateThumbs-");
+  // console.log("animateThumbs-");
   gsap
     .timeline({
       scrollTrigger: {
@@ -878,28 +878,49 @@ const navbarVid = document.querySelector("#videographyLink");
 const thumbDiy = document.querySelector("#diy");
 const navbarDiy = document.querySelector("#diyLink");
 
-const navLinks = document.querySelector("nav-link");
 
-navLinks.addEventListener("mouseenter", function () {
-  navbarPhoto.style.color = "#162a43";
-  navbarPhoto.style.scale = 1.15;
-});
 
-navLinks.addEventListener("mouseleaves", function (){ 
-  navbarPhoto.style.color = "#6e6f79";
-  navbarPhoto.style.scale = 1;
-});
+
 
 thumbPhoto.addEventListener("mouseenter", function () {
-  navbarPhoto.style.color = "#162a43";
-  navbarPhoto.style.scale = 1.3;
-  thumbPhoto.style.scale = 1.004;
+  navbarPhoto.classList.add("active");
+  thumbPhoto.classList.add("active");
 });
 
 thumbPhoto.addEventListener("mouseleave", function () {
-  navbarPhoto.style.scale = 1;
-  navbarPhoto.style.color =  "#6e6f79";
-  thumbPhoto.style.scale = 1;
+  navbarPhoto.classList.remove("active");
+  thumbPhoto.classList.remove("active");
+});
+
+thumbSoft.addEventListener("mouseenter", function () {
+  navbarSoft.classList.add("active");
+  thumbSoft.classList.add("active");
+});
+
+thumbSoft.addEventListener("mouseleave", function () {
+  navbarSoft.classList.remove("active");
+  thumbSoft.classList.remove("active");
+});
+
+thumbVid.addEventListener("mouseenter", function () {
+  navbarVid.classList.add("active");
+  thumbVid.classList.add("active");
+});
+
+thumbVid.addEventListener("mouseleave", function () {
+  navbarVid.classList.remove("active");
+  thumbVid.classList.remove("active");
+});
+
+thumbDiy.addEventListener("mouseenter", function () {
+
+  navbarDiy.classList.add("active");
+  thumbDiy.classList.add("active");
+});
+
+thumbDiy.addEventListener("mouseleave", function () {
+  navbarDiy.classList.remove("active");
+  thumbDiy.classList.remove("active");
 });
 
 // navbarPhoto.addEventListener("mouseenter", function () {
@@ -915,17 +936,7 @@ thumbPhoto.addEventListener("mouseleave", function () {
  
 // });
 
-thumbSoft.addEventListener("mouseenter", function () {
-  navbarSoft.style.scale = 1.3;
-  navbarSoft.style.color = "#162a43";
-  thumbSoft.style.scale = 1.004;
-});
 
-thumbSoft.addEventListener("mouseleave", function () {
-  navbarSoft.style.scale = 1;
-  navbarSoft.style.color = "#6e6f79";
-  thumbSoft.style.scale = 1;
-});
 
 // navbarSoft.addEventListener("mouseenter", function () {
 //   navbarSoft.style.scale = 1.1;
@@ -938,17 +949,7 @@ thumbSoft.addEventListener("mouseleave", function () {
 //   navbarSoft.style.color = "#6e6f79";
 // });
 
-thumbVid.addEventListener("mouseenter", function () {
-  navbarVid.style.scale = 1.3;
-  navbarVid.style.color = "#162a43";
-  thumbVid.style.scale = 1.004;
-});
 
-thumbVid.addEventListener("mouseleave", function () {
-  navbarVid.style.scale = 1;
-  navbarVid.style.color = "#6e6f79";
-  thumbVid.style.scale = 1;
-});
 
 // navbarVid.addEventListener("mouseenter", function () {
 //   navbarVid.style.scale = 1.1;
@@ -961,17 +962,7 @@ thumbVid.addEventListener("mouseleave", function () {
 //   navbarVid.style.color = "#6e6f79"; 
 // });
 
-thumbDiy.addEventListener("mouseenter", function () {
-  navbarDiy.style.scale = 1.3;
-  navbarDiy.style.color = "#162a43";
-  thumbDiy.style.scale = 1.004;
-});
 
-thumbDiy.addEventListener("mouseleave", function () {
-  navbarDiy.style.scale = 1;
-  navbarDiy.style.color = "#6e6f79";
-  thumbDiy.style.scale = 1;
-});
 
 // navbarDiy.addEventListener("mouseenter", function () {
 //   navbarDiy.style.scale = 1.1;

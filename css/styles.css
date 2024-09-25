@@ -206,7 +206,7 @@ element.style:hover {
   color: #162a43;
 } */
 
-a.nav-link {
+/* a.nav-link {
  
   color: #6e6f79;
   font-family: "Open Sans";
@@ -225,12 +225,51 @@ a.nav-link:hover {
   
 }
 
+
+a.dropdown-toggle#softwareLink:hover{
+  color: #162a43;
+  transform: scale(1.15);
+} */
+
+a.nav-link {
+  color: #6e6f79;
+  font-family: "Open Sans";
+  font-size: 1.6em;
+  line-height: 1.6;
+  font-weight: 500;
+  transition: all 0.3s;
+  transform: scale(1);
+  opacity: 1;
+}
+
+a.nav-link:hover {
+  color: #162a43;
+  transform: scale(1.15);
+}
+
+a.nav-link.active {
+  color: #162a43;
+  transform: scale(1.3);
+}
+
+#photography.active {
+  transform: scale(1.004);
+}
+.navbar-nav{
+  --bs-nav-link-hover-colour: #162a43;
+}
+.navbar{
+  --bs-navbar-active-color: #162a43;
+  --bs-navbar-brand-color: #162a43;
+  --bs-navbar-brand-hover-color: #162a43;
+
+}
+
 #navbarNavDropdown {
   display: block; 
-  height: 50px;
+  height: fit-content;
   
-} 
-
+}
 
 
 a#navbarDropdownMenuLink.nav-link.dropdown-toggle {
