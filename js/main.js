@@ -105,9 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
 window.history.scrollRestoration = 'manual';
 
 function autoScrollNow() {
-  // Reset scroll position to the top before starting animation
-  window.scrollTo(0, 0);
-  
+ 
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 
     if (maxScroll <= 0) {
@@ -121,15 +119,9 @@ function autoScrollNow() {
         y: maxScroll, // Scroll to the bottom of the page dynamically
         autoKill: false // Disable autoKill to prevent interruptions
       },
-      duration: 6.8, // Scroll over 5 seconds
-      ease: CustomEase.create("custom", "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "),// Easing function for smooth scrolling
-      onStart: () => console.log('Auto-scrolling Now started'),
-      onUpdate: () => console.log('Scrolling NOW in progress: ', window.scrollY), // Check the scroll progress
-      onComplete: () => console.log('Auto-scrolling completed')
+      duration: 6.8, // Scroll over # seconds
+      ease: CustomEase.create("custom", "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "),// Easing function for scroll
     });
-
-
-   // Add a delay of 200ms before starting the scroll to let the layout settle
 }
 
 function autoScroll() {
