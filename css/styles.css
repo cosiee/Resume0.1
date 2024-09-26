@@ -265,11 +265,11 @@ a.nav-link.active {
 
 }
 
-#navbarNavDropdown {
+/* #navbarNav{
   display: block; 
-  height: fit-content;
+  height:auto;
   
-}
+} */
 
 
 a#navbarDropdownMenuLink.nav-link.dropdown-toggle {
