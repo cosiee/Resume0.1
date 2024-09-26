@@ -17,18 +17,22 @@
   
     <!-- <link rel="stylesheet" href="css/test.css">  -->
   
-  
     <script src="http://code.jquery.com/jquery-1.11.0.min.js" defer></script>
-    <script src="js/test.js" defer></script>
+    <!-- <script src="js/test.js" defer></script> -->
 
+    <!-- <script src="js/test.js" defer></script> -->
+    <script src="js/main.js" defer></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script> 
-  
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script> -->
+    <!-- <link rel="stylesheet" href="css/navbar.css"> -->
+      
   
   </head>
   
@@ -46,7 +50,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Home</a>
+              <a class="nav-link" aria-current="page" onclick="autoScroll();">Home</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink softwareLink" role="button"
@@ -69,7 +73,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" id="contactLink"
-                onclick="hideScrollBar(); showStatementContact(); showForm()">Contact</a>
+                onclick="hideScrollBar(); showStatementContact(); showForm();">Contact</a>
             </li>
           </ul>
         </div>
@@ -102,7 +106,7 @@
           <image class="img-fluid" id="cloud5" xlink:href="assets/cl4.png" width="1200" height="800" />
           <image class="img-fluid" id="cloud1" xlink:href="assets/cl1.png" width="1200" height="850" />
   
-          <text class="lrgtext" id="see" fill="#fff" onclick="scrollToBottom()">SEE</text>
+          <text class="lrgtext" id="see" fill="#fff" onclick="autoScrollNow()">SEE</text>
   
           <g mask="url(#m)">
             <rect fill="#fff" width="100%" height="100%" />
@@ -110,7 +114,7 @@
             <a class="meLink" onclick="showStatementContact(); ">
               <text class="lrgtext" id="me" fill="#162a43">ME</text>
             </a>
-            <div class="scroll-arrow" id="down" x="455" y="330" ></div> <!--  onclick="scrollToBottom()"-->
+            <div class="scroll-arrow" id="down" x="455" y="330" onclick="autoScrollNow()" ></div> 
           </g>    
       </div>
       <div class="container-fluid thumbnails" id="thumbnails">
