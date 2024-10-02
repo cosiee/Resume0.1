@@ -5,7 +5,7 @@
 ********************************************************************* */
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300&display=swap");
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ SEE/ME Base Styles $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
@@ -14,6 +14,7 @@
 #mountains,
 .scrollDist {
   height: 100%;
+  width: 1200px;
 }
 
 #mountains {
@@ -355,7 +356,7 @@ dropdown-menu {
   height: auto;
 }
 
-.container-fluid #thumbnails {
+.container-fluid#thumbnails {
   position: absolute;
 }
 

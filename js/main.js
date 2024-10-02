@@ -151,16 +151,27 @@ function autoScroll() {
     });
 
 
-  }, 3400); // Add a delay of 200ms before starting the scroll to let the layout settle
+  },3400); // Add a delay of 3.4seconds before starting the scroll to let the layout settle
 }
 
 window.addEventListener('load', function () {
-  autoScroll();
   mountainSkyAni();
+  updateMeElement();
   updateDimensions();
   updateModalDimensions();
   animateThumbs();
+  autoScroll();
+  
+
+  
 });
+
+let counter = 0;
+
+const timer = setInterval(() => {
+  console.log(`Timer: ${counter} seconds`);
+  counter++;
+}, 1000);
 
 
 
@@ -424,12 +435,25 @@ function formControl(endTopY) {
   contactForm.style.top = `${formY}px`;
 }
 
+function debounce(fn, delay) {
+  let timeout;
+  return function() {
+    clearTimeout(timeout);
+    timeout = setTimeout(fn, delay);
+  };
+}
+
+// window.addEventListener('resize', debounce(() => {
+//   // Animation or layout logic
+// }, 200));
+
+
 // Ensure updateDimensionsNoMargins is called on resize and DOM content load
-window.addEventListener("resize", () => {
+window.addEventListener("resize", debounce(() => {
   updateDimensions();
   updateModalDimensions();
   updateDimensionsNoMargins();
-});
+}, 200));
 
 
 
@@ -439,14 +463,15 @@ updateModalDimensions();
 
 // initial thumb centreing animation, called in a DOMContentLoaded
 function animateThumbs() {
-  // console.log("animateThumbs-");
+  console.log("animateThumbs-");
   gsap
     .timeline({
       scrollTrigger: {
         trigger: ".scrollDist",
-        start: "top top",
+        // start: "top top",
         end: "bottom bottom",
         scrub: 0.5,
+        invalidateOnRefresh: true,
       },
     })
     .fromTo(
@@ -525,7 +550,7 @@ const observer = new MutationObserver(updateMeElement);
 observer.observe(cloud1, { attributes: true, childList: true, subtree: true });
 
 // Initial call to update the state based on current scale
-updateMeElement();
+// updateMeElement();
 
 // Scroll event listener to toggle sticky navbar
 $(window).scroll(function () {
@@ -544,155 +569,6 @@ function hideScrollBar() {
 function showScrollBar() {
   document.documentElement.style.overflow = ""; // Show scroll on the entire document
 }
-
-// ####################### see/me/arrow click scroll-down function
-
-// document.addEventListener('DOMContentLoaded', function () {
-//   const downScroll = document.querySelector("#down");
-//   const seeScroll = document.querySelector("#see");
-//   const meElement = document.querySelector("#me");
-
-//   // Logging the element selections
-// //   console.log('downScroll:', downScroll);
-// //   console.log('seeScroll:', seeScroll);
-// //   console.log('meElement:', meElement);
-
-//   // Adding event listeners
-
-// //   if (downScroll) {
-// //     downScroll.addEventListener("onclick", scrollDown);
-// //   }
-// //   if (seeScroll) {
-// //     seeScroll.addEventListener("onclick", scrollDown);
-// //   }
-
-// });
-
-
-
-// #############################################################
-// ### scroll control, initiated by load 'me' and 'down' arrow
-
-// function scrollDown() {
-//     if (document.documentElement.scrollTop <= document.documentElement.scrollHeight) {
-//         const duration = 4000;
-//         const to = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-//       scrollToBottom(to, duration); 
-//         console.log("scrollDown-clientHeight: ", document.documentElement.clientHeight);
-//         console.log("scrollDown-SCROLLhEIGHT: ",document.documentElement.scrollHeight);
-//         console.log("scrollDown-SCROLLhEIGHT-CLIENThEIGHT: ",document.documentElement.scrollHeight - document.documentElement.clientHeight);
-//         console.log("scrollDown-To: ",to);
-//         console.log("scrollDown-duration: ",duration);
-
-
-//     }
-//   }
-
-
-
-// //   ##################################################################################
-//   /*--------------------------------------------
-//    Functions to make scroll with linear speed control for debugging
-//   ---------------------------------------------*/
-
-//   // Scroll down function triggered by 'me' and 'down' arrow
-//   let isAnimating = false;  // Add a flag to lock the scroll during animation
-
-//   function scrollDown() {
-//       const documentElement = document.documentElement;
-
-//       if (documentElement.scrollTop <= documentElement.scrollHeight && !isAnimating) {
-//           const duration = 4000;
-//           const to = documentElement.scrollHeight - documentElement.clientHeight;
-
-//           // Log the scroll details for debugging
-//           console.log("scrollDown-clientHeight: ", documentElement.clientHeight);
-//           console.log("scrollDown-SCROLLHEIGHT: ", documentElement.scrollHeight);
-//           console.log("scrollDown-SCROLLHEIGHT-CLIENTHEIGHT: ", documentElement.scrollHeight - documentElement.clientHeight);
-//           console.log("scrollDown-To: ", to);
-//           console.log("scrollDown-duration: ", duration);
-
-//           // Start the scroll animation
-//           isAnimating = true;
-//           scrollToBottom(to, duration);
-//       }
-//   }
-
-//   // Easing function for smooth animation
-//   function easeInOutQuad(t, b, c, d) {
-//       t /= d / 2;
-//       if (t < 1) return c / 2 * t * t + b;
-//       t--;
-//       return -c / 2 * (t * (t - 2) - 1) + b;
-//   }
-
-//   // Scroll to the specified position (to) over the given duration (in ms)
-//   function scrollToBottom(to, duration) {
-//       const start = document.documentElement.scrollTop;
-//       const change = to - start;
-//       const startTime = performance.now();
-
-//       // Use requestAnimationFrame for smooth scrolling
-//       function animateScroll(currentTime) {
-//           const timeElapsed = currentTime - startTime;
-//           const time = Math.min(timeElapsed, duration);
-//           const run = Math.round(easeInOutQuad(time, start, change, duration));
-
-//           // Lock the scroll position during the animation
-//           if (isAnimating) {
-//               window.scrollTo(0, run);
-
-//               // Only log if scrollTop changes and avoid alternate jumps
-//               if (document.documentElement.scrollTop !== run) {
-//                   console.log('scrollTop (updated):', run);
-//               }
-//           }
-
-//           // Continue the animation if within duration
-//           if (time < duration) {
-//               requestAnimationFrame(animateScroll);
-//           } else {
-//               // Ensure the final scroll position is correct
-//               window.scrollTo(0, to);
-//               console.log("Animation finished at scrollTop:", document.documentElement.scrollTop);
-//               isAnimating = false;  // Unlock the scroll
-//           }
-//       }
-
-//       requestAnimationFrame(animateScroll);
-//   }
-
-
-// List all event listeners on window and document for debugging
-// function logEventListeners() {
-//   console.log("Logging event listeners for debugging:");
-
-//   // List event listeners on window
-//   if (window.getEventListeners) {
-//       console.log("Window Event Listeners:", window.getEventListeners(window));
-//   }
-
-//   // List event listeners on document
-//   if (document.getEventListeners) {
-//       console.log("Document Event Listeners:", document.getEventListeners(document));
-//   }
-// }
-// const observer2 = new MutationObserver(mutations => {
-//   mutations.forEach(mutation => {
-//       console.log('DOM changed during scroll:', mutation);
-//   });
-// });
-
-// observer2.observe(document.body, {
-//   childList: true,   // Watch for child node changes
-//   subtree: true,     // Watch for changes within the whole subtree
-//   attributes: true   // Watch for attribute changes
-// });
-// Call this function before starting the scroll animation
-// logEventListeners();
-
-// Start the scroll animation
-// scrollDown();
 
 
 
@@ -759,14 +635,6 @@ function hideForm() {
   // document.getElementById("statementContact").style.display = "block";
 
 }
-
-// function hideForm2() {
-//   hideForm();
-// }
-
-// function submitForm() {
-//   hideForm();
-// }
 
 // ################ Begining of MeText Animations ############################################
 
@@ -877,7 +745,6 @@ startIdleWiggle();
 
 meElement.addEventListener("mouseenter", function () {
   meElement.style.transform = `translate(520px, 22vh) scale(1.015)`;
-  // meElement.style.shadowColor = grey;
 });
 
 meElement.addEventListener("mouseleave", function () {

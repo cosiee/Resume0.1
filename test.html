@@ -21,7 +21,7 @@
     <!-- <script src="js/test.js" defer></script> -->
 
     <!-- <script src="js/test.js" defer></script> -->
-    <script src="js/main.js" defer></script>
+    <script defer src="js/main.js" ></script>
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
@@ -81,14 +81,14 @@
     </nav>
   
   
-    <div class="svg-container">
+    <div class="svg-container container-fluid" id="mountains">
   
-      <div class="container-fluid" id="mountains">
+      <!-- <div class="container-fluid" id="mountains"> -->
   
         <svg viewBox="0 0 1200 800" id="svg" xmlns="http://www.w3.org/2000/svg">
           <mask id="m">
             <g class="img-fluid" id="cloud1">
-              <rect fill="#fff" width="100%" height="800" y="1200" />
+              <rect fill="#fff" width="1200" height="800" y="1200" />
               <image xlink:href="assets/cl1.png" width="1200" height="800" />
   
             </g>
@@ -104,7 +104,7 @@
           <image class="img-fluid" id="mountMgF" xlink:href="assets/mtmfg.png" width="1200" height="800" />
           <image class="img-fluid" id="mountFg" xlink:href="assets/mtfg.png" width="1200" height="800" />
           <image class="img-fluid" id="cloud5" xlink:href="assets/cl4.png" width="1200" height="800" />
-          <image class="img-fluid" id="cloud1" xlink:href="assets/cl1.png" width="1200" height="850" />
+          <image class="img-fluid" id="cloud1" xlink:href="assets/cl1.png" width="1200" height="800" />
   
           <text class="lrgtext" id="see" fill="#fff" onclick="autoScrollNow()">SEE</text>
   
@@ -143,10 +143,10 @@
           </div>
         </a>
   
-      </div>
+      <!-- </div> -->
       </svg>
     </div>    
-      <div class="container-fluid modalbox"  id="statementContact" style="display: none;">
+      <div class="container-fluid modalbox"  id="statementContact"style="display: box;">
           <div class="box">
             <a class="close" onclick="showScrollBar(); showThumbs(); updateDimensions(); spaceoutThumbs();">X</a>
             <p class="title">Welcome</p>
@@ -169,16 +169,16 @@
           </div>
       </div>
   
-  
+      
   
       <div class="formDiv" id="contactForm" style="display: none;">
         <a class="closeForm" onclick="showThumbs(); spaceoutThumbs();" href="#statementContact">X</a>
         <form action="https://formspree.io/f/meqyreww" method="POST">
           <label> Your name:
-            <input type="text" id="name" name="name" required>
+            <input autocomplete="false" type="text" id="name" name="name" required>
           </label>
           <label> Your email:
-            <input type="text" id="email" name="email" required>
+            <input autocomplete="false" type="text" id="email" name="email" required>
           </label>
           <label>Your message:
             <textarea id="message" name="message" rows="5" required></textarea>
