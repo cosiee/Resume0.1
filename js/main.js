@@ -129,7 +129,7 @@ function autoScroll() {
   window.scrollTo(0, 0); // Force scroll to top
 
   // Add a small delay before calculating maxScroll to ensure everything is loaded
-  setTimeout(() => {
+  // setTimeout(() => {
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 
     if (maxScroll <= 0) {
@@ -151,7 +151,7 @@ function autoScroll() {
     });
 
 
-  },3400); // Add a delay of 3.4seconds before starting the scroll to let the layout settle
+  // },3400); // Add a delay of 3.4seconds before starting the scroll to let the layout settle
 }
 
 window.addEventListener('load', function () {
