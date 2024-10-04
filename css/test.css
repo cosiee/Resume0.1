@@ -27,10 +27,13 @@
 }
 
 .svg-container {
-  position: absolute;
+  /* position: absolute; */
+  position: relative;
   height: auto;
-  /* overflow: hidden; */
+  overflow: hidden;
   width: 100%;
+max-width: 800px;
+max-width: 800px;
 }
 
 text.lrgtext {
@@ -162,7 +165,6 @@ nav.navbar {
   z-index: 55;
   height: auto;
   overflow: visible;
-  max-width: 1200px;
 }
 
 

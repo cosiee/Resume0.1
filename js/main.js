@@ -16,8 +16,8 @@ gsap.set("#mountains", {
   maxWidth: "1200px",
   height: "100%",
   top: 0,
-  left: "50%",
-  x: "-50%",
+  // left: "50%",
+  // x: "-50%",  these are offseting, sizing needs to be adjusted so these are not required. look at svg and scrollDist
 });
 
 gsap.set(".scrollDist", {
@@ -129,7 +129,7 @@ function autoScroll() {
   window.scrollTo(0, 0); // Force scroll to top
 
   // Add a small delay before calculating maxScroll to ensure everything is loaded
-  // setTimeout(() => {
+  setTimeout(() => {
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 
     if (maxScroll <= 0) {
@@ -151,7 +151,7 @@ function autoScroll() {
     });
 
 
-  // },3400); // Add a delay of 3.4seconds before starting the scroll to let the layout settle
+  },3400); // Add a delay of 3.4seconds before starting the scroll to let the layout settle
 }
 
 window.addEventListener('load', function () {
@@ -166,12 +166,7 @@ window.addEventListener('load', function () {
   
 });
 
-let counter = 0;
 
-const timer = setInterval(() => {
-  console.log(`Timer: ${counter} seconds`);
-  counter++;
-}, 1000);
 
 
 
