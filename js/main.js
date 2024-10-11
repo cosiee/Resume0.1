@@ -16,8 +16,8 @@ gsap.set("#mountains", {
   maxWidth: "1200px",
   height: "100%",
   top: 0,
-  // left: "50%",
-  // x: "-50%",  these are offseting, sizing needs to be adjusted so these are not required. look at svg and scrollDist
+  left: "50%",
+  x: "-50%",  //these are offseting, sizing needs to be adjusted so these are not required. look at svg and scrollDist
 });
 
 gsap.set(".scrollDist", {

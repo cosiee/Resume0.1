@@ -68,19 +68,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const svgContainer = document.querySelector('.svg-container');
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const svgContainer = document.querySelector('.svg-container');
   
-  if (svgContainer) {
-    const resizeObserver = new ResizeObserver(entries => {
-      entries.forEach(entry => {
-        const { width, height } = entry.contentRect;
-        console.log(`svg-container resized: Width = ${width}px, Height = ${height}px`);
-      });
-    });
-    resizeObserver.observe(svgContainer);
-  }
-});
+//   if (svgContainer) {
+//     const resizeObserver = new ResizeObserver(entries => {
+//       entries.forEach(entry => {
+//         const { width, height } = entry.contentRect;
+//         console.log(`svg-container resized: Width = ${width}px, Height = ${height}px`);
+//       });
+//     });
+//     resizeObserver.observe(svgContainer);
+//   }
+// });
 
 document.addEventListener("DOMContentLoaded", () => {
   const scrollDist = document.querySelector('.scrollDist');
@@ -123,6 +124,39 @@ document.addEventListener("DOMContentLoaded", () => {
       attributeFilter: ['style', 'class'], // Only monitor class and style attribute changes
     });
 
+  } else {
+    console.warn('.scrollDist element not found');
+  }
+});
+document.addEventListener("DOMContentLoaded", () => {
+  // Monitor and lock initial size for .svg-container
+  const svgContainer = document.querySelector('.svg-container');
+  
+  if (svgContainer) {
+    const initialWidth = svgContainer.offsetWidth;
+    const initialHeight = svgContainer.offsetHeight;
+
+    // Lock size
+    svgContainer.style.width = `${initialWidth}px`;
+    svgContainer.style.height = `${initialHeight}px`;
+    
+    console.log(`Initial size locked for .svg-container: Width = ${initialWidth}px, Height = ${initialHeight}px`);
+  } else {
+    console.warn('.svg-container element not found');
+  }
+
+  // Monitor and lock initial size for .scrollDist
+  const scrollDist = document.querySelector('.scrollDist');
+
+  if (scrollDist) {
+    const initialScrollDistWidth = scrollDist.offsetWidth;
+    const initialScrollDistHeight = scrollDist.offsetHeight;
+
+    // Lock size
+    scrollDist.style.width = `${initialScrollDistWidth}px`;
+    scrollDist.style.height = `${initialScrollDistHeight}px`;
+    
+    console.log(`Initial size locked for .scrollDist: Width = ${initialScrollDistWidth}px, Height = ${initialScrollDistHeight}px`);
   } else {
     console.warn('.scrollDist element not found');
   }
