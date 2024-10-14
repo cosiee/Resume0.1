@@ -14,16 +14,19 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 
-  <link rel="stylesheet" href="css/styles.css">
-  <!-- <link rel="stylesheet" href="css/test.css"> -->
+  <!-- <link rel="stylesheet" href="css/styles.css"> -->
+  <link rel="stylesheet" href="css/test.css">
 
 
 
 
 
   <script src="http://code.jquery.com/jquery-1.11.0.min.js" defer></script>
-  <script defer src="js/main.js"></script>
-  <!-- <script src="js/test.js" defer></script> -->
+  
+  <!-- <script defer src="js/main.js"></script> -->
+
+  <script src="js/test.js" defer></script>
+  <script src="js/testTwo.js" defer></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
 
@@ -42,7 +45,7 @@
 </head>
 
 <body>
-  <div class="scrollDist" width="100%" height="200%">
+  <div class="scrollDist" width="100%" height="150%">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
       <div class="container-fluid" id="navbar">
@@ -111,13 +114,19 @@
         <image class="img-fluid" id="cloud5" xlink:href="assets/cl4.png" width="1200" height="800" />
         <image class="img-fluid" id="cloud1" xlink:href="assets/cl1.png" width="1200" height="800" />
 
-        <text class="lrgtext" id="see" fill="#fff" onclick="autoScrollNow()">SEE</text>
+        <!-- <a class="meLink" onclick="showStatementContact(); "> -->
+        <!-- <text class="lrgtext" id="see" fill="#fff" onclick="autoScrollNow()">SEE</text> -->
+
+        <text class="lrgtext" id="see"  fill="#fff" dominant-baseline="middle" text-anchor="middle" onclick="autoScrollNow()">SEE</text>
+      <!-- </a> -->
 
         <g mask="url(#m)">
           <rect fill="#fff" width="100%" height="100%" />
           <rect id="meshaker" />
           <a class="meLink" onclick="showStatementContact(); ">
-            <text class="lrgtext" id="me" fill="#162a43">ME</text>
+            <!-- <text class="lrgtext" id="me" fill="#162a43">ME</text> -->
+            <text class="lrgtext" id="me" fill="#162a43" dominant-baseline="middle" text-anchor="middle">ME</text>
+
           </a>
           <div class="scroll-arrow" id="down" x="455" y="330" onclick="autoScrollNow()"></div>
         </g>
