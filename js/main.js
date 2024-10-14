@@ -7,6 +7,12 @@ meElement.disabled = true;
 const cloud1 = document.getElementById("cloud1");
 
 
+gsap.set(".scrollDist", {
+  width: "100%",
+  height: "200%",
+  background: "#fff"
+});
+
 
 // GSAP initial setups
 gsap.set("#mountains", {
@@ -17,14 +23,10 @@ gsap.set("#mountains", {
   height: "100%",
   top: 0,
   left: "50%",
-  x: "-50%",  //these are offseting, sizing needs to be adjusted so these are not required. look at svg and scrollDist
+  x: "-50%",  //these are offseting, sizing needs to be adjusted so these are not required. look at svg and scroll-Dist
 });
 
-gsap.set(".scrollDist", {
-  width: "100%",
-  height: "200%",
-  background: "#fff"
-});
+
 
 // Random background images for thumbnails
 document.addEventListener("DOMContentLoaded", function () {
@@ -85,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function getRandomImage(imagesArray) {
     return imagesArray[Math.floor(Math.random() * imagesArray.length)];
+   
   }
 
   function setRandomBackground(containerId, imagesArray) {
@@ -129,7 +132,9 @@ function autoScroll() {
   window.scrollTo(0, 0); // Force scroll to top
 
   // Add a small delay before calculating maxScroll to ensure everything is loaded
+
   setTimeout(() => {
+  
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 
     if (maxScroll <= 0) {
@@ -161,6 +166,7 @@ window.addEventListener('load', function () {
   updateModalDimensions();
   animateThumbs();
   autoScroll();
+  // resizeScrollDist();
   
 
   
@@ -438,9 +444,7 @@ function debounce(fn, delay) {
   };
 }
 
-// window.addEventListener('resize', debounce(() => {
-//   // Animation or layout logic
-// }, 200));
+
 
 
 // Ensure updateDimensionsNoMargins is called on resize and DOM content load
@@ -448,13 +452,16 @@ window.addEventListener("resize", debounce(() => {
   updateDimensions();
   updateModalDimensions();
   updateDimensionsNoMargins();
+  // resizeScrollDist();
 }, 200));
 
 
 
-// Initial call
-updateDimensions();
-updateModalDimensions();
+
+
+// // Initial call
+// updateDimensions();
+// updateModalDimensions();
 
 // initial thumb centreing animation, called in a DOMContentLoaded
 function animateThumbs() {

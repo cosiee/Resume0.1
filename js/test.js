@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
     svgContainer.style.width = `${initialWidth}px`;
     svgContainer.style.height = `${initialHeight}px`;
     
-    console.log(`Initial size locked for .svg-container: Width = ${initialWidth}px, Height = ${initialHeight}px`);
+    console.log(`SVG Initial size locked for .svg-container: Width = ${initialWidth}px, Height = ${initialHeight}px`);
   } else {
     console.warn('.svg-container element not found');
   }
@@ -156,8 +156,98 @@ document.addEventListener("DOMContentLoaded", () => {
     scrollDist.style.width = `${initialScrollDistWidth}px`;
     scrollDist.style.height = `${initialScrollDistHeight}px`;
     
+    console.log(`scrollDist Initial size locked for .scrollDist: Width = ${initialScrollDistWidth}px, Height = ${initialScrollDistHeight}px`);
+  } else {
+    console.warn('.scrollDist element not found');
+  }
+
+  // No need to lock navbar size in most cases, but you can monitor it
+  const navbar = document.querySelector('.navbar');
+  if (navbar) {
+    console.log('Navbar loaded successfully.');
+  } else {
+    console.warn('Navbar element not found');
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const scrollDist = document.querySelector('.scrollDist');
+
+  if (scrollDist) {
+    const initialScrollDistWidth = scrollDist.offsetWidth;
+    const initialScrollDistHeight = scrollDist.offsetHeight;
+
+    // Forcefully lock the size to prevent resizing
+    scrollDist.style.width = `${initialScrollDistWidth}px`;
+    scrollDist.style.height = `${initialScrollDistHeight}px`;
+
+    console.log(`Initial size locked for .scrollDist: Width = ${initialScrollDistWidth}px, Height = ${initialScrollDistHeight}px`);
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const body = document.querySelector('.body');
+
+  if (body) {
+    const initialBodyWidth = body.offsetWidth;
+    const initialBodyHeight = body.offsetHeight;
+
+    // Forcefully lock the size to prevent resizing
+    body.style.width = `${initialBodyWidth}px`;
+    body.style.height = `${initialBodyHeight}px`;
+
+    console.log(`Initial size locked for .body: Width = ${initialBodyWidth}px, Height = ${initialBodyHeight}px`);
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Monitor and lock initial size for .svg-container
+  const svgContainer = document.querySelector('.svg-container');
+  
+  if (svgContainer) {
+    const initialWidth = svgContainer.offsetWidth;
+    const initialHeight = svgContainer.offsetHeight;
+
+    // Lock size
+    svgContainer.style.width = `${initialWidth}px`;
+    svgContainer.style.height = `${initialHeight}px`;
+    
+    console.log(`Initial size locked for .svg-container: Width = ${initialWidth}px, Height = ${initialHeight}px`);
+  } else {
+    console.warn('.svg-container element not found');
+  }
+
+  // Monitor and lock initial size for .scrollDist
+  const scrollDist = document.querySelector('.scrollDist');
+
+  if (scrollDist) {
+    const initialScrollDistWidth = scrollDist.offsetWidth;
+    const initialScrollDistHeight = scrollDist.offsetHeight;
+
+    // Lock initial size
+    scrollDist.style.width = `${initialScrollDistWidth}px`;
+    scrollDist.style.height = `${initialScrollDistHeight}px`;
+    
     console.log(`Initial size locked for .scrollDist: Width = ${initialScrollDistWidth}px, Height = ${initialScrollDistHeight}px`);
   } else {
     console.warn('.scrollDist element not found');
   }
+
+  // Resize function for .scrollDist when window resizes
+  function resizeScrollDist() {
+    if (scrollDist) {
+      // Recalculate and apply the new size
+      const newWidth = window.innerWidth; // For example, 80% of window width
+      const newHeight = window.innerHeight; // For example, 50% of window height
+
+      scrollDist.style.width = `${newWidth}px`;
+      scrollDist.style.height = `${newHeight}px`*2;
+      
+      console.log(`Resized .scrollDist to: Width = ${newWidth}px, Height = ${newHeight}px`);
+    }
+  }
+
+  // Listen for window resize event and resize scrollDist
+  window.addEventListener('resize', resizeScrollDist);
 });

@@ -11,17 +11,32 @@
 
 
 
-#mountains,
+
+
+
+.scrollDist {
+  width: 100%;              /* You can change this to a fixed width like '1200px' if needed */
+  height: 200%;           /* Set this to a fixed value to prevent height from changing */
+  max-width: 100%;        /* Ensure it doesn't exceed the desired max width */
+  max-height: 200%;       /* Ensure it doesn't exceed the desired max height */
+  overflow: hidden;         /* Prevent any content from expanding the size */
+  position: adsolute;       /* Keep the positioning intact */
+}
+
+
+
+
+/* #mountains,
 .scrollDist {
   height: 100%;
   width: 1200px;
-}
+} */
 
 #mountains {
   margin: 0;
   padding: 0;
   position: fixed;
-  width: 100%; /*1200px*/
+  width: 1200px; /*1200px*/
   height: 100%;
   overflow: hidden;
 }
@@ -97,32 +112,17 @@ div {
 
 html {
   font-size: 62.5%;
-  /* overflow: hidden; */
-  /* overflow-x: hidden;  */
-  /* scroll-behavior: smooth; */
+
+
 }
 
 html,
 body {
   overflow: visible; /* Ensure scrolling is not blocked */
-  /* height: 100vh; */
   margin: 0;
-  /* overflow: auto; */
-  /* overflow-x: hidden; */
-  /* height: 100%; */
- 
 }
 
-/* .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-} */
 
-/* suggested rules to mitigate modal positioning issues #########################################*/
 /* ************************* Arrows animated SECTION*************************** */
 
 .scroll-arrow {
