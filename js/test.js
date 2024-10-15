@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "url('css/assets/r11.jpg')",
     "url('css/assets/r12.jpg')",
   ];
-  const videographyImages = [
+  const motionImages = [
     "url('css/assets/g1.jpg')",
     "url('css/assets/g2.jpg')",
     "url('css/assets/g3.jpg')",
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   setRandomBackground("software", softwareImages);
   setRandomBackground("photography", photographyImages);
-  setRandomBackground("videography", videographyImages);
+  setRandomBackground("motion", motionImages);
   setRandomBackground("diy", diyImages);
 });
 
@@ -162,12 +162,11 @@ function autoScroll() {
 window.addEventListener('load', function () {
   mountainSkyAni();
   updateMeElement();
-  
   updateDimensions();
   updateModalDimensions();
   animateThumbs();
   autoScroll();
-  // resizeScrollDist();
+  
   
 
   
@@ -301,7 +300,7 @@ function spaceoutThumbs() {
     duration: 1,
     ease: "power2.out",
   });
-  gsap.to("#videography", {
+  gsap.to("#motion", {
     x: endLeftX,
     y: endBottomY,
     duration: 1,
@@ -372,7 +371,7 @@ function collectThumbs() {
     duration: 1,
     ease: "power2.out",
   });
-  gsap.to("#videography", {
+  gsap.to("#motion", {
     scale: 1,
     x: endLeftX,
     y: endBottomY,
@@ -454,7 +453,7 @@ window.addEventListener("resize", debounce(() => {
   updateDimensions();
   updateModalDimensions();
   updateDimensionsNoMargins();
-  // resizeScrollDist();
+  
 }, 200));
 
 
@@ -497,7 +496,7 @@ function animateThumbs() {
       0
     )
     .fromTo(
-      "#videography",
+      "#motion",
       { scale: 3, x: endLeftX - 1750, y: endBottomY + 750 },
       { scale: 1, x: endLeftX, y: endBottomY },
       0
@@ -541,7 +540,7 @@ function updateMeElement() {
     }
   } else {
     if (meElement.style.display !== "none") {
-      // meElement.style.display = "none"; // Disable #me
+      meElement.style.display = "none"; // Disable #me
 
       // Disable or remove event listeners
       meElement.removeEventListener("click", hideScrollBar, updateDimensionsNoMargins);//, scrollToBottom
@@ -617,7 +616,7 @@ function centreThumbs() {
     duration: 1,
     ease: "power2.out",
   });
-  gsap.to("#videography", {
+  gsap.to("#motion", {
     scale: 1,
     x: endLeftX,
     y: endBottomY,
@@ -799,6 +798,9 @@ window.onload = function() {
   // Function to dynamically update text positions on resize
   function onResize() {
     updateTextElementPositions(); // Update position on window resize
+    updateDimensions();
+    updateModalDimensions();
+    updateDimensionsNoMargins();
   }
 
   // Initialize text positioning and idle wiggle on window load
@@ -807,6 +809,7 @@ window.onload = function() {
 
   // Update text positions when window is resized
   window.onresize = onResize;
+  
 };
 
 
@@ -818,8 +821,8 @@ const navbarSoft = document.querySelector(".dropdown-toggle");
 const thumbPhoto = document.querySelector("#photography");
 const navbarPhoto = document.querySelector("#photographyLink");
 
-const thumbVid = document.querySelector("#videography");
-const navbarVid = document.querySelector("#videographyLink");
+const thumbMot = document.querySelector("#motion");
+const navbarMot = document.querySelector("#motionLink");
 
 const thumbDiy = document.querySelector("#diy");
 const navbarDiy = document.querySelector("#diyLink");
@@ -848,14 +851,14 @@ thumbSoft.addEventListener("mouseleave", function () {
   thumbSoft.classList.remove("active");
 });
 
-thumbVid.addEventListener("mouseenter", function () {
-  navbarVid.classList.add("active");
-  thumbVid.classList.add("active");
+thumbMot.addEventListener("mouseenter", function () {
+  navbarMot.classList.add("active");
+  thumbMot.classList.add("active");
 });
 
-thumbVid.addEventListener("mouseleave", function () {
-  navbarVid.classList.remove("active");
-  thumbVid.classList.remove("active");
+thumbMot.addEventListener("mouseleave", function () {
+  navbarMot.classList.remove("active");
+  thumbMot.classList.remove("active");
 });
 
 thumbDiy.addEventListener("mouseenter", function () {

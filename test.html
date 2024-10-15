@@ -45,7 +45,7 @@
 </head>
 
 <body>
-  <div class="scrollDist" width="100%" height="150%">
+  <div class="scrollDist" width="100%" height="200%">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
       <div class="container-fluid" id="navbar">
@@ -76,11 +76,18 @@
               <a class="nav-link" id="photographyLink" href="photography.html">Photography</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="videographyLink" href="videography.html">Videography</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" id="diyLink" href="diy.html">DIY</a>
             </li>
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink motionLink" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">Motion</a>
+             
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="videography.html">Videography</a></li>
+                <li><a class="dropdown-item" href="animation.html">Animation</a></li>
+                
+              </ul>
             <li class="nav-item">
               <a class="nav-link" id="contactLink"
                 onclick="hideScrollBar(); showStatementContact(); showForm();">Contact</a>
@@ -117,7 +124,7 @@
         <!-- <a class="meLink" onclick="showStatementContact(); "> -->
         <!-- <text class="lrgtext" id="see" fill="#fff" onclick="autoScrollNow()">SEE</text> -->
 
-        <text class="lrgtext" id="see"  fill="#fff" dominant-baseline="middle" text-anchor="middle" onclick="autoScrollNow()">SEE</text>
+        <text class="lrgtext" id="see"  fill="#fff" dominant-baseline="middle" text-anchor="middle">SEE</text>
       <!-- </a> -->
 
         <g mask="url(#m)">
@@ -125,7 +132,7 @@
           <rect id="meshaker" />
           <a class="meLink" onclick="showStatementContact(); ">
             <!-- <text class="lrgtext" id="me" fill="#162a43">ME</text> -->
-            <text class="lrgtext" id="me" fill="#162a43" dominant-baseline="middle" text-anchor="middle">ME</text>
+            <text class="lrgtext" id="me" fill="#162a43" dominant-baseline="middle" text-anchor="middle" onclick="autoScrollNow()">ME</text>
 
           </a>
           <div class="scroll-arrow" id="down" x="455" y="330" onclick="autoScrollNow()"></div>
@@ -145,8 +152,8 @@
         </div>
       </a>
 
-      <a class="thumbs" href="videography.html">
-        <div class="thumbShape thumbs" id="videography">
+      <a class="thumbs" href="motion.html">
+        <div class="thumbShape thumbs" id="motion">
           <div class="overlay"></div>
         </div>
       </a>
