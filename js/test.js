@@ -162,6 +162,7 @@ function autoScroll() {
 window.addEventListener('load', function () {
   mountainSkyAni();
   updateMeElement();
+  
   updateDimensions();
   updateModalDimensions();
   animateThumbs();
@@ -380,71 +381,6 @@ function collectThumbs() {
   });
 }
 
-// align SEE/ME text
-function getTextWidth(element) {
-  // Get the bounding box to calculate the width of the text
-  const computedStyle = window.getComputedStyle(element);
-  const textWidth = element.getBBox().width;
-  return textWidth;
-}
-
-function updateTextElementPositions() {
-  // Get the SVG dimensions (using viewBox if defined)
-  
-  const svg = document.querySelector("svg");
-  const svgWidth = svg.viewBox.baseVal.width || svg.clientWidth;
-  const svgHeight = svg.viewBox.baseVal.height || svg.clientHeight;
-
-  // Get text elements
-  const seeText = document.getElementById("see");
-  const meText = document.getElementById("me");
-
-  // Calculate screen center
-  const svgCenterX = svgWidth / 2;
-  const svgCenterY = svgHeight / 2;
-
-  // Get text element widths
-  const seeTextWidth = getTextWidth(seeText);
-  const meTextWidth = getTextWidth(meText);
-
-  // Position "SEE" text at the center of the SVG horizontally and vertically
-  const seeX = svgCenterX;
-  const seeY = svgCenterY -250; // Adjust the Y position as needed (above the center)
-
-  // Position "ME" text at the center of the SVG horizontally and below "SEE"
-  const meX = svgCenterX ;
-  const meY = svgCenterY -250; // Adjust the Y position as needed (below the center)
-
-  // Update text positions
-  gsap.to("#see", {
-    x: seeX,
-    y: seeY,
-    duration: 1,
-    ease: "power2.out",
-  });
-
-  gsap.to("#me", {
-    x: meX,
-    y: meY,
-    duration: 1,
-    ease: "power2.out",
-  });
-}
-
-// Function to handle dynamic updates on resize
-function onResize() {
-  updateTextElementPositions();
-}
-
-// Initialize text positioning
-window.onload = function () {
-  updateTextElementPositions();
-};
-
-// Update text positions when the window is resized
-window.onresize = onResize;
-
-
 
 function updateModalDimensions(endTopY) {
   const modalBox = document.querySelector(".modalbox .box");
@@ -531,7 +467,7 @@ window.addEventListener("resize", debounce(() => {
 
 // initial thumb centreing animation, called in a DOMContentLoaded
 function animateThumbs() {
-  console.log("animateThumbs-");
+  // console.log("animateThumbs-");
   gsap
     .timeline({
       scrollTrigger: {
@@ -704,132 +640,175 @@ function hideForm() {
 
 }
 
-// ################ Begining of MeText Animations ############################################
+// align SEE/ME text & ME animate wiggles
+// Wait for the DOM to fully load
+window.onload = function() {
+  // Ensure 'meElement' and 'meShaker' are declared and exist in the DOM
+  const meElement = document.getElementById("me");
+  const meShaker = document.getElementById("meshaker"); // Ensure this element exists in the HTML
 
-const meShaker = document.getElementById("meshaker");
-let hoverAnimationInterval;
-let isHoverWiggling = false;
-let angle = 0; // Declare angle variable outside of hoverWiggle function
-let animationInterval;
-let isIdleWiggling = false; // Flag to track idle wiggle animation
-
-let initialTransform; // Declare initialTransform without assigning a value initial
-
-
-
-//MeElement-Function to stop the hover wiggle animation
-function stopHoverWiggle() {
-  // console.log("Stopping hover wiggle animation.");
-  clearInterval(hoverAnimationInterval);
-  isHoverWiggling = false;
-  // console.log("Hover wiggle animation stopped.");
-  meElement.style.transform = `rotate(0deg)`;
-  updateTextElementPositions();
-}
-
-//MeElement-Function to start the hover wiggle animation
-function startHoverWiggle() {
-  // console.log("Starting hover wiggle animation.");
-  if (!isHoverWiggling) {
-    isHoverWiggling = true;
-    hoverAnimationInterval = setInterval(hoverWiggle, 30);
-    // console.log("Hover wiggle animation started.");
+  if (!meElement || !meShaker) {
+    console.error("Required DOM elements not found. Check element IDs for 'me' and 'meshaker'.");
+    return; // Stop further execution if elements are missing
   }
-}
 
-//MeElement-Function to handle the hover event
-function handleHover(event) {
-  if (event.type === "mouseenter") {
-    startHoverWiggle();
-  } else if (event.type === "mouseleave") {
-    stopHoverWiggle();
+  let hoverAnimationInterval;
+  let isHoverWiggling = false;
+  let angle = 0; // Variable to track the wiggle angle
+  let animationInterval;
+  let isIdleWiggling = false; // Flag to track idle wiggle animation
+  let initialTransform = ""; // Store initial centering transform
+
+  // Function to get the width of the text element
+  function getTextWidth(element) {
+    return element.getBBox().width; // Get bounding box width of text element
   }
-}
 
-//MeElement-Function to handle the hover wiggle animation
-function hoverWiggle() {
-  // Update the rotation angle
-  angle += 1;
-  if (angle === 1 || angle === -1) {
-    angle *= -1; // Reverse direction when angle reaches 1 or -1
+  // Function to center the text elements in the SVG
+  function updateTextElementPositions() {
+    // Get the SVG dimensions
+    const svg = document.querySelector("svg");
+    const svgWidth = svg.viewBox.baseVal.width || svg.clientWidth;
+    const svgHeight = svg.viewBox.baseVal.height || svg.clientHeight;
+
+    // Calculate the center of the SVG
+    const svgCenterX = svgWidth / 2;
+    const svgCenterY = svgHeight / 2;
+
+    // Position "SEE" and "ME" at the center of the SVG
+    const seeX = svgCenterX;
+    const seeY = svgCenterY - 250; // Adjust Y position for SEE
+    const meX = svgCenterX;
+    const meY = svgCenterY - 250; // Adjust Y position for ME
+
+    // Apply the translation (without affecting rotation)
+    gsap.to("#see", {
+      x: seeX,
+      y: seeY,
+      duration: 1,
+      ease: "power2.out",
+    });
+
+    gsap.to("#me", {
+      x: meX,
+      y: meY,
+      duration: 1,
+      ease: "power2.out",
+    });
+
+    // Store the initial translation for the ME element
+    initialTransform = `translate(${meX}px, ${meY}px)`;
+    applyTransform(); // Apply the current transformation
   }
-  meElement.style.transform = `rotate(${angle}deg)`; // Apply the transformation
-}
 
-// Event listener for mouse enter and mouse leave to handle hover
-meShaker.addEventListener("mouseenter", handleHover);
-meShaker.addEventListener("mouseleave", handleHover);
-
-// Function to start the idle wiggle animation
-function startIdleWiggle() {
-  if (!isIdleWiggling) {
-    isIdleWiggling = true;
-    idleWiggle();
+  // Function to apply combined transformation (centering + rotation)
+  function applyTransform() {
+    meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; // Combine rotation and translation
   }
-}
 
-// Function to stop the idle wiggle animation
-function stopIdleWiggle() {
-  if (isIdleWiggling) {
-    updateTextElementPositions();
+  // Function to start the hover wiggle animation
+  function startHoverWiggle() {
+    if (!isHoverWiggling) {
+      isHoverWiggling = true;
+      hoverAnimationInterval = setInterval(hoverWiggle, 9); // Wiggle every #ms
+    }
+  }
+
+  // Function to stop the hover wiggle animation
+  function stopHoverWiggle() {
+    clearInterval(hoverAnimationInterval);
+    isHoverWiggling = false;
+    angle = 0; // Reset angle when hover stops
+    applyTransform(); // Reset to initial state
+  }
+
+  // Function to handle the hover wiggle animation
+  function hoverWiggle() {
+    // Update the rotation angle
+    angle += 1;
+    if (angle === 5 || angle === -5) {
+      angle *= -1; // Reverse direction when angle reaches 5 or -5
+    }
+    applyTransform(); // Apply the combined transform (rotation + position)
+  }
+
+  // Function to start the idle wiggle animation
+  function startIdleWiggle() {
+    if (!isIdleWiggling) {
+      isIdleWiggling = true;
+      idleWiggle(); // Start idle wiggle animation
+    }
+  }
+
+  // Function to stop the idle wiggle animation
+  function stopIdleWiggle() {
     clearInterval(animationInterval);
     isIdleWiggling = false;
-
-    // Reset meElement rotation to 0 degrees
-    meElement.style.transform = `rotate(0deg)`;
-    
+    angle = 0; // Reset angle
+    applyTransform(); // Reset to the centered position
   }
-  updateTextElementPositions();
-}
 
-// Function to handle the idle wiggle animation
-function idleWiggle() {
-  wiggle(); // Start the wiggle animation
-  setTimeout(() => {
-    stopIdleWiggle(); // Stop idle wiggle animation after 0.7 second
-    setTimeout(
-      startIdleWiggle,
-      Math.floor(Math.random() * (16000 - 7000 + 1)) + 7000
-    ); // Restart idle wiggle animation after random interval
-  }, 700);
-}
+  // Function to handle the idle wiggle animation
+  function idleWiggle() {
+    wiggle(); // Start the wiggle animation
+    setTimeout(() => {
+      stopIdleWiggle(); // Stop idle wiggle after 0.7 seconds
+      setTimeout(
+        startIdleWiggle,
+        Math.floor(Math.random() * (16000 - 7000 + 1)) + 7000
+      ); // Restart idle wiggle after a random interval
+    }, 700);
+  }
 
-// Function to handle the wiggle animation
-function wiggle() {
-  let angle = 0;
-  let direction = 1;
+  // Function to handle the wiggle animation
+  function wiggle() {
+    let wiggleAngle = 0;
+    let direction = 1;
 
-  // Perform one iteration of the wiggle animation
-  function performWiggle() {
-    updateTextElementPositions();
-    angle += direction;
-    if (angle === 1 || angle === -1) {
-      updateTextElementPositions();
-      direction *= -1;
-      updateTextElementPositions();
+    // Perform one iteration of the wiggle animation
+    function performWiggle() {
+      wiggleAngle += direction;
+      if (wiggleAngle === 1 || wiggleAngle === -1) {
+        direction *= -1; // Reverse direction at the extremes
+      }
+      meElement.style.transform = `${initialTransform} rotate(${wiggleAngle}deg)`; // Apply the wiggle transformation
     }
-    updateTextElementPositions();
-    meElement.style.transform = `rotate(${angle}deg)`; // Apply the transformation
-    updateTextElementPositions();
+
+    // Start the animation interval for the wiggle effect
+    animationInterval = setInterval(performWiggle, 30);
   }
 
-  // Start the animation interval
-  updateTextElementPositions();
-  animationInterval = setInterval(performWiggle, 30);
-  updateTextElementPositions();
-}
+  // Event listeners for hover wiggle on "ME"
+  meShaker.addEventListener("mouseenter", function(){
+      // Combine scaling with the existing transform (centering + wiggle)
+      meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; 
+      startHoverWiggle();  // Start hover wiggle
+  });
 
-// Start idle wiggle animation initially
-startIdleWiggle();
-updateTextElementPositions();
+  meShaker.addEventListener("mouseleave", function(){
+      // Reset the scaling and keep the initial transform (centering + reset rotation)
+      meElement.style.transform = `${initialTransform} rotate(0deg)`; 
+      stopHoverWiggle();  // Stop hover wiggle
+  });
+  meElement.addEventListener("mouseenter", function(){
+      meElement.style.transform = `${initialTransform} rotate(0deg) scale(1.115)`; 
+  });
+  meElement.addEventListener("mouseleave", function(){
+      meElement.style.transform = `${initialTransform} rotate(0deg) scale(1)`; 
+  });
+  // Function to dynamically update text positions on resize
+  function onResize() {
+    updateTextElementPositions(); // Update position on window resize
+  }
 
-meElement.addEventListener("mouseenter", function () {
-  meElement.style.transform = `scale(1.015)`;
-});
+  // Initialize text positioning and idle wiggle on window load
+  updateTextElementPositions(); // Center the text elements
+  startIdleWiggle(); // Start the idle wiggle animation
 
-meElement.addEventListener("mouseleave", function () {
-  meElement.style.transform = `scale(1)`;
-});
+  // Update text positions when window is resized
+  window.onresize = onResize;
+};
+
 
 // Beginning of Handling hover on Thumbs Triggering Navbar elements ###############################
 

@@ -35,13 +35,15 @@
 }
 
 .svg-container {
+  display: block;
+  margin: auto;
   position: absolute;
   /* position: relative; */
   height: auto;
   overflow: hidden;
   width: 100%;
-max-width: 800px;
-max-width: 800px;
+/* max-width: 800px;
+max-width: 800px; */
 
 /* /* top: 50%; */
 /* left: 50%; 
@@ -51,7 +53,7 @@ transform: translate(50%, 0%);  */
 text.lrgtext {
 /*   
   position: auto;
-  z-index: 3;
+  
   width: 100%;
 
   height: auto; 
@@ -65,10 +67,9 @@ text.lrgtext {
 
   font-family: "Montserrat", sans-serif;
   font-size: 99px; 
-/*   
-  text-anchor: middle; */
   
-  /* position: absolute; */
+  cursor: pointer;
+  z-index: 35;
 
 
 }
@@ -88,7 +89,7 @@ text.lrgtext {
 
 #me:hover {
   cursor: pointer;
-  text-shadow: 1px 1px 1px #162a43;
+  text-shadow: 1px 1px 1px #26466e;
 }
 #see {
   fill: #fff;
