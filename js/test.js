@@ -336,9 +336,9 @@ function updateDimensionsNoMargins() {
     const marginWidth = getThumbMargin();
 
     endLeftX = screenWidthHalved - (widthThumb + marginWidth);
-    endTopY = window.innerHeight * 1.25 + marginWidth;
+    endTopY = window.innerHeight * 1.3 + marginWidth;
     endRightX = screenWidthHalved - marginWidth;
-    endBottomY = window.innerHeight * 1.25 + (widthThumb + marginWidth);
+    endBottomY = window.innerHeight * 1.3 + (widthThumb + marginWidth);
 
     // console.log("Thumb Y EndTopY: ", endTopY);
 
@@ -405,7 +405,7 @@ function updateModalDimensions(endTopY) {
   const newLeft = centerX - newWidth / 2;
 
   // Use the passed endTopY for the new top position
-  const newTop = endTopY + 21.5; // 22.5 works for alignment on y axis
+  const newTop = endTopY + 11.5; // 22.5 works for alignment on y axis
 
   // Update modal position
   modalBox.style.position = "absolute";

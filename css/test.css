@@ -511,7 +511,7 @@ div#navbar.container-fluid {
   font-size: 18px;
   line-height: 22px;
   padding: 10px 40px 40px 0px;
-  text-align: unset;
+  text-align:left;
   color: #fff;
 }
 
