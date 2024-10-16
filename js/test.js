@@ -133,7 +133,7 @@ function autoScroll() {
 
   // Add a small delay before calculating maxScroll to ensure everything is loaded
 
-  setTimeout(() => {
+  // setTimeout(() => {
   
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 
@@ -156,7 +156,7 @@ function autoScroll() {
     });
 
 
-  },3400); // Add a delay of 3.4seconds before starting the scroll to let the layout settle
+  // },3400); // Add a delay of 3.4seconds before starting the scroll to let the layout settle
 }
 
 window.addEventListener('load', function () {
@@ -273,11 +273,12 @@ function updateDimensions() {
   screenWidthHalved = window.innerWidth / 2;
   screenHeightHalved = window.innerHeight / 2;
   const totalThumbWidth = getThumbWidthWithMargin();
-
+console.log("window.innerWidth",window.innerWidth);
+console.log("window.innerHeight",window.innerHeight);
   endLeftX = screenWidthHalved - totalThumbWidth;
-  endTopY = window.innerHeight * 1.25;
+  endTopY = window.innerHeight * 1.3;
   endRightX = screenWidthHalved;
-  endBottomY = window.innerHeight * 1.25 + totalThumbWidth;
+  endBottomY = window.innerHeight * 1.3 + totalThumbWidth;
   
 }
 
@@ -464,7 +465,7 @@ window.addEventListener("resize", debounce(() => {
 // updateDimensions();
 // updateModalDimensions();
 
-// initial thumb centreing animation, called in a DOMContentLoaded
+// initial thumb centering animation, called in a DOMContentLoaded
 function animateThumbs() {
   // console.log("animateThumbs-");
   gsap
@@ -504,7 +505,7 @@ function animateThumbs() {
 }
 // #############################################################################################
 
-const thresholdScale = 1.5; //set to the lower scale value, to allow for the crossing-fading effect
+const thresholdScale = 1.5; //set scale value, to allow for the crossing-fading effect SEE/ME
 
 function getScaleValue(element) {
   if (!element) {
@@ -676,9 +677,9 @@ window.onload = function() {
 
     // Position "SEE" and "ME" at the center of the SVG
     const seeX = svgCenterX;
-    const seeY = svgCenterY - 250; // Adjust Y position for SEE
+    const seeY = svgCenterY - 210; // Adjust Y position for SEE
     const meX = svgCenterX;
-    const meY = svgCenterY - 250; // Adjust Y position for ME
+    const meY = svgCenterY - 210; // Adjust Y position for ME
 
     // Apply the translation (without affecting rotation)
     gsap.to("#see", {
@@ -725,7 +726,7 @@ window.onload = function() {
   function hoverWiggle() {
     // Update the rotation angle
     angle += 1;
-    if (angle === 5 || angle === -5) {
+    if (angle === 3 || angle === -3) {
       angle *= -1; // Reverse direction when angle reaches 5 or -5
     }
     applyTransform(); // Apply the combined transform (rotation + position)

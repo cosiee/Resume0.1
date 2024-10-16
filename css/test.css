@@ -58,26 +58,11 @@ transform: translate(50%, 0%);  */
 }
 
 text.lrgtext {
-  /*   
-  position: auto;
-  
-  width: 100%;
 
-  height: auto; 
-  overflow: hidden;
-
-  background: #ddd;
-  font-family: "Montserrat", sans-serif;
-  font-size: 99px;
-  text-align: center;
-  transform: translate(500px, 22vh); */
 
   font-family: "Montserrat", sans-serif;
-  font-size: 99px;
-
-  cursor: pointer;
+  font-size: 125px;
   z-index: 56;
-
 
 }
 
@@ -113,7 +98,7 @@ text.lrgtext {
   position: absolute;
   z-index: 1;
   width: 100%;
-  height: 99px;
+  height: 125px;
   transform: translate(0px, 12vh);
   opacity: 0;
 }
@@ -317,11 +302,23 @@ dropdown-menu {
 
 
 /* Burger Icon Styling */
-.navbar-toggler {
+navbar-toggler left {
   position: absolute;
-  top: 5px;
-  left: 5px;
+  left: 1rem;
+  /* Adjust for distance from the left */
+  top: 1rem;
   border: none;
+
+  /* Adjust button size */
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  /* line-height: 1.5; */
+  background-color: transparent;
+  /* Change this to add a background */
+  border: none;
+  /* Remove border */
+  outline: none;
+  /* Remove outline when focused */
 }
 
 
@@ -334,7 +331,7 @@ dropdown-menu {
   top: 0px;
 }
 
-.container-fluid {
+/* .container-fluid {
   position: relative;
   width: 100%;
   max-width: 800px;
@@ -342,7 +339,20 @@ dropdown-menu {
   margin: 0 auto;
   padding: 10px 20px 5px 5px;
   box-sizing: border-box;
+} */
+div#navbar.container-fluid {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  align-self: center;
+  margin: 0 auto;
+  padding: 10px 20px 5px 5px;
+  box-sizing: border-box;
+  /* top: 0;
+  left: 0; */
+  /* transition: all 0.3s ease; Smooth transition when repositioning */
 }
+
 
 /*###################### End of Navbar Base Styles ############################ */
 
@@ -708,6 +718,26 @@ textarea {
     border-right: 3px solid #fff;
   }
 
+
+  nav {
+    padding: 0px;
+    margin: 0px;
+  }
+
+
+  #div#navbar.container-fluid {
+    position: absolute;
+    top: 10px;
+    /* Adjust the top position of the navbar when collapsed */
+    left: 10px;
+    /* You can adjust this for different alignment */
+    width: 100%;
+    /* Ensure the navbar takes full width if needed */
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+  }
+
   /* text.lrgtext {
     font-size: 150px;
     transform: translate(500px, 22vh);
@@ -733,6 +763,23 @@ textarea {
     height: 12px;
     border-bottom: 3px solid #fff;
     border-right: 3px solid #fff;
+  }
+
+  nav {
+    padding: 0px;
+    margin: 0px;
+  }
+
+  #div#navbar.container-fluid {
+    position: absolute;
+    top: 10px;
+    /* Adjust the top position of the navbar when collapsed */
+    left: 10px;
+    /* You can adjust this for different alignment */
+    width: 100%;
+    /* Ensure the navbar takes full width if needed */
+    padding-top: 10px;
+
   }
 
   /* text.lrgtext {
@@ -763,13 +810,40 @@ textarea {
     border-right: 4px solid #fff;
   }
 
-  /* text.lrgtext {
-    transform: translate(500px, 22vh);
+  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+    padding: 0 0 0 0% !important;
+    margin: 0px !important;
   }
 
-  .lrgtext#me {
-    transform: translate(520px, 22vh);
-  } */
+  #div#navbar.container-fluid {
+    position: absolute;
+    /* top: 10px;           */
+    left: 100px;
+    width: 100%;
+    padding-top: 10px;
+    margin: 0;
+    align-self: left;
+    transform: translateY(-29px);
+    */ display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #00BAF0;
+    background: linear-gradient(to left, #f46b45, #eea849);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #FFF;
+    height: 500px;
+    padding: 0;
+
+  }
+
+  /* text.lrgtext {
+    transform: translate(500px, 22vh);
+  }*/
+
+
+
+
 
   .thumbShape {
     width: calc(var(--thumb-width) * 0.8);
@@ -786,6 +860,19 @@ textarea {
     top: 24%;
   }
 
+  div#navbar.container-fluid {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    align-self: center;
+    margin: 0 auto;
+    padding: 10px 20px 5px 5px;
+    box-sizing: border-box;
+    /* top: 0;
+    left: 0; */
+    transition: all 0.3s ease;
+  }
+
   .thumbShape {
     width: calc(var(--thumb-width) * 1);
     /* Adjust width proportionally for smaller screens */
@@ -799,6 +886,19 @@ textarea {
 @media (min-width: 1200px) {
   .scroll-arrow {
     top: 26%;
+  }
+
+  div#navbar.container-fluid {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    align-self: center;
+    margin: 0 auto;
+    padding: 10px 20px 5px 5px;
+    box-sizing: border-box;
+    /* top: 0;
+    left: 0; */
+    transition: all 0.3s ease;
   }
 
   /* text.lrgtext {
