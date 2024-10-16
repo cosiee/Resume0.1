@@ -15,12 +15,18 @@
 
 
 .scrollDist {
-  width: 100%;              /* You can change this to a fixed width like '1200px' if needed */
-  height: 200%;           /* Set this to a fixed value to prevent height from changing */
-  max-width: 100%;        /* Ensure it doesn't exceed the desired max width */
-  max-height: 200%;       /* Ensure it doesn't exceed the desired max height */
-  overflow: hidden;         /* Prevent any content from expanding the size */
-  position: adsolute;       /* Keep the positioning intact */
+  width: 100%;
+  /* You can change this to a fixed width like '1200px' if needed */
+  height: 200%;
+  /* Set this to a fixed value to prevent height from changing */
+  max-width: 100%;
+  /* Ensure it doesn't exceed the desired max width */
+  max-height: 200%;
+  /* Ensure it doesn't exceed the desired max height */
+  overflow: hidden;
+  /* Prevent any content from expanding the size */
+  position: adsolute;
+  /* Keep the positioning intact */
 }
 
 
@@ -29,7 +35,8 @@
   margin: 0;
   padding: 0;
   position: fixed;
-  width: 1200px; /*1200px*/
+  width: 1200px;
+  /*1200px*/
   height: 100%;
   overflow: hidden;
 }
@@ -42,16 +49,16 @@
   height: auto;
   overflow: hidden;
   width: 100%;
-/* max-width: 800px;
+  /* max-width: 800px;
 max-width: 800px; */
 
-/* /* top: 50%; */
-/* left: 50%; 
+  /* /* top: 50%; */
+  /* left: 50%; 
 transform: translate(50%, 0%);  */
 }
 
 text.lrgtext {
-/*   
+  /*   
   position: auto;
   
   width: 100%;
@@ -66,8 +73,8 @@ text.lrgtext {
   transform: translate(500px, 22vh); */
 
   font-family: "Montserrat", sans-serif;
-  font-size: 99px; 
-  
+  font-size: 99px;
+
   cursor: pointer;
   z-index: 56;
 
@@ -92,14 +99,16 @@ text.lrgtext {
   /* text-shadow: 1px 1px 1px #26466e; */
   filter: drop-shadow(0 0 0.095rem #162a43);
 }
+
 #see {
   fill: #fff;
-  
+
 }
 
 #me {
   fill: #162a43;
 }
+
 #meshaker {
   position: absolute;
   z-index: 1;
@@ -131,7 +140,8 @@ html {
 
 html,
 body {
-  overflow: visible; /* Ensure scrolling is not blocked */
+  overflow: visible;
+  /* Ensure scrolling is not blocked */
   margin: 0;
 }
 
@@ -238,10 +248,11 @@ a.nav-link.active {
 }
 
 
-.navbar-nav{
+.navbar-nav {
   --bs-nav-link-hover-colour: #162a43;
 }
-.navbar{
+
+.navbar {
   --bs-navbar-active-color: #162a43;
   --bs-navbar-brand-color: #162a43;
   --bs-navbar-brand-hover-color: #162a43;
@@ -252,7 +263,6 @@ a.nav-link.active {
 
 a#navbarDropdownMenuLink.nav-link.dropdown-toggle {
   color: #6e6f79;
-  /* --bs-navbar-active-color: #f23506; */
 }
 
 a#navbarDropdownMenuLink.nav-link.dropdown-toggle:hover {
@@ -262,13 +272,13 @@ a#navbarDropdownMenuLink.nav-link.dropdown-toggle:hover {
 ul.navbar-nav {
   position: absolute;
   align-self: center;
-  
+
 }
 
 a.dropdown-item {
   color: #6e6f79;
   font-size: 0.9em;
-  
+
 }
 
 a.dropdown-item:hover {
@@ -357,7 +367,8 @@ dropdown-menu {
   position: absolute;
 
   height: auto;
-  width: 100%; /* Ensure it fits within the container */
+  width: 100%;
+  /* Ensure it fits within the container */
   /* overflow: hidden; */
 
   z-index: 10;
@@ -393,7 +404,7 @@ dropdown-menu {
 #photography:hover .overlay,
 #motion:hover .overlay,
 #diy:hover .overlay {
-opacity: 0.7;
+  opacity: 0.7;
 }
 
 #software,
@@ -413,7 +424,7 @@ opacity: 0.7;
   /* transform: scale(1.004); */
   cursor: pointer;
   filter: drop-shadow(0 0 0.75rem #162a43);
-  
+
 }
 
 #software .overlay,
@@ -469,7 +480,7 @@ opacity: 0.7;
   height: 500px;
   overflow: hidden;
   border-radius: 12%;
- 
+
   /* Ensure it appears above other elements */
   color: #fff;
   /* Ensure text is visible */
@@ -486,7 +497,7 @@ opacity: 0.7;
 
 .modalbox .content {
   display: block;
-  
+
   font-size: 18px;
   line-height: 22px;
   padding: 10px 40px 40px 0px;
@@ -617,7 +628,8 @@ label {
 }
 
 textarea#message {
-  overflow: auto; /* or hidden if you want no scroll */
+  overflow: auto;
+  /* or hidden if you want no scroll */
 }
 
 
@@ -710,7 +722,7 @@ textarea {
     height: calc(var(--thumb-height) * 0.5);
     /* Adjust height proportionally for smaller screens */
   }
-  
+
 
 }
 

@@ -862,7 +862,6 @@ thumbMot.addEventListener("mouseleave", function () {
 });
 
 thumbDiy.addEventListener("mouseenter", function () {
-
   navbarDiy.classList.add("active");
   thumbDiy.classList.add("active");
 });
