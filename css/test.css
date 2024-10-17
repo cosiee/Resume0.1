@@ -227,10 +227,21 @@ a.nav-link:hover {
   transform: scale(1.15);
 }
 
-a.nav-link.active {
+.dropdown-menu a.nav-link.active {
   color: #162a43;
   transform: scale(1.3);
+  display: block;
+  
 }
+
+.dropdown:hover .dropdown-menu{
+  display: block;
+}
+
+a.nav-link:enabled {
+
+}
+.dropdown .dropdown-menu
 
 
 .navbar-nav {
@@ -331,7 +342,7 @@ navbar-toggler left {
   top: 0px;
 }
 
-/* .container-fluid {
+.container-fluid {
   position: relative;
   width: 100%;
   max-width: 800px;
@@ -339,7 +350,9 @@ navbar-toggler left {
   margin: 0 auto;
   padding: 10px 20px 5px 5px;
   box-sizing: border-box;
-} */
+}
+
+
 div#navbar.container-fluid {
   position: relative;
   width: 100%;
@@ -352,6 +365,11 @@ div#navbar.container-fluid {
   left: 0; */
   /* transition: all 0.3s ease; Smooth transition when repositioning */
 }
+.navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+  padding-top: 30px !important;
+  padding-bottom: 20px !important;
+}
+
 
 
 /*###################### End of Navbar Base Styles ############################ */
@@ -718,33 +736,12 @@ textarea {
     border-right: 3px solid #fff;
   }
 
-
-  nav {
-    padding: 0px;
-    margin: 0px;
+  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+    padding: 0px 0px 0px 10px !important;
+    margin: 0px !important;
   }
+ 
 
-
-  #div#navbar.container-fluid {
-    position: absolute;
-    top: 10px;
-    /* Adjust the top position of the navbar when collapsed */
-    left: 10px;
-    /* You can adjust this for different alignment */
-    width: 100%;
-    /* Ensure the navbar takes full width if needed */
-    padding-top: 0px;
-    margin-top: 0px;
-    margin-left: 0px;
-  }
-
-  /* text.lrgtext {
-    font-size: 150px;
-    transform: translate(500px, 22vh);
-  }
-  .lrgtext#me {
-    transform: translate(520px, 22vh);
-  } */
 
   .thumbShape {
     width: calc(var(--thumb-width) * 0.5);
@@ -765,30 +762,10 @@ textarea {
     border-right: 3px solid #fff;
   }
 
-  nav {
-    padding: 0px;
-    margin: 0px;
+  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+    padding: 6px 0px 0px 10px !important;
+    margin: 0px !important;
   }
-
-  #div#navbar.container-fluid {
-    position: absolute;
-    top: 10px;
-    /* Adjust the top position of the navbar when collapsed */
-    left: 10px;
-    /* You can adjust this for different alignment */
-    width: 100%;
-    /* Ensure the navbar takes full width if needed */
-    padding-top: 10px;
-
-  }
-
-  /* text.lrgtext {
-    transform: translate(500px, 22%);
-  }
-
-  .lrgtext#me {
-    transform: translate(520px, 22%);
-  } */
 
   .thumbShape {
     width: calc(var(--thumb-width) * 0.7);
@@ -811,35 +788,11 @@ textarea {
   }
 
   .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-    padding: 0 0 0 0% !important;
-    margin: 0px !important;
+    padding-top: 30px !important;
+    padding-bottom: 20px !important;
   }
 
-  #div#navbar.container-fluid {
-    position: absolute;
-    /* top: 10px;           */
-    left: 100px;
-    width: 100%;
-    padding-top: 10px;
-    margin: 0;
-    align-self: left;
-    transform: translateY(-29px);
-    */ display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #00BAF0;
-    background: linear-gradient(to left, #f46b45, #eea849);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    color: #FFF;
-    height: 500px;
-    padding: 0;
 
-  }
-
-  /* text.lrgtext {
-    transform: translate(500px, 22vh);
-  }*/
 
 
 
@@ -860,18 +813,12 @@ textarea {
     top: 24%;
   }
 
-  div#navbar.container-fluid {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    align-self: center;
-    margin: 0 auto;
-    padding: 10px 20px 5px 5px;
-    box-sizing: border-box;
-    /* top: 0;
-    left: 0; */
-    transition: all 0.3s ease;
+
+  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+    padding: 30px auto 20px auto !important;
+    margin: 0px !important;
   }
+
 
   .thumbShape {
     width: calc(var(--thumb-width) * 1);
@@ -888,26 +835,7 @@ textarea {
     top: 26%;
   }
 
-  div#navbar.container-fluid {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    align-self: center;
-    margin: 0 auto;
-    padding: 10px 20px 5px 5px;
-    box-sizing: border-box;
-    /* top: 0;
-    left: 0; */
-    transition: all 0.3s ease;
-  }
 
-  /* text.lrgtext {
-    transform: translate(500px, 22vh);
-  }
-
-  .lrgtext#me {
-    transform: translate(520px, 22vh);
-  } */
 }
 
 /* XX-Large devices (larger desktops, 1400px and up)
