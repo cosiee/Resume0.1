@@ -175,7 +175,6 @@ nav.navbar {
   overflow: visible;
 }
 
-
 nav {
   width: auto;
 }
@@ -214,8 +213,8 @@ nav ul a {
 a.nav-link {
   color: #6e6f79;
   font-family: "Open Sans";
-  font-size: 1.6em;
-  line-height: 1.6;
+  font-size: 16px;
+  /* line-height: 1.6; */
   font-weight: 500;
   transition: all 0.3s;
   transform: scale(1);
@@ -227,53 +226,40 @@ a.nav-link:hover {
   transform: scale(1.15);
 }
 
+
+.dropdown-menu {
+  position: relative;
+  border-style: none;
+  font-size: 14px;
+  line-height: 1;
+  background-color: transparent; /**/
+  list-style: decimal; /**/
+  text-align: left;
+  inline-size: 100px;
+  border-radius: 10px;
+  /* margin: 0px; */
+
+}
+
 .dropdown-menu a.nav-link.active {
   color: #162a43;
-  transform: scale(1.3);
+  transform: scale(1.2);
   display: block;
-  
+  background-color: transparent;
+
 }
 
-.dropdown:hover .dropdown-menu{
+.dropdown:hover .dropdown-menu {
+  border-radius: 10px;
   display: block;
-}
-
-a.nav-link:enabled {
-
-}
-.dropdown .dropdown-menu
-
-
-.navbar-nav {
-  --bs-nav-link-hover-colour: #162a43;
-}
-
-.navbar {
-  --bs-navbar-active-color: #162a43;
-  --bs-navbar-brand-color: #162a43;
-  --bs-navbar-brand-hover-color: #162a43;
-
-}
-
-
-
-a#navbarDropdownMenuLink.nav-link.dropdown-toggle {
-  color: #6e6f79;
-}
-
-a#navbarDropdownMenuLink.nav-link.dropdown-toggle:hover {
-  color: #162a43;
-}
-
-ul.navbar-nav {
-  position: absolute;
-  align-self: center;
-
+ 
+  background-color: #fff;
 }
 
 a.dropdown-item {
   color: #6e6f79;
   font-size: 0.9em;
+  padding: 1px 0px 1px 0px;
 
 }
 
@@ -291,8 +277,41 @@ a.dropdown-item:active {
 dropdown-menu {
   border: none;
 }
+a.nav-link:enabled {}
+
+.dropdown .dropdown-menu .navbar-nav {
+  --bs-nav-link-hover-colour: #162a43;
+}
+
+
+
+
+
+a#navbarDropdownMenuLink.nav-link.dropdown-toggle {
+  color: #6e6f79;
+}
+
+a#navbarDropdownMenuLink.nav-link.dropdown-toggle:hover {
+  color: #162a43;
+}
+
+ul.navbar-nav {
+  position: absolute;
+  align-self: center;
+
+}
+
+
+
+
 
 .navbar {
+  
+    --bs-navbar-active-color: #162a43;
+    --bs-navbar-brand-color: #162a43;
+    --bs-navbar-brand-hover-color: #162a43;
+  
+
   position: fixed;
   top: 0px;
   max-height: 50px;
@@ -308,8 +327,7 @@ dropdown-menu {
   padding-bottom: 20px;
 }
 
-/* ######################################################## */
-/* Style the navbar */
+
 
 
 /* Burger Icon Styling */
@@ -365,6 +383,7 @@ div#navbar.container-fluid {
   left: 0; */
   /* transition: all 0.3s ease; Smooth transition when repositioning */
 }
+
 .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
   padding-top: 30px !important;
   padding-bottom: 20px !important;
@@ -529,7 +548,7 @@ div#navbar.container-fluid {
   font-size: 18px;
   line-height: 22px;
   padding: 10px 40px 40px 0px;
-  text-align:left;
+  text-align: left;
   color: #fff;
 }
 
@@ -740,7 +759,7 @@ textarea {
     padding: 0px 0px 0px 10px !important;
     margin: 0px !important;
   }
- 
+
 
 
   .thumbShape {
