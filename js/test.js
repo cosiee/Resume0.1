@@ -472,7 +472,7 @@ function animateThumbs() {
     .timeline({
       scrollTrigger: {
         trigger: ".scrollDist",
-        // start: "top top",
+         start: "top top",
         end: "bottom bottom",
         scrub: 0.5,
         invalidateOnRefresh: true,

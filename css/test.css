@@ -559,6 +559,8 @@ div#navbar.container-fluid {
   color: #fff;
 }
 
+
+
 .modalbox .content {
   display: block;
 
@@ -597,23 +599,7 @@ div#navbar.container-fluid {
   outline: none;
 }
 
-/* .link-modal {
-  width: 90%;
-  text-align: center;
-  margin: 0 auto;
-  padding-top: 400px;
-  padding-left: 15px;
-}
 
-.link-modal a {
-  border: 1px solid #fff;
-  color: #fff;
-  font-size: 20px;
-  letter-spacing: 0.3em;
-  padding: 10px;
-  text-decoration: none;
-  text-transform: uppercase;
-} */
 
 .link-modal {
   width: 90%;
@@ -640,7 +626,7 @@ div#navbar.container-fluid {
 
 .sig {
   position: relative;
-  height: 90px;
+  height: 12rem;
   width: auto;
 }
 
