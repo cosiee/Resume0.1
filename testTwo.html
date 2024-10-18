@@ -46,3 +46,96 @@
   <script src="testTwo.js"></script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expand Dropdown on External Trigger</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        /* Navbar styles */
+        .navbar {
+            background-color: #333;
+            padding: 10px;
+            position: relative;
+        }
+        .navbar-item {
+            display: inline-block;
+            color: white;
+            padding: 10px 20px;
+        }
+        /* Dropdown menu hidden by default */
+        .dropdown-menu {
+            display: none;
+            background-color: #f9f9f9;
+            position: absolute;
+            top: 40px;
+            left: 10px;
+            padding: 10px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+            list-style: none;
+        }
+        .dropdown-menu li {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+        .dropdown-menu li:hover {
+            background-color: #ddd;
+        }
+        /* The trigger element outside the navbar */
+        .trigger {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            display: inline-block;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar structure -->
+    <div class="navbar">
+        <!-- Navbar item -->
+        <div class="navbar-item">Navbar Item</div>
+        <!-- Dropdown menu inside the navbar -->
+        <ul class="dropdown-menu" id="dropdownMenu">
+            <li>Dropdown Item 1</li>
+            <li>Dropdown Item 2</li>
+            <li>Dropdown Item 3</li>
+        </ul>
+    </div>
+
+    <!-- Trigger element outside the navbar -->
+    <div class="trigger" id="triggerElement">Hover over me to expand the dropdown</div>
+
+    <script>
+        // Select the dropdown menu and trigger element
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const triggerElement = document.getElementById('triggerElement');
+
+        // Function to show the dropdown
+        function showDropdown() {
+            dropdownMenu.style.display = 'block';
+        }
+
+        // Function to hide the dropdown
+        function hideDropdown() {
+            dropdownMenu.style.display = 'none';
+        }
+
+        // Add event listeners to the trigger element
+        triggerElement.addEventListener('mouseenter', showDropdown);
+        triggerElement.addEventListener('mouseleave', hideDropdown);
+
+        // Optionally, hide dropdown when mouse leaves the dropdown area
+        dropdownMenu.addEventListener('mouseleave', hideDropdown);
+    </script>
+
+</body>
+</html>

@@ -148,7 +148,7 @@ function autoScroll() {
         y: maxScroll, // Scroll to the bottom of the page dynamically
         autoKill: false // Disable autoKill to prevent interruptions
       },
-      duration: 6.8, // Scroll over 5 seconds
+      duration: 1, // Scroll over 6.8 seconds
       ease: CustomEase.create("custom", "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "),// Easing function for smooth scrolling
       // onStart: () => console.log('Auto-scrolling started'),
       // onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
@@ -405,7 +405,7 @@ function updateModalDimensions(endTopY) {
   const newLeft = centerX - newWidth / 2;
 
   // Use the passed endTopY for the new top position
-  const newTop = endTopY + 11.5; // 22.5 works for alignment on y axis
+  const newTop = endTopY + 22.5; // 22.5 works for alignment on y axis
 
   // Update modal position
   modalBox.style.position = "absolute";
@@ -817,7 +817,7 @@ window.onload = function() {
 // Beginning of Handling hover on Thumbs Triggering Navbar elements ###############################
 
 const thumbSoft = document.querySelector("#software");
-const navbarSoft = document.querySelector(".dropdown-toggle");
+const navbarSoft = document.querySelector("#softwareLink");
 
 const thumbPhoto = document.querySelector("#photography");
 const navbarPhoto = document.querySelector("#photographyLink");
@@ -828,8 +828,19 @@ const navbarMot = document.querySelector("#motionLink");
 const thumbDiy = document.querySelector("#diy");
 const navbarDiy = document.querySelector("#diyLink");
 
+const softwareDropMenuLink = document.querySelector("#softwareDropMenuLink");
+const motionDropMenuLink = document.querySelector("#motionDropMenuLink");
 
 
+function showDropMenu(dropMenu){
+  dropMenu.style.display='block';
+  // consolelog("element", element);
+}
+
+function hideDropdown(dropMenu) {
+  dropMenu.style.display = 'none';
+  // consolelog("element", element);
+}
 
 
 thumbPhoto.addEventListener("mouseenter", function () {
@@ -845,21 +856,31 @@ thumbPhoto.addEventListener("mouseleave", function () {
 thumbSoft.addEventListener("mouseenter", function () {
   navbarSoft.classList.add("active");
   thumbSoft.classList.add("active");
+
+  showDropMenu(softwareDropMenuLink);
 });
 
 thumbSoft.addEventListener("mouseleave", function () {
+
+  let element = document.querySelector("softDropLink")
   navbarSoft.classList.remove("active");
   thumbSoft.classList.remove("active");
+  hideDropdown(softwareDropMenuLink);
+
 });
 
 thumbMot.addEventListener("mouseenter", function () {
   navbarMot.classList.add("active");
+
   thumbMot.classList.add("active");
+  showDropMenu(motionDropMenuLink);
+  
 });
 
 thumbMot.addEventListener("mouseleave", function () {
   navbarMot.classList.remove("active");
   thumbMot.classList.remove("active");
+  hideDropdown(motionDropMenuLink);
 });
 
 thumbDiy.addEventListener("mouseenter", function () {
