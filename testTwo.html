@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar with Triggered Dropdowns</title>
+    <title>Navbar with Persistent Dropdowns</title>
     <style>
         /* Basic styles */
         body {
@@ -75,9 +75,6 @@
         </div>
     </div>
     <div class="filler"></div>
-    <!-- External Trigger elements -->
-    <div class="trigger" id="trigger1">Hover over me to expand Dropdown 1</div>
-    <div class="trigger" id="trigger2">Hover over me to expand Dropdown 2</div>
 
     <script>
         // Function to show the dropdown
@@ -90,35 +87,40 @@
             dropdownMenu.style.display = 'none';
         }
 
-        // Utility function to delay the hide to prevent flicker when moving between items
+        // Track whether the mouse is still inside the navbar or dropdown
+        let hoverTimeout;
+
+        // Function to handle delayed hiding of the dropdown
         function delayedHide(dropdownMenu) {
-            setTimeout(() => {
-                dropdownMenu.style.display = 'none';
-            }, 200); // Small delay for smoother transition
+            // Clear any existing timeout
+            clearTimeout(hoverTimeout);
+            // Set a timeout to hide the menu after a short delay
+            hoverTimeout = setTimeout(() => {
+                hideDropdown(dropdownMenu);
+            }, 300); // 300ms delay to allow smooth interaction
         }
 
-        // Select the dropdown menus and trigger elements
+        // Function to keep the dropdown visible as long as the mouse is inside
+        function cancelHide() {
+            clearTimeout(hoverTimeout); // Cancel any pending hide actions
+        }
+
+        // Select the dropdown menus and navbar items
         const dropdownMenu1 = document.getElementById('dropdownMenu1');
         const dropdownMenu2 = document.getElementById('dropdownMenu2');
-        const trigger1 = document.getElementById('trigger1');
-        const trigger2 = document.getElementById('trigger2');
         const navbarItem1 = document.getElementById('navbarItem1');
         const navbarItem2 = document.getElementById('navbarItem2');
 
         // Handle show/hide for Dropdown 1
-        trigger1.addEventListener('mouseenter', () => showDropdown(dropdownMenu1));
-        trigger1.addEventListener('mouseleave', () => delayedHide(dropdownMenu1));
         navbarItem1.addEventListener('mouseenter', () => showDropdown(dropdownMenu1));
         navbarItem1.addEventListener('mouseleave', () => delayedHide(dropdownMenu1));
-        dropdownMenu1.addEventListener('mouseenter', () => showDropdown(dropdownMenu1));
+        dropdownMenu1.addEventListener('mouseenter', cancelHide); // Keep dropdown open
         dropdownMenu1.addEventListener('mouseleave', () => delayedHide(dropdownMenu1));
 
         // Handle show/hide for Dropdown 2
-        trigger2.addEventListener('mouseenter', () => showDropdown(dropdownMenu2));
-        trigger2.addEventListener('mouseleave', () => delayedHide(dropdownMenu2));
         navbarItem2.addEventListener('mouseenter', () => showDropdown(dropdownMenu2));
         navbarItem2.addEventListener('mouseleave', () => delayedHide(dropdownMenu2));
-        dropdownMenu2.addEventListener('mouseenter', () => showDropdown(dropdownMenu2));
+        dropdownMenu2.addEventListener('mouseenter', cancelHide); // Keep dropdown open
         dropdownMenu2.addEventListener('mouseleave', () => delayedHide(dropdownMenu2));
     </script>
 

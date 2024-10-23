@@ -831,6 +831,8 @@ const navbarDiy = document.querySelector("#diyLink");
 const softwareDropMenuLink = document.querySelector("#softwareDropMenuLink");
 const motionDropMenuLink = document.querySelector("#motionDropMenuLink");
 
+// Track whether the mouse is still inside the navbar or dropdown
+let hoverTimeout;
 
 function showDropMenu(dropMenu){
   dropMenu.style.display='block';
@@ -840,42 +842,75 @@ function hideDropdown(dropMenu) {
   dropMenu.style.display = 'none';
 }
 
+
+// Function to handle delayed hiding of the dropdown
+function delayedHide(dropdownMenu) {
+    // Clear any existing timeout
+    clearTimeout(hoverTimeout);
+    // Set a timeout to hide the menu after a short delay
+    hoverTimeout = setTimeout(() => {
+        hideDropdown(dropdownMenu);
+    }, 300); // 300ms delay to allow smooth interaction
+}
+
+// Function to keep the dropdown visible as long as the mouse is inside
+function cancelHide() {
+    clearTimeout(hoverTimeout); // Cancel any pending hide actions
+}
+
+
+
+
 thumbSoft.addEventListener("mouseenter", function () {
   showDropMenu(softwareDropMenuLink);
   navbarSoft.classList.add("active");
   thumbSoft.classList.add("active");
-
-  
 });
 navbarSoft.addEventListener("mouseenter", function () {
   showDropMenu(softwareDropMenuLink);
   navbarSoft.classList.add("active");
   thumbSoft.classList.add("active");
-
-  
 });
 
 thumbSoft.addEventListener("mouseleave", function () {
-  hideDropdown(softwareDropMenuLink);
+  delayedHide(softwareDropMenuLink);
   navbarSoft.classList.remove("active");
   thumbSoft.classList.remove("active");
 });
-navbar.addEventListener("mouseleave", function () {
-  hideDropdown(softwareDropMenuLink);
+navbarSoft.addEventListener("mouseleave", function () {
+  delayedHide(softwareDropMenuLink);
   navbarSoft.classList.remove("active");
   thumbSoft.classList.remove("active");
 });
+
+softwareDropMenuLink.addEventListener("mouseenter", function () {
+  cancelHide();
+});
+
 
 thumbMot.addEventListener("mouseenter", function () {
   showDropMenu(motionDropMenuLink);
   navbarMot.classList.add("active");
   thumbMot.classList.add("active");  
 });
+navbarMot.addEventListener("mouseenter", function () {
+  showDropMenu(motionDropMenuLink);
+  navbarMot.classList.add("active");
+  thumbMot.classList.add("active");  
+});
 
 thumbMot.addEventListener("mouseleave", function () {
-  hideDropdown(motionDropMenuLink);
+  delayedHide(motionDropMenuLink);
   navbarMot.classList.remove("active");
   thumbMot.classList.remove("active");
+});
+navbarMot.addEventListener("mouseleave", function () {
+  delayedHide(motionDropMenuLink);
+  navbarMot.classList.remove("active");
+  thumbMot.classList.remove("active");
+});
+motionDropMenuLink.addEventListener("mouseenter", function () {
+  cancelHide();
 });
 
 thumbPhoto.addEventListener("mouseenter", function () {
