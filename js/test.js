@@ -834,14 +834,49 @@ const motionDropMenuLink = document.querySelector("#motionDropMenuLink");
 
 function showDropMenu(dropMenu){
   dropMenu.style.display='block';
-  // consolelog("element", element);
 }
 
 function hideDropdown(dropMenu) {
   dropMenu.style.display = 'none';
-  // consolelog("element", element);
 }
 
+thumbSoft.addEventListener("mouseenter", function () {
+  showDropMenu(softwareDropMenuLink);
+  navbarSoft.classList.add("active");
+  thumbSoft.classList.add("active");
+
+  
+});
+navbarSoft.addEventListener("mouseenter", function () {
+  showDropMenu(softwareDropMenuLink);
+  navbarSoft.classList.add("active");
+  thumbSoft.classList.add("active");
+
+  
+});
+
+thumbSoft.addEventListener("mouseleave", function () {
+  hideDropdown(softwareDropMenuLink);
+  navbarSoft.classList.remove("active");
+  thumbSoft.classList.remove("active");
+});
+navbar.addEventListener("mouseleave", function () {
+  hideDropdown(softwareDropMenuLink);
+  navbarSoft.classList.remove("active");
+  thumbSoft.classList.remove("active");
+});
+
+thumbMot.addEventListener("mouseenter", function () {
+  showDropMenu(motionDropMenuLink);
+  navbarMot.classList.add("active");
+  thumbMot.classList.add("active");  
+});
+
+thumbMot.addEventListener("mouseleave", function () {
+  hideDropdown(motionDropMenuLink);
+  navbarMot.classList.remove("active");
+  thumbMot.classList.remove("active");
+});
 
 thumbPhoto.addEventListener("mouseenter", function () {
   navbarPhoto.classList.add("active");
@@ -851,36 +886,6 @@ thumbPhoto.addEventListener("mouseenter", function () {
 thumbPhoto.addEventListener("mouseleave", function () {
   navbarPhoto.classList.remove("active");
   thumbPhoto.classList.remove("active");
-});
-
-thumbSoft.addEventListener("mouseenter", function () {
-  navbarSoft.classList.add("active");
-  thumbSoft.classList.add("active");
-
-  showDropMenu(softwareDropMenuLink);
-});
-
-thumbSoft.addEventListener("mouseleave", function () {
-
-  let element = document.querySelector("softDropLink")
-  navbarSoft.classList.remove("active");
-  thumbSoft.classList.remove("active");
-  hideDropdown(softwareDropMenuLink);
-
-});
-
-thumbMot.addEventListener("mouseenter", function () {
-  navbarMot.classList.add("active");
-
-  thumbMot.classList.add("active");
-  showDropMenu(motionDropMenuLink);
-  
-});
-
-thumbMot.addEventListener("mouseleave", function () {
-  navbarMot.classList.remove("active");
-  thumbMot.classList.remove("active");
-  hideDropdown(motionDropMenuLink);
 });
 
 thumbDiy.addEventListener("mouseenter", function () {

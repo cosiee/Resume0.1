@@ -1,63 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Navbar</title>
-</head>
-<body>
-  <div class="container-fluid thumbnails" id="thumbnails">
-    <a class="thumbs" href="software.html">
-      <div class="thumbShape thumbs" id="software">
-        <div class="overlay"></div>
-      </div>
-    </a>
-
-    <a class="thumbs" href="photography.html">
-      <div class="thumbShape thumbs" id="photography">
-        <div class="overlay"></div>
-      </div>
-    </a>
-
-    <a class="thumbs" href="motion.html">
-      <div class="thumbShape thumbs" id="motion">
-        <div class="overlay"></div>
-      </div>
-    </a>
-
-    <a class="thumbs" href="diy.html">
-      <div class="thumbShape thumbs" id="diy">
-        <div class="overlay"></div>
-      </div>
-    </a>
-  </div>
-
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="motionLink" role="button"
-      data-bs-toggle="dropdown" aria-expanded="false">Motion</a>
-
-    <ul class="dropdown-menu" aria-labelledby="motionLink">
-      <li><a class="dropdown-item" href="motion.html">Motion</a></li>
-      <li><a class="dropdown-item" href="animation.html">Animation</a></li>
-    </ul>
-  </li>
-
-  <!-- Include the JavaScript file just before closing the body tag -->
-  <script src="testTwo.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expand Dropdown on External Trigger</title>
+    <title>Navbar with Triggered Dropdowns</title>
     <style>
-        /* Basic styling */
+        /* Basic styles */
         body {
             font-family: Arial, sans-serif;
         }
-        /* Navbar styles */
         .navbar {
             background-color: #333;
             padding: 10px;
@@ -67,17 +18,17 @@
             display: inline-block;
             color: white;
             padding: 10px 20px;
+            position: relative;
         }
-        /* Dropdown menu hidden by default */
         .dropdown-menu {
             display: none;
             background-color: #f9f9f9;
             position: absolute;
             top: 40px;
-            left: 10px;
+            left: 0;
             padding: 10px;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
             list-style: none;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
         }
         .dropdown-menu li {
             padding: 8px 12px;
@@ -86,7 +37,7 @@
         .dropdown-menu li:hover {
             background-color: #ddd;
         }
-        /* The trigger element outside the navbar */
+        /* Trigger elements */
         .trigger {
             margin-top: 20px;
             padding: 10px 20px;
@@ -95,46 +46,80 @@
             display: inline-block;
             cursor: pointer;
         }
+        .filler {
+            width: 100%;
+            height: 100px;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Navbar structure -->
+    <!-- Navbar structure with two dropdowns -->
     <div class="navbar">
-        <!-- Navbar item -->
-        <div class="navbar-item">Navbar Item</div>
-        <!-- Dropdown menu inside the navbar -->
-        <ul class="dropdown-menu" id="dropdownMenu">
-            <li>Dropdown Item 1</li>
-            <li>Dropdown Item 2</li>
-            <li>Dropdown Item 3</li>
-        </ul>
+        <!-- Navbar Item 1 with Dropdown 1 -->
+        <div class="navbar-item" id="navbarItem1">
+            Navbar Item 1
+            <ul class="dropdown-menu" id="dropdownMenu1">
+                <li>Dropdown 1 - Item 1</li>
+                <li>Dropdown 1 - Item 2</li>
+            </ul>
+        </div>
+       
+        <!-- Navbar Item 2 with Dropdown 2 -->
+        <div class="navbar-item" id="navbarItem2">
+            Navbar Item 2
+            <ul class="dropdown-menu" id="dropdownMenu2">
+                <li>Dropdown 2 - Item 1</li>
+                <li>Dropdown 2 - Item 2</li>
+            </ul>
+        </div>
     </div>
-
-    <!-- Trigger element outside the navbar -->
-    <div class="trigger" id="triggerElement">Hover over me to expand the dropdown</div>
+    <div class="filler"></div>
+    <!-- External Trigger elements -->
+    <div class="trigger" id="trigger1">Hover over me to expand Dropdown 1</div>
+    <div class="trigger" id="trigger2">Hover over me to expand Dropdown 2</div>
 
     <script>
-        // Select the dropdown menu and trigger element
-        const dropdownMenu = document.getElementById('dropdownMenu');
-        const triggerElement = document.getElementById('triggerElement');
-
         // Function to show the dropdown
-        function showDropdown() {
+        function showDropdown(dropdownMenu) {
             dropdownMenu.style.display = 'block';
         }
 
         // Function to hide the dropdown
-        function hideDropdown() {
+        function hideDropdown(dropdownMenu) {
             dropdownMenu.style.display = 'none';
         }
 
-        // Add event listeners to the trigger element
-        triggerElement.addEventListener('mouseenter', showDropdown);
-        triggerElement.addEventListener('mouseleave', hideDropdown);
+        // Utility function to delay the hide to prevent flicker when moving between items
+        function delayedHide(dropdownMenu) {
+            setTimeout(() => {
+                dropdownMenu.style.display = 'none';
+            }, 200); // Small delay for smoother transition
+        }
 
-        // Optionally, hide dropdown when mouse leaves the dropdown area
-        dropdownMenu.addEventListener('mouseleave', hideDropdown);
+        // Select the dropdown menus and trigger elements
+        const dropdownMenu1 = document.getElementById('dropdownMenu1');
+        const dropdownMenu2 = document.getElementById('dropdownMenu2');
+        const trigger1 = document.getElementById('trigger1');
+        const trigger2 = document.getElementById('trigger2');
+        const navbarItem1 = document.getElementById('navbarItem1');
+        const navbarItem2 = document.getElementById('navbarItem2');
+
+        // Handle show/hide for Dropdown 1
+        trigger1.addEventListener('mouseenter', () => showDropdown(dropdownMenu1));
+        trigger1.addEventListener('mouseleave', () => delayedHide(dropdownMenu1));
+        navbarItem1.addEventListener('mouseenter', () => showDropdown(dropdownMenu1));
+        navbarItem1.addEventListener('mouseleave', () => delayedHide(dropdownMenu1));
+        dropdownMenu1.addEventListener('mouseenter', () => showDropdown(dropdownMenu1));
+        dropdownMenu1.addEventListener('mouseleave', () => delayedHide(dropdownMenu1));
+
+        // Handle show/hide for Dropdown 2
+        trigger2.addEventListener('mouseenter', () => showDropdown(dropdownMenu2));
+        trigger2.addEventListener('mouseleave', () => delayedHide(dropdownMenu2));
+        navbarItem2.addEventListener('mouseenter', () => showDropdown(dropdownMenu2));
+        navbarItem2.addEventListener('mouseleave', () => delayedHide(dropdownMenu2));
+        dropdownMenu2.addEventListener('mouseenter', () => showDropdown(dropdownMenu2));
+        dropdownMenu2.addEventListener('mouseleave', () => delayedHide(dropdownMenu2));
     </script>
 
 </body>
