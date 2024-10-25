@@ -887,6 +887,10 @@ softwareDropMenuLink.addEventListener("mouseenter", function () {
   cancelHide();
 });
 
+softwareDropMenuLink.addEventListener("mouseleave", function () {
+  delayedHide(softwareDropMenuLink);
+});
+
 
 thumbMot.addEventListener("mouseenter", function () {
   showDropMenu(motionDropMenuLink);
@@ -911,6 +915,9 @@ navbarMot.addEventListener("mouseleave", function () {
 });
 motionDropMenuLink.addEventListener("mouseenter", function () {
   cancelHide();
+});
+motionDropMenuLink.addEventListener("mouseleave", function () {
+  delayedHide(motionDropMenuLink);
 });
 
 thumbPhoto.addEventListener("mouseenter", function () {

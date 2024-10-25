@@ -3,126 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar with Persistent Dropdowns</title>
+    <title>Responsive Navbar with Horizontal Dropdowns</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
-        /* Basic styles */
-        body {
-            font-family: Arial, sans-serif;
+        /* Default dropdown styling for large screens (vertical dropdown) */
+        @media (min-width: 992px) {
+            .dropdown-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                z-index: 1000;
+                float: left;
+                min-width: 10rem;
+                padding: 0.5rem 0;
+                margin: 0.125rem 0 0;
+                font-size: 1rem;
+                color: #212529;
+                text-align: left;
+                background-color: #fff;
+                border: 1px solid rgba(0, 0, 0, 0.15);
+                border-radius: 0.25rem;
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175);
+            }
+
+            /* Show dropdown on hover for large screens */
+            .nav-item.dropdown:hover .dropdown-menu {
+                display: block;
+            }
         }
-        .navbar {
-            background-color: #333;
-            padding: 10px;
-            position: relative;
-        }
-        .navbar-item {
-            display: inline-block;
-            color: white;
-            padding: 10px 20px;
-            position: relative;
-        }
-        .dropdown-menu {
-            display: none;
-            background-color: #f9f9f9;
-            position: absolute;
-            top: 40px;
-            left: 0;
-            padding: 10px;
-            list-style: none;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-        }
-        .dropdown-menu li {
-            padding: 8px 12px;
-            cursor: pointer;
-        }
-        .dropdown-menu li:hover {
-            background-color: #ddd;
-        }
-        /* Trigger elements */
-        .trigger {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: white;
-            display: inline-block;
-            cursor: pointer;
-        }
-        .filler {
-            width: 100%;
-            height: 100px;
+
+        /* Horizontal dropdown menu for small screens */
+        @media (max-width: 991.98px) {
+            /* Make the dropdown open horizontally */
+            .dropdown-menu {
+                display: none;
+                position: static;
+                width: 100%;
+                flex-direction: row; /* Make the dropdown menu horizontal */
+                padding: 0;
+                margin: 0;
+                background-color: transparent; /* Optional: transparent background */
+                border: none; /* Optional: remove borders */
+            }
+
+            .dropdown-item {
+                display: inline-block;
+                padding: 10px 15px;
+                white-space: nowrap; /* Prevent wrapping of items */
+                background-color: #f8f9fa; /* Give items a background */
+                border: 1px solid #ddd; /* Optional: add border for each item */
+                margin-right: 10px; /* Space between items */
+                border-radius: 4px;
+            }
+
+            /* Show dropdown on click in hamburger mode */
+            .nav-item.show .dropdown-menu {
+                display: flex; /* Display the items horizontally as flex container */
+            }
+
+            /* Optional: hover effect for the items */
+            .dropdown-menu .dropdown-item:hover {
+                background-color: #ddd;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navbar structure with two dropdowns -->
-    <div class="navbar">
-        <!-- Navbar Item 1 with Dropdown 1 -->
-        <div class="navbar-item" id="navbarItem1">
-            Navbar Item 1
-            <ul class="dropdown-menu" id="dropdownMenu1">
-                <li>Dropdown 1 - Item 1</li>
-                <li>Dropdown 1 - Item 2</li>
-            </ul>
+    <!-- Navbar Structure -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent" id="topNav">
+        <div class="container-fluid" id="navbar">
+            <!-- Burger Menu -->
+            <button class="navbar-toggler left" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Main Navbar Menu -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" onclick="autoScroll();">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="softwareLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Software
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="softwareLink">
+                            <li><a class="dropdown-item" href="#">HTML</a></li>
+                            <li><a class="dropdown-item" href="#">CSS</a></li>
+                            <li><a class="dropdown-item" href="#">JavaScript</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="photography.html">Photography</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="diy.html">DIY</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="motionLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Motion
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="motionLink">
+                            <li><a class="dropdown-item" href="videography.html">Videography</a></li>
+                            <li><a class="dropdown-item" href="animation.html">Animation</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="hideScrollBar(); showStatementContact(); showForm();">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-       
-        <!-- Navbar Item 2 with Dropdown 2 -->
-        <div class="navbar-item" id="navbarItem2">
-            Navbar Item 2
-            <ul class="dropdown-menu" id="dropdownMenu2">
-                <li>Dropdown 2 - Item 1</li>
-                <li>Dropdown 2 - Item 2</li>
-            </ul>
-        </div>
-    </div>
-    <div class="filler"></div>
+    </nav>
 
-    <script>
-        // Function to show the dropdown
-        function showDropdown(dropdownMenu) {
-            dropdownMenu.style.display = 'block';
-        }
-
-        // Function to hide the dropdown
-        function hideDropdown(dropdownMenu) {
-            dropdownMenu.style.display = 'none';
-        }
-
-        // Track whether the mouse is still inside the navbar or dropdown
-        let hoverTimeout;
-
-        // Function to handle delayed hiding of the dropdown
-        function delayedHide(dropdownMenu) {
-            // Clear any existing timeout
-            clearTimeout(hoverTimeout);
-            // Set a timeout to hide the menu after a short delay
-            hoverTimeout = setTimeout(() => {
-                hideDropdown(dropdownMenu);
-            }, 300); // 300ms delay to allow smooth interaction
-        }
-
-        // Function to keep the dropdown visible as long as the mouse is inside
-        function cancelHide() {
-            clearTimeout(hoverTimeout); // Cancel any pending hide actions
-        }
-
-        // Select the dropdown menus and navbar items
-        const dropdownMenu1 = document.getElementById('dropdownMenu1');
-        const dropdownMenu2 = document.getElementById('dropdownMenu2');
-        const navbarItem1 = document.getElementById('navbarItem1');
-        const navbarItem2 = document.getElementById('navbarItem2');
-
-        // Handle show/hide for Dropdown 1
-        navbarItem1.addEventListener('mouseenter', () => showDropdown(dropdownMenu1));
-        navbarItem1.addEventListener('mouseleave', () => delayedHide(dropdownMenu1));
-        dropdownMenu1.addEventListener('mouseenter', cancelHide); // Keep dropdown open
-        dropdownMenu1.addEventListener('mouseleave', () => delayedHide(dropdownMenu1));
-
-        // Handle show/hide for Dropdown 2
-        navbarItem2.addEventListener('mouseenter', () => showDropdown(dropdownMenu2));
-        navbarItem2.addEventListener('mouseleave', () => delayedHide(dropdownMenu2));
-        dropdownMenu2.addEventListener('mouseenter', cancelHide); // Keep dropdown open
-        dropdownMenu2.addEventListener('mouseleave', () => delayedHide(dropdownMenu2));
-    </script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 
 </body>
 </html>
