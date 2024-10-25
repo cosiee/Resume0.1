@@ -211,8 +211,6 @@ nav ul li a {
 }
 
 
-
-
 a.nav-link {
   color: #6e6f79;
   transform: scale(1);
@@ -226,24 +224,27 @@ a.nav-link {
 a.nav-link:hover {
   color: #162a43;
   transform: scale(1.15);
-  display: block; 
+  /* display: block;  */
 }
 
 a.nav-link.active {
   color: #162a43;
   transform: scale(1.3);
-  display: block;
+  
 }
 
 
 .dropdown-menu {
-  position: relative;
+ 
+  position: absolute;
+  
   border-style:groove;
   font-size: 14px;
-  line-height: 1;
+  /* line-height: 1; */
   background-color: transparent; 
   text-align: left;
   inline-size: auto;
+  border-width: auto;
   border-radius: 5px;
   border-right: none;
   border-left: none;
@@ -251,39 +252,6 @@ a.nav-link.active {
 
 }
 
-  ul.horizontal
-{
-  display: none;
-  position: absolute;
-  left: 0;
-  /* background-color: red; */
-  width: 100%;
-  z-index: 1;
-}
-
-
-.dropdown:hover {
-  border-radius: 3px;
-  display: block;
-  background-color: #fff;
-}
-
-
-
-/* a#navbarDropdownMenuLink.nav-link.dropdown-toggle {
-  color: #6e6f79;
-}
-
-a#navbarDropdownMenuLink.nav-link.dropdown-toggle:hover {
-  color: #162a43;
-} */
-
-
-/* .dropdown.active{
-  border-radius: 10px;
-  display: block;
-  background-color: #fff;
-} */
 
 a.dropdown-item {
   color: #6e6f79;
@@ -295,19 +263,16 @@ a.dropdown-item {
 a.dropdown-item:hover {
   color: #162a43;
   transform: scale(1.1);
+  background-color: transparent !important;
 }
 
 a.dropdown-item:active {
-  background-color: #6e6f79;
-  color: #fff;
   transform: scale(1.2);
+  color:#162a43;
+  background-color: transparent !important;
 }
 
-dropdown-menu {
-  border: none;
-  box-shadow: 0px 8px 16px #162a43(0, 0, 0, 1);
 
-}
 
 
 .dropdown .dropdown-menu .navbar-nav {
@@ -331,16 +296,12 @@ ul.navbar-nav {
 
 
 .navbar {
-  
-    --bs-navbar-active-color: #162a43;
-    --bs-navbar-brand-color: #162a43;
-    --bs-navbar-brand-hover-color: #162a43;
-  
-
+  --bs-navbar-active-color: #162a43;
+  --bs-navbar-brand-color: #162a43;
+  --bs-navbar-brand-hover-color: #162a43;
   position: fixed;
   top: 0px;
   max-height: 50px;
-  /* z-index: 54; */
   width: 100%;
   padding-top: 30px;
   background: none;
@@ -359,25 +320,14 @@ ul.navbar-nav {
 navbar-toggler left {
   position: absolute;
   left: 1rem;
-  /* Adjust for distance from the left */
   top: 1rem;
   border: none;
-
-  /* Adjust button size */
-  padding: 0.5rem 1rem;
   font-size: 1rem;
-  /* line-height: 1.5; */
   background-color: transparent;
-  /* Change this to add a background */
   border: none;
-  /* Remove border */
   outline: none;
-  /* Remove outline when focused */
 }
 
-
-
-/* ######################################################## */
 
 .sticky {
   /* background-color: #ffffff; */
@@ -385,7 +335,7 @@ navbar-toggler left {
   top: 0px;
 }
 
-.container-fluid {
+.container-fluid#navbar {
   position: relative;
   width: 100%;
   max-width: 800px;
@@ -396,7 +346,7 @@ navbar-toggler left {
 }
 
 
-div#navbar.container-fluid {
+/* div#navbar.container-fluid {
   position: relative;
   width: 100%;
   max-width: 800px;
@@ -404,15 +354,15 @@ div#navbar.container-fluid {
   margin: 0 auto;
   padding: 10px 20px 5px 5px;
   box-sizing: border-box;
-  /* top: 0;
-  left: 0; */
-  /* transition: all 0.3s ease; Smooth transition when repositioning */
-}
+  top: 0;
+  left: 0;
+  transition: all 0.3s ease; Smooth transition when repositioning
+} */
 
-.navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+/* .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
   padding-top: 30px !important;
   padding-bottom: 20px !important;
-}
+} */
 
 
 
@@ -657,10 +607,10 @@ div#navbar.container-fluid {
   max-width: 400px;
   min-width: 270px;
   /* margin: 50px auto; */
-  padding: 20px;
+  padding: 10px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  background-color: rgba(208, 205, 205, 0.2);
+  border-radius: 15px;
+  background-color: rgba(208, 205, 205, 0.4);
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.9);
   opacity: 1;
@@ -694,7 +644,7 @@ textarea#message {
 input[type="text"],
 textarea {
   width: 95%;
-  padding: 10px;
+  padding: 2px;
   border: none;
   border-radius: 4px;
   background-color: rgba(251, 248, 248, 0.5);
@@ -772,6 +722,38 @@ textarea {
   }
 
 
+  .navbar-collapse {
+    display: flex;
+    flex-direction: column;
+}
+    /* Ensure the dropdown aligns to the right of the nav-item */
+    .navbar-nav .dropdown-menu {
+      position: absolute;
+      top: 0;               /* Align dropdown with nav-item’s top */
+      left: calc(100% + 124px); /* Move dropdown to the right of nav-item, add 10px spacing */
+        /* Display items in a row */
+      background-color: transparent;
+      padding: 0.5rem;
+      min-width: max-content; /* Allow content to dictate width */
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15); /* Optional shadow */
+  }
+
+.dropdown-menu:hover{
+  display: flex;
+      flex-direction: row;
+}
+
+  /* Apply relative positioning to the nav-item to use as reference */
+  .navbar-nav .nav-item.dropdown {
+      position: relative;
+  }
+
+/* Style individual dropdown items */
+.dropdown-item {
+  text-align: center;
+  padding: 0.5rem 1rem;
+}
+
 
   .thumbShape {
     width: calc(var(--thumb-width) * 0.5);
@@ -779,6 +761,8 @@ textarea {
     height: calc(var(--thumb-height) * 0.5);
     /* Adjust height proportionally for smaller screens */
   }
+
+
 
 
 }
@@ -826,8 +810,6 @@ textarea {
     padding-top: 30px !important;
     padding-bottom: 20px !important;
   }
-
-
 
 
 

@@ -276,9 +276,9 @@ function updateDimensions() {
 console.log("window.innerWidth",window.innerWidth);
 console.log("window.innerHeight",window.innerHeight);
   endLeftX = screenWidthHalved - totalThumbWidth;
-  endTopY = window.innerHeight * 1.3;
+  endTopY = window.innerHeight * 1.325;
   endRightX = screenWidthHalved;
-  endBottomY = window.innerHeight * 1.3 + totalThumbWidth;
+  endBottomY = window.innerHeight * 1.325 + totalThumbWidth;
   
 }
 
@@ -405,7 +405,7 @@ function updateModalDimensions(endTopY) {
   const newLeft = centerX - newWidth / 2;
 
   // Use the passed endTopY for the new top position
-  const newTop = endTopY + 22.5; // 22.5 works for alignment on y axis
+  const newTop = endTopY + 12.5; // 22.5 works for alignment on y axis
 
   // Update modal position
   modalBox.style.position = "absolute";
@@ -426,11 +426,11 @@ function formControl(endTopY) {
   const formHeight = parseFloat(computedStyleForm.getPropertyValue("height"));
 
   // Calculate the center of the screen
-  const formX = window.innerWidth / 2 - formWidth;
+  const formX = window.innerWidth / 2 - formWidth + 8;
   // console.log("formX: ", formX);
   // console.log("form width:", formWidth +"   form height: ", formHeight);
   // Use the passed endTopY for the new top position
-  const formY = endTopY + 250;
+  const formY = endTopY + 190;
 
   // Update modal position
   contactForm.style.position = "absolute";
@@ -835,7 +835,7 @@ const motionDropMenuLink = document.querySelector("#motionDropMenuLink");
 let hoverTimeout;
 
 function showDropMenu(dropMenu){
-  dropMenu.style.display='block';
+  dropMenu.style.display= 'flex';
 }
 
 function hideDropdown(dropMenu) {
@@ -850,7 +850,7 @@ function delayedHide(dropdownMenu) {
     // Set a timeout to hide the menu after a short delay
     hoverTimeout = setTimeout(() => {
         hideDropdown(dropdownMenu);
-    }, 300); // 300ms delay to allow smooth interaction
+    }, 200); // 200ms delay to allow smooth interaction
 }
 
 // Function to keep the dropdown visible as long as the mouse is inside
