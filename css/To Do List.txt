@@ -1,0 +1,8 @@
+use page.load to have elements appear in the correct spot on load
+
+Arrow inactive/invisible when the me element is active
+
+Adjust scrollDist height for rotate screens?
+
+Thumbnails overlay fixed on smaller screens
+
