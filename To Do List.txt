@@ -1,0 +1,2 @@
+overlay of thumbnails neds to resize when thumbnail resizes, brought about by window resizing
+
