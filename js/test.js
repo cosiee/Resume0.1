@@ -133,7 +133,7 @@ function autoScroll() {
 
   // Add a small delay before calculating maxScroll to ensure everything is loaded
 
-  // setTimeout(() => {
+  setTimeout(() => {
   
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 
@@ -148,7 +148,7 @@ function autoScroll() {
         y: maxScroll, // Scroll to the bottom of the page dynamically
         autoKill: false // Disable autoKill to prevent interruptions
       },
-      duration: 1, // Scroll over 6.8 seconds
+      duration: 6.8, // Scroll over 6.8 seconds
       ease: CustomEase.create("custom", "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "),// Easing function for smooth scrolling
       // onStart: () => console.log('Auto-scrolling started'),
       // onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
@@ -156,7 +156,7 @@ function autoScroll() {
     });
 
 
-  // },3400); // Add a delay of 3.4seconds before starting the scroll to let the layout settle
+  },3400); // Add a delay of 3.4seconds before starting the scroll to let the layout settle
 }
 
 window.addEventListener('load', function () {
@@ -166,10 +166,6 @@ window.addEventListener('load', function () {
   updateModalDimensions();
   animateThumbs();
   autoScroll();
-  
-  
-
-  
 });
 
 
@@ -253,7 +249,7 @@ function getThumbWidthWithMargin() {
   const computedStyle = window.getComputedStyle(thumbElement);
   const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
   const thumbMargin = parseFloat(
-    computedStyle.getPropertyValue("margin-right")
+  computedStyle.getPropertyValue("margin-right")
   );
 
   return thumbWidth + thumbMargin * 2;
@@ -535,14 +531,14 @@ function updateMeElement() {
   if (scaleValue >= thresholdScale) {
     if (meElement.style.display === "none") {
       meElement.style.display = "block"; // Enable #me
-
+      document.getElementById("down").style.display = "none";
       // Re-enable event listeners if necessary
       meElement.addEventListener("click", hideScrollBar, updateDimensionsNoMargins); //, scrollToBottom
     }
   } else {
     if (meElement.style.display !== "none") {
       meElement.style.display = "none"; // Disable #me
-
+      document.getElementById("down").style.display = "block";
       // Disable or remove event listeners
       meElement.removeEventListener("click", hideScrollBar, updateDimensionsNoMargins);//, scrollToBottom
     }

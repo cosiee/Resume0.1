@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
   
     <link rel="stylesheet" href="css/styles.css">
-
+    
     <!-- <link rel="stylesheet" href="css/test.css"> -->
   
   
@@ -23,8 +23,11 @@
   
   
     <script src="http://code.jquery.com/jquery-1.11.0.min.js" defer></script>
+  
     <script defer src="js/main.js"></script>
-    <!-- <script src="js/test.js" defer></script> -->
+  
+    <!-- <script src="js/test.js" defer></script>
+    <script src="js/testTwo.js" defer></script> -->
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
   
@@ -45,10 +48,10 @@
   <body>
     <div class="scrollDist" width="100%" height="200%">
   
-      <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+      <nav class="navbar navbar-expand-lg navbar-light bg-transparent" id="topNav">
         <div class="container-fluid" id="navbar">
           <!-- Burger Menu  -->
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          <button class="navbar-toggler left" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -60,25 +63,38 @@
                 <a class="nav-link" aria-current="page" onclick="autoScroll();">Home</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink softwareLink" role="button"
+                <a class="nav-link dropdown-toggle" href="#" id="softwareLink" class="navbarDropdownMenuLink" role="button"
                   data-bs-toggle="dropdown" aria-expanded="false">
                   Software
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="softwareDropMenuLink">
                   <li><a class="dropdown-item" href="#">HTML</a></li>
                   <li><a class="dropdown-item" href="#">CSS</a></li>
                   <li><a class="dropdown-item" href="#">JavaScript</a></li>
+                  <li><a class="dropdown-item" href="#">Java</a></li>
+                  <li><a class="dropdown-item" href="#">Python</a></li>
                 </ul>
               </li>
+  
               <li class="nav-item">
                 <a class="nav-link" id="photographyLink" href="photography.html">Photography</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" id="videographyLink" href="videography.html">Videography</a>
-              </li>
+  
               <li class="nav-item">
                 <a class="nav-link" id="diyLink" href="diy.html">DIY</a>
               </li>
+  
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="motionLink" class="navbarDropdownMenuLink" role="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  Motion
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="motionDropMenuLink">
+                  <li><a class="dropdown-item" href="videography.html">Videography</a></li>
+                  <li><a class="dropdown-item" href="animation.html">Animation</a></li>
+                </ul>
+              </li>
+  
               <li class="nav-item">
                 <a class="nav-link" id="contactLink"
                   onclick="hideScrollBar(); showStatementContact(); showForm();">Contact</a>
@@ -112,17 +128,25 @@
           <image class="img-fluid" id="cloud5" xlink:href="assets/cl4.png" width="1200" height="800" />
           <image class="img-fluid" id="cloud1" xlink:href="assets/cl1.png" width="1200" height="800" />
   
-          <text class="lrgtext" id="see" fill="#fff" onclick="autoScrollNow()">SEE</text>
+          <!-- <a class="meLink" onclick="showStatementContact(); "> -->
+          <!-- <text class="lrgtext" id="see" fill="#fff" onclick="autoScrollNow()">SEE</text> -->
+  
+          <text class="lrgtext" id="see" fill="#fff" dominant-baseline="middle" text-anchor="middle">SEE</text>
+          <!-- </a> -->
   
           <g mask="url(#m)">
             <rect fill="#fff" width="100%" height="100%" />
             <rect id="meshaker" />
             <a class="meLink" onclick="showStatementContact(); ">
-              <text class="lrgtext" id="me" fill="#162a43">ME</text>
+              <!-- <text class="lrgtext" id="me" fill="#162a43">ME</text> -->
+              <text class="lrgtext" id="me" fill="#162a43" dominant-baseline="middle" text-anchor="middle"
+                onclick="autoScrollNow()">ME</text>
+  
             </a>
             <div class="scroll-arrow" id="down" x="455" y="330" onclick="autoScrollNow()"></div>
           </g>
       </div>
+  
       <div class="container-fluid thumbnails" id="thumbnails">
         <a class="thumbs" href="software.html">
           <div class="thumbShape thumbs" id="software">
@@ -137,8 +161,8 @@
           </div>
         </a>
   
-        <a class="thumbs" href="videography.html">
-          <div class="thumbShape thumbs" id="videography">
+        <a class="thumbs" href="motion.html">
+          <div class="thumbShape thumbs" id="motion">
             <div class="overlay"></div>
           </div>
         </a>
@@ -195,7 +219,7 @@
         <button type="submit" id="formButton" onclick="showThumbs(); spaceoutThumbs();">Send</button>
     </div>
   
-  
+    <script src="js/testTwo.js" defer></script>
   </body>
   
   </html>

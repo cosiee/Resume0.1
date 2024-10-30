@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "url('css/assets/r11.jpg')",
     "url('css/assets/r12.jpg')",
   ];
-  const videographyImages = [
+  const motionImages = [
     "url('css/assets/g1.jpg')",
     "url('css/assets/g2.jpg')",
     "url('css/assets/g3.jpg')",
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   setRandomBackground("software", softwareImages);
   setRandomBackground("photography", photographyImages);
-  setRandomBackground("videography", videographyImages);
+  setRandomBackground("motion", motionImages);
   setRandomBackground("diy", diyImages);
 });
 
@@ -148,7 +148,7 @@ function autoScroll() {
         y: maxScroll, // Scroll to the bottom of the page dynamically
         autoKill: false // Disable autoKill to prevent interruptions
       },
-      duration: 6.8, // Scroll over 5 seconds
+      duration: 6.8, // Scroll over 6.8 seconds
       ease: CustomEase.create("custom", "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "),// Easing function for smooth scrolling
       // onStart: () => console.log('Auto-scrolling started'),
       // onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
@@ -166,10 +166,6 @@ window.addEventListener('load', function () {
   updateModalDimensions();
   animateThumbs();
   autoScroll();
-  // resizeScrollDist();
-  
-
-  
 });
 
 
@@ -253,7 +249,7 @@ function getThumbWidthWithMargin() {
   const computedStyle = window.getComputedStyle(thumbElement);
   const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
   const thumbMargin = parseFloat(
-    computedStyle.getPropertyValue("margin-right")
+  computedStyle.getPropertyValue("margin-right")
   );
 
   return thumbWidth + thumbMargin * 2;
@@ -273,11 +269,12 @@ function updateDimensions() {
   screenWidthHalved = window.innerWidth / 2;
   screenHeightHalved = window.innerHeight / 2;
   const totalThumbWidth = getThumbWidthWithMargin();
-
+console.log("window.innerWidth",window.innerWidth);
+console.log("window.innerHeight",window.innerHeight);
   endLeftX = screenWidthHalved - totalThumbWidth;
-  endTopY = window.innerHeight * 1.25;
+  endTopY = window.innerHeight * 1.325;
   endRightX = screenWidthHalved;
-  endBottomY = window.innerHeight * 1.25 + totalThumbWidth;
+  endBottomY = window.innerHeight * 1.325 + totalThumbWidth;
   
 }
 
@@ -300,7 +297,7 @@ function spaceoutThumbs() {
     duration: 1,
     ease: "power2.out",
   });
-  gsap.to("#videography", {
+  gsap.to("#motion", {
     x: endLeftX,
     y: endBottomY,
     duration: 1,
@@ -335,9 +332,9 @@ function updateDimensionsNoMargins() {
     const marginWidth = getThumbMargin();
 
     endLeftX = screenWidthHalved - (widthThumb + marginWidth);
-    endTopY = window.innerHeight * 1.25 + marginWidth;
+    endTopY = window.innerHeight * 1.3 + marginWidth;
     endRightX = screenWidthHalved - marginWidth;
-    endBottomY = window.innerHeight * 1.25 + (widthThumb + marginWidth);
+    endBottomY = window.innerHeight * 1.3 + (widthThumb + marginWidth);
 
     // console.log("Thumb Y EndTopY: ", endTopY);
 
@@ -371,7 +368,7 @@ function collectThumbs() {
     duration: 1,
     ease: "power2.out",
   });
-  gsap.to("#videography", {
+  gsap.to("#motion", {
     scale: 1,
     x: endLeftX,
     y: endBottomY,
@@ -379,6 +376,7 @@ function collectThumbs() {
     ease: "power2.out",
   });
 }
+
 
 function updateModalDimensions(endTopY) {
   const modalBox = document.querySelector(".modalbox .box");
@@ -403,7 +401,7 @@ function updateModalDimensions(endTopY) {
   const newLeft = centerX - newWidth / 2;
 
   // Use the passed endTopY for the new top position
-  const newTop = endTopY + 21.5; // 22.5 works for alignment on y axis
+  const newTop = endTopY + 12.5; // 22.5 works for alignment on y axis
 
   // Update modal position
   modalBox.style.position = "absolute";
@@ -424,11 +422,11 @@ function formControl(endTopY) {
   const formHeight = parseFloat(computedStyleForm.getPropertyValue("height"));
 
   // Calculate the center of the screen
-  const formX = window.innerWidth / 2 - formWidth;
+  const formX = window.innerWidth / 2 - formWidth + 8;
   // console.log("formX: ", formX);
   // console.log("form width:", formWidth +"   form height: ", formHeight);
   // Use the passed endTopY for the new top position
-  const formY = endTopY + 250;
+  const formY = endTopY + 190;
 
   // Update modal position
   contactForm.style.position = "absolute";
@@ -452,7 +450,7 @@ window.addEventListener("resize", debounce(() => {
   updateDimensions();
   updateModalDimensions();
   updateDimensionsNoMargins();
-  // resizeScrollDist();
+  
 }, 200));
 
 
@@ -463,14 +461,14 @@ window.addEventListener("resize", debounce(() => {
 // updateDimensions();
 // updateModalDimensions();
 
-// initial thumb centreing animation, called in a DOMContentLoaded
+// initial thumb centering animation, called in a DOMContentLoaded
 function animateThumbs() {
-  console.log("animateThumbs-");
+  // console.log("animateThumbs-");
   gsap
     .timeline({
       scrollTrigger: {
         trigger: ".scrollDist",
-        // start: "top top",
+         start: "top top",
         end: "bottom bottom",
         scrub: 0.5,
         invalidateOnRefresh: true,
@@ -495,7 +493,7 @@ function animateThumbs() {
       0
     )
     .fromTo(
-      "#videography",
+      "#motion",
       { scale: 3, x: endLeftX - 1750, y: endBottomY + 750 },
       { scale: 1, x: endLeftX, y: endBottomY },
       0
@@ -503,7 +501,7 @@ function animateThumbs() {
 }
 // #############################################################################################
 
-const thresholdScale = 1.5; //set to the lower scale value, to allow for the crossing-fading effect
+const thresholdScale = 1.5; //set scale value, to allow for the crossing-fading effect SEE/ME
 
 function getScaleValue(element) {
   if (!element) {
@@ -533,14 +531,14 @@ function updateMeElement() {
   if (scaleValue >= thresholdScale) {
     if (meElement.style.display === "none") {
       meElement.style.display = "block"; // Enable #me
-
+      document.getElementById("down").style.display = "none";
       // Re-enable event listeners if necessary
       meElement.addEventListener("click", hideScrollBar, updateDimensionsNoMargins); //, scrollToBottom
     }
   } else {
     if (meElement.style.display !== "none") {
       meElement.style.display = "none"; // Disable #me
-
+      document.getElementById("down").style.display = "block";
       // Disable or remove event listeners
       meElement.removeEventListener("click", hideScrollBar, updateDimensionsNoMargins);//, scrollToBottom
     }
@@ -615,7 +613,7 @@ function centreThumbs() {
     duration: 1,
     ease: "power2.out",
   });
-  gsap.to("#videography", {
+  gsap.to("#motion", {
     scale: 1,
     x: endLeftX,
     y: endBottomY,
@@ -638,138 +636,285 @@ function hideForm() {
 
 }
 
-// ################ Begining of MeText Animations ############################################
+// align SEE/ME text & ME animate wiggles
+// Wait for the DOM to fully load
+window.onload = function() {
+  // Ensure 'meElement' and 'meShaker' are declared and exist in the DOM
+  const meElement = document.getElementById("me");
+  const meShaker = document.getElementById("meshaker"); // Ensure this element exists in the HTML
 
-const meShaker = document.getElementById("meshaker");
-let hoverAnimationInterval;
-let isHoverWiggling = false;
-let angle = 0; // Declare angle variable outside of hoverWiggle function
-let animationInterval;
-let isIdleWiggling = false; // Flag to track idle wiggle animation
-
-let initialTransform; // Declare initialTransform without assigning a value initial
-
-
-
-//MeElement-Function to stop the hover wiggle animation
-function stopHoverWiggle() {
-  // console.log("Stopping hover wiggle animation.");
-  clearInterval(hoverAnimationInterval);
-  isHoverWiggling = false;
-  // console.log("Hover wiggle animation stopped.");
-  meElement.style.transform = `translate(520px, 22vh) rotate(0deg)`;
-}
-
-//MeElement-Function to start the hover wiggle animation
-function startHoverWiggle() {
-  // console.log("Starting hover wiggle animation.");
-  if (!isHoverWiggling) {
-    isHoverWiggling = true;
-    hoverAnimationInterval = setInterval(hoverWiggle, 30);
-    // console.log("Hover wiggle animation started.");
+  if (!meElement || !meShaker) {
+    console.error("Required DOM elements not found. Check element IDs for 'me' and 'meshaker'.");
+    return; // Stop further execution if elements are missing
   }
-}
 
-//MeElement-Function to handle the hover event
-function handleHover(event) {
-  if (event.type === "mouseenter") {
-    startHoverWiggle();
-  } else if (event.type === "mouseleave") {
-    stopHoverWiggle();
+  let hoverAnimationInterval;
+  let isHoverWiggling = false;
+  let angle = 0; // Variable to track the wiggle angle
+  let animationInterval;
+  let isIdleWiggling = false; // Flag to track idle wiggle animation
+  let initialTransform = ""; // Store initial centering transform
+
+  // Function to get the width of the text element
+  function getTextWidth(element) {
+    return element.getBBox().width; // Get bounding box width of text element
   }
-}
 
-//MeElement-Function to handle the hover wiggle animation
-function hoverWiggle() {
-  // Update the rotation angle
-  angle += 1;
-  if (angle === 1 || angle === -1) {
-    angle *= -1; // Reverse direction when angle reaches 1 or -1
+  // Function to center the text elements in the SVG
+  function updateTextElementPositions() {
+    // Get the SVG dimensions
+    const svg = document.querySelector("svg");
+    const svgWidth = svg.viewBox.baseVal.width || svg.clientWidth;
+    const svgHeight = svg.viewBox.baseVal.height || svg.clientHeight;
+
+    // Calculate the center of the SVG
+    const svgCenterX = svgWidth / 2;
+    const svgCenterY = svgHeight / 2;
+
+    // Position "SEE" and "ME" at the center of the SVG
+    const seeX = svgCenterX;
+    const seeY = svgCenterY - 210; // Adjust Y position for SEE
+    const meX = svgCenterX;
+    const meY = svgCenterY - 210; // Adjust Y position for ME
+
+    // Apply the translation (without affecting rotation)
+    gsap.to("#see", {
+      x: seeX,
+      y: seeY,
+      duration: 1,
+      ease: "power2.out",
+    });
+
+    gsap.to("#me", {
+      x: meX,
+      y: meY,
+      duration: 1,
+      ease: "power2.out",
+    });
+
+    // Store the initial translation for the ME element
+    initialTransform = `translate(${meX}px, ${meY}px)`;
+    applyTransform(); // Apply the current transformation
   }
-  meElement.style.transform = `translate(520px, 22vh) rotate(${angle}deg)`; // Apply the transformation
-}
 
-// Event listener for mouse enter and mouse leave to handle hover
-meShaker.addEventListener("mouseenter", handleHover);
-meShaker.addEventListener("mouseleave", handleHover);
-
-// Function to start the idle wiggle animation
-function startIdleWiggle() {
-  if (!isIdleWiggling) {
-    isIdleWiggling = true;
-    idleWiggle();
+  // Function to apply combined transformation (centering + rotation)
+  function applyTransform() {
+    meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; // Combine rotation and translation
   }
-}
 
-// Function to stop the idle wiggle animation
-function stopIdleWiggle() {
-  if (isIdleWiggling) {
+  // Function to start the hover wiggle animation
+  function startHoverWiggle() {
+    if (!isHoverWiggling) {
+      isHoverWiggling = true;
+      hoverAnimationInterval = setInterval(hoverWiggle, 9); // Wiggle every #ms
+    }
+  }
+
+  // Function to stop the hover wiggle animation
+  function stopHoverWiggle() {
+    clearInterval(hoverAnimationInterval);
+    isHoverWiggling = false;
+    angle = 0; // Reset angle when hover stops
+    applyTransform(); // Reset to initial state
+  }
+
+  // Function to handle the hover wiggle animation
+  function hoverWiggle() {
+    // Update the rotation angle
+    angle += 1;
+    if (angle === 3 || angle === -3) {
+      angle *= -1; // Reverse direction when angle reaches 5 or -5
+    }
+    applyTransform(); // Apply the combined transform (rotation + position)
+  }
+
+  // Function to start the idle wiggle animation
+  function startIdleWiggle() {
+    if (!isIdleWiggling) {
+      isIdleWiggling = true;
+      idleWiggle(); // Start idle wiggle animation
+    }
+  }
+
+  // Function to stop the idle wiggle animation
+  function stopIdleWiggle() {
     clearInterval(animationInterval);
     isIdleWiggling = false;
-
-    // Reset meElement rotation to 0 degrees
-    meElement.style.transform = `translate(520px, 22vh) rotate(0deg)`;
+    angle = 0; // Reset angle
+    applyTransform(); // Reset to the centered position
   }
-}
 
-// Function to handle the idle wiggle animation
-function idleWiggle() {
-  wiggle(); // Start the wiggle animation
-  setTimeout(() => {
-    stopIdleWiggle(); // Stop idle wiggle animation after 0.7 second
-    setTimeout(
-      startIdleWiggle,
-      Math.floor(Math.random() * (16000 - 7000 + 1)) + 7000
-    ); // Restart idle wiggle animation after random interval
-  }, 700);
-}
+  // Function to handle the idle wiggle animation
+  function idleWiggle() {
+    wiggle(); // Start the wiggle animation
+    setTimeout(() => {
+      stopIdleWiggle(); // Stop idle wiggle after 0.7 seconds
+      setTimeout(
+        startIdleWiggle,
+        Math.floor(Math.random() * (16000 - 7000 + 1)) + 7000
+      ); // Restart idle wiggle after a random interval
+    }, 700);
+  }
 
-// Function to handle the wiggle animation
-function wiggle() {
-  let angle = 0;
-  let direction = 1;
+  // Function to handle the wiggle animation
+  function wiggle() {
+    let wiggleAngle = 0;
+    let direction = 1;
 
-  // Perform one iteration of the wiggle animation
-  function performWiggle() {
-    angle += direction;
-    if (angle === 1 || angle === -1) {
-      direction *= -1;
+    // Perform one iteration of the wiggle animation
+    function performWiggle() {
+      wiggleAngle += direction;
+      if (wiggleAngle === 1 || wiggleAngle === -1) {
+        direction *= -1; // Reverse direction at the extremes
+      }
+      meElement.style.transform = `${initialTransform} rotate(${wiggleAngle}deg)`; // Apply the wiggle transformation
     }
-    meElement.style.transform = `translate(520px, 22vh)rotate(${angle}deg)`; // Apply the transformation
+
+    // Start the animation interval for the wiggle effect
+    animationInterval = setInterval(performWiggle, 30);
   }
 
-  // Start the animation interval
-  animationInterval = setInterval(performWiggle, 30);
-}
+  // Event listeners for hover wiggle on "ME"
+  meShaker.addEventListener("mouseenter", function(){
+      // Combine scaling with the existing transform (centering + wiggle)
+      meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; 
+      startHoverWiggle();  // Start hover wiggle
+  });
 
-// Start idle wiggle animation initially
-startIdleWiggle();
+  meShaker.addEventListener("mouseleave", function(){
+      // Reset the scaling and keep the initial transform (centering + reset rotation)
+      meElement.style.transform = `${initialTransform} rotate(0deg)`; 
+      stopHoverWiggle();  // Stop hover wiggle
+  });
+  meElement.addEventListener("mouseenter", function(){
+      meElement.style.transform = `${initialTransform} rotate(0deg) scale(1.115)`; 
+  });
+  meElement.addEventListener("mouseleave", function(){
+      meElement.style.transform = `${initialTransform} rotate(0deg) scale(1)`; 
+  });
+  // Function to dynamically update text positions on resize
+  function onResize() {
+    updateTextElementPositions(); // Update position on window resize
+    updateDimensions();
+    updateModalDimensions();
+    updateDimensionsNoMargins();
+  }
 
-meElement.addEventListener("mouseenter", function () {
-  meElement.style.transform = `translate(520px, 22vh) scale(1.015)`;
-});
+  // Initialize text positioning and idle wiggle on window load
+  updateTextElementPositions(); // Center the text elements
+  startIdleWiggle(); // Start the idle wiggle animation
 
-meElement.addEventListener("mouseleave", function () {
-  meElement.style.transform = `translate(520px, 22vh) scale(1)`;
-});
+  // Update text positions when window is resized
+  window.onresize = onResize;
+  
+};
+
 
 // Beginning of Handling hover on Thumbs Triggering Navbar elements ###############################
 
 const thumbSoft = document.querySelector("#software");
-const navbarSoft = document.querySelector(".dropdown-toggle");
+const navbarSoft = document.querySelector("#softwareLink");
 
 const thumbPhoto = document.querySelector("#photography");
 const navbarPhoto = document.querySelector("#photographyLink");
 
-const thumbVid = document.querySelector("#videography");
-const navbarVid = document.querySelector("#videographyLink");
+const thumbMot = document.querySelector("#motion");
+const navbarMot = document.querySelector("#motionLink");
 
 const thumbDiy = document.querySelector("#diy");
 const navbarDiy = document.querySelector("#diyLink");
 
+const softwareDropMenuLink = document.querySelector("#softwareDropMenuLink");
+const motionDropMenuLink = document.querySelector("#motionDropMenuLink");
+
+// Track whether the mouse is still inside the navbar or dropdown
+let hoverTimeout;
+
+function showDropMenu(dropMenu){
+  dropMenu.style.display= 'flex';
+}
+
+function hideDropdown(dropMenu) {
+  dropMenu.style.display = 'none';
+}
+
+
+// Function to handle delayed hiding of the dropdown
+function delayedHide(dropdownMenu) {
+    // Clear any existing timeout
+    clearTimeout(hoverTimeout);
+    // Set a timeout to hide the menu after a short delay
+    hoverTimeout = setTimeout(() => {
+        hideDropdown(dropdownMenu);
+    }, 200); // 200ms delay to allow smooth interaction
+}
+
+// Function to keep the dropdown visible as long as the mouse is inside
+function cancelHide() {
+    clearTimeout(hoverTimeout); // Cancel any pending hide actions
+}
 
 
 
+
+thumbSoft.addEventListener("mouseenter", function () {
+  showDropMenu(softwareDropMenuLink);
+  navbarSoft.classList.add("active");
+  thumbSoft.classList.add("active");
+});
+navbarSoft.addEventListener("mouseenter", function () {
+  showDropMenu(softwareDropMenuLink);
+  navbarSoft.classList.add("active");
+  thumbSoft.classList.add("active");
+});
+
+thumbSoft.addEventListener("mouseleave", function () {
+  delayedHide(softwareDropMenuLink);
+  navbarSoft.classList.remove("active");
+  thumbSoft.classList.remove("active");
+});
+navbarSoft.addEventListener("mouseleave", function () {
+  delayedHide(softwareDropMenuLink);
+  navbarSoft.classList.remove("active");
+  thumbSoft.classList.remove("active");
+});
+
+softwareDropMenuLink.addEventListener("mouseenter", function () {
+  cancelHide();
+});
+
+softwareDropMenuLink.addEventListener("mouseleave", function () {
+  delayedHide(softwareDropMenuLink);
+});
+
+
+thumbMot.addEventListener("mouseenter", function () {
+  showDropMenu(motionDropMenuLink);
+  navbarMot.classList.add("active");
+  thumbMot.classList.add("active");  
+});
+navbarMot.addEventListener("mouseenter", function () {
+  showDropMenu(motionDropMenuLink);
+  navbarMot.classList.add("active");
+  thumbMot.classList.add("active");  
+});
+
+thumbMot.addEventListener("mouseleave", function () {
+  delayedHide(motionDropMenuLink);
+  navbarMot.classList.remove("active");
+  thumbMot.classList.remove("active");
+});
+navbarMot.addEventListener("mouseleave", function () {
+  delayedHide(motionDropMenuLink);
+  navbarMot.classList.remove("active");
+  thumbMot.classList.remove("active");
+});
+motionDropMenuLink.addEventListener("mouseenter", function () {
+  cancelHide();
+});
+motionDropMenuLink.addEventListener("mouseleave", function () {
+  delayedHide(motionDropMenuLink);
+});
 
 thumbPhoto.addEventListener("mouseenter", function () {
   navbarPhoto.classList.add("active");
@@ -781,28 +926,7 @@ thumbPhoto.addEventListener("mouseleave", function () {
   thumbPhoto.classList.remove("active");
 });
 
-thumbSoft.addEventListener("mouseenter", function () {
-  navbarSoft.classList.add("active");
-  thumbSoft.classList.add("active");
-});
-
-thumbSoft.addEventListener("mouseleave", function () {
-  navbarSoft.classList.remove("active");
-  thumbSoft.classList.remove("active");
-});
-
-thumbVid.addEventListener("mouseenter", function () {
-  navbarVid.classList.add("active");
-  thumbVid.classList.add("active");
-});
-
-thumbVid.addEventListener("mouseleave", function () {
-  navbarVid.classList.remove("active");
-  thumbVid.classList.remove("active");
-});
-
 thumbDiy.addEventListener("mouseenter", function () {
-
   navbarDiy.classList.add("active");
   thumbDiy.classList.add("active");
 });
@@ -812,57 +936,3 @@ thumbDiy.addEventListener("mouseleave", function () {
   thumbDiy.classList.remove("active");
 });
 
-// navbarPhoto.addEventListener("mouseenter", function () {
-//   navbarPhoto.style.color = (22,42,67);
-//   navbarPhoto.style.scale = 1.15;
-  
-  
-// });
-
-// navbarPhoto.addEventListener("mouseleave", function () {
-//   navbarPhoto.style.color = (110,111,121);
-//   navbarPhoto.style.scale = 1;
- 
-// });
-
-
-
-// navbarSoft.addEventListener("mouseenter", function () {
-//   navbarSoft.style.scale = 1.1;
-//   navbarSoft.style.color = "#162a43";
-  
-// });
-
-// navbarSoft.addEventListener("mouseleave", function () {
-//   navbarSoft.style.scale = 1;
-//   navbarSoft.style.color = "#6e6f79";
-// });
-
-
-
-// navbarVid.addEventListener("mouseenter", function () {
-//   navbarVid.style.scale = 1.1;
-//   navbarVid.style.color = "#162a43";
- 
-// });
-
-// navbarVid.addEventListener("mouseleave", function () {
-//   navbarVid.style.scale = 1;
-//   navbarVid.style.color = "#6e6f79"; 
-// });
-
-
-
-// navbarDiy.addEventListener("mouseenter", function () {
-//   navbarDiy.style.scale = 1.1;
-//   navbarDiy.style.color = "#162a43";
-  
-// });
-
-// navbarDiy.addEventListener("mouseleave", function () {
-//   navbarDiy.style.scale = 1;
-//   navbarDiy.style.color = "#6e6f79";
-// });
-
-// ==========================================================
-// #########  END of  index.html animate thumbnails & navbar items & meshaker animating 'ME'  ###
