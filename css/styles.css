@@ -707,7 +707,7 @@ textarea {
  No media query for `xs` since this is the default in Bootstrap */
 
 /* Small devices (landscape phones, 576px and up) */
-@media (max-width: 575px) {
+@media (max-width: 575.98px) {
   .scroll-arrow {
     top: 15vh;
     width: 12px;
@@ -716,11 +716,79 @@ textarea {
     border-right: 3px solid #fff;
   }
 
+
   .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
     padding: 0px 0px 0px 10px !important;
     margin: 0px !important;
   }
 
+  /* Make thumbnail overlay permanently visible on smaller screens */
+#software .overlay,
+#photography .overlay,
+#motion .overlay,
+#diy .overlay {
+  opacity: 0.5; 
+}
+
+  .thumbShape {
+    width: calc(var(--thumb-width) * 0.5);
+    height: calc(var(--thumb-height) * 0.5);
+  }
+}
+/* 
+@media (min-width: 576px) {
+  .scroll-arrow {
+    top: 16.5%;
+    width: 12px;
+    height: 12px;
+    border-bottom: 3px solid #fff;
+    border-right: 3px solid #fff;
+  }
+
+
+
+  
+
+  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+    padding: 6px 0px 0px 10px !important;
+    margin: 0px !important;
+  }
+
+  .thumbShape {
+    width: calc(var(--thumb-width) * 0.6);
+    /* Adjust width proportionally for smaller screens */
+    /* height: calc(var(--thumb-height) * 0.6); */
+    /* Adjust height proportionally for smaller screens */
+  /* } */
+
+ 
+
+/* } */ 
+
+
+/*  Medium devices (tablets, 768px and up) 
+**************************************************************/
+@media (max-width: 767.98px) {
+  .scroll-arrow {
+    top: 19%;
+    width: 22px;
+    height: 22px;
+    border-bottom: 4px solid #fff;
+    border-right: 4px solid #fff;
+  }
+
+  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+    padding-top: 30px !important;
+    padding-bottom: 20px !important;
+  }
+
+/* Make thumbnail overlay permanently visible on smaller screens */
+#software .overlay,
+#photography .overlay,
+#motion .overlay,
+#diy .overlay {
+  opacity: 0.5; 
+}
 
   .navbar-collapse {
     display: flex;
@@ -744,7 +812,7 @@ textarea {
 
 .dropdown-menu:hover{
   display: flex;
-      flex-direction: row;
+  flex-direction: row;
      
 }
 
@@ -761,77 +829,17 @@ textarea {
   padding: 0.5rem 2rem;
 }
 
-
-  .thumbShape {
-    width: calc(var(--thumb-width) * 0.5);
-    /* Adjust width proportionally for smaller screens */
-    height: calc(var(--thumb-height) * 0.5);
-    /* Adjust height proportionally for smaller screens */
-  }
-
-
-
-
+.thumbShape {
+  width: calc(var(--thumb-width) * 0.7);
+  height: calc(var(--thumb-height) * 0.7);
 }
 
-@media (min-width: 576px) {
-  .scroll-arrow {
-    top: 16.5%;
-    width: 12px;
-    height: 12px;
-    border-bottom: 3px solid #fff;
-    border-right: 3px solid #fff;
-  }
 
-
-
-
-  
-
-  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-    padding: 6px 0px 0px 10px !important;
-    margin: 0px !important;
-  }
-
-  .thumbShape {
-    width: calc(var(--thumb-width) * 0.7);
-    /* Adjust width proportionally for smaller screens */
-    height: calc(var(--thumb-height) * 0.7);
-    /* Adjust height proportionally for smaller screens */
-  }
-
-}
-
-/*  Medium devices (tablets, 768px and up) 
-**************************************************************/
-@media (min-width: 768px) {
-  .scroll-arrow {
-    top: 19%;
-    width: 22px;
-    height: 22px;
-    border-bottom: 4px solid #fff;
-    border-right: 4px solid #fff;
-  }
-
-  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-    padding-top: 30px !important;
-    padding-bottom: 20px !important;
-  }
-
-
-
-
-  .thumbShape {
-    width: calc(var(--thumb-width) * 0.8);
-    /* Adjust width proportionally for smaller screens */
-    height: calc(var(--thumb-height) * 0.8);
-    /* Adjust height proportionally for smaller screens */
-  }
 }
 
 /* Large devices (desktops, 992px and up)
 **************************************************************/
-@media (min-width: 992px) {
+@media (max-width: 991.98px) {
   .scroll-arrow {
     top: 24%;
   }
@@ -842,29 +850,41 @@ textarea {
     margin: 0px !important;
   }
 
+  /* .thumbShape {
+    width: calc(var(--thumb-width) * 0.9);
+    height: calc(var(--thumb-height) * 0.9);
+  } */
 
-  .thumbShape {
-    width: calc(var(--thumb-width) * 1);
-    /* Adjust width proportionally for smaller screens */
-    height: calc(var(--thumb-height) * 1);
-    /* Adjust height proportionally for smaller screens */
-  }
 }
 
 /* X-Large devices (large desktops, 1200px and up)
 **************************************************************/
-@media (min-width: 1200px) {
+@media (max-width: 1199.98px) {
   .scroll-arrow {
     top: 26%;
   }
 
+  /* .thumbShape {
+    width: calc(var(--thumb-width) );
+    height: calc(var(--thumb-height) );
+  } */
 
 }
+
+
 
 /* XX-Large devices (larger desktops, 1400px and up)
 **************************************************************/
-@media (min-width: 1400px) {
+@media (max-width: 2400px) {
   .scroll-arrow {
     top: 27%;
   }
+  
+  /* .thumbShape {
+    width: calc(var(--thumb-width) );
+    height: calc(var(--thumb-height) );
+  } */
+
 }
+
+
