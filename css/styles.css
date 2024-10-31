@@ -709,7 +709,7 @@ textarea {
 /* Small devices (landscape phones, 576px and up) */
 @media (max-width: 575.98px) {
   .scroll-arrow {
-    top: 15vh;
+    /* top: 10vh; */
     width: 12px;
     height: 12px;
     border-bottom: 3px solid #fff;
@@ -731,8 +731,8 @@ textarea {
 }
 
   .thumbShape {
-    width: calc(var(--thumb-width) * 0.5);
-    height: calc(var(--thumb-height) * 0.5);
+    width: calc(var(--thumb-width) * 0.56);
+    height: calc(var(--thumb-height) * 0.56);
   }
 }
 /* 
@@ -770,7 +770,7 @@ textarea {
 **************************************************************/
 @media (max-width: 767.98px) {
   .scroll-arrow {
-    top: 19%;
+    top: 10%;
     width: 22px;
     height: 22px;
     border-bottom: 4px solid #fff;
@@ -778,7 +778,7 @@ textarea {
   }
 
   .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-    padding-top: 30px !important;
+    padding-top: 0px !important;
     padding-bottom: 20px !important;
   }
 
@@ -798,11 +798,9 @@ textarea {
     .navbar-nav .dropdown-menu {
       position: absolute;
       top: 0;               /* Align dropdown with nav-item’s top */
-      left: calc(100% + 124px); /* Move dropdown to the right of nav-item, add 10px spacing */
-        /* Display items in a row */
+      left: calc(100% + 124px); 
       background-color:#fff;
-      padding: 0.5rem;
-      
+      padding: 0.2rem;
       min-width: max-content; /* Allow content to dictate width */
       min-width: 265px; /* Minimum width to avoid too narrow dropdown */
       max-width: 325px;
@@ -829,10 +827,10 @@ textarea {
   padding: 0.5rem 2rem;
 }
 
-.thumbShape {
-  width: calc(var(--thumb-width) * 0.7);
-  height: calc(var(--thumb-height) * 0.7);
-}
+/* .thumbShape {
+  width: calc(var(--thumb-width) * 0.5);
+  height: calc(var(--thumb-height) * 0.5);
+} */
 
 
 }
@@ -879,7 +877,7 @@ textarea {
   .scroll-arrow {
     top: 27%;
   }
-  
+
   /* .thumbShape {
     width: calc(var(--thumb-width) );
     height: calc(var(--thumb-height) );
