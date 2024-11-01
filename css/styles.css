@@ -734,36 +734,27 @@ textarea {
     width: calc(var(--thumb-width) * 0.56);
     height: calc(var(--thumb-height) * 0.56);
   }
+
+  .modalbox .box {
+    width: 90%; /* Full width for smaller screens */
+    height: auto; /* Allow height to adjust based on content */
+    padding: 4% 6%; /* Smaller padding */
+  }
+
+  .modalbox .title {
+    font-size: 17px;
+  }
+
+  .modalbox .content {
+    font-size: 15px;
+    line-height: 15px;
+    /* padding: 10px 20px; */
+  }
+
+  .sig {
+    height: 6rem; /* Reduce signature image size */
+  }
 }
-/* 
-@media (min-width: 576px) {
-  .scroll-arrow {
-    top: 16.5%;
-    width: 12px;
-    height: 12px;
-    border-bottom: 3px solid #fff;
-    border-right: 3px solid #fff;
-  }
-
-
-
-  
-
-  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-    padding: 6px 0px 0px 10px !important;
-    margin: 0px !important;
-  }
-
-  .thumbShape {
-    width: calc(var(--thumb-width) * 0.6);
-    /* Adjust width proportionally for smaller screens */
-    /* height: calc(var(--thumb-height) * 0.6); */
-    /* Adjust height proportionally for smaller screens */
-  /* } */
-
- 
-
-/* } */ 
 
 
 /*  Medium devices (tablets, 768px and up) 
