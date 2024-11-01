@@ -133,7 +133,7 @@ function autoScroll() {
 
   // Add a small delay before calculating maxScroll to ensure everything is loaded
 
-  setTimeout(() => {
+  // setTimeout(() => {
   
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 
@@ -148,7 +148,7 @@ function autoScroll() {
         y: maxScroll, // Scroll to the bottom of the page dynamically
         autoKill: false // Disable autoKill to prevent interruptions
       },
-      duration: 6.8, // Scroll over 6.8 seconds
+      duration: 1, // Scroll over 6.8 seconds
       ease: CustomEase.create("custom", "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "),// Easing function for smooth scrolling
       // onStart: () => console.log('Auto-scrolling started'),
       // onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
@@ -156,7 +156,7 @@ function autoScroll() {
     });
 
 
-  },3400); // Add a delay of 3.4seconds before starting the scroll to let the layout settle
+  // },3400); // Add a delay of 3.4seconds before starting the scroll to let the layout settle
 }
 
 window.addEventListener('load', function () {
@@ -326,6 +326,7 @@ function updateDimensionsNoMargins() {
 
   setTimeout(() => {
     thumbWidth = Math.min(300, window.innerWidth / 6);
+    console.log("thumbWidth: ", thumbWidth);
     screenWidthHalved = window.innerWidth / 2;
     screenHeightHalved = window.innerHeight / 2;
     const widthThumb = getThumbWidthWithoutMargin();

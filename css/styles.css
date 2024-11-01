@@ -747,12 +747,12 @@ textarea {
 
   .modalbox .content {
     font-size: 15px;
-    line-height: 15px;
+    line-height: 16px;
     /* padding: 10px 20px; */
   }
 
   .sig {
-    height: 6rem; /* Reduce signature image size */
+    height: 5.5rem; /* Reduce signature image size */
   }
 }
 
@@ -818,10 +818,7 @@ textarea {
   padding: 0.5rem 2rem;
 }
 
-/* .thumbShape {
-  width: calc(var(--thumb-width) * 0.5);
-  height: calc(var(--thumb-height) * 0.5);
-} */
+
 
 
 }
@@ -839,10 +836,6 @@ textarea {
     margin: 0px !important;
   }
 
-  /* .thumbShape {
-    width: calc(var(--thumb-width) * 0.9);
-    height: calc(var(--thumb-height) * 0.9);
-  } */
 
 }
 
@@ -853,10 +846,7 @@ textarea {
     top: 26%;
   }
 
-  /* .thumbShape {
-    width: calc(var(--thumb-width) );
-    height: calc(var(--thumb-height) );
-  } */
+
 
 }
 
@@ -869,10 +859,6 @@ textarea {
     top: 27%;
   }
 
-  /* .thumbShape {
-    width: calc(var(--thumb-width) );
-    height: calc(var(--thumb-height) );
-  } */
 
 }
 
