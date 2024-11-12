@@ -16,17 +16,17 @@
 
 .scrollDist {
   width: 100%;
-  /* You can change this to a fixed width like '1200px' if needed */
+ 
   height: 200%;
-  /* Set this to a fixed value to prevent height from changing */
+
   max-width: 100%;
-  /* Ensure it doesn't exceed the desired max width */
+ 
   max-height: 200%;
-  /* Ensure it doesn't exceed the desired max height */
+
   overflow: hidden;
-  /* Prevent any content from expanding the size */
+
   position: adsolute;
-  /* Keep the positioning intact */
+
 }
 
 
@@ -749,6 +749,66 @@ textarea {
   .sig {
     height: 5.5rem; /* Reduce signature image size */
   }
+}
+
+/* rotated devices */
+@media (orientation: landscape) {
+  .scrollDist {  
+    min-height: 680px;
+  }
+
+  .thumbShape {
+    width: calc(var(--thumb-width) * 0.4);
+    height: calc(var(--thumb-height) * 0.4);
+  }
+
+  .scroll-arrow {
+    /* top: 10vh; */
+    width: 12px;
+    height: 12px;
+    border-bottom: 3px solid #fff;
+    border-right: 3px solid #fff;
+  }
+
+
+  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+    padding: 0px 0px 0px 10px !important;
+    margin: 0px !important;
+  }
+
+
+  .formDiv#contactForm {
+    top: 50%;
+    right: 50%;
+    max-width: 400px;
+    min-width: 270px;
+    padding: 2px;
+    opacity: 1;
+  }
+
+ 
+
+  .modalbox .box {
+    width: 50%; /* Full width for smaller screens */
+    height: auto; /* Allow height to adjust based on content */
+    padding: 1% 2%; /* Smaller padding */
+  }
+
+  .modalbox .title {
+    font-size: 15px;
+  }
+
+  .modalbox .content {
+    font-size: 13px;
+    line-height: 14px;
+    /* padding: 10px 20px; */
+  }
+
+  .sig {
+    height: 5.5rem; /* Reduce signature image size */
+  }
+
+
 }
 
 

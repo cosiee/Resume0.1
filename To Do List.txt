@@ -14,7 +14,7 @@ Site Navigation is correct, note navigation behaviour links to around form
 
 Ease the animations on 'ME' ie. "transition: all 0.4s ease-in-out;"
 
-overlay to be present on burger menu appears
+overlay to be present on burger menu appears (done-AC)
 
 Site needs to work online somewhere: github ....or?
 
