@@ -1,17 +1,23 @@
-use page.load to have elements appear in the correct spot on load
 
 Arrow inactive/invisible when the me element is active (done-AC)
-
-Adjust scrollDist height for rotate screens???? not sure its more for horizontal sml devices
 
 Thumbnails overlay fixed on smaller screens (done-AC)
 
 Modal text, form text adjusting....(done-AC)
 
+Adjust scrollDist height for rotate screens???? not sure its more for horizontal sml devices
+
+use page.load to have elements appear in the correct spot on load
+
 Site Navigation is correct, note navigation behaviour links to around form 
 '#statementContact' is this avoidable?
 
 Ease the animations on 'ME' ie. "transition: all 0.4s ease-in-out;"
+
+overlay to be present on burger menu appears
+
+Site needs to work online somewhere: github ....or?
+
 
 
 

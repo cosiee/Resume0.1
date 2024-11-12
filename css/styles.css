@@ -723,13 +723,7 @@ textarea {
     margin: 0px !important;
   }
 
-  /* Make thumbnail overlay permanently visible on smaller screens */
-#software .overlay,
-#photography .overlay,
-#motion .overlay,
-#diy .overlay {
-  opacity: 0.5; 
-}
+
 
   .thumbShape {
     width: calc(var(--thumb-width) * 0.56);
@@ -774,13 +768,7 @@ textarea {
     padding-bottom: 20px !important;
   }
 
-/* Make thumbnail overlay permanently visible on smaller screens */
-#software .overlay,
-#photography .overlay,
-#motion .overlay,
-#diy .overlay {
-  opacity: 0.5; 
-}
+
 
   .navbar-collapse {
     display: flex;
@@ -836,7 +824,12 @@ textarea {
     padding: 30px auto 20px auto !important;
     margin: 0px !important;
   }
-
+  #software .overlay,
+  #photography .overlay,
+  #motion .overlay,
+  #diy .overlay {
+    opacity: 0.5; 
+  }
 
 }
 
