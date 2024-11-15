@@ -16,11 +16,11 @@
 
 .scrollDist {
   width: 100%;
- 
+
   height: 200%;
 
   max-width: 100%;
- 
+
   max-height: 200%;
 
   overflow: hidden;
@@ -170,7 +170,7 @@ body {
 
 /* ############################ Navbar base styles ################################*/
 
-nav{
+nav {
   z-index: 54;
   height: auto;
   width: auto;
@@ -231,18 +231,18 @@ a.nav-link:hover {
 a.nav-link.active {
   color: #162a43;
   transform: scale(1.3);
-  
+
 }
 
 
 .dropdown-menu {
- 
+
   position: absolute;
-  
-  border-style:groove;
+
+  border-style: groove;
   font-size: 14px;
   /* line-height: 1; */
-  background-color: transparent; 
+  background-color: transparent;
   text-align: left;
   inline-size: auto;
   border-width: auto;
@@ -269,7 +269,7 @@ a.dropdown-item:hover {
 
 a.dropdown-item:active {
   transform: scale(1.2);
-  color:#162a43;
+  color: #162a43;
   background-color: transparent !important;
 }
 
@@ -731,9 +731,12 @@ textarea {
   }
 
   .modalbox .box {
-    width: 90%; /* Full width for smaller screens */
-    height: auto; /* Allow height to adjust based on content */
-    padding: 4% 6%; /* Smaller padding */
+    width: 90%;
+    /* Full width for smaller screens */
+    height: auto;
+    /* Allow height to adjust based on content */
+    padding: 4% 6%;
+    /* Smaller padding */
   }
 
   .modalbox .title {
@@ -747,13 +750,14 @@ textarea {
   }
 
   .sig {
-    height: 5.5rem; /* Reduce signature image size */
+    height: 5.5rem;
+    /* Reduce signature image size */
   }
 }
 
 /* rotated devices */
-@media (orientation: landscape) {
-  .scrollDist {  
+@media (orientation: landscape) and (max-width: 767.98px){
+  .scrollDist {
     min-height: 680px;
   }
 
@@ -761,6 +765,29 @@ textarea {
     width: calc(var(--thumb-width) * 0.4);
     height: calc(var(--thumb-height) * 0.4);
   }
+
+
+  .modalbox .box {
+    width: 50%;
+    height: auto;
+    padding: 1% 2%
+  }
+
+  .modalbox .title {
+    font-size: 15px;
+  }
+
+  .modalbox .content {
+    font-size: 13px;
+    line-height: 14px;
+    /* padding: 10px 20px; */
+  }
+
+  .sig {
+    height: 5.5rem;
+    /* Reduce signature image size */
+  }
+
 
   .scroll-arrow {
     /* top: 10vh; */
@@ -786,27 +813,7 @@ textarea {
     opacity: 1;
   }
 
- 
 
-  .modalbox .box {
-    width: 50%; /* Full width for smaller screens */
-    height: auto; /* Allow height to adjust based on content */
-    padding: 1% 2%; /* Smaller padding */
-  }
-
-  .modalbox .title {
-    font-size: 15px;
-  }
-
-  .modalbox .content {
-    font-size: 13px;
-    line-height: 14px;
-    /* padding: 10px 20px; */
-  }
-
-  .sig {
-    height: 5.5rem; /* Reduce signature image size */
-  }
 
 
 }
@@ -833,39 +840,44 @@ textarea {
   .navbar-collapse {
     display: flex;
     flex-direction: column;
-}
-    /* Ensure the dropdown aligns to the right of the nav-item */
-    .navbar-nav .dropdown-menu {
-      position: absolute;
-      top: 0;               /* Align dropdown with nav-item’s top */
-      left: calc(100% + 124px); 
-      background-color:#fff;
-      padding: 0.2rem;
-      min-width: max-content; /* Allow content to dictate width */
-      min-width: 265px; /* Minimum width to avoid too narrow dropdown */
-      max-width: 325px;
-      flex-wrap: wrap;
-      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15); /* Optional shadow */
   }
 
-.dropdown-menu:hover{
-  display: flex;
-  flex-direction: row;
-     
-}
+  /* Ensure the dropdown aligns to the right of the nav-item */
+  .navbar-nav .dropdown-menu {
+    position: absolute;
+    top: 0;
+    /* Align dropdown with nav-item’s top */
+    left: calc(100% + 124px);
+    background-color: #fff;
+    padding: 0.2rem;
+    min-width: max-content;
+    /* Allow content to dictate width */
+    min-width: 265px;
+    /* Minimum width to avoid too narrow dropdown */
+    max-width: 325px;
+    flex-wrap: wrap;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    /* Optional shadow */
+  }
+
+  .dropdown-menu:hover {
+    display: flex;
+    flex-direction: row;
+
+  }
 
   /* Apply relative positioning to the nav-item to use as reference */
   .navbar-nav .nav-item.dropdown {
-      position: relative;
-      
+    position: relative;
+
   }
 
-/* Style individual dropdown items */
-.dropdown-item {
-  flex: 1 1 auto;
-  text-align: left;
-  padding: 0.5rem 2rem;
-}
+  /* Style individual dropdown items */
+  .dropdown-item {
+    flex: 1 1 auto;
+    text-align: left;
+    padding: 0.5rem 2rem;
+  }
 
 
 
@@ -884,11 +896,12 @@ textarea {
     padding: 30px auto 20px auto !important;
     margin: 0px !important;
   }
+
   #software .overlay,
   #photography .overlay,
   #motion .overlay,
   #diy .overlay {
-    opacity: 0.5; 
+    opacity: 0.5;
   }
 
 }
@@ -915,5 +928,3 @@ textarea {
 
 
 }
-
-

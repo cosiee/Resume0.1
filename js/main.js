@@ -937,6 +937,10 @@ thumbDiy.addEventListener("mouseleave", function () {
   thumbDiy.classList.remove("active");
 });
 
+
+
+
+
 // Function to output the height of the .scrollDist element
 function outputScrollDistHeight() {
   const scrollDist = document.querySelector('.scrollDist');
