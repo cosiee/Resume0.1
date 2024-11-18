@@ -1,2 +1,26 @@
-overlay of thumbnails neds to resize when thumbnail resizes, brought about by window resizing
+Adjust scrollDist height for rotate screens???? not sure its more for horizontal sml devices
+
+use page.load to have elements appear in the correct spot on load
+
+Site Navigation is correct, note navigation behaviour links to around form 
+'#statementContact' is this avoidable?
+
+Ease the animations on 'ME' ie. "transition: all 0.4s ease-in-out;"
+
+Site needs to work online somewhere: github ....or?
+
+adjust scoll arrow 'down' for all devices
+
+Arrow inactive/invisible when the me element is active (done-AC)
+
+Thumbnails overlay fixed on smaller screens (done-AC)
+
+Modal text, form text adjusting....(done-AC)
+
+overlay to be present on burger menu appears (done-AC)
+
+
+
+
+
 
