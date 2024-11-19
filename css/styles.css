@@ -9,34 +9,20 @@
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ SEE/ME Base Styles $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
-
-
-
-
-
 .scrollDist {
   width: 100%;
-
   height: 200%;
-
   max-width: 100%;
-
   max-height: 200%;
-
   overflow: hidden;
-
   position: adsolute;
-
 }
-
-
 
 #mountains {
   margin: 0;
   padding: 0;
   position: fixed;
   width: 1200px;
-  /*1200px*/
   height: 100%;
   overflow: hidden;
 }
@@ -58,19 +44,15 @@ transform: translate(50%, 0%);  */
 }
 
 text.lrgtext {
-
-
   font-family: "Montserrat", sans-serif;
   font-size: 125px;
   z-index: 56;
-
 }
 
 /* .lrgtext:hover {
   cursor: pointer;
   text-shadow: 2px 2px 2px #162a43;
 } */
-
 
 /* text.lrgtext#me {
   display: inline-block;
@@ -87,7 +69,6 @@ text.lrgtext {
 
 #see {
   fill: #fff;
-
 }
 
 #me {
@@ -119,7 +100,6 @@ div {
   box-sizing: border-box;
 }
 
-
 html {
   font-size: 62.5%;
 }
@@ -130,7 +110,6 @@ body {
   /* Ensure scrolling is not blocked */
   margin: 0;
 }
-
 
 /* ************************* Arrows animated SECTION*************************** */
 
@@ -185,7 +164,6 @@ nav {
   width: 100%;
 } */
 
-
 ul {
   padding: 20px 0px 2px 0px;
   width: 100%;
@@ -211,7 +189,6 @@ nav ul li a {
   top: 0px;
 }
 
-
 a.nav-link {
   color: #6e6f79;
   transform: scale(1);
@@ -231,12 +208,9 @@ a.nav-link:hover {
 a.nav-link.active {
   color: #162a43;
   transform: scale(1.3);
-
 }
 
-
 .dropdown-menu {
-
   position: absolute;
 
   border-style: groove;
@@ -250,15 +224,12 @@ a.nav-link.active {
   border-right: none;
   border-left: none;
   /* margin: 0px; */
-
 }
-
 
 a.dropdown-item {
   color: #6e6f79;
   font-size: 0.9em;
   padding: 2px 0px 1px 0px;
-
 }
 
 a.dropdown-item:hover {
@@ -273,28 +244,14 @@ a.dropdown-item:active {
   background-color: transparent !important;
 }
 
-
-
-
 .dropdown .dropdown-menu .navbar-nav {
   --bs-nav-link-hover-colour: #162a43;
 }
 
-
-
-
-
-
-
 ul.navbar-nav {
   position: absolute;
   align-self: center;
-
 }
-
-
-
-
 
 .navbar {
   --bs-navbar-active-color: #162a43;
@@ -314,9 +271,6 @@ ul.navbar-nav {
   padding-bottom: 20px;
 }
 
-
-
-
 /* Burger Icon Styling */
 navbar-toggler left {
   position: absolute;
@@ -328,7 +282,6 @@ navbar-toggler left {
   border: none;
   outline: none;
 }
-
 
 .sticky {
   /* background-color: #ffffff; */
@@ -344,8 +297,9 @@ navbar-toggler left {
   margin: 0 auto;
   padding: 10px 20px 5px 5px;
   box-sizing: border-box;
-}
 
+  
+}
 
 /* div#navbar.container-fluid {
   position: relative;
@@ -365,8 +319,6 @@ navbar-toggler left {
   padding-bottom: 20px !important;
 } */
 
-
-
 /*###################### End of Navbar Base Styles ############################ */
 
 /* Thumbnails Base Styles  ###################################################### */
@@ -384,16 +336,14 @@ navbar-toggler left {
 
 .container-fluid#thumbnails {
   position: absolute;
+
+ 
 }
 
 .thumbnails {
   position: absolute;
-
   height: auto;
   width: 100%;
-  /* Ensure it fits within the container */
-  /* overflow: hidden; */
-
   z-index: 10;
 }
 
@@ -411,6 +361,12 @@ navbar-toggler left {
   overflow: hidden;
   border-radius: 24%;
   transition: background-image 1.8s ease-in-out;
+  opacity: 0;
+}
+
+.container-fluid#thumbnails .thumbShape {
+  opacity: 1; /* Make thumbnails visible after loading */
+
 }
 
 #software img,
@@ -447,7 +403,6 @@ navbar-toggler left {
   /* transform: scale(1.004); */
   cursor: pointer;
   filter: drop-shadow(0 0 0.75rem #162a43);
-
 }
 
 #software .overlay,
@@ -487,8 +442,6 @@ navbar-toggler left {
 
 /* Modal Statement/Contact Base Styles ####################################### */
 
-
-
 .modalbox .box {
   position: absolute;
   /* Ensure it is positioned absolutely within its container */
@@ -517,8 +470,6 @@ navbar-toggler left {
   padding: 0 0 10px;
   color: #fff;
 }
-
-
 
 .modalbox .content {
   display: block;
@@ -557,8 +508,6 @@ navbar-toggler left {
   display: block;
   outline: none;
 }
-
-
 
 .link-modal {
   width: 90%;
@@ -641,7 +590,6 @@ textarea#message {
   /* or hidden if you want no scroll */
 }
 
-
 input[type="text"],
 textarea {
   width: 95%;
@@ -700,8 +648,6 @@ textarea {
   margin-top: 5px;
 }
 
-
-
 /*##################################  END of Base Styles Contact Form ###################################*/
 
 /* X-Small devices (portrait phones, less than 576px)
@@ -717,13 +663,10 @@ textarea {
     border-right: 3px solid #fff;
   }
 
-
   .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
     padding: 0px 0px 0px 10px !important;
     margin: 0px !important;
   }
-
-
 
   .thumbShape {
     width: calc(var(--thumb-width) * 0.56);
@@ -756,7 +699,7 @@ textarea {
 }
 
 /* rotated devices */
-@media (orientation: landscape) and (max-width: 767.98px){
+@media (orientation: landscape) and (max-width: 767.98px) {
   .scrollDist {
     min-height: 680px;
   }
@@ -766,11 +709,10 @@ textarea {
     height: calc(var(--thumb-height) * 0.4);
   }
 
-
   .modalbox .box {
     width: 50%;
     height: auto;
-    padding: 1% 2%
+    padding: 1% 2%;
   }
 
   .modalbox .title {
@@ -788,7 +730,6 @@ textarea {
     /* Reduce signature image size */
   }
 
-
   .scroll-arrow {
     /* top: 10vh; */
     width: 12px;
@@ -797,12 +738,10 @@ textarea {
     border-right: 3px solid #fff;
   }
 
-
   .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
     padding: 0px 0px 0px 10px !important;
     margin: 0px !important;
   }
-
 
   .formDiv#contactForm {
     top: 50%;
@@ -812,12 +751,7 @@ textarea {
     padding: 2px;
     opacity: 1;
   }
-
-
-
-
 }
-
 
 /*  Medium devices (tablets, 768px and up) 
 **************************************************************/
@@ -835,41 +769,32 @@ textarea {
     padding-bottom: 20px !important;
   }
 
-
-
   .navbar-collapse {
     display: flex;
     flex-direction: column;
   }
 
-  /* Ensure the dropdown aligns to the right of the nav-item */
   .navbar-nav .dropdown-menu {
     position: absolute;
     top: 0;
-    /* Align dropdown with nav-item’s top */
     left: calc(100% + 124px);
     background-color: #fff;
     padding: 0.2rem;
     min-width: max-content;
-    /* Allow content to dictate width */
     min-width: 265px;
-    /* Minimum width to avoid too narrow dropdown */
     max-width: 325px;
     flex-wrap: wrap;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
-    /* Optional shadow */
   }
 
   .dropdown-menu:hover {
     display: flex;
     flex-direction: row;
-
   }
 
   /* Apply relative positioning to the nav-item to use as reference */
   .navbar-nav .nav-item.dropdown {
     position: relative;
-
   }
 
   /* Style individual dropdown items */
@@ -878,10 +803,6 @@ textarea {
     text-align: left;
     padding: 0.5rem 2rem;
   }
-
-
-
-
 }
 
 /* Large devices (desktops, 992px and up)
@@ -890,7 +811,6 @@ textarea {
   .scroll-arrow {
     top: 24%;
   }
-
 
   .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
     padding: 30px auto 20px auto !important;
@@ -903,7 +823,6 @@ textarea {
   #diy .overlay {
     opacity: 0.5;
   }
-
 }
 
 /* X-Large devices (large desktops, 1200px and up)
@@ -912,12 +831,7 @@ textarea {
   .scroll-arrow {
     top: 26%;
   }
-
-
-
 }
-
-
 
 /* XX-Large devices (larger desktops, 1400px and up)
 **************************************************************/
@@ -925,6 +839,4 @@ textarea {
   .scroll-arrow {
     top: 27%;
   }
-
-
 }
