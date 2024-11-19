@@ -647,7 +647,6 @@ window.onload = function () {
     return element.getBBox().width; // Get bounding box width of text element
   }
 
-  // Function to center the text(SEE/ME) elements in the SVG
   function updateTextElementPositions() {
     // Get the SVG dimensions
     const svg = document.querySelector("svg");
@@ -658,41 +657,122 @@ window.onload = function () {
     const svgCenterX = svgWidth / 2;
     const svgCenterY = svgHeight / 2;
 
-    // Position "SEE" and "ME" at the center of the SVG
-    const seeX = svgCenterX;
-    const seeY = svgCenterY - 210; // Adjust Y position for SEE
-    const meX = svgCenterX;
-    const meY = svgCenterY - 210; // Adjust Y position for ME
+    let seeY, meY;
 
-    
+    // Check if the orientation is landscape
+    if (window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches) {
+        // Adjust Y positions for landscape orientation
+        seeY = svgCenterY - 330; // Example value for landscape
+        meY = svgCenterY - 330;  // Example value for landscape
+    } else {
+        // Adjust Y positions for portrait orientation
+        seeY = svgCenterY - 210; // Original value for portrait
+        meY = svgCenterY - 210;  // Original value for portrait
+    }
+
+    // Position "SEE" and "ME" at the center of the SVG with adjusted Y coordinates
+    const seeX = svgCenterX;
+    const meX = svgCenterX;
+
     // Apply the translation (without affecting rotation)
     gsap.to("#see", {
-      x: seeX,
-      y: seeY,
-      duration: 1,
-      ease: "power2.out",
+        x: seeX,
+        y: seeY,
+        duration: 1,
+        ease: "power2.out",
     });
-    
+
     gsap.to("#me", {
-      x: meX,
-      y: meY,
-      duration: 1,
-      ease: "power2.out",
+        x: meX,
+        y: meY,
+        duration: 1,
+        ease: "power2.out",
     });
 
     // Store the initial translation for the ME element
     initialTransform = `translate(${meX}px, ${meY}px)`;
-    
     applyTransform(); // Apply the current transformation
-    seeText.style.opacity= 0;
-   
-  }
+    seeText.style.opacity = 0;
+}
 
-  // Function to apply combined transformation (centering + rotation)
-  function applyTransform() {
+// Function to apply combined transformation (centering + rotation)
+function applyTransform() {
     meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; // Combine rotation and translation
-    seeText.style.opacity= 1;
-  }
+    seeText.style.opacity = 1;
+}
+
+// Function to handle orientation change
+function handleOrientationChange() {
+    updateTextElementPositions(); // Update positions on orientation change
+}
+
+// Add an event listener for orientation changes
+window.addEventListener("orientationchange", handleOrientationChange);
+
+// Initial call to set positions correctly
+updateTextElementPositions();
+
+
+
+
+
+
+  // // Function to center the text(SEE/ME) elements in the SVG
+  // function updateTextElementPositions() {
+  //   // Get the SVG dimensions
+  //   const svg = document.querySelector("svg");
+  //   const svgWidth = svg.viewBox.baseVal.width || svg.clientWidth;
+  //   const svgHeight = svg.viewBox.baseVal.height || svg.clientHeight;
+
+  //   // Calculate the center of the SVG
+  //   const svgCenterX = svgWidth / 2;
+  //   const svgCenterY = svgHeight / 2;
+
+  //   // Position "SEE" and "ME" at the center of the SVG
+  //   const seeX = svgCenterX;
+  //   const seeY = svgCenterY - 210; // Adjust Y position for SEE
+  //   const meX = svgCenterX;
+  //   const meY = svgCenterY - 210; // Adjust Y position for ME
+
+    
+  //   // Apply the translation (without affecting rotation)
+  //   gsap.to("#see", {
+  //     x: seeX,
+  //     y: seeY,
+  //     duration: 1,
+  //     ease: "power2.out",
+  //   });
+    
+  //   gsap.to("#me", {
+  //     x: meX,
+  //     y: meY,
+  //     duration: 1,
+  //     ease: "power2.out",
+  //   });
+
+  //   // Store the initial translation for the ME element
+  //   initialTransform = `translate(${meX}px, ${meY}px)`;
+    
+  //   applyTransform(); // Apply the current transformation
+  //   seeText.style.opacity= 0;
+   
+  // }
+
+  // // Function to apply combined transformation (centering + rotation)
+  // function applyTransform() {
+  //   meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; // Combine rotation and translation
+  //   seeText.style.opacity= 1;
+  // }
+
+
+
+
+
+
+
+
+
+
 
   // Function to start the hover wiggle animation
   function startHoverWiggle() {

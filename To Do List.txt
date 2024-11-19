@@ -19,9 +19,11 @@ Modal text, form text adjusting....(done-AC)
 
 overlay to be present on burger menu appears (done-AC)
 
-elements to load and appear initially in position, not at origin then position
+elements to load and appear initially in position, not at origin then position(Done-AC)
 
-
+when orientaion landscape &  screen size is below 991.98px Me element adjusts position
+the thumbnails must do the same along with modal and form... is a chain reaction possible
+at the stage? 
 
 
 
