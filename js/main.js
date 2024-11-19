@@ -9,6 +9,9 @@ const thumbElement = document.querySelector(".thumbShape");
 const thumbNails = document.querySelector(".thumbnails");
 thumbNails.style.opacity=0;
 
+const seeText = document.querySelector("#see");
+seeText.style.opacity=0;
+
 gsap.set(".scrollDist", {
   width: "100%",
   height: "200%",
@@ -107,7 +110,7 @@ window.history.scrollRestoration = "manual";
 
 function autoScrollNow() {
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-
+  
   if (maxScroll <= 0) {
     console.log("No scrollable space");
     return; // Exit if there's no scrollable space
@@ -129,12 +132,15 @@ function autoScrollNow() {
 }
 
 function autoScroll() {
+  
   // Reset scroll position to the top before starting animation
   window.scrollTo(0, 0); // Force scroll to top
-
+  
   // Add a small delay before calculating maxScroll to ensure everything is loaded
 
+  
   setTimeout(() => {
+   
     const maxScroll =
       document.documentElement.scrollHeight - window.innerHeight;
 
@@ -168,6 +174,7 @@ window.addEventListener("load", function () {
   updateDimensions();
   updateModalDimensions();
   animateThumbs();
+  
   autoScroll();
 });
 
@@ -640,7 +647,7 @@ window.onload = function () {
     return element.getBBox().width; // Get bounding box width of text element
   }
 
-  // Function to center the text elements in the SVG
+  // Function to center the text(SEE/ME) elements in the SVG
   function updateTextElementPositions() {
     // Get the SVG dimensions
     const svg = document.querySelector("svg");
@@ -657,6 +664,7 @@ window.onload = function () {
     const meX = svgCenterX;
     const meY = svgCenterY - 210; // Adjust Y position for ME
 
+    
     // Apply the translation (without affecting rotation)
     gsap.to("#see", {
       x: seeX,
@@ -664,7 +672,7 @@ window.onload = function () {
       duration: 1,
       ease: "power2.out",
     });
-
+    
     gsap.to("#me", {
       x: meX,
       y: meY,
@@ -674,12 +682,16 @@ window.onload = function () {
 
     // Store the initial translation for the ME element
     initialTransform = `translate(${meX}px, ${meY}px)`;
+    
     applyTransform(); // Apply the current transformation
+    seeText.style.opacity= 0;
+   
   }
 
   // Function to apply combined transformation (centering + rotation)
   function applyTransform() {
     meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; // Combine rotation and translation
+    seeText.style.opacity= 1;
   }
 
   // Function to start the hover wiggle animation
@@ -775,13 +787,14 @@ window.onload = function () {
   // Function to dynamically update text positions on resize
   function onResize() {
     updateTextElementPositions(); // Update position on window resize
+    
     updateDimensions();
     updateModalDimensions();
     updateDimensionsNoMargins();
   }
 
   // Initialize text positioning and idle wiggle on window load
-  updateTextElementPositions(); // Center the text elements
+  updateTextElementPositions();// Center the text elements
   startIdleWiggle(); // Start the idle wiggle animation
 
   // Update text positions when window is resized
