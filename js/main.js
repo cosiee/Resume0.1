@@ -269,13 +269,12 @@ function updateDimensions() {
   screenWidthHalved = window.innerWidth / 2;
   screenHeightHalved = window.innerHeight / 2;
   const totalThumbWidth = getThumbWidthWithMargin();
-console.log("window.innerWidth",window.innerWidth);
-console.log("window.innerHeight",window.innerHeight);
+  console.log("window.innerWidth",window.innerWidth);
+  console.log("window.innerHeight",window.innerHeight);
   endLeftX = screenWidthHalved - totalThumbWidth;
   endTopY = window.innerHeight * 1.325;
   endRightX = screenWidthHalved;
   endBottomY = window.innerHeight * 1.325 + totalThumbWidth;
-  
 }
 
 function spaceoutThumbs() {
@@ -303,7 +302,7 @@ function spaceoutThumbs() {
     duration: 1,
     ease: "power2.out",
   });
-
+thumbElement.style.opacity = 1;
 }
 
 function getThumbWidthWithoutMargin() {
