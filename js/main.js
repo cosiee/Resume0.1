@@ -551,7 +551,7 @@ const observer = new MutationObserver(updateMeElement);
 observer.observe(cloud1, { attributes: true, childList: true, subtree: true });
 
 // Initial call to update the state based on current scale
-// updateMeElement();
+updateMeElement();
 
 // Scroll event listener to toggle sticky navbar
 $(window).scroll(function () {
