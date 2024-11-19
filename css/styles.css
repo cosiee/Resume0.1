@@ -336,8 +336,8 @@ navbar-toggler left {
 
 .container-fluid#thumbnails {
   position: absolute;
+  
 
- 
 }
 
 .thumbnails {
@@ -345,6 +345,8 @@ navbar-toggler left {
   height: auto;
   width: 100%;
   z-index: 10;
+
+  
 }
 
 .thumbs {

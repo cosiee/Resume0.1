@@ -1,18 +1,19 @@
-
 // Ensure #me element is initially disabled
 const meElement = document.getElementById("me");
 meElement.disabled = true;
 
 // Correctly reference the single element with ID "cloud1"
 const cloud1 = document.getElementById("cloud1");
+const thumbElement = document.querySelector(".thumbShape");
 
+const thumbNails = document.querySelector(".thumbnails");
+thumbNails.style.opacity=0;
 
 gsap.set(".scrollDist", {
   width: "100%",
   height: "200%",
-  background: "#fff"
+  background: "#fff",
 });
-
 
 // GSAP initial setups
 gsap.set("#mountains", {
@@ -23,10 +24,8 @@ gsap.set("#mountains", {
   height: "100%",
   top: 0,
   left: "50%",
-  x: "-50%",  //these are offseting, sizing needs to be adjusted so these are not required. look at svg and scroll-Dist
+  x: "-50%", //these are offseting, sizing needs to be adjusted so these are not required. look at svg and scroll-Dist
 });
-
-
 
 // Random background images for thumbnails
 document.addEventListener("DOMContentLoaded", function () {
@@ -87,7 +86,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function getRandomImage(imagesArray) {
     return imagesArray[Math.floor(Math.random() * imagesArray.length)];
-   
   }
 
   function setRandomBackground(containerId, imagesArray) {
@@ -105,26 +103,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // GSAP timeline for scroll-triggered animations
 // Disable automatic scroll restoration on page reload
-window.history.scrollRestoration = 'manual';
+window.history.scrollRestoration = "manual";
 
 function autoScrollNow() {
- 
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 
-    if (maxScroll <= 0) {
-      console.log("No scrollable space");
-      return; // Exit if there's no scrollable space
-    }
+  if (maxScroll <= 0) {
+    console.log("No scrollable space");
+    return; // Exit if there's no scrollable space
+  }
 
-    // Automatically scroll to the bottom over # seconds on page load
-    gsap.to(document.documentElement, { // Explicitly target document root for scrolling
-      scrollTo: {
-        y: maxScroll, // Scroll to the bottom of the page dynamically
-        autoKill: false // Disable autoKill to prevent interruptions
-      },
-      duration: 6.8, // Scroll over # seconds
-      ease: CustomEase.create("custom", "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "),// Easing function for scroll
-    });
+  // Automatically scroll to the bottom over # seconds on page load
+  gsap.to(document.documentElement, {
+    // Explicitly target document root for scrolling
+    scrollTo: {
+      y: maxScroll, // Scroll to the bottom of the page dynamically
+      autoKill: false, // Disable autoKill to prevent interruptions
+    },
+    duration: 6.8, // Scroll over # seconds
+    ease: CustomEase.create(
+      "custom",
+      "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "
+    ), // Easing function for scroll
+  });
 }
 
 function autoScroll() {
@@ -134,8 +135,8 @@ function autoScroll() {
   // Add a small delay before calculating maxScroll to ensure everything is loaded
 
   setTimeout(() => {
-  
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const maxScroll =
+      document.documentElement.scrollHeight - window.innerHeight;
 
     if (maxScroll <= 0) {
       console.log("No scrollable space");
@@ -143,23 +144,25 @@ function autoScroll() {
     }
 
     // Automatically scroll to the bottom over # seconds on page load
-    gsap.to(document.documentElement, { // Explicitly target document root for scrolling
+    gsap.to(document.documentElement, {
+      // Explicitly target document root for scrolling
       scrollTo: {
         y: maxScroll, // Scroll to the bottom of the page dynamically
-        autoKill: false // Disable autoKill to prevent interruptions
+        autoKill: false, // Disable autoKill to prevent interruptions
       },
       duration: 6.8, // Scroll over 6.8 seconds
-      ease: CustomEase.create("custom", "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "),// Easing function for smooth scrolling
+      ease: CustomEase.create(
+        "custom",
+        "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "
+      ), // Easing function for smooth scrolling
       // onStart: () => console.log('Auto-scrolling started'),
       // onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
       // onComplete: () => console.log('Auto-scrolling completed')
     });
-
-
-  },3400); // Add a delay of 3.4seconds before starting the scroll to let the layout settle
+  }, 3400); // Add a delay of 3.4seconds before starting the scroll to let the layout settle
 }
 
-window.addEventListener('load', function () {
+window.addEventListener("load", function () {
   mountainSkyAni();
   updateMeElement();
   updateDimensions();
@@ -167,12 +170,6 @@ window.addEventListener('load', function () {
   animateThumbs();
   autoScroll();
 });
-
-
-
-
-
-
 
 function mountainSkyAni() {
   gsap
@@ -245,11 +242,10 @@ function getComputedStyleValue(element, property) {
 }
 
 function getThumbWidthWithMargin() {
-  const thumbElement = document.querySelector(".thumbShape");
   const computedStyle = window.getComputedStyle(thumbElement);
   const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
   const thumbMargin = parseFloat(
-  computedStyle.getPropertyValue("margin-right")
+    computedStyle.getPropertyValue("margin-right")
   );
 
   return thumbWidth + thumbMargin * 2;
@@ -269,8 +265,8 @@ function updateDimensions() {
   screenWidthHalved = window.innerWidth / 2;
   screenHeightHalved = window.innerHeight / 2;
   const totalThumbWidth = getThumbWidthWithMargin();
-  console.log("window.innerWidth",window.innerWidth);
-  console.log("window.innerHeight",window.innerHeight);
+  console.log("window.innerWidth", window.innerWidth);
+  console.log("window.innerHeight", window.innerHeight);
   endLeftX = screenWidthHalved - totalThumbWidth;
   endTopY = window.innerHeight * 1.325;
   endRightX = screenWidthHalved;
@@ -302,18 +298,15 @@ function spaceoutThumbs() {
     duration: 1,
     ease: "power2.out",
   });
-thumbElement.style.opacity = 1;
 }
 
 function getThumbWidthWithoutMargin() {
-  const thumbElement = document.querySelector(".thumbShape");
   const computedStyle = window.getComputedStyle(thumbElement);
   const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
 
   return thumbWidth;
 }
 function getThumbMargin() {
-  const thumbElement = document.querySelector(".thumbShape");
   const computedStyle = window.getComputedStyle(thumbElement);
   const thumbMargin = parseFloat(
     computedStyle.getPropertyValue("margin-right")
@@ -322,7 +315,6 @@ function getThumbMargin() {
 }
 
 function updateDimensionsNoMargins() {
-
   setTimeout(() => {
     thumbWidth = Math.min(300, window.innerWidth / 6);
     console.log("thumbWidth: ", thumbWidth);
@@ -336,16 +328,13 @@ function updateDimensionsNoMargins() {
     endRightX = screenWidthHalved - marginWidth;
     endBottomY = window.innerHeight * 1.3 + (widthThumb + marginWidth);
 
-    // console.log("Thumb Y EndTopY: ", endTopY);
 
     collectThumbs();
-
     updateModalDimensions(endTopY);
     formControl(endTopY);
-    // Pass endTopY to updateModalDimensions
-  }, 450); // Small delay to ensure scrollbar removal takes effect
+  }, 450); // delay to ensure scrollbar removal takes effect
 }
-
+//when 'ME' is clicked this bunches the thumbnails together for background to modal
 function collectThumbs() {
   gsap.to("#software", {
     scale: 1,
@@ -377,10 +366,8 @@ function collectThumbs() {
   });
 }
 
-
 function updateModalDimensions(endTopY) {
   const modalBox = document.querySelector(".modalbox .box");
-  const thumbElement = document.querySelector(".thumbShape");
 
   if (!modalBox || !thumbElement) return;
 
@@ -421,11 +408,8 @@ function formControl(endTopY) {
   const formWidth = parseFloat(computedStyleForm.getPropertyValue("width"));
   const formHeight = parseFloat(computedStyleForm.getPropertyValue("height"));
 
-  // Calculate the center of the screen
+  // Calculate form position
   const formX = window.innerWidth / 2 - formWidth + 8;
-  // console.log("formX: ", formX);
-  // console.log("form width:", formWidth +"   form height: ", formHeight);
-  // Use the passed endTopY for the new top position
   const formY = endTopY + 190;
 
   // Update modal position
@@ -436,66 +420,58 @@ function formControl(endTopY) {
 
 function debounce(fn, delay) {
   let timeout;
-  return function() {
+  return function () {
     clearTimeout(timeout);
     timeout = setTimeout(fn, delay);
   };
 }
 
-
-
-
 // Ensure updateDimensionsNoMargins is called on resize and DOM content load
-window.addEventListener("resize", debounce(() => {
-  updateDimensions();
-  updateModalDimensions();
-  updateDimensionsNoMargins();
-  
-}, 200));
-
-
-
-
-
-// // Initial call
-// updateDimensions();
-// updateModalDimensions();
+window.addEventListener(
+  "resize",
+  debounce(() => {
+    updateDimensions();
+    updateModalDimensions();
+    updateDimensionsNoMargins();
+  }, 200)
+);
 
 // initial thumb centering animation, called in a DOMContentLoaded
 function animateThumbs() {
-  // console.log("animateThumbs-");
+  thumbNails.style.opacity=1;
   gsap
     .timeline({
       scrollTrigger: {
         trigger: ".scrollDist",
-         start: "top top",
+        start: "top top",
         end: "bottom bottom",
         scrub: 0.5,
         invalidateOnRefresh: true,
       },
     })
+
     .fromTo(
       "#software",
-      { scale: 0.2, x: endLeftX - 1750, y: endTopY - 750 },
-      { scale: 1, x: endLeftX, y: endTopY },
+      { opacity: 0, scale: 0.2, x: endLeftX - 1750, y: endTopY - 750 },
+      { opacity: 1, scale: 1, x: endLeftX, y: endTopY },
       0
     )
     .fromTo(
       "#photography",
-      { scale: 0.2, x: endRightX + 1250, y: endTopY - 750 },
-      { scale: 1, x: endRightX, y: endTopY },
+      { opacity: 0, scale: 0.2, x: endRightX + 1250, y: endTopY - 750 },
+      { opacity: 1, scale: 1, x: endRightX, y: endTopY },
       0
     )
     .fromTo(
       "#diy",
-      { scale: 3, x: endRightX + 1250, y: endBottomY + 750 },
-      { scale: 1, x: endRightX, y: endBottomY },
+      { opacity: 0, scale: 3, x: endRightX + 1250, y: endBottomY + 750 },
+      { opacity: 1, scale: 1, x: endRightX, y: endBottomY },
       0
     )
     .fromTo(
       "#motion",
-      { scale: 3, x: endLeftX - 1750, y: endBottomY + 750 },
-      { scale: 1, x: endLeftX, y: endBottomY },
+      { opacity: 0, scale: 3, x: endLeftX - 1750, y: endBottomY + 750 },
+      { opacity: 1, scale: 1, x: endLeftX, y: endBottomY },
       0
     );
 }
@@ -533,14 +509,22 @@ function updateMeElement() {
       meElement.style.display = "block"; // Enable #me
       document.getElementById("down").style.display = "none";
       // Re-enable event listeners if necessary
-      meElement.addEventListener("click", hideScrollBar, updateDimensionsNoMargins); //, scrollToBottom
+      meElement.addEventListener(
+        "click",
+        hideScrollBar,
+        updateDimensionsNoMargins
+      ); //, scrollToBottom
     }
   } else {
     if (meElement.style.display !== "none") {
       meElement.style.display = "none"; // Disable #me
       document.getElementById("down").style.display = "block";
       // Disable or remove event listeners
-      meElement.removeEventListener("click", hideScrollBar, updateDimensionsNoMargins);//, scrollToBottom
+      meElement.removeEventListener(
+        "click",
+        hideScrollBar,
+        updateDimensionsNoMargins
+      ); //, scrollToBottom
     }
   }
 }
@@ -570,14 +554,9 @@ function showScrollBar() {
   document.documentElement.style.overflow = ""; // Show scroll on the entire document
 }
 
-
-
 // ##########################################################################
 
-
-
-
-//################ Navigation between index.html#thumbs, 
+//################ Navigation between index.html#thumbs,
 // modalBox(statementContact) & Contact Form ###########
 
 function showForm() {
@@ -633,18 +612,19 @@ function showThumbs() {
 function hideForm() {
   document.getElementById("contactForm").style.display = "none";
   // document.getElementById("statementContact").style.display = "block";
-
 }
 
 // align SEE/ME text & ME animate wiggles
 // Wait for the DOM to fully load
-window.onload = function() {
+window.onload = function () {
   // Ensure 'meElement' and 'meShaker' are declared and exist in the DOM
   const meElement = document.getElementById("me");
   const meShaker = document.getElementById("meshaker"); // Ensure this element exists in the HTML
 
   if (!meElement || !meShaker) {
-    console.error("Required DOM elements not found. Check element IDs for 'me' and 'meshaker'.");
+    console.error(
+      "Required DOM elements not found. Check element IDs for 'me' and 'meshaker'."
+    );
     return; // Stop further execution if elements are missing
   }
 
@@ -775,22 +755,22 @@ window.onload = function() {
   }
 
   // Event listeners for hover wiggle on "ME"
-  meShaker.addEventListener("mouseenter", function(){
-      // Combine scaling with the existing transform (centering + wiggle)
-      meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; 
-      startHoverWiggle();  // Start hover wiggle
+  meShaker.addEventListener("mouseenter", function () {
+    // Combine scaling with the existing transform (centering + wiggle)
+    meElement.style.transform = `${initialTransform} rotate(${angle}deg)`;
+    startHoverWiggle(); // Start hover wiggle
   });
 
-  meShaker.addEventListener("mouseleave", function(){
-      // Reset the scaling and keep the initial transform (centering + reset rotation)
-      meElement.style.transform = `${initialTransform} rotate(0deg)`; 
-      stopHoverWiggle();  // Stop hover wiggle
+  meShaker.addEventListener("mouseleave", function () {
+    // Reset the scaling and keep the initial transform (centering + reset rotation)
+    meElement.style.transform = `${initialTransform} rotate(0deg)`;
+    stopHoverWiggle(); // Stop hover wiggle
   });
-  meElement.addEventListener("mouseenter", function(){
-      meElement.style.transform = `${initialTransform} rotate(0deg) scale(1.115)`; 
+  meElement.addEventListener("mouseenter", function () {
+    meElement.style.transform = `${initialTransform} rotate(0deg) scale(1.115)`;
   });
-  meElement.addEventListener("mouseleave", function(){
-      meElement.style.transform = `${initialTransform} rotate(0deg) scale(1)`; 
+  meElement.addEventListener("mouseleave", function () {
+    meElement.style.transform = `${initialTransform} rotate(0deg) scale(1)`;
   });
   // Function to dynamically update text positions on resize
   function onResize() {
@@ -806,9 +786,7 @@ window.onload = function() {
 
   // Update text positions when window is resized
   window.onresize = onResize;
-  
 };
-
 
 // Beginning of Handling hover on Thumbs Triggering Navbar elements ###############################
 
@@ -830,32 +808,28 @@ const motionDropMenuLink = document.querySelector("#motionDropMenuLink");
 // Track whether the mouse is still inside the navbar or dropdown
 let hoverTimeout;
 
-function showDropMenu(dropMenu){
-  dropMenu.style.display= 'flex';
+function showDropMenu(dropMenu) {
+  dropMenu.style.display = "flex";
 }
 
 function hideDropdown(dropMenu) {
-  dropMenu.style.display = 'none';
+  dropMenu.style.display = "none";
 }
-
 
 // Function to handle delayed hiding of the dropdown
 function delayedHide(dropdownMenu) {
-    // Clear any existing timeout
-    clearTimeout(hoverTimeout);
-    // Set a timeout to hide the menu after a short delay
-    hoverTimeout = setTimeout(() => {
-        hideDropdown(dropdownMenu);
-    }, 200); // 200ms delay to allow smooth interaction
+  // Clear any existing timeout
+  clearTimeout(hoverTimeout);
+  // Set a timeout to hide the menu after a short delay
+  hoverTimeout = setTimeout(() => {
+    hideDropdown(dropdownMenu);
+  }, 200); // 200ms delay to allow smooth interaction
 }
 
 // Function to keep the dropdown visible as long as the mouse is inside
 function cancelHide() {
-    clearTimeout(hoverTimeout); // Cancel any pending hide actions
+  clearTimeout(hoverTimeout); // Cancel any pending hide actions
 }
-
-
-
 
 thumbSoft.addEventListener("mouseenter", function () {
   showDropMenu(softwareDropMenuLink);
@@ -887,16 +861,15 @@ softwareDropMenuLink.addEventListener("mouseleave", function () {
   delayedHide(softwareDropMenuLink);
 });
 
-
 thumbMot.addEventListener("mouseenter", function () {
   showDropMenu(motionDropMenuLink);
   navbarMot.classList.add("active");
-  thumbMot.classList.add("active");  
+  thumbMot.classList.add("active");
 });
 navbarMot.addEventListener("mouseenter", function () {
   showDropMenu(motionDropMenuLink);
   navbarMot.classList.add("active");
-  thumbMot.classList.add("active");  
+  thumbMot.classList.add("active");
 });
 
 thumbMot.addEventListener("mouseleave", function () {
@@ -936,20 +909,16 @@ thumbDiy.addEventListener("mouseleave", function () {
   thumbDiy.classList.remove("active");
 });
 
-
-
-
-
 // Function to output the height of the .scrollDist element
 function outputScrollDistHeight() {
-  const scrollDist = document.querySelector('.scrollDist');
+  const scrollDist = document.querySelector(".scrollDist");
   if (scrollDist) {
     console.log("Current scrollDist height:", scrollDist.offsetHeight + "px");
   }
 }
 
 // Add event listener to call the function on window resize
-window.addEventListener('resize', outputScrollDistHeight);
+window.addEventListener("resize", outputScrollDistHeight);
 
 // Initial call to log the height when the page loads
 outputScrollDistHeight();
