@@ -1,870 +1,100 @@
-/* ******************************************************************
-*********************************************************************
- Base Styles
-********************************************************************* 
-********************************************************************* */
-
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300&display=swap");
-
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ SEE/ME Base Styles $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-
-
-
-
-
-
-.scrollDist {
-  width: 100%;
-  /* You can change this to a fixed width like '1200px' if needed */
-  height: 200%;
-  /* Set this to a fixed value to prevent height from changing */
-  max-width: 100%;
-  /* Ensure it doesn't exceed the desired max width */
-  max-height: 200%;
-  /* Ensure it doesn't exceed the desired max height */
-  overflow: hidden;
-  /* Prevent any content from expanding the size */
-  position: adsolute;
-  /* Keep the positioning intact */
-}
-
-
-
-#mountains {
-  margin: 0;
-  padding: 0;
-  position: fixed;
-  width: 1200px;
-  /*1200px*/
-  height: 100%;
-  overflow: hidden;
-}
-
-.svg-container {
-  display: block;
-  margin: auto;
-  position: absolute;
-  /* position: relative; */
-  height: auto;
-  overflow: hidden;
-  width: 100%;
-  /* max-width: 800px;
-max-width: 800px; */
-
-  /* /* top: 50%; */
-  /* left: 50%; 
-transform: translate(50%, 0%);  */
-}
-
-text.lrgtext {
-
-
-  font-family: "Montserrat", sans-serif;
-  font-size: 125px;
-  z-index: 56;
-
-}
-
-/* .lrgtext:hover {
-  cursor: pointer;
-  text-shadow: 2px 2px 2px #162a43;
-} */
-
-
-/* text.lrgtext#me {
-  display: inline-block;
-
-  transform-origin: 5% 15%;
- 
-} */
-
-#me:hover {
-  cursor: pointer;
-  /* text-shadow: 1px 1px 1px #26466e; */
-  filter: drop-shadow(0 0 0.095rem #162a43);
-}
-
-#see {
-  fill: #fff;
-
-}
-
-#me {
-  fill: #162a43;
-}
-
-#meshaker {
-  position: absolute;
-  z-index: 1;
-  width: 100%;
-  height: 125px;
-  transform: translate(0px, 12vh);
-  opacity: 0;
-}
-
-a {
-  text-decoration: none;
-}
-
-div {
-  position: absolute;
-}
-
-/* ##############Suggested improvement to correctly handle positioning of modalbox and form */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-
-html {
-  font-size: 62.5%;
-}
-
-html,
 body {
-  overflow: visible;
-  /* Ensure scrolling is not blocked */
+  font-family: Arial, sans-serif;
   margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
 }
 
-
-/* ************************* Arrows animated SECTION*************************** */
-
-.scroll-arrow {
-  position: absolute;
-  left: 49.33%;
-  top: 23vh;
-  display: inline-block;
-  width: 22px;
-  height: 22px;
-  border-bottom: 4px solid #fff;
-  border-right: 4px solid #fff;
-  animation: fade_move_down 3s ease-in-out infinite;
+.video-gallery {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
 }
 
-.scroll-arrow:hover {
+/* Default layout for larger screens (desktops) */
+@media (min-width: 1024px) {
+  .video-gallery {
+      grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Medium screens (tablets) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .video-gallery {
+      grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Small screens (mobile phones) */
+@media (max-width: 767px) {
+  .video-gallery {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Extra small screens (small mobile phones) */
+@media (max-width: 480px) {
+  .video-gallery {
+      grid-template-columns: 1fr;
+  }
+}
+
+.video-card {
+  position: relative;
   cursor: pointer;
+  text-align: center;
+  transition: transform 0.3s ease;
 }
 
-@keyframes fade_move_down {
-  0% {
-    transform: translate(0, -20px) rotate(45deg);
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: translate(0, 20px) rotate(45deg);
-    opacity: 0;
-  }
+.video-card:hover {
+  transform: scale(1.05);
 }
 
-/* ************************* End of Arrows animated SECTION*************************** */
-
-/* ############################ Navbar base styles ################################*/
-
-nav{
-  z-index: 54;
-  height: auto;
-  width: auto;
-  overflow: visible;
-}
-
-/* nav {
-  width: auto;
-} */
-
-/* ul.navbar-nav {
-  width: 100%;
-} */
-
-
-ul {
-  padding: 20px 0px 2px 0px;
-  width: 100%;
-}
-
-nav ul li a {
-  display: inline-block;
-  text-transform: uppercase;
-  font-size: 13px;
-  margin: 1px 30px 1px 5px;
-  line-height: 1.3;
-  letter-spacing: 1.3px;
-}
-
-/* nav ul a {
-  text-transform: uppercase;
-  font-size: 13px;
-} */
-
-.sticky {
-  background-color: #ffffff;
-  opacity: 1;
-  top: 0px;
-}
-
-
-a.nav-link {
-  color: #6e6f79;
-  transform: scale(1);
-  font-family: "Open Sans";
-  font-size: 16px;
-  transition: all 0.3s;
-  background-color: transparent;
-  opacity: 1;
-}
-
-a.nav-link:hover {
-  color: #162a43;
-  transform: scale(1.15);
-  /* display: block;  */
-}
-
-a.nav-link.active {
-  color: #162a43;
-  transform: scale(1.3);
-  
-}
-
-
-.dropdown-menu {
- 
-  position: absolute;
-  
-  border-style:groove;
-  font-size: 14px;
-  /* line-height: 1; */
-  background-color: transparent; 
-  text-align: left;
-  inline-size: auto;
-  border-width: auto;
-  border-radius: 5px;
-  border-right: none;
-  border-left: none;
-  /* margin: 0px; */
-
-}
-
-
-a.dropdown-item {
-  color: #6e6f79;
-  font-size: 0.9em;
-  padding: 2px 0px 1px 0px;
-
-}
-
-a.dropdown-item:hover {
-  color: #162a43;
-  transform: scale(1.1);
-  background-color: transparent !important;
-}
-
-a.dropdown-item:active {
-  transform: scale(1.2);
-  color:#162a43;
-  background-color: transparent !important;
-}
-
-
-
-
-.dropdown .dropdown-menu .navbar-nav {
-  --bs-nav-link-hover-colour: #162a43;
-}
-
-
-
-
-
-
-
-ul.navbar-nav {
-  position: absolute;
-  align-self: center;
-
-}
-
-
-
-
-
-.navbar {
-  --bs-navbar-active-color: #162a43;
-  --bs-navbar-brand-color: #162a43;
-  --bs-navbar-brand-hover-color: #162a43;
-  position: fixed;
-  top: 0px;
-  max-height: 50px;
-  width: 100%;
-  padding-top: 30px;
-  background: none;
-  overflow: visible;
-  -webkit-transition: all 1s;
-  transition: all 1s;
-  opacity: 0;
-  top: -700px;
-  padding-bottom: 20px;
-}
-
-
-
-
-/* Burger Icon Styling */
-navbar-toggler left {
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  border: none;
-  font-size: 1rem;
-  background-color: transparent;
-  border: none;
-  outline: none;
-}
-
-
-.sticky {
-  /* background-color: #ffffff; */
-  opacity: 1;
-  top: 0px;
-}
-
-.container-fluid#navbar {
+.video-thumbnail {
   position: relative;
-  width: 100%;
-  max-width: 800px;
-  align-self: center;
-  margin: 0 auto;
-  padding: 10px 20px 5px 5px;
-  box-sizing: border-box;
-}
-
-
-/* div#navbar.container-fluid {
-  position: relative;
-  width: 100%;
-  max-width: 800px;
-  align-self: center;
-  margin: 0 auto;
-  padding: 10px 20px 5px 5px;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  transition: all 0.3s ease; Smooth transition when repositioning
-} */
-
-/* .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-  padding-top: 30px !important;
-  padding-bottom: 20px !important;
-} */
-
-
-
-/*###################### End of Navbar Base Styles ############################ */
-
-/* Thumbnails Base Styles  ###################################################### */
-
-:root {
-  --thumb-width: 300px;
-  --thumb-height: 300px;
-}
-
-.mountains {
-  position: absolute;
-  width: 2000px;
-  height: auto;
-}
-
-.container-fluid#thumbnails {
-  position: absolute;
-}
-
-.thumbnails {
-  position: absolute;
-
-  height: auto;
-  width: 100%;
-  /* Ensure it fits within the container */
-  /* overflow: hidden; */
-
-  z-index: 10;
-}
-
-.thumbs {
-  display: block;
-  text-decoration: none;
-  /* position: relative; */
-}
-
-.thumbShape {
-  position: absolute;
-  width: var(--thumb-width);
-  height: var(--thumb-height);
-  margin: 12.5px;
   overflow: hidden;
-  border-radius: 24%;
-  transition: background-image 1.8s ease-in-out;
+  border-radius: 10px;
+  height: 180px;
 }
 
-#software img,
-#photography img,
-#motion img,
-#diy img {
+.video-thumbnail img {
   width: 100%;
+  border-radius: 10px;
+  display: block;
+  transition: transform 0.5s ease;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
-#software:hover .overlay,
-#photography:hover .overlay,
-#motion:hover .overlay,
-#diy:hover .overlay {
-  opacity: 0.7;
+.video-card:hover .video-thumbnail img {
+  transform: scale(1.1);
 }
 
-#software,
-#photography,
-#motion,
-#diy {
-  background-size: cover;
-  background-position: center;
-  filter: drop-shadow(0 0 0.1rem #162a43);
-  transform: scale(1);
-}
-
-#software:hover,
-#photography:hover,
-#motion:hover,
-#diy:hover {
-  /* transform: scale(1.004); */
-  cursor: pointer;
-  filter: drop-shadow(0 0 0.75rem #162a43);
-
-}
-
-#software .overlay,
-#photography .overlay,
-#motion .overlay,
-#diy .overlay {
+.overlay {
   position: absolute;
   top: 0;
   left: 0;
-  display: block;
   width: 100%;
   height: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0;
-  transition: opacity 0.6s ease;
-  background-size: contain;
+  transition: opacity 0.5s ease;
+  border-radius: 10px;
+  padding: 15px;
+  box-sizing: border-box;
 }
 
-#software .overlay {
-  background-image: url("assets/binary-min.png");
-}
-
-#photography .overlay {
-  background-image: url("assets/photography-min.png");
-}
-
-#motion .overlay {
-  background-image: url("assets/motion-min.png");
-}
-
-#diy .overlay {
-  background-image: url("assets/diy-min.png");
-}
-
-/*###################### End of Thumbnail Base Styles ############################ */
-
-/* Modal Statement/Contact Base Styles ####################################### */
-
-
-
-.modalbox .box {
-  position: absolute;
-  /* Ensure it is positioned absolutely within its container */
-  transition: transform 0.3s, width 0.3s, height 0.3s;
-  /* Smooth transition for position and size changes */
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
-  background-color: rgba(0, 0, 0, 0.6);
-  margin: auto;
-  min-width: 210px;
-  padding: 45px;
-  width: 500px;
-  height: 500px;
-  overflow: hidden;
-  border-radius: 12%;
-
-  /* Ensure it appears above other elements */
-  color: #fff;
-  /* Ensure text is visible */
-}
-
-.modalbox .title {
-  border-bottom: 1px solid #ccc;
-  font-size: 22px;
-  letter-spacing: 0.1em;
-  margin: 0;
-  padding: 0 0 10px;
-  color: #fff;
-}
-
-
-
-.modalbox .content {
-  display: block;
-
-  font-size: 18px;
-  line-height: 22px;
-  padding: 10px 40px 40px 0px;
-  text-align: left;
-  color: #fff;
-}
-
-.modalbox .close {
-  color: #fff;
-  display: block;
-  float: right;
-  font-size: 17px;
-  text-decoration: bold;
-}
-
-.close:hover {
-  cursor: pointer;
-}
-
-.modalbox {
-  position: absolute;
-  display: none;
-  z-index: 12;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  color: #333333;
-}
-
-.modalbox:target {
-  display: block;
-  outline: none;
-}
-
-
-
-.link-modal {
-  width: 90%;
-  text-align: center;
-  margin: 0 auto;
-  padding: 1rem;
-  background: #ffffff;
-  text-decoration: none;
-  color: #162a43;
-  display: inline-block;
-  transition: all 0.4s ease-in-out;
-  transform: translateX(0px);
-}
-
-.link-modal:hover {
-  transform: translateX(1.5rem);
-  color: #6e6f79;
-  cursor: pointer;
-}
-
-.hidden {
-  display: none;
-}
-
-.sig {
-  position: relative;
-  height: 12rem;
-  width: auto;
-}
-
-.sig:hover {
-  cursor: pointer;
-}
-
-/*###################### End of Modal Statement/Contact Base Styles ############################ */
-
-/*Begining of Base Styles Contact Form ##################################################################### */
-
-.formDiv#contactForm {
-  position: absolute;
-  z-index: 14;
-  top: 50%;
-  right: 50%;
-  transform: translate(50%, -50%);
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
-  font-size: medium;
-  max-width: 400px;
-  min-width: 270px;
-  /* margin: 50px auto; */
-  padding: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 15px;
-  background-color: rgba(208, 205, 205, 0.4);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.9);
+.video-card:hover .overlay {
   opacity: 1;
 }
 
-.formTitle {
-  /* width: 100%; */
-  padding: 0px;
-}
-
-label {
-  display: block;
-  margin: 10px;
-  color: #fff;
-}
-
-.closeForm {
-  color: #fff;
-  display: block;
-  float: right;
-  font-size: 17px;
-  text-decoration: bold;
-}
-
-textarea#message {
-  overflow: auto;
-  /* or hidden if you want no scroll */
-}
-
-
-input[type="text"],
-textarea {
-  width: 95%;
-  padding: 2px;
-  border: none;
-  border-radius: 4px;
-  background-color: rgba(251, 248, 248, 0.5);
-  color: #07070f;
-}
-
-#formButton {
-  transition: background-color 0.3s ease;
-  align-items: center;
-  appearance: none;
-  background-color: #3b3b3b;
-  background-image: linear-gradient(1deg, #49494a, #949595 99%);
-  background-size: calc(100% + 20px) calc(100% + 20px);
-  border-radius: 50px;
-  border-width: 0;
-  box-shadow: none;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inline-flex;
-  height: auto;
-  justify-content: center;
-  line-height: 1.5;
-  padding: 6px 20px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  transition: background-color 0.2s, background-position 0.2s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: top;
-  white-space: nowrap;
-}
-
-#formButton:hover {
-  background-position: -20px -20px;
-}
-
-#formButton:focus:not(:active) {
-  box-shadow: rgba(29, 29, 30, 0.25) 0 0 0 0.125em;
-}
-
-#formButton:hover {
-  background-color: rgba(222, 240, 209, 0.5);
-  cursor: pointer;
-}
-
-.error-message {
-  color: rgb(173, 83, 10);
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-
-
-/*##################################  END of Base Styles Contact Form ###################################*/
-
-/* X-Small devices (portrait phones, less than 576px)
- No media query for `xs` since this is the default in Bootstrap */
-
-/* Small devices (landscape phones, 576px and up) */
-@media (max-width: 575px) {
-  .scroll-arrow {
-    top: 15vh;
-    width: 12px;
-    height: 12px;
-    border-bottom: 3px solid #fff;
-    border-right: 3px solid #fff;
-  }
-
-  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-    padding: 0px 0px 0px 10px !important;
-    margin: 0px !important;
-  }
-
-
-  .navbar-collapse {
-    display: flex;
-    flex-direction: column;
-}
-    /* Ensure the dropdown aligns to the right of the nav-item */
-    .navbar-nav .dropdown-menu {
-      position: absolute;
-      top: 0;               /* Align dropdown with nav-item’s top */
-      left: calc(100% + 124px); /* Move dropdown to the right of nav-item, add 10px spacing */
-        /* Display items in a row */
-      background-color:#fff;
-      padding: 0.5rem;
-      
-      min-width: max-content; /* Allow content to dictate width */
-      min-width: 265px; /* Minimum width to avoid too narrow dropdown */
-      max-width: 325px;
-      flex-wrap: wrap;
-      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15); /* Optional shadow */
-  }
-
-.dropdown-menu:hover{
-  display: flex;
-      flex-direction: row;
-     
-}
-
-  /* Apply relative positioning to the nav-item to use as reference */
-  .navbar-nav .nav-item.dropdown {
-      position: relative;
-      
-  }
-
-/* Style individual dropdown items */
-.dropdown-item {
-  flex: 1 1 auto;
-  text-align: left;
-  padding: 0.5rem 2rem;
-}
-
-
-  .thumbShape {
-    width: calc(var(--thumb-width) * 0.5);
-    /* Adjust width proportionally for smaller screens */
-    height: calc(var(--thumb-height) * 0.5);
-    /* Adjust height proportionally for smaller screens */
-  }
-
-
-
-
-}
-
-@media (min-width: 576px) {
-  .scroll-arrow {
-    top: 16.5%;
-    width: 12px;
-    height: 12px;
-    border-bottom: 3px solid #fff;
-    border-right: 3px solid #fff;
-  }
-
-
-
-
-  
-
-  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-    padding: 6px 0px 0px 10px !important;
-    margin: 0px !important;
-  }
-
-  .thumbShape {
-    width: calc(var(--thumb-width) * 0.7);
-    /* Adjust width proportionally for smaller screens */
-    height: calc(var(--thumb-height) * 0.7);
-    /* Adjust height proportionally for smaller screens */
-  }
-
-}
-
-/*  Medium devices (tablets, 768px and up) 
-**************************************************************/
-@media (min-width: 768px) {
-  .scroll-arrow {
-    top: 19%;
-    width: 22px;
-    height: 22px;
-    border-bottom: 4px solid #fff;
-    border-right: 4px solid #fff;
-  }
-
-  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-    padding-top: 30px !important;
-    padding-bottom: 20px !important;
-  }
-
-
-
-
-  .thumbShape {
-    width: calc(var(--thumb-width) * 0.8);
-    /* Adjust width proportionally for smaller screens */
-    height: calc(var(--thumb-height) * 0.8);
-    /* Adjust height proportionally for smaller screens */
-  }
-}
-
-/* Large devices (desktops, 992px and up)
-**************************************************************/
-@media (min-width: 992px) {
-  .scroll-arrow {
-    top: 24%;
-  }
-
-
-  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-    padding: 30px auto 20px auto !important;
-    margin: 0px !important;
-  }
-
-
-  .thumbShape {
-    width: calc(var(--thumb-width) * 1);
-    /* Adjust width proportionally for smaller screens */
-    height: calc(var(--thumb-height) * 1);
-    /* Adjust height proportionally for smaller screens */
-  }
-}
-
-/* X-Large devices (large desktops, 1200px and up)
-**************************************************************/
-@media (min-width: 1200px) {
-  .scroll-arrow {
-    top: 26%;
-  }
-
-
-}
-
-/* XX-Large devices (larger desktops, 1400px and up)
-**************************************************************/
-@media (min-width: 1400px) {
-  .scroll-arrow {
-    top: 27%;
-  }
+h3 {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #444;
 }

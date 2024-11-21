@@ -47,7 +47,6 @@ text.lrgtext {
   font-family: "Montserrat", sans-serif;
   font-size: 125px;
   z-index: 56;
- 
 }
 
 /* .lrgtext:hover {
@@ -62,14 +61,10 @@ text.lrgtext {
  
 } */
 
-#me{
-  text-shadow: 0px 2px 2px #26466e;
-}
-
 #me:hover {
   cursor: pointer;
-  text-shadow: 0px 5px 5px #26466e;
-  /* filter: drop-shadow(0 0 0.095rem #162a43); */
+  /* text-shadow: 1px 1px 1px #26466e; */
+  filter: drop-shadow(0 0 0.095rem #162a43);
 }
 
 #see {
@@ -647,8 +642,6 @@ textarea {
   margin-top: 5px;
 }
 
-
-
 /*##################################  END of Base Styles Contact Form ###################################*/
 
 /* X-Small devices (portrait phones, less than 576px)
@@ -696,64 +689,6 @@ textarea {
   .sig {
     height: 5.5rem;
     /* Reduce signature image size */
-  }
-}
-
-/*  Medium devices (tablets, 768px and below) 
-**************************************************************/
-@media (max-width: 767.98px) {
-  .scroll-arrow {
-    top: 10%;
-    width: 22px;
-    height: 22px;
-    border-bottom: 4px solid #fff;
-    border-right: 4px solid #fff;
-  }
-
-  .thumbShape {
-    width: calc(var(--thumb-width) * 0.56);
-    height: calc(var(--thumb-height) * 0.56);
-  }
-  
-
-  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-    padding-top: 0px !important;
-    padding-bottom: 20px !important;
-  }
-
-  .navbar-collapse {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .navbar-nav .dropdown-menu {
-    position: absolute;
-    top: 0;
-    left: calc(100% + 124px);
-    background-color: #fff;
-    padding: 0.2rem;
-    min-width: max-content;
-    min-width: 265px;
-    max-width: 325px;
-    flex-wrap: wrap;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  .dropdown-menu:hover {
-    display: flex;
-    flex-direction: row;
-  }
-
-  /* Apply relative positioning to the nav-item to use as reference */
-  .navbar-nav .nav-item.dropdown {
-    position: relative;
-  }
-
-  /* Style individual dropdown items */
-  .dropdown-item {
-    flex: 1 1 auto;
-    text-align: left;
-    padding: 0.5rem 2rem;
   }
 }
 
@@ -812,7 +747,63 @@ textarea {
   }
 }
 
+/*  Medium devices (tablets, 768px and below) 
+**************************************************************/
+@media (max-width: 767.98px) {
+  .scroll-arrow {
+    top: 10%;
+    width: 22px;
+    height: 22px;
+    border-bottom: 4px solid #fff;
+    border-right: 4px solid #fff;
+  }
 
+  .thumbShape {
+    width: calc(var(--thumb-width) * 0.3);
+    height: calc(var(--thumb-height) * 0.3);
+  }
+  
+
+  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+    padding-top: 0px !important;
+    padding-bottom: 20px !important;
+  }
+
+  .navbar-collapse {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navbar-nav .dropdown-menu {
+    position: absolute;
+    top: 0;
+    left: calc(100% + 124px);
+    background-color: #fff;
+    padding: 0.2rem;
+    min-width: max-content;
+    min-width: 265px;
+    max-width: 325px;
+    flex-wrap: wrap;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .dropdown-menu:hover {
+    display: flex;
+    flex-direction: row;
+  }
+
+  /* Apply relative positioning to the nav-item to use as reference */
+  .navbar-nav .nav-item.dropdown {
+    position: relative;
+  }
+
+  /* Style individual dropdown items */
+  .dropdown-item {
+    flex: 1 1 auto;
+    text-align: left;
+    padding: 0.5rem 2rem;
+  }
+}
 
 /* Large devices (desktops, 992px and below)
 **************************************************************/
