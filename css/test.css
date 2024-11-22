@@ -91,6 +91,7 @@ body {
 
 .video-card:hover .overlay {
   opacity: 1;
+  cursor: pointer;
 }
 
 h3 {

@@ -758,14 +758,14 @@ textarea {
 }
 
 /* rotated devices */
-@media (orientation: landscape) and (max-width: 767.98px)  {
+@media (orientation: landscape) and (max-width: 991.98px) and (max-height: 600px) {
   .scrollDist {
     min-height: 620px;
   }
 
   .thumbShape {
-    width: calc(var(--thumb-width) * 0.35);
-    height: calc(var(--thumb-height) * 0.35);
+    width: calc(var(--thumb-width) * 0.4);
+    height: calc(var(--thumb-height) * 0.4);
   }
 
   .modalbox .box {

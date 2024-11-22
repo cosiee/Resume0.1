@@ -267,17 +267,49 @@ let screenWidthHalved = svg.viewBox.baseVal.width / 2;
 let screenHeightHalved = svg.viewBox.baseVal.height / 2;
 let endLeftX, endRightX, endTopY, endBottomY;
 
+const landscapeMediaQuery = window.matchMedia(
+  '(orientation: landscape) and (max-width: 991.98px) and (max-height: 600px)'
+);
+const totalThumbWidth = getThumbWidthWithMargin();
+
+ // Function to update the multiplier based on the media query match
+ function updateEndTopY() {
+  if (landscapeMediaQuery.matches) {
+      endTopY = window.innerHeight * 1.275; // Adjust multiplier for this condition
+  } else {
+      endTopY = window.innerHeight * 1.325; // Default multiplier
+  }
+  return endTopY;
+  console.log('Updated endTopY:', endTopY);
+}
+
+function updateEndBottomY() {
+  if (landscapeMediaQuery.matches) {
+    endBottomY = window.innerHeight * 1.275 + totalThumbWidth; // Adjust multiplier for this condition
+} else {
+    endBottomY = window.innerHeight * 1.325 + totalThumbWidth;
+}
+return endBottomY;
+}
+
+// Listen for changes in the media query
+landscapeMediaQuery.addEventListener('change', updateEndTopY,updateEndBottomY );
+
 function updateDimensions() {
   thumbWidth = Math.min(300, window.innerWidth / 6);
   screenWidthHalved = window.innerWidth / 2;
   screenHeightHalved = window.innerHeight / 2;
-  const totalThumbWidth = getThumbWidthWithMargin();
+  // const totalThumbWidth = getThumbWidthWithMargin();
   console.log("window.innerWidth", window.innerWidth);
   console.log("window.innerHeight", window.innerHeight);
   endLeftX = screenWidthHalved - totalThumbWidth;
-  endTopY = window.innerHeight * 1.325;
+
+  updateEndTopY();
+  // endTopY = window.innerHeight * 1.325;
   endRightX = screenWidthHalved;
-  endBottomY = window.innerHeight * 1.325 + totalThumbWidth;
+
+  updateEndBottomY();
+  // endBottomY = window.innerHeight * 1.325 + totalThumbWidth;
 }
 
 function spaceoutThumbs() {
@@ -331,9 +363,9 @@ function updateDimensionsNoMargins() {
     const marginWidth = getThumbMargin();
 
     endLeftX = screenWidthHalved - (widthThumb + marginWidth);
-    endTopY = window.innerHeight * 1.3 + marginWidth;
+    endTopY = updateEndTopY() + marginWidth -15;
     endRightX = screenWidthHalved - marginWidth;
-    endBottomY = window.innerHeight * 1.3 + (widthThumb + marginWidth);
+    endBottomY = updateEndBottomY() - marginWidth -15;
 
 
     collectThumbs();
@@ -395,7 +427,7 @@ function updateModalDimensions(endTopY) {
   const newLeft = centerX - newWidth / 2;
 
   // Use the passed endTopY for the new top position
-  const newTop = endTopY + 12.5; // 22.5 works for alignment on y axis
+  const newTop = endTopY + 12.5; //  works for alignment on y axis
 
   // Update modal position
   modalBox.style.position = "absolute";
