@@ -446,10 +446,13 @@ function formControl(endTopY) {
   const computedStyleForm = window.getComputedStyle(contactForm);
   const formWidth = parseFloat(computedStyleForm.getPropertyValue("width"));
   const formHeight = parseFloat(computedStyleForm.getPropertyValue("height"));
+console.log("formWidth 1: ", formWidth);
+console.log("computerStyle: ",computedStyleForm.getPropertyValue("width"));  // Ensure it's not null or undefined
 
   // Calculate form position
-  const formX = window.innerWidth / 2 - formWidth + 8;
-  const formY = endTopY + 190;
+  const formX = window.innerWidth/2 - formWidth/2;
+  const formY = endTopY+12; //+ 190;
+  console.log("formX1: ", formX);
 
   // Update modal position
   contactForm.style.position = "absolute";

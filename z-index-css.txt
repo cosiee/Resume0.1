@@ -1,0 +1,13 @@
+element             z-index#   
+ME                      16
+Navbar                  14
+MeShaker                0
+lrgText                 15
+form                    6
+modalbox                4
+thumbnails              2
+navbar-collapse         14    
+Navbar                  14
+
+
+lower the z-index further element is in the 
