@@ -91,12 +91,33 @@ document.addEventListener("DOMContentLoaded", function () {
     return imagesArray[Math.floor(Math.random() * imagesArray.length)];
   }
 
+  // function setRandomBackground(containerId, imagesArray) {
+  //   const container = document.getElementById(containerId);
+  //   container.style.backgroundImage = getRandomImage(imagesArray);
+  //   const randomTime = Math.floor(Math.random() * (10000 - 5000)) + 5000;
+  //   setTimeout(() => setRandomBackground(containerId, imagesArray), randomTime);
+  // }
   function setRandomBackground(containerId, imagesArray) {
     const container = document.getElementById(containerId);
-    container.style.backgroundImage = getRandomImage(imagesArray);
+
+    // Ensure smooth transition using a delay between updates
+    const newImage = getRandomImage(imagesArray);
+
+    // Avoid setting the same image twice in a row
+    const currentImage = container.style.backgroundImage;
+    if (newImage === currentImage) {
+      setRandomBackground(containerId, imagesArray); // Try again
+      return;
+    }
+
+    container.style.backgroundImage = newImage;
+
+    // Set a random interval for the next change
     const randomTime = Math.floor(Math.random() * (10000 - 5000)) + 5000;
     setTimeout(() => setRandomBackground(containerId, imagesArray), randomTime);
   }
+
+
 
   setRandomBackground("software", softwareImages);
   setRandomBackground("photography", photographyImages);
