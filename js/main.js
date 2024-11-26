@@ -600,13 +600,28 @@ observer.observe(cloud1, { attributes: true, childList: true, subtree: true });
 updateMeElement();
 
 // Scroll event listener to toggle sticky navbar
+
 $(window).scroll(function () {
-  if ($(window).scrollTop() > 320) {
+  var scrollDistOffset = $(".scrollDist").offset().top; // Get the top offset of .scrollDist
+  var scrollDistHeight = $(".scrollDist").outerHeight(); // Get the height of .scrollDist
+  var scrollTop = $(window).scrollTop(); // Get the current scroll position of the window
+
+  // Check if the scroll position is greater than 320px relative to .scrollDist
+  if (scrollTop > scrollDistOffset + 320 && scrollTop < scrollDistOffset + scrollDistHeight) {
     $(".navbar").addClass("sticky");
   } else {
     $(".navbar").removeClass("sticky");
   }
 });
+
+
+// $(window).scroll(function () {
+//   if ($(window).scrollTop() > 320) {
+//     $(".navbar").addClass("sticky");
+//   } else {
+//     $(".navbar").removeClass("sticky");
+//   }
+// });
 // Function to hide the scrollbar
 function hideScrollBar() {
   document.documentElement.style.overflow = "hidden"; // Hide scroll on the entire document
