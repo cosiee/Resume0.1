@@ -2,6 +2,12 @@ when orientaion landscape &  screen size is below 991.98px Me element adjusts po
 the thumbnails must do the same along with modal and form... is a chain reaction possible
 at the stage? 
 
+dupilcated styles.css into pStyles.css and try new styled media queries seen here: https://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile
+
+Blinking Thumbnails need to be present at all times
+
+Everything to load before it appears
+
 Barebones elements from index.html for all pages for site continuity
 
 Adjust scrollDist height for rotate screens???? not sure its more for horizontal sml devices

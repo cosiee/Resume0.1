@@ -160,7 +160,7 @@ function autoScroll() {
   // Add a small delay before calculating maxScroll to ensure everything is loaded
 
   
-  setTimeout(() => {
+  // setTimeout(() => {
    
     const maxScroll =
       document.documentElement.scrollHeight - window.innerHeight;
@@ -186,7 +186,7 @@ function autoScroll() {
       // onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
       // onComplete: () => console.log('Auto-scrolling completed')
     });
-  }, 3400); // Add a delay of 3.4seconds before starting the scroll to let the layout settle
+  // }, 3400); // Add a delay of 3.4seconds before starting the scroll to let the layout settle
 }
 
 window.addEventListener("load", function () {
