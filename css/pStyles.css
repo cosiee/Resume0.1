@@ -659,9 +659,17 @@ textarea {
 		width: calc(var(--thumb-width) * 0.3);
 		height: calc(var(--thumb-height) * 0.3);
 	}
+
+	#software .overlay,
+	#photography .overlay,
+	#motion .overlay,
+	#diy .overlay {
+	  opacity: 0.65;
+	}
 	
 }
 			
+
 
 @media (min-width: 320px) {
 	.scroll-arrow {
@@ -679,6 +687,12 @@ textarea {
 	.thumbShape {
 		width: calc(var(--thumb-width) * 0.36);
 		height: calc(var(--thumb-height) * 0.36);
+	  }
+	  #software .overlay,
+	  #photography .overlay,
+	  #motion .overlay,
+	  #diy .overlay {
+		opacity: 0.65;
 	  }
   
 	.modalbox .box {
@@ -743,6 +757,8 @@ textarea {
 		width: calc(var(--thumb-width) * 0.6);
 		height: calc(var(--thumb-height) * 0.6);
 	  }
+
+	
   
 	.modalbox .box {
 	  width: calc((var(--thumb-width) * 0.15) * 2);
@@ -803,7 +819,7 @@ textarea {
 	#photography .overlay,
 	#motion .overlay,
 	#diy .overlay {
-	  opacity: 0.5;
+	  opacity: 0;
 	}
   }
   
@@ -812,6 +828,12 @@ textarea {
 	.scroll-arrow {
 	  top: 26%;
 	}
+
+	.thumbShape {
+		width: --thumb-width;
+		height: --thumb-height;
+	  }
+
   }
   
   /* High-resolution laptops and desktops */
@@ -820,4 +842,23 @@ textarea {
 	  top: 27%;
 	}
   }
-  
+ 
+
+  @media (orientation: landscape) and (min-width: 320px) and (max-width: 1024px),
+  (orientation: landscape) and (min-height: 320px) and (max-height: 600px),
+       (orientation: landscape) and (aspect-ratio: 16/9),
+       (orientation: landscape) and (aspect-ratio: 18/9),
+       (orientation: landscape) and (aspect-ratio: 19/9),
+       (orientation: landscape) and (aspect-ratio: 19.5/9),
+       (orientation: landscape) and (aspect-ratio: 20/9),
+       (orientation: landscape) and (aspect-ratio: 21/9),
+       (orientation: landscape) and (aspect-ratio: 22/9),
+	   (orientation: landscape) and (any-pointer: coarse) and (min-resolution: 2dppx) and (hover: none){
+
+	.thumbShape {
+		width: calc(var(--thumb-width) * 0.38);
+		height: calc(var(--thumb-height) * 0.38);
+	  }
+
+
+}
