@@ -652,7 +652,8 @@ textarea {
 }
 
 /*##################################  END of Base Styles Contact Form ###################################*/
-/* Smartphones, iPhone, portrait 480x320 phones */
+/* media Queries- Smartphones, iPhone, portrait 480x320 phones */
+
 @media (max-width: 319px) {
 
 	.thumbShape {
@@ -679,14 +680,10 @@ textarea {
 	  border-right: 3px solid #fff;
 	}
   
-	.navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-	  padding: 0px 0px 0px 10px !important;
-	  margin: 0px !important;
-	}
   
 	.thumbShape {
-		width: calc(var(--thumb-width) * 0.36);
-		height: calc(var(--thumb-height) * 0.36);
+		width: calc(var(--thumb-width) * 0.5);
+		height: calc(var(--thumb-height) * 0.5);
 	  }
 	  #software .overlay,
 	  #photography .overlay,
@@ -694,7 +691,54 @@ textarea {
 	  #diy .overlay {
 		opacity: 0.65;
 	  }
-  
+
+.navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+    position: fixed;
+    top: 0;
+    width: 100%; /* Ensure it spans the full viewport width */
+    z-index: 1050; /* Ensure visibility over other elements */
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: rgba(255, 255, 255, 0.9); /* Ensure visibility */
+  }
+
+  .navbar-collapse {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navbar-nav .dropdown-menu {
+    position: absolute;
+    top: 0;
+    left: calc(100% + 124px);
+    background-color: #fff;
+    padding: 0.2rem;
+    min-width: max-content;
+    /* min-width: 265px; */
+    /* max-width: 325px; */
+    flex-wrap: wrap;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .dropdown-menu:hover {
+    display: flex;
+    flex-direction: row;
+  }
+
+  /* Apply relative positioning to the nav-item to use as reference */
+  .navbar-nav .nav-item.dropdown {
+    position: relative;
+  }
+
+  /* Style individual dropdown items */
+  .dropdown-item {
+    flex: 1 1 auto;
+    text-align: left;
+    padding: 0.5rem 2rem;
+  }
+}
+
+
 	.modalbox .box {
 	  width: 90%;
 	  height: auto;
@@ -718,33 +762,23 @@ textarea {
   /* Portrait e-readers, smaller tablets at 600px or 640px wide */
   @media (min-width: 481px) {
 	.scroll-arrow {
-	  top: 10%;
-	  width: 22px;
-	  height: 22px;
-	  border-bottom: 4px solid #fff;
-	  border-right: 4px solid #fff;
+	  top: 15%;
+	  width: 15px;
+	  height: 15px;
+	  border-bottom: 3px solid #fff;
+	  border-right: 3px solid #fff;
 	}
   
 	.thumbShape {
-	  width: calc(var(--thumb-width) * 0.56);
-	  height: calc(var(--thumb-height) * 0.56);
+	  width: calc(var(--thumb-width) * 0.6);
+	  height: calc(var(--thumb-height) * 0.6);
 	}
+	/* .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+		padding: 0px 0px 0px 10px !important;
+		margin: 0px !important;
+	  } */
   
-	.navbar-collapse {
-	  display: flex;
-	  flex-direction: column;
-	}
-  
-	.dropdown-menu:hover {
-	  display: flex;
-	  flex-direction: row;
-	}
-  
-	.dropdown-item {
-	  flex: 1 1 auto;
-	  text-align: left;
-	  padding: 0.5rem 2rem;
-	}
+	
   }
   
   /* Portrait tablets, portrait iPads, landscape e-readers */
@@ -783,20 +817,9 @@ textarea {
 	  border-right: 3px solid #fff;
 	}
   
-	.navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-	  position: fixed;
-	  top: 0;
-	  width: 100%;
-	  z-index: 1050;
-	  padding-top: 5px;
-	  padding-bottom: 5px;
-	  background-color: rgba(255, 255, 255, 0.9);
-	}
+	
   
-	.navbar-collapse {
-	  display: flex;
-	  flex-direction: column;
-	}
+	
   }
   
   /* Tablets, landscape iPads, low-resolution laptops/desktops */
