@@ -654,11 +654,11 @@ textarea {
 /*##################################  END of Base Styles Contact Form ###################################*/
 /* media Queries- Smartphones, iPhone, portrait 480x320 phones */
 
-@media (max-width: 319px) {
+@media (max-width: 319.9px) {
 
 	.thumbShape {
-		width: calc(var(--thumb-width) * 0.3);
-		height: calc(var(--thumb-height) * 0.3);
+		width: calc(var(--thumb-width) * 0.25);
+		height: calc(var(--thumb-height) * 0.25);
 	}
 
 	#software .overlay,
@@ -682,8 +682,8 @@ textarea {
   
   
 	.thumbShape {
-		width: calc(var(--thumb-width) * 0.5);
-		height: calc(var(--thumb-height) * 0.5);
+		width: calc(var(--thumb-width)*(100vw * 0.45));
+		height: calc(var(--thumb-height)*(100vw * 0.5));
 	  }
 	  #software .overlay,
 	  #photography .overlay,
@@ -737,8 +737,7 @@ textarea {
 		text-align: left;
 		padding: 0.5rem 2rem;
 	  }
-	
-	
+
 
 
 	.modalbox .box {
@@ -763,7 +762,7 @@ textarea {
   
   /* Portrait e-readers, smaller tablets at 600px or 640px wide */
   @media (min-width: 481px) {
-	.scroll-arrow {
+	/* .scroll-arrow {
 	  top: 15%;
 	  width: 15px;
 	  height: 15px;
@@ -774,25 +773,19 @@ textarea {
 	.thumbShape {
 	  width: calc(var(--thumb-width) * 0.6);
 	  height: calc(var(--thumb-height) * 0.6);
-	}
-	/* .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-		padding: 0px 0px 0px 10px !important;
-		margin: 0px !important;
-	  } */
+	} */
+
   
 	
   }
   
   /* Portrait tablets, portrait iPads, landscape e-readers */
   @media (min-width: 641px) {
-	.scrollDist {
+	/* .scrollDist {
 	  min-height: 620px;
 	}
   
-	/* .thumbShape {
-		width: calc(var(--thumb-width) * 0.6);
-		height: calc(var(--thumb-height) * 0.6);
-	  } */
+
     .thumbShape {
       width: calc(var(--thumb-width) * 1);
       height: calc(var(--thumb-height) * 1);
@@ -821,7 +814,7 @@ textarea {
 	  border-bottom: 3px solid #fff;
 	  border-right: 3px solid #fff;
 	}
-  
+   */
 	
   
 	
@@ -829,7 +822,7 @@ textarea {
   
   /* Tablets, landscape iPads, low-resolution laptops/desktops */
   @media (min-width: 961px) {
-	.scroll-arrow {
+	/* .scroll-arrow {
 	  top: 24%;
 	}
   
@@ -858,39 +851,35 @@ textarea {
     background-color: #fff;
     padding: 0.2rem;
     min-width: max-content;
-    /* min-width: 265px;
-    max-width: 325px; */
+
     flex-wrap: wrap;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
-  }
+  } */
 
   }
   
   /* Big landscape tablets, laptops, desktops */
   @media (min-width: 1025px) {
-	.scroll-arrow {
+	/* .scroll-arrow {
 	  top: 26%;
-	}
+	} */
 
-	/* .thumbShape {
-		width: --thumb-width;
-		height: --thumb-height;
-	  } */
+	
 
   }
   
   /* High-resolution laptops and desktops */
   @media (min-width: 1281px) {
 
-    .thumbShape {
+    /* .thumbShape {
       width: --thumb-width;
       height: --thumb-height;
       }
 
 
 	.scroll-arrow {
-	  top: 27%;
-	}
+	  top: 27%; */
+	/* } */
   }
  
 
@@ -925,21 +914,12 @@ textarea {
   (any-pointer: coarse) and (hover: none) { */
 
 
-  body::before {
-    content: "Landscape handheld detected";
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    background: red;
-    color: white;
-    z-index: 9999;
-    padding: 5px;
-  }
+/* 
 
 	.thumbShape {
 		width: calc(var(--thumb-width) * 0.38);
 		height: calc(var(--thumb-height) * 0.38);
-	  }
+	  } */
 
 
 }
