@@ -293,9 +293,9 @@ const landscapeMediaQuery = window.matchMedia(
 );
 const totalThumbWidth = getThumbWidthWithMargin();
 
- // Function to update the multiplier based on the media query match
+ // Functions to position thumbnails when media query is satisfied
  function updateEndTopY() {
-  if (landscapeMediaQuery.matches) {
+  if (window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches) {
       endTopY = window.innerHeight * 1.275; // Adjust multiplier for this condition
   } else {
       endTopY = window.innerHeight * 1.325; // Default multiplier
@@ -303,9 +303,8 @@ const totalThumbWidth = getThumbWidthWithMargin();
   return endTopY;
   console.log('Updated endTopY:', endTopY);
 }
-
 function updateEndBottomY() {
-  if (landscapeMediaQuery.matches) {
+  if (window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches) {
     endBottomY = window.innerHeight * 1.275 + totalThumbWidth; // Adjust multiplier for this condition
 } else {
     endBottomY = window.innerHeight * 1.325 + totalThumbWidth;
@@ -457,9 +456,34 @@ function updateModalDimensions(endTopY) {
 
   // modalBox.style.display = "block";
 }
+
+function getScrollbarWidth() {
+  // Create a temporary div element
+  const div = document.createElement("div");
+
+  // Apply styles to make it scrollable and remove it from visibility
+  div.style.overflow = "scroll"; // Force scrollbars
+  div.style.visibility = "hidden"; // Hide it
+  div.style.position = "absolute"; // Take it out of the flow
+  div.style.width = "100px"; // Set a fixed width
+
+  // Append the div to the body
+  document.body.appendChild(div);
+
+  // Calculate the scrollbar width
+  const scrollbarWidth = div.offsetWidth - div.clientWidth;
+
+  // Remove the div after calculation
+  document.body.removeChild(div);
+
+  return scrollbarWidth;
+}
+
+
+
 function formControl(endTopY) {
   const contactForm = document.querySelector(".formDiv#contactForm");
-
+  
   // const modalBox = document.querySelector(".modalbox .box");
 
   if (!contactForm) return;
@@ -471,7 +495,7 @@ console.log("formWidth 1: ", formWidth);
 console.log("computerStyle: ",computedStyleForm.getPropertyValue("width"));  // Ensure it's not null or undefined
 
   // Calculate form position
-  const formX = window.innerWidth/2 - formWidth/2;
+  const formX = (window.innerWidth/2 - formWidth/2) + (getScrollbarWidth()/2.6) ;
   const formY = endTopY+12; //+ 190;
   console.log("formX1: ", formX);
 
