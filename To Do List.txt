@@ -1,3 +1,7 @@
+Navbar sticky rewrite logic, this:   (isLandscapeSmall && isSmallHeight && inSmallHeightScrollRange) ||
+      (inNormalHeightScrollRange) is not working need t combine new logic with old but functions running
+       resolve the problem . so combining the logic should work also so one function
+
 when orientaion landscape &  screen size is below 991.98px Me element adjusts position
 the thumbnails must do the same along with modal and form... is a chain reaction possible
 at the stage? 

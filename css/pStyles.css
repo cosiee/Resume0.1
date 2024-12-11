@@ -187,6 +187,7 @@ a.nav-link.active {
 
 .dropdown-menu {
   position: absolute;
+  top: 100%;
   border-style: groove;
   font-size: 14px;
   background-color: transparent;
@@ -196,6 +197,7 @@ a.nav-link.active {
   border-radius: 5px;
   border-right: none;
   border-left: none;
+ 
 }
 
 a.dropdown-item {
@@ -638,13 +640,17 @@ textarea {
 
 /*##################################  END of Base Styles Contact Form ###################################*/
 
-@media (max-width: 319.99px) {
+@media (max-width: 319.99px), (max-height: 319.99px) {
 
   .thumbShape {
     width: calc(var(--thumb-width)* 0.4);
     height: calc(var(--thumb-height)* 0.4);
   }
 
+  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+    padding: 10px 10px;
+    margin: 0px;
+  }
 
   #software .overlay,
   #photography .overlay,
@@ -878,12 +884,9 @@ textarea {
 
 
   .thumbShape {
-    width: calc(var(--thumb-width)* 1.1);
-    height: calc(var(--thumb-height)* 1.1);
+    width: calc((100vh * 0.32));
+    height: calc((100vh * 0.32));
   }
-
-
-
 
   #software .overlay,
   #photography .overlay,
@@ -892,7 +895,89 @@ textarea {
     opacity: 0;
   }
 
+
+  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+    position: fixed;
+    top: 0;
+    width: 100%; /* Ensure it spans the full viewport width */
+    z-index: 1050; /* Ensure visibility over other elements */
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: rgba(255, 255, 255, 0.9); /* Ensure visibility */
+  }
+
+  .navbar-collapse {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navbar-nav .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    padding: 0.2rem;
+    min-width: max-content;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .dropdown-menu:hover {
+    display: flex;
+    flex-direction: row;
+  }
+
+  /* Apply relative positioning to the nav-item to use as reference */
+  .navbar-nav .nav-item.dropdown {
+    position: relative;
+  }
+
+  /* Style individual dropdown items */
+  .dropdown-item {
+    
+    flex: 1 1 auto;
+    text-align: left;
+    padding: 0.5rem 2rem;
+  }
+
+
+
+  /* modalbox message to reader */
+  .modalbox .box {
+    width: 90%;
+    height: auto;
+    padding: 2% 2%;
+  }
+
+  .modalbox .title {
+    font-size: 22px;
+  }
+
+  .modalbox .content {
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .content p{
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+  
+
+
+  p.allTheBest {
+    margin-top: 30px;
+
+  }
+
+  .sig {
+    margin-top: 20px;
+    height: 9.5rem;
+  }
+
 }
+
+
+
 
 
 
@@ -948,8 +1033,10 @@ and (max-height: 800px) {
 (aspect-ratio: 22/9) */
 
 @media (orientation: landscape)  
-and (max-width: 991.98px) and (max-height: 800px)  {
-
+and (max-width: 991.98px) and (min-width: 200px) and (max-height: 800px) and (min-height: 200px) {
+  .scrollDist {
+    min-height: 620px;
+  }
 
   .scroll-arrow {
     top: 27%;
@@ -960,8 +1047,8 @@ and (max-width: 991.98px) and (max-height: 800px)  {
   }
 
   .thumbShape {
-    width: calc((100vw * 0.14));
-    height: calc((100vw * 0.14));
+    width: calc((100vh * 0.27));
+    height: calc((100vh * 0.27));
   }
 
    /* SEE & ME text */
@@ -969,13 +1056,22 @@ and (max-width: 991.98px) and (max-height: 800px)  {
     font-size: 120px;
   }
 
-  /*  */
+
+  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+    padding: 1px 10px;
+    margin: 0px;
+  }
+
 
   /* modalbox message to reader */
   .modalbox .box {
-    width: 50%;
-    height: auto;
+    
+
+    width: calc((100vh * 0.54));
+    height: calc((100vh * 0.54));
+
     padding: 1.5% 1.5%;
+    background-color: rgba(0, 0, 0, 0.7);
   }
 
   .modalbox .title {

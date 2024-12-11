@@ -622,6 +622,34 @@ observer.observe(cloud1, { attributes: true, childList: true, subtree: true });
 updateMeElement();
 
 // Scroll event listener to toggle sticky navbar
+$(window).scroll(function () {
+  var scrollDistOffset = $(".scrollDist").offset().top; // Get the top offset of .scrollDist
+  var scrollDistHeight = $(".scrollDist").outerHeight(); // Get the height of .scrollDist
+  var scrollTop = $(window).scrollTop(); // Get the current scroll position of the window
+  var windowHeight = $(window).height(); // Get the window height
+
+  var isLandscapeSmall = window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches;
+  var isSmallHeight = windowHeight < 320;
+
+                        
+  var inSmallHeightScrollRange = scrollTop > scrollDistOffset && scrollTop < scrollDistOffset + scrollDistHeight;
+  var inNormalHeightScrollRange = scrollTop > scrollDistOffset + 320 && scrollTop < scrollDistOffset + scrollDistHeight;
+console.log("inNormalHeightScrollRange", inNormalHeightScrollRange);
+  // Apply sticky logic
+  $(".navbar").toggleClass(
+    "sticky",
+    (isLandscapeSmall && isSmallHeight && inSmallHeightScrollRange) ||
+      (inNormalHeightScrollRange)
+  );
+
+  // Ensure no sticky class for non-matching conditions
+  if (!isLandscapeSmall) {
+    $(".navbar").removeClass("sticky");
+  }
+});
+
+
+
 
 $(window).scroll(function () {
   var scrollDistOffset = $(".scrollDist").offset().top; // Get the top offset of .scrollDist
@@ -630,11 +658,14 @@ $(window).scroll(function () {
 
   // Check if the scroll position is greater than 320px relative to .scrollDist
   if (scrollTop > scrollDistOffset + 320 && scrollTop < scrollDistOffset + scrollDistHeight) {
+    console.log("scrollTop > scrollDistOffset + 320 && scrollTop < scrollDistOffset + scrollDistHeight", scrollTop > scrollDistOffset + 320 && scrollTop < scrollDistOffset + scrollDistHeight);
     $(".navbar").addClass("sticky");
   } else {
     $(".navbar").removeClass("sticky");
   }
 });
+
+
 
 
 // $(window).scroll(function () {
