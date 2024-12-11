@@ -338,7 +338,8 @@ navbar-toggler left {
 }
 
 .container-fluid#thumbnails .thumbShape {
-  opacity: 1; /* Make thumbnails visible after loading */
+  opacity: 1;
+  /* Make thumbnails visible after loading */
 }
 
 #software img,
@@ -445,7 +446,6 @@ navbar-toggler left {
 
 .modalbox .content {
   display: block;
-
   font-size: 18px;
   line-height: 22px;
   padding: 10px 40px 40px 0px;
@@ -459,6 +459,10 @@ navbar-toggler left {
   float: right;
   font-size: 17px;
   text-decoration: bold;
+}
+
+.content p{
+  margin-bottom: 25px;
 }
 
 .close:hover {
@@ -576,7 +580,7 @@ textarea {
 
 input[type="text"],
 textarea {
-  width: 95%;
+  width: 100%;
   padding: 2px;
   border: none;
   /* border-radius: 4px; */
@@ -634,14 +638,14 @@ textarea {
 
 /*##################################  END of Base Styles Contact Form ###################################*/
 
-@media (max-width: 319.99px){
+@media (max-width: 319.99px) {
 
   .thumbShape {
     width: calc(var(--thumb-width)* 0.4);
     height: calc(var(--thumb-height)* 0.4);
   }
 
-  
+
   #software .overlay,
   #photography .overlay,
   #motion .overlay,
@@ -668,7 +672,7 @@ textarea {
   .sig {
     height: 5rem;
   }
-  
+
 
 }
 
@@ -739,7 +743,7 @@ textarea {
     text-align: left;
     padding: 0.5rem 2rem;
   }
-  
+
 
   .modalbox .box {
     width: 90%;
@@ -816,13 +820,15 @@ textarea {
     width: calc(var(--thumb-width)* 0.75);
     height: calc(var(--thumb-height)* 0.75);
   }
-/* SEE & ME text */
+
+  /* SEE & ME text */
   text.lrgtext {
     font-size: 150px;
   }
-/*  */
 
-/* modalbox message to reader */
+  /*  */
+
+  /* modalbox message to reader */
   .modalbox .box {
     width: 90%;
     height: auto;
@@ -838,9 +844,9 @@ textarea {
     line-height: 18px;
   }
 
-  p.allTheBest{
+  p.allTheBest {
     margin-top: 50px;
-    
+
   }
 
   .sig {
@@ -851,7 +857,7 @@ textarea {
 }
 
 /* javascript styling also */
-  /* function updateEndTopY() {
+/* function updateEndTopY() {
   if (window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches) {
       endTopY = window.innerHeight * 1.275; // Adjust multiplier for this condition
   } else {
@@ -931,29 +937,109 @@ and (max-height: 800px) {
     min-height: 620px;
   } */
 
-@media (orientation: landscape) and (any-pointer: coarse) and 
-(any-hover: none) and (max-width: 991.98px) and (max-height: 800px) and
-  (aspect-ratio: 16/9),
-  (aspect-ratio: 18/9),
-  (aspect-ratio: 19/9),
-  (aspect-ratio: 19.5/9),
-  (aspect-ratio: 20/9),
-  (aspect-ratio: 21/9),
-  (aspect-ratio: 22/9)
- {
+   /* and (any-pointer: coarse) and (any-hover: none) */
+
+   /* and (aspect-ratio: 16/9),
+(aspect-ratio: 18/9),
+(aspect-ratio: 19/9),
+(aspect-ratio: 19.5/9),
+(aspect-ratio: 20/9),
+(aspect-ratio: 21/9),
+(aspect-ratio: 22/9) */
+
+@media (orientation: landscape)  
+and (max-width: 991.98px) and (max-height: 800px)  {
 
 
   .scroll-arrow {
-    top: 30%;
-    width: 18px;
-    height: 18px;
+    top: 27%;
+    width: 25px;
+    height: 25px;
     border-bottom: 3px solid #fff;
     border-right: 3px solid #fff;
   }
 
   .thumbShape {
-    width: calc(var(--thumb-width)* 0.3);
-    height: calc(var(--thumb-height)* 0.5);
+    width: calc((100vw * 0.14));
+    height: calc((100vw * 0.14));
   }
 
+   /* SEE & ME text */
+   text.lrgtext {
+    font-size: 120px;
+  }
+
+  /*  */
+
+  /* modalbox message to reader */
+  .modalbox .box {
+    width: 50%;
+    height: auto;
+    padding: 1.5% 1.5%;
+  }
+
+  .modalbox .title {
+    font-size: 16px;
+  }
+
+  .modalbox .content {
+    font-size: 14px;
+    line-height: 12px;
+  }
+  .content p{
+    margin-bottom: 10px;
+  }
+  
+  p.allTheBest {
+    margin-top: 10px;
+
+  }
+
+  .sig {
+    margin-top: 0px;
+    height: 5.5rem;
+  }
+
+  .formDiv#contactForm {
+    width: 250px;
+    height: auto;
+    padding: 1px;
+    opacity: 1;
+  }
+  #message {
+    height: fit-content;
+  }
+
+  label {
+    display: block;
+    margin: 3px;
+    color: #fff;
+    font-size: small;
+    margin-left: 15px;
+  }
+  .closeForm {
+    margin-right: 10px;
+  }
+  
+  textarea {
+    width: 95%;
+    padding: 0px;
+
+  }
+  
+  input[type="text"],
+  textarea {
+    width: 95%;
+    padding: 0px;
+    
+  }
+  
+  #formButton {
+    height: 20px;
+    margin-left: 10px;
+    
+  }
+  
+
 }
+
