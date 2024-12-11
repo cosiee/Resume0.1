@@ -480,24 +480,22 @@ function getScrollbarWidth() {
 }
 
 
-
+// Contact form sizing and positioning
 function formControl(endTopY) {
   const contactForm = document.querySelector(".formDiv#contactForm");
   
-  // const modalBox = document.querySelector(".modalbox .box");
+
 
   if (!contactForm) return;
 
   const computedStyleForm = window.getComputedStyle(contactForm);
-  const formWidth = parseFloat(computedStyleForm.getPropertyValue("width"));
+  const formWidth = parseFloat(computedStyleForm.getPropertyValue("width")) ;
   const formHeight = parseFloat(computedStyleForm.getPropertyValue("height"));
-console.log("formWidth 1: ", formWidth);
-console.log("computerStyle: ",computedStyleForm.getPropertyValue("width"));  // Ensure it's not null or undefined
 
   // Calculate form position
-  const formX = (window.innerWidth/2 - formWidth/2) + (getScrollbarWidth()/2.6) ;
+  const formX = (window.innerWidth/2 - formWidth/2) + 6.75 ;
   const formY = endTopY+12; //+ 190;
-  console.log("formX1: ", formX);
+ 
 
   // Update modal position
   contactForm.style.position = "absolute";
@@ -757,12 +755,12 @@ window.onload = function () {
     // Check if the orientation is landscape
     if (window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches) {
         // Adjust Y positions for landscape orientation
-        seeY = svgCenterY - 330; // Example value for landscape
-        meY = svgCenterY - 330;  // Example value for landscape
+        seeY = svgCenterY - 330; 
+        meY = svgCenterY - 330;  
     } else {
-        // Adjust Y positions for portrait orientation
-        seeY = svgCenterY - 210; // Original value for portrait
-        meY = svgCenterY - 210;  // Original value for portrait
+        // Adjust Y positions for portrait orientation and larger landscape screens
+        seeY = svgCenterY - 210; 
+        meY = svgCenterY - 210;  
     }
 
     // Position "SEE" and "ME" at the center of the SVG with adjusted Y coordinates
