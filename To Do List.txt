@@ -41,6 +41,15 @@ overlay to be present on burger menu appears (done-AC)
 
 elements to load and appear initially in position, not at origin then position(Done-AC)
 
+Navbar sticky rewrite logic, this:   (isLandscapeSmall && isSmallHeight && inSmallHeightScrollRange) ||
+      (inNormalHeightScrollRange) is not working need t combine new logic with old but functions running
+       resolve the problem . so combining the logic should work also so one function
+
+when orientaion landscape &  screen size is below 991.98px Me element adjusts position
+the thumbnails must do the same along with modal and form... is a chain reaction possible
+at the stage? (done-AC)
+
+dupilcated styles.css into pStyles.css and try new styled media queries seen here: https://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile (done-AC)
 
 
 
