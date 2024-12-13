@@ -7,10 +7,10 @@ const cloud1 = document.getElementById("cloud1");
 const thumbElement = document.querySelector(".thumbShape");
 
 const thumbNails = document.querySelector(".thumbnails");
-thumbNails.style.opacity=0;
+thumbNails.style.opacity = 0;
 
 const seeText = document.querySelector("#see");
-seeText.style.opacity=0;
+seeText.style.opacity = 0;
 
 gsap.set(".scrollDist", {
   width: "100%",
@@ -117,8 +117,6 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => setRandomBackground(containerId, imagesArray), randomTime);
   }
 
-
-
   setRandomBackground("software", softwareImages);
   setRandomBackground("photography", photographyImages);
   setRandomBackground("motion", motionImages);
@@ -131,7 +129,7 @@ window.history.scrollRestoration = "manual";
 
 function autoScrollNow() {
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-  
+
   if (maxScroll <= 0) {
     console.log("No scrollable space");
     return; // Exit if there's no scrollable space
@@ -153,39 +151,36 @@ function autoScrollNow() {
 }
 
 function autoScroll() {
-  
   // Reset scroll position to the top before starting animation
   window.scrollTo(0, 0); // Force scroll to top
-  
+
   // Add a small delay before calculating maxScroll to ensure everything is loaded
 
-  
   // setTimeout(() => {
-   
-    const maxScroll =
-      document.documentElement.scrollHeight - window.innerHeight;
 
-    if (maxScroll <= 0) {
-      console.log("No scrollable space");
-      return; // Exit if there's no scrollable space
-    }
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 
-    // Automatically scroll to the bottom over # seconds on page load
-    gsap.to(document.documentElement, {
-      // Explicitly target document root for scrolling
-      scrollTo: {
-        y: maxScroll, // Scroll to the bottom of the page dynamically
-        autoKill: false, // Disable autoKill to prevent interruptions
-      },
-      duration: 6.8, // Scroll over 6.8 seconds
-      ease: CustomEase.create(
-        "custom",
-        "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "
-      ), // Easing function for smooth scrolling
-      // onStart: () => console.log('Auto-scrolling started'),
-      // onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
-      // onComplete: () => console.log('Auto-scrolling completed')
-    });
+  if (maxScroll <= 0) {
+    console.log("No scrollable space");
+    return; // Exit if there's no scrollable space
+  }
+
+  // Automatically scroll to the bottom over # seconds on page load
+  gsap.to(document.documentElement, {
+    // Explicitly target document root for scrolling
+    scrollTo: {
+      y: maxScroll, // Scroll to the bottom of the page dynamically
+      autoKill: false, // Disable autoKill to prevent interruptions
+    },
+    duration: 6.8, // Scroll over 6.8 seconds
+    ease: CustomEase.create(
+      "custom",
+      "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "
+    ), // Easing function for smooth scrolling
+    // onStart: () => console.log('Auto-scrolling started'),
+    // onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
+    // onComplete: () => console.log('Auto-scrolling completed')
+  });
   // }, 3400); // Add a delay of 3.4seconds before starting the scroll to let the layout settle
 }
 
@@ -195,7 +190,7 @@ window.addEventListener("load", function () {
   updateDimensions();
   updateModalDimensions();
   animateThumbs();
-  
+
   autoScroll();
 });
 
@@ -289,31 +284,37 @@ let screenHeightHalved = svg.viewBox.baseVal.height / 2;
 let endLeftX, endRightX, endTopY, endBottomY;
 
 const landscapeMediaQuery = window.matchMedia(
-  '(orientation: landscape) and (max-width: 991.98px) and (max-height: 600px)'
+  "(orientation: landscape) and (max-width: 991.98px) and (max-height: 600px)"
 );
 const totalThumbWidth = getThumbWidthWithMargin();
 
- // Functions to position thumbnails when media query is satisfied
- function updateEndTopY() {
-  if (window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches) {
-      endTopY = window.innerHeight * 1.275; // Adjust multiplier for this condition
+// Functions to position thumbnails when media query is satisfied
+function updateEndTopY() {
+  if (
+    window.matchMedia("(orientation: landscape) and (max-width: 991.98px)")
+      .matches
+  ) {
+    endTopY = window.innerHeight * 1.275; // Adjust multiplier for this condition
   } else {
-      endTopY = window.innerHeight * 1.325; // Default multiplier
+    endTopY = window.innerHeight * 1.325; // Default multiplier
   }
   return endTopY;
-  console.log('Updated endTopY:', endTopY);
+  console.log("Updated endTopY:", endTopY);
 }
 function updateEndBottomY() {
-  if (window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches) {
+  if (
+    window.matchMedia("(orientation: landscape) and (max-width: 991.98px)")
+      .matches
+  ) {
     endBottomY = window.innerHeight * 1.275 + totalThumbWidth; // Adjust multiplier for this condition
-} else {
+  } else {
     endBottomY = window.innerHeight * 1.325 + totalThumbWidth;
-}
-return endBottomY;
+  }
+  return endBottomY;
 }
 
 // Listen for changes in the media query
-landscapeMediaQuery.addEventListener('change', updateEndTopY,updateEndBottomY );
+landscapeMediaQuery.addEventListener("change", updateEndTopY, updateEndBottomY);
 
 function updateDimensions() {
   thumbWidth = Math.min(300, window.innerWidth / 6);
@@ -383,10 +384,9 @@ function updateDimensionsNoMargins() {
     const marginWidth = getThumbMargin();
 
     endLeftX = screenWidthHalved - (widthThumb + marginWidth);
-    endTopY = updateEndTopY() + marginWidth -15;
+    endTopY = updateEndTopY() + marginWidth - 15;
     endRightX = screenWidthHalved - marginWidth;
-    endBottomY = updateEndBottomY() - marginWidth -15;
-
+    endBottomY = updateEndBottomY() - marginWidth - 15;
 
     collectThumbs();
     updateModalDimensions(endTopY);
@@ -479,23 +479,19 @@ function getScrollbarWidth() {
   return scrollbarWidth;
 }
 
-
 // Contact form sizing and positioning
 function formControl(endTopY) {
   const contactForm = document.querySelector(".formDiv#contactForm");
-  
-
 
   if (!contactForm) return;
 
   const computedStyleForm = window.getComputedStyle(contactForm);
-  const formWidth = parseFloat(computedStyleForm.getPropertyValue("width")) ;
+  const formWidth = parseFloat(computedStyleForm.getPropertyValue("width"));
   const formHeight = parseFloat(computedStyleForm.getPropertyValue("height"));
 
   // Calculate form position
-  const formX = (window.innerWidth/2 - formWidth/2) + 6.75 ;
-  const formY = endTopY+12; //+ 190;
- 
+  const formX = window.innerWidth / 2 - formWidth / 2 + 6.75;
+  const formY = endTopY + 12; //+ 190;
 
   // Update modal position
   contactForm.style.position = "absolute";
@@ -523,7 +519,7 @@ window.addEventListener(
 
 // initial thumb centering animation, called in a DOMContentLoaded
 function animateThumbs() {
-  thumbNails.style.opacity=1;
+  thumbNails.style.opacity = 1;
   gsap
     .timeline({
       scrollTrigger: {
@@ -621,60 +617,35 @@ observer.observe(cloud1, { attributes: true, childList: true, subtree: true });
 // Initial call to update the state based on current scale
 updateMeElement();
 
-// Scroll event listener to toggle sticky navbar
+// Scroll event listener to toggle sticky collapsed-navbar for landscape below orienttion
 $(window).scroll(function () {
-  var scrollDistOffset = $(".scrollDist").offset().top; // Get the top offset of .scrollDist
-  var scrollDistHeight = $(".scrollDist").outerHeight(); // Get the height of .scrollDist
-  var scrollTop = $(window).scrollTop(); // Get the current scroll position of the window
-  var windowHeight = $(window).height(); // Get the window height
+  var scrollDistOffset = $(".scrollDist").offset().top;
+  var scrollDistHeight = $(".scrollDist").outerHeight();
+  var scrollTop = $(window).scrollTop();
+  var windowHeight = $(window).height();
 
-  var isLandscapeSmall = window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches;
+  var isLandscapeSmall = window.matchMedia(
+    "(orientation: landscape) and (max-width: 991.98px)"
+  ).matches;
   var isSmallHeight = windowHeight < 320;
+  var inSmallHeightScrollRange =
+    scrollTop > scrollDistOffset &&
+    scrollTop < scrollDistOffset + scrollDistHeight;
+  var inNormalHeightScrollRange =
+    scrollTop > scrollDistOffset + 320 &&
+    scrollTop < scrollDistOffset + scrollDistHeight;
 
-                        
-  var inSmallHeightScrollRange = scrollTop > scrollDistOffset && scrollTop < scrollDistOffset + scrollDistHeight;
-  var inNormalHeightScrollRange = scrollTop > scrollDistOffset + 320 && scrollTop < scrollDistOffset + scrollDistHeight;
-console.log("inNormalHeightScrollRange", inNormalHeightScrollRange);
   // Apply sticky logic
-  $(".navbar").toggleClass(
-    "sticky",
-    (isLandscapeSmall && isSmallHeight && inSmallHeightScrollRange) ||
-      (inNormalHeightScrollRange)
-  );
-
-  // Ensure no sticky class for non-matching conditions
-  if (!isLandscapeSmall) {
-    $(".navbar").removeClass("sticky");
-  }
-});
-
-
-
-
-$(window).scroll(function () {
-  var scrollDistOffset = $(".scrollDist").offset().top; // Get the top offset of .scrollDist
-  var scrollDistHeight = $(".scrollDist").outerHeight(); // Get the height of .scrollDist
-  var scrollTop = $(window).scrollTop(); // Get the current scroll position of the window
-
-  // Check if the scroll position is greater than 320px relative to .scrollDist
-  if (scrollTop > scrollDistOffset + 320 && scrollTop < scrollDistOffset + scrollDistHeight) {
-    console.log("scrollTop > scrollDistOffset + 320 && scrollTop < scrollDistOffset + scrollDistHeight", scrollTop > scrollDistOffset + 320 && scrollTop < scrollDistOffset + scrollDistHeight);
+  if (
+    inNormalHeightScrollRange ||
+    (isLandscapeSmall && isSmallHeight && inSmallHeightScrollRange)
+  ) {
     $(".navbar").addClass("sticky");
   } else {
     $(".navbar").removeClass("sticky");
   }
 });
 
-
-
-
-// $(window).scroll(function () {
-//   if ($(window).scrollTop() > 320) {
-//     $(".navbar").addClass("sticky");
-//   } else {
-//     $(".navbar").removeClass("sticky");
-//   }
-// });
 // Function to hide the scrollbar
 function hideScrollBar() {
   document.documentElement.style.overflow = "hidden"; // Hide scroll on the entire document
@@ -784,14 +755,17 @@ window.onload = function () {
     let seeY, meY;
 
     // Check if the orientation is landscape
-    if (window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches) {
-        // Adjust Y positions for landscape orientation
-        seeY = svgCenterY - 330; 
-        meY = svgCenterY - 330;  
+    if (
+      window.matchMedia("(orientation: landscape) and (max-width: 991.98px)")
+        .matches
+    ) {
+      // Adjust Y positions for landscape orientation
+      seeY = svgCenterY - 330;
+      meY = svgCenterY - 330;
     } else {
-        // Adjust Y positions for portrait orientation and larger landscape screens
-        seeY = svgCenterY - 210; 
-        meY = svgCenterY - 210;  
+      // Adjust Y positions for portrait orientation and larger landscape screens
+      seeY = svgCenterY - 210;
+      meY = svgCenterY - 210;
     }
 
     // Position "SEE" and "ME" at the center of the SVG with adjusted Y coordinates
@@ -800,46 +774,41 @@ window.onload = function () {
 
     // Apply the translation (without affecting rotation)
     gsap.to("#see", {
-        x: seeX,
-        y: seeY,
-        duration: 1,
-        ease: "power2.out",
+      x: seeX,
+      y: seeY,
+      duration: 1,
+      ease: "power2.out",
     });
 
     gsap.to("#me", {
-        x: meX,
-        y: meY,
-        duration: 1,
-        ease: "power2.out",
+      x: meX,
+      y: meY,
+      duration: 1,
+      ease: "power2.out",
     });
 
     // Store the initial translation for the ME element
     initialTransform = `translate(${meX}px, ${meY}px)`;
     applyTransform(); // Apply the current transformation
     seeText.style.opacity = 0;
-}
+  }
 
-// Function to apply combined transformation (centering + rotation)
-function applyTransform() {
+  // Function to apply combined transformation (centering + rotation)
+  function applyTransform() {
     meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; // Combine rotation and translation
     seeText.style.opacity = 1;
-}
+  }
 
-// Function to handle orientation change
-function handleOrientationChange() {
+  // Function to handle orientation change
+  function handleOrientationChange() {
     updateTextElementPositions(); // Update positions on orientation change
-}
+  }
 
-// Add an event listener for orientation changes
-window.addEventListener("orientationchange", handleOrientationChange);
+  // Add an event listener for orientation changes
+  window.addEventListener("orientationchange", handleOrientationChange);
 
-// Initial call to set positions correctly
-updateTextElementPositions();
-
-
-
-
-
+  // Initial call to set positions correctly
+  updateTextElementPositions();
 
   // // Function to center the text(SEE/ME) elements in the SVG
   // function updateTextElementPositions() {
@@ -858,7 +827,6 @@ updateTextElementPositions();
   //   const meX = svgCenterX;
   //   const meY = svgCenterY - 210; // Adjust Y position for ME
 
-    
   //   // Apply the translation (without affecting rotation)
   //   gsap.to("#see", {
   //     x: seeX,
@@ -866,7 +834,7 @@ updateTextElementPositions();
   //     duration: 1,
   //     ease: "power2.out",
   //   });
-    
+
   //   gsap.to("#me", {
   //     x: meX,
   //     y: meY,
@@ -876,10 +844,10 @@ updateTextElementPositions();
 
   //   // Store the initial translation for the ME element
   //   initialTransform = `translate(${meX}px, ${meY}px)`;
-    
+
   //   applyTransform(); // Apply the current transformation
   //   seeText.style.opacity= 0;
-   
+
   // }
 
   // // Function to apply combined transformation (centering + rotation)
@@ -887,16 +855,6 @@ updateTextElementPositions();
   //   meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; // Combine rotation and translation
   //   seeText.style.opacity= 1;
   // }
-
-
-
-
-
-
-
-
-
-
 
   // Function to start the hover wiggle animation
   function startHoverWiggle() {
@@ -991,14 +949,14 @@ updateTextElementPositions();
   // Function to dynamically update text positions on resize
   function onResize() {
     updateTextElementPositions(); // Update position on window resize
-    
+
     updateDimensions();
     updateModalDimensions();
     updateDimensionsNoMargins();
   }
 
   // Initialize text positioning and idle wiggle on window load
-  updateTextElementPositions();// Center the text elements
+  updateTextElementPositions(); // Center the text elements
   startIdleWiggle(); // Start the idle wiggle animation
 
   // Update text positions when window is resized

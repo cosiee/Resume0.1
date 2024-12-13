@@ -4,9 +4,9 @@ Navbar sticky rewrite logic, this:   (isLandscapeSmall && isSmallHeight && inSma
 
 when orientaion landscape &  screen size is below 991.98px Me element adjusts position
 the thumbnails must do the same along with modal and form... is a chain reaction possible
-at the stage? 
+at the stage? (done-AC)
 
-dupilcated styles.css into pStyles.css and try new styled media queries seen here: https://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile
+dupilcated styles.css into pStyles.css and try new styled media queries seen here: https://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile (done-AC)
 
 Blinking Thumbnails need to be present at all times
 
