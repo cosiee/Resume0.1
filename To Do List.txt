@@ -8,9 +8,9 @@ at the stage? (done-AC)
 
 dupilcated styles.css into pStyles.css and try new styled media queries seen here: https://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile (done-AC)
 
-Blinking Thumbnails need to be present at all times
+Blinking Thumbnails need to be present at all times( work done but not as desired yet-AC)
 
-Thumbnails overlay fixed on smaller screens 
+Thumbnails overlay fixed on smaller screens (done-AC)
 
 links to lead somewhere, use/go to git hub for now where possible
 

@@ -2,15 +2,64 @@
 const meElement = document.getElementById("me");
 meElement.disabled = true;
 
-// Correctly reference the single element with ID "cloud1"
-const cloud1 = document.getElementById("cloud1");
-const thumbElement = document.querySelector(".thumbShape");
+function preloadImages(imageIds, callback) {
+  let loadedCount = 0;
+  const totalImages = imageIds.length;
 
-const thumbNails = document.querySelector(".thumbnails");
-thumbNails.style.opacity = 0;
+  imageIds.forEach((id) => {
+    const imageElement = document.querySelector(id);
+    if (imageElement && imageElement.getAttribute("href")) {
+      const img = new Image();
+      img.src = imageElement.getAttribute("href");
+      img.onload = () => {
+        loadedCount++;
+        if (loadedCount === totalImages) {
+          callback();
+        }
+      };
+      img.onerror = () => {
+        console.error(`Failed to load image: ${imageElement.getAttribute("href")}`);
+        loadedCount++;
+        if (loadedCount === totalImages) {
+          callback();
+        }
+      };
+    } else {
+      console.warn(`Image with ID ${id} not found or missing href.`);
+      loadedCount++;
+      if (loadedCount === totalImages) {
+        callback();
+      }
+    }
+  });
+}
 
-const seeText = document.querySelector("#see");
-seeText.style.opacity = 0;
+document.addEventListener("DOMContentLoaded", function () {
+  const imageIds = [
+    "#sky",
+    "#mountBg",
+    "#cloud2",
+    "#mountBg2",
+    "#cloud3",
+    "#mountMg",
+    "#cloud4",
+    "#mountMgF",
+    "#mountFg",
+    "#cloud5",
+    "#cloud1", // cloud1 (first appearance)
+  ];
+
+  // Hide the SVG initially
+  const svg = document.querySelector("#svg");
+  svg.style.visibility = "hidden";
+
+  // Preload images and start animation after loading
+  preloadImages(imageIds, () => {
+    console.log("All images loaded");
+    svg.style.visibility = "visible"; // Show SVG
+    mountainSkyAni(); // Start GSAP animation
+  });
+});
 
 gsap.set(".scrollDist", {
   width: "100%",
@@ -29,6 +78,86 @@ gsap.set("#mountains", {
   left: "50%",
   x: "-50%", //these are offseting, sizing needs to be adjusted so these are not required. look at svg and scroll-Dist
 });
+
+
+
+function mountainSkyAni() {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: ".scrollDist",
+        start: "top top",
+        end: "bottom bottom",
+        duration: 4,
+        scrub: 1,
+      },
+    })
+    .fromTo(
+      "#sky",
+      { scale: 1, x: 0, y: -80 },
+      { scale: 1.3, x: -150, y: -650 },
+      0
+    )
+    .fromTo(
+      "#mountBg",
+      { scale: 1, x: 0, y: 70 },
+      { scale: 1.3, x: -150, y: -600 },
+      0
+    )
+    .fromTo("#cloud2", { x: 400, y: 310 }, { x: -200, y: -600 }, 0)
+    .fromTo(
+      "#mountBg2",
+      { scale: 1, x: 0, y: 110 },
+      { scale: 1.3, x: -150, y: -670 },
+      0
+    )
+    .fromTo("#cloud3", { x: -200, y: 300 }, { x: 500, y: -1000 }, 0)
+    .fromTo(
+      "#mountMg",
+      { scale: 1, x: 0, y: 345 },
+      { scale: 1.3, x: -150, y: -700 },
+      0
+    )
+    .fromTo("#cloud4", { x: 300, y: 320 }, { x: -400, y: -850 }, 0)
+    .fromTo(
+      "#mountMgF",
+      { scale: 1, x: 0, y: 200 },
+      { scale: 1.3, x: -150, y: -750 },
+      0
+    )
+    .fromTo(
+      "#mountFg",
+      { scale: 1, x: 0, y: 220 },
+      { scale: 1.3, x: -150, y: -850 },
+      0
+    )
+    .fromTo(
+      "#cloud5",
+      { scale: 1.5, x: -100, y: 380 },
+      { scale: 3, x: 300, y: -950 },
+      0
+    )
+    .fromTo(
+      "#cloud1, #cloud1M",
+      { scale: 1.3, x: -10, y: 576 },
+      { scale: 2, x: -500, y: -690 },
+      0
+    );
+}
+
+
+
+// Correctly reference the single element with ID "cloud1"
+const cloud1 = document.getElementById("cloud1");
+const thumbElement = document.querySelector(".thumbShape");
+
+const thumbNails = document.querySelector(".thumbnails");
+thumbNails.style.opacity = 0;
+
+const seeText = document.querySelector("#see");
+seeText.style.opacity = 0;
+
+
 
 // Random background images for thumbnails
 document.addEventListener("DOMContentLoaded", function () {
@@ -222,7 +351,7 @@ function autoScroll() {
 
   // Add a small delay before calculating maxScroll to ensure everything is loaded
 
-  // setTimeout(() => {
+  setTimeout(() => {
 
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 
@@ -247,7 +376,7 @@ function autoScroll() {
     // onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
     // onComplete: () => console.log('Auto-scrolling completed')
   });
-  // }, 3400); // Add a delay of 3.4seconds before starting the scroll to let the layout settle
+  }, 3000); // Add a delay of 3seconds before starting the scroll to let the layout settle
 }
 
 window.addEventListener("load", function () {
@@ -260,69 +389,71 @@ window.addEventListener("load", function () {
   autoScroll();
 });
 
-function mountainSkyAni() {
-  gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: ".scrollDist",
-        start: "top top",
-        end: "bottom bottom",
-        duration: 4,
-        scrub: 1,
-      },
-    })
-    .fromTo(
-      "#sky",
-      { scale: 1, x: 0, y: -80 },
-      { scale: 1.3, x: -150, y: -650 },
-      0
-    )
-    .fromTo(
-      "#mountBg",
-      { scale: 1, x: 0, y: 70 },
-      { scale: 1.3, x: -150, y: -600 },
-      0
-    )
-    .fromTo("#cloud2", { x: 400, y: 310 }, { x: -200, y: -600 }, 0)
-    .fromTo(
-      "#mountBg2",
-      { scale: 1, x: 0, y: 110 },
-      { scale: 1.3, x: -150, y: -670 },
-      0
-    )
-    .fromTo("#cloud3", { x: -200, y: 300 }, { x: 500, y: -1000 }, 0)
-    .fromTo(
-      "#mountMg",
-      { scale: 1, x: 0, y: 345 },
-      { scale: 1.3, x: -150, y: -700 },
-      0
-    )
-    .fromTo("#cloud4", { x: 300, y: 320 }, { x: -400, y: -850 }, 0)
-    .fromTo(
-      "#mountMgF",
-      { scale: 1, x: 0, y: 200 },
-      { scale: 1.3, x: -150, y: -750 },
-      0
-    )
-    .fromTo(
-      "#mountFg",
-      { scale: 1, x: 0, y: 220 },
-      { scale: 1.3, x: -150, y: -850 },
-      0
-    )
-    .fromTo(
-      "#cloud5",
-      { scale: 1.5, x: -100, y: 380 },
-      { scale: 3, x: 300, y: -950 },
-      0
-    )
-    .fromTo(
-      "#cloud1, #cloud1M",
-      { scale: 1.3, x: -10, y: 576 },
-      { scale: 2, x: -500, y: -690 },
-      0
-    );
-}
+
+
+// function mountainSkyAni() {
+//   gsap
+//     .timeline({
+//       scrollTrigger: {
+//         trigger: ".scrollDist",
+//         start: "top top",
+//         end: "bottom bottom",
+//         duration: 4,
+//         scrub: 1,
+//       },
+//     })
+//     .fromTo(
+//       "#sky",
+//       { scale: 1, x: 0, y: -80 },
+//       { scale: 1.3, x: -150, y: -650 },
+//       0
+//     )
+//     .fromTo(
+//       "#mountBg",
+//       { scale: 1, x: 0, y: 70 },
+//       { scale: 1.3, x: -150, y: -600 },
+//       0
+//     )
+//     .fromTo("#cloud2", { x: 400, y: 310 }, { x: -200, y: -600 }, 0)
+//     .fromTo(
+//       "#mountBg2",
+//       { scale: 1, x: 0, y: 110 },
+//       { scale: 1.3, x: -150, y: -670 },
+//       0
+//     )
+//     .fromTo("#cloud3", { x: -200, y: 300 }, { x: 500, y: -1000 }, 0)
+//     .fromTo(
+//       "#mountMg",
+//       { scale: 1, x: 0, y: 345 },
+//       { scale: 1.3, x: -150, y: -700 },
+//       0
+//     )
+//     .fromTo("#cloud4", { x: 300, y: 320 }, { x: -400, y: -850 }, 0)
+//     .fromTo(
+//       "#mountMgF",
+//       { scale: 1, x: 0, y: 200 },
+//       { scale: 1.3, x: -150, y: -750 },
+//       0
+//     )
+//     .fromTo(
+//       "#mountFg",
+//       { scale: 1, x: 0, y: 220 },
+//       { scale: 1.3, x: -150, y: -850 },
+//       0
+//     )
+//     .fromTo(
+//       "#cloud5",
+//       { scale: 1.5, x: -100, y: 380 },
+//       { scale: 3, x: 300, y: -950 },
+//       0
+//     )
+//     .fromTo(
+//       "#cloud1, #cloud1M",
+//       { scale: 1.3, x: -10, y: 576 },
+//       { scale: 2, x: -500, y: -690 },
+//       0
+//     );
+// }
 // ###################################################################################
 
 // Thumbnails positioning based on window size
@@ -857,12 +988,14 @@ window.onload = function () {
     initialTransform = `translate(${meX}px, ${meY}px)`;
     applyTransform(); // Apply the current transformation
     seeText.style.opacity = 0;
+    document.getElementById("down").style.opacity = 0;
   }
 
   // Function to apply combined transformation (centering + rotation)
   function applyTransform() {
     meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; // Combine rotation and translation
     seeText.style.opacity = 1;
+    document.getElementById("down").style.opacity = 1;
   }
 
   // Function to handle orientation change

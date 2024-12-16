@@ -35,6 +35,10 @@
   overflow: hidden;
   width: 100%;
 }
+#svg {
+  visibility: hidden;
+}
+
 
 text.lrgtext {
   position: absolute;
@@ -42,7 +46,9 @@ text.lrgtext {
   font-size: 125px;
   z-index: 15;
 }
-
+.down{
+  opacity: 0;
+}
 #me {
   text-shadow: 0px 2px 2px #26466e;
   z-index: 16;
