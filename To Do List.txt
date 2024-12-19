@@ -14,7 +14,7 @@ Thumbnails overlay fixed on smaller screens (done-AC)
 
 links to lead somewhere, use/go to git hub for now where possible
 
-Everything to load before it appears
+Everything to load before it appears(done slows loading considerably-AC need reviewing...)
 
 Barebones elements from index.html for all pages for site continuity
 

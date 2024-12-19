@@ -2,62 +2,109 @@
 const meElement = document.getElementById("me");
 meElement.disabled = true;
 
+const prioritizedImages = [
+  "#sky",
+  "#mountMgF",
+  "#mountFg",
+  "#cloud1",
+  "#mountBg",
+  "#mountBg2",
+  "#meElement",
+];
+
 function preloadImages(imageIds, callback) {
   let loadedCount = 0;
   const totalImages = imageIds.length;
-
+  
   imageIds.forEach((id) => {
-    const imageElement = document.querySelector(id);
-    if (imageElement && imageElement.getAttribute("href")) {
+    const imgElement = document.querySelector(id);
+    if (imgElement && imgElement.getAttribute("href")) {
       const img = new Image();
-      img.src = imageElement.getAttribute("href");
-      img.onload = () => {
+      img.src = imgElement.getAttribute("href");
+      img.onload = img.onerror = () => {
         loadedCount++;
         if (loadedCount === totalImages) {
           callback();
         }
       };
-      img.onerror = () => {
-        console.error(`Failed to load image: ${imageElement.getAttribute("href")}`);
-        loadedCount++;
-        if (loadedCount === totalImages) {
-          callback();
-        }
-      };
+     
     } else {
-      console.warn(`Image with ID ${id} not found or missing href.`);
       loadedCount++;
       if (loadedCount === totalImages) {
         callback();
+        
       }
     }
   });
 }
 
+
+// function preloadImages(imageIds, callback) {
+//   let loadedCount = 0;
+//   const totalImages = imageIds.length;
+
+//   imageIds.forEach((id) => {
+//     const imageElement = document.querySelector(id);
+//     if (imageElement && imageElement.getAttribute("href")) {
+//       const img = new Image();
+//       img.src = imageElement.getAttribute("href");
+//       img.onload = () => {
+//         loadedCount++;
+//         if (loadedCount === totalImages) {
+//           callback();
+//         }
+//       };
+//       img.onerror = () => {
+//         console.error(`Failed to load image: ${imageElement.getAttribute("href")}`);
+//         loadedCount++;
+//         if (loadedCount === totalImages) {
+//           callback();
+//         }
+//       };
+//     } else {
+//       console.warn(`Image with ID ${id} not found or missing href.`);
+//       loadedCount++;
+//       if (loadedCount === totalImages) {
+//         callback();
+//       }
+//     }
+//   });
+// }
+
 document.addEventListener("DOMContentLoaded", function () {
-  const imageIds = [
-    "#sky",
-    "#mountBg",
-    "#cloud2",
-    "#mountBg2",
-    "#cloud3",
-    "#mountMg",
-    "#cloud4",
-    "#mountMgF",
-    "#mountFg",
-    "#cloud5",
-    "#cloud1", // cloud1 (first appearance)
-  ];
+  
+  // const imageIds = [
+  //   "#sky",
+  //   "#mountBg",
+  //   "#cloud2",
+  //   "#mountBg2",
+  //   "#cloud3",
+  //   "#mountMg",
+  //   "#cloud4",
+  //   "#mountMgF",
+  //   "#mountFg",
+  //   "#cloud5",
+  //   "#cloud1", // cloud1 (first appearance)
+  // ];
 
-  // Hide the SVG initially
+  // // Hide the SVG initially
+  // const svg = document.querySelector("#svg");
+  // svg.style.visibility = "hidden";
+
+  // // Preload images and start animation after loading
+  // preloadImages(imageIds, () => {
+  //   console.log("All images loaded");
+  //   svg.style.visibility = "visible"; // Show SVG
+  //   mountainSkyAni(); // Start GSAP animation
+  // });
+
   const svg = document.querySelector("#svg");
-  svg.style.visibility = "hidden";
+  svg.style.visibility = "hidden"; // Hide SVG initially
 
-  // Preload images and start animation after loading
-  preloadImages(imageIds, () => {
-    console.log("All images loaded");
-    svg.style.visibility = "visible"; // Show SVG
-    mountainSkyAni(); // Start GSAP animation
+  preloadImages(prioritizedImages, () => {
+    console.log("Prioritized images loaded");
+    svg.style.visibility = "visible"; // Show SVG after loading
+    mountainSkyAni(); // Start animations
   });
 });
 
@@ -622,6 +669,38 @@ function collectThumbs() {
   });
 }
 
+function updateWIPDimensions(endTopY) {
+  const wip = document.querySelector(".wip .box");
+
+  if (!wip || !thumbElement) return;
+
+  const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
+
+  // Calculate new width and height for the modal box
+  const newWidth = Math.max(thumbWidthWithoutMargin * 2 + 4, 300);
+  const newHeight = newWidth; // Assuming we want a square wip
+
+  // Update modal dimensions
+  wip.style.width = `${newWidth}px`;
+  wip.style.height = `${newHeight}px`;
+
+  // Calculate the center of the screen
+  const centerX = window.innerWidth / 2 + 6; //refining positioning
+
+  // Calculate the new left position to center the modal box
+  const newLeft = centerX - newWidth / 2;
+
+  // Use the passed endTopY for the new top position
+  const newTop = endTopY + 12.5; //  works for alignment on y axis
+
+  // Update modal position
+  wip.style.position = "absolute";
+  wip.style.left = `${newLeft}px`;
+  wip.style.top = `${newTop}px`;
+
+  // modalBox.style.display = "block";
+}
+
 function updateModalDimensions(endTopY) {
   const modalBox = document.querySelector(".modalbox .box");
 
@@ -867,6 +946,18 @@ function showStatementContact() {
   updateDimensionsNoMargins();
   document.getElementById("statementContact").style.display = "block";
   document.getElementById("contactForm").style.display = "none";
+}
+
+function showWip(){
+  updateWIPDimensions(endTopY- 4);
+  updateDimensionsNoMargins();
+  document.getElementById("wip").style.display = "block";
+  document.getElementById("contactForm").style.display = "none";
+
+}
+
+function hideWip(){
+  document.getElementById("wip").style.display = "none"; 
 }
 
 function centreThumbs() {

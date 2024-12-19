@@ -65,12 +65,12 @@
                   Software
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="softwareDropMenuLink">
-                  <li><a class="dropdown-item" href="#">HTML</a></li>
-                  <li><a class="dropdown-item" href="#">CSS</a></li>
-                  <li><a class="dropdown-item" href="#">JavaScript</a></li>
-                  <li><a class="dropdown-item" href="#">Java</a></li>
-                  <li><a class="dropdown-item" href="#">Python</a></li>
-                  <li><a class="dropdown-item" href="#">SQL</a></li>
+                  <li><a class="dropdown-item" href="https://github.com/cosiee/Resume0.1/blob/branchThree/index.html" target="_blank" rel="noopener noreferrer">HTML</a></li>
+                  <li><a class="dropdown-item" href="https://github.com/cosiee/Resume0.1/blob/branchThree/css/styles.css" target="_blank" rel="noopener noreferrer">CSS</a></li>
+                  <li><a class="dropdown-item" href="https://github.com/cosiee/Resume0.1/blob/branchThree/js/main.js" target="_blank" rel="noopener noreferrer">JavaScript</a></li>
+                  <li><a class="dropdown-item" onclick= "showWip();">Java</a></li>
+                  <li><a class="dropdown-item" onclick= "showWip();">Python</a></li>
+                  <li><a class="dropdown-item" onclick= "showWip();">SQL</a></li>
                 </ul>
               </li>
   
@@ -135,7 +135,7 @@
           <g mask="url(#m)">
             <rect fill="#fff" width="100%" height="100%" />
             <rect id="meshaker" />
-            <a class="meLink" onclick="showStatementContact(); ">
+            <a class="meLink" onclick="showStatementContact();">
               <!-- <text class="lrgtext" id="me" fill="#162a43">ME</text> -->
               <text class="lrgtext" id="me" fill="#162a43" dominant-baseline="middle" text-anchor="middle"
                 onclick="autoScrollNow()">ME</text>
@@ -179,7 +179,7 @@
   
     <div class="container-fluid modalbox" id="statementContact" style="display: box;">
       <div class="box">
-        <a class="close" onclick="showScrollBar(); showThumbs(); updateDimensions(); spaceoutThumbs();">X</a>
+        <a class="close" onclick="showScrollBar(); showThumbs(); updateDimensions(); spaceoutThumbs();"  href="#meLink">X</a>
         <p class="title">Welcome</p>
         <div class="content">
           <p class="thanks">Thanks for having a look-see!</p>
@@ -216,6 +216,20 @@
     </div>
   
     <!-- <script src="js/testTwo.js" defer></script> -->
+
+    <div class="container-fluid modalbox wip" id="wip" style="display: box;">
+      <div class="box">
+        <a class="close" onclick="showScrollBar(); showThumbs(); updateDimensions(); spaceoutThumbs(); hideWip();" href="#meLink">X</a>
+        <div class="content">
+          <p class="thanks">Thanks for having a look!</p>
+          
+          <p class="toExit">ATM, this is still under development.</p>
+          
+          <p class="allTheBest">All the Best!</p>
+          
+        </div>
+      </div>
+    </div>
   </body>
   
   </html>

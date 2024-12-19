@@ -46,9 +46,7 @@ text.lrgtext {
   font-size: 125px;
   z-index: 15;
 }
-.down{
-  opacity: 0;
-}
+
 #me {
   text-shadow: 0px 2px 2px #26466e;
   z-index: 16;
@@ -115,6 +113,7 @@ body {
   border-bottom: 4px solid #fff;
   border-right: 4px solid #fff;
   animation: fade_move_down 3s ease-in-out infinite;
+  opacity: 0;
 }
 
 .scroll-arrow:hover {
@@ -406,7 +405,7 @@ navbar-toggler left {
 
 /*###################### End of Thumbnail Base Styles ############################ */
 
-/* Modal Statement/Contact Base Styles ####################################### */
+/* Modal Statement/Contact Base Styles & WIP####################################### */
 
 .modalbox .box {
   position: absolute;
@@ -491,6 +490,71 @@ navbar-toggler left {
   color: #6e6f79;
   cursor: pointer;
 }
+
+/* ********************************* */
+
+
+.wip .box {
+  position: absolute;
+  transition: transform 0.3s, width 0.3s, height 0.3s;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  background-color: rgba(0, 0, 0, 0.6);
+  margin: auto;
+  min-width: 210px;
+  padding: 45px;
+  width: 500px;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 12%;
+  color: #fff;
+}
+
+.modalbox .title {
+  border-bottom: 1px solid #ccc;
+  font-size: 22px;
+  letter-spacing: 0.1em;
+  margin: 0;
+  padding: 0 0 10px;
+  color: #fff;
+}
+
+.wip .content {
+  display: block;
+  font-size: 18px;
+  line-height: 22px;
+  padding: 10px 40px 40px 15px;
+  text-align: left;
+  color: #fff;
+}
+
+.wip .close {
+  color: #fff;
+  display: block;
+  float: right;
+  font-size: 17px;
+  text-decoration: bold;
+}
+
+
+.wip {
+  position: absolute;
+  display: none;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  color: #333333;
+}
+
+.wip:target {
+  display: block;
+  outline: none;
+}
+
+
+
+
 
 .hidden {
   display: none;
