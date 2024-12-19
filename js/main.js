@@ -263,49 +263,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "url('css/assets/y11.jpg')",
   ];
 
-//   function preloadImages(imagesArray) {
-//     imagesArray.forEach((imageUrl) => {
-//       const img = new Image();
-//       img.src = imageUrl.replace("url('", "").replace("')", "");
-//     });
-//   }
 
-//   function getRandomImage(imagesArray) {
-//     return imagesArray[Math.floor(Math.random() * imagesArray.length)];
-//   }
-
-//   function setRandomBackground(containerId, imagesArray) {
-//     const container = document.getElementById(containerId);
-
-//     // Ensure smooth transition using a delay between updates
-//     const newImage = getRandomImage(imagesArray);
-
-//     // Avoid setting the same image twice in a row
-//     const currentImage = container.style.backgroundImage;
-//     if (newImage === currentImage) {
-//       setRandomBackground(containerId, imagesArray); // Try again
-//       return;
-//     }
-
-//     container.style.backgroundImage = newImage;
-
-//     // Set a random interval for the next change
-//     const randomTime = Math.floor(Math.random() * (10000 - 5000)) + 5000;
-//     setTimeout(() => setRandomBackground(containerId, imagesArray), randomTime);
-//   }
-
-//   // Preload all images before setting random backgrounds
-
-
-//   setRandomBackground("software", softwareImages);
-//   setRandomBackground("photography", photographyImages);
-//   setRandomBackground("motion", motionImages);
-//   setRandomBackground("diy", diyImages);
-
-//   preloadImages(softwareImages);
-// preloadImages(photographyImages);
-// preloadImages(motionImages);
-// preloadImages(diyImages);
 
 function preloadImages(imagesArray) {
   imagesArray.forEach((imageUrl) => {
@@ -347,7 +305,7 @@ function setRandomBackgroundWithFade(containerId, imagesArray) {
   };
 
   // Set next update interval
-  const randomTime = Math.floor(Math.random() * (10000 - 9000)) + 7000;
+  const randomTime = Math.floor(Math.random() * (10000 - 5000)) + 5000;
   setTimeout(() => setRandomBackgroundWithFade(containerId, imagesArray), randomTime);
 }
 
