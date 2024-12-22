@@ -10,9 +10,13 @@ dupilcated styles.css into pStyles.css and try new styled media queries seen her
 
 Blinking Thumbnails need to be present at all times( work done but not as desired yet-AC)
 
+close button on WIP message not working on smaller screens, adjusted margin(done-AC)
+
 Thumbnails overlay fixed on smaller screens (done-AC)
 
-links to lead somewhere, use/go to git hub for now where possible
+links to lead somewhere, use/go to git hub for now where possible(done for now-AC)
+
+the close 'x' on the WIP statment t on smaller screens isn't workind. Why? and resolve.
 
 Everything to load before it appears(done slows loading considerably-AC need reviewing...)
 
