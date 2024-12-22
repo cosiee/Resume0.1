@@ -320,7 +320,7 @@ navbar-toggler left {
   margin: 12.5px;
   overflow: hidden;
   border-radius: 24%;
-  transition: background-image 1.8s ease-in-out;
+  /* transition: background-image 1.8s ease-in-out; */
   opacity: 0;
 }
 
