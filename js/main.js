@@ -309,30 +309,132 @@ function getRandomImage(imagesArray) {
 //   setTimeout(() => setRandomBackgroundWithFade(containerId, imagesArray), randomTime);
 // }
 
-function setRandomBackgroundWithTransition(containerId, imagesArray) {
+
+function setRandomBackgroundWithFade(containerId, imagesArray) {
   const container = document.getElementById(containerId);
+  let timeoutId; // Store the timeout ID to manage it
+  const overlay = document.querySelector("#overlay");
 
-  // Preload the next image
-  const newImageUrl = getRandomImage(imagesArray).replace("url('", "").replace("')", "");
-  const img = new Image();
-  img.src = newImageUrl;
+  function updateBackground() {
+    // Preload the next image
+    const newImageUrl = getRandomImage(imagesArray).replace("url('", "").replace("')", "");
+    const img = new Image();
+    img.src = newImageUrl;
 
-  img.onload = () => {
-    // Avoid setting the same image twice
-    const currentImage = container.style.backgroundImage;
-    if (currentImage.includes(newImageUrl)) {
-      setTimeout(() => setRandomBackgroundWithTransition(containerId, imagesArray), 5000);
-      return;
-    }
+    img.onload = () => {
+      // Avoid setting the same image twice
+      const currentImage = container.style.backgroundImage;
+      if (currentImage.includes(newImageUrl)) {
+        timeoutId = setTimeout(updateBackground, 2500); // Retry with minimum delay
+        return;
+      }
 
-    // Smoothly transition to the new image
-    container.style.backgroundImage = `url('${newImageUrl}')`;
-  };
+      // Create a fading layer
+      const fadeLayer = document.createElement("div");
+      fadeLayer.style.position = "absolute";
+      fadeLayer.style.top = 0;
+      fadeLayer.style.left = 0;
+      fadeLayer.style.width = "100%";
+      fadeLayer.style.height = "100%";
+      fadeLayer.style.backgroundImage = `url('${newImageUrl}')`;
+      fadeLayer.style.backgroundSize = "cover";
+      fadeLayer.style.backgroundPosition = "center";
+      fadeLayer.style.opacity = 0;
+      fadeLayer.style.transition = "opacity 1s ease-in-out";
+      fadeLayer.style.zIndex = 1;
 
-  // Set the next update interval
-  const randomTime = Math.floor(Math.random() * (10000 - 5000)) + 5000;
-  setTimeout(() => setRandomBackgroundWithTransition(containerId, imagesArray), randomTime);
+      // Conditional overlay opacity for screen widths < 992px
+      if (window.innerWidth < 992) {        overlay.style.opacity = 0.5;
+         // Add semi-transparent overlay
+      } else {
+        fadeLayer.style.backgroundColor = "transparent"; 
+        overlay.style.opacity = 0;// No overlay for larger screens
+      }
+
+      // Append the fading layer to the container
+      container.appendChild(fadeLayer);
+
+      // Trigger fade-in
+      setTimeout(() => {
+        fadeLayer.style.opacity = 1;
+
+        // Remove the old background after fade-in completes
+        setTimeout(() => {
+          container.style.backgroundImage = `url('${newImageUrl}')`;
+          container.removeChild(fadeLayer);
+        }, 1000); // Match the fade-in duration
+      }, 0);
+    };
+
+    // Set the next update interval
+    const randomTime = Math.random() * (10000 - 2500) + 2500; // Random between 2.5s and 10s
+    clearTimeout(timeoutId); // Clear the previous timeout
+    timeoutId = setTimeout(updateBackground, randomTime);
+  }
+
+  updateBackground(); // Start the first background update
 }
+
+
+function setRandomBackgroundWithFade(containerId, imagesArray) {
+  const container = document.getElementById(containerId);
+  let timeoutId; // Store the timeout ID to manage it
+
+  function updateBackground() {
+    // Preload the next image
+    const newImageUrl = getRandomImage(imagesArray).replace("url('", "").replace("')", "");
+    const img = new Image();
+    img.src = newImageUrl;
+
+    img.onload = () => {
+      // Avoid setting the same image twice
+      const currentImage = container.style.backgroundImage;
+      if (currentImage.includes(newImageUrl)) {
+        timeoutId = setTimeout(updateBackground, 2500); // Retry with minimum delay
+        return;
+      }
+
+      // Create a fading layer
+      const fadeLayer = document.createElement("div");
+      fadeLayer.style.position = "absolute";
+      fadeLayer.style.top = 0;
+      fadeLayer.style.left = 0;
+      fadeLayer.style.width = "100%";
+      fadeLayer.style.height = "100%";
+      fadeLayer.style.backgroundImage = `url('${newImageUrl}')`;
+      fadeLayer.style.backgroundSize = "cover";
+      fadeLayer.style.backgroundPosition = "center";
+      fadeLayer.style.opacity = 0;
+      fadeLayer.style.transition = "opacity 1s ease-in-out";
+      fadeLayer.style.zIndex = 1;
+
+      // Append the fading layer to the container
+      container.appendChild(fadeLayer);
+
+      // Trigger fade-in
+      setTimeout(() => {
+        fadeLayer.style.opacity = 1;
+
+        // Remove the old background after fade-in completes
+        setTimeout(() => {
+          container.style.backgroundImage = `url('${newImageUrl}')`;
+          container.removeChild(fadeLayer);
+        }, 5000); // Match the fade-in duration
+      }, 5000);
+    };
+
+    // Set the next update interval
+    const randomTime = Math.random() * (10000 - 5000) + 5000; // Random between 2.5s and 10s
+    clearTimeout(timeoutId); // Clear the previous timeout
+    timeoutId = setTimeout(updateBackground, randomTime);
+  }
+
+  updateBackground(); // Start the first background update
+}
+
+
+
+
 
 
 // Preload all images
@@ -347,10 +449,16 @@ preloadImages(diyImages);
 // setRandomBackgroundWithFade("motion", motionImages);
 // setRandomBackgroundWithFade("diy", diyImages);
 
-setRandomBackgroundWithTransition("software", softwareImages);
-setRandomBackgroundWithTransition("photography", photographyImages);
-setRandomBackgroundWithTransition("motion", motionImages);
-setRandomBackgroundWithTransition("diy", diyImages);
+setRandomBackgroundWithFade("software", softwareImages);
+setRandomBackgroundWithFade("photography", photographyImages);
+setRandomBackgroundWithFade("motion", motionImages);
+setRandomBackgroundWithFade("diy", diyImages);
+
+
+// setRandomBackgroundWithTransition("software", softwareImages);
+// setRandomBackgroundWithTransition("photography", photographyImages);
+// setRandomBackgroundWithTransition("motion", motionImages);
+// setRandomBackgroundWithTransition("diy", diyImages);
 
 
 });

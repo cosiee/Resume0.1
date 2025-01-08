@@ -1,3 +1,12 @@
+Why does the thumbnail overlay only work sometimes on smaller screens?
+because there is a new layer created for fading in new image which doesn't have 
+ the overlay trigger when is should. all behaviour for overlay hover and opacity 
+ of 0.5 need to be given to fade layer or alternative needs to be sought...
+
+
+
+
+
 Navbar sticky rewrite logic, this:   (isLandscapeSmall && isSmallHeight && inSmallHeightScrollRange) ||
       (inNormalHeightScrollRange) is not working need t combine new logic with old but functions running
        resolve the problem . so combining the logic should work also so one function
@@ -12,7 +21,7 @@ Blinking Thumbnails need to be present at all times( work done but not as desire
 they start at correct random pace of change(transition) but this pace accerates over time. need
 to maintain random even slow pace.
 
-Sky1.webp not loading.
+Sky1.webp not loading.(done-ac)
 
 close button on WIP message not working on smaller screens, adjusted margin(done-AC)
 
