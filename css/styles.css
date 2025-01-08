@@ -385,22 +385,22 @@ navbar-toggler left {
 
 #software .overlay {
   /* background-color:deepskyblue; */
-  background-image: url("assets/binary-min.png");
+  background-image: url("assets/binary-min.webp");
 }
 
 #photography .overlay {
   /* background-color:rgb(186, 3, 3); */
-  background-image: url("assets/photography-min.png");
+  background-image: url("assets/photography-min.webp");
 }
 
 #motion .overlay {
   /* background-color:rgb(1, 73, 4); */
-  background-image: url("assets/motion-min.png");
+  background-image: url("assets/motion-min.webp");
 }
 
 #diy .overlay {
   /* background-color:rgb(227, 171, 3); */
-  background-image: url("assets/diy-min.png");
+  background-image: url("assets/diy-min.webp");
 }
 
 /*###################### End of Thumbnail Base Styles ############################ */

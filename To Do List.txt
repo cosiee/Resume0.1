@@ -9,6 +9,10 @@ at the stage? (done-AC)
 dupilcated styles.css into pStyles.css and try new styled media queries seen here: https://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile (done-AC)
 
 Blinking Thumbnails need to be present at all times( work done but not as desired yet-AC)
+they start at correct random pace of change(transition) but this pace accerates over time. need
+to maintain random even slow pace.
+
+Sky1.webp not loading.
 
 close button on WIP message not working on smaller screens, adjusted margin(done-AC)
 
