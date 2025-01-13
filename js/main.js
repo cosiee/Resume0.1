@@ -375,10 +375,9 @@ function setRandomBackgroundWithFade(containerId, imagesArray) {
   updateBackground(); // Start the first background update
 }
 
-
-function setRandomBackgroundWithFade(containerId, imagesArray) {
+function setRandomBackground(containerId, imagesArray) {
   const container = document.getElementById(containerId);
-  let timeoutId; // Store the timeout ID to manage it
+  let timeoutId;
 
   function updateBackground() {
     // Preload the next image
@@ -388,43 +387,27 @@ function setRandomBackgroundWithFade(containerId, imagesArray) {
 
     img.onload = () => {
       // Avoid setting the same image twice
-      const currentImage = container.style.backgroundImage;
+      const currentImage = container.style.getPropertyValue('--background-next');
       if (currentImage.includes(newImageUrl)) {
         timeoutId = setTimeout(updateBackground, 2500); // Retry with minimum delay
         return;
       }
 
-      // Create a fading layer
-      const fadeLayer = document.createElement("div");
-      fadeLayer.style.position = "absolute";
-      fadeLayer.style.top = 0;
-      fadeLayer.style.left = 0;
-      fadeLayer.style.width = "100%";
-      fadeLayer.style.height = "100%";
-      fadeLayer.style.backgroundImage = `url('${newImageUrl}')`;
-      fadeLayer.style.backgroundSize = "cover";
-      fadeLayer.style.backgroundPosition = "center";
-      fadeLayer.style.opacity = 0;
-      fadeLayer.style.transition = "opacity 1s ease-in-out";
-      fadeLayer.style.zIndex = 1;
+      // Set the new image as the next background
+      container.style.setProperty('--background-next', `url('${newImageUrl}')`);
 
-      // Append the fading layer to the container
-      container.appendChild(fadeLayer);
+      // Trigger the transition
+      container.classList.add('fade-transition');
 
-      // Trigger fade-in
+      // After the fade completes, set the current image
       setTimeout(() => {
-        fadeLayer.style.opacity = 1;
-
-        // Remove the old background after fade-in completes
-        setTimeout(() => {
-          container.style.backgroundImage = `url('${newImageUrl}')`;
-          container.removeChild(fadeLayer);
-        }, 5000); // Match the fade-in duration
-      }, 5000);
+        container.style.setProperty('--background-current', `url('${newImageUrl}')`);
+        container.classList.remove('fade-transition');
+      }, 1000); // Match the CSS transition duration
     };
 
     // Set the next update interval
-    const randomTime = Math.random() * (10000 - 5000) + 5000; // Random between 2.5s and 10s
+    const randomTime = Math.random() * (10000 - 2500) + 2500; // Random between 2.5s and 10s
     clearTimeout(timeoutId); // Clear the previous timeout
     timeoutId = setTimeout(updateBackground, randomTime);
   }
@@ -432,6 +415,11 @@ function setRandomBackgroundWithFade(containerId, imagesArray) {
   updateBackground(); // Start the first background update
 }
 
+
+setRandomBackground("software", softwareImages);
+setRandomBackground("photography", photographyImages);
+setRandomBackground("motion", motionImages);
+setRandomBackground("diy", diyImages);
 
 
 

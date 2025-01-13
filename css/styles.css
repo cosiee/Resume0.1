@@ -349,11 +349,12 @@ navbar-toggler left {
 #photography,
 #motion,
 #diy {
+  background-image: var(--background-current);
   background-size: cover;
   background-position: center;
   filter: drop-shadow(0 0 0.1rem #162a43);
   transform: scale(1);
-  transition: background-image 1.8s ease-in-out;
+  transition: background-image 1.8s ease-in-out, opacity 1.8s ease-in-out;
 
 }
 
@@ -401,6 +402,28 @@ navbar-toggler left {
 #diy .overlay {
   /* background-color:rgb(227, 171, 3); */
   background-image: url("assets/diy-min.webp");
+}
+
+
+#software {
+  --background-current: url("assets/b1.webp");
+  --background-next: var(--background-current);
+  background-image: url("assets/b1.webp");
+}
+
+#photography {
+  --background-current: url("assets/r1.webp");
+  --background-next: var(--background-current);
+}
+
+#motion {
+  --background-current: url("assets/g1.webp");
+  --background-next: var(--background-current);
+}
+
+#diy {
+  --background-current: url("assets/y1.webp");
+  --background-next: var(--background-current); 
 }
 
 /*###################### End of Thumbnail Base Styles ############################ */
@@ -892,14 +915,7 @@ textarea {
   }
 }
 
-/* javascript styling also */
-/* function updateEndTopY() {
-  if (window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches) {
-      endTopY = window.innerHeight * 1.275; // Adjust multiplier for this condition
-  } else {
-      endTopY = window.innerHeight * 1.325; // Default multiplier
-  }
-  return endTopY; */
+
 
 @media (min-width: 992px) {
   .scroll-arrow {
