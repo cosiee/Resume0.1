@@ -408,7 +408,7 @@ navbar-toggler left {
 #software {
   --background-current: url("assets/b1.webp");
   --background-next: var(--background-current);
-  background-image: url("assets/b1.webp");
+  /* background-image: url("assets/b1.webp"); */
 }
 
 #photography {

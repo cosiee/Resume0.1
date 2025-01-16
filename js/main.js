@@ -2,6 +2,19 @@
 const meElement = document.getElementById("me");
 meElement.disabled = true;
 
+const svg = document.querySelector("#svg");
+  svg.style.visibility = "hidden"; // Hide SVG initially
+
+const cloud1 = document.getElementById("cloud1");
+const thumbElement = document.querySelector(".thumbShape");
+
+const thumbNails = document.querySelector(".thumbnails");
+thumbNails.style.opacity = 0;
+const seeText = document.querySelector("#see");
+  seeText.style.opacity = 0;
+
+const down = document.querySelector("#down");
+
 const prioritizedImages = [
   "#sky",
   "#mountMgF",
@@ -39,72 +52,11 @@ function preloadImages(imageIds, callback) {
 }
 
 
-// function preloadImages(imageIds, callback) {
-//   let loadedCount = 0;
-//   const totalImages = imageIds.length;
-
-//   imageIds.forEach((id) => {
-//     const imageElement = document.querySelector(id);
-//     if (imageElement && imageElement.getAttribute("href")) {
-//       const img = new Image();
-//       img.src = imageElement.getAttribute("href");
-//       img.onload = () => {
-//         loadedCount++;
-//         if (loadedCount === totalImages) {
-//           callback();
-//         }
-//       };
-//       img.onerror = () => {
-//         console.error(`Failed to load image: ${imageElement.getAttribute("href")}`);
-//         loadedCount++;
-//         if (loadedCount === totalImages) {
-//           callback();
-//         }
-//       };
-//     } else {
-//       console.warn(`Image with ID ${id} not found or missing href.`);
-//       loadedCount++;
-//       if (loadedCount === totalImages) {
-//         callback();
-//       }
-//     }
-//   });
-// }
-
 document.addEventListener("DOMContentLoaded", function () {
-  
-  // const imageIds = [
-  //   "#sky",
-  //   "#mountBg",
-  //   "#cloud2",
-  //   "#mountBg2",
-  //   "#cloud3",
-  //   "#mountMg",
-  //   "#cloud4",
-  //   "#mountMgF",
-  //   "#mountFg",
-  //   "#cloud5",
-  //   "#cloud1", // cloud1 (first appearance)
-  // ];
-
-  // // Hide the SVG initially
-  // const svg = document.querySelector("#svg");
-  // svg.style.visibility = "hidden";
-
-  // // Preload images and start animation after loading
-  // preloadImages(imageIds, () => {
-  //   console.log("All images loaded");
-  //   svg.style.visibility = "visible"; // Show SVG
-  //   mountainSkyAni(); // Start GSAP animation
-  // });
-
-  const svg = document.querySelector("#svg");
-  svg.style.visibility = "hidden"; // Hide SVG initially
-
   preloadImages(prioritizedImages, () => {
-    console.log("Prioritized images loaded");
+    console.log("Prioritized images loaded, svg visible");
     svg.style.visibility = "visible"; // Show SVG after loading
-    mountainSkyAni(); // Start animations
+   
   });
 });
 
@@ -194,15 +146,8 @@ function mountainSkyAni() {
 
 
 
-// Correctly reference the single element with ID "cloud1"
-const cloud1 = document.getElementById("cloud1");
-const thumbElement = document.querySelector(".thumbShape");
 
-const thumbNails = document.querySelector(".thumbnails");
-thumbNails.style.opacity = 0;
 
-const seeText = document.querySelector("#see");
-seeText.style.opacity = 0;
 
 
 
@@ -276,154 +221,30 @@ function getRandomImage(imagesArray) {
   return imagesArray[Math.floor(Math.random() * imagesArray.length)];
 }
 
-// function setRandomBackgroundWithFade(containerId, imagesArray) {
-//   const container = document.getElementById(containerId);
-
-//   // Preload the next image
-//   const newImageUrl = getRandomImage(imagesArray).replace("url('", "").replace("')", "");
-//   const img = new Image();
-//   img.src = newImageUrl;
-
-//   // When the image is loaded, update the background
-//   img.onload = () => {
-//     // Avoid setting the same image twice
-//     const currentImage = container.style.backgroundImage;
-//     if (currentImage.includes(newImageUrl)) {
-//       setTimeout(() => setRandomBackgroundWithFade(containerId, imagesArray), 3000); // Retry with delay
-//       return;
-//     }
-
-//     // Fade out, change background, fade in
-//     // container.style.transition = "opacity 3s ease-in-out";
-//     // container.style.opacity = 0
-//   ;
-
-//     setTimeout(() => {
-//       container.style.backgroundImage = `url('${newImageUrl}')`;
-//       container.style.opacity = 1;
-//     }, 3000); // Sync with fade-out duration
-//   };
-
-//   // Set next update interval
-//   const randomTime = Math.floor(Math.random() * (10000 - 5000)) + 5000;
-//   setTimeout(() => setRandomBackgroundWithFade(containerId, imagesArray), randomTime);
-// }
-
-
-function setRandomBackgroundWithFade(containerId, imagesArray) {
+function setRandomBackgroundWithTransition(containerId, imagesArray) {
   const container = document.getElementById(containerId);
-  let timeoutId; // Store the timeout ID to manage it
-  const overlay = document.querySelector("#overlay");
 
-  function updateBackground() {
-    // Preload the next image
-    const newImageUrl = getRandomImage(imagesArray).replace("url('", "").replace("')", "");
-    const img = new Image();
-    img.src = newImageUrl;
+  // Preload the next image
+  const newImageUrl = getRandomImage(imagesArray).replace("url('", "").replace("')", "");
+  const img = new Image();
+  img.src = newImageUrl;
 
-    img.onload = () => {
-      // Avoid setting the same image twice
-      const currentImage = container.style.backgroundImage;
-      if (currentImage.includes(newImageUrl)) {
-        timeoutId = setTimeout(updateBackground, 2500); // Retry with minimum delay
-        return;
-      }
+  img.onload = () => {
+    // Avoid setting the same image twice
+    const currentImage = container.style.backgroundImage;
+    if (currentImage.includes(newImageUrl)) {
+      setTimeout(() => setRandomBackgroundWithTransition(containerId, imagesArray), 5000);
+      return;
+    }
 
-      // Create a fading layer
-      const fadeLayer = document.createElement("div");
-      fadeLayer.style.position = "absolute";
-      fadeLayer.style.top = 0;
-      fadeLayer.style.left = 0;
-      fadeLayer.style.width = "100%";
-      fadeLayer.style.height = "100%";
-      fadeLayer.style.backgroundImage = `url('${newImageUrl}')`;
-      fadeLayer.style.backgroundSize = "cover";
-      fadeLayer.style.backgroundPosition = "center";
-      fadeLayer.style.opacity = 0;
-      fadeLayer.style.transition = "opacity 1s ease-in-out";
-      fadeLayer.style.zIndex = 1;
+    // Smoothly transition to the new image
+    container.style.backgroundImage = `url('${newImageUrl}')`;
+  };
 
-      // Conditional overlay opacity for screen widths < 992px
-      if (window.innerWidth < 992) {        overlay.style.opacity = 0.5;
-         // Add semi-transparent overlay
-      } else {
-        fadeLayer.style.backgroundColor = "transparent"; 
-        overlay.style.opacity = 0;// No overlay for larger screens
-      }
-
-      // Append the fading layer to the container
-      container.appendChild(fadeLayer);
-
-      // Trigger fade-in
-      setTimeout(() => {
-        fadeLayer.style.opacity = 1;
-
-        // Remove the old background after fade-in completes
-        setTimeout(() => {
-          container.style.backgroundImage = `url('${newImageUrl}')`;
-          container.removeChild(fadeLayer);
-        }, 1000); // Match the fade-in duration
-      }, 0);
-    };
-
-    // Set the next update interval
-    const randomTime = Math.random() * (10000 - 2500) + 2500; // Random between 2.5s and 10s
-    clearTimeout(timeoutId); // Clear the previous timeout
-    timeoutId = setTimeout(updateBackground, randomTime);
-  }
-
-  updateBackground(); // Start the first background update
+  // Set the next update interval
+  const randomTime = Math.floor(Math.random() * (10000 - 5000)) + 5000;
+  setTimeout(() => setRandomBackgroundWithTransition(containerId, imagesArray), randomTime);
 }
-
-function setRandomBackground(containerId, imagesArray) {
-  const container = document.getElementById(containerId);
-  let timeoutId;
-
-  function updateBackground() {
-    // Preload the next image
-    const newImageUrl = getRandomImage(imagesArray).replace("url('", "").replace("')", "");
-    const img = new Image();
-    img.src = newImageUrl;
-
-    img.onload = () => {
-      // Avoid setting the same image twice
-      const currentImage = container.style.getPropertyValue('--background-next');
-      if (currentImage.includes(newImageUrl)) {
-        timeoutId = setTimeout(updateBackground, 2500); // Retry with minimum delay
-        return;
-      }
-
-      // Set the new image as the next background
-      container.style.setProperty('--background-next', `url('${newImageUrl}')`);
-
-      // Trigger the transition
-      container.classList.add('fade-transition');
-
-      // After the fade completes, set the current image
-      setTimeout(() => {
-        container.style.setProperty('--background-current', `url('${newImageUrl}')`);
-        container.classList.remove('fade-transition');
-      }, 1000); // Match the CSS transition duration
-    };
-
-    // Set the next update interval
-    const randomTime = Math.random() * (10000 - 2500) + 2500; // Random between 2.5s and 10s
-    clearTimeout(timeoutId); // Clear the previous timeout
-    timeoutId = setTimeout(updateBackground, randomTime);
-  }
-
-  updateBackground(); // Start the first background update
-}
-
-
-setRandomBackground("software", softwareImages);
-setRandomBackground("photography", photographyImages);
-setRandomBackground("motion", motionImages);
-setRandomBackground("diy", diyImages);
-
-
-
-
 
 // Preload all images
 preloadImages(softwareImages);
@@ -436,18 +257,10 @@ preloadImages(diyImages);
 // setRandomBackgroundWithFade("photography", photographyImages);
 // setRandomBackgroundWithFade("motion", motionImages);
 // setRandomBackgroundWithFade("diy", diyImages);
-
-setRandomBackgroundWithFade("software", softwareImages);
-setRandomBackgroundWithFade("photography", photographyImages);
-setRandomBackgroundWithFade("motion", motionImages);
-setRandomBackgroundWithFade("diy", diyImages);
-
-
-// setRandomBackgroundWithTransition("software", softwareImages);
-// setRandomBackgroundWithTransition("photography", photographyImages);
-// setRandomBackgroundWithTransition("motion", motionImages);
-// setRandomBackgroundWithTransition("diy", diyImages);
-
+setRandomBackgroundWithTransition("software", softwareImages);
+setRandomBackgroundWithTransition("photography", photographyImages);
+setRandomBackgroundWithTransition("motion", motionImages);
+setRandomBackgroundWithTransition("diy", diyImages);
 
 });
 
@@ -604,7 +417,7 @@ function getThumbWidthWithMargin() {
   return thumbWidth + thumbMargin * 2;
 }
 
-const svg = document.querySelector("svg");
+// const svg = document.querySelector("svg");
 let thumbWidth = getComputedStyleValue(
   document.querySelector(".thumbShape"),
   "width"
@@ -651,8 +464,8 @@ function updateDimensions() {
   screenWidthHalved = window.innerWidth / 2;
   screenHeightHalved = window.innerHeight / 2;
   // const totalThumbWidth = getThumbWidthWithMargin();
-  console.log("window.innerWidth", window.innerWidth);
-  console.log("window.innerHeight", window.innerHeight);
+  // console.log("window.innerWidth", window.innerWidth);
+  // console.log("window.innerHeight", window.innerHeight);
   endLeftX = screenWidthHalved - totalThumbWidth;
 
   updateEndTopY();
@@ -895,25 +708,25 @@ function animateThumbs() {
 
     .fromTo(
       "#software",
-      { opacity: 0, scale: 0.2, x: endLeftX - 1750, y: endTopY - 750 },
+      { opacity: 0.77, scale: 0.2, x: endLeftX - 1750, y: endTopY - 750 },
       { opacity: 1, scale: 1, x: endLeftX, y: endTopY },
       0
     )
     .fromTo(
       "#photography",
-      { opacity: 0, scale: 0.2, x: endRightX + 1250, y: endTopY - 750 },
+      { opacity: 0.77, scale: 0.2, x: endRightX + 1250, y: endTopY - 750 },
       { opacity: 1, scale: 1, x: endRightX, y: endTopY },
       0
     )
     .fromTo(
       "#diy",
-      { opacity: 0, scale: 3, x: endRightX + 1250, y: endBottomY + 750 },
+      { opacity: 0.77, scale: 3, x: endRightX + 1250, y: endBottomY + 750 },
       { opacity: 1, scale: 1, x: endRightX, y: endBottomY },
       0
     )
     .fromTo(
       "#motion",
-      { opacity: 0, scale: 3, x: endLeftX - 1750, y: endBottomY + 750 },
+      { opacity: 0.77, scale: 3, x: endLeftX - 1750, y: endBottomY + 750 },
       { opacity: 1, scale: 1, x: endLeftX, y: endBottomY },
       0
     );
@@ -950,7 +763,7 @@ function updateMeElement() {
   if (scaleValue >= thresholdScale) {
     if (meElement.style.display === "none") {
       meElement.style.display = "block"; // Enable #me
-      document.getElementById("down").style.display = "none";
+      down.style.display = "none";
       // Re-enable event listeners if necessary
       meElement.addEventListener(
         "click",
@@ -961,7 +774,7 @@ function updateMeElement() {
   } else {
     if (meElement.style.display !== "none") {
       meElement.style.display = "none"; // Disable #me
-      document.getElementById("down").style.display = "block";
+      down.style.display = "block";
       // Disable or remove event listeners
       meElement.removeEventListener(
         "click",
@@ -1095,7 +908,7 @@ function hideForm() {
 window.onload = function () {
   // Ensure 'meElement' and 'meShaker' are declared and exist in the DOM
   const meElement = document.getElementById("me");
-  const meShaker = document.getElementById("meshaker"); // Ensure this element exists in the HTML
+  const meShaker = document.getElementById("meshaker"); 
 
   if (!meElement || !meShaker) {
     console.error(
@@ -1165,14 +978,14 @@ window.onload = function () {
     initialTransform = `translate(${meX}px, ${meY}px)`;
     applyTransform(); // Apply the current transformation
     seeText.style.opacity = 0;
-    document.getElementById("down").style.opacity = 0;
+    down.style.opacity = 0;
   }
 
   // Function to apply combined transformation (centering + rotation)
   function applyTransform() {
     meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; // Combine rotation and translation
     seeText.style.opacity = 1;
-    document.getElementById("down").style.opacity = 1;
+    down.style.opacity = 1;
   }
 
   // Function to handle orientation change
@@ -1463,9 +1276,9 @@ thumbDiy.addEventListener("mouseleave", function () {
 // Function to output the height of the .scrollDist element
 function outputScrollDistHeight() {
   const scrollDist = document.querySelector(".scrollDist");
-  if (scrollDist) {
-    console.log("Current scrollDist height:", scrollDist.offsetHeight + "px");
-  }
+  // if (scrollDist) {
+  //   console.log("Current scrollDist height:", scrollDist.offsetHeight + "px");
+  // }
 }
 
 // Add event listener to call the function on window resize
