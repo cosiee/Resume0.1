@@ -354,7 +354,7 @@ navbar-toggler left {
   background-position: center;
   filter: drop-shadow(0 0 0.1rem #162a43);
   transform: scale(1);
-  transition: background-image 1.8s ease-in-out, opacity 1.8s ease-in-out;
+  transition: background-image 2.2s ease-in-out, opacity 2.2s ease-in-out;
 
 }
 

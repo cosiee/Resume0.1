@@ -223,7 +223,7 @@ function getRandomImage(imagesArray) {
 
 function setRandomBackgroundWithTransition(containerId, imagesArray) {
   const container = document.getElementById(containerId);
-
+  console.log("container", container);
   // Preload the next image
   const newImageUrl = getRandomImage(imagesArray).replace("url('", "").replace("')", "");
   const img = new Image();
@@ -232,18 +232,22 @@ function setRandomBackgroundWithTransition(containerId, imagesArray) {
   img.onload = () => {
     // Avoid setting the same image twice
     const currentImage = container.style.backgroundImage;
-    if (currentImage.includes(newImageUrl)) {
-      setTimeout(() => setRandomBackgroundWithTransition(containerId, imagesArray), 5000);
-      return;
-    }
+    // if (currentImage.includes(newImageUrl)) {
+    //   // Generate a new random interval for retry
+    //   const retryTime = Math.floor(Math.random() * (18000 - 5000)) + 5000;
+    //   console.log("RetryTime", retryTime);
+    //   setTimeout(() => setRandomBackgroundWithTransition(containerId, imagesArray), retryTime);
+    //   return;
+    // }
 
     // Smoothly transition to the new image
     container.style.backgroundImage = `url('${newImageUrl}')`;
   };
-
-  // Set the next update interval
-  const randomTime = Math.floor(Math.random() * (10000 - 5000)) + 5000;
+ 
+  // Generate a fresh random interval and clear any previous time values
+  const randomTime = Math.floor(Math.random() * (12000 - 5000)) + 5000;
   setTimeout(() => setRandomBackgroundWithTransition(containerId, imagesArray), randomTime);
+  console.log("RandomTime 2: ", randomTime);
 }
 
 // Preload all images
@@ -252,11 +256,7 @@ preloadImages(photographyImages);
 preloadImages(motionImages);
 preloadImages(diyImages);
 
-// Initialize background changes
-// setRandomBackgroundWithFade("software", softwareImages);
-// setRandomBackgroundWithFade("photography", photographyImages);
-// setRandomBackgroundWithFade("motion", motionImages);
-// setRandomBackgroundWithFade("diy", diyImages);
+
 setRandomBackgroundWithTransition("software", softwareImages);
 setRandomBackgroundWithTransition("photography", photographyImages);
 setRandomBackgroundWithTransition("motion", motionImages);
@@ -708,25 +708,25 @@ function animateThumbs() {
 
     .fromTo(
       "#software",
-      { opacity: 0.77, scale: 0.2, x: endLeftX - 1750, y: endTopY - 750 },
+      { opacity: 0.85, scale: 0.2, x: endLeftX - 1750, y: endTopY - 750 },
       { opacity: 1, scale: 1, x: endLeftX, y: endTopY },
       0
     )
     .fromTo(
       "#photography",
-      { opacity: 0.77, scale: 0.2, x: endRightX + 1250, y: endTopY - 750 },
+      { opacity: 0.85, scale: 0.2, x: endRightX + 1250, y: endTopY - 750 },
       { opacity: 1, scale: 1, x: endRightX, y: endTopY },
       0
     )
     .fromTo(
       "#diy",
-      { opacity: 0.77, scale: 3, x: endRightX + 1250, y: endBottomY + 750 },
+      { opacity: 0.85, scale: 3, x: endRightX + 1250, y: endBottomY + 750 },
       { opacity: 1, scale: 1, x: endRightX, y: endBottomY },
       0
     )
     .fromTo(
       "#motion",
-      { opacity: 0.77, scale: 3, x: endLeftX - 1750, y: endBottomY + 750 },
+      { opacity: 0.85, scale: 3, x: endLeftX - 1750, y: endBottomY + 750 },
       { opacity: 1, scale: 1, x: endLeftX, y: endBottomY },
       0
     );
