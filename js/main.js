@@ -1,18 +1,70 @@
-
 // Ensure #me element is initially disabled
 const meElement = document.getElementById("me");
 meElement.disabled = true;
 
-// Correctly reference the single element with ID "cloud1"
-const cloud1 = document.getElementById("cloud1");
+const svg = document.querySelector("#svg");
+  svg.style.visibility = "hidden"; // Hide SVG initially
 
+const cloud1 = document.getElementById("cloud1");
+const thumbElement = document.querySelector(".thumbShape");
+
+const thumbNails = document.querySelector(".thumbnails");
+thumbNails.style.opacity = 0;
+const seeText = document.querySelector("#see");
+  seeText.style.opacity = 0;
+
+const down = document.querySelector("#down");
+
+const prioritizedImages = [
+  "#sky",
+  "#mountMgF",
+  "#mountFg",
+  "#cloud1",
+  "#mountBg",
+  "#mountBg2",
+  "#meElement",
+];
+
+function preloadImages(imageIds, callback) {
+  let loadedCount = 0;
+  const totalImages = imageIds.length;
+  
+  imageIds.forEach((id) => {
+    const imgElement = document.querySelector(id);
+    if (imgElement && imgElement.getAttribute("href")) {
+      const img = new Image();
+      img.src = imgElement.getAttribute("href");
+      img.onload = img.onerror = () => {
+        loadedCount++;
+        if (loadedCount === totalImages) {
+          callback();
+        }
+      };
+     
+    } else {
+      loadedCount++;
+      if (loadedCount === totalImages) {
+        callback();
+        
+      }
+    }
+  });
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  preloadImages(prioritizedImages, () => {
+    console.log("Prioritized images loaded, svg visible");
+    svg.style.visibility = "visible"; // Show SVG after loading
+   
+  });
+});
 
 gsap.set(".scrollDist", {
   width: "100%",
   height: "200%",
-  background: "#fff"
+  background: "#fff",
 });
-
 
 // GSAP initial setups
 gsap.set("#mountains", {
@@ -23,154 +75,8 @@ gsap.set("#mountains", {
   height: "100%",
   top: 0,
   left: "50%",
-  x: "-50%",  //these are offseting, sizing needs to be adjusted so these are not required. look at svg and scroll-Dist
+  x: "-50%", //these are offseting, sizing needs to be adjusted so these are not required. look at svg and scroll-Dist
 });
-
-
-
-// Random background images for thumbnails
-document.addEventListener("DOMContentLoaded", function () {
-  const softwareImages = [
-    "url('css/assets/b1.jpg')",
-    "url('css/assets/b2.jpg')",
-    "url('css/assets/b3.jpg')",
-    "url('css/assets/b4.jpg')",
-    "url('css/assets/b5.jpg')",
-    "url('css/assets/b6.jpg')",
-    "url('css/assets/b7.jpg')",
-    "url('css/assets/b8.jpg')",
-    "url('css/assets/b9.jpg')",
-    "url('css/assets/b10.jpg')",
-    "url('css/assets/b12.jpg')",
-    "url('css/assets/b13.jpg')",
-    "url('css/assets/b14.jpg')",
-  ];
-  const photographyImages = [
-    "url('css/assets/r1.jpg')",
-    "url('css/assets/r2.jpg')",
-    "url('css/assets/r3.jpg')",
-    "url('css/assets/r4.jpg')",
-    "url('css/assets/r5.jpg')",
-    "url('css/assets/r6.jpg')",
-    "url('css/assets/r7.jpg')",
-    "url('css/assets/r8.jpg')",
-    "url('css/assets/r9.jpg')",
-    "url('css/assets/r10.jpg')",
-    "url('css/assets/r11.jpg')",
-    "url('css/assets/r12.jpg')",
-  ];
-  const motionImages = [
-    "url('css/assets/g1.jpg')",
-    "url('css/assets/g2.jpg')",
-    "url('css/assets/g3.jpg')",
-    "url('css/assets/g4.jpg')",
-    "url('css/assets/g5.jpg')",
-    "url('css/assets/g6.jpg')",
-    "url('css/assets/g7.jpg')",
-    "url('css/assets/g8.jpg')",
-    "url('css/assets/g9.jpg')",
-    "url('css/assets/g10.jpg')",
-  ];
-  const diyImages = [
-    "url('css/assets/y1.jpg')",
-    "url('css/assets/y2.jpg')",
-    "url('css/assets/y3.jpg')",
-    "url('css/assets/y4.jpg')",
-    "url('css/assets/y5.jpg')",
-    "url('css/assets/y6.jpg')",
-    "url('css/assets/y7.jpg')",
-    "url('css/assets/y8.jpg')",
-    "url('css/assets/y9.jpg')",
-    "url('css/assets/y10.jpg')",
-    "url('css/assets/y11.jpg')",
-  ];
-
-  function getRandomImage(imagesArray) {
-    return imagesArray[Math.floor(Math.random() * imagesArray.length)];
-   
-  }
-
-  function setRandomBackground(containerId, imagesArray) {
-    const container = document.getElementById(containerId);
-    container.style.backgroundImage = getRandomImage(imagesArray);
-    const randomTime = Math.floor(Math.random() * (10000 - 5000)) + 5000;
-    setTimeout(() => setRandomBackground(containerId, imagesArray), randomTime);
-  }
-
-  setRandomBackground("software", softwareImages);
-  setRandomBackground("photography", photographyImages);
-  setRandomBackground("motion", motionImages);
-  setRandomBackground("diy", diyImages);
-});
-
-// GSAP timeline for scroll-triggered animations
-// Disable automatic scroll restoration on page reload
-window.history.scrollRestoration = 'manual';
-
-function autoScrollNow() {
- 
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-
-    if (maxScroll <= 0) {
-      console.log("No scrollable space");
-      return; // Exit if there's no scrollable space
-    }
-
-    // Automatically scroll to the bottom over # seconds on page load
-    gsap.to(document.documentElement, { // Explicitly target document root for scrolling
-      scrollTo: {
-        y: maxScroll, // Scroll to the bottom of the page dynamically
-        autoKill: false // Disable autoKill to prevent interruptions
-      },
-      duration: 6.8, // Scroll over # seconds
-      ease: CustomEase.create("custom", "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "),// Easing function for scroll
-    });
-}
-
-function autoScroll() {
-  // Reset scroll position to the top before starting animation
-  window.scrollTo(0, 0); // Force scroll to top
-
-  // Add a small delay before calculating maxScroll to ensure everything is loaded
-
-  setTimeout(() => {
-  
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-
-    if (maxScroll <= 0) {
-      console.log("No scrollable space");
-      return; // Exit if there's no scrollable space
-    }
-
-    // Automatically scroll to the bottom over # seconds on page load
-    gsap.to(document.documentElement, { // Explicitly target document root for scrolling
-      scrollTo: {
-        y: maxScroll, // Scroll to the bottom of the page dynamically
-        autoKill: false // Disable autoKill to prevent interruptions
-      },
-      duration: 6.8, // Scroll over 6.8 seconds
-      ease: CustomEase.create("custom", "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "),// Easing function for smooth scrolling
-      // onStart: () => console.log('Auto-scrolling started'),
-      // onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
-      // onComplete: () => console.log('Auto-scrolling completed')
-    });
-
-
-  },3400); // Add a delay of 3.4seconds before starting the scroll to let the layout settle
-}
-
-window.addEventListener('load', function () {
-  mountainSkyAni();
-  updateMeElement();
-  updateDimensions();
-  updateModalDimensions();
-  animateThumbs();
-  autoScroll();
-});
-
-
-
-
 
 
 
@@ -237,6 +143,263 @@ function mountainSkyAni() {
       0
     );
 }
+
+
+
+
+
+
+
+
+// Random background images for thumbnails
+document.addEventListener("DOMContentLoaded", function () {
+  const softwareImages = [
+    "url('css/assets/b1.webp')",
+    "url('css/assets/b2.webp')",
+    "url('css/assets/b3.webp')",
+    "url('css/assets/b4.webp')",
+    "url('css/assets/b5.webp')",
+    "url('css/assets/b6.webp')",
+    "url('css/assets/b7.webp')",
+    "url('css/assets/b8.webp')",
+    "url('css/assets/b9.webp')",
+    "url('css/assets/b10.webp')",
+    "url('css/assets/b12.webp')",
+    "url('css/assets/b13.webp')",
+    "url('css/assets/b14.webp')",
+  ];
+  const photographyImages = [
+    "url('css/assets/r1.webp')",
+    "url('css/assets/r2.webp')",
+    "url('css/assets/r3.webp')",
+    "url('css/assets/r4.webp')",
+    "url('css/assets/r5.webp')",
+    "url('css/assets/r6.webp')",
+    "url('css/assets/r7.webp')",
+    "url('css/assets/r8.webp')",
+    "url('css/assets/r9.webp')",
+    "url('css/assets/r10.webp')",
+    "url('css/assets/r11.webp')",
+    "url('css/assets/r12.webp')",
+  ];
+  const motionImages = [
+    "url('css/assets/g1.webp')",
+    "url('css/assets/g2.webp')",
+    "url('css/assets/g3.webp')",
+    "url('css/assets/g4.webp')",
+    "url('css/assets/g5.webp')",
+    "url('css/assets/g6.webp')",
+    "url('css/assets/g7.webp')",
+    "url('css/assets/g8.webp')",
+    "url('css/assets/g9.webp')",
+    "url('css/assets/g10.webp')",
+  ];
+  const diyImages = [
+    "url('css/assets/y1.webp')",
+    "url('css/assets/y2.webp')",
+    "url('css/assets/y3.webp')",
+    "url('css/assets/y4.webp')",
+    "url('css/assets/y5.webp')",
+    "url('css/assets/y6.webp')",
+    "url('css/assets/y7.webp')",
+    "url('css/assets/y8.webp')",
+    "url('css/assets/y9.webp')",
+    "url('css/assets/y10.webp')",
+    "url('css/assets/y11.webp')",
+  ];
+
+
+
+function preloadImages(imagesArray) {
+  imagesArray.forEach((imageUrl) => {
+    const img = new Image();
+    img.src = imageUrl.replace("url('", "").replace("')", "");
+  });
+}
+
+function getRandomImage(imagesArray) {
+  return imagesArray[Math.floor(Math.random() * imagesArray.length)];
+}
+
+function setRandomBackgroundWithTransition(containerId, imagesArray) {
+  const container = document.getElementById(containerId);
+  console.log("container", container);
+  // Preload the next image
+  const newImageUrl = getRandomImage(imagesArray).replace("url('", "").replace("')", "");
+  const img = new Image();
+  img.src = newImageUrl;
+
+  img.onload = () => {
+    // Avoid setting the same image twice
+    const currentImage = container.style.backgroundImage;
+    // if (currentImage.includes(newImageUrl)) {
+    //   // Generate a new random interval for retry
+    //   const retryTime = Math.floor(Math.random() * (18000 - 5000)) + 5000;
+    //   console.log("RetryTime", retryTime);
+    //   setTimeout(() => setRandomBackgroundWithTransition(containerId, imagesArray), retryTime);
+    //   return;
+    // }
+
+    // Smoothly transition to the new image
+    container.style.backgroundImage = `url('${newImageUrl}')`;
+  };
+ 
+  // Generate a fresh random interval and clear any previous time values
+  const randomTime = Math.floor(Math.random() * (12000 - 5000)) + 5000;
+  setTimeout(() => setRandomBackgroundWithTransition(containerId, imagesArray), randomTime);
+  console.log("RandomTime 2: ", randomTime);
+}
+
+// Preload all images
+preloadImages(softwareImages);
+preloadImages(photographyImages);
+preloadImages(motionImages);
+preloadImages(diyImages);
+
+
+setRandomBackgroundWithTransition("software", softwareImages);
+setRandomBackgroundWithTransition("photography", photographyImages);
+setRandomBackgroundWithTransition("motion", motionImages);
+setRandomBackgroundWithTransition("diy", diyImages);
+
+});
+
+// GSAP timeline for scroll-triggered animations
+// Disable automatic scroll restoration on page reload
+window.history.scrollRestoration = "manual";
+
+function autoScrollNow() {
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+  if (maxScroll <= 0) {
+    console.log("No scrollable space");
+    return; // Exit if there's no scrollable space
+  }
+
+  // Automatically scroll to the bottom over # seconds on page load
+  gsap.to(document.documentElement, {
+    // Explicitly target document root for scrolling
+    scrollTo: {
+      y: maxScroll, // Scroll to the bottom of the page dynamically
+      autoKill: false, // Disable autoKill to prevent interruptions
+    },
+    duration: 6.8, // Scroll over # seconds
+    ease: CustomEase.create(
+      "custom",
+      "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "
+    ), // Easing function for scroll
+  });
+}
+
+function autoScroll() {
+  // Reset scroll position to the top before starting animation
+  window.scrollTo(0, 0); // Force scroll to top
+
+  // Add a small delay before calculating maxScroll to ensure everything is loaded
+
+  setTimeout(() => {
+
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+  if (maxScroll <= 0) {
+    console.log("No scrollable space");
+    return; // Exit if there's no scrollable space
+  }
+
+  // Automatically scroll to the bottom over # seconds on page load
+  gsap.to(document.documentElement, {
+    // Explicitly target document root for scrolling
+    scrollTo: {
+      y: maxScroll, // Scroll to the bottom of the page dynamically
+      autoKill: false, // Disable autoKill to prevent interruptions
+    },
+    duration: 6.8, // Scroll over 6.8 seconds
+    ease: CustomEase.create(
+      "custom",
+      "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "
+    ), // Easing function for smooth scrolling
+    // onStart: () => console.log('Auto-scrolling started'),
+    // onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
+    // onComplete: () => console.log('Auto-scrolling completed')
+  });
+  }, 3000); // Add a delay of 3seconds before starting the scroll to let the layout settle
+}
+
+window.addEventListener("load", function () {
+  mountainSkyAni();
+  updateMeElement();
+  updateDimensions();
+  updateModalDimensions();
+  animateThumbs();
+
+  autoScroll();
+});
+
+
+
+// function mountainSkyAni() {
+//   gsap
+//     .timeline({
+//       scrollTrigger: {
+//         trigger: ".scrollDist",
+//         start: "top top",
+//         end: "bottom bottom",
+//         duration: 4,
+//         scrub: 1,
+//       },
+//     })
+//     .fromTo(
+//       "#sky",
+//       { scale: 1, x: 0, y: -80 },
+//       { scale: 1.3, x: -150, y: -650 },
+//       0
+//     )
+//     .fromTo(
+//       "#mountBg",
+//       { scale: 1, x: 0, y: 70 },
+//       { scale: 1.3, x: -150, y: -600 },
+//       0
+//     )
+//     .fromTo("#cloud2", { x: 400, y: 310 }, { x: -200, y: -600 }, 0)
+//     .fromTo(
+//       "#mountBg2",
+//       { scale: 1, x: 0, y: 110 },
+//       { scale: 1.3, x: -150, y: -670 },
+//       0
+//     )
+//     .fromTo("#cloud3", { x: -200, y: 300 }, { x: 500, y: -1000 }, 0)
+//     .fromTo(
+//       "#mountMg",
+//       { scale: 1, x: 0, y: 345 },
+//       { scale: 1.3, x: -150, y: -700 },
+//       0
+//     )
+//     .fromTo("#cloud4", { x: 300, y: 320 }, { x: -400, y: -850 }, 0)
+//     .fromTo(
+//       "#mountMgF",
+//       { scale: 1, x: 0, y: 200 },
+//       { scale: 1.3, x: -150, y: -750 },
+//       0
+//     )
+//     .fromTo(
+//       "#mountFg",
+//       { scale: 1, x: 0, y: 220 },
+//       { scale: 1.3, x: -150, y: -850 },
+//       0
+//     )
+//     .fromTo(
+//       "#cloud5",
+//       { scale: 1.5, x: -100, y: 380 },
+//       { scale: 3, x: 300, y: -950 },
+//       0
+//     )
+//     .fromTo(
+//       "#cloud1, #cloud1M",
+//       { scale: 1.3, x: -10, y: 576 },
+//       { scale: 2, x: -500, y: -690 },
+//       0
+//     );
+// }
 // ###################################################################################
 
 // Thumbnails positioning based on window size
@@ -245,17 +408,16 @@ function getComputedStyleValue(element, property) {
 }
 
 function getThumbWidthWithMargin() {
-  const thumbElement = document.querySelector(".thumbShape");
   const computedStyle = window.getComputedStyle(thumbElement);
   const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
   const thumbMargin = parseFloat(
-  computedStyle.getPropertyValue("margin-right")
+    computedStyle.getPropertyValue("margin-right")
   );
 
   return thumbWidth + thumbMargin * 2;
 }
 
-const svg = document.querySelector("svg");
+// const svg = document.querySelector("svg");
 let thumbWidth = getComputedStyleValue(
   document.querySelector(".thumbShape"),
   "width"
@@ -264,18 +426,54 @@ let screenWidthHalved = svg.viewBox.baseVal.width / 2;
 let screenHeightHalved = svg.viewBox.baseVal.height / 2;
 let endLeftX, endRightX, endTopY, endBottomY;
 
+const landscapeMediaQuery = window.matchMedia(
+  "(orientation: landscape) and (max-width: 991.98px) and (max-height: 600px)"
+);
+const totalThumbWidth = getThumbWidthWithMargin();
+
+// Functions to position thumbnails when media query is satisfied
+function updateEndTopY() {
+  if (
+    window.matchMedia("(orientation: landscape) and (max-width: 991.98px)")
+      .matches
+  ) {
+    endTopY = window.innerHeight * 1.275; // Adjust multiplier for this condition
+  } else {
+    endTopY = window.innerHeight * 1.325; // Default multiplier
+  }
+  return endTopY;
+  console.log("Updated endTopY:", endTopY);
+}
+function updateEndBottomY() {
+  if (
+    window.matchMedia("(orientation: landscape) and (max-width: 991.98px)")
+      .matches
+  ) {
+    endBottomY = window.innerHeight * 1.275 + totalThumbWidth; // Adjust multiplier for this condition
+  } else {
+    endBottomY = window.innerHeight * 1.325 + totalThumbWidth;
+  }
+  return endBottomY;
+}
+
+// Listen for changes in the media query
+landscapeMediaQuery.addEventListener("change", updateEndTopY, updateEndBottomY);
+
 function updateDimensions() {
   thumbWidth = Math.min(300, window.innerWidth / 6);
   screenWidthHalved = window.innerWidth / 2;
   screenHeightHalved = window.innerHeight / 2;
-  const totalThumbWidth = getThumbWidthWithMargin();
-console.log("window.innerWidth",window.innerWidth);
-console.log("window.innerHeight",window.innerHeight);
+  // const totalThumbWidth = getThumbWidthWithMargin();
+  // console.log("window.innerWidth", window.innerWidth);
+  // console.log("window.innerHeight", window.innerHeight);
   endLeftX = screenWidthHalved - totalThumbWidth;
-  endTopY = window.innerHeight * 1.325;
+
+  updateEndTopY();
+  // endTopY = window.innerHeight * 1.325;
   endRightX = screenWidthHalved;
-  endBottomY = window.innerHeight * 1.325 + totalThumbWidth;
-  
+
+  updateEndBottomY();
+  // endBottomY = window.innerHeight * 1.325 + totalThumbWidth;
 }
 
 function spaceoutThumbs() {
@@ -303,18 +501,15 @@ function spaceoutThumbs() {
     duration: 1,
     ease: "power2.out",
   });
-
 }
 
 function getThumbWidthWithoutMargin() {
-  const thumbElement = document.querySelector(".thumbShape");
   const computedStyle = window.getComputedStyle(thumbElement);
   const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
 
   return thumbWidth;
 }
 function getThumbMargin() {
-  const thumbElement = document.querySelector(".thumbShape");
   const computedStyle = window.getComputedStyle(thumbElement);
   const thumbMargin = parseFloat(
     computedStyle.getPropertyValue("margin-right")
@@ -323,7 +518,6 @@ function getThumbMargin() {
 }
 
 function updateDimensionsNoMargins() {
-
   setTimeout(() => {
     thumbWidth = Math.min(300, window.innerWidth / 6);
     console.log("thumbWidth: ", thumbWidth);
@@ -333,20 +527,16 @@ function updateDimensionsNoMargins() {
     const marginWidth = getThumbMargin();
 
     endLeftX = screenWidthHalved - (widthThumb + marginWidth);
-    endTopY = window.innerHeight * 1.3 + marginWidth;
+    endTopY = updateEndTopY() + marginWidth - 15;
     endRightX = screenWidthHalved - marginWidth;
-    endBottomY = window.innerHeight * 1.3 + (widthThumb + marginWidth);
-
-    // console.log("Thumb Y EndTopY: ", endTopY);
+    endBottomY = updateEndBottomY() - marginWidth - 15;
 
     collectThumbs();
-
     updateModalDimensions(endTopY);
     formControl(endTopY);
-    // Pass endTopY to updateModalDimensions
-  }, 450); // Small delay to ensure scrollbar removal takes effect
+  }, 450); // delay to ensure scrollbar removal takes effect
 }
-
+//when 'ME' is clicked this bunches the thumbnails together for background to modal
 function collectThumbs() {
   gsap.to("#software", {
     scale: 1,
@@ -378,10 +568,40 @@ function collectThumbs() {
   });
 }
 
+function updateWIPDimensions(endTopY) {
+  const wip = document.querySelector(".wip .box");
+
+  if (!wip || !thumbElement) return;
+
+  const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
+
+  // Calculate new width and height for the modal box
+  const newWidth = Math.max(thumbWidthWithoutMargin * 2 + 4, 300);
+  const newHeight = newWidth; // Assuming we want a square wip
+
+  // Update modal dimensions
+  wip.style.width = `${newWidth}px`;
+  wip.style.height = `${newHeight}px`;
+
+  // Calculate the center of the screen
+  const centerX = window.innerWidth / 2 + 6; //refining positioning
+
+  // Calculate the new left position to center the modal box
+  const newLeft = centerX - newWidth / 2;
+
+  // Use the passed endTopY for the new top position
+  const newTop = endTopY + 12.5; //  works for alignment on y axis
+
+  // Update modal position
+  wip.style.position = "absolute";
+  wip.style.left = `${newLeft}px`;
+  wip.style.top = `${newTop}px`;
+
+  // modalBox.style.display = "block";
+}
 
 function updateModalDimensions(endTopY) {
   const modalBox = document.querySelector(".modalbox .box");
-  const thumbElement = document.querySelector(".thumbShape");
 
   if (!modalBox || !thumbElement) return;
 
@@ -402,7 +622,7 @@ function updateModalDimensions(endTopY) {
   const newLeft = centerX - newWidth / 2;
 
   // Use the passed endTopY for the new top position
-  const newTop = endTopY + 12.5; // 22.5 works for alignment on y axis
+  const newTop = endTopY + 12.5; //  works for alignment on y axis
 
   // Update modal position
   modalBox.style.position = "absolute";
@@ -411,10 +631,32 @@ function updateModalDimensions(endTopY) {
 
   // modalBox.style.display = "block";
 }
+
+function getScrollbarWidth() {
+  // Create a temporary div element
+  const div = document.createElement("div");
+
+  // Apply styles to make it scrollable and remove it from visibility
+  div.style.overflow = "scroll"; // Force scrollbars
+  div.style.visibility = "hidden"; // Hide it
+  div.style.position = "absolute"; // Take it out of the flow
+  div.style.width = "100px"; // Set a fixed width
+
+  // Append the div to the body
+  document.body.appendChild(div);
+
+  // Calculate the scrollbar width
+  const scrollbarWidth = div.offsetWidth - div.clientWidth;
+
+  // Remove the div after calculation
+  document.body.removeChild(div);
+
+  return scrollbarWidth;
+}
+
+// Contact form sizing and positioning
 function formControl(endTopY) {
   const contactForm = document.querySelector(".formDiv#contactForm");
-
-  // const modalBox = document.querySelector(".modalbox .box");
 
   if (!contactForm) return;
 
@@ -422,12 +664,9 @@ function formControl(endTopY) {
   const formWidth = parseFloat(computedStyleForm.getPropertyValue("width"));
   const formHeight = parseFloat(computedStyleForm.getPropertyValue("height"));
 
-  // Calculate the center of the screen
-  const formX = window.innerWidth / 2 - formWidth + 8;
-  // console.log("formX: ", formX);
-  // console.log("form width:", formWidth +"   form height: ", formHeight);
-  // Use the passed endTopY for the new top position
-  const formY = endTopY + 190;
+  // Calculate form position
+  const formX = window.innerWidth / 2 - formWidth / 2 + 6.75;
+  const formY = endTopY + 12; //+ 190;
 
   // Update modal position
   contactForm.style.position = "absolute";
@@ -437,66 +676,58 @@ function formControl(endTopY) {
 
 function debounce(fn, delay) {
   let timeout;
-  return function() {
+  return function () {
     clearTimeout(timeout);
     timeout = setTimeout(fn, delay);
   };
 }
 
-
-
-
 // Ensure updateDimensionsNoMargins is called on resize and DOM content load
-window.addEventListener("resize", debounce(() => {
-  updateDimensions();
-  updateModalDimensions();
-  updateDimensionsNoMargins();
-  
-}, 200));
-
-
-
-
-
-// // Initial call
-// updateDimensions();
-// updateModalDimensions();
+window.addEventListener(
+  "resize",
+  debounce(() => {
+    updateDimensions();
+    updateModalDimensions();
+    updateDimensionsNoMargins();
+  }, 200)
+);
 
 // initial thumb centering animation, called in a DOMContentLoaded
 function animateThumbs() {
-  // console.log("animateThumbs-");
+  thumbNails.style.opacity = 1;
   gsap
     .timeline({
       scrollTrigger: {
         trigger: ".scrollDist",
-         start: "top top",
+        start: "top top",
         end: "bottom bottom",
         scrub: 0.5,
         invalidateOnRefresh: true,
       },
     })
+
     .fromTo(
       "#software",
-      { scale: 0.2, x: endLeftX - 1750, y: endTopY - 750 },
-      { scale: 1, x: endLeftX, y: endTopY },
+      { opacity: 0.85, scale: 0.2, x: endLeftX - 1750, y: endTopY - 750 },
+      { opacity: 1, scale: 1, x: endLeftX, y: endTopY },
       0
     )
     .fromTo(
       "#photography",
-      { scale: 0.2, x: endRightX + 1250, y: endTopY - 750 },
-      { scale: 1, x: endRightX, y: endTopY },
+      { opacity: 0.85, scale: 0.2, x: endRightX + 1250, y: endTopY - 750 },
+      { opacity: 1, scale: 1, x: endRightX, y: endTopY },
       0
     )
     .fromTo(
       "#diy",
-      { scale: 3, x: endRightX + 1250, y: endBottomY + 750 },
-      { scale: 1, x: endRightX, y: endBottomY },
+      { opacity: 0.85, scale: 3, x: endRightX + 1250, y: endBottomY + 750 },
+      { opacity: 1, scale: 1, x: endRightX, y: endBottomY },
       0
     )
     .fromTo(
       "#motion",
-      { scale: 3, x: endLeftX - 1750, y: endBottomY + 750 },
-      { scale: 1, x: endLeftX, y: endBottomY },
+      { opacity: 0.85, scale: 3, x: endLeftX - 1750, y: endBottomY + 750 },
+      { opacity: 1, scale: 1, x: endLeftX, y: endBottomY },
       0
     );
 }
@@ -532,16 +763,24 @@ function updateMeElement() {
   if (scaleValue >= thresholdScale) {
     if (meElement.style.display === "none") {
       meElement.style.display = "block"; // Enable #me
-      document.getElementById("down").style.display = "none";
+      down.style.display = "none";
       // Re-enable event listeners if necessary
-      meElement.addEventListener("click", hideScrollBar, updateDimensionsNoMargins); //, scrollToBottom
+      meElement.addEventListener(
+        "click",
+        hideScrollBar,
+        updateDimensionsNoMargins
+      ); //, scrollToBottom
     }
   } else {
     if (meElement.style.display !== "none") {
       meElement.style.display = "none"; // Disable #me
-      document.getElementById("down").style.display = "block";
+      down.style.display = "block";
       // Disable or remove event listeners
-      meElement.removeEventListener("click", hideScrollBar, updateDimensionsNoMargins);//, scrollToBottom
+      meElement.removeEventListener(
+        "click",
+        hideScrollBar,
+        updateDimensionsNoMargins
+      ); //, scrollToBottom
     }
   }
 }
@@ -553,14 +792,35 @@ observer.observe(cloud1, { attributes: true, childList: true, subtree: true });
 // Initial call to update the state based on current scale
 updateMeElement();
 
-// Scroll event listener to toggle sticky navbar
+// Scroll event listener to toggle sticky collapsed-navbar for landscape below orienttion
 $(window).scroll(function () {
-  if ($(window).scrollTop() > 320) {
+  var scrollDistOffset = $(".scrollDist").offset().top;
+  var scrollDistHeight = $(".scrollDist").outerHeight();
+  var scrollTop = $(window).scrollTop();
+  var windowHeight = $(window).height();
+
+  var isLandscapeSmall = window.matchMedia(
+    "(orientation: landscape) and (max-width: 991.98px)"
+  ).matches;
+  var isSmallHeight = windowHeight < 320;
+  var inSmallHeightScrollRange =
+    scrollTop > scrollDistOffset &&
+    scrollTop < scrollDistOffset + scrollDistHeight;
+  var inNormalHeightScrollRange =
+    scrollTop > scrollDistOffset + 320 &&
+    scrollTop < scrollDistOffset + scrollDistHeight;
+
+  // Apply sticky logic
+  if (
+    inNormalHeightScrollRange ||
+    (isLandscapeSmall && isSmallHeight && inSmallHeightScrollRange)
+  ) {
     $(".navbar").addClass("sticky");
   } else {
     $(".navbar").removeClass("sticky");
   }
 });
+
 // Function to hide the scrollbar
 function hideScrollBar() {
   document.documentElement.style.overflow = "hidden"; // Hide scroll on the entire document
@@ -571,14 +831,9 @@ function showScrollBar() {
   document.documentElement.style.overflow = ""; // Show scroll on the entire document
 }
 
-
-
 // ##########################################################################
 
-
-
-
-//################ Navigation between index.html#thumbs, 
+//################ Navigation between index.html#thumbs,
 // modalBox(statementContact) & Contact Form ###########
 
 function showForm() {
@@ -590,6 +845,18 @@ function showStatementContact() {
   updateDimensionsNoMargins();
   document.getElementById("statementContact").style.display = "block";
   document.getElementById("contactForm").style.display = "none";
+}
+
+function showWip(){
+  updateWIPDimensions(endTopY- 4);
+  updateDimensionsNoMargins();
+  document.getElementById("wip").style.display = "block";
+  document.getElementById("contactForm").style.display = "none";
+
+}
+
+function hideWip(){
+  document.getElementById("wip").style.display = "none"; 
 }
 
 function centreThumbs() {
@@ -634,18 +901,19 @@ function showThumbs() {
 function hideForm() {
   document.getElementById("contactForm").style.display = "none";
   // document.getElementById("statementContact").style.display = "block";
-
 }
 
 // align SEE/ME text & ME animate wiggles
 // Wait for the DOM to fully load
-window.onload = function() {
+window.onload = function () {
   // Ensure 'meElement' and 'meShaker' are declared and exist in the DOM
   const meElement = document.getElementById("me");
-  const meShaker = document.getElementById("meshaker"); // Ensure this element exists in the HTML
+  const meShaker = document.getElementById("meshaker"); 
 
   if (!meElement || !meShaker) {
-    console.error("Required DOM elements not found. Check element IDs for 'me' and 'meshaker'.");
+    console.error(
+      "Required DOM elements not found. Check element IDs for 'me' and 'meshaker'."
+    );
     return; // Stop further execution if elements are missing
   }
 
@@ -661,7 +929,6 @@ window.onload = function() {
     return element.getBBox().width; // Get bounding box width of text element
   }
 
-  // Function to center the text elements in the SVG
   function updateTextElementPositions() {
     // Get the SVG dimensions
     const svg = document.querySelector("svg");
@@ -672,11 +939,25 @@ window.onload = function() {
     const svgCenterX = svgWidth / 2;
     const svgCenterY = svgHeight / 2;
 
-    // Position "SEE" and "ME" at the center of the SVG
+    let seeY, meY;
+
+    // Check if the orientation is landscape
+    if (
+      window.matchMedia("(orientation: landscape) and (max-width: 991.98px)")
+        .matches
+    ) {
+      // Adjust Y positions for landscape orientation
+      seeY = svgCenterY - 330;
+      meY = svgCenterY - 330;
+    } else {
+      // Adjust Y positions for portrait orientation and larger landscape screens
+      seeY = svgCenterY - 210;
+      meY = svgCenterY - 210;
+    }
+
+    // Position "SEE" and "ME" at the center of the SVG with adjusted Y coordinates
     const seeX = svgCenterX;
-    const seeY = svgCenterY - 210; // Adjust Y position for SEE
     const meX = svgCenterX;
-    const meY = svgCenterY - 210; // Adjust Y position for ME
 
     // Apply the translation (without affecting rotation)
     gsap.to("#see", {
@@ -696,12 +977,73 @@ window.onload = function() {
     // Store the initial translation for the ME element
     initialTransform = `translate(${meX}px, ${meY}px)`;
     applyTransform(); // Apply the current transformation
+    seeText.style.opacity = 0;
+    down.style.opacity = 0;
   }
 
   // Function to apply combined transformation (centering + rotation)
   function applyTransform() {
     meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; // Combine rotation and translation
+    seeText.style.opacity = 1;
+    down.style.opacity = 1;
   }
+
+  // Function to handle orientation change
+  function handleOrientationChange() {
+    updateTextElementPositions(); // Update positions on orientation change
+  }
+
+  // Add an event listener for orientation changes
+  window.addEventListener("orientationchange", handleOrientationChange);
+
+  // Initial call to set positions correctly
+  updateTextElementPositions();
+
+  // // Function to center the text(SEE/ME) elements in the SVG
+  // function updateTextElementPositions() {
+  //   // Get the SVG dimensions
+  //   const svg = document.querySelector("svg");
+  //   const svgWidth = svg.viewBox.baseVal.width || svg.clientWidth;
+  //   const svgHeight = svg.viewBox.baseVal.height || svg.clientHeight;
+
+  //   // Calculate the center of the SVG
+  //   const svgCenterX = svgWidth / 2;
+  //   const svgCenterY = svgHeight / 2;
+
+  //   // Position "SEE" and "ME" at the center of the SVG
+  //   const seeX = svgCenterX;
+  //   const seeY = svgCenterY - 210; // Adjust Y position for SEE
+  //   const meX = svgCenterX;
+  //   const meY = svgCenterY - 210; // Adjust Y position for ME
+
+  //   // Apply the translation (without affecting rotation)
+  //   gsap.to("#see", {
+  //     x: seeX,
+  //     y: seeY,
+  //     duration: 1,
+  //     ease: "power2.out",
+  //   });
+
+  //   gsap.to("#me", {
+  //     x: meX,
+  //     y: meY,
+  //     duration: 1,
+  //     ease: "power2.out",
+  //   });
+
+  //   // Store the initial translation for the ME element
+  //   initialTransform = `translate(${meX}px, ${meY}px)`;
+
+  //   applyTransform(); // Apply the current transformation
+  //   seeText.style.opacity= 0;
+
+  // }
+
+  // // Function to apply combined transformation (centering + rotation)
+  // function applyTransform() {
+  //   meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; // Combine rotation and translation
+  //   seeText.style.opacity= 1;
+  // }
 
   // Function to start the hover wiggle animation
   function startHoverWiggle() {
@@ -776,26 +1118,27 @@ window.onload = function() {
   }
 
   // Event listeners for hover wiggle on "ME"
-  meShaker.addEventListener("mouseenter", function(){
-      // Combine scaling with the existing transform (centering + wiggle)
-      meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; 
-      startHoverWiggle();  // Start hover wiggle
+  meShaker.addEventListener("mouseenter", function () {
+    // Combine scaling with the existing transform (centering + wiggle)
+    meElement.style.transform = `${initialTransform} rotate(${angle}deg)`;
+    startHoverWiggle(); // Start hover wiggle
   });
 
-  meShaker.addEventListener("mouseleave", function(){
-      // Reset the scaling and keep the initial transform (centering + reset rotation)
-      meElement.style.transform = `${initialTransform} rotate(0deg)`; 
-      stopHoverWiggle();  // Stop hover wiggle
+  meShaker.addEventListener("mouseleave", function () {
+    // Reset the scaling and keep the initial transform (centering + reset rotation)
+    meElement.style.transform = `${initialTransform} rotate(0deg)`;
+    stopHoverWiggle(); // Stop hover wiggle
   });
-  meElement.addEventListener("mouseenter", function(){
-      meElement.style.transform = `${initialTransform} rotate(0deg) scale(1.115)`; 
+  meElement.addEventListener("mouseenter", function () {
+    meElement.style.transform = `${initialTransform} rotate(0deg) scale(1.115)`;
   });
-  meElement.addEventListener("mouseleave", function(){
-      meElement.style.transform = `${initialTransform} rotate(0deg) scale(1)`; 
+  meElement.addEventListener("mouseleave", function () {
+    meElement.style.transform = `${initialTransform} rotate(0deg) scale(1)`;
   });
   // Function to dynamically update text positions on resize
   function onResize() {
     updateTextElementPositions(); // Update position on window resize
+
     updateDimensions();
     updateModalDimensions();
     updateDimensionsNoMargins();
@@ -807,9 +1150,7 @@ window.onload = function() {
 
   // Update text positions when window is resized
   window.onresize = onResize;
-  
 };
-
 
 // Beginning of Handling hover on Thumbs Triggering Navbar elements ###############################
 
@@ -831,32 +1172,28 @@ const motionDropMenuLink = document.querySelector("#motionDropMenuLink");
 // Track whether the mouse is still inside the navbar or dropdown
 let hoverTimeout;
 
-function showDropMenu(dropMenu){
-  dropMenu.style.display= 'flex';
+function showDropMenu(dropMenu) {
+  dropMenu.style.display = "flex";
 }
 
 function hideDropdown(dropMenu) {
-  dropMenu.style.display = 'none';
+  dropMenu.style.display = "none";
 }
-
 
 // Function to handle delayed hiding of the dropdown
 function delayedHide(dropdownMenu) {
-    // Clear any existing timeout
-    clearTimeout(hoverTimeout);
-    // Set a timeout to hide the menu after a short delay
-    hoverTimeout = setTimeout(() => {
-        hideDropdown(dropdownMenu);
-    }, 200); // 200ms delay to allow smooth interaction
+  // Clear any existing timeout
+  clearTimeout(hoverTimeout);
+  // Set a timeout to hide the menu after a short delay
+  hoverTimeout = setTimeout(() => {
+    hideDropdown(dropdownMenu);
+  }, 200); // 200ms delay to allow smooth interaction
 }
 
 // Function to keep the dropdown visible as long as the mouse is inside
 function cancelHide() {
-    clearTimeout(hoverTimeout); // Cancel any pending hide actions
+  clearTimeout(hoverTimeout); // Cancel any pending hide actions
 }
-
-
-
 
 thumbSoft.addEventListener("mouseenter", function () {
   showDropMenu(softwareDropMenuLink);
@@ -888,16 +1225,15 @@ softwareDropMenuLink.addEventListener("mouseleave", function () {
   delayedHide(softwareDropMenuLink);
 });
 
-
 thumbMot.addEventListener("mouseenter", function () {
   showDropMenu(motionDropMenuLink);
   navbarMot.classList.add("active");
-  thumbMot.classList.add("active");  
+  thumbMot.classList.add("active");
 });
 navbarMot.addEventListener("mouseenter", function () {
   showDropMenu(motionDropMenuLink);
   navbarMot.classList.add("active");
-  thumbMot.classList.add("active");  
+  thumbMot.classList.add("active");
 });
 
 thumbMot.addEventListener("mouseleave", function () {
@@ -937,20 +1273,16 @@ thumbDiy.addEventListener("mouseleave", function () {
   thumbDiy.classList.remove("active");
 });
 
-
-
-
-
 // Function to output the height of the .scrollDist element
 function outputScrollDistHeight() {
-  const scrollDist = document.querySelector('.scrollDist');
-  if (scrollDist) {
-    console.log("Current scrollDist height:", scrollDist.offsetHeight + "px");
-  }
+  const scrollDist = document.querySelector(".scrollDist");
+  // if (scrollDist) {
+  //   console.log("Current scrollDist height:", scrollDist.offsetHeight + "px");
+  // }
 }
 
 // Add event listener to call the function on window resize
-window.addEventListener('resize', outputScrollDistHeight);
+window.addEventListener("resize", outputScrollDistHeight);
 
 // Initial call to log the height when the page loads
 outputScrollDistHeight();

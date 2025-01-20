@@ -1,3 +1,40 @@
+Why does the thumbnail overlay only work sometimes on smaller screens?
+because there is a new layer created for fading in new image which doesn't have 
+ the overlay trigger when is should. all behaviour for overlay hover and opacity 
+ of 0.5 need to be given to fade layer or alternative needs to be sought...
+
+
+
+
+
+Navbar sticky rewrite logic, this:   (isLandscapeSmall && isSmallHeight && inSmallHeightScrollRange) ||
+      (inNormalHeightScrollRange) is not working need t combine new logic with old but functions running
+       resolve the problem . so combining the logic should work also so one function
+
+when orientaion landscape &  screen size is below 991.98px Me element adjusts position
+the thumbnails must do the same along with modal and form... is a chain reaction possible
+at the stage? (done-AC)
+
+dupilcated styles.css into pStyles.css and try new styled media queries seen here: https://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile (done-AC)
+
+Blinking Thumbnails need to be present at all times( work done but not as desired yet-AC)
+they start at correct random pace of change(transition) but this pace accerates over time. need
+to maintain random even slow pace.
+
+Sky1.webp not loading.(done-ac)
+
+close button on WIP message not working on smaller screens, adjusted margin(done-AC)
+
+Thumbnails overlay fixed on smaller screens (done-AC)
+
+links to lead somewhere, use/go to git hub for now where possible(done for now-AC)
+
+the close 'x' on the WIP statment t on smaller screens isn't workind. Why? and resolve.
+
+Everything to load before it appears(done slows loading considerably-AC need reviewing...)
+
+Barebones elements from index.html for all pages for site continuity
+
 Adjust scrollDist height for rotate screens???? not sure its more for horizontal sml devices
 
 use page.load to have elements appear in the correct spot on load
@@ -19,8 +56,17 @@ Modal text, form text adjusting....(done-AC)
 
 overlay to be present on burger menu appears (done-AC)
 
-elements to load and appear initially in position, not at origin then position
+elements to load and appear initially in position, not at origin then position(Done-AC)
 
+Navbar sticky rewrite logic, this:   (isLandscapeSmall && isSmallHeight && inSmallHeightScrollRange) ||
+      (inNormalHeightScrollRange) is not working need t combine new logic with old but functions running
+       resolve the problem . so combining the logic should work also so one function
+
+when orientaion landscape &  screen size is below 991.98px Me element adjusts position
+the thumbnails must do the same along with modal and form... is a chain reaction possible
+at the stage? (done-AC)
+
+dupilcated styles.css into pStyles.css and try new styled media queries seen here: https://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile (done-AC)
 
 
 

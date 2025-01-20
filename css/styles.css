@@ -31,40 +31,30 @@
   display: block;
   margin: auto;
   position: absolute;
-  /* position: relative; */
   height: auto;
   overflow: hidden;
   width: 100%;
-  /* max-width: 800px;
-max-width: 800px; */
-
-  /* /* top: 50%; */
-  /* left: 50%; 
-transform: translate(50%, 0%);  */
 }
+#svg {
+  visibility: hidden;
+}
+
 
 text.lrgtext {
+  position: absolute;
   font-family: "Montserrat", sans-serif;
   font-size: 125px;
-  z-index: 56;
+  z-index: 15;
 }
 
-/* .lrgtext:hover {
-  cursor: pointer;
-  text-shadow: 2px 2px 2px #162a43;
-} */
-
-/* text.lrgtext#me {
-  display: inline-block;
-
-  transform-origin: 5% 15%;
- 
-} */
+#me {
+  text-shadow: 0px 2px 2px #26466e;
+  z-index: 16;
+}
 
 #me:hover {
   cursor: pointer;
-  /* text-shadow: 1px 1px 1px #26466e; */
-  filter: drop-shadow(0 0 0.095rem #162a43);
+  text-shadow: 0px 5px 5px #26466e;
 }
 
 #see {
@@ -72,13 +62,13 @@ text.lrgtext {
 }
 
 #me {
+  position: absolute;
   fill: #162a43;
-  /* transition: all 0.4s ease-in-out; */
 }
 
 #meshaker {
   position: absolute;
-  z-index: 1;
+  z-index: 0;
   width: 100%;
   height: 125px;
   transform: translate(0px, 12vh);
@@ -123,6 +113,7 @@ body {
   border-bottom: 4px solid #fff;
   border-right: 4px solid #fff;
   animation: fade_move_down 3s ease-in-out infinite;
+  opacity: 0;
 }
 
 .scroll-arrow:hover {
@@ -150,19 +141,11 @@ body {
 /* ############################ Navbar base styles ################################*/
 
 nav {
-  z-index: 54;
+  z-index: 14;
   height: auto;
   width: auto;
   overflow: visible;
 }
-
-/* nav {
-  width: auto;
-} */
-
-/* ul.navbar-nav {
-  width: 100%;
-} */
 
 ul {
   padding: 20px 0px 2px 0px;
@@ -174,14 +157,9 @@ nav ul li a {
   text-transform: uppercase;
   font-size: 13px;
   margin: 1px 30px 1px 5px;
-  line-height: 1.3;
-  letter-spacing: 1.3px;
+  line-height: 1.2;
+  letter-spacing: 1.1px;
 }
-
-/* nav ul a {
-  text-transform: uppercase;
-  font-size: 13px;
-} */
 
 .sticky {
   background-color: #ffffff;
@@ -212,10 +190,9 @@ a.nav-link.active {
 
 .dropdown-menu {
   position: absolute;
-
+  top: 100%;
   border-style: groove;
   font-size: 14px;
-  /* line-height: 1; */
   background-color: transparent;
   text-align: left;
   inline-size: auto;
@@ -223,7 +200,6 @@ a.nav-link.active {
   border-radius: 5px;
   border-right: none;
   border-left: none;
-  /* margin: 0px; */
 }
 
 a.dropdown-item {
@@ -297,27 +273,13 @@ navbar-toggler left {
   margin: 0 auto;
   padding: 10px 20px 5px 5px;
   box-sizing: border-box;
-
-  
 }
 
-/* div#navbar.container-fluid {
-  position: relative;
-  width: 100%;
-  max-width: 800px;
-  align-self: center;
-  margin: 0 auto;
-  padding: 10px 20px 5px 5px;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  transition: all 0.3s ease; Smooth transition when repositioning
-} */
 
-/* .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-  padding-top: 30px !important;
-  padding-bottom: 20px !important;
-} */
+.navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+  padding: 0px 10px;
+  margin: 0px;
+}
 
 /*###################### End of Navbar Base Styles ############################ */
 
@@ -336,15 +298,13 @@ navbar-toggler left {
 
 .container-fluid#thumbnails {
   position: absolute;
-
- 
 }
 
 .thumbnails {
   position: absolute;
   height: auto;
   width: 100%;
-  z-index: 10;
+  z-index: 2;
 }
 
 .thumbs {
@@ -360,13 +320,12 @@ navbar-toggler left {
   margin: 12.5px;
   overflow: hidden;
   border-radius: 24%;
-  transition: background-image 1.8s ease-in-out;
+  /* transition: background-image 1.8s ease-in-out; */
   opacity: 0;
 }
 
 .container-fluid#thumbnails .thumbShape {
-  opacity: 1; /* Make thumbnails visible after loading */
-
+  opacity: 1;
 }
 
 #software img,
@@ -390,10 +349,13 @@ navbar-toggler left {
 #photography,
 #motion,
 #diy {
+  background-image: var(--background-current);
   background-size: cover;
   background-position: center;
   filter: drop-shadow(0 0 0.1rem #162a43);
   transform: scale(1);
+  transition: background-image 2.2s ease-in-out, opacity 2.2s ease-in-out;
+
 }
 
 #software:hover,
@@ -423,30 +385,54 @@ navbar-toggler left {
 }
 
 #software .overlay {
-  background-image: url("assets/binary-min.png");
+  /* background-color:deepskyblue; */
+  background-image: url("assets/binary-min.webp");
 }
 
 #photography .overlay {
-  background-image: url("assets/photography-min.png");
+  /* background-color:rgb(186, 3, 3); */
+  background-image: url("assets/photography-min.webp");
 }
 
 #motion .overlay {
-  background-image: url("assets/motion-min.png");
+  /* background-color:rgb(1, 73, 4); */
+  background-image: url("assets/motion-min.webp");
 }
 
 #diy .overlay {
-  background-image: url("assets/diy-min.png");
+  /* background-color:rgb(227, 171, 3); */
+  background-image: url("assets/diy-min.webp");
+}
+
+
+#software {
+  --background-current: url("assets/b1.webp");
+  --background-next: var(--background-current);
+  /* background-image: url("assets/b1.webp"); */
+}
+
+#photography {
+  --background-current: url("assets/r1.webp");
+  --background-next: var(--background-current);
+}
+
+#motion {
+  --background-current: url("assets/g1.webp");
+  --background-next: var(--background-current);
+}
+
+#diy {
+  --background-current: url("assets/y1.webp");
+  --background-next: var(--background-current); 
 }
 
 /*###################### End of Thumbnail Base Styles ############################ */
 
-/* Modal Statement/Contact Base Styles ####################################### */
+/* Modal Statement/Contact Base Styles & WIP####################################### */
 
 .modalbox .box {
   position: absolute;
-  /* Ensure it is positioned absolutely within its container */
   transition: transform 0.3s, width 0.3s, height 0.3s;
-  /* Smooth transition for position and size changes */
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   background-color: rgba(0, 0, 0, 0.6);
   margin: auto;
@@ -456,10 +442,7 @@ navbar-toggler left {
   height: 500px;
   overflow: hidden;
   border-radius: 12%;
-
-  /* Ensure it appears above other elements */
   color: #fff;
-  /* Ensure text is visible */
 }
 
 .modalbox .title {
@@ -473,7 +456,6 @@ navbar-toggler left {
 
 .modalbox .content {
   display: block;
-
   font-size: 18px;
   line-height: 22px;
   padding: 10px 40px 40px 0px;
@@ -489,6 +471,10 @@ navbar-toggler left {
   text-decoration: bold;
 }
 
+.content p {
+  margin-bottom: 25px;
+}
+
 .close:hover {
   cursor: pointer;
 }
@@ -496,7 +482,7 @@ navbar-toggler left {
 .modalbox {
   position: absolute;
   display: none;
-  z-index: 12;
+  z-index: 4;
   width: 100%;
   height: 100%;
   top: 0;
@@ -528,6 +514,72 @@ navbar-toggler left {
   cursor: pointer;
 }
 
+/* ********************************* */
+
+
+.wip .box {
+  position: absolute;
+  transition: transform 0.3s, width 0.3s, height 0.3s;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  background-color: rgba(0, 0, 0, 0.6);
+  margin: auto;
+  min-width: 210px;
+  padding: 45px;
+  width: 500px;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 12%;
+  color: #fff;
+}
+
+.modalbox .title {
+  border-bottom: 1px solid #ccc;
+  font-size: 22px;
+  letter-spacing: 0.1em;
+  margin: 0;
+  padding: 0 0 10px;
+  color: #fff;
+}
+
+.wip .content {
+  margin-top: 20px;
+  display: block;
+  font-size: 18px;
+  line-height: 22px;
+  padding: 10px 40px 40px 15px;
+  text-align: left;
+  color: #fff;
+}
+
+.wip .close {
+  color: #fff;
+  display: block;
+  float: right;
+  font-size: 17px;
+  text-decoration: bold;
+}
+
+
+.wip {
+  position: absolute;
+  display: none;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  color: #333333;
+}
+
+.wip:target {
+  display: block;
+  outline: none;
+}
+
+
+
+
+
 .hidden {
   display: none;
 }
@@ -548,18 +600,21 @@ navbar-toggler left {
 
 .formDiv#contactForm {
   position: absolute;
-  z-index: 14;
-  top: 50%;
+  z-index: 6;
+  /* top: 50%;
   right: 50%;
-  transform: translate(50%, -50%);
+  transform: translate(50%, -50%); */
+
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: medium;
-  max-width: 400px;
-  min-width: 270px;
+  /* max-width: 400px;
+  min-width: 270px; */
+  width: 300px;
   /* margin: 50px auto; */
   padding: 10px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 15px;
+  border-radius: 12%;
+  /* border-radius: 15px; */
   background-color: rgba(208, 205, 205, 0.4);
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.9);
@@ -587,15 +642,24 @@ label {
 
 textarea#message {
   overflow: auto;
-  /* or hidden if you want no scroll */
+}
+
+textarea {
+  width: 95%;
+  /* height: 10%; */
+  padding: 2px;
+  border: none;
+  /* border-radius: 4px; */
+  background-color: rgba(251, 248, 248, 0.5);
+  color: #07070f;
 }
 
 input[type="text"],
 textarea {
-  width: 95%;
+  width: 100%;
   padding: 2px;
   border: none;
-  border-radius: 4px;
+  /* border-radius: 4px; */
   background-color: rgba(251, 248, 248, 0.5);
   color: #07070f;
 }
@@ -650,36 +714,28 @@ textarea {
 
 /*##################################  END of Base Styles Contact Form ###################################*/
 
-/* X-Small devices (portrait phones, less than 576px)
- No media query for `xs` since this is the default in Bootstrap */
-
-/* Small devices (landscape phones, 576px and up) */
-@media (max-width: 575.98px) {
-  .scroll-arrow {
-    /* top: 10vh; */
-    width: 12px;
-    height: 12px;
-    border-bottom: 3px solid #fff;
-    border-right: 3px solid #fff;
+@media (max-width: 319.99px), (max-height: 319.99px) {
+  .thumbShape {
+    width: calc(var(--thumb-width) * 0.4);
+    height: calc(var(--thumb-height) * 0.4);
   }
 
   .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-    padding: 0px 0px 0px 10px !important;
-    margin: 0px !important;
+    padding: 10px 10px;
+    margin: 0px;
   }
 
-  .thumbShape {
-    width: calc(var(--thumb-width) * 0.56);
-    height: calc(var(--thumb-height) * 0.56);
+  #software .overlay,
+  #photography .overlay,
+  #motion .overlay,
+  #diy .overlay {
+    opacity: 0.5;
   }
 
   .modalbox .box {
     width: 90%;
-    /* Full width for smaller screens */
     height: auto;
-    /* Allow height to adjust based on content */
     padding: 4% 6%;
-    /* Smaller padding */
   }
 
   .modalbox .title {
@@ -689,84 +745,38 @@ textarea {
   .modalbox .content {
     font-size: 15px;
     line-height: 16px;
-    /* padding: 10px 20px; */
   }
 
   .sig {
-    height: 5.5rem;
-    /* Reduce signature image size */
+    height: 5rem;
   }
 }
 
-/* rotated devices */
-@media (orientation: landscape) and (max-width: 767.98px) {
-  .scrollDist {
-    min-height: 680px;
-  }
-
-  .thumbShape {
-    width: calc(var(--thumb-width) * 0.4);
-    height: calc(var(--thumb-height) * 0.4);
-  }
-
-  .modalbox .box {
-    width: 50%;
-    height: auto;
-    padding: 1% 2%;
-  }
-
-  .modalbox .title {
-    font-size: 15px;
-  }
-
-  .modalbox .content {
-    font-size: 13px;
-    line-height: 14px;
-    /* padding: 10px 20px; */
-  }
-
-  .sig {
-    height: 5.5rem;
-    /* Reduce signature image size */
-  }
-
+@media (min-width: 320px) {
   .scroll-arrow {
-    /* top: 10vh; */
-    width: 12px;
-    height: 12px;
+    top: 15%;
+    width: 18px;
+    height: 18px;
     border-bottom: 3px solid #fff;
     border-right: 3px solid #fff;
   }
 
+  .thumbShape {
+    width: calc(var(--thumb-width) * 0.5);
+    height: calc(var(--thumb-height) * 0.5);
+  }
+
+  #software .overlay,
+  #photography .overlay,
+  #motion .overlay,
+  #diy .overlay {
+    opacity: 0.5;
+  }
+
+  /* Positioning of navbar */
   .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-    padding: 0px 0px 0px 10px !important;
-    margin: 0px !important;
-  }
-
-  .formDiv#contactForm {
-    top: 50%;
-    right: 50%;
-    max-width: 400px;
-    min-width: 270px;
-    padding: 2px;
-    opacity: 1;
-  }
-}
-
-/*  Medium devices (tablets, 768px and up) 
-**************************************************************/
-@media (max-width: 767.98px) {
-  .scroll-arrow {
-    top: 10%;
-    width: 22px;
-    height: 22px;
-    border-bottom: 4px solid #fff;
-    border-right: 4px solid #fff;
-  }
-
-  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-    padding-top: 0px !important;
-    padding-bottom: 20px !important;
+    padding: 10px 10px;
+    margin: 0px;
   }
 
   .navbar-collapse {
@@ -784,7 +794,7 @@ textarea {
     min-width: 265px;
     max-width: 325px;
     flex-wrap: wrap;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   }
 
   .dropdown-menu:hover {
@@ -803,40 +813,347 @@ textarea {
     text-align: left;
     padding: 0.5rem 2rem;
   }
-}
 
-/* Large devices (desktops, 992px and up)
-**************************************************************/
-@media (max-width: 991.98px) {
-  .scroll-arrow {
-    top: 24%;
+  .modalbox .box {
+    width: 90%;
+    height: auto;
+    padding: 4% 6%;
   }
 
-  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-    padding: 30px auto 20px auto !important;
-    margin: 0px !important;
+  .modalbox .title {
+    font-size: 17px;
+  }
+
+  .modalbox .content {
+    font-size: 15px;
+    line-height: 16px;
+  }
+
+  .sig {
+    height: 5.5rem;
+  }
+}
+
+@media (min-width: 399.99px) {
+  .scroll-arrow {
+    top: 18%;
+  }
+
+  .thumbShape {
+    width: calc(var(--thumb-width) * 0.6);
+    height: calc(var(--thumb-height) * 0.6);
+  }
+
+  text.lrgtext {
+    font-size: 150px;
+  }
+
+  .modalbox .box {
+    width: 90%;
+    height: auto;
+    padding: 4% 6%;
+  }
+
+  .modalbox .title {
+    font-size: 17px;
+  }
+
+  .modalbox .content {
+    font-size: 15px;
+    line-height: 16px;
+  }
+
+  .sig {
+    height: 5.5rem;
+  }
+}
+
+@media (min-width: 499.99px) {
+  .scroll-arrow {
+    top: 20%;
+    width: 20px;
+    height: 20px;
+    border-bottom: 4px solid #fff;
+    border-right: 4px solid #fff;
+  }
+
+  .thumbShape {
+    width: calc(var(--thumb-width) * 0.75);
+    height: calc(var(--thumb-height) * 0.75);
+  }
+
+  /* SEE & ME text */
+  text.lrgtext {
+    font-size: 150px;
+  }
+
+  /*  */
+
+  /* modalbox message to reader */
+  .modalbox .box {
+    width: 90%;
+    height: auto;
+    padding: 4% 6%;
+  }
+
+  .modalbox .title {
+    font-size: 22px;
+  }
+
+  .modalbox .content {
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  p.allTheBest {
+    margin-top: 50px;
+  }
+
+  .sig {
+    margin-top: 25px;
+    height: 9.5rem;
+  }
+}
+
+
+
+@media (min-width: 992px) {
+  .scroll-arrow {
+    top: 30%;
+    width: 30px;
+    height: 30px;
+    border-bottom: 5px solid #fff;
+    border-right: 5px solid #fff;
+  }
+
+  .thumbShape {
+    width: calc((100vh * 0.32));
+    height: calc((100vh * 0.32));
   }
 
   #software .overlay,
   #photography .overlay,
   #motion .overlay,
   #diy .overlay {
-    opacity: 0.5;
+    opacity: 0;
+  }
+
+  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+    position: fixed;
+    top: 0;
+    width: 100%; /* Ensure it spans the full viewport width */
+    z-index: 1050; /* Ensure visibility over other elements */
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: rgba(255, 255, 255, 0.9); /* Ensure visibility */
+  }
+
+  .navbar-collapse {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navbar-nav .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    padding: 0.2rem;
+    min-width: max-content;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .dropdown-menu:hover {
+    display: flex;
+    flex-direction: row;
+  }
+
+  /* Apply relative positioning to the nav-item to use as reference */
+  .navbar-nav .nav-item.dropdown {
+    position: relative;
+  }
+
+  /* Style individual dropdown items */
+  .dropdown-item {
+    flex: 1 1 auto;
+    text-align: left;
+    padding: 0.5rem 2rem;
+  }
+
+  /* modalbox message to reader */
+  .modalbox .box {
+    width: 90%;
+    height: auto;
+    padding: 2% 2%;
+  }
+
+  .modalbox .title {
+    font-size: 22px;
+  }
+
+  .modalbox .content {
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .content p {
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+
+  p.allTheBest {
+    margin-top: 30px;
+  }
+
+  .sig {
+    margin-top: 20px;
+    height: 9.5rem;
   }
 }
 
-/* X-Large devices (large desktops, 1200px and up)
-**************************************************************/
-@media (max-width: 1199.98px) {
-  .scroll-arrow {
-    top: 26%;
+/* @media (max-width: 991.98px) and (orientation: landscape) 
+and (any-pointer: coarse) and (any-hover: none) and 
+(max-height: 600px){
+  .thumbShape {
+    width: calc(var(--thumb-width)* 0.32);
+    height: calc(var(--thumb-height)* 0.32);
   }
-}
 
-/* XX-Large devices (larger desktops, 1400px and up)
-**************************************************************/
-@media (max-width: 2400px) {
+  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+    padding: 10px 10px;
+    margin: 0px;
+  }
+
+} */
+
+/* 
+@media (max-height: 320px) and (orientation: landscape) 
+and (any-pointer: coarse) and (any-hover: none) and 
+(max-height: 600px){
+  .thumbShape {
+    width: calc(var(--thumb-width)* 0.32);
+    height: calc(var(--thumb-height)* 0.32);
+  }
+
+  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+    padding: 10px 10px;
+    margin: 0px;
+  }
+  
+  
+
+
+
+} */
+
+/* @media (orientation: landscape) and (max-width: 991.98px) 
+and (max-height: 800px) {
+  .scrollDist {
+    min-height: 620px;
+  } */
+
+/* and (any-pointer: coarse) and (any-hover: none) */
+
+/* and (aspect-ratio: 16/9),
+(aspect-ratio: 18/9),
+(aspect-ratio: 19/9),
+(aspect-ratio: 19.5/9),
+(aspect-ratio: 20/9),
+(aspect-ratio: 21/9),
+(aspect-ratio: 22/9) */
+
+@media (orientation: landscape) and (max-width: 991.98px) and (min-width: 200px) and (max-height: 800px) and (min-height: 200px) {
+  .scrollDist {
+    min-height: 620px;
+  }
+
   .scroll-arrow {
     top: 27%;
+    width: 25px;
+    height: 25px;
+    border-bottom: 3px solid #fff;
+    border-right: 3px solid #fff;
+  }
+
+  .thumbShape {
+    width: calc((100vh * 0.27));
+    height: calc((100vh * 0.27));
+  }
+
+  /* SEE & ME text */
+  text.lrgtext {
+    font-size: 120px;
+  }
+
+  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+    padding: 1px 10px;
+    margin: 0px;
+  }
+
+  /* modalbox message to reader */
+  .modalbox .box {
+    width: calc((100vh * 0.54));
+    height: calc((100vh * 0.54));
+
+    padding: 1.5% 1.5%;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .modalbox .title {
+    font-size: 16px;
+  }
+
+  .modalbox .content {
+    font-size: 14px;
+    line-height: 12px;
+  }
+  .content p {
+    margin-bottom: 10px;
+  }
+
+  p.allTheBest {
+    margin-top: 10px;
+  }
+
+  .sig {
+    margin-top: 0px;
+    height: 5.5rem;
+  }
+
+  .formDiv#contactForm {
+    width: 250px;
+    height: auto;
+    padding: 1px;
+    opacity: 1;
+  }
+  #message {
+    height: fit-content;
+  }
+
+  label {
+    display: block;
+    margin: 3px;
+    color: #fff;
+    font-size: small;
+    margin-left: 15px;
+  }
+  .closeForm {
+    margin-right: 10px;
+  }
+
+  textarea {
+    width: 95%;
+    padding: 0px;
+  }
+
+  input[type="text"],
+  textarea {
+    width: 95%;
+    padding: 0px;
+  }
+
+  #formButton {
+    height: 20px;
+    margin-left: 10px;
   }
 }

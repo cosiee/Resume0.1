@@ -1,9 +1,10 @@
-<!-- bootstraping for thumbnails and statement needed. 
-  Scrolling needs to disabled and enabled in javascript on buttons around statement -->
+<!-- Building on the shoulders of giants, special thanks to:
+https://codepen.io/EricPorter/pen/XaOEpP
 
 
+ -->
 
-  <!DOCTYPE html>
+<!DOCTYPE html>
   <html lang="en">
   
   <head>
@@ -15,19 +16,23 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
   
     <link rel="stylesheet" href="css/styles.css">
-    
+
+
+    <link rel="stylesheet" href="css/otherStyles.css">
     <!-- <link rel="stylesheet" href="css/test.css"> -->
   
   
   
   
   
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js" defer></script>
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js" defer></script>
   
     <script defer src="js/main.js"></script>
+    <script defer src="js/otherPages.js"></script>
+
   
-    <!-- <script src="js/test.js" defer></script>
-    <script src="js/testTwo.js" defer></script> -->
+    <!-- <script src="js/test.js" defer></script> -->
+    <!-- <script src="js/testTwo.js" defer></script> -->
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
   
@@ -60,7 +65,7 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" onclick="autoScroll();">Home</a>
+                <a class="nav-link" aria-current="page" onclick="autoScroll();" href="index.html">Home</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="softwareLink" class="navbarDropdownMenuLink" role="button"
@@ -68,20 +73,23 @@
                   Software
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="softwareDropMenuLink">
-                  <li><a class="dropdown-item" href="#">HTML</a></li>
-                  <li><a class="dropdown-item" href="#">CSS</a></li>
-                  <li><a class="dropdown-item" href="#">JavaScript</a></li>
-                  <li><a class="dropdown-item" href="#">Java</a></li>
-                  <li><a class="dropdown-item" href="#">Python</a></li>
+                  <li><a class="dropdown-item" href="https://github.com/cosiee/Resume0.1/blob/branchThree/index.html" target="_blank" rel="noopener noreferrer">HTML</a></li>
+                  <li><a class="dropdown-item" href="https://github.com/cosiee/Resume0.1/blob/branchThree/css/styles.css" target="_blank" rel="noopener noreferrer">CSS</a></li>
+                  <li><a class="dropdown-item" href="https://github.com/cosiee/Resume0.1/blob/branchThree/js/main.js" target="_blank" rel="noopener noreferrer">JavaScript</a></li>
+                  <li><a class="dropdown-item" onclick= "showWip();">Java</a></li>
+                  <li><a class="dropdown-item" onclick= "showWip();">Python</a></li>
+                  <li><a class="dropdown-item" onclick= "showWip();">SQL</a></li>
                 </ul>
               </li>
   
               <li class="nav-item">
-                <a class="nav-link" id="photographyLink" href="photography.html">Photography</a>
+                <a class="nav-link" id="photographyLink" onclick= "showWip();">Photography</a>
+                <!-- href="photography.html" -->
               </li>
   
               <li class="nav-item">
-                <a class="nav-link" id="diyLink" href="diy.html">DIY</a>
+                <a class="nav-link" id="diyLink" onclick= "showWip();">DIY</a>
+                <!-- "href="diy.html" -->
               </li>
   
               <li class="nav-item dropdown">
@@ -90,8 +98,10 @@
                   Motion
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="motionDropMenuLink">
-                  <li><a class="dropdown-item" href="videography.html">Videography</a></li>
-                  <li><a class="dropdown-item" href="animation.html">Animation</a></li>
+                  <li><a class="dropdown-item" onclick= "showWip();">Videography</a></li> 
+                  <!-- "href="videography.html" -->
+                  <li><a class="dropdown-item" onclick= "showWip();">Animation</a></li>
+                  <!-- href="animation.html" -->
                 </ul>
               </li>
   
@@ -104,108 +114,116 @@
         </div>
       </nav>
   
-      <div class="svg-container container-fluid" id="mountains">
-  
-  
-        <svg viewBox="0 0 1200 800" id="svg" xmlns="http://www.w3.org/2000/svg">
-          <mask id="m">
-            <g class="img-fluid" id="cloud1">
-              <rect fill="#fff" width="1200" height="800" y="1200" />
-              <image xlink:href="assets/cl1.png" width="1200" height="800" />
-  
-            </g>
-          </mask>
-  
-          <image class="img-fluid" id="sky" xlink:href="/assets/sky.jpg" width="1200" height="800" />
-          <image class="img-fluid" id="mountBg" xlink:href="assets/mtbg.png" width="1200" height="800" />
-          <image class="img-fluid" id="cloud2" xlink:href="assets/cl2.png" width="1200" height="800" />
-          <image class="img-fluid" id="mountBg2" xlink:href="assets/mtbg2.png" width="1200" height="800" />
-          <image class="img-fluid" id="cloud3" xlink:href="assets/cl4.png" width="1200" height="800" />
-          <image class="img-fluid" id="mountMg" xlink:href="assets/mtmg.png" width="1200" height="800" />
-          <image class="img-fluid" id="cloud4" xlink:href="assets/cl4.png" width="1200" height="800" />
-          <image class="img-fluid" id="mountMgF" xlink:href="assets/mtmfg.png" width="1200" height="800" />
-          <image class="img-fluid" id="mountFg" xlink:href="assets/mtfg.png" width="1200" height="800" />
-          <image class="img-fluid" id="cloud5" xlink:href="assets/cl4.png" width="1200" height="800" />
-          <image class="img-fluid" id="cloud1" xlink:href="assets/cl1.png" width="1200" height="800" />
-  
-          <!-- <a class="meLink" onclick="showStatementContact(); "> -->
-          <!-- <text class="lrgtext" id="see" fill="#fff" onclick="autoScrollNow()">SEE</text> -->
-  
-          <text class="lrgtext" id="see" fill="#fff" dominant-baseline="middle" text-anchor="middle">SEE</text>
-          <!-- </a> -->
-  
-          <g mask="url(#m)">
-            <rect fill="#fff" width="100%" height="100%" />
-            <rect id="meshaker" />
-            <a class="meLink" onclick="showStatementContact(); ">
-              <!-- <text class="lrgtext" id="me" fill="#162a43">ME</text> -->
-              <text class="lrgtext" id="me" fill="#162a43" dominant-baseline="middle" text-anchor="middle"
-                onclick="autoScrollNow()">ME</text>
-  
-            </a>
-            <div class="scroll-arrow" id="down" x="455" y="330" onclick="autoScrollNow()"></div>
-          </g>
+  <!-- Slider 1 -->
+<div class="slider" id="slider1">
+  <!-- Slides -->
+  <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg)"></div>
+  <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/Gif-pont-lueur-600.gif)"></div>
+  <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_Sharpened-version.jpg)"></div>
+  <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg)"></div>
+  <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_bodie-11.jpg)"></div>
+  <!-- The Arrows -->
+  <i class="left" class="arrows" style="z-index:2; position:absolute;"><svg viewBox="0 0 100 100">
+          <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"></path>
+      </svg></i>
+  <i class="right" class="arrows" style="z-index:2; position:absolute;"><svg viewBox="0 0 100 100">
+          <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" transform="translate(100, 100) rotate(180) "></path>
+      </svg></i>
+  <!-- Title Bar -->
+  <span class="titleBar">
+      <h1>This Slider has all default settings.</h1>
+  </span>
+</div>
+
+<br>
+
+<div class="row2Wrap">
+  <!-- Slider 2 -->
+  <div class="slider" id="slider2">
+
+      <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/blurredBeachGrassCloseup.jpg)"></div>
+      <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg)"></div>
+      <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_bodie-11.jpg)"></div>
+      <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg)"></div>
+
+      <i class="left" class="arrows" style="z-index:2; position:absolute;">
+          <svg viewBox="0 0 100 100">
+              <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"></path>
+          </svg>
+      </i>
+      <i class="right" class="arrows" style="z-index:2; position:absolute;">
+          <svg viewBox="0 0 100 100">
+              <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" transform="translate(100, 100) rotate(180) "></path>
+          </svg>
+      </i>
+      <!-- Title Bar -->
+      <!--     
+      <span class="titleBar"> 
+          <h1>I am like a leaf in the wind.</h1> 
+          <p>Watch me soar!</p>
+      </span> 
+      -->
+  </div>
+
+  <!-- <h3>Individual slide text</h3> -->
+
+  <!-- Slider 3 -->
+  <div class="slider" id="slider3">
+      <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg)">
+          <span>
+              <h2>I'm a title for Slide #1</h2>
+          </span>
       </div>
-  
-      <div class="container-fluid thumbnails" id="thumbnails">
-        <a class="thumbs" href="software.html">
-          <div class="thumbShape thumbs" id="software">
-            <div class="overlay"></div>
-          </div>
-        </a>
-  
-        <a class="thumbs" href="photography.html">
-          <div class="thumbShape thumbs" id="photography">
-            <div class="overlay"></div>
-  
-          </div>
-        </a>
-  
-        <a class="thumbs" href="motion.html">
-          <div class="thumbShape thumbs" id="motion">
-            <div class="overlay"></div>
-          </div>
-        </a>
-  
-        <a class="thumbs" href="diy.html">
-          <div class="thumbShape thumbs" id="diy">
-            <div class="overlay"></div>
-          </div>
-        </a>
-  
+      <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg)">
+          <span>
+              <h2>I'm a title for Slide #2</h2>
+          </span>
       </div>
-      </svg>
-    </div>
-  
-  
-  
-    <div class="container-fluid modalbox" id="statementContact" style="display: box;">
-      <div class="box">
-        <a class="close" onclick="showScrollBar(); showThumbs(); updateDimensions(); spaceoutThumbs();">X</a>
-        <p class="title">Welcome</p>
-        <div class="content">
-          <br>
-          <p>Thank you for taking the time to have a look at this site!</p>
-          <br>
-          <p>To continue to look at this site, click the 'X' on the top
-            right of this message.</p>
-          <br>
-          <p>To get in touch, click the signature below.</p>
-          <br>
-          <p>All the Best!</p>
-          <br>
-          <a class="sig" onclick="showForm();">
-  
-            <img class="sig" src="assets/sigw.png">
-          </a>
-        </div>
+      <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_bodie-11.jpg)">
+          <span>
+              <h2>I'm a title for Slide #3</h2>
+          </span>
       </div>
-    </div>
+      <!-- The Arrows -->
+      <i class="left" class="arrows" style="z-index:2; position:absolute;"><svg viewBox="0 0 100 100">
+              <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"></path>
+          </svg></i>
+      <i class="right" class="arrows" style="z-index:2; position:absolute;">
+          <svg viewBox="0 0 100 100">
+              <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" transform="translate(100, 100) rotate(180) "></path>
+          </svg></i>
+      <!-- Title Bar -->
+      <!--     <span class="titleBar">
+      <h1>I am like a leaf in the wind.</h1> 
+      <p>Watch me soar!</p>
+  </span> -->
+  </div>
+
+</div>
+
+<div class="content">
+  <h2> Responsive. Modular: can be more than one on the page. Defaults to 100% container width, 500px height. Pauses slideshow on hover.</h2>
+
+  <h2>Images are Background-images. Filling the container div regardless of the image size.</h2>
+  <h3>Behavior you can change:
+      <ul>
+          <li>autoPlay: "off"</li>
+          <li>showArrows: "off"</li>
+          <li>hideDots: "on"</li>
+          <li>hoverZoom: "off"</li>
+          <li>titleBarTop: "on"</li>
+          <li>Change slide pauses and fade speeds</li>
+      </ul>
+  </h3>
+</div>
+  
+  
+
   
   
   
     <div class="formDiv" id="contactForm" style="display: none;">
-      <a class="closeForm" onclick="showThumbs(); spaceoutThumbs();" href="#statementContact">X</a>
+      <a class="closeForm" onclick="showThumbs(); spaceoutThumbs();" href="#meLink">X</a>
       <form action="https://formspree.io/f/meqyreww" method="POST">
         <label> Your name:
           <input autocomplete="false" type="text" id="name" name="name" required>
@@ -214,12 +232,14 @@
           <input autocomplete="false" type="text" id="email" name="email" required>
         </label>
         <label>Your message:
-          <textarea id="message" name="message" rows="5" required></textarea>
+          <textarea id="message" name="message" rows="3" required></textarea>
         </label>
         <button type="submit" id="formButton" onclick="showThumbs(); spaceoutThumbs();">Send</button>
     </div>
   
-    <script src="js/testTwo.js" defer></script>
+    <!-- <script src="js/testTwo.js" defer></script> -->
+
+  
   </body>
   
   </html>
