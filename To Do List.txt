@@ -1,7 +1,12 @@
+Get lazy-load working for thumbnails images
+
+window.onload move to windowEventListener("load")
+
+
 Why does the thumbnail overlay only work sometimes on smaller screens?
 because there is a new layer created for fading in new image which doesn't have 
  the overlay trigger when is should. all behaviour for overlay hover and opacity 
- of 0.5 need to be given to fade layer or alternative needs to be sought...
+ of 0.5 need to be given to fade layer or alternative needs to be sought... (DOne-AC)
 
 
 
