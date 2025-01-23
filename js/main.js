@@ -21,7 +21,7 @@ const thumbElement = document.querySelector(".thumbShape");
 const thumbNails = document.querySelector(".thumbnails");
 thumbNails.style.opacity = 0;
 const seeText = document.querySelector("#see");
-// seeText.style.opacity = 0;
+seeText.style.opacity = 0;
 // seeText.style.visibility = "visible";
 
 const down = document.querySelector("#down");
@@ -91,14 +91,26 @@ const thumbnailImages = [
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
-  preloadImages(prioritizedImages);
+// document.addEventListener("DOMContentLoaded", function () {
 
-    svg.style.visibility = "visible"; // Show SVG after loading
+//   preloadImages(prioritizedImages, () => {
+//     svg.style.visibility = "visible";
+//   // preloadImages(prioritizedImages);
+
+//   //   svg.style.visibility = "visible"; // Show SVG after loading
+//     mountainSkyAni();
+//     thumbnailsContainer.style.visibility = "visible"; // Show thumbnails after loading
+//     animateMeAndWiggles();
+//   });
+
+document.addEventListener("DOMContentLoaded", function () {
+  preloadImages(prioritizedImages, () => {
+    svg.style.visibility = "visible"; // Show SVG after preloading
     mountainSkyAni();
-    thumbnailsContainer.style.visibility = "visible"; // Show thumbnails after loading
-    animateMeAndWiggles();
   });
+
+});
+
   
 // });
 
@@ -185,68 +197,27 @@ function mountainSkyAni() {
 }
 
 
-// const allImages = [
-//   ...[
-//     "url('css/assets/b1.webp')",
-//     "url('css/assets/b2.webp')",
-//     "url('css/assets/b3.webp')",
-//     "url('css/assets/b4.webp')",
-//     "url('css/assets/b5.webp')",
-//     "url('css/assets/b6.webp')",
-//     "url('css/assets/b7.webp')",
-//     "url('css/assets/b8.webp')",
-//     "url('css/assets/b9.webp')",
-//     "url('css/assets/b10.webp')",
-//     "url('css/assets/b12.webp')",
-//     "url('css/assets/b13.webp')",
-//     "url('css/assets/b14.webp')",
-//   ], // Software images
-//   ...[
-//     "url('css/assets/r1.webp')",
-//     "url('css/assets/r2.webp')",
-//     "url('css/assets/r3.webp')",
-//     "url('css/assets/r4.webp')",
-//     "url('css/assets/r5.webp')",
-//     "url('css/assets/r6.webp')",
-//     "url('css/assets/r7.webp')",
-//     "url('css/assets/r8.webp')",
-//     "url('css/assets/r9.webp')",
-//     "url('css/assets/r10.webp')",
-//     "url('css/assets/r11.webp')",
-//     "url('css/assets/r12.webp')",
-//   ], // Photography images
-//   ...[
-//     "url('css/assets/g1.webp')",
-//     "url('css/assets/g2.webp')",
-//     "url('css/assets/g3.webp')",
-//     "url('css/assets/g4.webp')",
-//     "url('css/assets/g5.webp')",
-//     "url('css/assets/g6.webp')",
-//     "url('css/assets/g7.webp')",
-//     "url('css/assets/g8.webp')",
-//     "url('css/assets/g9.webp')",
-//     "url('css/assets/g10.webp')",
-//   ], // Motion images
-//   ...[
-//     "url('css/assets/y1.webp')",
-//     "url('css/assets/y2.webp')",
-//     "url('css/assets/y3.webp')",
-//     "url('css/assets/y4.webp')",
-//     "url('css/assets/y5.webp')",
-//     "url('css/assets/y6.webp')",
-//     "url('css/assets/y7.webp')",
-//     "url('css/assets/y8.webp')",
-//     "url('css/assets/y9.webp')",
-//     "url('css/assets/y10.webp')",
-//     "url('css/assets/y11.webp')",
-//   ], // DIY images
-// ]; 
+function preloadImages(imageIds, callback) {
+  let loadedCount = 0;
+  const totalImages = imageIds.length;
 
-// Optimized preloadImages function call
-function preloadImages(imagesArray) {
-  imagesArray.forEach((imageUrl) => {
-    const img = new Image();
-    img.src = imageUrl.replace("url('", "").replace("')", "");
+  imageIds.forEach((id) => {
+    const imgElement = document.querySelector(id);
+    if (imgElement && imgElement.getAttribute("href")) {
+      const img = new Image();
+      img.src = imgElement.getAttribute("href");
+      img.onload = img.onerror = () => {
+        loadedCount++;
+        if (loadedCount === totalImages) {
+          callback();
+        }
+      };
+    } else {
+      loadedCount++;
+      if (loadedCount === totalImages) {
+        callback();
+      }
+    }
   });
 }
 
@@ -282,14 +253,55 @@ function preloadImages(imagesArray) {
     console.log("RandomTime 2: ", randomTime);
   }
 
- 
-  preloadImages(thumbnailImages);
+  function preloadThumbnailImages(imagesArray) {
+    imagesArray.forEach((imageUrl) => {
+      const img = new Image();
+      img.src = imageUrl.replace("url('", "").replace("')", "");
+    });
+  }
 
-  // Initiate background transitions after preloading
-setRandomBackgroundWithTransition("software", thumbnailImages.slice(0, 13));
-setRandomBackgroundWithTransition("photography", thumbnailImages.slice(14, 25));
-setRandomBackgroundWithTransition("motion", thumbnailImages.slice(26, 35));
-setRandomBackgroundWithTransition("diy", thumbnailImages.slice(36));
+  preloadThumbnailImages(thumbnailImages);
+  thumbnailsContainer.style.visibility = "visible"; // Show thumbnails after loading
+  
+  
+  function getRandomImage(imagesArray) {
+    return imagesArray[Math.floor(Math.random() * imagesArray.length)];
+  }
+  
+  function setRandomBackgroundWithTransition(containerId, imagesArray) {
+    const container = document.getElementById(containerId);
+    const newImageUrl = getRandomImage(imagesArray)
+      .replace("url('", "")
+      .replace("')", "");
+    const img = new Image();
+    img.src = newImageUrl;
+  
+    img.onload = () => {
+      container.style.backgroundImage = `url('${newImageUrl}')`;
+    };
+  
+    const randomTime = Math.floor(Math.random() * (12000 - 5000)) + 5000;
+    setTimeout(() => setRandomBackgroundWithTransition(containerId, imagesArray), randomTime);
+  }
+  
+
+
+
+  // Initiate random backgrounds after preloading
+  setRandomBackgroundWithTransition("software", thumbnailImages.slice(0, 13));
+  setRandomBackgroundWithTransition("photography", thumbnailImages.slice(14, 25));
+  setRandomBackgroundWithTransition("motion", thumbnailImages.slice(26, 35));
+  setRandomBackgroundWithTransition("diy", thumbnailImages.slice(36));
+  
+  animateMeAndWiggles();
+ 
+//   preloadImages(thumbnailImages);
+
+//   // Initiate background transitions after preloading
+// setRandomBackgroundWithTransition("software", thumbnailImages.slice(0, 13));
+// setRandomBackgroundWithTransition("photography", thumbnailImages.slice(14, 25));
+// setRandomBackgroundWithTransition("motion", thumbnailImages.slice(26, 35));
+// setRandomBackgroundWithTransition("diy", thumbnailImages.slice(36));
 
 
 
@@ -947,11 +959,12 @@ function animateMeAndWiggles() {
   // Function to apply combined transformation (centering + rotation)
   function applyTransform() {
     meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; // Combine rotation and translation
-    seeText.style.visibility = "visible";
+    
     seeText.style.opacity = 1;
     down.style.opacity = 1;
+    seeText.style.visibility = "visible";
   }
-
+  
   // Function to handle orientation change
   function handleOrientationChange() {
     updateTextElementPositions(); // Update positions on orientation change
