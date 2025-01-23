@@ -8,9 +8,7 @@ const prioritizedImages = [
   "#meElement",
 ];
 
-
 const thumbnailsContainer = document.querySelector("#thumbnails");
-
 
 const svg = document.querySelector("#svg");
 svg.style.visibility = "hidden"; // Hide SVG initially
@@ -25,7 +23,6 @@ seeText.style.opacity = 0;
 // seeText.style.visibility = "visible";
 
 const down = document.querySelector("#down");
-
 
 const meElement = document.getElementById("me");
 meElement.disabled = true;
@@ -88,31 +85,12 @@ const thumbnailImages = [
   ], // DIY images
 ];
 
-
-
-
-// document.addEventListener("DOMContentLoaded", function () {
-
-//   preloadImages(prioritizedImages, () => {
-//     svg.style.visibility = "visible";
-//   // preloadImages(prioritizedImages);
-
-//   //   svg.style.visibility = "visible"; // Show SVG after loading
-//     mountainSkyAni();
-//     thumbnailsContainer.style.visibility = "visible"; // Show thumbnails after loading
-//     animateMeAndWiggles();
-//   });
-
 document.addEventListener("DOMContentLoaded", function () {
   preloadImages(prioritizedImages, () => {
     svg.style.visibility = "visible"; // Show SVG after preloading
     mountainSkyAni();
   });
-
 });
-
-  
-// });
 
 gsap.set(".scrollDist", {
   width: "100%",
@@ -196,7 +174,6 @@ function mountainSkyAni() {
     );
 }
 
-
 function preloadImages(imageIds, callback) {
   let loadedCount = 0;
   const totalImages = imageIds.length;
@@ -221,92 +198,77 @@ function preloadImages(imageIds, callback) {
   });
 }
 
-  function getRandomImage(imagesArray) {
-    return imagesArray[Math.floor(Math.random() * imagesArray.length)];
-  }
+function getRandomImage(imagesArray) {
+  return imagesArray[Math.floor(Math.random() * imagesArray.length)];
+}
 
-  function setRandomBackgroundWithTransition(containerId, imagesArray) {
-    const container = document.getElementById(containerId);
-    console.log("container", container);
-    // Preload the next image
-    const newImageUrl = getRandomImage(imagesArray)
-      .replace("url('", "")
-      .replace("')", "");
+function setRandomBackgroundWithTransition(containerId, imagesArray) {
+  const container = document.getElementById(containerId);
+  console.log("container", container);
+  // Preload the next image
+  const newImageUrl = getRandomImage(imagesArray)
+    .replace("url('", "")
+    .replace("')", "");
+  const img = new Image();
+  img.src = newImageUrl;
+
+  img.onload = () => {
+    // Avoid setting the same image twice
+    const currentImage = container.style.backgroundImage;
+
+    // Smoothly transition to the new image
+    container.style.backgroundImage = `url('${newImageUrl}')`;
+  };
+
+  // Generate a fresh random interval and clear any previous time values
+  const randomTime = Math.floor(Math.random() * (12000 - 5000)) + 5000;
+  setTimeout(
+    () => setRandomBackgroundWithTransition(containerId, imagesArray),
+    randomTime
+  );
+  console.log("RandomTime 2: ", randomTime);
+}
+
+function preloadThumbnailImages(imagesArray) {
+  imagesArray.forEach((imageUrl) => {
     const img = new Image();
-    img.src = newImageUrl;
+    img.src = imageUrl.replace("url('", "").replace("')", "");
+  });
+}
 
-    img.onload = () => {
-      // Avoid setting the same image twice
-      const currentImage = container.style.backgroundImage;
+preloadThumbnailImages(thumbnailImages);
+thumbnailsContainer.style.visibility = "visible"; // Show thumbnails after loading
 
-      // Smoothly transition to the new image
-      container.style.backgroundImage = `url('${newImageUrl}')`;
-    };
+function getRandomImage(imagesArray) {
+  return imagesArray[Math.floor(Math.random() * imagesArray.length)];
+}
 
-    // Generate a fresh random interval and clear any previous time values
-    const randomTime = Math.floor(Math.random() * (12000 - 5000)) + 5000;
-    setTimeout(
-              () => setRandomBackgroundWithTransition(
-                containerId, imagesArray),
-                randomTime
-              );
-    console.log("RandomTime 2: ", randomTime);
-  }
+function setRandomBackgroundWithTransition(containerId, imagesArray) {
+  const container = document.getElementById(containerId);
+  const newImageUrl = getRandomImage(imagesArray)
+    .replace("url('", "")
+    .replace("')", "");
+  const img = new Image();
+  img.src = newImageUrl;
 
-  function preloadThumbnailImages(imagesArray) {
-    imagesArray.forEach((imageUrl) => {
-      const img = new Image();
-      img.src = imageUrl.replace("url('", "").replace("')", "");
-    });
-  }
+  img.onload = () => {
+    container.style.backgroundImage = `url('${newImageUrl}')`;
+  };
 
-  preloadThumbnailImages(thumbnailImages);
-  thumbnailsContainer.style.visibility = "visible"; // Show thumbnails after loading
-  
-  
-  function getRandomImage(imagesArray) {
-    return imagesArray[Math.floor(Math.random() * imagesArray.length)];
-  }
-  
-  function setRandomBackgroundWithTransition(containerId, imagesArray) {
-    const container = document.getElementById(containerId);
-    const newImageUrl = getRandomImage(imagesArray)
-      .replace("url('", "")
-      .replace("')", "");
-    const img = new Image();
-    img.src = newImageUrl;
-  
-    img.onload = () => {
-      container.style.backgroundImage = `url('${newImageUrl}')`;
-    };
-  
-    const randomTime = Math.floor(Math.random() * (12000 - 5000)) + 5000;
-    setTimeout(() => setRandomBackgroundWithTransition(containerId, imagesArray), randomTime);
-  }
-  
+  const randomTime = Math.floor(Math.random() * (12000 - 5000)) + 5000;
+  setTimeout(
+    () => setRandomBackgroundWithTransition(containerId, imagesArray),
+    randomTime
+  );
+}
 
+// Initiate random backgrounds after preloading
+setRandomBackgroundWithTransition("software", thumbnailImages.slice(0, 13));
+setRandomBackgroundWithTransition("photography", thumbnailImages.slice(14, 25));
+setRandomBackgroundWithTransition("motion", thumbnailImages.slice(26, 35));
+setRandomBackgroundWithTransition("diy", thumbnailImages.slice(36));
 
-
-  // Initiate random backgrounds after preloading
-  setRandomBackgroundWithTransition("software", thumbnailImages.slice(0, 13));
-  setRandomBackgroundWithTransition("photography", thumbnailImages.slice(14, 25));
-  setRandomBackgroundWithTransition("motion", thumbnailImages.slice(26, 35));
-  setRandomBackgroundWithTransition("diy", thumbnailImages.slice(36));
-  
-  animateMeAndWiggles();
- 
-//   preloadImages(thumbnailImages);
-
-//   // Initiate background transitions after preloading
-// setRandomBackgroundWithTransition("software", thumbnailImages.slice(0, 13));
-// setRandomBackgroundWithTransition("photography", thumbnailImages.slice(14, 25));
-// setRandomBackgroundWithTransition("motion", thumbnailImages.slice(26, 35));
-// setRandomBackgroundWithTransition("diy", thumbnailImages.slice(36));
-
-
-
-
-
+animateMeAndWiggles();
 
 // GSAP timeline for scroll-triggered animations
 // Disable automatic scroll restoration on page reload
@@ -337,10 +299,7 @@ function autoScrollNow() {
 
 function autoScroll() {
   // Reset scroll position to the top before starting animation
-  window.scrollTo(0, 0); // Force scroll to top
-
-  // Add a small delay before calculating maxScroll to ensure everything is loaded
-
+  window.scrollTo(0, 0);
   setTimeout(() => {
     const maxScroll =
       document.documentElement.scrollHeight - window.innerHeight;
@@ -959,12 +918,12 @@ function animateMeAndWiggles() {
   // Function to apply combined transformation (centering + rotation)
   function applyTransform() {
     meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; // Combine rotation and translation
-    
+
     seeText.style.opacity = 1;
     down.style.opacity = 1;
     seeText.style.visibility = "visible";
   }
-  
+
   // Function to handle orientation change
   function handleOrientationChange() {
     updateTextElementPositions(); // Update positions on orientation change
@@ -975,7 +934,6 @@ function animateMeAndWiggles() {
 
   // Initial call to set positions correctly
   updateTextElementPositions();
-
 
   // Function to start the hover wiggle animation
   function startHoverWiggle() {
@@ -1081,7 +1039,7 @@ function animateMeAndWiggles() {
 
   // Update text positions when window is resized
   window.onresize = onResize;
-};
+}
 
 // Beginning of Handling hover on Thumbs Triggering Navbar elements ###############################
 
@@ -1113,9 +1071,8 @@ function hideDropdown(dropMenu) {
 
 // Function to handle delayed hiding of the dropdown
 function delayedHide(dropdownMenu) {
-  
   clearTimeout(hoverTimeout);
- 
+
   hoverTimeout = setTimeout(() => {
     hideDropdown(dropdownMenu);
   }, 200); // 200ms delay to allow smooth interaction
