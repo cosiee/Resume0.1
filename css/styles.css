@@ -39,7 +39,6 @@
   visibility: hidden;
 }
 
-
 text.lrgtext {
   position: absolute;
   font-family: "Montserrat", sans-serif;
@@ -275,7 +274,6 @@ navbar-toggler left {
   box-sizing: border-box;
 }
 
-
 .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
   padding: 0px 10px;
   margin: 0px;
@@ -355,7 +353,6 @@ navbar-toggler left {
   filter: drop-shadow(0 0 0.1rem #162a43);
   transform: scale(1);
   transition: background-image 2.2s ease-in-out, opacity 2.2s ease-in-out;
-
 }
 
 #software:hover,
@@ -404,7 +401,6 @@ navbar-toggler left {
   background-image: url("assets/diy-min.webp");
 }
 
-
 #software {
   --background-current: url("assets/b1.webp");
   --background-next: var(--background-current);
@@ -423,7 +419,7 @@ navbar-toggler left {
 
 #diy {
   --background-current: url("assets/y1.webp");
-  --background-next: var(--background-current); 
+  --background-next: var(--background-current);
 }
 
 /*###################### End of Thumbnail Base Styles ############################ */
@@ -516,7 +512,6 @@ navbar-toggler left {
 
 /* ********************************* */
 
-
 .wip .box {
   position: absolute;
   transition: transform 0.3s, width 0.3s, height 0.3s;
@@ -559,7 +554,6 @@ navbar-toggler left {
   text-decoration: bold;
 }
 
-
 .wip {
   position: absolute;
   display: none;
@@ -575,10 +569,6 @@ navbar-toggler left {
   display: block;
   outline: none;
 }
-
-
-
-
 
 .hidden {
   display: none;
@@ -914,8 +904,6 @@ textarea {
     height: 9.5rem;
   }
 }
-
-
 
 @media (min-width: 992px) {
   .scroll-arrow {
