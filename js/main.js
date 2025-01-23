@@ -1,20 +1,3 @@
-// Ensure #me element is initially disabled
-const meElement = document.getElementById("me");
-meElement.disabled = true;
-
-const svg = document.querySelector("#svg");
-  svg.style.visibility = "hidden"; // Hide SVG initially
-
-const cloud1 = document.getElementById("cloud1");
-const thumbElement = document.querySelector(".thumbShape");
-
-const thumbNails = document.querySelector(".thumbnails");
-thumbNails.style.opacity = 0;
-const seeText = document.querySelector("#see");
-  seeText.style.opacity = 0;
-
-const down = document.querySelector("#down");
-
 const prioritizedImages = [
   "#sky",
   "#mountMgF",
@@ -25,40 +8,111 @@ const prioritizedImages = [
   "#meElement",
 ];
 
-function preloadImages(imageIds, callback) {
-  let loadedCount = 0;
-  const totalImages = imageIds.length;
-  
-  imageIds.forEach((id) => {
-    const imgElement = document.querySelector(id);
-    if (imgElement && imgElement.getAttribute("href")) {
-      const img = new Image();
-      img.src = imgElement.getAttribute("href");
-      img.onload = img.onerror = () => {
-        loadedCount++;
-        if (loadedCount === totalImages) {
-          callback();
-        }
-      };
-     
-    } else {
-      loadedCount++;
-      if (loadedCount === totalImages) {
-        callback();
-        
-      }
-    }
-  });
-}
 
+const thumbnailsContainer = document.querySelector("#thumbnails");
+
+
+const svg = document.querySelector("#svg");
+svg.style.visibility = "hidden"; // Hide SVG initially
+
+const cloud1 = document.getElementById("cloud1");
+const thumbElement = document.querySelector(".thumbShape");
+
+const thumbNails = document.querySelector(".thumbnails");
+thumbNails.style.opacity = 0;
+const seeText = document.querySelector("#see");
+seeText.style.opacity = 0;
+// seeText.style.visibility = "visible";
+
+const down = document.querySelector("#down");
+
+
+const meElement = document.getElementById("me");
+meElement.disabled = true;
+const meShaker = document.getElementById("meshaker");
+
+const thumbnailImages = [
+  ...[
+    "url('css/assets/b1.webp')",
+    "url('css/assets/b2.webp')",
+    "url('css/assets/b3.webp')",
+    "url('css/assets/b4.webp')",
+    "url('css/assets/b5.webp')",
+    "url('css/assets/b6.webp')",
+    "url('css/assets/b7.webp')",
+    "url('css/assets/b8.webp')",
+    "url('css/assets/b9.webp')",
+    "url('css/assets/b10.webp')",
+    "url('css/assets/b12.webp')",
+    "url('css/assets/b13.webp')",
+    "url('css/assets/b14.webp')",
+  ], // Software images
+  ...[
+    "url('css/assets/r1.webp')",
+    "url('css/assets/r2.webp')",
+    "url('css/assets/r3.webp')",
+    "url('css/assets/r4.webp')",
+    "url('css/assets/r5.webp')",
+    "url('css/assets/r6.webp')",
+    "url('css/assets/r7.webp')",
+    "url('css/assets/r8.webp')",
+    "url('css/assets/r9.webp')",
+    "url('css/assets/r10.webp')",
+    "url('css/assets/r11.webp')",
+    "url('css/assets/r12.webp')",
+  ], // Photography images
+  ...[
+    "url('css/assets/g1.webp')",
+    "url('css/assets/g2.webp')",
+    "url('css/assets/g3.webp')",
+    "url('css/assets/g4.webp')",
+    "url('css/assets/g5.webp')",
+    "url('css/assets/g6.webp')",
+    "url('css/assets/g7.webp')",
+    "url('css/assets/g8.webp')",
+    "url('css/assets/g9.webp')",
+    "url('css/assets/g10.webp')",
+  ], // Motion images
+  ...[
+    "url('css/assets/y1.webp')",
+    "url('css/assets/y2.webp')",
+    "url('css/assets/y3.webp')",
+    "url('css/assets/y4.webp')",
+    "url('css/assets/y5.webp')",
+    "url('css/assets/y6.webp')",
+    "url('css/assets/y7.webp')",
+    "url('css/assets/y8.webp')",
+    "url('css/assets/y9.webp')",
+    "url('css/assets/y10.webp')",
+    "url('css/assets/y11.webp')",
+  ], // DIY images
+];
+
+
+
+
+// document.addEventListener("DOMContentLoaded", function () {
+
+//   preloadImages(prioritizedImages, () => {
+//     svg.style.visibility = "visible";
+//   // preloadImages(prioritizedImages);
+
+//   //   svg.style.visibility = "visible"; // Show SVG after loading
+//     mountainSkyAni();
+//     thumbnailsContainer.style.visibility = "visible"; // Show thumbnails after loading
+//     animateMeAndWiggles();
+//   });
 
 document.addEventListener("DOMContentLoaded", function () {
   preloadImages(prioritizedImages, () => {
-    console.log("Prioritized images loaded, svg visible");
-    svg.style.visibility = "visible"; // Show SVG after loading
-   
+    svg.style.visibility = "visible"; // Show SVG after preloading
+    mountainSkyAni();
   });
+
 });
+
+  
+// });
 
 gsap.set(".scrollDist", {
   width: "100%",
@@ -77,8 +131,6 @@ gsap.set("#mountains", {
   left: "50%",
   x: "-50%", //these are offseting, sizing needs to be adjusted so these are not required. look at svg and scroll-Dist
 });
-
-
 
 function mountainSkyAni() {
   gsap
@@ -145,124 +197,116 @@ function mountainSkyAni() {
 }
 
 
+function preloadImages(imageIds, callback) {
+  let loadedCount = 0;
+  const totalImages = imageIds.length;
 
-
-
-
-
-
-// Random background images for thumbnails
-document.addEventListener("DOMContentLoaded", function () {
-  const softwareImages = [
-    "url('css/assets/b1.webp')",
-    "url('css/assets/b2.webp')",
-    "url('css/assets/b3.webp')",
-    "url('css/assets/b4.webp')",
-    "url('css/assets/b5.webp')",
-    "url('css/assets/b6.webp')",
-    "url('css/assets/b7.webp')",
-    "url('css/assets/b8.webp')",
-    "url('css/assets/b9.webp')",
-    "url('css/assets/b10.webp')",
-    "url('css/assets/b12.webp')",
-    "url('css/assets/b13.webp')",
-    "url('css/assets/b14.webp')",
-  ];
-  const photographyImages = [
-    "url('css/assets/r1.webp')",
-    "url('css/assets/r2.webp')",
-    "url('css/assets/r3.webp')",
-    "url('css/assets/r4.webp')",
-    "url('css/assets/r5.webp')",
-    "url('css/assets/r6.webp')",
-    "url('css/assets/r7.webp')",
-    "url('css/assets/r8.webp')",
-    "url('css/assets/r9.webp')",
-    "url('css/assets/r10.webp')",
-    "url('css/assets/r11.webp')",
-    "url('css/assets/r12.webp')",
-  ];
-  const motionImages = [
-    "url('css/assets/g1.webp')",
-    "url('css/assets/g2.webp')",
-    "url('css/assets/g3.webp')",
-    "url('css/assets/g4.webp')",
-    "url('css/assets/g5.webp')",
-    "url('css/assets/g6.webp')",
-    "url('css/assets/g7.webp')",
-    "url('css/assets/g8.webp')",
-    "url('css/assets/g9.webp')",
-    "url('css/assets/g10.webp')",
-  ];
-  const diyImages = [
-    "url('css/assets/y1.webp')",
-    "url('css/assets/y2.webp')",
-    "url('css/assets/y3.webp')",
-    "url('css/assets/y4.webp')",
-    "url('css/assets/y5.webp')",
-    "url('css/assets/y6.webp')",
-    "url('css/assets/y7.webp')",
-    "url('css/assets/y8.webp')",
-    "url('css/assets/y9.webp')",
-    "url('css/assets/y10.webp')",
-    "url('css/assets/y11.webp')",
-  ];
-
-
-
-function preloadImages(imagesArray) {
-  imagesArray.forEach((imageUrl) => {
-    const img = new Image();
-    img.src = imageUrl.replace("url('", "").replace("')", "");
+  imageIds.forEach((id) => {
+    const imgElement = document.querySelector(id);
+    if (imgElement && imgElement.getAttribute("href")) {
+      const img = new Image();
+      img.src = imgElement.getAttribute("href");
+      img.onload = img.onerror = () => {
+        loadedCount++;
+        if (loadedCount === totalImages) {
+          callback();
+        }
+      };
+    } else {
+      loadedCount++;
+      if (loadedCount === totalImages) {
+        callback();
+      }
+    }
   });
 }
 
-function getRandomImage(imagesArray) {
-  return imagesArray[Math.floor(Math.random() * imagesArray.length)];
-}
+  function getRandomImage(imagesArray) {
+    return imagesArray[Math.floor(Math.random() * imagesArray.length)];
+  }
 
-function setRandomBackgroundWithTransition(containerId, imagesArray) {
-  const container = document.getElementById(containerId);
-  console.log("container", container);
-  // Preload the next image
-  const newImageUrl = getRandomImage(imagesArray).replace("url('", "").replace("')", "");
-  const img = new Image();
-  img.src = newImageUrl;
+  function setRandomBackgroundWithTransition(containerId, imagesArray) {
+    const container = document.getElementById(containerId);
+    console.log("container", container);
+    // Preload the next image
+    const newImageUrl = getRandomImage(imagesArray)
+      .replace("url('", "")
+      .replace("')", "");
+    const img = new Image();
+    img.src = newImageUrl;
 
-  img.onload = () => {
-    // Avoid setting the same image twice
-    const currentImage = container.style.backgroundImage;
-    // if (currentImage.includes(newImageUrl)) {
-    //   // Generate a new random interval for retry
-    //   const retryTime = Math.floor(Math.random() * (18000 - 5000)) + 5000;
-    //   console.log("RetryTime", retryTime);
-    //   setTimeout(() => setRandomBackgroundWithTransition(containerId, imagesArray), retryTime);
-    //   return;
-    // }
+    img.onload = () => {
+      // Avoid setting the same image twice
+      const currentImage = container.style.backgroundImage;
 
-    // Smoothly transition to the new image
-    container.style.backgroundImage = `url('${newImageUrl}')`;
-  };
+      // Smoothly transition to the new image
+      container.style.backgroundImage = `url('${newImageUrl}')`;
+    };
+
+    // Generate a fresh random interval and clear any previous time values
+    const randomTime = Math.floor(Math.random() * (12000 - 5000)) + 5000;
+    setTimeout(
+              () => setRandomBackgroundWithTransition(
+                containerId, imagesArray),
+                randomTime
+              );
+    console.log("RandomTime 2: ", randomTime);
+  }
+
+  function preloadThumbnailImages(imagesArray) {
+    imagesArray.forEach((imageUrl) => {
+      const img = new Image();
+      img.src = imageUrl.replace("url('", "").replace("')", "");
+    });
+  }
+
+  preloadThumbnailImages(thumbnailImages);
+  thumbnailsContainer.style.visibility = "visible"; // Show thumbnails after loading
+  
+  
+  function getRandomImage(imagesArray) {
+    return imagesArray[Math.floor(Math.random() * imagesArray.length)];
+  }
+  
+  function setRandomBackgroundWithTransition(containerId, imagesArray) {
+    const container = document.getElementById(containerId);
+    const newImageUrl = getRandomImage(imagesArray)
+      .replace("url('", "")
+      .replace("')", "");
+    const img = new Image();
+    img.src = newImageUrl;
+  
+    img.onload = () => {
+      container.style.backgroundImage = `url('${newImageUrl}')`;
+    };
+  
+    const randomTime = Math.floor(Math.random() * (12000 - 5000)) + 5000;
+    setTimeout(() => setRandomBackgroundWithTransition(containerId, imagesArray), randomTime);
+  }
+  
+
+
+
+  // Initiate random backgrounds after preloading
+  setRandomBackgroundWithTransition("software", thumbnailImages.slice(0, 13));
+  setRandomBackgroundWithTransition("photography", thumbnailImages.slice(14, 25));
+  setRandomBackgroundWithTransition("motion", thumbnailImages.slice(26, 35));
+  setRandomBackgroundWithTransition("diy", thumbnailImages.slice(36));
+  
+  animateMeAndWiggles();
  
-  // Generate a fresh random interval and clear any previous time values
-  const randomTime = Math.floor(Math.random() * (12000 - 5000)) + 5000;
-  setTimeout(() => setRandomBackgroundWithTransition(containerId, imagesArray), randomTime);
-  console.log("RandomTime 2: ", randomTime);
-}
+//   preloadImages(thumbnailImages);
 
-// Preload all images
-preloadImages(softwareImages);
-preloadImages(photographyImages);
-preloadImages(motionImages);
-preloadImages(diyImages);
+//   // Initiate background transitions after preloading
+// setRandomBackgroundWithTransition("software", thumbnailImages.slice(0, 13));
+// setRandomBackgroundWithTransition("photography", thumbnailImages.slice(14, 25));
+// setRandomBackgroundWithTransition("motion", thumbnailImages.slice(26, 35));
+// setRandomBackgroundWithTransition("diy", thumbnailImages.slice(36));
 
 
-setRandomBackgroundWithTransition("software", softwareImages);
-setRandomBackgroundWithTransition("photography", photographyImages);
-setRandomBackgroundWithTransition("motion", motionImages);
-setRandomBackgroundWithTransition("diy", diyImages);
 
-});
+
+
 
 // GSAP timeline for scroll-triggered animations
 // Disable automatic scroll restoration on page reload
@@ -298,35 +342,35 @@ function autoScroll() {
   // Add a small delay before calculating maxScroll to ensure everything is loaded
 
   setTimeout(() => {
+    const maxScroll =
+      document.documentElement.scrollHeight - window.innerHeight;
 
-  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    if (maxScroll <= 0) {
+      console.log("No scrollable space");
+      return; // Exit if there's no scrollable space
+    }
 
-  if (maxScroll <= 0) {
-    console.log("No scrollable space");
-    return; // Exit if there's no scrollable space
-  }
-
-  // Automatically scroll to the bottom over # seconds on page load
-  gsap.to(document.documentElement, {
-    // Explicitly target document root for scrolling
-    scrollTo: {
-      y: maxScroll, // Scroll to the bottom of the page dynamically
-      autoKill: false, // Disable autoKill to prevent interruptions
-    },
-    duration: 6.8, // Scroll over 6.8 seconds
-    ease: CustomEase.create(
-      "custom",
-      "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "
-    ), // Easing function for smooth scrolling
-    // onStart: () => console.log('Auto-scrolling started'),
-    // onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
-    // onComplete: () => console.log('Auto-scrolling completed')
-  });
+    // Automatically scroll to the bottom over # seconds on page load
+    gsap.to(document.documentElement, {
+      // Explicitly target document root for scrolling
+      scrollTo: {
+        y: maxScroll, // Scroll to the bottom of the page dynamically
+        autoKill: false, // Disable autoKill to prevent interruptions
+      },
+      duration: 6.8, // Scroll over 6.8 seconds
+      ease: CustomEase.create(
+        "custom",
+        "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "
+      ), // Easing function for smooth scrolling
+      // onStart: () => console.log('Auto-scrolling started'),
+      // onUpdate: () => console.log('Scrolling in progress: ', window.scrollY), // Check the scroll progress
+      // onComplete: () => console.log('Auto-scrolling completed')
+    });
   }, 3000); // Add a delay of 3seconds before starting the scroll to let the layout settle
 }
 
 window.addEventListener("load", function () {
-  mountainSkyAni();
+  // mountainSkyAni();
   updateMeElement();
   updateDimensions();
   updateModalDimensions();
@@ -335,71 +379,6 @@ window.addEventListener("load", function () {
   autoScroll();
 });
 
-
-
-// function mountainSkyAni() {
-//   gsap
-//     .timeline({
-//       scrollTrigger: {
-//         trigger: ".scrollDist",
-//         start: "top top",
-//         end: "bottom bottom",
-//         duration: 4,
-//         scrub: 1,
-//       },
-//     })
-//     .fromTo(
-//       "#sky",
-//       { scale: 1, x: 0, y: -80 },
-//       { scale: 1.3, x: -150, y: -650 },
-//       0
-//     )
-//     .fromTo(
-//       "#mountBg",
-//       { scale: 1, x: 0, y: 70 },
-//       { scale: 1.3, x: -150, y: -600 },
-//       0
-//     )
-//     .fromTo("#cloud2", { x: 400, y: 310 }, { x: -200, y: -600 }, 0)
-//     .fromTo(
-//       "#mountBg2",
-//       { scale: 1, x: 0, y: 110 },
-//       { scale: 1.3, x: -150, y: -670 },
-//       0
-//     )
-//     .fromTo("#cloud3", { x: -200, y: 300 }, { x: 500, y: -1000 }, 0)
-//     .fromTo(
-//       "#mountMg",
-//       { scale: 1, x: 0, y: 345 },
-//       { scale: 1.3, x: -150, y: -700 },
-//       0
-//     )
-//     .fromTo("#cloud4", { x: 300, y: 320 }, { x: -400, y: -850 }, 0)
-//     .fromTo(
-//       "#mountMgF",
-//       { scale: 1, x: 0, y: 200 },
-//       { scale: 1.3, x: -150, y: -750 },
-//       0
-//     )
-//     .fromTo(
-//       "#mountFg",
-//       { scale: 1, x: 0, y: 220 },
-//       { scale: 1.3, x: -150, y: -850 },
-//       0
-//     )
-//     .fromTo(
-//       "#cloud5",
-//       { scale: 1.5, x: -100, y: 380 },
-//       { scale: 3, x: 300, y: -950 },
-//       0
-//     )
-//     .fromTo(
-//       "#cloud1, #cloud1M",
-//       { scale: 1.3, x: -10, y: 576 },
-//       { scale: 2, x: -500, y: -690 },
-//       0
-//     );
-// }
 // ###################################################################################
 
 // Thumbnails positioning based on window size
@@ -847,16 +826,15 @@ function showStatementContact() {
   document.getElementById("contactForm").style.display = "none";
 }
 
-function showWip(){
-  updateWIPDimensions(endTopY- 4);
+function showWip() {
+  updateWIPDimensions(endTopY - 4);
   updateDimensionsNoMargins();
   document.getElementById("wip").style.display = "block";
   document.getElementById("contactForm").style.display = "none";
-
 }
 
-function hideWip(){
-  document.getElementById("wip").style.display = "none"; 
+function hideWip() {
+  document.getElementById("wip").style.display = "none";
 }
 
 function centreThumbs() {
@@ -904,11 +882,8 @@ function hideForm() {
 }
 
 // align SEE/ME text & ME animate wiggles
-// Wait for the DOM to fully load
-window.onload = function () {
+function animateMeAndWiggles() {
   // Ensure 'meElement' and 'meShaker' are declared and exist in the DOM
-  const meElement = document.getElementById("me");
-  const meShaker = document.getElementById("meshaker"); 
 
   if (!meElement || !meShaker) {
     console.error(
@@ -984,10 +959,12 @@ window.onload = function () {
   // Function to apply combined transformation (centering + rotation)
   function applyTransform() {
     meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; // Combine rotation and translation
+    
     seeText.style.opacity = 1;
     down.style.opacity = 1;
+    seeText.style.visibility = "visible";
   }
-
+  
   // Function to handle orientation change
   function handleOrientationChange() {
     updateTextElementPositions(); // Update positions on orientation change
@@ -999,51 +976,6 @@ window.onload = function () {
   // Initial call to set positions correctly
   updateTextElementPositions();
 
-  // // Function to center the text(SEE/ME) elements in the SVG
-  // function updateTextElementPositions() {
-  //   // Get the SVG dimensions
-  //   const svg = document.querySelector("svg");
-  //   const svgWidth = svg.viewBox.baseVal.width || svg.clientWidth;
-  //   const svgHeight = svg.viewBox.baseVal.height || svg.clientHeight;
-
-  //   // Calculate the center of the SVG
-  //   const svgCenterX = svgWidth / 2;
-  //   const svgCenterY = svgHeight / 2;
-
-  //   // Position "SEE" and "ME" at the center of the SVG
-  //   const seeX = svgCenterX;
-  //   const seeY = svgCenterY - 210; // Adjust Y position for SEE
-  //   const meX = svgCenterX;
-  //   const meY = svgCenterY - 210; // Adjust Y position for ME
-
-  //   // Apply the translation (without affecting rotation)
-  //   gsap.to("#see", {
-  //     x: seeX,
-  //     y: seeY,
-  //     duration: 1,
-  //     ease: "power2.out",
-  //   });
-
-  //   gsap.to("#me", {
-  //     x: meX,
-  //     y: meY,
-  //     duration: 1,
-  //     ease: "power2.out",
-  //   });
-
-  //   // Store the initial translation for the ME element
-  //   initialTransform = `translate(${meX}px, ${meY}px)`;
-
-  //   applyTransform(); // Apply the current transformation
-  //   seeText.style.opacity= 0;
-
-  // }
-
-  // // Function to apply combined transformation (centering + rotation)
-  // function applyTransform() {
-  //   meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; // Combine rotation and translation
-  //   seeText.style.opacity= 1;
-  // }
 
   // Function to start the hover wiggle animation
   function startHoverWiggle() {
@@ -1138,7 +1070,6 @@ window.onload = function () {
   // Function to dynamically update text positions on resize
   function onResize() {
     updateTextElementPositions(); // Update position on window resize
-
     updateDimensions();
     updateModalDimensions();
     updateDimensionsNoMargins();
@@ -1182,9 +1113,9 @@ function hideDropdown(dropMenu) {
 
 // Function to handle delayed hiding of the dropdown
 function delayedHide(dropdownMenu) {
-  // Clear any existing timeout
+  
   clearTimeout(hoverTimeout);
-  // Set a timeout to hide the menu after a short delay
+ 
   hoverTimeout = setTimeout(() => {
     hideDropdown(dropdownMenu);
   }, 200); // 200ms delay to allow smooth interaction
