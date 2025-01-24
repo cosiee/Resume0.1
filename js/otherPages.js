@@ -1,3 +1,4 @@
+// adjust navbar logic
 $(window).scroll(function () {
   var scrollDistOffset = $(".scrollDist").offset().top;
   var scrollDistHeight = $(".scrollDist").outerHeight();
@@ -161,7 +162,7 @@ $(document).ready(function() {
   
   $("#slider1").sliderResponsive({
   // Using default everything
-    // slidePause: 5000,
+     slidePause: 5000,
     // fadeSpeed: 800,
     // autoPlay: "on",
     // showArrows: "off", 

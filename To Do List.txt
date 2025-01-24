@@ -1,6 +1,12 @@
-Get lazy-load working for thumbnails images
+Other pages quickly...
 
-window.onload move to windowEventListener("load")
+NEXT...
+
+Write ReadMe.txt 
+
+Get lazy-load working for thumbnails images...
+
+window.onload move to windowEventListener("load") (done-AC)
 
 
 Why does the thumbnail overlay only work sometimes on smaller screens?
@@ -22,7 +28,7 @@ at the stage? (done-AC)
 
 dupilcated styles.css into pStyles.css and try new styled media queries seen here: https://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile (done-AC)
 
-Blinking Thumbnails need to be present at all times( work done but not as desired yet-AC)
+Blinking Thumbnails need to be present at all times( work done but not as desired yet-AC)(done-AC)
 they start at correct random pace of change(transition) but this pace accerates over time. need
 to maintain random even slow pace.
 
