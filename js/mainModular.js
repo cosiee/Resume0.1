@@ -1,12 +1,7 @@
-const prioritizedImages = [
-  "#sky",
-  "#mountMgF",
-  "#mountFg",
-  "#cloud1",
-  "#mountBg",
-  "#mountBg2",
-  "#meElement",
-];
+import { getDomElements } from "./domUtils.js";
+
+import { prioritizedImages } from "./config.js";
+
 
 const thumbnailsContainer = document.querySelector("#thumbnails");
 
@@ -85,12 +80,21 @@ const thumbnailImages = [
   ], // DIY images
 ];
 
+const scrollDist = document.querySelector(".scrollDist");
+
 document.addEventListener("DOMContentLoaded", function () {
+  const domElements = getDomElements();
+  // console.log("domElements:", domElements);
+
+  // Preload images
   preloadImages(prioritizedImages, () => {
-    svg.style.visibility = "visible"; // Show SVG after preloading
-    mountainSkyAni();
+    if (domElements.svg) {
+      domElements.svg.style.visibility = "visible";
+      mountainSkyAni(); // Start GSAP animations
+    } else {
+      console.error("SVG element not found.");
+    }
   });
-});
 
 gsap.set(".scrollDist", {
   width: "100%",
@@ -1041,7 +1045,7 @@ function animateMeAndWiggles() {
   window.onresize = onResize;
 }
 
-// Beginning of Handling hover on Thumbs Triggering Navbar elements ###############################
+// Beginning of Handling hover on Thumbs Triggering Navbar elements and dropdowns
 
 const thumbSoft = document.querySelector("#software");
 const navbarSoft = document.querySelector("#softwareLink");
@@ -1160,17 +1164,4 @@ thumbDiy.addEventListener("mouseleave", function () {
   navbarDiy.classList.remove("active");
   thumbDiy.classList.remove("active");
 });
-
-// Function to output the height of the .scrollDist element
-function outputScrollDistHeight() {
-  const scrollDist = document.querySelector(".scrollDist");
-  // if (scrollDist) {
-  //   console.log("Current scrollDist height:", scrollDist.offsetHeight + "px");
-  // }
-}
-
-// Add event listener to call the function on window resize
-window.addEventListener("resize", outputScrollDistHeight);
-
-// Initial call to log the height when the page loads
-outputScrollDistHeight();
+});
