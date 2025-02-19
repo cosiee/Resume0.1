@@ -85,6 +85,8 @@ const thumbnailImages = [
   ], // DIY images
 ];
 
+const scrollDist = document.querySelector(".scrollDist");
+
 document.addEventListener("DOMContentLoaded", function () {
   preloadImages(prioritizedImages, () => {
     svg.style.visibility = "visible"; // Show SVG after preloading
@@ -1041,7 +1043,7 @@ function animateMeAndWiggles() {
   window.onresize = onResize;
 }
 
-// Beginning of Handling hover on Thumbs Triggering Navbar elements ###############################
+// Beginning of Handling hover on Thumbs Triggering Navbar elements and dropdowns
 
 const thumbSoft = document.querySelector("#software");
 const navbarSoft = document.querySelector("#softwareLink");
@@ -1161,16 +1163,3 @@ thumbDiy.addEventListener("mouseleave", function () {
   thumbDiy.classList.remove("active");
 });
 
-// Function to output the height of the .scrollDist element
-function outputScrollDistHeight() {
-  const scrollDist = document.querySelector(".scrollDist");
-  // if (scrollDist) {
-  //   console.log("Current scrollDist height:", scrollDist.offsetHeight + "px");
-  // }
-}
-
-// Add event listener to call the function on window resize
-window.addEventListener("resize", outputScrollDistHeight);
-
-// Initial call to log the height when the page loads
-outputScrollDistHeight();

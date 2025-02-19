@@ -57,6 +57,7 @@ text.lrgtext {
 }
 
 #see {
+  opacity: 0;
   fill: #fff;
 }
 
@@ -295,10 +296,12 @@ navbar-toggler left {
 }
 
 .container-fluid#thumbnails {
+  opacity: 0;
   position: absolute;
 }
 
 .thumbnails {
+  opacity: 0;
   position: absolute;
   height: auto;
   width: 100%;

@@ -1,5 +1,8 @@
 Biuilding on the shoulders of gaints
 
+<!-- Building on the shoulders of giants, special thanks to:
+https://codepen.io/EricPorter/pen/XaOEpP
+
 Johari window 4 parts of self
 
 https://birkman.com/resources/articles/birkman-colors  

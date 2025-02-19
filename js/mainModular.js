@@ -1,12 +1,7 @@
-const prioritizedImages = [
-  "#sky",
-  "#mountMgF",
-  "#mountFg",
-  "#cloud1",
-  "#mountBg",
-  "#mountBg2",
-  "#meElement",
-];
+import { getDomElements } from "./domUtils.js";
+
+import { prioritizedImages, SCROLL_DURATION, GSAP_DEFAULTS } from "./config.js";
+
 
 const thumbnailsContainer = document.querySelector("#thumbnails");
 
@@ -24,8 +19,10 @@ seeText.style.opacity = 0;
 
 const down = document.querySelector("#down");
 
-const meElement = document.getElementById("me");
-meElement.disabled = true;
+// const domElements.meElement = document.getElementById("me");
+
+
+
 const meShaker = document.getElementById("meshaker");
 
 const thumbnailImages = [
@@ -85,12 +82,25 @@ const thumbnailImages = [
   ], // DIY images
 ];
 
+const scrollDist = document.querySelector(".scrollDist");
+
 document.addEventListener("DOMContentLoaded", function () {
+  const domElements = getDomElements();
+   console.log("domElements:", domElements);
+   domElements.meElement.style.display = "none"; // Hide #me initially
+
+  //  const domElements.meElement = document.querySelector("#me");
+    // domElements.meElement.addEventListener("click", autoScrollNow, showStatementContact);
+
+  // Preload images
   preloadImages(prioritizedImages, () => {
-    svg.style.visibility = "visible"; // Show SVG after preloading
-    mountainSkyAni();
+    if (domElements.svg) {
+      domElements.svg.style.visibility = "visible";
+      mountainSkyAni(); // Start GSAP animations
+    } else {
+      console.error("SVG element not found.");
+    }
   });
-});
 
 gsap.set(".scrollDist", {
   width: "100%",
@@ -276,7 +286,7 @@ window.history.scrollRestoration = "manual";
 
 function autoScrollNow() {
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-
+  console.log("maxScroll: ", maxScroll);
   if (maxScroll <= 0) {
     console.log("No scrollable space");
     return; // Exit if there's no scrollable space
@@ -289,7 +299,7 @@ function autoScrollNow() {
       y: maxScroll, // Scroll to the bottom of the page dynamically
       autoKill: false, // Disable autoKill to prevent interruptions
     },
-    duration: 6.8, // Scroll over # seconds
+    duration: SCROLL_DURATION, // Scroll over # seconds
     ease: CustomEase.create(
       "custom",
       "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "
@@ -316,7 +326,7 @@ function autoScroll() {
         y: maxScroll, // Scroll to the bottom of the page dynamically
         autoKill: false, // Disable autoKill to prevent interruptions
       },
-      duration: 6.8, // Scroll over 6.8 seconds
+      duration: SCROLL_DURATION, // Scroll time: SCROLL_DURATION, see config.js
       ease: CustomEase.create(
         "custom",
         "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "
@@ -696,29 +706,138 @@ function getScaleValue(element) {
   }
 }
 
+// Handles Welcome Message close link click - return to main layout
+domElements.modalClose.addEventListener("click", function () {
+  showScrollBar(); 
+  showThumbs(); 
+  updateDimensions(); 
+  spaceoutThumbs();
+});
+
+// Handles Welcome Message signature click - to contact form
+domElements.modalSig.addEventListener("click", function () {
+  showForm();
+});
+
+// Handles contact form close button click
+domElements.contactFormClose.addEventListener("click", function () {
+  showThumbs(); 
+  spaceoutThumbs();
+});
+
+// Handles the form submission click and display layout
+domElements.formButton.addEventListener("click", function () {
+  showThumbs(); 
+  spaceoutThumbs();
+});
+
+// Handles contact form display-layout
+domElements.contactLink.addEventListener("click", function () {
+  hideScrollBar(); 
+  showStatementContact(); 
+  showForm();
+});
+
+// Handles navbar-Animation link click - to WIP message
+domElements.navAnimation.addEventListener("click", function () {
+  showWip();
+});
+
+// Handles navbar-Video link click - to WIP message
+domElements.navVideo.addEventListener("click", function () {
+  showWip();
+});
+
+// Handles WIP message close link click - return to main layout
+domElements.modalWipClose.addEventListener("click", function () {
+  showScrollBar();
+  showThumbs(); 
+  updateDimensions(); 
+  spaceoutThumbs(); 
+  hideWip();
+});
+
+// Handles navbar-DIY link click - to WIP message
+domElements.diyLink.addEventListener("click", function () {
+  showWip();
+});
+
+// Handles navbar-Photography link click - to WIP message
+domElements.photographyLink.addEventListener("click", function () {
+  showWip();
+});
+
+// Handles navbar-SQL link click - to WIP message
+domElements.navSql.addEventListener("click", function () {
+  showWip();
+});
+
+// Handles navbar-Python link click - to WIP message
+domElements.navPython.addEventListener("click", function () {
+  showWip();
+});
+
+// Handles navbar-Java link click - to WIP message
+domElements.navJava.addEventListener("click", function () {
+  showWip();
+});
+
+// Handles Down Arrow link click - to auto-scroll
+domElements.down.addEventListener("click", function () {
+  autoScrollNow();
+});
+
+// Handles software Thumbs link click - to WIP message
+domElements.software.addEventListener("click", function () {
+  showWip();
+});
+
+// Handles photography Thumbs link click - to WIP message
+domElements.photography.addEventListener("click", function () {
+  showWip();
+});
+
+// Handles motion Thumbs link click - to WIP message
+domElements.motion.addEventListener("click", function () {
+  showWip();
+});
+
+// Handles DIY Thumbs link click - to WIP message
+domElements.diy.addEventListener("click", function () {
+  showWip();  
+});
+
+// Handles navbar-Home link click - to auto-scrolling
+domElements.navHome.addEventListener("click", function () {
+  autoScrollNow();
+});
+
+
 function updateMeElement() {
   const scaleValue = getScaleValue(cloud1);
   if (scaleValue >= thresholdScale) {
-    if (meElement.style.display === "none") {
-      meElement.style.display = "block"; // Enable #me
+    if (domElements.meElement.style.display === "none") {
+      domElements.meElement.style.display = "block"; // Enable #me
       down.style.display = "none";
       // Re-enable event listeners if necessary
-      meElement.addEventListener(
-        "click",
-        hideScrollBar,
-        updateDimensionsNoMargins
-      ); //, scrollToBottom
+      domElements.meElement.addEventListener("click", function() {
+        hideScrollBar();
+        updateDimensionsNoMargins();
+        autoScrollNow();
+        showStatementContact();
+      }); //, scrollToBottom
     }
   } else {
-    if (meElement.style.display !== "none") {
-      meElement.style.display = "none"; // Disable #me
+    if (domElements.meElement.style.display !== "none") {
+      domElements.meElement.style.display = "none"; // Disable #me
       down.style.display = "block";
       // Disable or remove event listeners
-      meElement.removeEventListener(
-        "click",
-        hideScrollBar,
-        updateDimensionsNoMargins
-      ); //, scrollToBottom
+      domElements.meElement.addEventListener("click", function() {
+        hideScrollBar();
+        updateDimensionsNoMargins();
+        autoScrollNow();
+        showStatementContact();
+      });
     }
   }
 }
@@ -759,12 +878,12 @@ $(window).scroll(function () {
   }
 });
 
-// Function to hide the scrollbar
+// Hides the scrollbar
 function hideScrollBar() {
   document.documentElement.style.overflow = "hidden"; // Hide scroll on the entire document
 }
 
-// Function to show the scrollbar
+// Shows the scrollbar
 function showScrollBar() {
   document.documentElement.style.overflow = ""; // Show scroll on the entire document
 }
@@ -774,17 +893,20 @@ function showScrollBar() {
 //################ Navigation between index.html#thumbs,
 // modalBox(statementContact) & Contact Form ###########
 
+// Displays Contact Form
 function showForm() {
   formControl();
   document.getElementById("contactForm").style.display = "block";
 }
 
+// Displays Welcome message
 function showStatementContact() {
   updateDimensionsNoMargins();
   document.getElementById("statementContact").style.display = "block";
   document.getElementById("contactForm").style.display = "none";
 }
 
+// Displays WIP message
 function showWip() {
   updateWIPDimensions(endTopY - 4);
   updateDimensionsNoMargins();
@@ -792,11 +914,14 @@ function showWip() {
   document.getElementById("contactForm").style.display = "none";
 }
 
+// Hides WIP message
 function hideWip() {
   document.getElementById("wip").style.display = "none";
 }
 
+
 function centreThumbs() {
+  console.log("centreThumbs");
   gsap.to("#software", {
     scale: 1,
     x: endLeftX,
@@ -827,24 +952,28 @@ function centreThumbs() {
   });
 }
 
+// Hides the Contact Form, Welcome & Displays Thumbnails & ScrollBar
 function showThumbs() {
-  document.getElementById("contactForm").style.display = "none";
+  
+  hideForm();
+  // document.getElementById("contactForm").style.display = "none";
   document.getElementById("statementContact").style.display = "none";
   document.getElementById("thumbnails").style.display = "block";
   showScrollBar();
   updateDimensions();
 }
 
+// Hides the Contact Form
 function hideForm() {
   document.getElementById("contactForm").style.display = "none";
   // document.getElementById("statementContact").style.display = "block";
 }
 
-// align SEE/ME text & ME animate wiggles
+// Aligns SEE/ME text & ME animate wiggles
 function animateMeAndWiggles() {
-  // Ensure 'meElement' and 'meShaker' are declared and exist in the DOM
+  // Ensure 'domElements.meElement' and 'meShaker' are declared and exist in the DOM
 
-  if (!meElement || !meShaker) {
+  if (!domElements.meElement || !meShaker) {
     console.error(
       "Required DOM elements not found. Check element IDs for 'me' and 'meshaker'."
     );
@@ -917,7 +1046,7 @@ function animateMeAndWiggles() {
 
   // Function to apply combined transformation (centering + rotation)
   function applyTransform() {
-    meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; // Combine rotation and translation
+    domElements.meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; // Combine rotation and translation
 
     seeText.style.opacity = 1;
     down.style.opacity = 1;
@@ -1000,7 +1129,7 @@ function animateMeAndWiggles() {
       if (wiggleAngle === 1 || wiggleAngle === -1) {
         direction *= -1; // Reverse direction at the extremes
       }
-      meElement.style.transform = `${initialTransform} rotate(${wiggleAngle}deg)`; // Apply the wiggle transformation
+      domElements.meElement.style.transform = `${initialTransform} rotate(${wiggleAngle}deg)`; // Apply the wiggle transformation
     }
 
     // Start the animation interval for the wiggle effect
@@ -1010,20 +1139,20 @@ function animateMeAndWiggles() {
   // Event listeners for hover wiggle on "ME"
   meShaker.addEventListener("mouseenter", function () {
     // Combine scaling with the existing transform (centering + wiggle)
-    meElement.style.transform = `${initialTransform} rotate(${angle}deg)`;
+    domElements.meElement.style.transform = `${initialTransform} rotate(${angle}deg)`;
     startHoverWiggle(); // Start hover wiggle
   });
 
   meShaker.addEventListener("mouseleave", function () {
     // Reset the scaling and keep the initial transform (centering + reset rotation)
-    meElement.style.transform = `${initialTransform} rotate(0deg)`;
+    domElements.meElement.style.transform = `${initialTransform} rotate(0deg)`;
     stopHoverWiggle(); // Stop hover wiggle
   });
-  meElement.addEventListener("mouseenter", function () {
-    meElement.style.transform = `${initialTransform} rotate(0deg) scale(1.115)`;
+  domElements.meElement.addEventListener("mouseenter", function () {
+    domElements.meElement.style.transform = `${initialTransform} rotate(0deg) scale(1.115)`;
   });
-  meElement.addEventListener("mouseleave", function () {
-    meElement.style.transform = `${initialTransform} rotate(0deg) scale(1)`;
+  domElements.meElement.addEventListener("mouseleave", function () {
+    domElements.meElement.style.transform = `${initialTransform} rotate(0deg) scale(1)`;
   });
   // Function to dynamically update text positions on resize
   function onResize() {
@@ -1041,7 +1170,7 @@ function animateMeAndWiggles() {
   window.onresize = onResize;
 }
 
-// Beginning of Handling hover on Thumbs Triggering Navbar elements ###############################
+// Beginning of Handling hover on Thumbs Triggering Navbar elements and dropdowns
 
 const thumbSoft = document.querySelector("#software");
 const navbarSoft = document.querySelector("#softwareLink");
@@ -1160,17 +1289,4 @@ thumbDiy.addEventListener("mouseleave", function () {
   navbarDiy.classList.remove("active");
   thumbDiy.classList.remove("active");
 });
-
-// Function to output the height of the .scrollDist element
-function outputScrollDistHeight() {
-  const scrollDist = document.querySelector(".scrollDist");
-  // if (scrollDist) {
-  //   console.log("Current scrollDist height:", scrollDist.offsetHeight + "px");
-  // }
-}
-
-// Add event listener to call the function on window resize
-window.addEventListener("resize", outputScrollDistHeight);
-
-// Initial call to log the height when the page loads
-outputScrollDistHeight();
+});
