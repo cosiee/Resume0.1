@@ -28,7 +28,7 @@ export function getDomElements() {
       software: document.getElementById("software"),
       photography: document.getElementById("photography"),
       motion: document.getElementById("motion"),
-      diy: document.getElementById("diy"),
+      diy: document.getElementById("diy")
     };
   }
   

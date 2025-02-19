@@ -706,12 +706,15 @@ function getScaleValue(element) {
   }
 }
 
+// Handles Welcome Message close link click - return to main layout
 domElements.modalClose.addEventListener("click", function () {
   showScrollBar(); 
   showThumbs(); 
   updateDimensions(); 
   spaceoutThumbs();
 });
+
+// Handles Welcome Message signature click - to contact form
 domElements.modalSig.addEventListener("click", function () {
   showForm();
 });
@@ -728,20 +731,24 @@ domElements.formButton.addEventListener("click", function () {
   spaceoutThumbs();
 });
 
+// Handles contact form display-layout
 domElements.contactLink.addEventListener("click", function () {
   hideScrollBar(); 
   showStatementContact(); 
   showForm();
 });
 
+// Handles navbar-Animation link click - to WIP message
 domElements.navAnimation.addEventListener("click", function () {
   showWip();
 });
 
+// Handles navbar-Video link click - to WIP message
 domElements.navVideo.addEventListener("click", function () {
   showWip();
 });
 
+// Handles WIP message close link click - return to main layout
 domElements.modalWipClose.addEventListener("click", function () {
   showScrollBar();
   showThumbs(); 
@@ -750,54 +757,61 @@ domElements.modalWipClose.addEventListener("click", function () {
   hideWip();
 });
 
+// Handles navbar-DIY link click - to WIP message
 domElements.diyLink.addEventListener("click", function () {
   showWip();
 });
 
+// Handles navbar-Photography link click - to WIP message
 domElements.photographyLink.addEventListener("click", function () {
   showWip();
 });
 
+// Handles navbar-SQL link click - to WIP message
 domElements.navSql.addEventListener("click", function () {
   showWip();
 });
 
+// Handles navbar-Python link click - to WIP message
 domElements.navPython.addEventListener("click", function () {
   showWip();
 });
 
+// Handles navbar-Java link click - to WIP message
 domElements.navJava.addEventListener("click", function () {
   showWip();
 });
 
+// Handles Down Arrow link click - to auto-scroll
 domElements.down.addEventListener("click", function () {
   autoScrollNow();
 });
 
+// Handles software Thumbs link click - to WIP message
 domElements.software.addEventListener("click", function () {
   showWip();
 });
 
-
+// Handles photography Thumbs link click - to WIP message
 domElements.photography.addEventListener("click", function () {
   showWip();
 });
 
+// Handles motion Thumbs link click - to WIP message
 domElements.motion.addEventListener("click", function () {
   showWip();
 });
 
+// Handles DIY Thumbs link click - to WIP message
 domElements.diy.addEventListener("click", function () {
-  showWip();
+  showWip();  
 });
 
+// Handles navbar-Home link click - to auto-scrolling
 domElements.navHome.addEventListener("click", function () {
   autoScrollNow();
 });
 
-domElements.down.addEventListener("click", function () {
-  autoScrollNow();
-});
 
 function updateMeElement() {
   const scaleValue = getScaleValue(cloud1);
@@ -884,6 +898,7 @@ function showForm() {
   formControl();
   document.getElementById("contactForm").style.display = "block";
 }
+
 // Displays Welcome message
 function showStatementContact() {
   updateDimensionsNoMargins();
