@@ -1,8 +1,9 @@
-import { getDomElements } from "./domUtils.js";
+import { getDomElements, debounce } from "./domUtils.js";
 
-import { prioritizedImages, SCROLL_DURATION, GSAP_DEFAULTS } from "./config.js";
+import { prioritizedImages, SCROLL_DURATION, thumbnailImages, GSAP_DEFAULTS } from "./config.js";
 
-
+import{preloadImages, preloadThumbnailImages,lazyLoadImages} from "./preload.js";
+import { enableStickyNavbar } from "./navbar.js";
 const thumbnailsContainer = document.querySelector("#thumbnails");
 
 const svg = document.querySelector("#svg");
@@ -25,73 +26,13 @@ const down = document.querySelector("#down");
 
 const meShaker = document.getElementById("meshaker");
 
-const thumbnailImages = [
-  ...[
-    "url('css/assets/b1.webp')",
-    "url('css/assets/b2.webp')",
-    "url('css/assets/b3.webp')",
-    "url('css/assets/b4.webp')",
-    "url('css/assets/b5.webp')",
-    "url('css/assets/b6.webp')",
-    "url('css/assets/b7.webp')",
-    "url('css/assets/b8.webp')",
-    "url('css/assets/b9.webp')",
-    "url('css/assets/b10.webp')",
-    "url('css/assets/b12.webp')",
-    "url('css/assets/b13.webp')",
-    "url('css/assets/b14.webp')",
-  ], // Software images
-  ...[
-    "url('css/assets/r1.webp')",
-    "url('css/assets/r2.webp')",
-    "url('css/assets/r3.webp')",
-    "url('css/assets/r4.webp')",
-    "url('css/assets/r5.webp')",
-    "url('css/assets/r6.webp')",
-    "url('css/assets/r7.webp')",
-    "url('css/assets/r8.webp')",
-    "url('css/assets/r9.webp')",
-    "url('css/assets/r10.webp')",
-    "url('css/assets/r11.webp')",
-    "url('css/assets/r12.webp')",
-  ], // Photography images
-  ...[
-    "url('css/assets/g1.webp')",
-    "url('css/assets/g2.webp')",
-    "url('css/assets/g3.webp')",
-    "url('css/assets/g4.webp')",
-    "url('css/assets/g5.webp')",
-    "url('css/assets/g6.webp')",
-    "url('css/assets/g7.webp')",
-    "url('css/assets/g8.webp')",
-    "url('css/assets/g9.webp')",
-    "url('css/assets/g10.webp')",
-  ], // Motion images
-  ...[
-    "url('css/assets/y1.webp')",
-    "url('css/assets/y2.webp')",
-    "url('css/assets/y3.webp')",
-    "url('css/assets/y4.webp')",
-    "url('css/assets/y5.webp')",
-    "url('css/assets/y6.webp')",
-    "url('css/assets/y7.webp')",
-    "url('css/assets/y8.webp')",
-    "url('css/assets/y9.webp')",
-    "url('css/assets/y10.webp')",
-    "url('css/assets/y11.webp')",
-  ], // DIY images
-];
 
 const scrollDist = document.querySelector(".scrollDist");
 
 document.addEventListener("DOMContentLoaded", function () {
   const domElements = getDomElements();
    console.log("domElements:", domElements);
-   domElements.meElement.style.display = "none"; // Hide #me initially
-
-  //  const domElements.meElement = document.querySelector("#me");
-    // domElements.meElement.addEventListener("click", autoScrollNow, showStatementContact);
-
+  
   // Preload images
   preloadImages(prioritizedImages, () => {
     if (domElements.svg) {
@@ -100,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       console.error("SVG element not found.");
     }
+    enableStickyNavbar(320);
   });
 
 gsap.set(".scrollDist", {
@@ -184,29 +126,29 @@ function mountainSkyAni() {
     );
 }
 
-function preloadImages(imageIds, callback) {
-  let loadedCount = 0;
-  const totalImages = imageIds.length;
+// function preloadImages(imageIds, callback) {
+//   let loadedCount = 0;
+//   const totalImages = imageIds.length;
 
-  imageIds.forEach((id) => {
-    const imgElement = document.querySelector(id);
-    if (imgElement && imgElement.getAttribute("href")) {
-      const img = new Image();
-      img.src = imgElement.getAttribute("href");
-      img.onload = img.onerror = () => {
-        loadedCount++;
-        if (loadedCount === totalImages) {
-          callback();
-        }
-      };
-    } else {
-      loadedCount++;
-      if (loadedCount === totalImages) {
-        callback();
-      }
-    }
-  });
-}
+//   imageIds.forEach((id) => {
+//     const imgElement = document.querySelector(id);
+//     if (imgElement && imgElement.getAttribute("href")) {
+//       const img = new Image();
+//       img.src = imgElement.getAttribute("href");
+//       img.onload = img.onerror = () => {
+//         loadedCount++;
+//         if (loadedCount === totalImages) {
+//           callback();
+//         }
+//       };
+//     } else {
+//       loadedCount++;
+//       if (loadedCount === totalImages) {
+//         callback();
+//       }
+//     }
+//   });
+// }
 
 function getRandomImage(imagesArray) {
   return imagesArray[Math.floor(Math.random() * imagesArray.length)];
@@ -239,12 +181,12 @@ function setRandomBackgroundWithTransition(containerId, imagesArray) {
   console.log("RandomTime 2: ", randomTime);
 }
 
-function preloadThumbnailImages(imagesArray) {
-  imagesArray.forEach((imageUrl) => {
-    const img = new Image();
-    img.src = imageUrl.replace("url('", "").replace("')", "");
-  });
-}
+// function preloadThumbnailImages(imagesArray) {
+//   imagesArray.forEach((imageUrl) => {
+//     const img = new Image();
+//     img.src = imageUrl.replace("url('", "").replace("')", "");
+//   });
+// }
 
 preloadThumbnailImages(thumbnailImages);
 thumbnailsContainer.style.visibility = "visible"; // Show thumbnails after loading
@@ -622,13 +564,7 @@ function formControl(endTopY) {
   contactForm.style.top = `${formY}px`;
 }
 
-function debounce(fn, delay) {
-  let timeout;
-  return function () {
-    clearTimeout(timeout);
-    timeout = setTimeout(fn, delay);
-  };
-}
+
 
 // Ensure updateDimensionsNoMargins is called on resize and DOM content load
 window.addEventListener(
@@ -849,34 +785,8 @@ observer.observe(cloud1, { attributes: true, childList: true, subtree: true });
 // Initial call to update the state based on current scale
 updateMeElement();
 
-// Scroll event listener to toggle sticky collapsed-navbar for landscape below orienttion
-$(window).scroll(function () {
-  var scrollDistOffset = $(".scrollDist").offset().top;
-  var scrollDistHeight = $(".scrollDist").outerHeight();
-  var scrollTop = $(window).scrollTop();
-  var windowHeight = $(window).height();
 
-  var isLandscapeSmall = window.matchMedia(
-    "(orientation: landscape) and (max-width: 991.98px)"
-  ).matches;
-  var isSmallHeight = windowHeight < 320;
-  var inSmallHeightScrollRange =
-    scrollTop > scrollDistOffset &&
-    scrollTop < scrollDistOffset + scrollDistHeight;
-  var inNormalHeightScrollRange =
-    scrollTop > scrollDistOffset + 320 &&
-    scrollTop < scrollDistOffset + scrollDistHeight;
 
-  // Apply sticky logic
-  if (
-    inNormalHeightScrollRange ||
-    (isLandscapeSmall && isSmallHeight && inSmallHeightScrollRange)
-  ) {
-    $(".navbar").addClass("sticky");
-  } else {
-    $(".navbar").removeClass("sticky");
-  }
-});
 
 // Hides the scrollbar
 function hideScrollBar() {
@@ -1149,7 +1059,7 @@ function animateMeAndWiggles() {
     stopHoverWiggle(); // Stop hover wiggle
   });
   domElements.meElement.addEventListener("mouseenter", function () {
-    domElements.meElement.style.transform = `${initialTransform} rotate(0deg) scale(1.115)`;
+    domElements.meElement.style.transform = `${initialTransform} rotate(0deg) scale(1.09)`;
   });
   domElements.meElement.addEventListener("mouseleave", function () {
     domElements.meElement.style.transform = `${initialTransform} rotate(0deg) scale(1)`;
@@ -1217,6 +1127,7 @@ thumbSoft.addEventListener("mouseenter", function () {
   navbarSoft.classList.add("active");
   thumbSoft.classList.add("active");
 });
+
 navbarSoft.addEventListener("mouseenter", function () {
   showDropMenu(softwareDropMenuLink);
   navbarSoft.classList.add("active");
@@ -1228,6 +1139,7 @@ thumbSoft.addEventListener("mouseleave", function () {
   navbarSoft.classList.remove("active");
   thumbSoft.classList.remove("active");
 });
+
 navbarSoft.addEventListener("mouseleave", function () {
   delayedHide(softwareDropMenuLink);
   navbarSoft.classList.remove("active");
@@ -1247,6 +1159,7 @@ thumbMot.addEventListener("mouseenter", function () {
   navbarMot.classList.add("active");
   thumbMot.classList.add("active");
 });
+
 navbarMot.addEventListener("mouseenter", function () {
   showDropMenu(motionDropMenuLink);
   navbarMot.classList.add("active");
@@ -1258,14 +1171,17 @@ thumbMot.addEventListener("mouseleave", function () {
   navbarMot.classList.remove("active");
   thumbMot.classList.remove("active");
 });
+
 navbarMot.addEventListener("mouseleave", function () {
   delayedHide(motionDropMenuLink);
   navbarMot.classList.remove("active");
   thumbMot.classList.remove("active");
 });
+
 motionDropMenuLink.addEventListener("mouseenter", function () {
   cancelHide();
 });
+
 motionDropMenuLink.addEventListener("mouseleave", function () {
   delayedHide(motionDropMenuLink);
 });
