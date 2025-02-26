@@ -1,34 +1,63 @@
 // domUtils.js
 export function getDomElements() {
     return {
-      thumbnailsContainer: document.querySelector("#thumbnails"),
+      // mountains & clouds index.html
       svg: document.querySelector("#svg"),
       cloud1: document.getElementById("cloud1"),
-      thumbElement: document.querySelector(".thumbShape"),
-      thumbNails: document.querySelector(".thumbnails"),
+      
+      // see/me text index.html
       seeText: document.querySelector("#see"),
-      down: document.querySelector("#down"),
       meElement: document.getElementById("me"),
       meShaker: document.getElementById("meshaker"),
+
+      // arrow index.html
+      down: document.getElementById("down"),
+      down: document.querySelector("#down"),
+      
+      // Navigation buttons index.html Statement & Form
       modalClose: document.getElementById("modalClose"),
       modalSig: document.getElementById("modalSig"),   
       contactFormClose: document.getElementById("contactFormClose"), 
       formButton: document.getElementById("formButton"),
+      modalWipClose: document.getElementById("modalWipClose"), 
+
+      // Navbar links & Lists
       navHome: document.getElementById("navHome"),
-      contactLink: document.getElementById("contactLink"),
+
+      navSoftware: document.getElementById("softwareLink"),
+      navDropMenuSoftware: document.querySelector("#softwareDropMenuLink"),
+      navHtml: document.getElementById("navHtml"),
+      navCss: document.getElementById("navCss"),
+      navJavascript: document.getElementById("navJavascript"),
+      navJava: document.getElementById("navJava"),
+      navPython: document.getElementById("navPython"),
+      navSql: document.getElementById("navSql"),
+      navReact: document.getElementById("navReact"),
+      
+      photographyLink: document.getElementById("photographyLink"),
+      diyLink: document.getElementById("diyLink"),
+
+      navMotion: document.getElementById("motionLink"),
+      navDropMenuMotion: document.querySelector("#motionDropMenuLink"),
       navAnimation: document.getElementById("navAnimation"), 
       navVideo: document.getElementById("navVideo"),
-      modalWipClose: document.getElementById("modalWipClose"),    
-      diyLink: document.getElementById("diyLink"),  
-      photographyLink: document.getElementById("photographyLink"),
-      navSql: document.getElementById("navSql"),
-      navPython: document.getElementById("navPython"),
-      navJava: document.getElementById("navJava"),
-      down: document.getElementById("down"),
+      navContact: document.getElementById("contactLink"),
+       
+      
+      
+      // Thumbnails index.html
+      thumbnailsContainer: document.querySelector("#thumbnails"),
+      thumbElement: document.querySelector(".thumbShape"),
+      thumbNails: document.querySelector(".thumbnails"),
       software: document.getElementById("software"),
       photography: document.getElementById("photography"),
       motion: document.getElementById("motion"),
-      diy: document.getElementById("diy")
+      diy: document.getElementById("diy"),
+
+     
+      
+      
+
     };
   }
   

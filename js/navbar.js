@@ -1,4 +1,4 @@
-// stickyNavbar.js
+// navbar.js
 
 // Handles the sticky navbar logic
 export function enableStickyNavbar(triggerOffset) {
@@ -21,16 +21,6 @@ export function enableStickyNavbar(triggerOffset) {
     var inNormalHeightScrollRange =
       scrollTop > scrollDistOffset + triggerOffset &&
       scrollTop < scrollDistOffset + scrollDistHeight;
-
-    console.log("triggerOffset: ", triggerOffset);
-    console.log("scrollDistOffset: ", scrollDistOffset);
-    console.log("scrollDistHeight: ", scrollDistHeight);
-    console.log("scrollTop: ", scrollTop);
-    console.log("windowHeight: ", windowHeight);
-    console.log("isLandscapeSmall: ", isLandscapeSmall);
-    console.log("isSmallHeight: ", isSmallHeight);
-    console.log("inSmallHeightScrollRange: ", inSmallHeightScrollRange);
-    console.log("inNormalHeightScrollRange: ", inNormalHeightScrollRange);
     // Apply sticky logic
     if (
       inNormalHeightScrollRange ||
@@ -42,5 +32,13 @@ export function enableStickyNavbar(triggerOffset) {
       $(".navbar").removeClass("sticky");
       console.log("Navbar is NOT sticky"); // ✅ Debugging
     }
+  });
+}
+
+
+// Assigns href to navbar links
+export function setupDynamicLinks() {
+  document.querySelectorAll("a[data-link]").forEach((link) => {
+    link.setAttribute("href", link.dataset.link);
   });
 }

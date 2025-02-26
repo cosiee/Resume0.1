@@ -5,7 +5,7 @@ import { getDomElements, debounce } from "./domUtils.js";
 import { prioritizedImages, SCROLL_DURATION, thumbnailImages, GSAP_DEFAULTS } from "./config.js";
 
 import{preloadImages, preloadThumbnailImages,lazyLoadImages} from "./preload.js";
-import { enableStickyNavbar } from "./navbar.js";
+import { enableStickyNavbar, setupDynamicLinks } from "./navbar.js";
 const thumbnailsContainer = document.querySelector("#thumbnails");
 
 const svg = document.querySelector("#svg");
@@ -18,17 +18,8 @@ const thumbNails = document.querySelector(".thumbnails");
 thumbNails.style.opacity = 0;
 const seeText = document.querySelector("#see");
 seeText.style.opacity = 0;
-// seeText.style.visibility = "visible";
-
 const down = document.querySelector("#down");
-
-// const domElements.meElement = document.getElementById("me");
-
-
-
 const meShaker = document.getElementById("meshaker");
-
-
 const scrollDist = document.querySelector(".scrollDist");
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -44,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("SVG element not found.");
     }
     enableStickyNavbar(320);
+    setupDynamicLinks();
   });
 
 gsap.set(".scrollDist", {
@@ -412,7 +404,7 @@ function getThumbMargin() {
 function updateDimensionsNoMargins() {
   setTimeout(() => {
     thumbWidth = Math.min(300, window.innerWidth / 6);
-    console.log("thumbWidth: ", thumbWidth);
+    // console.log("thumbWidth: ", thumbWidth);
     screenWidthHalved = window.innerWidth / 2;
     screenHeightHalved = window.innerHeight / 2;
     const widthThumb = getThumbWidthWithoutMargin();
@@ -670,7 +662,7 @@ domElements.formButton.addEventListener("click", function () {
 });
 
 // Handles contact form display-layout
-domElements.contactLink.addEventListener("click", function () {
+domElements.navContact.addEventListener("click", function () {
   hideScrollBar(); 
   showStatementContact(); 
   showForm();
@@ -705,9 +697,10 @@ domElements.photographyLink.addEventListener("click", function () {
   showWip();
 });
 
-// Handles navbar-SQL link click - to WIP message
-domElements.navSql.addEventListener("click", function () {
-  showWip();
+domElements.navSoftware.addEventListener("mouseenter", function () {
+  showDropMenu(domElements.navDropMenuSoftware);
+  domElements.navSoftware.classList.add("active");
+  domElements.thumbSoft.classList.add("active");
 });
 
 // Handles navbar-Python link click - to WIP message
@@ -1085,18 +1078,16 @@ function animateMeAndWiggles() {
 // Beginning of Handling hover on Thumbs Triggering Navbar elements and dropdowns
 
 const thumbSoft = document.querySelector("#software");
-const navbarSoft = document.querySelector("#softwareLink");
-
-const thumbPhoto = document.querySelector("#photography");
-const navbarPhoto = document.querySelector("#photographyLink");
-
-const thumbMot = document.querySelector("#motion");
-const navbarMot = document.querySelector("#motionLink");
-
 const thumbDiy = document.querySelector("#diy");
-const navbarDiy = document.querySelector("#diyLink");
+const thumbMot = document.querySelector("#motion");
+const thumbPhoto = document.querySelector("#photography");
 
-const softwareDropMenuLink = document.querySelector("#softwareDropMenuLink");
+
+// const navbarSoft = document.querySelector("#softwareLink");
+const navbarPhoto = document.querySelector("#photographyLink");
+// const navbarMot = document.querySelector("#motionLink");
+const navbarDiy = document.querySelector("#diyLink");
+// const domElements.navDropMenuSoftware = document.querySelector("#domElements.navDropMenuSoftware");
 const motionDropMenuLink = document.querySelector("#motionDropMenuLink");
 
 // Track whether the mouse is still inside the navbar or dropdown
@@ -1105,7 +1096,6 @@ let hoverTimeout;
 function showDropMenu(dropMenu) {
   dropMenu.style.display = "flex";
 }
-
 function hideDropdown(dropMenu) {
   dropMenu.style.display = "none";
 }
@@ -1113,7 +1103,6 @@ function hideDropdown(dropMenu) {
 // Function to handle delayed hiding of the dropdown
 function delayedHide(dropdownMenu) {
   clearTimeout(hoverTimeout);
-
   hoverTimeout = setTimeout(() => {
     hideDropdown(dropdownMenu);
   }, 200); // 200ms delay to allow smooth interaction
@@ -1124,68 +1113,59 @@ function cancelHide() {
   clearTimeout(hoverTimeout); // Cancel any pending hide actions
 }
 
-thumbSoft.addEventListener("mouseenter", function () {
-  showDropMenu(softwareDropMenuLink);
-  navbarSoft.classList.add("active");
+domElements.navSoftware.addEventListener("mouseenter", function () {
+  showDropMenu(domElements.navDropMenuSoftware);
+  domElements.navSoftware.classList.add("active");
   thumbSoft.classList.add("active");
 });
-
-navbarSoft.addEventListener("mouseenter", function () {
-  showDropMenu(softwareDropMenuLink);
-  navbarSoft.classList.add("active");
-  thumbSoft.classList.add("active");
-});
-
-thumbSoft.addEventListener("mouseleave", function () {
-  delayedHide(softwareDropMenuLink);
-  navbarSoft.classList.remove("active");
+domElements.navSoftware.addEventListener("mouseleave", function () {
+  delayedHide(domElements.navDropMenuSoftware);
+  domElements.navSoftware.classList.remove("active");
   thumbSoft.classList.remove("active");
 });
-
-navbarSoft.addEventListener("mouseleave", function () {
-  delayedHide(softwareDropMenuLink);
-  navbarSoft.classList.remove("active");
-  thumbSoft.classList.remove("active");
-});
-
-softwareDropMenuLink.addEventListener("mouseenter", function () {
+domElements.navDropMenuSoftware.addEventListener("mouseenter", function () {
   cancelHide();
 });
-
-softwareDropMenuLink.addEventListener("mouseleave", function () {
-  delayedHide(softwareDropMenuLink);
+domElements.navDropMenuSoftware.addEventListener("mouseleave", function () {
+  delayedHide(domElements.navDropMenuSoftware);
 });
-
-thumbMot.addEventListener("mouseenter", function () {
+domElements.navMotion.addEventListener("mouseenter", function () {
   showDropMenu(motionDropMenuLink);
-  navbarMot.classList.add("active");
+  domElements.navMotion.classList.add("active");
   thumbMot.classList.add("active");
 });
-
-navbarMot.addEventListener("mouseenter", function () {
-  showDropMenu(motionDropMenuLink);
-  navbarMot.classList.add("active");
-  thumbMot.classList.add("active");
-});
-
-thumbMot.addEventListener("mouseleave", function () {
+domElements.navMotion.addEventListener("mouseleave", function () {
   delayedHide(motionDropMenuLink);
-  navbarMot.classList.remove("active");
+  domElements.navMotion.classList.remove("active");
   thumbMot.classList.remove("active");
 });
-
-navbarMot.addEventListener("mouseleave", function () {
-  delayedHide(motionDropMenuLink);
-  navbarMot.classList.remove("active");
-  thumbMot.classList.remove("active");
-});
-
 motionDropMenuLink.addEventListener("mouseenter", function () {
   cancelHide();
 });
-
 motionDropMenuLink.addEventListener("mouseleave", function () {
   delayedHide(motionDropMenuLink);
+});
+
+
+thumbSoft.addEventListener("mouseleave", function () {
+  delayedHide(domElements.navDropMenuSoftware);
+  domElements.navSoftware.classList.remove("active");
+  thumbSoft.classList.remove("active");
+});
+thumbMot.addEventListener("mouseenter", function () {
+  showDropMenu(motionDropMenuLink);
+  domElements.navMotion.classList.add("active");
+  thumbMot.classList.add("active");
+});
+thumbMot.addEventListener("mouseleave", function () {
+  delayedHide(motionDropMenuLink);
+  domElements.navMotion.classList.remove("active");
+  thumbMot.classList.remove("active");
+});
+thumbSoft.addEventListener("mouseenter", function () {
+  showDropMenu(domElements.navDropMenuSoftware);
+  domElements.navSoftware.classList.add("active");
+  thumbSoft.classList.add("active");
 });
 
 thumbPhoto.addEventListener("mouseenter", function () {
