@@ -5,7 +5,8 @@ import { getDomElements, debounce } from "./domUtils.js";
 import { prioritizedImages, SCROLL_DURATION, thumbnailImages, GSAP_DEFAULTS } from "./config.js";
 
 import{preloadImages, preloadThumbnailImages,lazyLoadImages} from "./preload.js";
-import { enableStickyNavbar, setupDynamicLinks } from "./navbar.js";
+import { enableStickyNavbar, setupDynamicLinks, setupNavbarEvents, autoScrollNow } from "./navbar.js";
+import { showWip, hideWip } from "./messagesAndForms";
 const thumbnailsContainer = document.querySelector("#thumbnails");
 
 const svg = document.querySelector("#svg");
@@ -35,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("SVG element not found.");
     }
     enableStickyNavbar(320);
+    setupNavbarEvents(domElements);
     setupDynamicLinks();
   });
 
@@ -220,28 +222,29 @@ animateMeAndWiggles();
 // Disable automatic scroll restoration on page reload
 window.history.scrollRestoration = "manual";
 
-function autoScrollNow() {
-  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-  console.log("maxScroll: ", maxScroll);
-  if (maxScroll <= 0) {
-    console.log("No scrollable space");
-    return; // Exit if there's no scrollable space
-  }
+// function autoScrollNow() {
+//   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+//   console.log("maxScroll: ", maxScroll);
+//   if (maxScroll <= 0) {
+//     console.log("No scrollable space");
+//     return; // Exit if there's no scrollable space
+//   }
 
-  // Automatically scroll to the bottom over # seconds on page load
-  gsap.to(document.documentElement, {
-    // Explicitly target document root for scrolling
-    scrollTo: {
-      y: maxScroll, // Scroll to the bottom of the page dynamically
-      autoKill: false, // Disable autoKill to prevent interruptions
-    },
-    duration: SCROLL_DURATION, // Scroll over # seconds
-    ease: CustomEase.create(
-      "custom",
-      "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "
-    ), // Easing function for scroll
-  });
-}
+//   // Automatically scroll to the bottom over # seconds on page load
+//   gsap.to(document.documentElement, {
+//     // Explicitly target document root for scrolling
+//     scrollTo: {
+//       y: maxScroll, // Scroll to the bottom of the page dynamically
+//       autoKill: false, // Disable autoKill to prevent interruptions
+//     },
+//     duration: SCROLL_DURATION, // Scroll over # seconds
+//     ease: CustomEase.create(
+//       "custom",
+//       "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "
+//     ), // Easing function for scroll
+//   });
+// }
+// Module.exports = autoScrollNow;
 
 function autoScroll() {
   // Reset scroll position to the top before starting animation
@@ -404,7 +407,7 @@ function getThumbMargin() {
 function updateDimensionsNoMargins() {
   setTimeout(() => {
     thumbWidth = Math.min(300, window.innerWidth / 6);
-    // console.log("thumbWidth: ", thumbWidth);
+    console.log("thumbWidth: ", thumbWidth);
     screenWidthHalved = window.innerWidth / 2;
     screenHeightHalved = window.innerHeight / 2;
     const widthThumb = getThumbWidthWithoutMargin();
@@ -661,22 +664,61 @@ domElements.formButton.addEventListener("click", function () {
   spaceoutThumbs();
 });
 
-// Handles contact form display-layout
-domElements.navContact.addEventListener("click", function () {
-  hideScrollBar(); 
-  showStatementContact(); 
-  showForm();
-});
 
-// Handles navbar-Animation link click - to WIP message
-domElements.navAnimation.addEventListener("click", function () {
-  showWip();
-});
+// // Handles navbar-Home link click - to auto-scrolling
+// domElements.navHome.addEventListener("click", function () {
+//   autoScrollNow();
+// });
 
-// Handles navbar-Video link click - to WIP message
-domElements.navVideo.addEventListener("click", function () {
-  showWip();
-});
+// // Handles contact form display-layout
+// domElements.navContact.addEventListener("click", function () {
+//   hideScrollBar(); 
+//   showStatementContact(); 
+//   showForm();
+// });
+
+// // Handles navbar-Animation link click - to WIP message
+// domElements.navAnimation.addEventListener("click", function () {
+//   showWip();
+// });
+
+// // Handles navbar-Video link click - to WIP message
+// domElements.navVideo.addEventListener("click", function () {
+//   showWip();
+// });
+
+// // Handles navbar-DIY link click - to WIP message
+// domElements.navDiy.addEventListener("click", function () {
+//   showWip();
+// });
+
+// // Handles navbar-Photography link click - to WIP message
+// domElements.navPhotography.addEventListener("click", function () {
+//   showWip();
+// });
+
+// domElements.navSoftware.addEventListener("mouseenter", function () {
+//   showDropMenu(domElements.navDropMenuSoftware);
+//   domElements.navSoftware.classList.add("active");
+//   domElements.thumbSoft.classList.add("active");
+// });
+
+// // Handles navbar-Python link click - to WIP message
+// domElements.navPython.addEventListener("click", function () {
+//   showWip();
+// });
+
+// // Handles navbar-Java link click - to WIP message
+// domElements.navJava.addEventListener("click", function () {
+//   showWip();
+// });
+
+// // Handles navbar-Java link click - to WIP message
+// domElements.navReact.addEventListener("click", function () {
+//   showWip();
+// });
+
+
 
 // Handles WIP message close link click - return to main layout
 domElements.modalWipClose.addEventListener("click", function () {
@@ -687,31 +729,7 @@ domElements.modalWipClose.addEventListener("click", function () {
   hideWip();
 });
 
-// Handles navbar-DIY link click - to WIP message
-domElements.diyLink.addEventListener("click", function () {
-  showWip();
-});
 
-// Handles navbar-Photography link click - to WIP message
-domElements.photographyLink.addEventListener("click", function () {
-  showWip();
-});
-
-domElements.navSoftware.addEventListener("mouseenter", function () {
-  showDropMenu(domElements.navDropMenuSoftware);
-  domElements.navSoftware.classList.add("active");
-  domElements.thumbSoft.classList.add("active");
-});
-
-// Handles navbar-Python link click - to WIP message
-domElements.navPython.addEventListener("click", function () {
-  showWip();
-});
-
-// Handles navbar-Java link click - to WIP message
-domElements.navJava.addEventListener("click", function () {
-  showWip();
-});
 
 // Handles Down Arrow link click - to auto-scroll
 domElements.down.addEventListener("click", function () {
@@ -737,12 +755,6 @@ domElements.motion.addEventListener("click", function () {
 domElements.diy.addEventListener("click", function () {
   showWip();  
 });
-
-// Handles navbar-Home link click - to auto-scrolling
-domElements.navHome.addEventListener("click", function () {
-  autoScrollNow();
-});
-
 
 function updateMeElement() {
   const scaleValue = getScaleValue(cloud1);
@@ -780,9 +792,6 @@ observer.observe(cloud1, { attributes: true, childList: true, subtree: true });
 // Initial call to update the state based on current scale
 updateMeElement();
 
-
-
-
 // Hides the scrollbar
 function hideScrollBar() {
   document.documentElement.style.overflow = "hidden"; // Hide scroll on the entire document
@@ -811,18 +820,18 @@ function showStatementContact() {
   document.getElementById("contactForm").style.display = "none";
 }
 
-// Displays WIP message
-function showWip() {
-  updateWIPDimensions(endTopY - 4);
-  updateDimensionsNoMargins();
-  document.getElementById("wip").style.display = "block";
-  document.getElementById("contactForm").style.display = "none";
-}
+// // Displays WIP message
+// function showWip() {
+//   updateWIPDimensions(endTopY - 4);
+//   updateDimensionsNoMargins();
+//   document.getElementById("wip").style.display = "block";
+//   document.getElementById("contactForm").style.display = "none";
+// }
 
-// Hides WIP message
-function hideWip() {
-  document.getElementById("wip").style.display = "none";
-}
+// // Hides WIP message
+// function hideWip() {
+//   document.getElementById("wip").style.display = "none";
+// }
 
 
 function centreThumbs() {
@@ -1083,13 +1092,6 @@ const thumbMot = document.querySelector("#motion");
 const thumbPhoto = document.querySelector("#photography");
 
 
-// const navbarSoft = document.querySelector("#softwareLink");
-const navbarPhoto = document.querySelector("#photographyLink");
-// const navbarMot = document.querySelector("#motionLink");
-const navbarDiy = document.querySelector("#diyLink");
-// const domElements.navDropMenuSoftware = document.querySelector("#domElements.navDropMenuSoftware");
-const motionDropMenuLink = document.querySelector("#motionDropMenuLink");
-
 // Track whether the mouse is still inside the navbar or dropdown
 let hoverTimeout;
 
@@ -1113,38 +1115,38 @@ function cancelHide() {
   clearTimeout(hoverTimeout); // Cancel any pending hide actions
 }
 
-domElements.navSoftware.addEventListener("mouseenter", function () {
-  showDropMenu(domElements.navDropMenuSoftware);
-  domElements.navSoftware.classList.add("active");
-  thumbSoft.classList.add("active");
-});
-domElements.navSoftware.addEventListener("mouseleave", function () {
-  delayedHide(domElements.navDropMenuSoftware);
-  domElements.navSoftware.classList.remove("active");
-  thumbSoft.classList.remove("active");
-});
-domElements.navDropMenuSoftware.addEventListener("mouseenter", function () {
-  cancelHide();
-});
-domElements.navDropMenuSoftware.addEventListener("mouseleave", function () {
-  delayedHide(domElements.navDropMenuSoftware);
-});
-domElements.navMotion.addEventListener("mouseenter", function () {
-  showDropMenu(motionDropMenuLink);
-  domElements.navMotion.classList.add("active");
-  thumbMot.classList.add("active");
-});
-domElements.navMotion.addEventListener("mouseleave", function () {
-  delayedHide(motionDropMenuLink);
-  domElements.navMotion.classList.remove("active");
-  thumbMot.classList.remove("active");
-});
-motionDropMenuLink.addEventListener("mouseenter", function () {
-  cancelHide();
-});
-motionDropMenuLink.addEventListener("mouseleave", function () {
-  delayedHide(motionDropMenuLink);
-});
+// domElements.navSoftware.addEventListener("mouseenter", function () {
+//   showDropMenu(domElements.navDropMenuSoftware);
+//   domElements.navSoftware.classList.add("active");
+//   thumbSoft.classList.add("active");
+// });
+// domElements.navSoftware.addEventListener("mouseleave", function () {
+//   delayedHide(domElements.navDropMenuSoftware);
+//   domElements.navSoftware.classList.remove("active");
+//   thumbSoft.classList.remove("active");
+// });
+// domElements.navDropMenuSoftware.addEventListener("mouseenter", function () {
+//   cancelHide();
+// });
+// domElements.navDropMenuSoftware.addEventListener("mouseleave", function () {
+//   delayedHide(domElements.navDropMenuSoftware);
+// });
+// domElements.navMotion.addEventListener("mouseenter", function () {
+//   showDropMenu(domElements.navDropMenuMotion);
+//   domElements.navMotion.classList.add("active");
+//   thumbMot.classList.add("active");
+// });
+// domElements.navMotion.addEventListener("mouseleave", function () {
+//   delayedHide(domElements.navDropMenuMotion);
+//   domElements.navMotion.classList.remove("active");
+//   thumbMot.classList.remove("active");
+// });
+// domElements.navDropMenuMotion.addEventListener("mouseenter", function () {
+//   cancelHide();
+// });
+// domElements.navDropMenuMotion.addEventListener("mouseleave", function () {
+//   delayedHide(domElements.navDropMenuMotion);
+// });
 
 
 thumbSoft.addEventListener("mouseleave", function () {
@@ -1153,12 +1155,12 @@ thumbSoft.addEventListener("mouseleave", function () {
   thumbSoft.classList.remove("active");
 });
 thumbMot.addEventListener("mouseenter", function () {
-  showDropMenu(motionDropMenuLink);
+  showDropMenu(domElements.navDropMenuMotion);
   domElements.navMotion.classList.add("active");
   thumbMot.classList.add("active");
 });
 thumbMot.addEventListener("mouseleave", function () {
-  delayedHide(motionDropMenuLink);
+  delayedHide(domElements.navDropMenuMotion);
   domElements.navMotion.classList.remove("active");
   thumbMot.classList.remove("active");
 });

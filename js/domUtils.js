@@ -25,22 +25,23 @@ export function getDomElements() {
       navHome: document.getElementById("navHome"),
 
       navSoftware: document.getElementById("softwareLink"),
-      navDropMenuSoftware: document.querySelector("#softwareDropMenuLink"),
-      navHtml: document.getElementById("navHtml"),
-      navCss: document.getElementById("navCss"),
-      navJavascript: document.getElementById("navJavascript"),
-      navJava: document.getElementById("navJava"),
-      navPython: document.getElementById("navPython"),
-      navSql: document.getElementById("navSql"),
-      navReact: document.getElementById("navReact"),
+        navDropMenuSoftware: document.querySelector("#softwareDropMenuLink"),
+          navHtml: document.getElementById("navHtml"),
+          navCss: document.getElementById("navCss"),
+          navJavascript: document.getElementById("navJavascript"),
+          navJava: document.getElementById("navJava"),
+          navPython: document.getElementById("navPython"),
+          navSql: document.getElementById("navSql"),
+          navReact: document.getElementById("navReact"),
       
-      photographyLink: document.getElementById("photographyLink"),
-      diyLink: document.getElementById("diyLink"),
+      navPhotography: document.getElementById("photographyLink"),
+      navDiy: document.getElementById("diyLink"),
 
       navMotion: document.getElementById("motionLink"),
-      navDropMenuMotion: document.querySelector("#motionDropMenuLink"),
-      navAnimation: document.getElementById("navAnimation"), 
-      navVideo: document.getElementById("navVideo"),
+        navDropMenuMotion: document.querySelector("#motionDropMenuLink"),
+          navAnimation: document.getElementById("navAnimation"), 
+          navVideo: document.getElementById("navVideo"),
+
       navContact: document.getElementById("contactLink"),
        
       
