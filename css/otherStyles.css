@@ -1,24 +1,16 @@
+/* otherStyles.css */
+/* Navbar base Styles################################################# */
 
-.sticky {
-    background-color: #ffffff;
-    opacity: 1;
-    top: 0px;
-  }
   
   a.nav-link {
-    color: #6e6f79;
-    transform: scale(1);
-    font-family: "Open Sans";
-    font-size: 16px;
-    transition: all 0.3s;
-    background-color: transparent;
-    opacity: 1;
+    color: #f7f8fa;
+ 
   }
-  
+/*   
   a.nav-link:hover {
     color: #162a43;
     transform: scale(1.15);
-    /* display: block;  */
+ 
   }
   
   a.nav-link.active {
@@ -41,17 +33,17 @@
   }
   
   a.dropdown-item {
-    color: #fdfdff;
+    color: #6e6f79;
     font-size: 0.9em;
     padding: 2px 0px 1px 0px;
-  }
+  } */
   
-  a.dropdown-item:hover {
+  /* a.dropdown-item:hover {
     color: #162a43;
     transform: scale(1.1);
     background-color: transparent !important;
-  }
-  
+  } */
+/*   
   a.dropdown-item:active {
     transform: scale(1.2);
     color: #162a43;
@@ -84,6 +76,42 @@
     top: -700px;
     padding-bottom: 20px;
   }
+  
+  /* Burger Icon Styling */
+  /* navbar-toggler left {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    border: none;
+    font-size: 1rem;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+  
+  .sticky {
+    opacity: 1;
+    top: 0px;
+  }
+  
+  .container-fluid#navbar {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    align-self: center;
+    margin: 0 auto;
+    padding: 10px 20px 5px 5px;
+    box-sizing: border-box;
+  }
+  
+  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+    padding: 0px 10px;
+    margin: 0px;
+  } 
+ */
+
+  /*End of overriding Navbar base styles ###############################*/
+
 
 .slider, 
 .slider > div {
