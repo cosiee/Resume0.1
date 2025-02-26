@@ -1,31 +1,51 @@
-// adjust navbar logic
-$(window).scroll(function () {
-  var scrollDistOffset = $(".scrollDist").offset().top;
-  var scrollDistHeight = $(".scrollDist").outerHeight();
-  var scrollTop = $(window).scrollTop();
-  var windowHeight = $(window).height();
+// photographer.js
+import { enableStickyNavbar } from "./navbar.js";
+import { getDomElements } from "./domUtils.js";
 
-  var isLandscapeSmall = window.matchMedia(
-    "(orientation: landscape) and (max-width: 991.98px)"
-  ).matches;
-  var isSmallHeight = windowHeight < 6;
-  var inSmallHeightScrollRange =
-    scrollTop > scrollDistOffset &&
-    scrollTop < scrollDistOffset + scrollDistHeight;
-  var inNormalHeightScrollRange =
-    scrollTop > scrollDistOffset + 6 &&
-    scrollTop < scrollDistOffset + scrollDistHeight;
+document.addEventListener("DOMContentLoaded", function () {
+  const domElements = getDomElements();
+  console.log("domElements:", domElements);
 
-  // Apply sticky logic
-  if (
-    inNormalHeightScrollRange ||
-    (isLandscapeSmall && isSmallHeight && inSmallHeightScrollRange)
-  ) {
-    $(".navbar").addClass("sticky");
-  } else {
-    $(".navbar").removeClass("sticky");
-  }
+  enableStickyNavbar(6)
+  console.log("Sticky navbar enabled");
 });
+
+// $(window).scroll(function () {
+//   var scrollDistOffset = $(".scrollDist").offset().top;
+//   var scrollDistHeight = $(".scrollDist").outerHeight();
+//   var scrollTop = $(window).scrollTop();
+//   var windowHeight = $(window).height();
+
+//   var isLandscapeSmall = window.matchMedia(
+//     "(orientation: landscape) and (max-width: 991.98px)"
+//   ).matches;
+//   var isSmallHeight = windowHeight < 6;
+
+
+
+//   console.log("triggerOffset: ", triggerOffset);
+//   console.log("scrollDistOffset: ", scrollDistOffset);
+//   console.log("scrollDistHeight: ", scrollDistHeight);
+//   console.log("scrollTop: ", scrollTop);
+
+
+//   var inSmallHeightScrollRange =
+//     scrollTop > scrollDistOffset &&
+//     scrollTop < scrollDistOffset + scrollDistHeight;
+//   var inNormalHeightScrollRange =
+//     scrollTop > scrollDistOffset + 6 &&
+//     scrollTop < scrollDistOffset + scrollDistHeight;
+
+//   // Apply sticky logic
+//   if (
+//     inNormalHeightScrollRange ||
+//     (isLandscapeSmall && isSmallHeight && inSmallHeightScrollRange)
+//   ) {
+//     $(".navbar").addClass("sticky");
+//   } else {
+//     $(".navbar").removeClass("sticky");
+//   }
+// });
 
 
 // Photography Sliders

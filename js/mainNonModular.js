@@ -1,3 +1,5 @@
+// mainNonModular.js
+
 const prioritizedImages = [
   "#sky",
   "#mountMgF",

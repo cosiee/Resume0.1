@@ -1,3 +1,5 @@
+// mainModular.js
+
 import { getDomElements, debounce } from "./domUtils.js";
 
 import { prioritizedImages, SCROLL_DURATION, thumbnailImages, GSAP_DEFAULTS } from "./config.js";

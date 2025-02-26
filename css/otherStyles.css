@@ -1,12 +1,34 @@
-
-.sticky {
+/* otherStyles.css */
+/* Navbar base Styles################################################# */
+nav {
+    z-index: 14;
+    height: auto;
+    width: auto;
+    overflow: visible;
+  }
+  
+  ul {
+    padding: 20px 0px 2px 0px;
+    width: 100%;
+  }
+  
+  nav ul li a {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 13px;
+    margin: 1px 30px 1px 5px;
+    line-height: 1.2;
+    letter-spacing: 1.1px;
+  }
+  
+  .sticky {
     background-color: #ffffff;
     opacity: 1;
     top: 0px;
   }
   
   a.nav-link {
-    color: #6e6f79;
+    color: #f7f8fa;
     transform: scale(1);
     font-family: "Open Sans";
     font-size: 16px;
@@ -41,7 +63,7 @@
   }
   
   a.dropdown-item {
-    color: #fdfdff;
+    color: #6e6f79;
     font-size: 0.9em;
     padding: 2px 0px 1px 0px;
   }
@@ -84,6 +106,43 @@
     top: -700px;
     padding-bottom: 20px;
   }
+  
+  /* Burger Icon Styling */
+  navbar-toggler left {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    border: none;
+    font-size: 1rem;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+  
+  .sticky {
+    /* background-color: #ffffff; */
+    opacity: 1;
+    top: 0px;
+  }
+  
+  .container-fluid#navbar {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    align-self: center;
+    margin: 0 auto;
+    padding: 10px 20px 5px 5px;
+    box-sizing: border-box;
+  }
+  
+  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
+    padding: 0px 10px;
+    margin: 0px;
+  }
+
+
+  /*End of Navbar base styles ###############################*/
+
 
 .slider, 
 .slider > div {
