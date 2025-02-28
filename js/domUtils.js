@@ -48,7 +48,7 @@ export function getDomElements() {
       
       // Thumbnails index.html
       thumbnailsContainer: document.querySelector("#thumbnails"),
-      thumbElement: document.querySelector(".thumbShape"),
+      thumbElement: document.querySelectorAll(".thumbShape"),
       thumbNails: document.querySelector(".thumbnails"),
       software: document.getElementById("software"),
       photography: document.getElementById("photography"),
@@ -60,6 +60,12 @@ export function getDomElements() {
       
 
     };
+     // Log missing elements for debugging
+  Object.entries(elements).forEach(([key, value]) => {
+    if (!value) console.error(`❌ Missing element: ${key}`);
+  });
+
+  return elements;
   }
   
   export function centerElement(element) {

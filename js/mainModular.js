@@ -1,12 +1,14 @@
 // mainModular.js
-
+// import { showWip, hideWip } from "./messagesAndForms.js";
 import { getDomElements, debounce } from "./domUtils.js";
 
 import { prioritizedImages, SCROLL_DURATION, thumbnailImages, GSAP_DEFAULTS } from "./config.js";
 
-import{preloadImages, preloadThumbnailImages,lazyLoadImages} from "./preload.js";
-import { enableStickyNavbar, setupDynamicLinks, setupNavbarEvents, autoScrollNow } from "./navbar.js";
-import { showWip, hideWip } from "./messagesAndForms";
+import {preloadImages, preloadThumbnailImages,lazyLoadImages} from "./preload.js";
+import { setupNavbar, updateEndTopY, getEndTopY, updateWIPDimensions, hideScrollBar, showScrollBar, enableStickyNavbar, setupDynamicLinks, setupNavbarEvents, autoScrollNow, showWip, hideWip } from "./navbar.js";
+
+
+
 const thumbnailsContainer = document.querySelector("#thumbnails");
 
 const svg = document.querySelector("#svg");
@@ -35,9 +37,10 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       console.error("SVG element not found.");
     }
-    enableStickyNavbar(320);
-    setupNavbarEvents(domElements);
-    setupDynamicLinks();
+    setupNavbar(domElements, 320);
+    // enableStickyNavbar(320);
+    // setupNavbarEvents(domElements);
+    // setupDynamicLinks();
   });
 
 gsap.set(".scrollDist", {
@@ -311,26 +314,26 @@ let thumbWidth = getComputedStyleValue(
 );
 let screenWidthHalved = svg.viewBox.baseVal.width / 2;
 let screenHeightHalved = svg.viewBox.baseVal.height / 2;
-let endLeftX, endRightX, endTopY, endBottomY;
+let endLeftX, endRightX, endBottomY; //getEndTopY(),
 
 const landscapeMediaQuery = window.matchMedia(
   "(orientation: landscape) and (max-width: 991.98px) and (max-height: 600px)"
 );
 const totalThumbWidth = getThumbWidthWithMargin();
 
-// Functions to position thumbnails when media query is satisfied
-function updateEndTopY() {
-  if (
-    window.matchMedia("(orientation: landscape) and (max-width: 991.98px)")
-      .matches
-  ) {
-    endTopY = window.innerHeight * 1.275; // Adjust multiplier for this condition
-  } else {
-    endTopY = window.innerHeight * 1.325; // Default multiplier
-  }
-  return endTopY;
-  console.log("Updated endTopY:", endTopY);
-}
+// // Functions to position thumbnails when media query is satisfied
+// function updateEndTopY() {
+//   if (
+//     window.matchMedia("(orientation: landscape) and (max-width: 991.98px)")
+//       .matches
+//   ) {
+//     getEndTopY = window.innerHeight * 1.275; // Adjust multiplier for this condition
+//   } else {
+//     getEndTopY = window.innerHeight * 1.325; // Default multiplier
+//   }
+//   return getEndTopY();
+//   console.log("Updated endTopY:", endTopY);
+// }
 function updateEndBottomY() {
   if (
     window.matchMedia("(orientation: landscape) and (max-width: 991.98px)")
@@ -350,29 +353,33 @@ function updateDimensions() {
   thumbWidth = Math.min(300, window.innerWidth / 6);
   screenWidthHalved = window.innerWidth / 2;
   screenHeightHalved = window.innerHeight / 2;
-  // const totalThumbWidth = getThumbWidthWithMargin();
-  // console.log("window.innerWidth", window.innerWidth);
-  // console.log("window.innerHeight", window.innerHeight);
+
   endLeftX = screenWidthHalved - totalThumbWidth;
 
-  updateEndTopY();
-  // endTopY = window.innerHeight * 1.325;
-  endRightX = screenWidthHalved;
+  updateEndTopY(); // ✅ Update the value first
+  const updatedEndTopY = getEndTopY(); // ✅ Retrieve the updated value
 
+  if (updatedEndTopY === undefined) {
+    console.error("Error: getEndTopY() returned undefined!");
+    return; // Stop execution if the value is not set
+  }
+
+  const endTopY = updatedEndTopY; // ✅ Use a local variable, do not redeclare globally
+
+  endRightX = screenWidthHalved;
   updateEndBottomY();
-  // endBottomY = window.innerHeight * 1.325 + totalThumbWidth;
 }
 
 function spaceoutThumbs() {
   gsap.to("#software", {
     x: endLeftX,
-    y: endTopY,
+    y: getEndTopY(),
     duration: 1,
     ease: "power2.out",
   });
   gsap.to("#photography", {
     x: endRightX,
-    y: endTopY,
+    y: getEndTopY(),
     duration: 1,
     ease: "power2.out",
   });
@@ -428,14 +435,14 @@ function collectThumbs() {
   gsap.to("#software", {
     scale: 1,
     x: endLeftX,
-    y: endTopY,
+    y: getEndTopY(),
     duration: 1,
     ease: "power2.out",
   });
   gsap.to("#photography", {
     scale: 1,
     x: endRightX,
-    y: endTopY,
+    y: getEndTopY(),
     duration: 1,
     ease: "power2.out",
   });
@@ -455,37 +462,6 @@ function collectThumbs() {
   });
 }
 
-function updateWIPDimensions(endTopY) {
-  const wip = document.querySelector(".wip .box");
-
-  if (!wip || !thumbElement) return;
-
-  const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
-
-  // Calculate new width and height for the modal box
-  const newWidth = Math.max(thumbWidthWithoutMargin * 2 + 4, 300);
-  const newHeight = newWidth; // Assuming we want a square wip
-
-  // Update modal dimensions
-  wip.style.width = `${newWidth}px`;
-  wip.style.height = `${newHeight}px`;
-
-  // Calculate the center of the screen
-  const centerX = window.innerWidth / 2 + 6; //refining positioning
-
-  // Calculate the new left position to center the modal box
-  const newLeft = centerX - newWidth / 2;
-
-  // Use the passed endTopY for the new top position
-  const newTop = endTopY + 12.5; //  works for alignment on y axis
-
-  // Update modal position
-  wip.style.position = "absolute";
-  wip.style.left = `${newLeft}px`;
-  wip.style.top = `${newTop}px`;
-
-  // modalBox.style.display = "block";
-}
 
 function updateModalDimensions(endTopY) {
   const modalBox = document.querySelector(".modalbox .box");
@@ -509,7 +485,7 @@ function updateModalDimensions(endTopY) {
   const newLeft = centerX - newWidth / 2;
 
   // Use the passed endTopY for the new top position
-  const newTop = endTopY + 12.5; //  works for alignment on y axis
+  const newTop = getEndTopY() + 12.5; //  works for alignment on y axis
 
   // Update modal position
   modalBox.style.position = "absolute";
@@ -553,7 +529,7 @@ function formControl(endTopY) {
 
   // Calculate form position
   const formX = window.innerWidth / 2 - formWidth / 2 + 6.75;
-  const formY = endTopY + 12; //+ 190;
+  const formY = getEndTopY() + 12; //+ 190;
 
   // Update modal position
   contactForm.style.position = "absolute";
@@ -589,14 +565,14 @@ function animateThumbs() {
 
     .fromTo(
       "#software",
-      { opacity: 0.85, scale: 0.2, x: endLeftX - 1750, y: endTopY - 750 },
-      { opacity: 1, scale: 1, x: endLeftX, y: endTopY },
+      { opacity: 0.85, scale: 0.2, x: endLeftX - 1750, y: getEndTopY() - 750 },
+      { opacity: 1, scale: 1, x: endLeftX, y: getEndTopY() },
       0
     )
     .fromTo(
       "#photography",
-      { opacity: 0.85, scale: 0.2, x: endRightX + 1250, y: endTopY - 750 },
-      { opacity: 1, scale: 1, x: endRightX, y: endTopY },
+      { opacity: 0.85, scale: 0.2, x: endRightX + 1250, y: getEndTopY() - 750 },
+      { opacity: 1, scale: 1, x: endRightX, y: getEndTopY() },
       0
     )
     .fromTo(
@@ -738,22 +714,22 @@ domElements.down.addEventListener("click", function () {
 
 // Handles software Thumbs link click - to WIP message
 domElements.software.addEventListener("click", function () {
-  showWip();
+  showWip(thumbElement);;
 });
 
 // Handles photography Thumbs link click - to WIP message
 domElements.photography.addEventListener("click", function () {
-  showWip();
+  showWip(thumbElement);;
 });
 
 // Handles motion Thumbs link click - to WIP message
 domElements.motion.addEventListener("click", function () {
-  showWip();
+  showWip(thumbElement);;
 });
 
 // Handles DIY Thumbs link click - to WIP message
 domElements.diy.addEventListener("click", function () {
-  showWip();  
+  showWip(thumbElement);;  
 });
 
 function updateMeElement() {
@@ -792,15 +768,7 @@ observer.observe(cloud1, { attributes: true, childList: true, subtree: true });
 // Initial call to update the state based on current scale
 updateMeElement();
 
-// Hides the scrollbar
-function hideScrollBar() {
-  document.documentElement.style.overflow = "hidden"; // Hide scroll on the entire document
-}
 
-// Shows the scrollbar
-function showScrollBar() {
-  document.documentElement.style.overflow = ""; // Show scroll on the entire document
-}
 
 // ##########################################################################
 
@@ -839,14 +807,14 @@ function centreThumbs() {
   gsap.to("#software", {
     scale: 1,
     x: endLeftX,
-    y: endTopY,
+    y: getEndTopY(),
     duration: 1,
     ease: "power2.out",
   });
   gsap.to("#photography", {
     scale: 1,
     x: endRightX,
-    y: endTopY,
+    y: getEndTopY(),
     duration: 1,
     ease: "power2.out",
   });
@@ -1171,22 +1139,22 @@ thumbSoft.addEventListener("mouseenter", function () {
 });
 
 thumbPhoto.addEventListener("mouseenter", function () {
-  navbarPhoto.classList.add("active");
+  domElements.navPhotography.classList.add("active");
   thumbPhoto.classList.add("active");
 });
 
 thumbPhoto.addEventListener("mouseleave", function () {
-  navbarPhoto.classList.remove("active");
+  domElements.navPhotography.classList.remove("active");
   thumbPhoto.classList.remove("active");
 });
 
 thumbDiy.addEventListener("mouseenter", function () {
-  navbarDiy.classList.add("active");
+  domElements.navDiy.classList.add("active");
   thumbDiy.classList.add("active");
 });
 
 thumbDiy.addEventListener("mouseleave", function () {
-  navbarDiy.classList.remove("active");
+  domElements.navDiy.classList.remove("active");
   thumbDiy.classList.remove("active");
 });
 });
