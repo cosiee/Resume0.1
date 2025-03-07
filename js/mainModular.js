@@ -2,10 +2,10 @@
 // import { showWip, hideWip } from "./messagesAndForms.js";
 import { getDomElements, debounce } from "./domUtils.js";
 
-import { prioritizedImages, SCROLL_DURATION, thumbnailImages, GSAP_DEFAULTS } from "./config.js";
+import { prioritizedImages, thumbnailImages, GSAP_DEFAULTS } from "./config.js";
 
 import {preloadImages, preloadThumbnailImages,lazyLoadImages} from "./preload.js";
-import { formControl, updateModalDimensions, endLeftX, endRightX, endBottomY, landscapeMediaQuery, updateDimensions, spaceoutThumbs, updateEndBottomY, updateDimensionsNoMargins, getThumbWidthWithoutMargin, setupNavbar, updateEndTopY, getEndTopY, updateWIPDimensions, hideScrollBar, showScrollBar, enableStickyNavbar, setupDynamicLinks, setupNavbarEvents, autoScrollNow, showWip, hideWip } from "./navbar.js";
+import { collectThumbs, SCROLL_DURATION, showStatementContact, formControl, updateModalDimensions, endLeftX, endRightX, endBottomY, landscapeMediaQuery, updateDimensions, spaceoutThumbs, updateEndBottomY, updateDimensionsNoMargins, getThumbWidthWithoutMargin, setupNavbar, updateEndTopY, getEndTopY, updateWIPDimensions, hideScrollBar, showScrollBar, enableStickyNavbar, setupDynamicLinks, setupNavbarEvents, autoScrollNow, showWip, hideWip } from "./navbar.js";
 
 
 // svg.style.visibility = "hidden"; // Hide SVG initially
@@ -794,11 +794,11 @@ function showForm() {
 }
 
 // Displays Welcome message
-function showStatementContact() {
-  updateDimensionsNoMargins();
-  document.getElementById("statementContact").style.display = "block";
-  document.getElementById("contactForm").style.display = "none";
-}
+// function showStatementContact() {
+//   updateDimensionsNoMargins();
+//   document.getElementById("statementContact").style.display = "block";
+//   document.getElementById("contactForm").style.display = "none";
+// }
 
 // // Displays WIP message
 // function showWip() {

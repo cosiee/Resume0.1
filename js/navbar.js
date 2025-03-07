@@ -5,6 +5,7 @@
 // Main function to initialize the navbar
 import { getDomElements } from "./domUtils.js";
 const domElements = getDomElements(); 
+export const SCROLL_DURATION = 6.8;
 let endTopY = 0;
 
 const totalThumbWidth = getThumbWidthWithMargin();
@@ -87,6 +88,13 @@ export function setupNavbarEvents(domElements) {
   ["navAnimation", "navVideo", "navDiy", "navPhotography", "navPython", "navJava", "navReact"].forEach((id) => {
     setupClickEvent(domElements[id], showWip);
   });
+}
+
+export function showStatementContact() {
+  updateDimensionsNoMargins();
+  document.getElementById("statementContact").style.display = "block";
+  document.getElementById("contactForm").style.display = "none";
+  collectThumbs();
 }
 
 // 🔹 Handles dropdown hover behavior
@@ -177,6 +185,8 @@ export function showWip() {
   updateWIPDimensions(getEndTopY(), domElements.thumbElements);
   updateDimensionsNoMargins();
   document.getElementById("wip").style.display = "block";
+
+  collectThumbs();
 }
 //   updateWIPDimensions(getEndTopY(), thumbElements);
 //   updateDimensionsNoMargins();
@@ -448,14 +458,14 @@ export function updateEndBottomY() {
 }
 
 export function collectThumbs() {
-  gsap.to("#software", {
+  gsap.to(domElements.thumbElements[0], {
     scale: 1,
     x: endLeftX,
     y: getEndTopY(),
     duration: 1,
     ease: "power2.out",
-  });
-  gsap.to("#photography", {
+  }); console.log("collectThumbs-navbar 467: ", software)
+  gsap.to(photography, {
     scale: 1,
     x: endRightX,
     y: getEndTopY(),
