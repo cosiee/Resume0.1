@@ -5,17 +5,17 @@ import { getDomElements, debounce } from "./domUtils.js";
 import { prioritizedImages, SCROLL_DURATION, thumbnailImages, GSAP_DEFAULTS } from "./config.js";
 
 import {preloadImages, preloadThumbnailImages,lazyLoadImages} from "./preload.js";
-import { setupNavbar, updateEndTopY, getEndTopY, updateWIPDimensions, hideScrollBar, showScrollBar, enableStickyNavbar, setupDynamicLinks, setupNavbarEvents, autoScrollNow, showWip, hideWip } from "./navbar.js";
+import { formControl, updateModalDimensions, endLeftX, endRightX, endBottomY, landscapeMediaQuery, updateDimensions, spaceoutThumbs, updateEndBottomY, updateDimensionsNoMargins, getThumbWidthWithoutMargin, setupNavbar, updateEndTopY, getEndTopY, updateWIPDimensions, hideScrollBar, showScrollBar, enableStickyNavbar, setupDynamicLinks, setupNavbarEvents, autoScrollNow, showWip, hideWip } from "./navbar.js";
 
 
-
+// svg.style.visibility = "hidden"; // Hide SVG initially
 const thumbnailsContainer = document.querySelector("#thumbnails");
 
-const svg = document.querySelector("#svg");
-svg.style.visibility = "hidden"; // Hide SVG initially
+// const svg = document.querySelector("#svg");
 
-const cloud1 = document.getElementById("cloud1");
-const thumbElement = document.querySelector(".thumbShape");
+
+// const cloud1 = document.getElementById("cloud1");
+// const thumbElements = document.querySelector(".thumbShape");
 
 const thumbNails = document.querySelector(".thumbnails");
 thumbNails.style.opacity = 0;
@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("SVG element not found.");
     }
     setupNavbar(domElements, 320);
+    updateEndTopY();
     // enableStickyNavbar(320);
     // setupNavbarEvents(domElements);
     // setupDynamicLinks();
@@ -293,33 +294,36 @@ window.addEventListener("load", function () {
 // ###################################################################################
 
 // Thumbnails positioning based on window size
-function getComputedStyleValue(element, property) {
-  return parseInt(window.getComputedStyle(element).getPropertyValue(property));
-}
 
-function getThumbWidthWithMargin() {
-  const computedStyle = window.getComputedStyle(thumbElement);
-  const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
-  const thumbMargin = parseFloat(
-    computedStyle.getPropertyValue("margin-right")
-  );
 
-  return thumbWidth + thumbMargin * 2;
-}
+// function getComputedStyleValue(element, property) {
+
+//   return parseInt(window.getComputedStyle(element).getPropertyValue(property));
+// }
+
+// function getThumbWidthWithMargin() {
+//   const computedStyle = window.getComputedStyle(domElements.thumbElements[0]);
+//   const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
+//   const thumbMargin = parseFloat(
+//     computedStyle.getPropertyValue("margin-right")
+//   );
+
+//   return thumbWidth + thumbMargin * 2;
+// }
 
 // const svg = document.querySelector("svg");
-let thumbWidth = getComputedStyleValue(
-  document.querySelector(".thumbShape"),
-  "width"
-);
-let screenWidthHalved = svg.viewBox.baseVal.width / 2;
-let screenHeightHalved = svg.viewBox.baseVal.height / 2;
-let endLeftX, endRightX, endBottomY; //getEndTopY(),
+// let thumbWidth = getComputedStyleValue(
+//   document.querySelector(".thumbShape"),
+//   "width"
+// );
+// let screenWidthHalved = svg.viewBox.baseVal.width / 2;
+// let screenHeightHalved = svg.viewBox.baseVal.height / 2;
+// let endLeftX, endRightX, endBottomY; //getEndTopY(),
 
-const landscapeMediaQuery = window.matchMedia(
-  "(orientation: landscape) and (max-width: 991.98px) and (max-height: 600px)"
-);
-const totalThumbWidth = getThumbWidthWithMargin();
+// const landscapeMediaQuery = window.matchMedia(
+//   "(orientation: landscape) and (max-width: 991.98px) and (max-height: 600px)"
+// );
+// const totalThumbWidth = getThumbWidthWithMargin();
 
 // // Functions to position thumbnails when media query is satisfied
 // function updateEndTopY() {
@@ -334,166 +338,174 @@ const totalThumbWidth = getThumbWidthWithMargin();
 //   return getEndTopY();
 //   console.log("Updated endTopY:", endTopY);
 // }
-function updateEndBottomY() {
-  if (
-    window.matchMedia("(orientation: landscape) and (max-width: 991.98px)")
-      .matches
-  ) {
-    endBottomY = window.innerHeight * 1.275 + totalThumbWidth; // Adjust multiplier for this condition
-  } else {
-    endBottomY = window.innerHeight * 1.325 + totalThumbWidth;
-  }
-  return endBottomY;
-}
+// function updateEndBottomY() {
+//   if (
+//     window.matchMedia("(orientation: landscape) and (max-width: 991.98px)")
+//       .matches
+//   ) {
+//     endBottomY = window.innerHeight * 1.275 + totalThumbWidth; // Adjust multiplier for this condition
+//   } else {
+//     endBottomY = window.innerHeight * 1.325 + totalThumbWidth;
+//   }
+//   return endBottomY;
+// }
 
 // Listen for changes in the media query
 landscapeMediaQuery.addEventListener("change", updateEndTopY, updateEndBottomY);
 
-function updateDimensions() {
-  thumbWidth = Math.min(300, window.innerWidth / 6);
-  screenWidthHalved = window.innerWidth / 2;
-  screenHeightHalved = window.innerHeight / 2;
+// function updateDimensions() {
+//   thumbWidth = Math.min(300, window.innerWidth / 6);
+//   screenWidthHalved = window.innerWidth / 2;
+//   screenHeightHalved = window.innerHeight / 2;
 
-  endLeftX = screenWidthHalved - totalThumbWidth;
+//   endLeftX = screenWidthHalved - totalThumbWidth;
 
-  updateEndTopY(); // ✅ Update the value first
-  const updatedEndTopY = getEndTopY(); // ✅ Retrieve the updated value
+//   updateEndTopY(); // ✅ Update the value first
+//   const updatedEndTopY = getEndTopY(); // ✅ Retrieve the updated value
 
-  if (updatedEndTopY === undefined) {
-    console.error("Error: getEndTopY() returned undefined!");
-    return; // Stop execution if the value is not set
-  }
+//   if (updatedEndTopY === undefined) {
+//     console.error("Error: getEndTopY() returned undefined!");
+//     return; // Stop execution if the value is not set
+//   }
 
-  const endTopY = updatedEndTopY; // ✅ Use a local variable, do not redeclare globally
+//   const endTopY = updatedEndTopY; // ✅ Use a local variable, do not redeclare globally
 
-  endRightX = screenWidthHalved;
-  updateEndBottomY();
-}
+//   endRightX = screenWidthHalved;
+//   updateEndBottomY();
+// }
 
-function spaceoutThumbs() {
-  gsap.to("#software", {
-    x: endLeftX,
-    y: getEndTopY(),
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#photography", {
-    x: endRightX,
-    y: getEndTopY(),
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#diy", {
-    x: endRightX,
-    y: endBottomY,
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#motion", {
-    x: endLeftX,
-    y: endBottomY,
-    duration: 1,
-    ease: "power2.out",
-  });
-}
+// function spaceoutThumbs() {
+//   gsap.to("#software", {
+//     x: endLeftX,
+//     y: getEndTopY(),
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+//   gsap.to("#photography", {
+//     x: endRightX,
+//     y: getEndTopY(),
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+//   gsap.to("#diy", {
+//     x: endRightX,
+//     y: endBottomY,
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+//   gsap.to("#motion", {
+//     x: endLeftX,
+//     y: endBottomY,
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+// }
 
-function getThumbWidthWithoutMargin() {
-  const computedStyle = window.getComputedStyle(thumbElement);
-  const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
+// function getThumbWidthWithoutMargin() {
+//   const computedStyle = window.getComputedStyle(domElements.thumbElements[0]);
+//   const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
 
-  return thumbWidth;
-}
-function getThumbMargin() {
-  const computedStyle = window.getComputedStyle(thumbElement);
-  const thumbMargin = parseFloat(
-    computedStyle.getPropertyValue("margin-right")
-  );
-  return thumbMargin;
-}
+//   return thumbWidth;
+// }
+// function getThumbMargin() {
+//   const computedStyle = window.getComputedStyle(domElements.thumbElements[0]);
+//   const thumbMargin = parseFloat(
+//     computedStyle.getPropertyValue("margin-right")
+//   );
+//   return thumbMargin;
+// }
 
-function updateDimensionsNoMargins() {
-  setTimeout(() => {
-    thumbWidth = Math.min(300, window.innerWidth / 6);
-    console.log("thumbWidth: ", thumbWidth);
-    screenWidthHalved = window.innerWidth / 2;
-    screenHeightHalved = window.innerHeight / 2;
-    const widthThumb = getThumbWidthWithoutMargin();
-    const marginWidth = getThumbMargin();
+// function updateDimensionsNoMargins() {
+//   setTimeout(() => {
+//     thumbWidth = Math.min(300, window.innerWidth / 6);
+//     console.log("thumbWidth: ", thumbWidth);
+//     screenWidthHalved = window.innerWidth / 2;
+//     screenHeightHalved = window.innerHeight / 2;
+//     const widthThumb = getThumbWidthWithoutMargin();
+//     const marginWidth = getThumbMargin();
 
-    endLeftX = screenWidthHalved - (widthThumb + marginWidth);
-    endTopY = updateEndTopY() + marginWidth - 15;
-    endRightX = screenWidthHalved - marginWidth;
-    endBottomY = updateEndBottomY() - marginWidth - 15;
+//     updateEndTopY();
 
-    collectThumbs();
-    updateModalDimensions(endTopY);
-    formControl(endTopY);
-  }, 450); // delay to ensure scrollbar removal takes effect
-}
+//     const updatedEndTopY = getEndTopY(); // ✅ Fetch dynamically
+//     if (updatedEndTopY === undefined) {
+//       console.error("Error: getEndTopY() returned undefined!");
+//       return; 
+//     }
+
+//     const endTopY = updatedEndTopY + marginWidth - 15; 
+//     endLeftX = screenWidthHalved - (widthThumb + marginWidth);
+//     endRightX = screenWidthHalved - marginWidth;
+//     endBottomY = updateEndBottomY() - marginWidth - 15;
+
+//     collectThumbs();
+//     updateModalDimensions(endTopY);
+//     formControl(endTopY);
+//   }, 450); // delay to ensure scrollbar removal takes effect
+// }
 //when 'ME' is clicked this bunches the thumbnails together for background to modal
-function collectThumbs() {
-  gsap.to("#software", {
-    scale: 1,
-    x: endLeftX,
-    y: getEndTopY(),
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#photography", {
-    scale: 1,
-    x: endRightX,
-    y: getEndTopY(),
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#diy", {
-    scale: 1,
-    x: endRightX,
-    y: endBottomY,
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#motion", {
-    scale: 1,
-    x: endLeftX,
-    y: endBottomY,
-    duration: 1,
-    ease: "power2.out",
-  });
-}
+// function collectThumbs() {
+//   gsap.to("#software", {
+//     scale: 1,
+//     x: endLeftX,
+//     y: getEndTopY(),
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+//   gsap.to("#photography", {
+//     scale: 1,
+//     x: endRightX,
+//     y: getEndTopY(),
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+//   gsap.to("#diy", {
+//     scale: 1,
+//     x: endRightX,
+//     y: endBottomY,
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+//   gsap.to("#motion", {
+//     scale: 1,
+//     x: endLeftX,
+//     y: endBottomY,
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+// }
 
 
-function updateModalDimensions(endTopY) {
-  const modalBox = document.querySelector(".modalbox .box");
+// function updateModalDimensions(endTopY) {
+//   const modalBox = document.querySelector(".modalbox .box");
 
-  if (!modalBox || !thumbElement) return;
+//   if (!modalBox || !domElements.thumbElements[0]) return;
 
-  const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
+//   const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
 
-  // Calculate new width and height for the modal box
-  const newWidth = Math.max(thumbWidthWithoutMargin * 2 + 4, 300);
-  const newHeight = newWidth; // Assuming we want a square modal
+//   // Calculate new width and height for the modal box
+//   const newWidth = Math.max(thumbWidthWithoutMargin * 2 + 4, 300);
+//   const newHeight = newWidth; // Assuming we want a square modal
 
-  // Update modal dimensions
-  modalBox.style.width = `${newWidth}px`;
-  modalBox.style.height = `${newHeight}px`;
+//   // Update modal dimensions
+//   modalBox.style.width = `${newWidth}px`;
+//   modalBox.style.height = `${newHeight}px`;
 
-  // Calculate the center of the screen
-  const centerX = window.innerWidth / 2 + 6; //refining positioning
+//   // Calculate the center of the screen
+//   const centerX = window.innerWidth / 2 + 6; //refining positioning
 
-  // Calculate the new left position to center the modal box
-  const newLeft = centerX - newWidth / 2;
+//   // Calculate the new left position to center the modal box
+//   const newLeft = centerX - newWidth / 2;
 
-  // Use the passed endTopY for the new top position
-  const newTop = getEndTopY() + 12.5; //  works for alignment on y axis
+//   // Use the passed endTopY for the new top position
+//   const newTop = getEndTopY() + 12.5; //  works for alignment on y axis
 
-  // Update modal position
-  modalBox.style.position = "absolute";
-  modalBox.style.left = `${newLeft}px`;
-  modalBox.style.top = `${newTop}px`;
+//   // Update modal position
+//   modalBox.style.position = "absolute";
+//   modalBox.style.left = `${newLeft}px`;
+//   modalBox.style.top = `${newTop}px`;
 
-  // modalBox.style.display = "block";
-}
+//   // modalBox.style.display = "block";
+// }
 
 function getScrollbarWidth() {
   // Create a temporary div element
@@ -517,25 +529,25 @@ function getScrollbarWidth() {
   return scrollbarWidth;
 }
 
-// Contact form sizing and positioning
-function formControl(endTopY) {
-  const contactForm = document.querySelector(".formDiv#contactForm");
+// // Contact form sizing and positioning
+// function formControl(endTopY) {
+//   const contactForm = document.querySelector(".formDiv#contactForm");
 
-  if (!contactForm) return;
+//   if (!contactForm) return;
 
-  const computedStyleForm = window.getComputedStyle(contactForm);
-  const formWidth = parseFloat(computedStyleForm.getPropertyValue("width"));
-  const formHeight = parseFloat(computedStyleForm.getPropertyValue("height"));
+//   const computedStyleForm = window.getComputedStyle(contactForm);
+//   const formWidth = parseFloat(computedStyleForm.getPropertyValue("width"));
+//   const formHeight = parseFloat(computedStyleForm.getPropertyValue("height"));
 
-  // Calculate form position
-  const formX = window.innerWidth / 2 - formWidth / 2 + 6.75;
-  const formY = getEndTopY() + 12; //+ 190;
+//   // Calculate form position
+//   const formX = window.innerWidth / 2 - formWidth / 2 + 6.75;
+//   const formY = getEndTopY() + 12; //+ 190;
 
-  // Update modal position
-  contactForm.style.position = "absolute";
-  contactForm.style.left = `${formX}px`;
-  contactForm.style.top = `${formY}px`;
-}
+//   // Update modal position
+//   contactForm.style.position = "absolute";
+//   contactForm.style.left = `${formX}px`;
+//   contactForm.style.top = `${formY}px`;
+// }
 
 
 
@@ -714,26 +726,26 @@ domElements.down.addEventListener("click", function () {
 
 // Handles software Thumbs link click - to WIP message
 domElements.software.addEventListener("click", function () {
-  showWip(thumbElement);;
+  showWip(domElements.thumbElements[0]);
 });
 
 // Handles photography Thumbs link click - to WIP message
 domElements.photography.addEventListener("click", function () {
-  showWip(thumbElement);;
+  showWip(domElements.thumbElements[1]);
 });
 
 // Handles motion Thumbs link click - to WIP message
 domElements.motion.addEventListener("click", function () {
-  showWip(thumbElement);;
+  showWip(domElements.thumbElements[2]);
 });
 
 // Handles DIY Thumbs link click - to WIP message
 domElements.diy.addEventListener("click", function () {
-  showWip(thumbElement);;  
+  showWip(domElements.thumbElements[3]); 
 });
 
 function updateMeElement() {
-  const scaleValue = getScaleValue(cloud1);
+  const scaleValue = getScaleValue(domElements.cloud1);
   if (scaleValue >= thresholdScale) {
     if (domElements.meElement.style.display === "none") {
       domElements.meElement.style.display = "block"; // Enable #me
@@ -763,7 +775,7 @@ function updateMeElement() {
 
 // MutationObserver for #cloud1 element to track changes
 const observer = new MutationObserver(updateMeElement);
-observer.observe(cloud1, { attributes: true, childList: true, subtree: true });
+observer.observe(domElements.cloud1, { attributes: true, childList: true, subtree: true });
 
 // Initial call to update the state based on current scale
 updateMeElement();
