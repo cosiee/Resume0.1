@@ -85,3 +85,20 @@ export function debounce(func, delay) {
 }
 
 
+let endTopY = 0;
+
+export function getEndTopY() {
+  const updatedEndTopY =updateEndTopY(); 
+  console.log("✅ getEndTopY value:", updatedEndTopY);
+  return updatedEndTopY;
+}
+
+// // Functions to position thumbnails when media query is satisfied
+export function updateEndTopY() {
+    if (window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches) {
+      endTopY = window.innerHeight * 1.275;
+    } else {
+      endTopY = window.innerHeight * 1.325;
+    }
+    return endTopY;
+  }

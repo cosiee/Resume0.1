@@ -3,10 +3,12 @@
 // Handles the sticky navbar logic
 
 // Main function to initialize the navbar
-import { getDomElements } from "./domUtils.js";
+import { getDomElements, getEndTopY } from "./domUtils.js";
+
+
 const domElements = getDomElements(); 
 export const SCROLL_DURATION = 6.8;
-let endTopY = 0;
+
 
 const totalThumbWidth = getThumbWidthWithMargin();
 
@@ -90,12 +92,12 @@ export function setupNavbarEvents(domElements) {
   });
 }
 
-export function showStatementContact() {
-  updateDimensionsNoMargins();
-  document.getElementById("statementContact").style.display = "block";
-  document.getElementById("contactForm").style.display = "none";
-  collectThumbs();
-}
+// export function showStatementContact() {
+//   updateDimensionsNoMargins();
+//   document.getElementById("statementContact").style.display = "block";
+//   document.getElementById("contactForm").style.display = "none";
+//   collectThumbs();
+// }
 
 // 🔹 Handles dropdown hover behavior
 function setupDropdownHover(navItem, dropdownMenu, thumbElements) {
@@ -174,17 +176,33 @@ export function autoScrollNow() {
 
 // Displays WIP message
 export function showWip() {
-  // const domElements = getDomElements(); // ✅ Ensure we have latest elements
+  // // const domElements = getDomElements(); // ✅ Ensure we have latest elements
 
-  console.log("✅ domElements in showWip:", domElements); // ✅ Debugging
+  // console.log("✅ domElements in showWip:", domElements); // ✅ Debugging
+
+  // if (!domElements.thumbElements || domElements.thumbElements.length === 0) {
+  //   console.error("❌ Error: thumbElements is missing or empty!", domElements.thumbElements);
+  //   return;
+  // }
+  // updateWIPDimensions(getEndTopY(), domElements.thumbElements);
+  // updateDimensionsNoMargins();
+  // document.getElementById("wip").style.display = "block";
+
+  const domElements = getDomElements();
+  console.log("✅ domElements in showWip:", domElements);
 
   if (!domElements.thumbElements || domElements.thumbElements.length === 0) {
     console.error("❌ Error: thumbElements is missing or empty!", domElements.thumbElements);
     return;
   }
-  updateWIPDimensions(getEndTopY(), domElements.thumbElements);
+
+  const endTopY = getEndTopY(); // ✅ Fetch value dynamically
+  console.log("✅ Fetched endTopY in navbar.js:", endTopY);
+
+  updateWIPDimensions(endTopY, domElements.thumbElements);
   updateDimensionsNoMargins();
   document.getElementById("wip").style.display = "block";
+
 
   collectThumbs();
 }
@@ -270,13 +288,13 @@ export function updateWIPDimensions(endTopY, thumbElements) {
   console.log("✅ WIP dimensions updated with thumbElements.");
 }
 
-export function getThumbWidthWithoutMargin() {
-  // const domElements = getDomElements();
-  const computedStyle = window.getComputedStyle(domElements.thumbElements[0]);
-  const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
+// export function getThumbWidthWithoutMargin() {
+//   // const domElements = getDomElements();
+//   const computedStyle = window.getComputedStyle(domElements.thumbElements[0]);
+//   const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
 
-  return thumbWidth;
-}
+//   return thumbWidth;
+// }
 
 export function getThumbMargin() {
   const computedStyle = window.getComputedStyle(domElements.thumbElements[0]);
@@ -296,54 +314,54 @@ export function getThumbWidthWithMargin() {
   return thumbWidth + thumbMargin * 2;
 }
 
-function getComputedStyleValue(element, property) {
+// function getComputedStyleValue(element, property) {
 
-  return parseInt(window.getComputedStyle(element).getPropertyValue(property));
-}
+//   return parseInt(window.getComputedStyle(element).getPropertyValue(property));
+// }
 
-let screenWidthHalved = svg.viewBox.baseVal.width / 2;
-let screenHeightHalved = svg.viewBox.baseVal.height / 2;
-export let endLeftX, endRightX, endBottomY; 
-let thumbWidth = getComputedStyleValue(
-  document.querySelector(".thumbShape"),
-  "width"
-);
+// let screenWidthHalved = svg.viewBox.baseVal.width / 2;
+// let screenHeightHalved = svg.viewBox.baseVal.height / 2;
+// export let endLeftX, endRightX, endBottomY; 
+// let thumbWidth = getComputedStyleValue(
+//   document.querySelector(".thumbShape"),
+//   "width"
+// );
 
 export const landscapeMediaQuery = window.matchMedia(
   "(orientation: landscape) and (max-width: 991.98px) and (max-height: 600px)"
 );
 
-export function updateModalDimensions(endTopY) {
-  const modalBox = document.querySelector(".modalbox .box");
+// export function updateModalDimensions(endTopY) {
+//   const modalBox = document.querySelector(".modalbox .box");
 
-  if (!modalBox || !domElements.thumbElements[0]) return;
+//   if (!modalBox || !domElements.thumbElements[0]) return;
 
-  const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
+//   const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
 
-  // Calculate new width and height for the modal box
-  const newWidth = Math.max(thumbWidthWithoutMargin * 2 + 4, 300);
-  const newHeight = newWidth; // Assuming we want a square modal
+//   // Calculate new width and height for the modal box
+//   const newWidth = Math.max(thumbWidthWithoutMargin * 2 + 4, 300);
+//   const newHeight = newWidth; // Assuming we want a square modal
 
-  // Update modal dimensions
-  modalBox.style.width = `${newWidth}px`;
-  modalBox.style.height = `${newHeight}px`;
+//   // Update modal dimensions
+//   modalBox.style.width = `${newWidth}px`;
+//   modalBox.style.height = `${newHeight}px`;
 
-  // Calculate the center of the screen
-  const centerX = window.innerWidth / 2 + 6; //refining positioning
+//   // Calculate the center of the screen
+//   const centerX = window.innerWidth / 2 + 6; //refining positioning
 
-  // Calculate the new left position to center the modal box
-  const newLeft = centerX - newWidth / 2;
+//   // Calculate the new left position to center the modal box
+//   const newLeft = centerX - newWidth / 2;
 
-  // Use the passed endTopY for the new top position
-  const newTop = getEndTopY() + 12.5; //  works for alignment on y axis
+//   // Use the passed endTopY for the new top position
+//   const newTop = getEndTopY() + 12.5; //  works for alignment on y axis
 
-  // Update modal position
-  modalBox.style.position = "absolute";
-  modalBox.style.left = `${newLeft}px`;
-  modalBox.style.top = `${newTop}px`;
+//   // Update modal position
+//   modalBox.style.position = "absolute";
+//   modalBox.style.left = `${newLeft}px`;
+//   modalBox.style.top = `${newTop}px`;
 
-  // modalBox.style.display = "block";
-}
+//   // modalBox.style.display = "block";
+// }
 
 
 
@@ -368,138 +386,138 @@ export function formControl(endTopY) {
 }
 
 
-export function updateDimensions() {
-   thumbWidth = Math.min(300, window.innerWidth / 6);
-  screenWidthHalved = window.innerWidth / 2;
-  screenHeightHalved = window.innerHeight / 2;
+// export function updateDimensions() {
+//    thumbWidth = Math.min(300, window.innerWidth / 6);
+//   screenWidthHalved = window.innerWidth / 2;
+//   screenHeightHalved = window.innerHeight / 2;
 
-  endLeftX = screenWidthHalved - totalThumbWidth;
+//   endLeftX = screenWidthHalved - totalThumbWidth;
 
-  updateEndTopY(); // ✅ Update the value first
-  const updatedEndTopY = getEndTopY(); // ✅ Retrieve the updated value
+//   updateEndTopY(); // ✅ Update the value first
+//   const updatedEndTopY = getEndTopY(); // ✅ Retrieve the updated value
 
-  if (updatedEndTopY === undefined) {
-    console.error("Error: getEndTopY() returned undefined!");
-    return; // Stop execution if the value is not set
-  }
+//   if (updatedEndTopY === undefined) {
+//     console.error("Error: getEndTopY() returned undefined!");
+//     return; // Stop execution if the value is not set
+//   }
 
-  const endTopY = updatedEndTopY; // ✅ Use a local variable, do not redeclare globally
+//   const endTopY = updatedEndTopY; // ✅ Use a local variable, do not redeclare globally
 
-  endRightX = screenWidthHalved;
-  updateEndBottomY();
-}
+//   endRightX = screenWidthHalved;
+//   updateEndBottomY();
+// }
 
-export function spaceoutThumbs() {
-  gsap.to("#software", {
-    x: endLeftX,
-    y: getEndTopY(),
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#photography", {
-    x: endRightX,
-    y: getEndTopY(),
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#diy", {
-    x: endRightX,
-    y: endBottomY,
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#motion", {
-    x: endLeftX,
-    y: endBottomY,
-    duration: 1,
-    ease: "power2.out",
-  });
-}
-
-
-export function updateDimensionsNoMargins() {
-  setTimeout(() => {
-    const thumbWidth = Math.min(300, window.innerWidth / 6);
-    console.log("thumbWidth: ", thumbWidth);
-    const screenWidthHalved = window.innerWidth / 2;
-    const screenHeightHalved = window.innerHeight / 2;
-    const widthThumb = getThumbWidthWithoutMargin();
-    const marginWidth = getThumbMargin();
-
-    updateEndTopY();
-
-    const updatedEndTopY = getEndTopY(); // ✅ Fetch dynamically
-    if (updatedEndTopY === undefined) {
-      console.error("Error: getEndTopY() returned undefined!");
-      return; 
-    }
-
-    const endTopY = updatedEndTopY + marginWidth - 15; 
-    const endLeftX = screenWidthHalved - (widthThumb + marginWidth);
-    const endRightX = screenWidthHalved - marginWidth;
-    const endBottomY = updateEndBottomY() - marginWidth - 15;
-
-    collectThumbs();
-    updateModalDimensions(endTopY);
-    formControl(endTopY);
-  }, 450); // delay to ensure scrollbar removal takes effect
-}
-
-export function updateEndBottomY() {
-  if (
-    window.matchMedia("(orientation: landscape) and (max-width: 991.98px)")
-      .matches
-  ) {
-    endBottomY = window.innerHeight * 1.275 + totalThumbWidth; // Adjust multiplier for this condition
-  } else {
-    endBottomY = window.innerHeight * 1.325 + totalThumbWidth;
-  }
-  return endBottomY;
-}
-
-export function collectThumbs() {
-  gsap.to(domElements.thumbElements[0], {
-    scale: 1,
-    x: endLeftX,
-    y: getEndTopY(),
-    duration: 1,
-    ease: "power2.out",
-  }); console.log("collectThumbs-navbar 467: ", software)
-  gsap.to(photography, {
-    scale: 1,
-    x: endRightX,
-    y: getEndTopY(),
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#diy", {
-    scale: 1,
-    x: endRightX,
-    y: endBottomY,
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#motion", {
-    scale: 1,
-    x: endLeftX,
-    y: endBottomY,
-    duration: 1,
-    ease: "power2.out",
-  });
-}
+// export function spaceoutThumbs() {
+//   gsap.to("#software", {
+//     x: endLeftX,
+//     y: getEndTopY(),
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+//   gsap.to("#photography", {
+//     x: endRightX,
+//     y: getEndTopY(),
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+//   gsap.to("#diy", {
+//     x: endRightX,
+//     y: endBottomY,
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+//   gsap.to("#motion", {
+//     x: endLeftX,
+//     y: endBottomY,
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+// }
 
 
+// export function updateDimensionsNoMargins() {
+//   setTimeout(() => {
+//     const thumbWidth = Math.min(300, window.innerWidth / 6);
+//     console.log("thumbWidth: ", thumbWidth);
+//     const screenWidthHalved = window.innerWidth / 2;
+//     const screenHeightHalved = window.innerHeight / 2;
+//     const widthThumb = getThumbWidthWithoutMargin();
+//     const marginWidth = getThumbMargin();
 
-export function updateEndTopY() {
-  if (window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches) {
-    endTopY = window.innerHeight * 1.275;
-  } else {
-    endTopY = window.innerHeight * 1.325;
-  }
-  return endTopY;
-}
+//     updateEndTopY();
 
-export function getEndTopY() {
-  return endTopY;
-}
+//     const updatedEndTopY = getEndTopY(); // ✅ Fetch dynamically
+//     if (updatedEndTopY === undefined) {
+//       console.error("Error: getEndTopY() returned undefined!");
+//       return; 
+//     }
+
+//     const endTopY = updatedEndTopY + marginWidth - 15; 
+//     const endLeftX = screenWidthHalved - (widthThumb + marginWidth);
+//     const endRightX = screenWidthHalved - marginWidth;
+//     const endBottomY = updateEndBottomY() - marginWidth - 15;
+
+//     collectThumbs();
+//     updateModalDimensions(endTopY);
+//     formControl(endTopY);
+//   }, 450); // delay to ensure scrollbar removal takes effect
+// }
+
+// export function updateEndBottomY() {
+//   if (
+//     window.matchMedia("(orientation: landscape) and (max-width: 991.98px)")
+//       .matches
+//   ) {
+//     endBottomY = window.innerHeight * 1.275 + totalThumbWidth; // Adjust multiplier for this condition
+//   } else {
+//     endBottomY = window.innerHeight * 1.325 + totalThumbWidth;
+//   }
+//   return endBottomY;
+// }
+
+// export function collectThumbs() {
+//   gsap.to(domElements.thumbElements[0], {
+//     scale: 1,
+//     x: endLeftX,
+//     y: getEndTopY(),
+//     duration: 1,
+//     ease: "power2.out",
+//   }); console.log("collectThumbs-navbar 467 software : ", domElements.thumbElements[0] + " endLeftX: " + endLeftX + "getEndTopY() " + getEndTopY() + " MOTION: " + motion);
+//   gsap.to(photography, {
+//     scale: 1,
+//     x: endRightX,
+//     y: getEndTopY(),
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+//   gsap.to("#diy", {
+//     scale: 1,
+//     x: endRightX,
+//     y: endBottomY,
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+//   gsap.to("#motion", {
+//     scale: 1,
+//     x: endLeftX,
+//     y: endBottomY,
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+// }
+
+
+
+// export function updateEndTopY() {
+//   if (window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches) {
+//     endTopY = window.innerHeight * 1.275;
+//   } else {
+//     endTopY = window.innerHeight * 1.325;
+//   }
+//   return endTopY;
+// }
+
+// export function getEndTopY() {
+//   return endTopY;
+// }
 
