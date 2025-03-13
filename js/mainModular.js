@@ -339,7 +339,7 @@ window.addEventListener("load", function () {
 
 // function getEndTopY() {
 //   const updatedEndTopY = calculateEndTopY(); // Ensure `calculateEndTopY()` exists
-//   console.log("✅ getEndTopY value:", updatedEndTopY);
+//   console.log(" getEndTopY value:", updatedEndTopY);
 //   return updatedEndTopY;
 // }
 
@@ -376,15 +376,15 @@ landscapeMediaQuery.addEventListener("change", updateEndTopY, updateEndBottomY);
 
 //   endLeftX = screenWidthHalved - totalThumbWidth;
 
-//   updateEndTopY(); // ✅ Update the value first
-//   const updatedEndTopY = getEndTopY(); // ✅ Retrieve the updated value
+//   updateEndTopY(); //  Update the value first
+//   const updatedEndTopY = getEndTopY(); //  Retrieve the updated value
 
 //   if (updatedEndTopY === undefined) {
 //     console.error("Error: getEndTopY() returned undefined!");
 //     return; // Stop execution if the value is not set
 //   }
 
-//   const endTopY = updatedEndTopY; // ✅ Use a local variable, do not redeclare globally
+//   const endTopY = updatedEndTopY; //  Use a local variable, do not redeclare globally
 
 //   endRightX = screenWidthHalved;
 //   updateEndBottomY();
@@ -442,7 +442,7 @@ landscapeMediaQuery.addEventListener("change", updateEndTopY, updateEndBottomY);
 
 //     updateEndTopY();
 
-//     const updatedEndTopY = getEndTopY(); // ✅ Fetch dynamically
+//     const updatedEndTopY = getEndTopY(); //  Fetch dynamically
 //     if (updatedEndTopY === undefined) {
 //       console.error("Error: getEndTopY() returned undefined!");
 //       return; 

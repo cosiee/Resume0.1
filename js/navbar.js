@@ -1,19 +1,21 @@
 // navbar.js
-import { getDomElements, getEndTopY, getThumbWidthWithoutMargin, 
+import {
+  getDomElements, getEndTopY, getThumbWidthWithoutMargin,
   updateDimensionsNoMargins, collectThumbs, showStatementContact,
-  showForm  } from "./domUtils.js";
+  showForm
+} from "./domUtils.js";
 
 
-const domElements = getDomElements(); 
+const domElements = getDomElements();
 export const SCROLL_DURATION = 6.8;
 
 
 const totalThumbWidth = getThumbWidthWithMargin();
 
 
-export function setupNavbar( domElements, triggerOffset = 320) {
+export function setupNavbar(domElements, triggerOffset = 320) {
   if (!domElements) {
-    console.error("❌ Navbar elements missing!");
+    console.error(" Navbar elements missing!");
     return;
   }
   enableStickyNavbar(triggerOffset); // Make navbar sticky
@@ -31,13 +33,13 @@ export function enableStickyNavbar(triggerOffset) {
     var isLandscapeSmall = window.matchMedia(
       "(orientation: landscape) and (max-width: 991.98px)"
     ).matches;
-    
+
     var isSmallHeight = windowHeight < triggerOffset;
 
     var inSmallHeightScrollRange =
       scrollTop > scrollDistOffset &&
       scrollTop < scrollDistOffset + scrollDistHeight;
-    
+
     var inNormalHeightScrollRange =
       scrollTop > scrollDistOffset + triggerOffset &&
       scrollTop < scrollDistOffset + scrollDistHeight;
@@ -61,7 +63,7 @@ export function setupDynamicLinks() {
   });
 }
 
-let hoverTimeout; 
+let hoverTimeout;
 
 export function setupNavbarEvents(domElements) {
   if (!domElements) {
@@ -89,20 +91,20 @@ export function setupNavbarEvents(domElements) {
 // 🔹 Handles dropdown hover behavior
 function setupDropdownHover(navItem, dropdownMenu, thumbElements) {
   if (!navItem || !dropdownMenu) {
-    console.error("❌ Missing required navbar elements:", { navItem, dropdownMenu, thumbElements });
+    console.error(" Missing required navbar elements:", { navItem, dropdownMenu, thumbElements });
     return;
   }
 
   navItem.addEventListener("mouseenter", function () {
     showDropMenu(dropdownMenu);
     navItem.classList.add("active");
-    if (thumbElements) thumbElements.classList.add("active"); 
+    if (thumbElements) thumbElements.classList.add("active");
   });
 
   navItem.addEventListener("mouseleave", function () {
     delayedHide(dropdownMenu);
     navItem.classList.remove("active");
-    if (thumbElements) thumbElements.classList.remove("active"); 
+    if (thumbElements) thumbElements.classList.remove("active");
   });
 
   dropdownMenu.addEventListener("mouseenter", cancelHide);
@@ -170,9 +172,7 @@ export function showWip() {
     return;
   }
 
-  const endTopY = getEndTopY(); // ✅ Fetch value dynamically
-  console.log("✅ Fetched endTopY in navbar.js:", endTopY);
-
+  const endTopY = getEndTopY();
   updateWIPDimensions(endTopY, domElements.thumbElements);
   updateDimensionsNoMargins();
   document.getElementById("wip").style.display = "block";
@@ -198,34 +198,39 @@ export function updateWIPDimensions(endTopY, thumbElements) {
   const wip = document.querySelector(".wip .box");
 
   if (!thumbElements || thumbElements.length === 0) {
-    console.error("❌ Error: thumbElements is missing or empty! in updateWIPDimensions()-navbar.js", thumbElements);
+    console.error(" Error: thumbElements is missing or empty! in updateWIPDimensions()-navbar.js", thumbElements);
     return;
   }
   if (!wip) {
     console.error("Error: wip is undefined in updateWIPDimensions!");
     return
   }
-  if (!wip || !thumbElements){
+  if (!wip || !thumbElements) {
     console.error("Missing elements:", { wip, thumbElements });
     return;
   }
 
   const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
+  // Calculate new width and height for the wip message 
   const newWidth = Math.max(thumbWidthWithoutMargin * 2 + 4, 300);
-  const newHeight = newWidth; // Assuming a square WIP
+  const newHeight = newWidth; // Assuming we want a square modal
 
+  // Update wip message dimensions
   wip.style.width = `${newWidth}px`;
   wip.style.height = `${newHeight}px`;
 
-  const centerX = window.innerWidth / 2 + 6;
+  // Calculate the center of the screen
+  const centerX = window.innerWidth / 2 + 8; //refining positioning
+
+  // Calculate the new left position to center the modal box- x axis
   const newLeft = centerX - newWidth / 2;
-  const newTop = endTopY + 12.5;
+  // Use the passed endTopY for the new top position
+  const newTop = getEndTopY() + 9.4; //  works for alignment on y axis
 
   wip.style.position = "absolute";
   wip.style.left = `${newLeft}px`;
   wip.style.top = `${newTop}px`;
 
-  console.log("✅ WIP dimensions updated with thumbElements.");
 }
 
 export function getThumbWidthWithMargin() {

@@ -1,5 +1,5 @@
-Regress main.js and than modularise required
 
+fine tune WIP message positioning(done AC)
 
 Other pages quickly...
 
@@ -11,6 +11,7 @@ Get lazy-load working for thumbnails images...
 
 window.onload move to windowEventListener("load") (done-AC)
 
+Regress main.js and than modularise required (done AC)
 
 Why does the thumbnail overlay only work sometimes on smaller screens?
 because there is a new layer created for fading in new image which doesn't have 

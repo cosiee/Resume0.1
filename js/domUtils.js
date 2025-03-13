@@ -49,10 +49,10 @@ export function getDomElements() {
     motion: document.getElementById("motion"),
     diy: document.getElementById("diy"),
   };
-  console.log("✅ domElements loaded:", elements); // ✅ Log full object
+  console.log(" domElements loaded:", elements); //  Log full object
 
   Object.entries(elements).forEach(([key, value]) => {
-    if (!value) console.error(`❌ Missing DOM element: ${key}`);
+    if (!value) console.error(` Missing DOM element: ${key}`);
   });
 
   return elements;
@@ -97,17 +97,17 @@ function getThumbWidthWithMargin() {
 }
 
 
-let cachedEndTopY = null; // ✅ Store the value
+let cachedEndTopY = null; //  Store the value
 export function getEndTopY() {
   if (cachedEndTopY !== null) {
-    return cachedEndTopY; // ✅ Use cached value instead of recalculating
+    return cachedEndTopY; //  Use cached value instead of recalculating
   }
 
   cachedEndTopY = updateEndTopY(); // Compute once and store
   return cachedEndTopY;
 }
 
-// ✅ Reset cache when needed (e.g., window resize)
+//  Reset cache when needed (e.g., window resize)
 window.addEventListener("resize", () => {
   cachedEndTopY = null;
 });
@@ -141,7 +141,7 @@ export function updateDimensionsNoMargins() {
 
     updateEndTopY();
 
-    const updatedEndTopY = getEndTopY(); // ✅ Fetch dynamically
+    const updatedEndTopY = getEndTopY(); //  Fetch dynamically
     if (updatedEndTopY === undefined) {
       console.error("Error: getEndTopY() returned undefined!");
       return;
@@ -257,15 +257,15 @@ export function updateDimensions() {
 
   endLeftX = screenWidthHalved - totalThumbWidth;
 
-  updateEndTopY(); // ✅ Update the value first
-  const updatedEndTopY = getEndTopY(); // ✅ Retrieve the updated value
+  updateEndTopY(); //  Update the value first
+  const updatedEndTopY = getEndTopY(); //  Retrieve the updated value
 
   if (updatedEndTopY === undefined) {
     console.error("Error: getEndTopY() returned undefined!");
     return; // Stop execution if the value is not set
   }
 
-  const endTopY = updatedEndTopY; // ✅ Use a local variable, do not redeclare globally
+  const endTopY = updatedEndTopY; //  Use a local variable, do not redeclare globally
 
   endRightX = screenWidthHalved;
   updateEndBottomY();
