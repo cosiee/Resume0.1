@@ -1,5 +1,9 @@
 
-fine tune WIP message positioning(done AC)
+
+Finalising modularisation: move all index specific behaviour into mainModular.js from 
+config & preload this should speed up loading....
+sexy up the code use extensions to speed this up comments and formatting
+
 
 Other pages quickly...
 
@@ -8,6 +12,8 @@ NEXT...
 Write ReadMe.txt 
 
 Get lazy-load working for thumbnails images...
+
+fine tune WIP message positioning(done AC)
 
 window.onload move to windowEventListener("load") (done-AC)
 
