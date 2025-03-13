@@ -14,24 +14,24 @@ import {SCROLL_DURATION, landscapeMediaQuery, setupNavbar,
   autoScrollNow, showWip, hideWip } from "./navbar.js";
 
 
-  
+
+// const thumbnailsContainer = document.querySelector("#thumbnails");
+// const thumbNails = document.querySelector(".thumbnails");
+// thumbNails.style.opacity = 0;
+// const seeText = document.querySelector("#see");
+// seeText.style.opacity = 0;
+// const down = document.querySelector("#down");
+// const meShaker = document.getElementById("meshaker");
+// const scrollDist = document.querySelector(".scrollDist");
 
 
-const thumbnailsContainer = document.querySelector("#thumbnails");
 
-// let screenHeightHalved = svg.viewBox.baseVal.height / 2;
-
-const thumbNails = document.querySelector(".thumbnails");
-thumbNails.style.opacity = 0;
-const seeText = document.querySelector("#see");
-seeText.style.opacity = 0;
-const down = document.querySelector("#down");
-const meShaker = document.getElementById("meshaker");
-const scrollDist = document.querySelector(".scrollDist");
 
 document.addEventListener("DOMContentLoaded", function () {
   const domElements = getDomElements();
- 
+ domElements.thumbNails.style.opacity = 0;
+ domElements.seeText.style.opacity = 0;
+
   
   // Preload images
   preloadImages(prioritizedImages, () => {
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // setupDynamicLinks();
   });
 
-gsap.set(".scrollDist", {
+gsap.set(domElements.scrollDist, {
   width: "100%",
   height: "200%",
   background: "#fff",
@@ -70,7 +70,7 @@ function mountainSkyAni() {
   gsap
     .timeline({
       scrollTrigger: {
-        trigger: ".scrollDist",
+        trigger: domElements.scrollDist,
         start: "top top",
         end: "bottom bottom",
         duration: 4,
@@ -193,7 +193,7 @@ function setRandomBackgroundWithTransition(containerId, imagesArray) {
 // }
 
 preloadThumbnailImages(thumbnailImages);
-thumbnailsContainer.style.visibility = "visible"; // Show thumbnails after loading
+domElements.thumbnailsContainer.style.visibility = "visible"; // Show thumbnails after loading
 
 function getRandomImage(imagesArray) {
   return imagesArray[Math.floor(Math.random() * imagesArray.length)];
@@ -580,11 +580,11 @@ window.addEventListener(
 
 // initial thumb centering animation, called in a DOMContentLoaded
 function animateThumbs() {
-  thumbNails.style.opacity = 1;
+  domElements.thumbNails.style.opacity = 1;
   gsap
     .timeline({
       scrollTrigger: {
-        trigger: ".scrollDist",
+        trigger: domElements.scrollDist,
         start: "top top",
         end: "bottom bottom",
         scrub: 0.5,
@@ -766,7 +766,7 @@ function updateMeElement() {
   if (scaleValue >= thresholdScale) {
     if (domElements.meElement.style.display === "none") {
       domElements.meElement.style.display = "block"; // Enable #me
-      down.style.display = "none";
+      domElements.down.style.display = "none";
       // Re-enable event listeners if necessary
       domElements.meElement.addEventListener("click", function() {
         hideScrollBar();
@@ -778,7 +778,7 @@ function updateMeElement() {
   } else {
     if (domElements.meElement.style.display !== "none") {
       domElements.meElement.style.display = "none"; // Disable #me
-      down.style.display = "block";
+      domElements.down.style.display = "block";
       // Disable or remove event listeners
       domElements.meElement.addEventListener("click", function() {
         hideScrollBar();
@@ -882,9 +882,9 @@ function hideForm() {
 
 // Aligns SEE/ME text & ME animate wiggles
 function animateMeAndWiggles() {
-  // Ensure 'domElements.meElement' and 'meShaker' are declared and exist in the DOM
+  // Ensure 'domElements.meElement' and 'domElements.meShaker' are declared and exist in the DOM
 
-  if (!domElements.meElement || !meShaker) {
+  if (!domElements.meElement || !domElements.meShaker) {
     console.error(
       "Required DOM elements not found. Check element IDs for 'me' and 'meshaker'."
     );
@@ -951,17 +951,17 @@ function animateMeAndWiggles() {
     // Store the initial translation for the ME element
     initialTransform = `translate(${meX}px, ${meY}px)`;
     applyTransform(); // Apply the current transformation
-    seeText.style.opacity = 0;
-    down.style.opacity = 0;
+    domElements.seeText.style.opacity = 0;
+    domElements.down.style.opacity = 0;
   }
 
   // Function to apply combined transformation (centering + rotation)
   function applyTransform() {
     domElements.meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; // Combine rotation and translation
 
-    seeText.style.opacity = 1;
-    down.style.opacity = 1;
-    seeText.style.visibility = "visible";
+    domElements.seeText.style.opacity = 1;
+    domElements.down.style.opacity = 1;
+    domElements.seeText.style.visibility = "visible";
   }
 
   // Function to handle orientation change
@@ -1048,13 +1048,13 @@ function animateMeAndWiggles() {
   }
 
   // Event listeners for hover wiggle on "ME"
-  meShaker.addEventListener("mouseenter", function () {
+  domElements.meShaker.addEventListener("mouseenter", function () {
     // Combine scaling with the existing transform (centering + wiggle)
     domElements.meElement.style.transform = `${initialTransform} rotate(${angle}deg)`;
     startHoverWiggle(); // Start hover wiggle
   });
 
-  meShaker.addEventListener("mouseleave", function () {
+  domElements.meShaker.addEventListener("mouseleave", function () {
     // Reset the scaling and keep the initial transform (centering + reset rotation)
     domElements.meElement.style.transform = `${initialTransform} rotate(0deg)`;
     stopHoverWiggle(); // Stop hover wiggle

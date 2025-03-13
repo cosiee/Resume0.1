@@ -1,7 +1,7 @@
 // config.js
 
 // Constants
-// export const SCROLL_DURATION = 6.8;
+
 export const THUMB_MARGIN = 10;
 export const GSAP_DEFAULTS = {
   duration: 1,
