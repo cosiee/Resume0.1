@@ -1,18 +1,25 @@
 // mainModular.js
 
-import { getDomElements, debounce } from "./domUtils.js";
+import { getDomElements, debounce, getEndTopY, updateEndTopY, 
+  getThumbWidthWithoutMargin, updateDimensionsNoMargins, collectThumbs, 
+  updateDimensions, spaceoutThumbs, updateEndBottomY, endLeftX, endRightX, endBottomY,
+  updateModalDimensions, formControl, showStatementContact, showForm } from "./domUtils.js";
 
-import { prioritizedImages, SCROLL_DURATION, thumbnailImages, GSAP_DEFAULTS } from "./config.js";
+import { prioritizedImages, thumbnailImages, GSAP_DEFAULTS } from "./config.js";
 
-import{preloadImages, preloadThumbnailImages,lazyLoadImages} from "./preload.js";
-import { enableStickyNavbar, setupDynamicLinks } from "./navbar.js";
+import {preloadImages, preloadThumbnailImages,lazyLoadImages} from "./preload.js";
+import {SCROLL_DURATION, landscapeMediaQuery, setupNavbar, 
+    updateWIPDimensions, hideScrollBar, 
+  showScrollBar, enableStickyNavbar, setupDynamicLinks, setupNavbarEvents, 
+  autoScrollNow, showWip, hideWip } from "./navbar.js";
+
+
+  
+
+
 const thumbnailsContainer = document.querySelector("#thumbnails");
 
-const svg = document.querySelector("#svg");
-svg.style.visibility = "hidden"; // Hide SVG initially
-
-const cloud1 = document.getElementById("cloud1");
-const thumbElement = document.querySelector(".thumbShape");
+// let screenHeightHalved = svg.viewBox.baseVal.height / 2;
 
 const thumbNails = document.querySelector(".thumbnails");
 thumbNails.style.opacity = 0;
@@ -24,7 +31,7 @@ const scrollDist = document.querySelector(".scrollDist");
 
 document.addEventListener("DOMContentLoaded", function () {
   const domElements = getDomElements();
-   console.log("domElements:", domElements);
+ 
   
   // Preload images
   preloadImages(prioritizedImages, () => {
@@ -34,8 +41,11 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       console.error("SVG element not found.");
     }
-    enableStickyNavbar(320);
-    setupDynamicLinks();
+    setupNavbar(domElements, 320);
+    updateEndTopY();
+    // enableStickyNavbar(320);
+    // setupNavbarEvents(domElements);
+    // setupDynamicLinks();
   });
 
 gsap.set(".scrollDist", {
@@ -220,28 +230,29 @@ animateMeAndWiggles();
 // Disable automatic scroll restoration on page reload
 window.history.scrollRestoration = "manual";
 
-function autoScrollNow() {
-  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-  console.log("maxScroll: ", maxScroll);
-  if (maxScroll <= 0) {
-    console.log("No scrollable space");
-    return; // Exit if there's no scrollable space
-  }
+// function autoScrollNow() {
+//   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+//   console.log("maxScroll: ", maxScroll);
+//   if (maxScroll <= 0) {
+//     console.log("No scrollable space");
+//     return; // Exit if there's no scrollable space
+//   }
 
-  // Automatically scroll to the bottom over # seconds on page load
-  gsap.to(document.documentElement, {
-    // Explicitly target document root for scrolling
-    scrollTo: {
-      y: maxScroll, // Scroll to the bottom of the page dynamically
-      autoKill: false, // Disable autoKill to prevent interruptions
-    },
-    duration: SCROLL_DURATION, // Scroll over # seconds
-    ease: CustomEase.create(
-      "custom",
-      "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "
-    ), // Easing function for scroll
-  });
-}
+//   // Automatically scroll to the bottom over # seconds on page load
+//   gsap.to(document.documentElement, {
+//     // Explicitly target document root for scrolling
+//     scrollTo: {
+//       y: maxScroll, // Scroll to the bottom of the page dynamically
+//       autoKill: false, // Disable autoKill to prevent interruptions
+//     },
+//     duration: SCROLL_DURATION, // Scroll over # seconds
+//     ease: CustomEase.create(
+//       "custom",
+//       "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "
+//     ), // Easing function for scroll
+//   });
+// }
+// Module.exports = autoScrollNow;
 
 function autoScroll() {
   // Reset scroll position to the top before starting animation
@@ -287,234 +298,231 @@ window.addEventListener("load", function () {
 // ###################################################################################
 
 // Thumbnails positioning based on window size
-function getComputedStyleValue(element, property) {
-  return parseInt(window.getComputedStyle(element).getPropertyValue(property));
-}
 
-function getThumbWidthWithMargin() {
-  const computedStyle = window.getComputedStyle(thumbElement);
-  const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
-  const thumbMargin = parseFloat(
-    computedStyle.getPropertyValue("margin-right")
-  );
 
-  return thumbWidth + thumbMargin * 2;
-}
+// function getComputedStyleValue(element, property) {
+
+//   return parseInt(window.getComputedStyle(element).getPropertyValue(property));
+// }
+
+
+
+// function getThumbWidthWithMargin() {
+//   const computedStyle = window.getComputedStyle(domElements.thumbElements[0]);
+//   const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
+//   const thumbMargin = parseFloat(
+//     computedStyle.getPropertyValue("margin-right")
+//   );
+
+//   return thumbWidth + thumbMargin * 2;
+// }
+
+
 
 // const svg = document.querySelector("svg");
-let thumbWidth = getComputedStyleValue(
-  document.querySelector(".thumbShape"),
-  "width"
-);
-let screenWidthHalved = svg.viewBox.baseVal.width / 2;
-let screenHeightHalved = svg.viewBox.baseVal.height / 2;
-let endLeftX, endRightX, endTopY, endBottomY;
+// let thumbWidth = getComputedStyleValue(
+//   document.querySelector(".thumbShape"),
+//   "width"
+// );
+ //getEndTopY(),
 
-const landscapeMediaQuery = window.matchMedia(
-  "(orientation: landscape) and (max-width: 991.98px) and (max-height: 600px)"
-);
-const totalThumbWidth = getThumbWidthWithMargin();
+// const landscapeMediaQuery = window.matchMedia(
+//   "(orientation: landscape) and (max-width: 991.98px) and (max-height: 600px)"
+// );
 
-// Functions to position thumbnails when media query is satisfied
-function updateEndTopY() {
-  if (
-    window.matchMedia("(orientation: landscape) and (max-width: 991.98px)")
-      .matches
-  ) {
-    endTopY = window.innerHeight * 1.275; // Adjust multiplier for this condition
-  } else {
-    endTopY = window.innerHeight * 1.325; // Default multiplier
-  }
-  return endTopY;
-  console.log("Updated endTopY:", endTopY);
-}
-function updateEndBottomY() {
-  if (
-    window.matchMedia("(orientation: landscape) and (max-width: 991.98px)")
-      .matches
-  ) {
-    endBottomY = window.innerHeight * 1.275 + totalThumbWidth; // Adjust multiplier for this condition
-  } else {
-    endBottomY = window.innerHeight * 1.325 + totalThumbWidth;
-  }
-  return endBottomY;
-}
+
+//  const totalThumbWidth = getThumbWidthWithMargin();
+
+// const totalThumbWidth = getThumbWidthWithMargin();
+
+
+
+// function getEndTopY() {
+//   const updatedEndTopY = calculateEndTopY(); // Ensure `calculateEndTopY()` exists
+//   console.log(" getEndTopY value:", updatedEndTopY);
+//   return updatedEndTopY;
+// }
+
+// // // Functions to position thumbnails when media query is satisfied
+// function updateEndTopY() {
+//     if (window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches) {
+//       endTopY = window.innerHeight * 1.275;
+//     } else {
+//       endTopY = window.innerHeight * 1.325;
+//     }
+//     return endTopY;
+//   }
+
+
+// function updateEndBottomY() {
+//   if (
+//     window.matchMedia("(orientation: landscape) and (max-width: 991.98px)")
+//       .matches
+//   ) {
+//     endBottomY = window.innerHeight * 1.275 + totalThumbWidth; // Adjust multiplier for this condition
+//   } else {
+//     endBottomY = window.innerHeight * 1.325 + totalThumbWidth;
+//   }
+//   return endBottomY;
+// }
 
 // Listen for changes in the media query
 landscapeMediaQuery.addEventListener("change", updateEndTopY, updateEndBottomY);
 
-function updateDimensions() {
-  thumbWidth = Math.min(300, window.innerWidth / 6);
-  screenWidthHalved = window.innerWidth / 2;
-  screenHeightHalved = window.innerHeight / 2;
-  // const totalThumbWidth = getThumbWidthWithMargin();
-  // console.log("window.innerWidth", window.innerWidth);
-  // console.log("window.innerHeight", window.innerHeight);
-  endLeftX = screenWidthHalved - totalThumbWidth;
+// function updateDimensions() {
+//   thumbWidth = Math.min(300, window.innerWidth / 6);
+//   screenWidthHalved = window.innerWidth / 2;
+//   screenHeightHalved = window.innerHeight / 2;
 
-  updateEndTopY();
-  // endTopY = window.innerHeight * 1.325;
-  endRightX = screenWidthHalved;
+//   endLeftX = screenWidthHalved - totalThumbWidth;
 
-  updateEndBottomY();
-  // endBottomY = window.innerHeight * 1.325 + totalThumbWidth;
-}
+//   updateEndTopY(); //  Update the value first
+//   const updatedEndTopY = getEndTopY(); //  Retrieve the updated value
 
-function spaceoutThumbs() {
-  gsap.to("#software", {
-    x: endLeftX,
-    y: endTopY,
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#photography", {
-    x: endRightX,
-    y: endTopY,
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#diy", {
-    x: endRightX,
-    y: endBottomY,
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#motion", {
-    x: endLeftX,
-    y: endBottomY,
-    duration: 1,
-    ease: "power2.out",
-  });
-}
+//   if (updatedEndTopY === undefined) {
+//     console.error("Error: getEndTopY() returned undefined!");
+//     return; // Stop execution if the value is not set
+//   }
 
-function getThumbWidthWithoutMargin() {
-  const computedStyle = window.getComputedStyle(thumbElement);
-  const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
+//   const endTopY = updatedEndTopY; //  Use a local variable, do not redeclare globally
 
-  return thumbWidth;
-}
-function getThumbMargin() {
-  const computedStyle = window.getComputedStyle(thumbElement);
-  const thumbMargin = parseFloat(
-    computedStyle.getPropertyValue("margin-right")
-  );
-  return thumbMargin;
-}
+//   endRightX = screenWidthHalved;
+//   updateEndBottomY();
+// }
 
-function updateDimensionsNoMargins() {
-  setTimeout(() => {
-    thumbWidth = Math.min(300, window.innerWidth / 6);
-    // console.log("thumbWidth: ", thumbWidth);
-    screenWidthHalved = window.innerWidth / 2;
-    screenHeightHalved = window.innerHeight / 2;
-    const widthThumb = getThumbWidthWithoutMargin();
-    const marginWidth = getThumbMargin();
+// function spaceoutThumbs() {
+//   gsap.to("#software", {
+//     x: endLeftX,
+//     y: getEndTopY(),
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+//   gsap.to("#photography", {
+//     x: endRightX,
+//     y: getEndTopY(),
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+//   gsap.to("#diy", {
+//     x: endRightX,
+//     y: endBottomY,
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+//   gsap.to("#motion", {
+//     x: endLeftX,
+//     y: endBottomY,
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+// }
 
-    endLeftX = screenWidthHalved - (widthThumb + marginWidth);
-    endTopY = updateEndTopY() + marginWidth - 15;
-    endRightX = screenWidthHalved - marginWidth;
-    endBottomY = updateEndBottomY() - marginWidth - 15;
+// function getThumbWidthWithoutMargin() {
+//   const computedStyle = window.getComputedStyle(domElements.thumbElements[0]);
+//   const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
 
-    collectThumbs();
-    updateModalDimensions(endTopY);
-    formControl(endTopY);
-  }, 450); // delay to ensure scrollbar removal takes effect
-}
+//   return thumbWidth;
+// }
+// function getThumbMargin() {
+//   const computedStyle = window.getComputedStyle(domElements.thumbElements[0]);
+//   const thumbMargin = parseFloat(
+//     computedStyle.getPropertyValue("margin-right")
+//   );
+//   return thumbMargin;
+// }
+
+// function updateDimensionsNoMargins() {
+//   setTimeout(() => {
+//     thumbWidth = Math.min(300, window.innerWidth / 6);
+//     console.log("thumbWidth: ", thumbWidth);
+//     screenWidthHalved = window.innerWidth / 2;
+//     screenHeightHalved = window.innerHeight / 2;
+//     const widthThumb = getThumbWidthWithoutMargin();
+//     const marginWidth = getThumbMargin();
+
+//     updateEndTopY();
+
+//     const updatedEndTopY = getEndTopY(); //  Fetch dynamically
+//     if (updatedEndTopY === undefined) {
+//       console.error("Error: getEndTopY() returned undefined!");
+//       return; 
+//     }
+
+//     const endTopY = updatedEndTopY + marginWidth - 15; 
+//     endLeftX = screenWidthHalved - (widthThumb + marginWidth);
+//     endRightX = screenWidthHalved - marginWidth;
+//     endBottomY = updateEndBottomY() - marginWidth - 15;
+
+//     collectThumbs();
+//     updateModalDimensions(endTopY);
+//     formControl(endTopY);
+//   }, 450); // delay to ensure scrollbar removal takes effect
+// }
+
 //when 'ME' is clicked this bunches the thumbnails together for background to modal
-function collectThumbs() {
-  gsap.to("#software", {
-    scale: 1,
-    x: endLeftX,
-    y: endTopY,
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#photography", {
-    scale: 1,
-    x: endRightX,
-    y: endTopY,
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#diy", {
-    scale: 1,
-    x: endRightX,
-    y: endBottomY,
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#motion", {
-    scale: 1,
-    x: endLeftX,
-    y: endBottomY,
-    duration: 1,
-    ease: "power2.out",
-  });
-}
+// function collectThumbs() {
+//   gsap.to("#software", {
+//     scale: 1,
+//     x: endLeftX,
+//     y: getEndTopY(),
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+//   gsap.to("#photography", {
+//     scale: 1,
+//     x: endRightX,
+//     y: getEndTopY(),
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+//   gsap.to("#diy", {
+//     scale: 1,
+//     x: endRightX,
+//     y: endBottomY,
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+//   gsap.to("#motion", {
+//     scale: 1,
+//     x: endLeftX,
+//     y: endBottomY,
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+// }
 
-function updateWIPDimensions(endTopY) {
-  const wip = document.querySelector(".wip .box");
 
-  if (!wip || !thumbElement) return;
+// function updateModalDimensions(endTopY) {
+//   const modalBox = document.querySelector(".modalbox .box");
 
-  const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
+//   if (!modalBox || !domElements.thumbElements[0]) return;
 
-  // Calculate new width and height for the modal box
-  const newWidth = Math.max(thumbWidthWithoutMargin * 2 + 4, 300);
-  const newHeight = newWidth; // Assuming we want a square wip
+//   const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
 
-  // Update modal dimensions
-  wip.style.width = `${newWidth}px`;
-  wip.style.height = `${newHeight}px`;
+//   // Calculate new width and height for the modal box
+//   const newWidth = Math.max(thumbWidthWithoutMargin * 2 + 4, 300);
+//   const newHeight = newWidth; // Assuming we want a square modal
 
-  // Calculate the center of the screen
-  const centerX = window.innerWidth / 2 + 6; //refining positioning
+//   // Update modal dimensions
+//   modalBox.style.width = `${newWidth}px`;
+//   modalBox.style.height = `${newHeight}px`;
 
-  // Calculate the new left position to center the modal box
-  const newLeft = centerX - newWidth / 2;
+//   // Calculate the center of the screen
+//   const centerX = window.innerWidth / 2 + 6; //refining positioning
 
-  // Use the passed endTopY for the new top position
-  const newTop = endTopY + 12.5; //  works for alignment on y axis
+//   // Calculate the new left position to center the modal box
+//   const newLeft = centerX - newWidth / 2;
 
-  // Update modal position
-  wip.style.position = "absolute";
-  wip.style.left = `${newLeft}px`;
-  wip.style.top = `${newTop}px`;
+//   // Use the passed endTopY for the new top position
+//   const newTop = getEndTopY() + 12.5; //  works for alignment on y axis
 
-  // modalBox.style.display = "block";
-}
+//   // Update modal position
+//   modalBox.style.position = "absolute";
+//   modalBox.style.left = `${newLeft}px`;
+//   modalBox.style.top = `${newTop}px`;
 
-function updateModalDimensions(endTopY) {
-  const modalBox = document.querySelector(".modalbox .box");
-
-  if (!modalBox || !thumbElement) return;
-
-  const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
-
-  // Calculate new width and height for the modal box
-  const newWidth = Math.max(thumbWidthWithoutMargin * 2 + 4, 300);
-  const newHeight = newWidth; // Assuming we want a square modal
-
-  // Update modal dimensions
-  modalBox.style.width = `${newWidth}px`;
-  modalBox.style.height = `${newHeight}px`;
-
-  // Calculate the center of the screen
-  const centerX = window.innerWidth / 2 + 6; //refining positioning
-
-  // Calculate the new left position to center the modal box
-  const newLeft = centerX - newWidth / 2;
-
-  // Use the passed endTopY for the new top position
-  const newTop = endTopY + 12.5; //  works for alignment on y axis
-
-  // Update modal position
-  modalBox.style.position = "absolute";
-  modalBox.style.left = `${newLeft}px`;
-  modalBox.style.top = `${newTop}px`;
-
-  // modalBox.style.display = "block";
-}
+//   // modalBox.style.display = "block";
+// }
 
 function getScrollbarWidth() {
   // Create a temporary div element
@@ -538,25 +546,25 @@ function getScrollbarWidth() {
   return scrollbarWidth;
 }
 
-// Contact form sizing and positioning
-function formControl(endTopY) {
-  const contactForm = document.querySelector(".formDiv#contactForm");
+// // Contact form sizing and positioning
+// function formControl(endTopY) {
+//   const contactForm = document.querySelector(".formDiv#contactForm");
 
-  if (!contactForm) return;
+//   if (!contactForm) return;
 
-  const computedStyleForm = window.getComputedStyle(contactForm);
-  const formWidth = parseFloat(computedStyleForm.getPropertyValue("width"));
-  const formHeight = parseFloat(computedStyleForm.getPropertyValue("height"));
+//   const computedStyleForm = window.getComputedStyle(contactForm);
+//   const formWidth = parseFloat(computedStyleForm.getPropertyValue("width"));
+//   const formHeight = parseFloat(computedStyleForm.getPropertyValue("height"));
 
-  // Calculate form position
-  const formX = window.innerWidth / 2 - formWidth / 2 + 6.75;
-  const formY = endTopY + 12; //+ 190;
+//   // Calculate form position
+//   const formX = window.innerWidth / 2 - formWidth / 2 + 6.75;
+//   const formY = getEndTopY() + 12; //+ 190;
 
-  // Update modal position
-  contactForm.style.position = "absolute";
-  contactForm.style.left = `${formX}px`;
-  contactForm.style.top = `${formY}px`;
-}
+//   // Update modal position
+//   contactForm.style.position = "absolute";
+//   contactForm.style.left = `${formX}px`;
+//   contactForm.style.top = `${formY}px`;
+// }
 
 
 
@@ -586,14 +594,14 @@ function animateThumbs() {
 
     .fromTo(
       "#software",
-      { opacity: 0.85, scale: 0.2, x: endLeftX - 1750, y: endTopY - 750 },
-      { opacity: 1, scale: 1, x: endLeftX, y: endTopY },
+      { opacity: 0.85, scale: 0.2, x: endLeftX - 1750, y: getEndTopY() - 750 },
+      { opacity: 1, scale: 1, x: endLeftX, y: getEndTopY() },
       0
     )
     .fromTo(
       "#photography",
-      { opacity: 0.85, scale: 0.2, x: endRightX + 1250, y: endTopY - 750 },
-      { opacity: 1, scale: 1, x: endRightX, y: endTopY },
+      { opacity: 0.85, scale: 0.2, x: endRightX + 1250, y: getEndTopY() - 750 },
+      { opacity: 1, scale: 1, x: endRightX, y: getEndTopY() },
       0
     )
     .fromTo(
@@ -661,22 +669,61 @@ domElements.formButton.addEventListener("click", function () {
   spaceoutThumbs();
 });
 
-// Handles contact form display-layout
-domElements.navContact.addEventListener("click", function () {
-  hideScrollBar(); 
-  showStatementContact(); 
-  showForm();
-});
 
-// Handles navbar-Animation link click - to WIP message
-domElements.navAnimation.addEventListener("click", function () {
-  showWip();
-});
+// // Handles navbar-Home link click - to auto-scrolling
+// domElements.navHome.addEventListener("click", function () {
+//   autoScrollNow();
+// });
 
-// Handles navbar-Video link click - to WIP message
-domElements.navVideo.addEventListener("click", function () {
-  showWip();
-});
+// // Handles contact form display-layout
+// domElements.navContact.addEventListener("click", function () {
+//   hideScrollBar(); 
+//   showStatementContact(); 
+//   showForm();
+// });
+
+// // Handles navbar-Animation link click - to WIP message
+// domElements.navAnimation.addEventListener("click", function () {
+//   showWip();
+// });
+
+// // Handles navbar-Video link click - to WIP message
+// domElements.navVideo.addEventListener("click", function () {
+//   showWip();
+// });
+
+// // Handles navbar-DIY link click - to WIP message
+// domElements.navDiy.addEventListener("click", function () {
+//   showWip();
+// });
+
+// // Handles navbar-Photography link click - to WIP message
+// domElements.navPhotography.addEventListener("click", function () {
+//   showWip();
+// });
+
+// domElements.navSoftware.addEventListener("mouseenter", function () {
+//   showDropMenu(domElements.navDropMenuSoftware);
+//   domElements.navSoftware.classList.add("active");
+//   domElements.thumbSoft.classList.add("active");
+// });
+
+// // Handles navbar-Python link click - to WIP message
+// domElements.navPython.addEventListener("click", function () {
+//   showWip();
+// });
+
+// // Handles navbar-Java link click - to WIP message
+// domElements.navJava.addEventListener("click", function () {
+//   showWip();
+// });
+
+// // Handles navbar-Java link click - to WIP message
+// domElements.navReact.addEventListener("click", function () {
+//   showWip();
+// });
+
+
 
 // Handles WIP message close link click - return to main layout
 domElements.modalWipClose.addEventListener("click", function () {
@@ -687,31 +734,7 @@ domElements.modalWipClose.addEventListener("click", function () {
   hideWip();
 });
 
-// Handles navbar-DIY link click - to WIP message
-domElements.diyLink.addEventListener("click", function () {
-  showWip();
-});
 
-// Handles navbar-Photography link click - to WIP message
-domElements.photographyLink.addEventListener("click", function () {
-  showWip();
-});
-
-domElements.navSoftware.addEventListener("mouseenter", function () {
-  showDropMenu(domElements.navDropMenuSoftware);
-  domElements.navSoftware.classList.add("active");
-  domElements.thumbSoft.classList.add("active");
-});
-
-// Handles navbar-Python link click - to WIP message
-domElements.navPython.addEventListener("click", function () {
-  showWip();
-});
-
-// Handles navbar-Java link click - to WIP message
-domElements.navJava.addEventListener("click", function () {
-  showWip();
-});
 
 // Handles Down Arrow link click - to auto-scroll
 domElements.down.addEventListener("click", function () {
@@ -720,32 +743,26 @@ domElements.down.addEventListener("click", function () {
 
 // Handles software Thumbs link click - to WIP message
 domElements.software.addEventListener("click", function () {
-  showWip();
+  showWip(domElements.thumbElements[0]);
 });
 
 // Handles photography Thumbs link click - to WIP message
 domElements.photography.addEventListener("click", function () {
-  showWip();
+  showWip(domElements.thumbElements[1]);
 });
 
 // Handles motion Thumbs link click - to WIP message
 domElements.motion.addEventListener("click", function () {
-  showWip();
+  showWip(domElements.thumbElements[2]);
 });
 
 // Handles DIY Thumbs link click - to WIP message
 domElements.diy.addEventListener("click", function () {
-  showWip();  
+  showWip(domElements.thumbElements[3]); 
 });
-
-// Handles navbar-Home link click - to auto-scrolling
-domElements.navHome.addEventListener("click", function () {
-  autoScrollNow();
-});
-
 
 function updateMeElement() {
-  const scaleValue = getScaleValue(cloud1);
+  const scaleValue = getScaleValue(domElements.cloud1);
   if (scaleValue >= thresholdScale) {
     if (domElements.meElement.style.display === "none") {
       domElements.meElement.style.display = "block"; // Enable #me
@@ -775,54 +792,43 @@ function updateMeElement() {
 
 // MutationObserver for #cloud1 element to track changes
 const observer = new MutationObserver(updateMeElement);
-observer.observe(cloud1, { attributes: true, childList: true, subtree: true });
+observer.observe(domElements.cloud1, { attributes: true, childList: true, subtree: true });
 
 // Initial call to update the state based on current scale
 updateMeElement();
 
 
 
-
-// Hides the scrollbar
-function hideScrollBar() {
-  document.documentElement.style.overflow = "hidden"; // Hide scroll on the entire document
-}
-
-// Shows the scrollbar
-function showScrollBar() {
-  document.documentElement.style.overflow = ""; // Show scroll on the entire document
-}
-
 // ##########################################################################
 
 //################ Navigation between index.html#thumbs,
 // modalBox(statementContact) & Contact Form ###########
 
-// Displays Contact Form
-function showForm() {
-  formControl();
-  document.getElementById("contactForm").style.display = "block";
-}
+// // Displays Contact Form
+// function showForm() {
+//   formControl();
+//   document.getElementById("contactForm").style.display = "block";
+// }
 
 // Displays Welcome message
-function showStatementContact() {
-  updateDimensionsNoMargins();
-  document.getElementById("statementContact").style.display = "block";
-  document.getElementById("contactForm").style.display = "none";
-}
+// function showStatementContact() {
+//   updateDimensionsNoMargins();
+//   document.getElementById("statementContact").style.display = "block";
+//   document.getElementById("contactForm").style.display = "none";
+// }
 
-// Displays WIP message
-function showWip() {
-  updateWIPDimensions(endTopY - 4);
-  updateDimensionsNoMargins();
-  document.getElementById("wip").style.display = "block";
-  document.getElementById("contactForm").style.display = "none";
-}
+// // Displays WIP message
+// function showWip() {
+//   updateWIPDimensions(endTopY - 4);
+//   updateDimensionsNoMargins();
+//   document.getElementById("wip").style.display = "block";
+//   document.getElementById("contactForm").style.display = "none";
+// }
 
-// Hides WIP message
-function hideWip() {
-  document.getElementById("wip").style.display = "none";
-}
+// // Hides WIP message
+// function hideWip() {
+//   document.getElementById("wip").style.display = "none";
+// }
 
 
 function centreThumbs() {
@@ -830,14 +836,14 @@ function centreThumbs() {
   gsap.to("#software", {
     scale: 1,
     x: endLeftX,
-    y: endTopY,
+    y: getEndTopY(),
     duration: 1,
     ease: "power2.out",
   });
   gsap.to("#photography", {
     scale: 1,
     x: endRightX,
-    y: endTopY,
+    y: getEndTopY(),
     duration: 1,
     ease: "power2.out",
   });
@@ -1083,13 +1089,6 @@ const thumbMot = document.querySelector("#motion");
 const thumbPhoto = document.querySelector("#photography");
 
 
-// const navbarSoft = document.querySelector("#softwareLink");
-const navbarPhoto = document.querySelector("#photographyLink");
-// const navbarMot = document.querySelector("#motionLink");
-const navbarDiy = document.querySelector("#diyLink");
-// const domElements.navDropMenuSoftware = document.querySelector("#domElements.navDropMenuSoftware");
-const motionDropMenuLink = document.querySelector("#motionDropMenuLink");
-
 // Track whether the mouse is still inside the navbar or dropdown
 let hoverTimeout;
 
@@ -1113,38 +1112,38 @@ function cancelHide() {
   clearTimeout(hoverTimeout); // Cancel any pending hide actions
 }
 
-domElements.navSoftware.addEventListener("mouseenter", function () {
-  showDropMenu(domElements.navDropMenuSoftware);
-  domElements.navSoftware.classList.add("active");
-  thumbSoft.classList.add("active");
-});
-domElements.navSoftware.addEventListener("mouseleave", function () {
-  delayedHide(domElements.navDropMenuSoftware);
-  domElements.navSoftware.classList.remove("active");
-  thumbSoft.classList.remove("active");
-});
-domElements.navDropMenuSoftware.addEventListener("mouseenter", function () {
-  cancelHide();
-});
-domElements.navDropMenuSoftware.addEventListener("mouseleave", function () {
-  delayedHide(domElements.navDropMenuSoftware);
-});
-domElements.navMotion.addEventListener("mouseenter", function () {
-  showDropMenu(motionDropMenuLink);
-  domElements.navMotion.classList.add("active");
-  thumbMot.classList.add("active");
-});
-domElements.navMotion.addEventListener("mouseleave", function () {
-  delayedHide(motionDropMenuLink);
-  domElements.navMotion.classList.remove("active");
-  thumbMot.classList.remove("active");
-});
-motionDropMenuLink.addEventListener("mouseenter", function () {
-  cancelHide();
-});
-motionDropMenuLink.addEventListener("mouseleave", function () {
-  delayedHide(motionDropMenuLink);
-});
+// domElements.navSoftware.addEventListener("mouseenter", function () {
+//   showDropMenu(domElements.navDropMenuSoftware);
+//   domElements.navSoftware.classList.add("active");
+//   thumbSoft.classList.add("active");
+// });
+// domElements.navSoftware.addEventListener("mouseleave", function () {
+//   delayedHide(domElements.navDropMenuSoftware);
+//   domElements.navSoftware.classList.remove("active");
+//   thumbSoft.classList.remove("active");
+// });
+// domElements.navDropMenuSoftware.addEventListener("mouseenter", function () {
+//   cancelHide();
+// });
+// domElements.navDropMenuSoftware.addEventListener("mouseleave", function () {
+//   delayedHide(domElements.navDropMenuSoftware);
+// });
+// domElements.navMotion.addEventListener("mouseenter", function () {
+//   showDropMenu(domElements.navDropMenuMotion);
+//   domElements.navMotion.classList.add("active");
+//   thumbMot.classList.add("active");
+// });
+// domElements.navMotion.addEventListener("mouseleave", function () {
+//   delayedHide(domElements.navDropMenuMotion);
+//   domElements.navMotion.classList.remove("active");
+//   thumbMot.classList.remove("active");
+// });
+// domElements.navDropMenuMotion.addEventListener("mouseenter", function () {
+//   cancelHide();
+// });
+// domElements.navDropMenuMotion.addEventListener("mouseleave", function () {
+//   delayedHide(domElements.navDropMenuMotion);
+// });
 
 
 thumbSoft.addEventListener("mouseleave", function () {
@@ -1153,12 +1152,12 @@ thumbSoft.addEventListener("mouseleave", function () {
   thumbSoft.classList.remove("active");
 });
 thumbMot.addEventListener("mouseenter", function () {
-  showDropMenu(motionDropMenuLink);
+  showDropMenu(domElements.navDropMenuMotion);
   domElements.navMotion.classList.add("active");
   thumbMot.classList.add("active");
 });
 thumbMot.addEventListener("mouseleave", function () {
-  delayedHide(motionDropMenuLink);
+  delayedHide(domElements.navDropMenuMotion);
   domElements.navMotion.classList.remove("active");
   thumbMot.classList.remove("active");
 });
@@ -1169,22 +1168,22 @@ thumbSoft.addEventListener("mouseenter", function () {
 });
 
 thumbPhoto.addEventListener("mouseenter", function () {
-  navbarPhoto.classList.add("active");
+  domElements.navPhotography.classList.add("active");
   thumbPhoto.classList.add("active");
 });
 
 thumbPhoto.addEventListener("mouseleave", function () {
-  navbarPhoto.classList.remove("active");
+  domElements.navPhotography.classList.remove("active");
   thumbPhoto.classList.remove("active");
 });
 
 thumbDiy.addEventListener("mouseenter", function () {
-  navbarDiy.classList.add("active");
+  domElements.navDiy.classList.add("active");
   thumbDiy.classList.add("active");
 });
 
 thumbDiy.addEventListener("mouseleave", function () {
-  navbarDiy.classList.remove("active");
+  domElements.navDiy.classList.remove("active");
   thumbDiy.classList.remove("active");
 });
 });

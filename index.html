@@ -15,7 +15,9 @@
   <script src="https://code.jquery.com/jquery-1.11.0.min.js" defer></script>
   
   <!-- <script src="js/mainNoModul.js" defer></script> -->
+  <script type="module" defer src="js/navbar.js"></script>
   <script type="module" defer src="js/mainModular.js" ></script>
+  
   <script nomodule defer src="js/mainNonModular.js" ></script>
 
   
@@ -97,7 +99,7 @@
     </nav>
 
     <div class="svg-container container-fluid" id="mountains">
-      <svg viewBox="0 0 1200 800" id="svg" xmlns="https://www.w3.org/2000/svg">
+      <svg viewBox="0 0 1200 800" id="svg" xmlns="https://www.w3.org/2000/svg" visibility = "hidden">
         <mask id="m">
           <g class="img-fluid" id="cloud1">
             <rect fill="#fff" width="1200" height="800" y="1200" />
@@ -168,7 +170,7 @@
 
   <div class="container-fluid modalbox" id="statementContact" style="display: box;">
     <div class="box">
-      <a class="close" id="modalClose" href="#meLink">X</a>
+      <a class="close" id="modalClose">X</a>
       <p class="title">Welcome</p>
       <div class="content">
         <p class="thanks">Thanks for having a look-see!</p>
@@ -208,7 +210,7 @@
 
   <div class="container-fluid modalbox wip" id="wip" style="display: box;">
     <div class="box">
-      <a class="close" id="modalWipClose" href="#meLink">X</a>
+      <a class="close" id="modalWipClose">X</a>
       <div class="content">
         <p class="thanks">Thanks for having a look!</p>
 
