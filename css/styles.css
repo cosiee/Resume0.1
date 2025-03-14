@@ -442,6 +442,8 @@ navbar-toggler left {
   overflow: hidden;
   border-radius: 12%;
   color: #fff;
+  border-color:#162a43;
+  border-style: solid;
 }
 
 .modalbox .title {

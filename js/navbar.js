@@ -82,6 +82,8 @@ export function setupNavbarEvents(domElements) {
     showForm();
   });
 
+
+  
   // Attach "Work In Progress" (WIP) message to specific links
   ["navAnimation", "navVideo", "navDiy", "navPhotography", "navPython", "navJava", "navReact"].forEach((id) => {
     setupClickEvent(domElements[id], showWip);
