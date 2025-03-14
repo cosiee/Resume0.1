@@ -156,10 +156,11 @@ export function updateDimensionsNoMargins() {
     collectThumbs();
     updateModalDimensions(endTopY);
     formControl(endTopY);
-  }, 450); // delay to ensure scrollbar removal takes effect
+  }, 450);
 }
 
 export function collectThumbs() {
+  console.log("collectingThumbs from a ME CLICK"); 
   gsap.to("#software", {
     scale: 1,
     x: endLeftX,
@@ -318,6 +319,7 @@ export function spaceoutThumbs() {
 }
 
 export function showStatementContact() {
+  // console.log("showStatementContact from a ME CLICK"); 
   updateDimensionsNoMargins();
   document.getElementById("statementContact").style.display = "block";
   document.getElementById("contactForm").style.display = "none";

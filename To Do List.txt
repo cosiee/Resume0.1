@@ -1,7 +1,8 @@
 
 
 Finalising modularisation: move all index specific behaviour into mainModular.js from 
-config & preload this should speed up loading....
+config & preload this should speed up loading.... and remove unwanted. Can you get 
+lazy-images to work?
 sexy up the code use extensions to speed this up comments and formatting
 
 find and remove #meLink where possible
@@ -10,6 +11,8 @@ Other pages quickly...
 NEXT...
 
 Write ReadMe.txt 
+
+'Me'click is jumpy when clicked needs to be smoother (Done-AC)
 
 Get lazy-load working for thumbnails images...
 

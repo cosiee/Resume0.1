@@ -1,11 +1,11 @@
 // mainModular.js
 
 import { getDomElements, debounce, getEndTopY, updateEndTopY, 
-  getThumbWidthWithoutMargin, updateDimensionsNoMargins, collectThumbs, 
+  getThumbWidthWithoutMargin, updateDimensionsNoMargins, 
   updateDimensions, spaceoutThumbs, updateEndBottomY, endLeftX, endRightX, endBottomY,
   updateModalDimensions, formControl, showStatementContact, showForm } from "./domUtils.js";
 
-import { prioritizedImages, thumbnailImages, GSAP_DEFAULTS } from "./config.js";
+import { thumbnailImages } from "./config.js";
 
 import {preloadImages, preloadThumbnailImages,lazyLoadImages} from "./preload.js";
 import {SCROLL_DURATION, landscapeMediaQuery, setupNavbar, 
@@ -24,7 +24,15 @@ import {SCROLL_DURATION, landscapeMediaQuery, setupNavbar,
 // const meShaker = document.getElementById("meshaker");
 // const scrollDist = document.querySelector(".scrollDist");
 
-
+const prioritizedImages = [
+  "#sky",
+  "#mountMgF",
+  "#mountFg",
+  "#cloud1",
+  "#mountBg",
+  "#mountBg2",
+  "#meElement",
+];
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -768,24 +776,18 @@ function updateMeElement() {
       domElements.meElement.style.display = "block"; // Enable #me
       domElements.down.style.display = "none";
       // Re-enable event listeners if necessary
-      domElements.meElement.addEventListener("click", function() {
+      domElements.meElement.addEventListener("click", function(event) {
+        event.stopPropagation();
         hideScrollBar();
-        updateDimensionsNoMargins();
         autoScrollNow();
         showStatementContact();
-      }); //, scrollToBottom
+        updateDimensionsNoMargins();
+      }); 
     }
   } else {
     if (domElements.meElement.style.display !== "none") {
       domElements.meElement.style.display = "none"; // Disable #me
       domElements.down.style.display = "block";
-      // Disable or remove event listeners
-      domElements.meElement.addEventListener("click", function() {
-        hideScrollBar();
-        updateDimensionsNoMargins();
-        autoScrollNow();
-        showStatementContact();
-      });
     }
   }
 }
