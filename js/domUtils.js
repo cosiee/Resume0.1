@@ -319,8 +319,6 @@ export function spaceoutThumbs() {
 }
 
 export function showStatementContact() {
-  // console.log("showStatementContact from a ME CLICK"); 
-  updateDimensionsNoMargins();
   document.getElementById("statementContact").style.display = "block";
   document.getElementById("contactForm").style.display = "none";
 }
