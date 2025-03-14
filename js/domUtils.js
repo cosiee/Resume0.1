@@ -159,8 +159,7 @@ export function updateDimensionsNoMargins() {
   }, 450);
 }
 
-export function collectThumbs() {
-  console.log("collectingThumbs from a ME CLICK"); 
+export function collectThumbs() { 
   gsap.to("#software", {
     scale: 1,
     x: endLeftX,
