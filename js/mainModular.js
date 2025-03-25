@@ -8,7 +8,7 @@ import {
 } from "./domUtils.js";
 
 import { thumbnailImages } from "./config.js";
-import { preloadImages, preloadThumbnailImages, lazyLoadImages } from "./preload.js";
+import { initThumbnails, setRandomBackgroundWithTransition, preloadCriticalImages } from "./preload.js";
 import {
   SCROLL_DURATION, landscapeMediaQuery, setupNavbar, updateWIPDimensions,
   hideScrollBar, showScrollBar, enableStickyNavbar, setupDynamicLinks, setupNavbarEvents,
@@ -27,26 +27,69 @@ const prioritizedImages = [
 ];
 
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   const domElements = getDomElements();
   domElements.thumbNails.style.opacity = 0;
   domElements.seeText.style.opacity = 0;
 
+  // domElements.thumbnailsContainer.style.visibility = "visible";
+  // initThumbnails();
 
-  // Preload images
-  preloadImages(prioritizedImages, () => {
+
+  // // Preload images
+  // preloadImages(prioritizedImages, () => {
+  //   if (domElements.svg) {
+  //     domElements.svg.style.visibility = "visible";
+  //     mountainSkyAni(); // Start GSAP animations
+  //   } else {
+  //     console.error("SVG element not found.");
+  //   }
+  //   setupNavbar(domElements, 320);
+  //   updateEndTopY();
+  // });
+
+  const backgroundContainers = ['software', 'photography', 'motion', 'diy'];
+  backgroundContainers.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.opacity = 0;
+  });
+
+  try {
+    // Load critical images first
+    await preloadCriticalImages(prioritizedImages);
+
+    // Make SVG visible and start animations
     if (domElements.svg) {
       domElements.svg.style.visibility = "visible";
-      mountainSkyAni(); // Start GSAP animations
-    } else {
-      console.error("SVG element not found.");
+      mountainSkyAni();
     }
-    setupNavbar(domElements, 320);
-    updateEndTopY();
-    // enableStickyNavbar(320);
-    // setupNavbarEvents(domElements);
-    // setupDynamicLinks();
+
+    // Load remaining assets in background
+    setTimeout(() => {
+      // preloadThumbnailImages(thumbnailImages);
+      // preloadInitialThumbnails();
+      domElements.thumbnailsContainer.style.visibility = "visible";
+
+      // Initialize optimized thumbnail loading
+      initThumbnails();
+      // lazyLoadImages();
+    }, 0);
+
+  } catch (error) {
+    console.error("Preloading failed:", error);
+    // Fallback: Still make SVG visible
+    if (domElements.svg) domElements.svg.style.visibility = "visible";
+  }
+
+  setupNavbar(domElements, 320);
+  updateEndTopY();
+
+
+  backgroundContainers.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.opacity = 1;
   });
+
 
   gsap.set(domElements.scrollDist, {
     width: "100%",
@@ -129,7 +172,6 @@ document.addEventListener("DOMContentLoaded", function () {
         0
       );
   }
-
   // function preloadImages(imageIds, callback) {
   //   let loadedCount = 0;
   //   const totalImages = imageIds.length;
@@ -150,40 +192,11 @@ document.addEventListener("DOMContentLoaded", function () {
   //       if (loadedCount === totalImages) {
   //         callback();
   //       }
-  //     }
-  //   });
-  // }
+  //
 
-  function getRandomImage(imagesArray) {
-    return imagesArray[Math.floor(Math.random() * imagesArray.length)];
-  }
 
-  function setRandomBackgroundWithTransition(containerId, imagesArray) {
-    const container = document.getElementById(containerId);
-    console.log("container", container);
-    // Preload the next image
-    const newImageUrl = getRandomImage(imagesArray)
-      .replace("url('", "")
-      .replace("')", "");
-    const img = new Image();
-    img.src = newImageUrl;
 
-    img.onload = () => {
-      // Avoid setting the same image twice
-      const currentImage = container.style.backgroundImage;
 
-      // Smoothly transition to the new image
-      container.style.backgroundImage = `url('${newImageUrl}')`;
-    };
-
-    // Generate a fresh random interval and clear any previous time values
-    const randomTime = Math.floor(Math.random() * (12000 - 5000)) + 5000;
-    setTimeout(
-      () => setRandomBackgroundWithTransition(containerId, imagesArray),
-      randomTime
-    );
-    console.log("RandomTime 2: ", randomTime);
-  }
 
   // function preloadThumbnailImages(imagesArray) {
   //   imagesArray.forEach((imageUrl) => {
@@ -192,33 +205,16 @@ document.addEventListener("DOMContentLoaded", function () {
   //   });
   // }
 
-  preloadThumbnailImages(thumbnailImages);
+  // preloadThumbnailImages(thumbnailImages);
+
+  initThumbnails();
   domElements.thumbnailsContainer.style.visibility = "visible"; // Show thumbnails after loading
 
   function getRandomImage(imagesArray) {
     return imagesArray[Math.floor(Math.random() * imagesArray.length)];
   }
 
-  function setRandomBackgroundWithTransition(containerId, imagesArray) {
-    const container = document.getElementById(containerId);
-    const newImageUrl = getRandomImage(imagesArray)
-      .replace("url('", "")
-      .replace("')", "");
-    const img = new Image();
-    img.src = newImageUrl;
 
-    img.onload = () => {
-      container.style.backgroundImage = `url('${newImageUrl}')`;
-    };
-
-    const randomTime = Math.floor(Math.random() * (12000 - 5000)) + 5000;
-    setTimeout(
-      () => setRandomBackgroundWithTransition(containerId, imagesArray),
-      randomTime
-    );
-  }
-
-  // Initiate random backgrounds after preloading
   setRandomBackgroundWithTransition("software", thumbnailImages.slice(0, 13));
   setRandomBackgroundWithTransition("photography", thumbnailImages.slice(14, 25));
   setRandomBackgroundWithTransition("motion", thumbnailImages.slice(26, 35));
@@ -589,7 +585,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to apply combined transformation (centering + rotation)
     function applyTransform() {
       domElements.meElement.style.transform = `${initialTransform} rotate(${angle}deg)`; // Combine rotation and translation
-
       domElements.seeText.style.opacity = 1;
       domElements.down.style.opacity = 1;
       domElements.seeText.style.visibility = "visible";
@@ -746,40 +741,6 @@ document.addEventListener("DOMContentLoaded", function () {
   function cancelHide() {
     clearTimeout(hoverTimeout); // Cancel any pending hide actions
   }
-
-  // domElements.navSoftware.addEventListener("mouseenter", function () {
-  //   showDropMenu(domElements.navDropMenuSoftware);
-  //   domElements.navSoftware.classList.add("active");
-  //   thumbSoft.classList.add("active");
-  // });
-  // domElements.navSoftware.addEventListener("mouseleave", function () {
-  //   delayedHide(domElements.navDropMenuSoftware);
-  //   domElements.navSoftware.classList.remove("active");
-  //   thumbSoft.classList.remove("active");
-  // });
-  // domElements.navDropMenuSoftware.addEventListener("mouseenter", function () {
-  //   cancelHide();
-  // });
-  // domElements.navDropMenuSoftware.addEventListener("mouseleave", function () {
-  //   delayedHide(domElements.navDropMenuSoftware);
-  // });
-  // domElements.navMotion.addEventListener("mouseenter", function () {
-  //   showDropMenu(domElements.navDropMenuMotion);
-  //   domElements.navMotion.classList.add("active");
-  //   thumbMot.classList.add("active");
-  // });
-  // domElements.navMotion.addEventListener("mouseleave", function () {
-  //   delayedHide(domElements.navDropMenuMotion);
-  //   domElements.navMotion.classList.remove("active");
-  //   thumbMot.classList.remove("active");
-  // });
-  // domElements.navDropMenuMotion.addEventListener("mouseenter", function () {
-  //   cancelHide();
-  // });
-  // domElements.navDropMenuMotion.addEventListener("mouseleave", function () {
-  //   delayedHide(domElements.navDropMenuMotion);
-  // });
-
 
   thumbSoft.addEventListener("mouseleave", function () {
     delayedHide(domElements.navDropMenuSoftware);

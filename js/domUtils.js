@@ -154,12 +154,13 @@ export function updateDimensionsNoMargins() {
     endBottomY = updateEndBottomY() - marginWidth - 15;
 
     collectThumbs();
+
     updateModalDimensions(endTopY);
     formControl(endTopY);
   }, 450);
 }
 
-export function collectThumbs() { 
+export function collectThumbs() {
   gsap.to("#software", {
     scale: 1,
     x: endLeftX,
@@ -239,6 +240,8 @@ export function formControl(endTopY) {
   contactForm.style.left = `${formX}px`;
   contactForm.style.top = `${formY}px`;
 }
+
+
 
 
 let thumbWidth = getComputedStyleValue(

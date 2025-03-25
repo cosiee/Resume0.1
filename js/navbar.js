@@ -78,12 +78,13 @@ export function setupNavbarEvents(domElements) {
   setupClickEvent(domElements.navHome, autoScrollNow);
   setupClickEvent(domElements.navContact, () => {
     hideScrollBar();
+    updateDimensionsNoMargins();
     showStatementContact();
     showForm();
   });
 
 
-  
+
   // Attach "Work In Progress" (WIP) message to specific links
   ["navAnimation", "navVideo", "navDiy", "navPhotography", "navPython", "navJava", "navReact"].forEach((id) => {
     setupClickEvent(domElements[id], showWip);
@@ -187,7 +188,7 @@ export function autoScrollNow() {
       "custom",
       "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "
     ),
-    
+
   });
 }
 
@@ -206,7 +207,7 @@ export function showWip() {
   updateWIPDimensions(endTopY, domElements.thumbElements);
   updateDimensionsNoMargins();
   document.getElementById("wip").style.display = "block";
-  
+
 }
 
 // Hides WIP message

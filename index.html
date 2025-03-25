@@ -13,14 +13,14 @@
   <!-- <link rel="stylesheet" href="css/test.css"> -->
 
   <script src="https://code.jquery.com/jquery-1.11.0.min.js" defer></script>
-  
+
   <!-- <script src="js/mainNoModul.js" defer></script> -->
   <script type="module" defer src="js/navbar.js"></script>
-  <script type="module" defer src="js/mainModular.js" ></script>
-  
-  <script nomodule defer src="js/mainNonModular.js" ></script>
+  <script type="module" defer src="js/mainModular.js"></script>
 
-  
+  <script nomodule defer src="js/mainNonModular.js"></script>
+
+
   <!-- <script src="js/test.js" defer></script> -->
   <!-- <script src="js/testTwo.js" defer></script> -->
 
@@ -99,7 +99,7 @@
     </nav>
 
     <div class="svg-container container-fluid" id="mountains">
-      <svg viewBox="0 0 1200 800" id="svg" xmlns="https://www.w3.org/2000/svg" visibility = "hidden">
+      <svg viewBox="0 0 1200 800" id="svg" xmlns="https://www.w3.org/2000/svg" visibility="hidden">
         <mask id="m">
           <g class="img-fluid" id="cloud1">
             <rect fill="#fff" width="1200" height="800" y="1200" />
@@ -119,14 +119,14 @@
         <image class="img-fluid" id="cloud5" xlink:href="assets/cl4.webp" width="1200" height="800" />
         <image class="img-fluid" id="cloud1" xlink:href="assets/cl1.webp" width="1200" height="800" />
 
-        <text class="lrgtext" id="see" fill="#fff"  dominant-baseline="middle" text-anchor="middle"
+        <text class="lrgtext" id="see" fill="#fff" dominant-baseline="middle" text-anchor="middle"
           style="visibility: hidden;">SEE</text>
 
         <g mask="url(#m)">
           <rect fill="#fff" width="100%" height="100%" />
           <rect id="meshaker" />
-          <a class="meLink" id="meLink" >
-            <text class="lrgtext" id="me" fill="#162a43" aria-disabled="true" dominant-baseline="middle" 
+          <a class="meLink" id="meLink">
+            <text class="lrgtext" id="me" fill="#162a43" aria-disabled="true" dominant-baseline="middle"
               text-anchor="middle" display="none">ME</text>
           </a>
           <div class="scroll-arrow" id="down" x="455" y="330"></div>
@@ -134,34 +134,41 @@
     </div>
 
     <div class="container-fluid thumbnails" id="thumbnails">
-      <!-- href="software.html" -->
+      <!-- Software -->
       <a class="thumbs">
-        <div class="thumbShape thumbs" id="software">
+        <div class="thumbShape thumbs loading" id="software"
+          data-images='["css/assets/b1.webp","css/assets/b2.webp","css/assets/b3.webp","css/assets/b4.webp","css/assets/b5.webp","css/assets/b6.webp","css/assets/b7.webp","css/assets/b8.webp","css/assets/b9.webp","css/assets/b10.webp","css/assets/b12.webp","css/assets/b13.webp","css/assets/b14.webp"]'
+          data-loaded="0">
           <div class="overlay"></div>
         </div>
       </a>
 
-      <!-- href="photography.html" -->
+      <!-- Photography -->
       <a class="thumbs">
-        <div class="thumbShape thumbs" id="photography">
+        <div class="thumbShape thumbs loading" id="photography"
+          data-images='["css/assets/r1.webp","css/assets/r2.webp","css/assets/r3.webp","css/assets/r4.webp","css/assets/r5.webp","css/assets/r6.webp","css/assets/r7.webp","css/assets/r8.webp","css/assets/r9.webp","css/assets/r10.webp","css/assets/r11.webp","css/assets/r12.webp"]'
+          data-loaded="0">
           <div class="overlay"></div>
         </div>
       </a>
 
-      <!-- href="motion.html" -->
+      <!-- Motion -->
       <a class="thumbs">
-        <div class="thumbShape thumbs" id="motion">
+        <div class="thumbShape thumbs loading" id="motion"
+          data-images='["css/assets/g1.webp","css/assets/g2.webp","css/assets/g3.webp","css/assets/g4.webp","css/assets/g5.webp","css/assets/g6.webp","css/assets/g7.webp","css/assets/g8.webp","css/assets/g9.webp","css/assets/g10.webp"]'
+          data-loaded="0">
           <div class="overlay"></div>
         </div>
       </a>
 
-      <!-- href="diy.html" -->
+      <!-- DIY -->
       <a class="thumbs">
-        <div class="thumbShape thumbs" id="diy">
+        <div class="thumbShape thumbs loading" id="diy"
+          data-images='["css/assets/y1.webp","css/assets/y2.webp","css/assets/y3.webp","css/assets/y4.webp","css/assets/y5.webp","css/assets/y6.webp","css/assets/y7.webp","css/assets/y8.webp","css/assets/y9.webp","css/assets/y10.webp","css/assets/y11.webp"]'
+          data-loaded="0">
           <div class="overlay"></div>
         </div>
       </a>
-
     </div>
     </svg>
   </div>
@@ -181,7 +188,7 @@
 
         <p class="allTheBest">All the Best!</p>
 
-        <a class="sig" id="modalSig" >
+        <a class="sig" id="modalSig">
 
           <img class="sig" src="assets/sigw.webp">
         </a>
