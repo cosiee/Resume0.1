@@ -1,6 +1,8 @@
 // domUtils.js
 export function getDomElements() {
   return {
+    scrollDist: document.querySelector(".scrollDist"),
+
     // mountains & clouds index.html
     svg: document.querySelector("#svg"),
     cloud1: document.getElementById("cloud1"),
@@ -12,7 +14,7 @@ export function getDomElements() {
 
     // arrow index.html
     down: document.getElementById("down"),
-    down: document.querySelector("#down"),
+    // down: document.querySelector("#down"),
 
     // Navigation buttons index.html Statement & Form
     modalClose: document.getElementById("modalClose"),
@@ -133,7 +135,6 @@ export function getThumbWidthWithoutMargin() {
 export function updateDimensionsNoMargins() {
   setTimeout(() => {
     thumbWidth = Math.min(300, window.innerWidth / 6);
-    console.log("thumbWidth: ", thumbWidth);
     screenWidthHalved = window.innerWidth / 2;
     screenHeightHalved = window.innerHeight / 2;
     const widthThumb = getThumbWidthWithoutMargin();
@@ -153,9 +154,10 @@ export function updateDimensionsNoMargins() {
     endBottomY = updateEndBottomY() - marginWidth - 15;
 
     collectThumbs();
+
     updateModalDimensions(endTopY);
     formControl(endTopY);
-  }, 450); // delay to ensure scrollbar removal takes effect
+  }, 450);
 }
 
 export function collectThumbs() {
@@ -240,6 +242,8 @@ export function formControl(endTopY) {
 }
 
 
+
+
 let thumbWidth = getComputedStyleValue(
   document.querySelector(".thumbShape"),
   "width"
@@ -317,7 +321,6 @@ export function spaceoutThumbs() {
 }
 
 export function showStatementContact() {
-  updateDimensionsNoMargins();
   document.getElementById("statementContact").style.display = "block";
   document.getElementById("contactForm").style.display = "none";
 }

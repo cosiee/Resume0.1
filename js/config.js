@@ -1,25 +1,5 @@
 // config.js
 
-// Constants
-// export const SCROLL_DURATION = 6.8;
-export const THUMB_MARGIN = 10;
-export const GSAP_DEFAULTS = {
-  duration: 1,
-  ease: "power2.out",
-};
-
-// Original mountain and cloud images
-export const prioritizedImages = [
-  "#sky",
-  "#mountMgF",
-  "#mountFg",
-  "#cloud1",
-  "#mountBg",
-  "#mountBg2",
-  "#meElement",
-];
-
-
 // Thumbnails images categorized into different types
 export const thumbnailImages = [
   ...[

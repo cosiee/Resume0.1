@@ -1,7 +1,7 @@
 // navbar.js
 import {
   getDomElements, getEndTopY, getThumbWidthWithoutMargin,
-  updateDimensionsNoMargins, collectThumbs, showStatementContact,
+  updateDimensionsNoMargins, showStatementContact,
   showForm
 } from "./domUtils.js";
 
@@ -78,9 +78,12 @@ export function setupNavbarEvents(domElements) {
   setupClickEvent(domElements.navHome, autoScrollNow);
   setupClickEvent(domElements.navContact, () => {
     hideScrollBar();
+    updateDimensionsNoMargins();
     showStatementContact();
     showForm();
   });
+
+
 
   // Attach "Work In Progress" (WIP) message to specific links
   ["navAnimation", "navVideo", "navDiy", "navPhotography", "navPython", "navJava", "navReact"].forEach((id) => {
@@ -140,28 +143,56 @@ function cancelHide() {
   clearTimeout(hoverTimeout);
 }
 
+// export function autoScrollNow() {
+//   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+//   console.log("maxScroll: ", maxScroll);
+//   if (maxScroll <= 0) {
+//     console.log("No scrollable space");
+//     return; // Exit if there's no scrollable space
+//   }
+
+//   // Automatically scroll to the bottom over # seconds on page load
+//   gsap.to(document.documentElement, {
+//     // Explicitly target document root for scrolling
+//     scrollTo: {
+//       y: maxScroll, // Scroll to the bottom of the page dynamically
+//       autoKill: false, // Disable autoKill to prevent interruptions
+//     },
+//     duration: SCROLL_DURATION, // Scroll over # seconds
+//     ease: CustomEase.create(
+//       "custom",
+//       "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "
+//     ), // Easing function for scroll
+//   });
+// }
+
+
+const BASE_SCROLL_DURATION = 6.8; // 100% max scroll time
+const REFERENCE_SCROLL_HEIGHT = 1000; // Assume 2000px as full duration reference
+
 export function autoScrollNow() {
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-  console.log("maxScroll: ", maxScroll);
   if (maxScroll <= 0) {
     console.log("No scrollable space");
-    return; // Exit if there's no scrollable space
+    return;
   }
 
-  // Automatically scroll to the bottom over # seconds on page load
+  // Dynamically calculate SCROLL_DURATION based on maxScroll
+  const scrollPercentage = Math.min(maxScroll / REFERENCE_SCROLL_HEIGHT, 1); // Max 100%
+  const SCROLL_DURATION = BASE_SCROLL_DURATION * scrollPercentage;
+
   gsap.to(document.documentElement, {
-    // Explicitly target document root for scrolling
-    scrollTo: {
-      y: maxScroll, // Scroll to the bottom of the page dynamically
-      autoKill: false, // Disable autoKill to prevent interruptions
-    },
-    duration: SCROLL_DURATION, // Scroll over # seconds
+    scrollTo: { y: maxScroll, autoKill: false },
+    duration: SCROLL_DURATION, // ✅ Dynamic duration
     ease: CustomEase.create(
       "custom",
       "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "
-    ), // Easing function for scroll
+    ),
+
   });
 }
+
+
 
 // Displays WIP message
 export function showWip() {
@@ -176,7 +207,7 @@ export function showWip() {
   updateWIPDimensions(endTopY, domElements.thumbElements);
   updateDimensionsNoMargins();
   document.getElementById("wip").style.display = "block";
-  collectThumbs();
+
 }
 
 // Hides WIP message
