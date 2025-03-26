@@ -1,5 +1,5 @@
 
-
+hide scroll bar when WIP msg shows
 
 
 Finalising modularisation: move all index specific behaviour into mainModular.js from 

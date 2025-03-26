@@ -8,7 +8,7 @@ export async function preloadCriticalImages(imageSelectors) {
   const priorityTiers = {
     critical: ["#sky", "#cloud1", "#mountBg", "#mountMgF"],  // Above-the-fold elements
     high: ["#mountFg", "#mountBg2"],
-    medium: ["#meElement"]
+    // medium: ["#meElement"]
   };
 
   // Create a single promise per tier
@@ -29,7 +29,7 @@ export async function preloadCriticalImages(imageSelectors) {
       }).filter(Boolean);
 
       await Promise.all(images);
-      console.log(`Loaded ${tier} priority images`);
+      // console.log(`Loaded ${tier} priority images`);
       resolve();
     });
   });
