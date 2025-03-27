@@ -1,334 +1,295 @@
 // domUtils.js
-export function getDomElements() {
-  return {
-    scrollDist: document.querySelector(".scrollDist"),
-
-    // mountains & clouds index.html
-    svg: document.querySelector("#svg"),
-    cloud1: document.getElementById("cloud1"),
-
-    // see/me text index.html
-    seeText: document.querySelector("#see"),
-    meElement: document.getElementById("me"),
-    meShaker: document.getElementById("meshaker"),
-
-    // arrow index.html
-    down: document.getElementById("down"),
-    // down: document.querySelector("#down"),
-
-    // Navigation buttons index.html Statement & Form
-    modalClose: document.getElementById("modalClose"),
-    modalSig: document.getElementById("modalSig"),
-    contactFormClose: document.getElementById("contactFormClose"),
-    formButton: document.getElementById("formButton"),
-    modalWipClose: document.getElementById("modalWipClose"),
-
-    // Navbar links & Lists
-    navHome: document.getElementById("navHome"),
-    navSoftware: document.getElementById("softwareLink"),
-    navDropMenuSoftware: document.querySelector("#softwareDropMenuLink"),
-    navHtml: document.getElementById("navHtml"),
-    navCss: document.getElementById("navCss"),
-    navJavascript: document.getElementById("navJavascript"),
-    navJava: document.getElementById("navJava"),
-    navPython: document.getElementById("navPython"),
-    navSql: document.getElementById("navSql"),
-    navReact: document.getElementById("navReact"),
-    navPhotography: document.getElementById("photographyLink"),
-    navDiy: document.getElementById("diyLink"),
-    navMotion: document.getElementById("motionLink"),
-    navDropMenuMotion: document.querySelector("#motionDropMenuLink"),
-    navAnimation: document.getElementById("navAnimation"),
-    navVideo: document.getElementById("navVideo"),
-    navContact: document.getElementById("contactLink"),
-
-    // Thumbnails index.html
-    thumbnailsContainer: document.querySelector("#thumbnails"),
-    thumbElements: document.querySelectorAll(".thumbShape"),
-    thumbNails: document.querySelector(".thumbnails"),
-    software: document.getElementById("software"),
-    photography: document.getElementById("photography"),
-    motion: document.getElementById("motion"),
-    diy: document.getElementById("diy"),
-  };
-  console.log(" domElements loaded:", elements); //  Log full object
-
-  Object.entries(elements).forEach(([key, value]) => {
-    if (!value) console.error(` Missing DOM element: ${key}`);
-  });
-
-  return elements;
-}
-
-export function centerElement(element) {
-  const rect = element.getBoundingClientRect();
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-
-  window.scrollTo({
-    top: rect.top + scrollTop - window.innerHeight / 2,
-    left: rect.left + scrollLeft - window.innerWidth / 2,
-    behavior: "smooth",
-  });
-}
-
-export function debounce(func, delay) {
-  let timeout;
-  return function (...args) {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), delay);
-  };
-}
-
-// These are placed here to imitgate conflict
-// Used to position thumbnails, modalbox, WIP-msg and contact form when media query is satisfied
-let endTopY = 0;
-export let endLeftX, endRightX, endBottomY;
-let screenWidthHalved = svg.viewBox.baseVal.width / 2;
-let screenHeightHalved = svg.viewBox.baseVal.height / 2;
-const totalThumbWidth = getThumbWidthWithMargin();
-
-function getThumbWidthWithMargin() {
-  const computedStyle = window.getComputedStyle(getDomElements().thumbElements[0]);
-  const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
-  const thumbMargin = parseFloat(
-    computedStyle.getPropertyValue("margin-right")
-  );
-
-  return thumbWidth + thumbMargin * 2;
-}
-
-
-let cachedEndTopY = null; //  Store the value
-export function getEndTopY() {
-  if (cachedEndTopY !== null) {
-    return cachedEndTopY; //  Use cached value instead of recalculating
+export class DomUtils {
+  constructor(selectors) {
+    if (!selectors) throw new Error("DomUtils requires selectors object");
+    this.selectors = selectors;
+    this.elements = this.getDomElements();
+    this.cachedEndTopY = null;
+    this.cachedEndBottomY = null;
+    this.thumbWidth = 0;
+    this.screenWidthHalved = window.innerWidth / 2;
+    this.screenHeightHalved = window.innerHeight / 2;
+    this.endTopY = 0;
+    this.endLeftX = 0;
+    this.endRightX = 0;
+    this.endBottomY = 0;
+    this.initEventListeners();
   }
 
-  cachedEndTopY = updateEndTopY(); // Compute once and store
-  return cachedEndTopY;
-}
+  /* ======================== */
+  /* === DOM Element Utils === */
+  /* ======================== */
 
-//  Reset cache when needed (e.g., window resize)
-window.addEventListener("resize", () => {
-  cachedEndTopY = null;
-});
+  getDomElements() {
+    const elements = {};
+    Object.entries(this.selectors).forEach(([key, selector]) => {
+      if (Array.isArray(selector)) {
+        elements[key] = selector.map(s => document.querySelector(s)).filter(el => el);
+      } else {
+        elements[key] = document.querySelector(selector);
+      }
+    });
 
+    // Log missing elements
+    Object.entries(elements).forEach(([key, value]) => {
+      if (!value) console.error(`Missing DOM element: ${key}`);
+    });
 
-// Functions to position thumbnails when media query is satisfied
-export function updateEndTopY() {
-  if (window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches) {
-    endTopY = window.innerHeight * 1.275;
-  } else {
-    endTopY = window.innerHeight * 1.325;
+    return elements;
   }
-  return endTopY;
-}
-export function getThumbWidthWithoutMargin() {
-  const computedStyle = window.getComputedStyle(getDomElements().thumbElements[0]);
-  const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
 
-  return thumbWidth;
-}
+  /* ======================== */
+  /* === Thumbnail Utils ==== */
+  /* ======================== */
 
+  getThumbWidthWithMargin() {
+    if (!this.elements?.thumbElements?.[0]) {
+      console.error("thumbElements not found!");
+      return 0;
+    }
+    const style = window.getComputedStyle(this.elements.thumbElements[0]);
+    return parseFloat(style.width) + parseFloat(style.marginRight) * 2;
+  }
 
-export function updateDimensionsNoMargins() {
-  setTimeout(() => {
-    thumbWidth = Math.min(300, window.innerWidth / 6);
-    screenWidthHalved = window.innerWidth / 2;
-    screenHeightHalved = window.innerHeight / 2;
-    const widthThumb = getThumbWidthWithoutMargin();
-    const marginWidth = getThumbMargin();
+  getThumbWidthWithoutMargin() {
+    if (!this.elements?.thumbElements?.[0]) return 0;
+    return parseFloat(window.getComputedStyle(this.elements.thumbElements[0]).width);
+  }
 
-    updateEndTopY();
+  getThumbMargin() {
+    if (!this.elements?.thumbElements?.[0]) return 0;
+    return parseFloat(window.getComputedStyle(this.elements.thumbElements[0]).marginRight);
+  }
 
-    const updatedEndTopY = getEndTopY(); //  Fetch dynamically
+  getComputedStyleValue(element, property) {
+    if (!element) return 0;
+    return parseInt(window.getComputedStyle(element).getPropertyValue(property));
+  }
+
+  /* ======================== */
+  /* === Position Utils ===== */
+  /* ======================== */
+
+  initEventListeners() {
+    window.addEventListener("resize", () => {
+      this.cachedEndTopY = null;
+      this.cachedEndBottomY = null;
+      this.updateDimensions();
+    });
+  }
+
+  updateEndTopY() {
+    const isLandscape = window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches;
+    this.endTopY = isLandscape ? window.innerHeight * 1.275 : window.innerHeight * 1.325;
+    return this.endTopY;
+  }
+
+  getEndTopY() {
+    if (this.cachedEndTopY === null) {
+      this.cachedEndTopY = this.updateEndTopY();
+    }
+    return this.cachedEndTopY;
+  }
+
+  updateEndBottomY() {
+    const isLandscape = window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches;
+    const thumbWidth = this.getThumbWidthWithMargin();
+    this.endBottomY = isLandscape ?
+      window.innerHeight * 1.275 + thumbWidth :
+      window.innerHeight * 1.325 + thumbWidth;
+    return this.endBottomY;
+  }
+
+  getEndBottomY() {
+    if (this.cachedEndBottomY === null) {
+      this.cachedEndBottomY = this.updateEndBottomY();
+    }
+    return this.cachedEndBottomY;
+  }
+
+  /* ======================== */
+  /* === Animation Utils ==== */
+  /* ======================== */
+
+  collectThumbs() {
+    if (!this.elements) return;
+
+    const endTopY = this.getEndTopY();
+    const endBottomY = this.getEndBottomY();
+    const thumbMargin = this.getThumbMargin();
+    const thumbWidth = this.getThumbWidthWithoutMargin();
+
+    this.endLeftX = (window.innerWidth / 2) - (thumbWidth + thumbMargin);
+    this.endRightX = (window.innerWidth / 2) - thumbMargin;
+
+    ['#software', '#photography', '#diy', '#motion'].forEach((selector, i) => {
+      const x = i % 2 === 0 ? this.endLeftX : this.endRightX;
+      const y = i < 2 ? endTopY : endBottomY;
+
+      gsap.to(selector, {
+        scale: 1,
+        x: x,
+        y: y,
+        duration: 1,
+        ease: "power2.out"
+      });
+    });
+  }
+
+  spaceoutThumbs() {
+    if (!this.elements) return;
+
+    gsap.to("#software", {
+      x: this.endLeftX,
+      y: this.getEndTopY(),
+      duration: 1,
+      ease: "power2.out",
+    });
+    gsap.to("#photography", {
+      x: this.endRightX,
+      y: this.getEndTopY(),
+      duration: 1,
+      ease: "power2.out",
+    });
+    gsap.to("#diy", {
+      x: this.endRightX,
+      y: this.endBottomY,
+      duration: 1,
+      ease: "power2.out",
+    });
+    gsap.to("#motion", {
+      x: this.endLeftX,
+      y: this.endBottomY,
+      duration: 1,
+      ease: "power2.out",
+    });
+  }
+
+  /* ======================== */
+  /* === Modal/Form Utils === */
+  /* ======================== */
+
+  updateModalDimensions() {
+    const modalBox = document.querySelector(".modalbox .box");
+    if (!modalBox || !this.elements?.thumbElements?.[0]) return;
+
+    const thumbWidth = this.getThumbWidthWithoutMargin();
+    const newWidth = Math.max(thumbWidth * 2 + 4, 300);
+    const centerX = window.innerWidth / 2 + 8;
+    const newLeft = centerX - newWidth / 2;
+    const newTop = this.getEndTopY() + 9.4;
+
+    modalBox.style.width = `${newWidth}px`;
+    modalBox.style.height = `${newWidth}px`;
+    modalBox.style.left = `${newLeft}px`;
+    modalBox.style.top = `${newTop}px`;
+  }
+
+  formControl() {
+    const contactForm = document.querySelector(".formDiv#contactForm");
+    if (!contactForm) return;
+
+    const style = window.getComputedStyle(contactForm);
+    const formX = window.innerWidth / 2 - (parseFloat(style.width) / 2) + 6.75;
+    const formY = this.getEndTopY() + 12;
+
+    contactForm.style.left = `${formX}px`;
+    contactForm.style.top = `${formY}px`;
+  }
+
+  /* ======================== */
+  /* === Update Methods ===== */
+  /* ======================== */
+
+  updateDimensionsNoMargins() {
+    setTimeout(() => {
+      this.thumbWidth = Math.min(300, window.innerWidth / 6);
+      this.screenWidthHalved = window.innerWidth / 2;
+      this.screenHeightHalved = window.innerHeight / 2;
+
+      const widthThumb = this.getThumbWidthWithoutMargin();
+      const marginWidth = this.getThumbMargin();
+
+      this.updateEndTopY();
+      const updatedEndTopY = this.getEndTopY();
+
+      if (updatedEndTopY === undefined) {
+        console.error("Error: getEndTopY() returned undefined!");
+        return;
+      }
+
+      this.endTopY = updatedEndTopY + marginWidth - 15;
+      this.endLeftX = this.screenWidthHalved - (widthThumb + marginWidth);
+      this.endRightX = this.screenWidthHalved - marginWidth;
+      this.endBottomY = this.updateEndBottomY() - marginWidth - 15;
+
+      this.collectThumbs();
+      this.updateModalDimensions();
+      this.formControl();
+    }, 450);
+  }
+
+  updateDimensions() {
+    this.thumbWidth = Math.min(300, window.innerWidth / 6);
+    this.screenWidthHalved = window.innerWidth / 2;
+    this.screenHeightHalved = window.innerHeight / 2;
+
+    this.endLeftX = this.screenWidthHalved - this.getThumbWidthWithMargin();
+    this.updateEndTopY();
+
+    const updatedEndTopY = this.getEndTopY();
     if (updatedEndTopY === undefined) {
       console.error("Error: getEndTopY() returned undefined!");
       return;
     }
 
-    const endTopY = updatedEndTopY + marginWidth - 15;
-    endLeftX = screenWidthHalved - (widthThumb + marginWidth);
-    endRightX = screenWidthHalved - marginWidth;
-    endBottomY = updateEndBottomY() - marginWidth - 15;
-
-    collectThumbs();
-
-    updateModalDimensions(endTopY);
-    formControl(endTopY);
-  }, 450);
-}
-
-export function collectThumbs() {
-  gsap.to("#software", {
-    scale: 1,
-    x: endLeftX,
-    y: getEndTopY(),
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#photography", {
-    scale: 1,
-    x: endRightX,
-    y: getEndTopY(),
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#diy", {
-    scale: 1,
-    x: endRightX,
-    y: endBottomY,
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#motion", {
-    scale: 1,
-    x: endLeftX,
-    y: endBottomY,
-    duration: 1,
-    ease: "power2.out",
-  });
-}
-export function updateModalDimensions(endTopY) {
-  const modalBox = document.querySelector(".modalbox .box");
-
-  if (!modalBox || !getDomElements().thumbElements[0]) return;
-
-  const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
-
-  // Calculate new width and height for the modal box
-  const newWidth = Math.max(thumbWidthWithoutMargin * 2 + 4, 300);
-  const newHeight = newWidth; // Assuming we want a square modal
-
-  // Update modal dimensions
-  modalBox.style.width = `${newWidth}px`;
-  modalBox.style.height = `${newHeight}px`;
-
-  // Calculate the center of the screen
-  const centerX = window.innerWidth / 2 + 8; //refining positioning
-
-  // Calculate the new left position to center the modal box- x axis
-  const newLeft = centerX - newWidth / 2;
-
-  // Use the passed endTopY for the new top position
-  const newTop = getEndTopY() + 9.4; //  works for alignment on y axis
-
-  // Update modal position
-  modalBox.style.position = "absolute";
-  modalBox.style.left = `${newLeft}px`;
-  modalBox.style.top = `${newTop}px`;
-
-  // modalBox.style.display = "block";
-}
-
-export function formControl(endTopY) {
-  const contactForm = document.querySelector(".formDiv#contactForm");
-
-  if (!contactForm) return;
-
-  const computedStyleForm = window.getComputedStyle(contactForm);
-  const formWidth = parseFloat(computedStyleForm.getPropertyValue("width"));
-  const formHeight = parseFloat(computedStyleForm.getPropertyValue("height"));
-
-  // Calculate form position
-  const formX = window.innerWidth / 2 - formWidth / 2 + 6.75;
-  const formY = getEndTopY() + 12; //+ 190;
-
-  // Update modal position
-  contactForm.style.position = "absolute";
-  contactForm.style.left = `${formX}px`;
-  contactForm.style.top = `${formY}px`;
-}
-
-
-
-
-let thumbWidth = getComputedStyleValue(
-  document.querySelector(".thumbShape"),
-  "width"
-);
-
-
-function getComputedStyleValue(element, property) {
-
-  return parseInt(window.getComputedStyle(element).getPropertyValue(property));
-}
-export function updateDimensions() {
-  thumbWidth = Math.min(300, window.innerWidth / 6);
-  screenWidthHalved = window.innerWidth / 2;
-  screenHeightHalved = window.innerHeight / 2;
-
-  endLeftX = screenWidthHalved - totalThumbWidth;
-
-  updateEndTopY(); //  Update the value first
-  const updatedEndTopY = getEndTopY(); //  Retrieve the updated value
-
-  if (updatedEndTopY === undefined) {
-    console.error("Error: getEndTopY() returned undefined!");
-    return; // Stop execution if the value is not set
+    this.endTopY = updatedEndTopY;
+    this.endRightX = this.screenWidthHalved;
+    this.updateEndBottomY();
   }
 
-  const endTopY = updatedEndTopY; //  Use a local variable, do not redeclare globally
+  /* ======================== */
+  /* === Utility Methods ==== */
+  /* ======================== */
 
-  endRightX = screenWidthHalved;
-  updateEndBottomY();
-}
+  centerElement(element) {
+    if (!element) return;
 
-function getThumbMargin() {
-  const computedStyle = window.getComputedStyle(getDomElements().thumbElements[0]);
-  const thumbMargin = parseFloat(
-    computedStyle.getPropertyValue("margin-right")
-  );
-  return thumbMargin;
-}
-export function updateEndBottomY() {
-  if (
-    window.matchMedia("(orientation: landscape) and (max-width: 991.98px)")
-      .matches
-  ) {
-    endBottomY = window.innerHeight * 1.275 + totalThumbWidth; // Adjust multiplier for this condition
-  } else {
-    endBottomY = window.innerHeight * 1.325 + totalThumbWidth;
+    const rect = element.getBoundingClientRect();
+    window.scrollTo({
+      top: rect.top + window.pageYOffset - window.innerHeight / 2,
+      left: rect.left + window.pageXOffset - window.innerWidth / 2,
+      behavior: "smooth"
+    });
   }
-  return endBottomY;
-}
-export function spaceoutThumbs() {
-  gsap.to("#software", {
-    x: endLeftX,
-    y: getEndTopY(),
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#photography", {
-    x: endRightX,
-    y: getEndTopY(),
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#diy", {
-    x: endRightX,
-    y: endBottomY,
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.to("#motion", {
-    x: endLeftX,
-    y: endBottomY,
-    duration: 1,
-    ease: "power2.out",
-  });
+
+  debounce(func, delay) {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func(...args), delay);
+    };
+  }
+
+  showStatementContact() {
+    const statement = document.getElementById("statementContact");
+    const form = document.getElementById("contactForm");
+    if (statement) statement.style.display = "block";
+    if (form) form.style.display = "none";
+  }
+
+  showForm() {
+    this.formControl();
+    const form = document.getElementById("contactForm");
+    if (form) form.style.display = "block";
+  }
 }
 
-export function showStatementContact() {
-  document.getElementById("statementContact").style.display = "block";
-  document.getElementById("contactForm").style.display = "none";
-}
+/* ======================== */
+/* === Standalone Exports == */
+/* ======================== */
 
-
-// Displays Contact Form
-export function showForm() {
-  formControl();
-  document.getElementById("contactForm").style.display = "block";
+// For backwards compatibility
+export function createDomUtils(selectors) {
+  return new DomUtils(selectors);
 }
-// 

@@ -1,285 +1,236 @@
 // navbar.js
-import {
-  getDomElements, getEndTopY, getThumbWidthWithoutMargin,
-  updateDimensionsNoMargins, showStatementContact,
-  showForm
-} from "./domUtils.js";
+import { DomUtils } from "./domUtils.js";
 
-
-const domElements = getDomElements();
-export const SCROLL_DURATION = 6.8;
-
-
-const totalThumbWidth = getThumbWidthWithMargin();
-
-
-export function setupNavbar(domElements, triggerOffset = 320) {
-  if (!domElements) {
-    console.error(" Navbar elements missing!");
-    return;
-  }
-  enableStickyNavbar(triggerOffset); // Make navbar sticky
-  setupNavbarEvents(domElements); // Attach event listeners
-  setupDynamicLinks(); // Assign dynamic links
-}
-
-export function enableStickyNavbar(triggerOffset) {
-  $(window).scroll(function () {
-    var scrollDistOffset = $(".scrollDist").offset()?.top || 0;
-    var scrollDistHeight = $(".scrollDist").outerHeight() || 0;
-    var scrollTop = $(window).scrollTop();
-    var windowHeight = $(window).height();
-
-    var isLandscapeSmall = window.matchMedia(
-      "(orientation: landscape) and (max-width: 991.98px)"
-    ).matches;
-
-    var isSmallHeight = windowHeight < triggerOffset;
-
-    var inSmallHeightScrollRange =
-      scrollTop > scrollDistOffset &&
-      scrollTop < scrollDistOffset + scrollDistHeight;
-
-    var inNormalHeightScrollRange =
-      scrollTop > scrollDistOffset + triggerOffset &&
-      scrollTop < scrollDistOffset + scrollDistHeight;
-    // Apply sticky logic
-    if (
-      inNormalHeightScrollRange ||
-      (isLandscapeSmall && isSmallHeight && inSmallHeightScrollRange)
-    ) {
-      $(".navbar").addClass("sticky");
-    } else {
-      $(".navbar").removeClass("sticky");
-    }
-  });
-}
-
-
-// Assigns href to navbar links
-export function setupDynamicLinks() {
-  document.querySelectorAll("a[data-link]").forEach((link) => {
-    link.setAttribute("href", link.dataset.link);
-  });
-}
-
-let hoverTimeout;
-
-export function setupNavbarEvents(domElements) {
-  if (!domElements) {
-    console.error("Navbar elements not found!");
-    return;
-  }
-  // Setup dropdown hover behaviour
-  setupDropdownHover(domElements.navSoftware, domElements.navDropMenuSoftware, domElements.thumbSoft);
-  setupDropdownHover(domElements.navMotion, domElements.navDropMenuMotion, domElements.thumbMot);
-
-  // Setup click behaviors
-  setupClickEvent(domElements.navHome, autoScrollNow);
-  setupClickEvent(domElements.navContact, () => {
-    hideScrollBar();
-    updateDimensionsNoMargins();
-    showStatementContact();
-    showForm();
-  });
-
-
-
-  // Attach "Work In Progress" (WIP) message to specific links
-  ["navAnimation", "navVideo", "navDiy", "navPhotography", "navPython", "navJava", "navReact"].forEach((id) => {
-    setupClickEvent(domElements[id], showWip);
-  });
-}
-
-// 🔹 Handles dropdown hover behavior
-function setupDropdownHover(navItem, dropdownMenu, thumbElements) {
-  if (!navItem || !dropdownMenu) {
-    console.error(" Missing required navbar elements:", { navItem, dropdownMenu, thumbElements });
-    return;
-  }
-
-  navItem.addEventListener("mouseenter", function () {
-    showDropMenu(dropdownMenu);
-    navItem.classList.add("active");
-    if (thumbElements) thumbElements.classList.add("active");
-  });
-
-  navItem.addEventListener("mouseleave", function () {
-    delayedHide(dropdownMenu);
-    navItem.classList.remove("active");
-    if (thumbElements) thumbElements.classList.remove("active");
-  });
-
-  dropdownMenu.addEventListener("mouseenter", cancelHide);
-  dropdownMenu.addEventListener("mouseleave", () => delayedHide(dropdownMenu));
-}
-
-// 🔹 Handles click events
-function setupClickEvent(navItem, callback) {
-  if (!navItem || !callback) return;
-  navItem.addEventListener("click", callback);
-}
-
-// 🔹 Show dropdown menu
-function showDropMenu(menu) {
-  menu.style.display = "flex";
-}
-
-// 🔹 Hide dropdown menu
-function hideDropdown(menu) {
-  menu.style.display = "none";
-}
-
-// 🔹 Delayed hiding (smooth interaction)
-function delayedHide(menu) {
-  clearTimeout(hoverTimeout);
-  hoverTimeout = setTimeout(() => {
-    hideDropdown(menu);
-  }, 200);
-}
-
-// 🔹 Cancel hide delay (keep menu open when hovered)
-function cancelHide() {
-  clearTimeout(hoverTimeout);
-}
-
-// export function autoScrollNow() {
-//   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-//   console.log("maxScroll: ", maxScroll);
-//   if (maxScroll <= 0) {
-//     console.log("No scrollable space");
-//     return; // Exit if there's no scrollable space
-//   }
-
-//   // Automatically scroll to the bottom over # seconds on page load
-//   gsap.to(document.documentElement, {
-//     // Explicitly target document root for scrolling
-//     scrollTo: {
-//       y: maxScroll, // Scroll to the bottom of the page dynamically
-//       autoKill: false, // Disable autoKill to prevent interruptions
-//     },
-//     duration: SCROLL_DURATION, // Scroll over # seconds
-//     ease: CustomEase.create(
-//       "custom",
-//       "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "
-//     ), // Easing function for scroll
-//   });
-// }
-
-
-const BASE_SCROLL_DURATION = 6.8; // 100% max scroll time
-const REFERENCE_SCROLL_HEIGHT = 1000; // Assume 2000px as full duration reference
-
-export function autoScrollNow() {
-  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-  if (maxScroll <= 0) {
-    console.log("No scrollable space");
-    return;
-  }
-
-  // Dynamically calculate SCROLL_DURATION based on maxScroll
-  const scrollPercentage = Math.min(maxScroll / REFERENCE_SCROLL_HEIGHT, 1); // Max 100%
-  const SCROLL_DURATION = BASE_SCROLL_DURATION * scrollPercentage;
-
-  gsap.to(document.documentElement, {
-    scrollTo: { y: maxScroll, autoKill: false },
-    duration: SCROLL_DURATION, // ✅ Dynamic duration
-    ease: CustomEase.create(
-      "custom",
-      "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "
-    ),
-
-  });
-}
-
-
-
-// Displays WIP message
-export function showWip() {
-  const domElements = getDomElements();
-
-  if (!domElements.thumbElements || domElements.thumbElements.length === 0) {
-    console.error("Error: thumbElements is missing or empty!", domElements.thumbElements);
-    return;
-  }
-
-  const endTopY = getEndTopY();
-  updateWIPDimensions(endTopY, domElements.thumbElements);
-  updateDimensionsNoMargins();
-  document.getElementById("wip").style.display = "block";
-
-}
-
-// Hides WIP message
-export function hideWip() {
-  document.getElementById("wip").style.display = "none";
-}
-
-// Hides the scrollbar
-export function hideScrollBar() {
-  document.documentElement.style.overflow = "hidden"; // Hide scroll on the entire document
-}
-
-// Shows the scrollbar
-export function showScrollBar() {
-  document.documentElement.style.overflow = ""; // Show scroll on the entire document
-}
-
-export function updateWIPDimensions(endTopY, thumbElements) {
-  const wip = document.querySelector(".wip .box");
-
-  if (!thumbElements || thumbElements.length === 0) {
-    console.error(" Error: thumbElements is missing or empty! in updateWIPDimensions()-navbar.js", thumbElements);
-    return;
-  }
-  if (!wip) {
-    console.error("Error: wip is undefined in updateWIPDimensions!");
-    return
-  }
-  if (!wip || !thumbElements) {
-    console.error("Missing elements:", { wip, thumbElements });
-    return;
-  }
-
-  const thumbWidthWithoutMargin = getThumbWidthWithoutMargin();
-  // Calculate new width and height for the wip message 
-  const newWidth = Math.max(thumbWidthWithoutMargin * 2 + 4, 300);
-  const newHeight = newWidth; // Assuming we want a square modal
-
-  // Update wip message dimensions
-  wip.style.width = `${newWidth}px`;
-  wip.style.height = `${newHeight}px`;
-
-  // Calculate the center of the screen
-  const centerX = window.innerWidth / 2 + 8; //refining positioning
-
-  // Calculate the new left position to center the modal box- x axis
-  const newLeft = centerX - newWidth / 2;
-  // Use the passed endTopY for the new top position
-  const newTop = getEndTopY() + 9.4; //  works for alignment on y axis
-
-  wip.style.position = "absolute";
-  wip.style.left = `${newLeft}px`;
-  wip.style.top = `${newTop}px`;
-
-}
-
-export function getThumbWidthWithMargin() {
-  const computedStyle = window.getComputedStyle(domElements.thumbElements[0]);
-  const thumbWidth = parseFloat(computedStyle.getPropertyValue("width"));
-  const thumbMargin = parseFloat(
-    computedStyle.getPropertyValue("margin-right")
+export class Navbar {
+  static BASE_SCROLL_DURATION = 6.8;
+  static REFERENCE_SCROLL_HEIGHT = 1000;
+  static landscapeMediaQuery = window.matchMedia(
+    "(orientation: landscape) and (max-width: 991.98px) and (max-height: 600px)"
   );
 
-  return thumbWidth + thumbMargin * 2;
+  constructor(selectors) {
+    if (!selectors) throw new Error("Navbar requires selectors object");
+    this.selectors = selectors;
+    this.domUtils = new DomUtils(selectors);
+    this.elements = this.domUtils.elements;
+    this.hoverTimeout = null;
+    this.setupMediaListeners();
+  }
+
+  setupMediaListeners() {
+    Navbar.landscapeMediaQuery.addEventListener('change', () => {
+      this.handleOrientationChange();
+    });
+  }
+
+  handleOrientationChange() {
+    // Clear cached values
+    this.domUtils.cachedEndTopY = null;
+    this.domUtils.cachedEndBottomY = null;
+
+    // Update positions
+    this.domUtils.updateEndTopY();
+    this.domUtils.updateEndBottomY();
+
+    // Recalculate any dependent values
+    if (this.domUtils.elements.thumbElements) {
+      this.domUtils.collectThumbs();
+    }
+  }
+
+  init(triggerOffset = 320) {
+    if (!this.elements) {
+      console.error("Navbar elements missing!");
+      return;
+    }
+    this.enableStickyNavbar(triggerOffset);
+    this.setupNavbarEvents();
+    this.setupDynamicLinks();
+  }
+
+  autoScrollNow() {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    if (maxScroll <= 0) {
+      console.log("No scrollable space");
+      return;
+    }
+
+    const scrollPercentage = Math.min(maxScroll / Navbar.REFERENCE_SCROLL_HEIGHT, 1);
+    const scrollDuration = Navbar.BASE_SCROLL_DURATION * scrollPercentage;
+
+    gsap.to(document.documentElement, {
+      scrollTo: { y: maxScroll, autoKill: false },
+      duration: scrollDuration,
+      ease: CustomEase.create(
+        "custom",
+        "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1"
+      ),
+    });
+  }
+
+  showWip() {
+    if (!this.elements.thumbElements?.length) {
+      console.error("thumbElements missing!");
+      return;
+    }
+
+    const endTopY = this.getEndTopY();
+    this.updateWIPDimensions(endTopY);
+    document.getElementById("wip").style.display = "block";
+  }
+
+  hideWip() {
+    document.getElementById("wip").style.display = "none";
+  }
+
+  hideScrollBar() {
+    document.documentElement.style.overflow = "hidden";
+  }
+
+  showScrollBar() {
+    document.documentElement.style.overflow = "";
+  }
+
+  /* -------------------- Internal Methods -------------------- */
+
+  enableStickyNavbar(triggerOffset) {
+    $(window).scroll(() => {
+      const scrollDistOffset = $(".scrollDist").offset()?.top || 0;
+      const scrollDistHeight = $(".scrollDist").outerHeight() || 0;
+      const scrollTop = $(window).scrollTop();
+      const windowHeight = $(window).height();
+
+      const isLandscapeSmall = Navbar.landscapeMediaQuery.matches;
+      const isSmallHeight = windowHeight < triggerOffset;
+      const inSmallHeightScrollRange = scrollTop > scrollDistOffset &&
+        scrollTop < scrollDistOffset + scrollDistHeight;
+      const inNormalHeightScrollRange = scrollTop > scrollDistOffset + triggerOffset &&
+        scrollTop < scrollDistOffset + scrollDistHeight;
+
+      if (inNormalHeightScrollRange || (isLandscapeSmall && isSmallHeight && inSmallHeightScrollRange)) {
+        $(".navbar").addClass("sticky");
+      } else {
+        $(".navbar").removeClass("sticky");
+      }
+    });
+  }
+
+  setupNavbarEvents() {
+    // Dropdown hovers
+    this.setupDropdownHover(
+      this.elements.navSoftware,
+      this.elements.navDropMenuSoftware,
+      this.elements.thumbSoft
+    );
+    this.setupDropdownHover(
+      this.elements.navMotion,
+      this.elements.navDropMenuMotion,
+      this.elements.thumbMot
+    );
+
+    // Click events
+    this.setupClickEvent(this.elements.navHome, () => this.autoScrollNow());
+    this.setupClickEvent(this.elements.navContact, () => {
+      this.hideScrollBar();
+      this.showStatementContact();
+      this.showForm();
+    });
+
+    // WIP events
+    ["navAnimation", "navVideo", "navDiy", "navPhotography", "navPython", "navJava", "navReact"]
+      .forEach(id => this.setupClickEvent(this.elements[id], () => this.showWip()));
+  }
+
+  setupDynamicLinks() {
+    document.querySelectorAll("a[data-link]").forEach(link => {
+      link.setAttribute("href", link.dataset.link);
+    });
+  }
+
+  updateWIPDimensions(endTopY) {
+    const wip = document.querySelector(".wip .box");
+    if (!wip || !this.elements.thumbElements?.length) {
+      console.error("Missing elements for WIP dimensions");
+      return;
+    }
+
+    const thumbWidth = this.getThumbWidthWithoutMargin();
+    const newWidth = Math.max(thumbWidth * 2 + 4, 300);
+
+    wip.style.width = `${newWidth}px`;
+    wip.style.height = `${newWidth}px`;
+    wip.style.left = `${(window.innerWidth / 2 + 8) - newWidth / 2}px`;
+    wip.style.top = `${endTopY + 9.4}px`;
+    wip.style.position = "absolute";
+  }
+
+  /* -------------------- Helper Methods -------------------- */
+
+  setupDropdownHover(navItem, dropdownMenu, thumbElement) {
+    if (!navItem || !dropdownMenu) return;
+
+    navItem.addEventListener("mouseenter", () => {
+      this.showDropMenu(dropdownMenu);
+      navItem.classList.add("active");
+      if (thumbElement) thumbElement.classList.add("active");
+    });
+
+    navItem.addEventListener("mouseleave", () => {
+      this.delayedHide(dropdownMenu);
+      navItem.classList.remove("active");
+      if (thumbElement) thumbElement.classList.remove("active");
+    });
+
+    dropdownMenu.addEventListener("mouseenter", () => this.cancelHide());
+    dropdownMenu.addEventListener("mouseleave", () => this.delayedHide(dropdownMenu));
+  }
+
+  setupClickEvent(element, callback) {
+    if (!element || !callback) return;
+    element.addEventListener("click", callback);
+  }
+
+  showDropMenu(menu) {
+    if (menu) menu.style.display = "flex";
+  }
+
+  hideDropdown(menu) {
+    if (menu) menu.style.display = "none";
+  }
+
+  delayedHide(menu) {
+    clearTimeout(this.hoverTimeout);
+    this.hoverTimeout = setTimeout(() => this.hideDropdown(menu), 200);
+  }
+
+  cancelHide() {
+    clearTimeout(this.hoverTimeout);
+  }
+
+  getThumbWidthWithMargin() {
+    if (!this.elements.thumbElements?.[0]) return 0;
+    const style = window.getComputedStyle(this.elements.thumbElements[0]);
+    return parseFloat(style.width) + parseFloat(style.marginRight) * 2;
+  }
+
+  getThumbWidthWithoutMargin() {
+    if (!this.elements.thumbElements?.[0]) return 0;
+    return parseFloat(window.getComputedStyle(this.elements.thumbElements[0]).width);
+  }
+
+  getEndTopY() {
+    // Implement or import this from domUtils
+    return window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches
+      ? window.innerHeight * 1.275
+      : window.innerHeight * 1.325;
+  }
 }
 
+/* -------------------- Legacy Exports for Backward Compatibility -------------------- */
+export function createNavbar(selectors) {
+  return new Navbar(selectors);
+}
 
-
-export const landscapeMediaQuery = window.matchMedia(
-  "(orientation: landscape) and (max-width: 991.98px) and (max-height: 600px)"
-);
-
-
-
-
+export const autoScrollNow = (selectors) => new Navbar(selectors).autoScrollNow();
+export const showWip = (selectors) => new Navbar(selectors).showWip();
+export const hideWip = (selectors) => new Navbar(selectors).hideWip();
