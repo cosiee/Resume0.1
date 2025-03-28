@@ -21,9 +21,9 @@ import { Navbar } from './navbar.js';
 
 export const selectors = {
   scrollDist: ".scrollDist",
-  svg: "svg",
-  seeText: "#see",
-  down: "#down",
+
+  // mountains and sky
+  svg: "#svg",
   cloud1: "#cloud1",
   mountBg: "#mountBg",
   mountBg2: "#mountBg2",
@@ -34,28 +34,52 @@ export const selectors = {
   cloud3: "#cloud3",
   cloud4: "#cloud4",
   cloud5: "#cloud5",
-  thumbNails: "#thumbnails",
-  thumbElements: [".thumbShape"],
-  software: "#software",
-  photography: "#photography",
-  motion: "#motion",
-  diy: "#diy",
-  navDropMenuSoftware: "#softwareDropMenu",
-  navDropMenuMotion: "#momtionDropMenu",
-  navSoftware: "#softwareLink",
-  navMotion: "#motionLink",
-  navPhotography: "#photographyLink",
-  navDiy: "#diyLink",
+
+  // see/me text & arrow
+  seeText: "#see",
+  meElement: "#me",
+  meShaker: "#meshaker",
+  down: "#down",
+
+  //Navigation buttons, Statements & Form
   modalClose: "#modalClose",
   modalSig: "#modalSig",
   contactFormClose: "#contactFormClose",
   formButton: "#formButton",
   modalWipClose: "#modalWipClose",
-  meElement: "#me",
-  meShaker: "#meshaker",
-  cloud1: "#cloud1",
-  seeText: "#see",
-  down: "#down"
+
+  // Navbar Links & Dropdowns
+  navHome: "#navHome",
+  navSoftware: "#softwareLink",
+  navDropMenuSoftware: "#softwareDropMenuLink",
+  navHtml: "#navHtml",
+  navCss: "#navCss",
+  navJavascript: "#navJavascript",
+  navJava: "#navJava",
+  navPython: "#navPython",
+  navSql: "#navSql",
+  navReact: "#navReact",
+  navPhotography: "#photographyLink",
+  navDiy: "#diyLink",
+  navMotion: "#motionLink",
+  navDropMenuMotion: "#motionDropMenuLink",
+  navAnimation: "#navAnimation",
+  navVideo: "#navVideo",
+  navContact: "#contactLink",
+
+  // Thumbnails
+
+  thumbnailsContainer: "#thumbnails",
+  thumbElements: [".thumbShape"],
+  thumbNails: ".thumbnails",
+
+  software: "#software",
+  photography: "#photography",
+  motion: "#motion",
+  diy: "#diy",
+
+
+
 };
 
 
@@ -119,6 +143,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   navbar.init(320);
+  // navbar.setupDynamicLinks();
   // navbar.setupNavbar(domElements, 320); //triggers sticky navbar 320 down into scroll
   domUtils.updateEndTopY(); // controls positioning of elements in index.html
 
@@ -270,6 +295,7 @@ function mountainSkyAni() {
     gsap.set("#sky, #mountBg, #mountMgF", { opacity: 1 });
   }
 }
+
 // End of Mountain Sky Animation
 
 // Me Element Animations
@@ -746,7 +772,7 @@ function autoScroll() {
         y: maxScroll, // Scroll to the bottom of the page dynamically
         autoKill: false, // Disable autoKill to prevent interruptions
       },
-      duration: navbar.SCROLL_DURATION, // Scroll time: SCROLL_DURATION, see config.js
+      duration: 5.8, // Scroll time: SCROLL_DURATION, see navbar.js
       ease: CustomEase.create(
         "custom",
         "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "

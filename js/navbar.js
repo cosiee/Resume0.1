@@ -55,17 +55,17 @@ export class Navbar {
       return;
     }
 
-    const scrollPercentage = Math.min(maxScroll / Navbar.REFERENCE_SCROLL_HEIGHT, 1);
-    const scrollDuration = Navbar.BASE_SCROLL_DURATION * scrollPercentage;
-
     gsap.to(document.documentElement, {
       scrollTo: { y: maxScroll, autoKill: false },
-      duration: scrollDuration,
+      duration: 5.8,
+
+
       ease: CustomEase.create(
         "custom",
         "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1"
       ),
     });
+    console.log("Scrolling Duration 2: ", scrollDuration);
   }
 
   showWip() {
@@ -116,25 +116,37 @@ export class Navbar {
   }
 
   setupNavbarEvents() {
-    // Dropdown hovers
-    this.setupDropdownHover(
-      this.elements.navSoftware,
-      this.elements.navDropMenuSoftware,
-      this.elements.thumbSoft
-    );
-    this.setupDropdownHover(
-      this.elements.navMotion,
-      this.elements.navDropMenuMotion,
-      this.elements.thumbMot
-    );
+    // Only setup events if elements exist
+    if (this.elements.navSoftware && this.elements.navDropMenuSoftware) {
+      this.setupDropdownHover(
+        this.elements.navSoftware,
+        this.elements.navDropMenuSoftware,
+        this.elements.thumbSoft
+      );
+    }
 
-    // Click events
-    this.setupClickEvent(this.elements.navHome, () => this.autoScrollNow());
-    this.setupClickEvent(this.elements.navContact, () => {
-      this.hideScrollBar();
-      this.showStatementContact();
-      this.showForm();
-    });
+    if (this.elements.navMotion && this.elements.navDropMenuMotion) {
+      this.setupDropdownHover(
+        this.elements.navMotion,
+        this.elements.navDropMenuMotion,
+        this.elements.thumbMot
+      );
+    }
+
+    // Add null checks for click events
+    if (this.elements.navHome) {
+
+      this.setupClickEvent(this.elements.navHome, () => this.autoScrollNow());
+    }
+
+    if (this.elements.navContact) {
+
+      this.setupClickEvent(this.elements.navContact, () => {
+        this.hideScrollBar();
+        this.domUtils.showStatementContact();
+        this.domUtils.showForm();
+      });
+    }
 
     // WIP events
     ["navAnimation", "navVideo", "navDiy", "navPhotography", "navPython", "navJava", "navReact"]
