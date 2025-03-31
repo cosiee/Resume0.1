@@ -65,7 +65,6 @@ export class Navbar {
         "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1"
       ),
     });
-    console.log("Scrolling Duration 2: ", scrollDuration);
   }
 
   showWip() {

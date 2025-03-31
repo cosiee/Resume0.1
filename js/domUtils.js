@@ -122,10 +122,14 @@ export class DomUtils {
     this.endLeftX = (window.innerWidth / 2) - (thumbWidth + thumbMargin);
     this.endRightX = (window.innerWidth / 2) - thumbMargin;
 
-    ['#software', '#photography', '#diy', '#motion'].forEach((selector, i) => {
-      const x = i % 2 === 0 ? this.endLeftX : this.endRightX;
-      const y = i < 2 ? endTopY : endBottomY;
+    const elements = [
+      { selector: '#software', x: this.endLeftX, y: endTopY + thumbMargin },
+      { selector: '#photography', x: this.endRightX, y: endTopY + thumbMargin },
+      { selector: '#diy', x: this.endRightX, y: endBottomY - thumbMargin },
+      { selector: '#motion', x: this.endLeftX, y: endBottomY - thumbMargin }
+    ];
 
+    elements.forEach(({ selector, x, y }) => {
       gsap.to(selector, {
         scale: 1,
         x: x,
@@ -171,18 +175,28 @@ export class DomUtils {
 
   updateModalDimensions() {
     const modalBox = document.querySelector(".modalbox .box");
-    if (!modalBox || !this.elements?.thumbElements?.[0]) return;
+    const softwareThumb = document.querySelector("#software");
 
+    if (!modalBox || !softwareThumb || !this.elements?.thumbElements?.[0]) return;
+
+    // 1. Keep existing sizing/X-position logic
     const thumbWidth = this.getThumbWidthWithoutMargin();
     const newWidth = Math.max(thumbWidth * 2 + 4, 300);
     const centerX = window.innerWidth / 2 + 8;
     const newLeft = centerX - newWidth / 2;
-    const newTop = this.getEndTopY() + 9.4;
 
+    // 2. NEW: Set Y-position to match #software (with optional offset)
+    const softwareRect = softwareThumb.getBoundingClientRect();
+    const softwareY = softwareRect.top + window.scrollY;
+    const offsetY = 9.4; // Adjust this if needed (matches your original +9.4 offset)
+    const newTop = softwareY + offsetY;
+
+    // Apply styles
     modalBox.style.width = `${newWidth}px`;
     modalBox.style.height = `${newWidth}px`;
     modalBox.style.left = `${newLeft}px`;
     modalBox.style.top = `${newTop}px`;
+
   }
 
   formControl() {
