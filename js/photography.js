@@ -1,12 +1,33 @@
-// photographer.js
-import { enableStickyNavbar } from "./navbar.js";
-import { getDomElements } from "./domUtils.js";
+import {
+  getDomElements, debounce,
+  updateDimensions, updateEndBottomY, endLeftX, endRightX, endBottomY,
+  updateModalDimensions, formControl, showStatementContact, showForm
+} from "./domUtils.js";
+
+import { thumbnailImages } from "./config.js";
+import { initThumbnails, setRandomBackgroundWithTransition } from "./preload.js";
+import {
+  SCROLL_DURATION, landscapeMediaQuery, setupNavbar, updateWIPDimensions,
+  hideScrollBar, showScrollBar, enableStickyNavbar, setupDynamicLinks, setupNavbarEvents,
+  autoScrollNow, showWip, hideWip
+} from "./navbar.js";
+
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
   const domElements = getDomElements();
   console.log("domElements:", domElements);
 
-  enableStickyNavbar(6)
+  Object.entries(domElements).forEach(([key, value]) => {
+    if (!value) console.error(`Missing DOM element: ${key}`);
+  });
+
+
+
+
+  enableStickyNavbar(20)
+  setupNavbar(domElements, 20);
   console.log("Sticky navbar enabled");
 });
 
@@ -51,82 +72,82 @@ document.addEventListener("DOMContentLoaded", function () {
 // Photography Sliders
 
 
-(function($) {
+(function ($) {
   "use strict";
-  $.fn.sliderResponsive = function(settings) {
-    
-    var set = $.extend( 
+  $.fn.sliderResponsive = function (settings) {
+
+    var set = $.extend(
       {
         slidePause: 5000,
         fadeSpeed: 800,
         autoPlay: "on",
-        showArrows: "off", 
-        hideDots: "off", 
+        showArrows: "off",
+        hideDots: "off",
         hoverZoom: "on",
         titleBarTop: "off"
       },
       settings
-    ); 
-    
+    );
+
     var $slider = $(this);
     var size = $slider.find("> div").length; //number of slides
     var position = 0; // current position of carousal
     var sliderIntervalID; // used to clear autoplay
-      
+
     // Add a Dot for each slide
     $slider.append("<ul></ul>");
-    $slider.find("> div").each(function(){
+    $slider.find("> div").each(function () {
       $slider.find("> ul").append('<li></li>');
     });
-      
+
     // Put .show on the first Slide
     $slider.find("div:first-of-type").addClass("show");
-      
+
     // Put .showLi on the first dot
     $slider.find("li:first-of-type").addClass("showli")
 
-     //fadeout all items except .show
+    //fadeout all items except .show
     $slider.find("> div").not(".show").fadeOut();
-    
+
     // If Autoplay is set to 'on' than start it
     if (set.autoPlay === "on") {
-        startSlider(); 
-    } 
-    
+      startSlider();
+    }
+
     // If showarrows is set to 'on' then don't hide them
     if (set.showArrows === "on") {
-        $slider.addClass('showArrows'); 
+      $slider.addClass('showArrows');
     }
-    
+
     // If hideDots is set to 'on' then hide them
     if (set.hideDots === "on") {
-        $slider.addClass('hideDots'); 
+      $slider.addClass('hideDots');
     }
-    
+
     // If hoverZoom is set to 'off' then stop it
     if (set.hoverZoom === "off") {
-        $slider.addClass('hoverZoomOff'); 
+      $slider.addClass('hoverZoomOff');
     }
-    
+
     // If titleBarTop is set to 'on' then move it up
     if (set.titleBarTop === "on") {
-        $slider.addClass('titleBarTop'); 
+      $slider.addClass('titleBarTop');
     }
 
     // function to start auto play
     function startSlider() {
-      sliderIntervalID = setInterval(function() {
+      sliderIntervalID = setInterval(function () {
         nextSlide();
       }, set.slidePause);
     }
-      
+
     // on mouseover stop the autoplay and clear interval
-    $slider.mouseover(function() {
+    $slider.mouseover(function () {
       clearInterval(sliderIntervalID);
     });
 
     // on mouseout starts the autoplay by calling startSlider
-    $slider.mouseout(function() {
+    $slider.mouseout(function () {
       startSlider();
     });
 
@@ -135,14 +156,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //on left arrow click
     $slider.find("> .left").click(prevSlide);
-      
+
     // Go to next slide
     function nextSlide() {
       position = $slider.find(".show").index() + 1;
       if (position > size - 1) position = 0;
       changeCarousel(position);
     }
-    
+
     // Go to previous slide
     function prevSlide() {
       position = $slider.find(".show").index() - 1;
@@ -151,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     //when user clicks slider button
-    $slider.find(" > ul > li").click(function() {
+    $slider.find(" > ul > li").click(function () {
       position = $(this).index();
       changeCarousel($(this).index());
     });
@@ -174,15 +195,15 @@ document.addEventListener("DOMContentLoaded", function () {
 })(jQuery);
 
 
- 
+
 //////////////////////////////////////////////
 // Activate each slider - change options
 //////////////////////////////////////////////
-$(document).ready(function() {
-  
+$(document).ready(function () {
+
   $("#slider1").sliderResponsive({
-  // Using default everything
-     slidePause: 5000,
+    // Using default everything
+    slidePause: 5000,
     // fadeSpeed: 800,
     // autoPlay: "on",
     // showArrows: "off", 
@@ -190,19 +211,19 @@ $(document).ready(function() {
     // hoverZoom: "on", 
     // titleBarTop: "off"
   });
-  
+
   $("#slider2").sliderResponsive({
     fadeSpeed: 300,
     autoPlay: "off",
     showArrows: "on",
     hideDots: "on"
   });
-  
+
   $("#slider3").sliderResponsive({
     hoverZoom: "off",
     hideDots: "on"
   });
-  
-}); 
+
+});
 
 

@@ -1,19 +1,95 @@
 // mainModular.js
 
-import {
-  getDomElements, debounce, getEndTopY, updateEndTopY,
-  getThumbWidthWithoutMargin, updateDimensionsNoMargins,
-  updateDimensions, spaceoutThumbs, updateEndBottomY, endLeftX, endRightX, endBottomY,
-  updateModalDimensions, formControl, showStatementContact, showForm
-} from "./domUtils.js";
+import { DomUtils } from "./domUtils.js";
+
+// , debounce, getEndTopY, updateEndTopY,
+// getThumbWidthWithoutMargin, updateDimensionsNoMargins,
+// updateDimensions, spaceoutThumbs, updateEndBottomY, endLeftX, endRightX, endBottomY,
+// updateModalDimensions, formControl, showStatementContact, showForm
 
 import { thumbnailImages } from "./config.js";
 import { initThumbnails, setRandomBackgroundWithTransition, preloadCriticalImages } from "./preload.js";
-import {
-  SCROLL_DURATION, landscapeMediaQuery, setupNavbar, updateWIPDimensions,
-  hideScrollBar, showScrollBar, enableStickyNavbar, setupDynamicLinks, setupNavbarEvents,
-  autoScrollNow, showWip, hideWip
-} from "./navbar.js";
+// import {
+//   SCROLL_DURATION, landscapeMediaQuery, setupNavbar, updateWIPDimensions,
+//   hideScrollBar, showScrollBar, enableStickyNavbar, setupDynamicLinks, setupNavbarEvents,
+//   autoScrollNow, showWip, hideWip
+// } from "./navbar.js";
+import { Navbar } from './navbar.js';
+
+
+
+
+export const selectors = {
+  scrollDist: ".scrollDist",
+
+  // mountains and sky
+  svg: "#svg",
+  cloud1: "#cloud1",
+  mountBg: "#mountBg",
+  mountBg2: "#mountBg2",
+  mountMg: "#mountMg",
+  mountMgF: "#mountMgF",
+  mountFg: "#mountFg",
+  cloud2: "#cloud2",
+  cloud3: "#cloud3",
+  cloud4: "#cloud4",
+  cloud5: "#cloud5",
+
+  // see/me text & arrow
+  seeText: "#see",
+  meElement: "#me",
+  meShaker: "#meshaker",
+  down: "#down",
+
+  //Navigation buttons, Statements & Form
+  modalClose: "#modalClose",
+  modalSig: "#modalSig",
+  contactFormClose: "#contactFormClose",
+  formButton: "#formButton",
+  modalWipClose: "#modalWipClose",
+
+  // Navbar Links & Dropdowns
+  navHome: "#navHome",
+  navSoftware: "#softwareLink",
+  navDropMenuSoftware: "#softwareDropMenuLink",
+  navHtml: "#navHtml",
+  navCss: "#navCss",
+  navJavascript: "#navJavascript",
+  navJava: "#navJava",
+  navPython: "#navPython",
+  navSql: "#navSql",
+  navReact: "#navReact",
+  navPhotography: "#photographyLink",
+  navDiy: "#diyLink",
+  navMotion: "#motionLink",
+  navDropMenuMotion: "#motionDropMenuLink",
+  navAnimation: "#navAnimation",
+  navVideo: "#navVideo",
+  navContact: "#contactLink",
+
+  // Thumbnails
+
+  thumbnailsContainer: "#thumbnails",
+  thumbElements: [".thumbShape"],
+  thumbNails: ".thumbnails",
+
+  software: "#software",
+  photography: "#photography",
+  motion: "#motion",
+  diy: "#diy",
+
+
+
+};
+
+
+
+
+const navbar = new Navbar(selectors);
+const duration = Navbar.BASE_SCROLL_DURATION; // For static property
+
+// Initialize and get elements
+
 
 
 const prioritizedImages = [
@@ -24,7 +100,11 @@ const prioritizedImages = [
   "#mountBg",
   "#mountBg2"
 ];
-const domElements = getDomElements();
+
+
+const domUtils = new DomUtils(selectors);
+const domElements = domUtils.elements
+
 domElements.seeText.style.opacity = 0;
 domElements.down.style.opacity = 0;
 
@@ -32,6 +112,8 @@ const backgroundContainers = ['software', 'photography', 'motion', 'diy'];
 
 
 document.addEventListener("DOMContentLoaded", async function () {
+
+
 
   // Hide background containers initially 
   backgroundContainers.forEach(id => {
@@ -60,8 +142,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (domElements.svg) domElements.svg.style.visibility = "visible";
   }
 
-  setupNavbar(domElements, 320); //triggers sticky navbar 320 down into scroll
-  updateEndTopY(); // controls positioning of elements in index.html
+  navbar.init(320);
+  // navbar.setupDynamicLinks();
+  // navbar.setupNavbar(domElements, 320); //triggers sticky navbar 320 down into scroll
+  domUtils.updateEndTopY(); // controls positioning of elements in index.html
 
   // Shows thumbnails background images
   backgroundContainers.forEach(id => {
@@ -81,8 +165,8 @@ window.history.scrollRestoration = "manual";
 // once 'load' event is triggered, the following functions are executed
 window.addEventListener("load", function () {
   updateMeElement();
-  updateDimensions();
-  updateModalDimensions();
+  domUtils.updateDimensions();
+  domUtils.updateModalDimensions();
   animateThumbs();
   autoScroll();
   animateMeAndWiggles();
@@ -99,11 +183,11 @@ function cleanup() {
 window.addEventListener("beforeunload", cleanup);
 
 // Listen for changes in the media query
-landscapeMediaQuery.addEventListener("change", updateEndTopY, updateEndBottomY);
+// landscapeMediaQuery.addEventListener("change", domUtils.updateEndTopY, domUtils.updateEndBottomY);
 
 // Handles Down Arrow link click - to auto-scroll
 domElements.down.addEventListener("click", function () {
-  autoScrollNow();
+  navbar.autoScrollNow();
 });
 
 // window listeners end
@@ -211,6 +295,7 @@ function mountainSkyAni() {
     gsap.set("#sky, #mountBg, #mountMgF", { opacity: 1 });
   }
 }
+
 // End of Mountain Sky Animation
 
 // Me Element Animations
@@ -258,10 +343,10 @@ function updateMeElement() {
       // Re-enable event listeners if necessary
       domElements.meElement.addEventListener("click", function (event) {
         event.stopPropagation();
-        hideScrollBar();
-        autoScrollNow();
-        showStatementContact();
-        updateDimensionsNoMargins();
+        navbar.hideScrollBar();
+        navbar.autoScrollNow();
+        domUtils.showStatementContact();
+        domUtils.updateDimensionsNoMargins();
       });
     }
   } else {
@@ -310,11 +395,12 @@ function animateMeAndWiggles() {
 
 
   // Function to dynamically update text positions on resize
-  const onResize = debounce(() => {
+  const onResize = domUtils.debounce(() => {
     updateTextElementPositions();
-    updateDimensions();
-    updateModalDimensions();
-    updateDimensionsNoMargins();
+    domUtils.updateDimensions();
+    domUtils.updateModalDimensions();
+    navbar.updateWIPDimensions();
+    domUtils.updateDimensionsNoMargins();
   }, 200);
 
   window.addEventListener("resize", onResize);
@@ -560,8 +646,8 @@ function showThumbs() {
   // document.getElementById("contactForm").style.display = "none";
   document.getElementById("statementContact").style.display = "none";
   document.getElementById("thumbnails").style.display = "block";
-  showScrollBar();
-  updateDimensions();
+  navbar.showScrollBar();
+  domUtils.updateDimensions();
 }
 
 // Hides the Contact Form
@@ -574,29 +660,29 @@ function centreThumbs() {
   console.log("centreThumbs");
   gsap.to("#software", {
     scale: 1,
-    x: endLeftX,
-    y: getEndTopY(),
+    x: domUtils.endLeftX,
+    y: domUtils.getEndTopY(),
     duration: 1,
     ease: "power2.out",
   });
   gsap.to("#photography", {
     scale: 1,
-    x: endRightX,
-    y: getEndTopY(),
+    x: domUtils.endRightX,
+    y: domUtils.getEndTopY(),
     duration: 1,
     ease: "power2.out",
   });
   gsap.to("#diy", {
     scale: 1,
-    x: endRightX,
-    y: endBottomY,
+    x: domUtils.endRightX,
+    y: domUtils.endBottomY,
     duration: 1,
     ease: "power2.out",
   });
   gsap.to("#motion", {
     scale: 1,
-    x: endLeftX,
-    y: endBottomY,
+    x: domUtils.endLeftX,
+    y: domUtils.endBottomY,
     duration: 1,
     ease: "power2.out",
   });
@@ -617,26 +703,26 @@ function animateThumbs() {
 
     .fromTo(
       "#software",
-      { opacity: 0.85, scale: 0.2, x: endLeftX - 1750, y: getEndTopY() - 750 },
-      { opacity: 1, scale: 1, x: endLeftX, y: getEndTopY() },
+      { opacity: 0.85, scale: 0.2, x: domUtils.endLeftX - 1750, y: domUtils.getEndTopY() - 750 },
+      { opacity: 1, scale: 1, x: domUtils.endLeftX, y: domUtils.getEndTopY() },
       0
     )
     .fromTo(
       "#photography",
-      { opacity: 0.85, scale: 0.2, x: endRightX + 1250, y: getEndTopY() - 750 },
-      { opacity: 1, scale: 1, x: endRightX, y: getEndTopY() },
+      { opacity: 0.85, scale: 0.2, x: domUtils.endRightX + 1250, y: domUtils.getEndTopY() - 750 },
+      { opacity: 1, scale: 1, x: domUtils.endRightX, y: domUtils.getEndTopY() },
       0
     )
     .fromTo(
       "#diy",
-      { opacity: 0.85, scale: 3, x: endRightX + 1250, y: endBottomY + 750 },
-      { opacity: 1, scale: 1, x: endRightX, y: endBottomY },
+      { opacity: 0.85, scale: 3, x: domUtils.endRightX + 1250, y: domUtils.endBottomY + 750 },
+      { opacity: 1, scale: 1, x: domUtils.endRightX, y: domUtils.endBottomY },
       0
     )
     .fromTo(
       "#motion",
-      { opacity: 0.85, scale: 3, x: endLeftX - 1750, y: endBottomY + 750 },
-      { opacity: 1, scale: 1, x: endLeftX, y: endBottomY },
+      { opacity: 0.85, scale: 3, x: domUtils.endLeftX - 1750, y: domUtils.endBottomY + 750 },
+      { opacity: 1, scale: 1, x: domUtils.endLeftX, y: domUtils.endBottomY },
       0
     );
 }
@@ -644,22 +730,22 @@ function animateThumbs() {
 
 // Handles software Thumbs link click - to WIP message
 domElements.software.addEventListener("click", function () {
-  showWip(domElements.thumbElements[0]);
+  navbar.showWip(domElements.thumbElements[0]);
 });
 
 // Handles photography Thumbs link click - to WIP message
 domElements.photography.addEventListener("click", function () {
-  showWip(domElements.thumbElements[1]);
+  navbar.showWip(domElements.thumbElements[1]);
 });
 
 // Handles motion Thumbs link click - to WIP message
 domElements.motion.addEventListener("click", function () {
-  showWip(domElements.thumbElements[2]);
+  navbar.showWip(domElements.thumbElements[2]);
 });
 
 // Handles DIY Thumbs link click - to WIP message
 domElements.diy.addEventListener("click", function () {
-  showWip(domElements.thumbElements[3]);
+  navbar.showWip(domElements.thumbElements[3]);
 });
 
 //Thumbnails functions, variables & listeners end
@@ -687,7 +773,7 @@ function autoScroll() {
         y: maxScroll, // Scroll to the bottom of the page dynamically
         autoKill: false, // Disable autoKill to prevent interruptions
       },
-      duration: SCROLL_DURATION, // Scroll time: SCROLL_DURATION, see config.js
+      duration: 5.8, // Scroll time: SCROLL_DURATION, see navbar.js
       ease: CustomEase.create(
         "custom",
         "M0,0 C0.525,0.106 0.676,0.356 0.728,0.516 0.774,0.577 0.78,1 1,1 "
@@ -699,37 +785,37 @@ function autoScroll() {
 
 // Handles index.html specify navigation links
 domElements.modalClose.addEventListener("click", function () {
-  showScrollBar();
+  navbar.showScrollBar();
   showThumbs();
-  updateDimensions();
-  spaceoutThumbs();
+  domUtils.updateDimensions();
+  domUtils.spaceoutThumbs();
 });
 
 // Handles Welcome Message signature click - to contact form
 domElements.modalSig.addEventListener("click", function () {
-  showForm();
+  domUtils.showForm();
 });
 
 // Handles contact form close button click
 domElements.contactFormClose.addEventListener("click", function () {
   showThumbs();
-  spaceoutThumbs();
+  domUtils.spaceoutThumbs();
 });
 
 // Handles the form submission click and display layout
 domElements.formButton.addEventListener("click", function () {
   showThumbs();
-  spaceoutThumbs();
+  domUtils.spaceoutThumbs();
 });
 
 
 // Handles WIP message close link click - return to main layout
 domElements.modalWipClose.addEventListener("click", function () {
-  showScrollBar();
+  navbar.showScrollBar();
   showThumbs();
-  updateDimensions();
-  spaceoutThumbs();
-  hideWip();
+  domUtils.updateDimensions();
+  domUtils.spaceoutThumbs();
+  navbar.hideWip();
 });
 
 // Handles index.html specify navigation links End
