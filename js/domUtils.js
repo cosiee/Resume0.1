@@ -199,16 +199,44 @@ export class DomUtils {
 
   }
 
+  // formControl() {
+  //   const contactForm = document.querySelector(".formDiv#contactForm");
+  //   if (!contactForm) return;
+
+  //   const style = window.getComputedStyle(contactForm);
+  //   const formX = window.innerWidth / 2 - (parseFloat(style.width) / 2) + 6.75;
+  //   const formY = this.getEndTopY() + 12;
+
+  //   contactForm.style.left = `${formX}px`;
+  //   contactForm.style.top = `${formY}px`;
+  // }
   formControl() {
     const contactForm = document.querySelector(".formDiv#contactForm");
-    if (!contactForm) return;
+    const softwareThumb = document.querySelector("#software");
 
+    if (!contactForm || !softwareThumb) return;
+
+    // Keep existing horizontal centering logic
     const style = window.getComputedStyle(contactForm);
-    const formX = window.innerWidth / 2 - (parseFloat(style.width) / 2) + 6.75;
-    const formY = this.getEndTopY() + 12;
+    const formWidth = parseFloat(style.width);
+    const formX = window.innerWidth / 2 - (formWidth / 2) + 6.75; // Maintains original offset
 
+    // Align Y-position with #software (like other functions)
+    const softwareRect = softwareThumb.getBoundingClientRect();
+    const softwareY = softwareRect.top + window.scrollY;
+    const offsetY = 12; // Matches original +12 offset from getEndTopY()
+    const formY = softwareY + offsetY;
+
+    // Apply positioning
     contactForm.style.left = `${formX}px`;
     contactForm.style.top = `${formY}px`;
+
+    console.log("Contact form positioned:", {
+      softwareY,
+      formX,
+      formY,
+      formWidth
+    });
   }
 
   /* ======================== */

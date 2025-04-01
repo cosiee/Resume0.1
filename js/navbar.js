@@ -73,9 +73,9 @@ export class Navbar {
       return;
     }
 
-    const endTopY = this.getEndTopY();
-    this.updateWIPDimensions(endTopY);
+    this.updateWIPDimensions();
     document.getElementById("wip").style.display = "block";
+    this.domUtils.collectThumbs();
   }
 
   hideWip() {
@@ -142,13 +142,15 @@ export class Navbar {
 
       this.setupClickEvent(this.elements.navContact, () => {
         this.hideScrollBar();
+        this.domUtils.updateModalDimensions();
         this.domUtils.showStatementContact();
         this.domUtils.showForm();
+        this.domUtils.collectThumbs();
       });
     }
 
     // WIP events
-    ["navAnimation", "navVideo", "navDiy", "navPhotography", "navPython", "navJava", "navReact"]
+    ["navAnimation", "navVideo", "navDiy", "navPhotography", "navPython", "navJava", "navSql", "navReact"]
       .forEach(id => this.setupClickEvent(this.elements[id], () => this.showWip()));
   }
 
@@ -158,21 +160,40 @@ export class Navbar {
     });
   }
 
-  updateWIPDimensions(endTopY) {
-    const wip = document.querySelector(".wip .box");
-    if (!wip || !this.elements.thumbElements?.length) {
+  // 
+  updateWIPDimensions() {
+    const wipBox = document.querySelector(".wip .box");
+    const softwareThumb = document.querySelector("#software");
+
+    if (!wipBox || !softwareThumb || !this.elements?.thumbElements?.[0]) {
       console.error("Missing elements for WIP dimensions");
       return;
     }
 
+    // Keep existing sizing logic
     const thumbWidth = this.getThumbWidthWithoutMargin();
     const newWidth = Math.max(thumbWidth * 2 + 4, 300);
+    const centerX = window.innerWidth / 2 + 8;
+    const newLeft = centerX - newWidth / 2;
 
-    wip.style.width = `${newWidth}px`;
-    wip.style.height = `${newWidth}px`;
-    wip.style.left = `${(window.innerWidth / 2 + 8) - newWidth / 2}px`;
-    wip.style.top = `${endTopY + 9.4}px`;
-    wip.style.position = "absolute";
+    // Align Y-position with #software (like updateModalDimensions)
+    const softwareRect = softwareThumb.getBoundingClientRect();
+    const softwareY = softwareRect.top + window.scrollY;
+    const offsetY = 9.4; // Match modal's offset for consistency
+    const newTop = softwareY + offsetY;
+
+    // Apply styles
+    wipBox.style.width = `${newWidth}px`;
+    wipBox.style.height = `${newWidth}px`;
+    wipBox.style.left = `${newLeft}px`;
+    wipBox.style.top = `${newTop}px`;
+    wipBox.style.position = "absolute";
+
+    console.log("WIP positioned:", {
+      softwareY,
+      finalTop: newTop,
+      width: newWidth
+    });
   }
 
   /* -------------------- Helper Methods -------------------- */

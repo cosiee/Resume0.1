@@ -399,6 +399,7 @@ function animateMeAndWiggles() {
     updateTextElementPositions();
     domUtils.updateDimensions();
     domUtils.updateModalDimensions();
+    navbar.updateWIPDimensions();
     domUtils.updateDimensionsNoMargins();
   }, 200);
 
