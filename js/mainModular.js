@@ -1,19 +1,7 @@
 // mainModular.js
 
 import { DomUtils } from "./domUtils.js";
-
-// , debounce, getEndTopY, updateEndTopY,
-// getThumbWidthWithoutMargin, updateDimensionsNoMargins,
-// updateDimensions, spaceoutThumbs, updateEndBottomY, endLeftX, endRightX, endBottomY,
-// updateModalDimensions, formControl, showStatementContact, showForm
-
-import { thumbnailImages } from "./config.js";
-import { initThumbnails, setRandomBackgroundWithTransition, preloadCriticalImages } from "./preload.js";
-// import {
-//   SCROLL_DURATION, landscapeMediaQuery, setupNavbar, updateWIPDimensions,
-//   hideScrollBar, showScrollBar, enableStickyNavbar, setupDynamicLinks, setupNavbarEvents,
-//   autoScrollNow, showWip, hideWip
-// } from "./navbar.js";
+import { initThumbnails, preloadCriticalImages } from "./preload.js";
 import { Navbar } from './navbar.js';
 
 
