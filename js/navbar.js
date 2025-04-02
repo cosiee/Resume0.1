@@ -68,14 +68,32 @@ export class Navbar {
   }
 
   showWip() {
-    if (!this.elements.thumbElements?.length) {
-      console.error("thumbElements missing!");
+    // if (!this.elements.thumbElements?.length) {
+    //   console.error("thumbElements missing!");
+    //   return;
+    // }
+    if (!this.elements.thumbElements || !this.elements.thumbElements.length) {
+      console.warn("thumbElements missing - using fallback positioning");
+      this.updateWIPDimensionsFallback();
+      document.getElementById("wip").style.display = "block";
       return;
     }
 
     this.updateWIPDimensions();
     document.getElementById("wip").style.display = "block";
     this.domUtils.collectThumbs();
+  }
+  updateWIPDimensionsFallback() {
+    const wipBox = document.querySelector(".wip .box");
+    if (!wipBox) return;
+
+    // Center the WIP modal in the viewport
+    const newWidth = Math.min(600, window.innerWidth * 0.8);
+    wipBox.style.width = `${newWidth}px`;
+    wipBox.style.height = `${newWidth}px`;
+    wipBox.style.left = `${(window.innerWidth - newWidth) / 2}px`;
+    wipBox.style.top = `${window.innerHeight * 0.2}px`;
+    wipBox.style.position = "fixed";
   }
 
   hideWip() {
@@ -142,10 +160,28 @@ export class Navbar {
 
       this.setupClickEvent(this.elements.navContact, () => {
         this.hideScrollBar();
+
+        const isNotIndexPage = !document.querySelector('#software');
+
+        if (isNotIndexPage) {
+          // Photography page specific positioning
+          const form = document.querySelector(".formDiv#contactForm");
+          if (form) {
+            form.style.position = "fixed";
+            form.style.left = "50%";
+            form.style.top = "50%";
+            form.style.transform = "translate(-50%, -50%)";
+            form.style.zIndex = "1000";
+          }
+        }
+
         this.domUtils.updateModalDimensions();
         this.domUtils.showStatementContact();
         this.domUtils.showForm();
         this.domUtils.collectThumbs();
+
+
+
       });
     }
 

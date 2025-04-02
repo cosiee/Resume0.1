@@ -28,11 +28,11 @@ export class DomUtils {
       } else {
         elements[key] = document.querySelector(selector);
       }
-    });
+      // });
 
-    // Log missing elements
-    Object.entries(elements).forEach(([key, value]) => {
-      if (!value) console.error(`Missing DOM element: ${key}`);
+      // // Log missing elements
+      // Object.entries(elements).forEach(([key, value]) => {
+      //   if (!value) console.error(`Missing DOM element: ${key}`);
     });
 
     return elements;
@@ -44,15 +44,15 @@ export class DomUtils {
 
   getThumbWidthWithMargin() {
     if (!this.elements?.thumbElements?.[0]) {
-      console.error("thumbElements not found!");
-      return 0;
+
+      return 300;
     }
     const style = window.getComputedStyle(this.elements.thumbElements[0]);
     return parseFloat(style.width) + parseFloat(style.marginRight) * 2;
   }
 
   getThumbWidthWithoutMargin() {
-    if (!this.elements?.thumbElements?.[0]) return 0;
+    if (!this.elements?.thumbElements?.[0]) return 325;
     return parseFloat(window.getComputedStyle(this.elements.thumbElements[0]).width);
   }
 
@@ -94,6 +94,18 @@ export class DomUtils {
   updateEndBottomY() {
     const isLandscape = window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches;
     const thumbWidth = this.getThumbWidthWithMargin();
+
+    if (!this.elements?.thumbElements?.length) {
+      return isLandscape ?
+        window.innerHeight * 0.7 :
+        window.innerHeight * 0.75;
+    }
+
+    return isLandscape ?
+      window.innerHeight * 1.275 + thumbWidth :
+      window.innerHeight * 1.325 + thumbWidth;
+
+
     this.endBottomY = isLandscape ?
       window.innerHeight * 1.275 + thumbWidth :
       window.innerHeight * 1.325 + thumbWidth;
@@ -112,7 +124,11 @@ export class DomUtils {
   /* ======================== */
 
   collectThumbs() {
-    if (!this.elements) return;
+    // if (!this.elements) return;
+
+    if (!this.elements?.thumbElements?.length) {
+      return;
+    }
 
     const endTopY = this.getEndTopY();
     const endBottomY = this.getEndBottomY();
@@ -130,13 +146,16 @@ export class DomUtils {
     ];
 
     elements.forEach(({ selector, x, y }) => {
-      gsap.to(selector, {
-        scale: 1,
-        x: x,
-        y: y,
-        duration: 1,
-        ease: "power2.out"
-      });
+      const element = document.querySelector(selector);
+      if (element) {
+        gsap.to(selector, {
+          scale: 1,
+          x: x,
+          y: y,
+          duration: 1,
+          ease: "power2.out"
+        });
+      }
     });
   }
 
@@ -211,32 +230,55 @@ export class DomUtils {
   //   contactForm.style.top = `${formY}px`;
   // }
   formControl() {
+    // const contactForm = document.querySelector(".formDiv#contactForm");
+    // const softwareThumb = document.querySelector("#software");
+
     const contactForm = document.querySelector(".formDiv#contactForm");
+    if (!contactForm) return;
+
+    // Check if we have thumbnails for positioning
     const softwareThumb = document.querySelector("#software");
 
-    if (!contactForm || !softwareThumb) return;
+    if (softwareThumb) {
+      // Original positioning logic using thumbnails
+      const softwareRect = softwareThumb.getBoundingClientRect();
+      const softwareY = softwareRect.top + window.scrollY;
+      const offsetY = 12;
+      const formY = softwareY + offsetY;
 
-    // Keep existing horizontal centering logic
-    const style = window.getComputedStyle(contactForm);
-    const formWidth = parseFloat(style.width);
-    const formX = window.innerWidth / 2 - (formWidth / 2) + 6.75; // Maintains original offset
+      const style = window.getComputedStyle(contactForm);
+      const formWidth = parseFloat(style.width);
+      const formX = window.innerWidth / 2 - (formWidth / 2) + 6.75;
 
-    // Align Y-position with #software (like other functions)
-    const softwareRect = softwareThumb.getBoundingClientRect();
-    const softwareY = softwareRect.top + window.scrollY;
-    const offsetY = 12; // Matches original +12 offset from getEndTopY()
-    const formY = softwareY + offsetY;
+      contactForm.style.left = `${formX}px`;
+      contactForm.style.top = `${formY}px`;
+    } else {
+      // Fallback centered positioning
+      const formWidth = Math.min(500, window.innerWidth * 0.9);
+      contactForm.style.width = `${formWidth}px`;
+      contactForm.style.left = `${(window.innerWidth - formWidth) / 2}px`;
+      contactForm.style.top = `${window.innerHeight * 0.15}px`;
+      contactForm.style.position = "fixed";
+    }
 
-    // Apply positioning
-    contactForm.style.left = `${formX}px`;
-    contactForm.style.top = `${formY}px`;
+    // if (!contactForm || !softwareThumb) return;
 
-    console.log("Contact form positioned:", {
-      softwareY,
-      formX,
-      formY,
-      formWidth
-    });
+    // // Keep existing horizontal centering logic
+    // const style = window.getComputedStyle(contactForm);
+    // const formWidth = parseFloat(style.width);
+    // const formX = window.innerWidth / 2 - (formWidth / 2) + 6.75; // Maintains original offset
+
+    // // Align Y-position with #software (like other functions)
+    // const softwareRect = softwareThumb.getBoundingClientRect();
+    // const softwareY = softwareRect.top + window.scrollY;
+    // const offsetY = 12; // Matches original +12 offset from getEndTopY()
+    // const formY = softwareY + offsetY;
+
+    // // Apply positioning
+    // contactForm.style.left = `${formX}px`;
+    // contactForm.style.top = `${formY}px`;
+
+
   }
 
   /* ======================== */

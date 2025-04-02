@@ -100,9 +100,6 @@ const backgroundContainers = ['software', 'photography', 'motion', 'diy'];
 
 
 document.addEventListener("DOMContentLoaded", async function () {
-
-
-
   // Hide background containers initially 
   backgroundContainers.forEach(id => {
     const el = document.getElementById(id);

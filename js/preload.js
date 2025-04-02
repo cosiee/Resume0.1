@@ -38,8 +38,6 @@ export async function preloadCriticalImages(imageSelectors) {
 }
 
 
-// Cache for loaded images
-const backgroundCache = new Map();
 const backgroundTransitionCache = new Map();
 
 export function initThumbnails() {

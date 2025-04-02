@@ -1,11 +1,25 @@
 /* otherStyles.css */
 /* Navbar base Styles################################################# */
 
-  
-  a.nav-link {
-    color: #f7f8fa;
- 
-  }
+a.nav-link {
+  color: #f7f8fa;
+}
+
+/* For pages without thumbnails */
+.formDiv#contactForm {
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 1000;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.wip .box {
+  transition: all 0.3s ease;
+}
+
 /*   
   a.nav-link:hover {
     color: #162a43;
@@ -37,8 +51,8 @@
     font-size: 0.9em;
     padding: 2px 0px 1px 0px;
   } */
-  
-  /* a.dropdown-item:hover {
+
+/* a.dropdown-item:hover {
     color: #162a43;
     transform: scale(1.1);
     background-color: transparent !important;
@@ -78,7 +92,7 @@
   }
   
   /* Burger Icon Styling */
-  /* navbar-toggler left {
+/* navbar-toggler left {
     position: absolute;
     left: 1rem;
     top: 1rem;
@@ -110,247 +124,249 @@
   } 
  */
 
-  /*End of overriding Navbar base styles ###############################*/
+/*End of overriding Navbar base styles ###############################*/
 
-
-.slider, 
+.slider,
 .slider > div {
-    /* Images default to Center Center. Maybe try 'center top'? */
-    background-position: center center;
-    display: block;
-    width: 100%;
-    height: 500px;
-    /* height: 100vh; *//* If you want fullscreen */
-    position: relative;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: #000;
-    overflow: hidden;
-    -moz-transition: transform .4s;
-    -o-transition: transform .4s;
-    -webkit-transition: transform .4s;
-    transition: transform .4s;
+  /* Images default to Center Center. Maybe try 'center top'? */
+  background-position: center center;
+  display: block;
+  width: 100%;
+  height: 500px;
+  /* height: 100vh; */ /* If you want fullscreen */
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #000;
+  overflow: hidden;
+  -moz-transition: transform 0.4s;
+  -o-transition: transform 0.4s;
+  -webkit-transition: transform 0.4s;
+  transition: transform 0.4s;
 }
 
 .slider > div {
-    position: absolute;
+  position: absolute;
 }
 
 .slider > i {
-    color: #5bbd72;
-    position: absolute;
-    font-size: 60px;
-    margin: 20px;
-    top: 40%;
-    text-shadow: 0 10px 2px #223422;
-    transition: .3s;
-    width: 30px;
-    padding: 10px 13px;
-    background: #fff;
-    background: rgba(255, 255, 255, .3);
-    cursor: pointer;
-    line-height: 0;
-    box-sizing: content-box;
-    border-radius: 3px;
-    z-index: 4;
+  color: #5bbd72;
+  position: absolute;
+  font-size: 60px;
+  margin: 20px;
+  top: 40%;
+  text-shadow: 0 10px 2px #223422;
+  transition: 0.3s;
+  width: 30px;
+  padding: 10px 13px;
+  background: #fff;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  line-height: 0;
+  box-sizing: content-box;
+  border-radius: 3px;
+  z-index: 4;
 }
 
 .slider > i svg {
-    margin-top: 3px;
+  margin-top: 3px;
 }
 
 .slider > .left {
-    left: -100px;
+  left: -100px;
 }
 .slider > .right {
-    right: -100px;
+  right: -100px;
 }
 .slider:hover > .left {
-    left: 0;
+  left: 0;
 }
 .slider:hover > .right {
-    right: 0;
+  right: 0;
 }
 
 .slider > i:hover {
-    background:#fff;
-    background: rgba(255, 255, 255, .8);
-    transform: translateX(-2px);
+  background: #fff;
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateX(-2px);
 }
 
 .slider > i.right:hover {
-    transform: translateX(2px);
+  transform: translateX(2px);
 }
 
 .slider > i.right:active,
 .slider > i.left:active {
-    transform: translateY(1px);
+  transform: translateY(1px);
 }
 
 .slider:hover > div {
-    transform: scale(1.01);
+  transform: scale(1.01);
 }
 
 .hoverZoomOff:hover > div {
-    transform: scale(1);
+  transform: scale(1);
 }
 
 /* The Dots */
 .slider > ul {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    z-index: 4;
-    padding: 0;
-    margin: 0;
-    transform: translateX(-50%);
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  z-index: 4;
+  padding: 0;
+  margin: 0;
+  transform: translateX(-50%);
 }
 
 .slider > ul > li {
-    padding: 0;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    list-style: none;
-    float: left;
-    margin: 10px 10px 0;
-    cursor: pointer;
-    border: 1px solid #fff;
-    -moz-transition: .3s;
-    -o-transition: .3s;
-    -webkit-transition: .3s;
-    transition: .3s;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  list-style: none;
+  float: left;
+  margin: 10px 10px 0;
+  cursor: pointer;
+  border: 1px solid #fff;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .slider > ul > .showli {
-    background-color: #7EC03D;
-    -moz-animation: boing .5s forwards;
-    -o-animation: boing .5s forwards;
-    -webkit-animation: boing .5s forwards;
-    animation: boing .5s forwards;
+  background-color: #7ec03d;
+  -moz-animation: boing 0.5s forwards;
+  -o-animation: boing 0.5s forwards;
+  -webkit-animation: boing 0.5s forwards;
+  animation: boing 0.5s forwards;
 }
 
 .slider > ul > li:hover {
-    background-color: #7EC03D;
+  background-color: #7ec03d;
 }
 
 .slider > .show {
-    z-index: 1;
+  z-index: 1;
 }
 
 .hideDots > ul {
-    display: none;
+  display: none;
 }
 
 .showArrows > .left {
-    left: 0;
+  left: 0;
 }
 
 .showArrows > .right {
-    right: 0;
+  right: 0;
 }
 
 .titleBar {
-    z-index: 2;
-    display: inline-block;
-    background: rgba(0,0,0,.5);
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    transform: translateY(100%);
-    padding: 20px 30px;
-    transition: .3s;
-    color: #fff;
+  z-index: 2;
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  transform: translateY(100%);
+  padding: 20px 30px;
+  transition: 0.3s;
+  color: #fff;
 }
 
 .titleBar * {
-    transform: translate(-20px, 30px);
-    transition: all 700ms cubic-bezier(0.37, 0.31, 0.2, 0.85) 200ms;
-    opacity: 0;
+  transform: translate(-20px, 30px);
+  transition: all 700ms cubic-bezier(0.37, 0.31, 0.2, 0.85) 200ms;
+  opacity: 0;
 }
 
 .titleBarTop .titleBar * {
-    transform: translate(-20px, -30px);
+  transform: translate(-20px, -30px);
 }
 
 .slider:hover .titleBar,
 .slider:hover .titleBar * {
-    transform: translate(0);
-    opacity: 1;
+  transform: translate(0);
+  opacity: 1;
 }
 
 .titleBarTop .titleBar {
-    top: 0;
-    bottom: initial;
-    transform: translateY(-100%);
+  top: 0;
+  bottom: initial;
+  transform: translateY(-100%);
 }
 
 .slider > div span {
-    display: block;
-    background: rgba(0,0,0,.5);
-    position: absolute;
-    bottom: 0;
-    color: #fff;
-    text-align: center;
-    padding: 0;
-    width: 100%;
+  display: block;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  text-align: center;
+  padding: 0;
+  width: 100%;
 }
 
-
 @keyframes boing {
-    0% {
-        transform: scale(1.2);
-    }
-    40% {
-        transform: scale(.6);
-    }
-    60% {
-        transform: scale(1.2);
-    }
-    80% {
-        transform: scale(.8);
-    }
-    100% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(1.2);
+  }
+  40% {
+    transform: scale(0.6);
+  }
+  60% {
+    transform: scale(1.2);
+  }
+  80% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* -------------------------------------- */
 
 #slider2 {
-    max-width: 30%;
-    margin-right: 20px;
+  max-width: 30%;
+  margin-right: 20px;
 }
 
 .row2Wrap {
-    display: flex;
+  display: flex;
 }
 
 .content {
-    padding: 50px;
-    margin-bottom: 100px;
+  padding: 50px;
+  margin-bottom: 100px;
 }
 
 html {
-    height: 100%;
-    box-sizing: border-box;
+  height: 100%;
+  box-sizing: border-box;
 }
-*, *:before, *:after {
-    box-sizing: inherit;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
-h1, h2, h3 {
-    font-family: 'Crimson Text', sans-serif;
-    font-weight: 100;
+h1,
+h2,
+h3 {
+  font-family: "Crimson Text", sans-serif;
+  font-weight: 100;
 }
 body {
-    font: 15px 'Titillium Web', Arial, sans-serif;
-    background: radial-gradient(#121212, #000);
-    height: 100%;
-    color: #aaa;
-    margin: 0;
-    padding: 0;
+  font: 15px "Titillium Web", Arial, sans-serif;
+  background: radial-gradient(#121212, #000);
+  height: 100%;
+  color: #aaa;
+  margin: 0;
+  padding: 0;
 }
 
 .content {
-    padding: 10px 15vw;
+  padding: 10px 15vw;
 }
