@@ -91,21 +91,40 @@ export class DomUtils {
     return this.cachedEndTopY;
   }
 
+  // updateEndBottomY() {
+  //   const isLandscape = window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches;
+  //   const thumbWidth = this.getThumbWidthWithMargin();
+
+  //   if (!this.elements?.thumbElements?.length) {
+  //     return isLandscape ?
+  //       window.innerHeight * 0.7 :
+  //       window.innerHeight * 0.75;
+  //   }
+
+  //   return isLandscape ?
+  //     window.innerHeight * 1.275 + thumbWidth :
+  //     window.innerHeight * 1.325 + thumbWidth;
+
+
+  //   this.endBottomY = isLandscape ?
+  //     window.innerHeight * 1.275 + thumbWidth :
+  //     window.innerHeight * 1.325 + thumbWidth;
+  //   return this.endBottomY;
+  // }
+
   updateEndBottomY() {
     const isLandscape = window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches;
-    const thumbWidth = this.getThumbWidthWithMargin();
 
+    // For pages without thumbnails (like photography.html)
     if (!this.elements?.thumbElements?.length) {
-      return isLandscape ?
+      this.endBottomY = isLandscape ?
         window.innerHeight * 0.7 :
         window.innerHeight * 0.75;
+      return this.endBottomY;
     }
 
-    return isLandscape ?
-      window.innerHeight * 1.275 + thumbWidth :
-      window.innerHeight * 1.325 + thumbWidth;
-
-
+    // Original positioning logic for index.html
+    const thumbWidth = this.getThumbWidthWithMargin();
     this.endBottomY = isLandscape ?
       window.innerHeight * 1.275 + thumbWidth :
       window.innerHeight * 1.325 + thumbWidth;
@@ -158,6 +177,8 @@ export class DomUtils {
       }
     });
   }
+
+
 
   spaceoutThumbs() {
     if (!this.elements) return;
@@ -229,6 +250,10 @@ export class DomUtils {
   //   contactForm.style.left = `${formX}px`;
   //   contactForm.style.top = `${formY}px`;
   // }
+
+  isIndexPage() {
+    return !!document.querySelector('#software');
+  }
   formControl() {
     // const contactForm = document.querySelector(".formDiv#contactForm");
     // const softwareThumb = document.querySelector("#software");
@@ -236,47 +261,59 @@ export class DomUtils {
     const contactForm = document.querySelector(".formDiv#contactForm");
     if (!contactForm) return;
 
-    // Check if we have thumbnails for positioning
-    const softwareThumb = document.querySelector("#software");
+    if (this.isIndexPage()) {
+      // Original index.html positioning logic
+      const softwareThumb = document.querySelector("#software");
+      if (softwareThumb) {
+        const softwareRect = softwareThumb.getBoundingClientRect();
+        const softwareY = softwareRect.top + window.scrollY;
+        const offsetY = 12;
+        const formY = softwareY + offsetY;
 
-    if (softwareThumb) {
-      // Original positioning logic using thumbnails
-      const softwareRect = softwareThumb.getBoundingClientRect();
-      const softwareY = softwareRect.top + window.scrollY;
-      const offsetY = 12;
-      const formY = softwareY + offsetY;
+        const style = window.getComputedStyle(contactForm);
+        const formWidth = parseFloat(style.width);
+        const formX = window.innerWidth / 2 - (formWidth / 2) + 6.75;
 
-      const style = window.getComputedStyle(contactForm);
-      const formWidth = parseFloat(style.width);
-      const formX = window.innerWidth / 2 - (formWidth / 2) + 6.75;
-
-      contactForm.style.left = `${formX}px`;
-      contactForm.style.top = `${formY}px`;
+        contactForm.style.left = `${formX}px`;
+        contactForm.style.top = `${formY}px`;
+      }
     } else {
-      // Fallback centered positioning
-      const formWidth = Math.min(500, window.innerWidth * 0.9);
-      contactForm.style.width = `${formWidth}px`;
-      contactForm.style.left = `${(window.innerWidth - formWidth) / 2}px`;
-      contactForm.style.top = `${window.innerHeight * 0.15}px`;
+      // Photography page and other pages
       contactForm.style.position = "fixed";
+      contactForm.style.left = "50%";
+      contactForm.style.top = "50%";
+      contactForm.style.transform = "translate(-50%, -50%)";
+      contactForm.style.maxWidth = "90%";
+      contactForm.style.maxHeight = "90%";
+      contactForm.style.overflowY = "auto";
     }
 
-    // if (!contactForm || !softwareThumb) return;
+    // // Check if we have thumbnails for positioning
+    // const softwareThumb = document.querySelector("#software");
 
-    // // Keep existing horizontal centering logic
-    // const style = window.getComputedStyle(contactForm);
-    // const formWidth = parseFloat(style.width);
-    // const formX = window.innerWidth / 2 - (formWidth / 2) + 6.75; // Maintains original offset
+    // if (softwareThumb) {
+    //   // Original positioning logic using thumbnails
+    //   const softwareRect = softwareThumb.getBoundingClientRect();
+    //   const softwareY = softwareRect.top + window.scrollY;
+    //   const offsetY = 12;
+    //   const formY = softwareY + offsetY;
 
-    // // Align Y-position with #software (like other functions)
-    // const softwareRect = softwareThumb.getBoundingClientRect();
-    // const softwareY = softwareRect.top + window.scrollY;
-    // const offsetY = 12; // Matches original +12 offset from getEndTopY()
-    // const formY = softwareY + offsetY;
+    //   const style = window.getComputedStyle(contactForm);
+    //   const formWidth = parseFloat(style.width);
+    //   const formX = window.innerWidth / 2 - (formWidth / 2) + 6.75;
 
-    // // Apply positioning
-    // contactForm.style.left = `${formX}px`;
-    // contactForm.style.top = `${formY}px`;
+    //   contactForm.style.left = `${formX}px`;
+    //   contactForm.style.top = `${formY}px`;
+    // } else {
+    //   // Fallback centered positioning
+    //   const formWidth = Math.min(500, window.innerWidth * 0.9);
+    //   contactForm.style.width = `${formWidth}px`;
+    //   contactForm.style.left = `${(window.innerWidth - formWidth) / 2}px`;
+    //   contactForm.style.top = `${window.innerHeight * 0.15}px`;
+    //   contactForm.style.position = "fixed";
+    // }
+
+
 
 
   }
