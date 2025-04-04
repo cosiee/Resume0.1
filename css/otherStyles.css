@@ -2,35 +2,83 @@
 /* Navbar base Styles################################################# */
 
 a.nav-link {
-  color: #e3e5ea;
+  color: #ffffff;
 }
 a.nav-link:hover {
-  color: #ffffff;
+  color: #e3e5ea;
+  transform: scale(1.2);
+}
+/* li.nav-item.dropdown:hover {
+  color: #e3e5ea;
+  transform: scale(1.2);
+} */
+
+/* a.dropdown-item:hover {
+  color: #e3e5ea;
+  transform: scale(1.1);
+  background-color: transparent !important;
+} */
+
+#softwareLink.nav-link:hover,
+#motionLink.nav-link:hover,
+#softwareLink.nav-link:focus,
+#motionLink.nav-link:focus {
+  color: #e3e5ea !important;
   transform: scale(1.2);
 }
 
+/* If you need to target the dropdown toggle arrows too */
+#softwareLink.nav-link.dropdown-toggle:hover::after,
+#motionLink.nav-link.dropdown-toggle:hover::after {
+  color: #e3e5ea;
+}
+
+/* navbar dropdown menus */
+
+/* .navbar .dropdown-item {
+  color: #ffffff !important;
+  transition: all 0.3s ease;
+}
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item:focus {
+  color: #e3e5ea !important;
+  transform: scale(1.2);
+  background-color: transparent !important;
+} */
+
+/* a.nav-Link.dropdown-toggle:hover {
+  color: #e3e5ea;
+  transform: scale(1.2);
+}
+
+a.dropdown-item:active {
+  transform: scale(1.2);
+  color: #e3e5ea;
+  background-color: transparent !important;
+}
+
+.dropdown .dropdown-menu .navbar-nav {
+  --bs-nav-link-hover-colour: #e3e5ea;
+} */
 /* For pages without thumbnails */
 .formDiv#contactForm {
   max-width: 90vw;
   max-height: 80vh;
   overflow-y: auto;
-  z-index: 1000;
-  background: white;
-  padding: 20px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 .wip .box {
   transition: all 0.3s ease;
 }
 
-/* Add to your main CSS file */
-.formDiv#contactForm {
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
+.navbar a[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+#modalClose[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 /* For photography page specifically */
@@ -41,12 +89,32 @@ body.photography-page .formDiv#contactForm {
   transform: translate(-50%, -50%) !important;
 }
 
-/*   
-  a.nav-link:hover {
-    color: #162a43;
-    transform: scale(1.15);
- 
+/* Ensure consistent z-index and scrolling behavior */
+.modalbox .box,
+.wip .box {
+  z-index: 1000;
+  overflow: auto;
+}
+
+/* Mobile adjustments for all pages */
+@media (max-width: 768px) {
+  .modalbox .box,
+  .wip .box {
+    width: 90vw !important;
+    left: 5vw !important;
+    height: auto !important;
+    max-height: 80vh;
+    top: 10vh !important;
   }
+
+  /* Index-specific mobile adjustments */
+  body.page-index .modalbox .box {
+    top: 20vh !important;
+  }
+}
+
+/*   
+
   
   a.nav-link.active {
     color: #162a43;
@@ -73,44 +141,15 @@ body.photography-page .formDiv#contactForm {
     padding: 2px 0px 1px 0px;
   } */
 
-/* a.dropdown-item:hover {
-    color: #162a43;
-    transform: scale(1.1);
-    background-color: transparent !important;
-  } */
 /*   
-  a.dropdown-item:active {
-    transform: scale(1.2);
-    color: #162a43;
-    background-color: transparent !important;
-  }
-  
-  .dropdown .dropdown-menu .navbar-nav {
-    --bs-nav-link-hover-colour: #162a43;
-  }
+
   
   ul.navbar-nav {
     position: absolute;
     align-self: center;
   }
   
-  .navbar {
-    --bs-navbar-active-color: #162a43;
-    --bs-navbar-brand-color: #162a43;
-    --bs-navbar-brand-hover-color: #162a43;
-    position: fixed;
-    top: 0px;
-    max-height: 50px;
-    width: 100%;
-    padding-top: 30px;
-    background: none;
-    overflow: visible;
-    -webkit-transition: all 1s;
-    transition: all 1s;
-    opacity: 0;
-    top: -700px;
-    padding-bottom: 20px;
-  }
+  
   
   /* Burger Icon Styling */
 /* navbar-toggler left {

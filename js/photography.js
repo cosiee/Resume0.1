@@ -11,7 +11,7 @@ export const selectors = {
   contactFormClose: "#contactFormClose",
   formButton: "#formButton",
   modalWipClose: "#modalWipClose",
-  software: "#software", //used for sizing...
+
 
   // Navbar Links & Dropdowns
   navHome: "#navHome",
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Initialize navbar with contact form handler
   navbar.init(20);
-
+  navbar.initializeFormCloseButton();
   // Set up contact link with proper fallback
   if (domUtils.elements.navContact) {
     domUtils.elements.navContact.addEventListener("click", function () {
@@ -148,7 +148,6 @@ function initSliders() {
 
 
 // Photography Sliders
-
 
 (function ($) {
   "use strict";
@@ -281,7 +280,7 @@ $(document).ready(function () {
 
   $("#slider1").sliderResponsive({
     // Using default everything
-    slidePause: 5000,
+    // slidePause: 5000,
     // fadeSpeed: 800,
     // autoPlay: "on",
     // showArrows: "off", 
