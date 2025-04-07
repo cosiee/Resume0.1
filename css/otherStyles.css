@@ -316,8 +316,7 @@ body.photography-page .formDiv#contactForm {
   right: 0;
 }
 
-/* Arrows */
-.arrows {
+Arrows .arrows {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -331,7 +330,6 @@ body.photography-page .formDiv#contactForm {
 
 .arrows:hover {
   opacity: 1;
-  /* transform: translate(-50); */
 }
 
 .left {
@@ -410,25 +408,33 @@ body.photography-page .formDiv#contactForm {
 }
 
 /* -------------------------------------- */
+/* Slider Layouts */
 
-/* #slider2 {
-  display:block; !important;
-  max-width: 33.33%;
-  margin-right: 20px;
-} */
+.slider {
+  margin-bottom: 0; /* Remove individual slider margins */
+  position: relative;
+  clear: both;
+}
 
 #slider2 {
-  flex: 1 1 calc(33.333% - 20px);
-  min-width: 300px;
-  max-width: calc(33.333% - 20px);
+  flex: 1; /* 1 part */
+  max-width: calc(33.333% - 10px);
 }
 
 #slider3 {
-  flex: 2 1 calc(66.666% - 20px);
-  min-width: 300px;
-  max-width: calc(66.666% - 20px);
+  flex: 2; /* 2 parts */
+  max-width: calc(66.666% - 10px);
 }
 
+#slider4 {
+  flex: 2; /* 2 parts */
+  max-width: calc(70% - 10px);
+}
+
+#slider5 {
+  flex: 1; /* 1 part */
+  max-width: calc(30% - 10px);
+}
 /* Slider 3 Specific */
 #slider3 > div {
   display: flex;
@@ -455,6 +461,26 @@ body.photography-page .formDiv#contactForm {
   flex: 1 1 45%;
   min-width: 300px;
 }
+
+/* manages rows of sliders */
+.sliders-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* Increased gap between rows */
+  width: 100%;
+  margin: 30px 0; /* Added vertical spacing */
+}
+
+/* Existing row2Wrap - add margin-bottom removal since gap handles spacing */
+.row2Wrap {
+  /* margin-bottom: 0; */
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  min-height: 500px;
+}
+
+/* Ensure sliders don't overlap */
 
 .content {
   padding: 50px;
@@ -505,11 +531,10 @@ body {
 
 /* ===== Slider Containers ===== */
 .slider {
-  position: relative;
+  display: flex;
+  gap: 20px;
   width: 100%;
-  height: 500px;
-  overflow: hidden;
-  margin-bottom: 30px;
+  min-height: 500px;
 }
 
 .row2Wrap {
@@ -547,7 +572,7 @@ body {
 }
 
 #slider2 div:nth-child(1) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/blurredBeachGrassCloseup.jpg);
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg);
 }
 #slider2 div:nth-child(2) {
   background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg);
@@ -555,17 +580,58 @@ body {
 #slider2 div:nth-child(3) {
   background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_bodie-11.jpg);
 }
-#slider2 div:nth-child(4) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg);
-}
 
 #slider3 div:nth-child(1) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg);
-}
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036323/indoRTRPix_-4334_rb0axe.webp);
+} /* https://drive.google.com/file/d/1vCLpDSDHgt3cTFgyc4Gt6XxCKFEehfBV/view?usp=sharing */
 #slider3 div:nth-child(2) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg);
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036322/indoRTRPix_-4175_gyxbkj.webp);
 }
 #slider3 div:nth-child(3) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036321/indoRTRPix_-3922_hglvii.webp);
+}
+#slider3 div:nth-child(4) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-2060_rzifau.webp);
+}
+#slider3 div:nth-child(5) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-2621_jtflh9.webp);
+} /* https://drive.google.com/file/d/1vCLpDSDHgt3cTFgyc4Gt6XxCKFEehfBV/view?usp=sharing */
+#slider3 div:nth-child(6) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-1429_oxhhhq.webp);
+}
+#slider3 div:nth-child(7) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036317/indoRTRPix_-3263_cplk9b.webp);
+}
+#slider3 div:nth-child(8) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-4159_equalj.webp);
+}
+
+#slider4 div:nth-child(1) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744038595/Egypt-RTRPix-7100_ryjm9s.webp);
+}
+#slider4 div:nth-child(2) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744038597/Egypt-RTRPix-7464_awozqg.webp);
+}
+#slider4 div:nth-child(3) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744038598/Egypt-RTRPix-7796_uinpu7.webp);
+}
+#slider4 div:nth-child(4) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744038606/Egypt-RTRPix-8569_wetaaw.webp);
+}
+#slider4 div:nth-child(5) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744038595/Egypt-RTRPix-7859_xhrawd.webp);
+}
+/* #slider4 div:nth-child(6) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744038598/Egypt-RTRPix-7796_uinpu7.webp);
+} */
+
+#slider5 div:nth-child(1) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg);
+}
+#slider5 div:nth-child(2) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg);
+}
+#slider5 div:nth-child(3) {
   background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_bodie-11.jpg);
 }
 
@@ -633,7 +699,7 @@ body {
   right: 0;
   background: rgba(0, 0, 0, 0.7);
   color: white;
-  padding: 15px;
+  padding: 12px;
   z-index: 1;
 }
 
@@ -655,6 +721,20 @@ body {
   padding: 15px 25px;
   color: white;
   text-align: center;
+}
+
+* {
+  outline: 1px solid red;
+}
+
+.sliders-container {
+  border: 1px solid red;
+}
+.row2Wrap {
+  border: 1px solid blue;
+}
+.slider {
+  border: 1px solid green;
 }
 
 /* ===== Responsive Adjustments ===== */
@@ -685,13 +765,21 @@ body {
 
 /* For smaller screens, adjust the slider layout */
 @media (max-width: 992px) {
+  .sliders-container {
+    gap: 30px;
+  }
+
   .row2Wrap {
     flex-direction: column;
+    min-height: auto;
   }
 
   #slider2,
-  #slider3 {
-    max-width: 100%;
-    flex: 1 1 100%;
+  #slider3,
+  #slider4,
+  #slider5 {
+    max-width: 100% !important;
+    flex: 1 1 100% !important;
+    height: 400px;
   }
 }

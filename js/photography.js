@@ -82,6 +82,20 @@ document.addEventListener("DOMContentLoaded", function () {
         hoverZoom: "off",
         hideDots: "on"
       });
+
+      $("#slider4").sliderResponsive({
+        fadeSpeed: 300,
+        autoPlay: "off",
+        showArrows: "on",
+        hideDots: "on"
+      });
+
+      $("#slider5").sliderResponsive({
+        fadeSpeed: 300,
+        autoPlay: "off",
+        showArrows: "on",
+        hideDots: "on"
+      });
     });
 
 
