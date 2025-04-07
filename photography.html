@@ -21,6 +21,7 @@
 
   <script src="https://code.jquery.com/jquery-1.11.0.min.js" defer></script> <!-- ✅ jQuery loads first -->
 
+  <script src="js/slider.js" defer></script>
   <script type="module" defer src="js/navbar.js"></script>
   <script type="module" defer src="js/photography.js"></script>
 
@@ -119,26 +120,29 @@
     <div class="slider" id="slider1">
       <!-- Slides -->
 
-      <h2>ONE</h2>
-      <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg)">
-      </div>
-      <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/Gif-pont-lueur-600.gif)">
-      </div>
-      <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_Sharpened-version.jpg)">
-      </div>
-      <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg)"></div>
-      <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_bodie-11.jpg)"></div>
+      <!-- <h2>Ireland </h2> -->
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
       <!-- The Arrows -->
-      <i class="left" class="arrows" style="z-index:2; position:absolute;"><svg viewBox="0 0 100 100">
-          <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"></path>
-        </svg></i>
-      <i class="right" class="arrows" style="z-index:2; position:absolute;"><svg viewBox="0 0 100 100">
+      <button type="button" class="left arrows"><svg viewBox="0 0 100 100">
+          <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z">
+          </path>
+        </svg></button>
+
+      <button type="button" class="right arrows" aria-label="Next slide">
+        <svg viewBox="0 0 100 100">
           <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" transform="translate(100, 100) rotate(180) ">
           </path>
-        </svg></i>
+        </svg>
+      </button>
+
       <!-- Title Bar -->
       <span class="titleBar">
-        <h1>This Slider has all default settings.</h1>
+        <h1 class="notIndex">"You'll never plough a field by turning it over in your mind."</h1>
+        <p class="notIndex">Ireland</p>
       </span>
     </div>
 
@@ -147,32 +151,29 @@
     <div class="row2Wrap">
       <!-- Slider 2 -->
       <div class="slider" id="slider2">
-        <h2>TWO</h2>
+        <!-- <h2>Indonesia    </h2> -->
 
-        <div
-          style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/blurredBeachGrassCloseup.jpg)">
-        </div>
-        <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg)">
-        </div>
-        <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_bodie-11.jpg)"></div>
-        <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg)"></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
 
-        <i class="left" class="arrows" style="z-index:2; position:absolute;">
+        <button type="button" class="left arrows">
           <svg viewBox="0 0 100 100">
             <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"></path>
           </svg>
-        </i>
-        <i class="right" class="arrows" style="z-index:2; position:absolute;">
+        </button>
+        <button type="button" class="right arrows">
           <svg viewBox="0 0 100 100">
             <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" transform="translate(100, 100) rotate(180) ">
             </path>
           </svg>
-        </i>
-        Title Bar
+        </button>
+        <!-- Title Bar -->
 
         <span class="titleBar">
-          <h1>I am like a leaf in the wind.</h1>
-          <p>Watch me soar!</p>
+          <h1 class="notIndex">"Don’t measure someone else’s corn in your own bushel."</h1>
+          <p class="notIndex">Indonesia</p>
         </span>
 
       </div>
@@ -182,40 +183,92 @@
       <!-- Slider 3 -->
       <div class="slider" id="slider3">
 
-        <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg)">
-          <span>
-            <h2>ONE</h2>
-          </span>
-        </div>
-        <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg)">
-          <span>
-            <h2>TWO</h2>
-          </span>
-        </div>
-        <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_bodie-11.jpg)">
-          <span>
-            <h2>THREE</h2>
-          </span>
-        </div>
+        <div></div>
+        <div></div>
+        <div></div>
         <!-- The Arrows -->
-        <i class="left" class="arrows" style="z-index:2; position:absolute;"><svg viewBox="0 0 100 100">
+        <button type="button" class="left arrows">
+          <svg viewBox="0 0 100 100">
             <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"></path>
-          </svg></i>
-        <i class="right" class="arrows" style="z-index:2; position:absolute;">
+          </svg></button>
+        <button type="button" class="right arrows">
           <svg viewBox="0 0 100 100">
             <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" transform="translate(100, 100) rotate(180) ">
             </path>
-          </svg></i>
-        Title Bar
+          </svg></button>
+        <!-- Title Bar -->
         <span class="titleBar">
-          <h1>I am like a leaf in the wind.</h1>
-          <p>Watch me soar!</p>
+          <h1 class="notIndex">"Those who do not look back to where they came from will never get to their
+            destination."</h1>
+          <p class="notIndex">Philippines</p>
         </span>
       </div>
 
+
+
     </div>
 
-    <div class="content">
+    <div class="row2Wrap">
+      <!-- Slider 2 -->
+      <div class="slider" id="slider2">
+        <!-- <h2>Indonesia    </h2> -->
+
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+
+        <button type="button" class="left arrows">
+          <svg viewBox="0 0 100 100">
+            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"></path>
+          </svg>
+        </button>
+        <button type="button" class="right arrows">
+          <svg viewBox="0 0 100 100">
+            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" transform="translate(100, 100) rotate(180) ">
+            </path>
+          </svg>
+        </button>
+        <!-- Title Bar -->
+
+        <span class="titleBar">
+          <h1 class="notIndex">"Don’t measure someone else’s corn in your own bushel."</h1>
+          <p class="notIndex">Indonesia</p>
+        </span>
+
+      </div>
+
+      <!-- <h3>Individual slide text</h3> -->
+
+      <!-- Slider 3 -->
+      <div class="slider" id="slider3">
+
+        <div></div>
+        <div></div>
+        <div></div>
+        <!-- The Arrows -->
+        <button type="button" class="left arrows">
+          <svg viewBox="0 0 100 100">
+            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"></path>
+          </svg></button>
+        <button type="button" class="right arrows">
+          <svg viewBox="0 0 100 100">
+            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" transform="translate(100, 100) rotate(180) ">
+            </path>
+          </svg></button>
+        <!-- Title Bar -->
+        <span class="titleBar">
+          <h1 class="notIndex">"Those who do not look back to where they came from will never get to their
+            destination."</h1>
+          <p class="notIndex">Philippines</p>
+        </span>
+      </div>
+
+
+
+    </div>
+
+    <!-- <div class="content">
       <h2> Responsive. Modular: can be more than one on the page. Defaults to 100% container width, 500px height. Pauses
         slideshow on hover.</h2>
 
@@ -230,7 +283,7 @@
           <li>Change slide pauses and fade speeds</li>
         </ul>
       </h3>
-    </div>
+    </div> -->
 
     <div class="container-fluid modalbox" id="statementContact" style="display: box;">
       <div class="box">

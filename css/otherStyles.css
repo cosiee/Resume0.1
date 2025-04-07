@@ -96,23 +96,6 @@ body.photography-page .formDiv#contactForm {
   overflow: auto;
 }
 
-/* Mobile adjustments for all pages */
-@media (max-width: 768px) {
-  .modalbox .box,
-  .wip .box {
-    width: 90vw !important;
-    left: 5vw !important;
-    height: auto !important;
-    max-height: 80vh;
-    top: 10vh !important;
-  }
-
-  /* Index-specific mobile adjustments */
-  body.page-index .modalbox .box {
-    top: 20vh !important;
-  }
-}
-
 /*   
 
   
@@ -203,10 +186,24 @@ body.photography-page .formDiv#contactForm {
   -o-transition: transform 0.4s;
   -webkit-transition: transform 0.4s;
   transition: transform 0.4s;
+  margin-bottom: 30px;
 }
 
 .slider > div {
   position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.slider > div.show {
+  opacity: 1;
+}
+.slider > div.hide {
+  opacity: 0;
 }
 
 .slider > i {
@@ -245,16 +242,6 @@ body.photography-page .formDiv#contactForm {
   right: 0;
 }
 
-.slider > i:hover {
-  background: #fff;
-  background: rgba(255, 255, 255, 0.8);
-  transform: translateX(-2px);
-}
-
-.slider > i.right:hover {
-  transform: translateX(2px);
-}
-
 .slider > i.right:active,
 .slider > i.left:active {
   transform: translateY(1px);
@@ -271,22 +258,27 @@ body.photography-page .formDiv#contactForm {
 /* The Dots */
 .slider > ul {
   position: absolute;
-  bottom: 10px;
+  bottom: 8px;
   left: 50%;
   z-index: 4;
   padding: 0;
   margin: 0;
   transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 8px; /* Adjust spacing between dots */
+  list-style: none;
+  width: auto;
 }
 
 .slider > ul > li {
   padding: 0;
   width: 20px;
-  height: 20px;
-  border-radius: 50%;
+  height: 16px;
+  border-radius: 24%;
   list-style: none;
   float: left;
-  margin: 10px 10px 0;
+  margin: 6px 6px 0;
   cursor: pointer;
   border: 1px solid #fff;
   -moz-transition: 0.3s;
@@ -296,7 +288,7 @@ body.photography-page .formDiv#contactForm {
 }
 
 .slider > ul > .showli {
-  background-color: #7ec03d;
+  background-color: #162a43;
   -moz-animation: boing 0.5s forwards;
   -o-animation: boing 0.5s forwards;
   -webkit-animation: boing 0.5s forwards;
@@ -304,7 +296,8 @@ body.photography-page .formDiv#contactForm {
 }
 
 .slider > ul > li:hover {
-  background-color: #7ec03d;
+  background-color: #1e3d64;
+  scale: 120%;
 }
 
 .slider > .show {
@@ -323,13 +316,42 @@ body.photography-page .formDiv#contactForm {
   right: 0;
 }
 
+/* Arrows */
+.arrows {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  z-index: 10;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.arrows:hover {
+  opacity: 1;
+  /* transform: translate(-50); */
+}
+
+.left {
+  left: 20px;
+}
+.right {
+  right: 20px;
+}
+
 .titleBar {
-  z-index: 2;
+  z-index: 5;
+
   display: inline-block;
   background: rgba(0, 0, 0, 0.5);
+  color: white;
   position: absolute;
   width: 100%;
   bottom: 0;
+  left: 0;
+  right: 0;
   transform: translateY(100%);
   padding: 20px 30px;
   transition: 0.3s;
@@ -389,13 +411,49 @@ body.photography-page .formDiv#contactForm {
 
 /* -------------------------------------- */
 
-#slider2 {
-  max-width: 30%;
+/* #slider2 {
+  display:block; !important;
+  max-width: 33.33%;
   margin-right: 20px;
+} */
+
+#slider2 {
+  flex: 1 1 calc(33.333% - 20px);
+  min-width: 300px;
+  max-width: calc(33.333% - 20px);
 }
 
+#slider3 {
+  flex: 2 1 calc(66.666% - 20px);
+  min-width: 300px;
+  max-width: calc(66.666% - 20px);
+}
+
+/* Slider 3 Specific */
+#slider3 > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#slider3 > div span {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 15px 25px;
+  color: white;
+  text-align: center;
+}
+
+/* Row Layout */
 .row2Wrap {
   display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.row2Wrap .slider {
+  flex: 1 1 45%;
+  min-width: 300px;
 }
 
 .content {
@@ -412,16 +470,28 @@ html {
 *:after {
   box-sizing: inherit;
 }
+p.notIndex,
 h1,
 h2,
 h3 {
-  font-family: "Crimson Text", sans-serif;
-  font-weight: 100;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 1em;
+}
+h1.notIndex {
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: 20px;
+}
+
+p.notIndex {
+  font-size: 1.6em;
+  text-align: center;
+  margin-top: 10px;
 }
 body {
   font: 15px "Titillium Web", Arial, sans-serif;
   background: radial-gradient(#121212, #000);
-  height: 100%;
+  /* height: 100%; */
   color: #aaa;
   margin: 0;
   padding: 0;
@@ -429,4 +499,199 @@ body {
 
 .content {
   padding: 10px 15vw;
+}
+
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+
+/* ===== Slider Containers ===== */
+.slider {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.row2Wrap {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* ===== Slide Backgrounds ===== */
+.slider > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+/* Specific Slide Backgrounds */
+#slider1 div:nth-child(1) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg);
+}
+#slider1 div:nth-child(2) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/Gif-pont-lueur-600.gif);
+}
+#slider1 div:nth-child(3) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_Sharpened-version.jpg);
+}
+#slider1 div:nth-child(4) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg);
+}
+#slider1 div:nth-child(5) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_bodie-11.jpg);
+}
+
+#slider2 div:nth-child(1) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/blurredBeachGrassCloseup.jpg);
+}
+#slider2 div:nth-child(2) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg);
+}
+#slider2 div:nth-child(3) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_bodie-11.jpg);
+}
+#slider2 div:nth-child(4) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg);
+}
+
+#slider3 div:nth-child(1) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg);
+}
+#slider3 div:nth-child(2) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg);
+}
+#slider3 div:nth-child(3) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_bodie-11.jpg);
+}
+
+/* ===== Navigation Arrows ===== */
+/* ===== Arrow Base Styles ===== */
+/* ----- Arrow Base Styles ----- */
+.arrows {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) !important; /* Force vertical centering */
+  width: 50px;
+  height: 50px;
+  z-index: 10;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  pointer-events: auto; /* Ensure hover works properly */
+}
+
+/* Hover only affects opacity - no movement */
+.arrows:hover {
+  opacity: 1;
+  transform: translateY(-50%) !important; /* Lock position */
+}
+
+/* Specific arrow positions */
+.left {
+  left: 20px;
+  right: auto;
+}
+
+.right {
+  right: 20px;
+  left: auto;
+}
+
+/* SVG styling */
+.arrows svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.arrows path {
+  fill: white;
+}
+
+/* ----- Remove All Conflicting Transforms ----- */
+/* Disable any transforms coming from other rules */
+.slider > i,
+.slider > i:hover,
+.slider > i:active {
+  transform: none !important;
+  background: none !important;
+}
+
+/* ===== Title Bars ===== */
+.titleBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 15px;
+  z-index: 1;
+}
+
+/* ===== Slider-Specific Customizations ===== */
+/* Slider 2 - Visible Arrows */
+#slider2 .arrows {
+  display: block !important;
+}
+
+/* Slider 3 - Centered Slide Content */
+#slider3 > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#slider3 > div span {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 15px 25px;
+  color: white;
+  text-align: center;
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 768px) {
+  .row2Wrap {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .slider {
+    height: 800px;
+  }
+
+  .modalbox .box,
+  .wip .box {
+    width: 90vw !important;
+    left: 5vw !important;
+    height: auto !important;
+    max-height: 80vh;
+    top: 10vh !important;
+  }
+
+  /* Index-specific mobile adjustments */
+  body.page-index .modalbox .box {
+    top: 20vh !important;
+  }
+}
+
+/* For smaller screens, adjust the slider layout */
+@media (max-width: 992px) {
+  .row2Wrap {
+    flex-direction: column;
+  }
+
+  #slider2,
+  #slider3 {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
 }
