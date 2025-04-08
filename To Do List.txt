@@ -3,6 +3,8 @@ form handling in photography.html NO PULL REQUEST TILL RESOLVED
 
 handling of form, WIP and modal on photography == for all pages
 
+if slider is in viewport, it is sliding. Not in viewport slider is not using resources
+
 spaceOutThumbs() index.html behaves differently.  As expected:
 click 'contact'click formClose: correctly
 click 'me' click modalClose: correctly
