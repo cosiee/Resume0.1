@@ -1,6 +1,4 @@
-/* otherStyles.css */
-/* Navbar base Styles################################################# */
-
+/* Navbar Styles */
 a.nav-link {
   color: #ffffff;
 }
@@ -8,16 +6,6 @@ a.nav-link:hover {
   color: #e3e5ea;
   transform: scale(1.2);
 }
-/* li.nav-item.dropdown:hover {
-  color: #e3e5ea;
-  transform: scale(1.2);
-} */
-
-/* a.dropdown-item:hover {
-  color: #e3e5ea;
-  transform: scale(1.1);
-  background-color: transparent !important;
-} */
 
 #softwareLink.nav-link:hover,
 #motionLink.nav-link:hover,
@@ -30,37 +18,10 @@ a.nav-link:hover {
 /* If you need to target the dropdown toggle arrows too */
 #softwareLink.nav-link.dropdown-toggle:hover::after,
 #motionLink.nav-link.dropdown-toggle:hover::after {
-  color: #e3e5ea;
+  transform: rotate(90deg);
 }
 
-/* navbar dropdown menus */
-
-/* .navbar .dropdown-item {
-  color: #ffffff !important;
-  transition: all 0.3s ease;
-}
-.navbar .dropdown-item:hover,
-.navbar .dropdown-item:focus {
-  color: #e3e5ea !important;
-  transform: scale(1.2);
-  background-color: transparent !important;
-} */
-
-/* a.nav-Link.dropdown-toggle:hover {
-  color: #e3e5ea;
-  transform: scale(1.2);
-}
-
-a.dropdown-item:active {
-  transform: scale(1.2);
-  color: #e3e5ea;
-  background-color: transparent !important;
-}
-
-.dropdown .dropdown-menu .navbar-nav {
-  --bs-nav-link-hover-colour: #e3e5ea;
-} */
-/* For pages without thumbnails */
+/* Form Styles */
 .formDiv#contactForm {
   max-width: 90vw;
   max-height: 80vh;
@@ -81,7 +42,6 @@ a.dropdown-item:active {
   opacity: 0.5;
 }
 
-/* For photography page specifically */
 body.photography-page .formDiv#contactForm {
   position: fixed !important;
   left: 50% !important;
@@ -89,104 +49,37 @@ body.photography-page .formDiv#contactForm {
   transform: translate(-50%, -50%) !important;
 }
 
-/* Ensure consistent z-index and scrolling behavior */
 .modalbox .box,
 .wip .box {
   z-index: 1000;
   overflow: auto;
 }
 
-/*   
+/* Slider Core Styles - Fixed Layout */
+.sliders-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  margin: 30px 0;
+  position: relative;
+}
 
-  
-  a.nav-link.active {
-    color: #162a43;
-    transform: scale(1.3);
-  }
-  
-  .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    border-style: groove;
-    font-size: 14px;
-    background-color: transparent;
-    text-align: left;
-    inline-size: auto;
-    border-width: auto;
-    border-radius: 5px;
-    border-right: none;
-    border-left: none;
-  }
-  
-  a.dropdown-item {
-    color: #6e6f79;
-    font-size: 0.9em;
-    padding: 2px 0px 1px 0px;
-  } */
+.row2Wrap {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  min-height: 500px;
+  position: relative;
+}
 
-/*   
-
-  
-  ul.navbar-nav {
-    position: absolute;
-    align-self: center;
-  }
-  
-  
-  
-  /* Burger Icon Styling */
-/* navbar-toggler left {
-    position: absolute;
-    left: 1rem;
-    top: 1rem;
-    border: none;
-    font-size: 1rem;
-    background-color: transparent;
-    border: none;
-    outline: none;
-  }
-  
-  .sticky {
-    opacity: 1;
-    top: 0px;
-  }
-  
-  .container-fluid#navbar {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    align-self: center;
-    margin: 0 auto;
-    padding: 10px 20px 5px 5px;
-    box-sizing: border-box;
-  }
-  
-  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-    padding: 0px 10px;
-    margin: 0px;
-  } 
- */
-
-/*End of overriding Navbar base styles ###############################*/
-
-.slider,
-.slider > div {
-  /* Images default to Center Center. Maybe try 'center top'? */
-  background-position: center center;
-  display: block;
+.slider {
+  position: relative;
   width: 100%;
   height: 500px;
-  /* height: 100vh; */ /* If you want fullscreen */
-  position: relative;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: #000;
   overflow: hidden;
-  -moz-transition: transform 0.4s;
-  -o-transition: transform 0.4s;
-  -webkit-transition: transform 0.4s;
-  transition: transform 0.4s;
-  margin-bottom: 30px;
+  background-color: #000;
+  margin-bottom: 0;
 }
 
 .slider > div {
@@ -196,7 +89,7 @@ body.photography-page .formDiv#contactForm {
   background-size: cover;
   background-position: center;
   opacity: 0;
-  transition: opacity 0.8s ease;
+  transition: opacity 0.8s ease, transform 0.4s;
 }
 
 .slider > div.show {
@@ -206,61 +99,115 @@ body.photography-page .formDiv#contactForm {
   opacity: 0;
 }
 
-.slider > i {
-  color: #5bbd72;
-  position: absolute;
-  font-size: 60px;
-  margin: 20px;
-  top: 40%;
-  text-shadow: 0 10px 2px #223422;
-  transition: 0.3s;
-  width: 30px;
-  padding: 10px 13px;
-  background: #fff;
-  background: rgba(255, 255, 255, 0.3);
-  cursor: pointer;
-  line-height: 0;
-  box-sizing: content-box;
-  border-radius: 3px;
-  z-index: 4;
-}
-
-.slider > i svg {
-  margin-top: 3px;
-}
-
+/* Arrow buttons that appear on hover */
 .slider > .left {
-  left: -100px;
+  left: -100px; /* Start hidden off to the left */
+  transition: left 0.3s ease;
 }
+
 .slider > .right {
-  right: -100px;
+  right: -100px; /* Start hidden off to the right */
+  transition: right 0.3s ease;
 }
 .slider:hover > .left {
-  left: 0;
+  left: 20px;
 }
 .slider:hover > .right {
+  right: 20px;
+}
+
+/* Slider Layouts */
+#slider2 {
+  flex: 1;
+  max-width: calc(33.333% - 10px);
+}
+
+#slider3 {
+  flex: 2;
+  max-width: calc(66.666% - 10px);
+}
+
+#slider4 {
+  flex: 2;
+  max-width: calc(70% - 10px);
+}
+
+#slider5 {
+  flex: 1;
+  max-width: calc(30% - 10px);
+}
+
+/* Slider 3 Specific */
+#slider3 > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#slider3 > div span {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 15px 25px;
+  color: white;
+  text-align: center;
+}
+
+/* Navigation Controls */
+.showArrows > .left {
+  left: 0;
+}
+
+.showArrows > .right {
   right: 0;
 }
 
-.slider > i.right:active,
-.slider > i.left:active {
-  transform: translateY(1px);
+/* ----- Arrow Base Styles ----- */
+.arrows {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) !important; /* Force vertical centering */
+  width: 50px;
+  height: 50px;
+  z-index: 10;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  pointer-events: auto; /* Ensure hover works properly */
 }
 
-.slider:hover > div {
-  transform: scale(1.01);
+.arrows:hover {
+  opacity: 1;
 }
 
-.hoverZoomOff:hover > div {
-  transform: scale(1);
+.arrows svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
-/* The Dots */
+.arrows path {
+  fill: white;
+}
+
+#slider2 .arrows {
+  display: block !important;
+}
+
+.left {
+  left: 20px;
+}
+.right {
+  right: 20px;
+}
+
+/* Dots Navigation */
 .slider > ul {
   position: absolute;
   bottom: 8px;
   left: 50%;
-  z-index: 4;
+  z-index: 20;
   padding: 0;
   margin: 0;
   transform: translateX(-50%);
@@ -297,63 +244,26 @@ body.photography-page .formDiv#contactForm {
 
 .slider > ul > li:hover {
   background-color: #1e3d64;
-  scale: 120%;
+  transform: scale(1.2);
 }
 
-.slider > .show {
-  z-index: 1;
-}
-
-.hideDots > ul {
-  display: none;
-}
-
-.showArrows > .left {
-  left: 0;
-}
-
-.showArrows > .right {
-  right: 0;
-}
-
-Arrows .arrows {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  width: 50px;
-  height: 50px;
-  z-index: 10;
-  opacity: 0.7;
-  transition: opacity 0.3s;
-}
-
-.arrows:hover {
-  opacity: 1;
-}
-
-.left {
-  left: 20px;
-}
-.right {
-  right: 20px;
-}
-
+/* Title Bar */
 .titleBar {
-  z-index: 5;
-
-  display: inline-block;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
   position: absolute;
   width: 100%;
   bottom: 0;
   left: 0;
   right: 0;
-  transform: translateY(100%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
   padding: 20px 30px;
+  transform: translateY(100%);
   transition: 0.3s;
-  color: #fff;
+  z-index: 5;
+}
+
+.slider:hover .titleBar {
+  transform: translateY(0);
 }
 
 .titleBar * {
@@ -366,7 +276,6 @@ Arrows .arrows {
   transform: translate(-20px, -30px);
 }
 
-.slider:hover .titleBar,
 .slider:hover .titleBar * {
   transform: translate(0);
   opacity: 1;
@@ -376,6 +285,166 @@ Arrows .arrows {
   top: 0;
   bottom: initial;
   transform: translateY(-100%);
+}
+
+/* ===== Slide Backgrounds ===== */
+.slider > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+/* Specific Slide Backgrounds */
+#slider1 div:nth-child(1) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118986/compressed-img-6855-copy_f9big6.webp);
+}
+#slider1 div:nth-child(2) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118990/compressed-summer-0468_szmnqj.webp);
+}
+#slider1 div:nth-child(3) {
+}
+background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118991/compressed-summer-0477_cbnncw.webp);
+
+#slider1 div:nth-child(4) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118987/compressed-lighthouse-fenit-1393_uxbdjj.webp);
+}
+#slider1 div:nth-child(5) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118988/compressed-img-7658-copy_oud2ro.webp);
+}
+
+#slider2 div:nth-child(1) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg);
+}
+#slider2 div:nth-child(2) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg);
+}
+#slider2 div:nth-child(3) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_bodie-11.jpg);
+}
+
+#slider3 div:nth-child(1) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036323/indoRTRPix_-4334_rb0axe.webp);
+}
+#slider3 div:nth-child(2) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036322/indoRTRPix_-4175_gyxbkj.webp);
+}
+#slider3 div:nth-child(3) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036321/indoRTRPix_-3922_hglvii.webp);
+}
+#slider3 div:nth-child(4) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036317/indoRTRPix_-3263_cplk9b.webp);
+}
+#slider3 div:nth-child(5) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-2621_jtflh9.webp);
+}
+#slider3 div:nth-child(6) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-1429_oxhhhq.webp);
+}
+#slider3 div:nth-child(7) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036317/indoRTRPix_-3263_cplk9b.webp);
+}
+#slider3 div:nth-child(8) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-4159_equalj.webp);
+}
+
+/* Egypt */
+#slider4 div:nth-child(1) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103545/compressed-egypt-rtrpix-7464_hyfadx.webp);
+}
+#slider4 div:nth-child(2) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103545/compressed-egypt-rtrpix-7145_zqfbul.webp);
+}
+#slider4 div:nth-child(3) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103552/compressed-egypt-rtrpix-8188_prhy17.webp);
+}
+#slider4 div:nth-child(4) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8569_fwdcgz.webp);
+}
+#slider4 div:nth-child(5) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103555/compressed-egypt-rtrpix-9252_e462bb.webp);
+}
+#slider4 div:nth-child(6) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8872_z6fhnb.webp);
+}
+#slider4 div:nth-child(7) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8724_xrmxf7.webp);
+}
+#slider4 div:nth-child(8) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103548/compressed-egypt-rtrpix-8048_wxzwun.webp);
+}
+#slider4 div:nth-child(9) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103546/compressed-egypt-rtrpix-7796_ohjxup.webp);
+}
+#slider4 div:nth-child(10) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103544/compressed-egypt-rtrpix-7008_gkdpsx.webp);
+}
+
+#slider5 div:nth-child(1) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg);
+}
+#slider5 div:nth-child(2) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg);
+}
+#slider5 div:nth-child(3) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_bodie-11.jpg);
+}
+
+/* Base Styles */
+body {
+  font: 15px "Titillium Web", Arial, sans-serif;
+  background: radial-gradient(#121212, #000);
+  color: #aaa;
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  padding: 10px 15vw;
+}
+
+/* Additional styles from otherStyles.css not present in test.css */
+.hoverZoomOff:hover > div {
+  transform: scale(1);
+}
+
+.hideDots > ul {
+  display: none;
+}
+
+.slider > i {
+  color: #5bbd72;
+  position: absolute;
+  font-size: 60px;
+  margin: 20px;
+  top: 40%;
+  text-shadow: 0 10px 2px #223422;
+  transition: 0.3s;
+  width: 30px;
+  padding: 10px 13px;
+  background: #fff;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  line-height: 0;
+  box-sizing: content-box;
+  border-radius: 3px;
+  z-index: 4;
+}
+
+.slider > i svg {
+  margin-top: 3px;
+}
+
+.slider > i.right:active,
+.slider > i.left:active {
+  transform: translateY(1px);
+}
+
+.slider:hover > div {
+  transform: scale(1.01);
 }
 
 .slider > div span {
@@ -389,6 +458,41 @@ Arrows .arrows {
   width: 100%;
 }
 
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .row2Wrap {
+    flex-direction: column;
+  }
+
+  #slider2,
+  #slider3,
+  #slider4,
+  #slider5 {
+    max-width: 100% !important;
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .slider {
+    height: 300px;
+  }
+
+  .modalbox .box,
+  .wip .box {
+    width: 90vw !important;
+    left: 5vw !important;
+    max-height: 80vh;
+    top: 10vh !important;
+  }
+
+  /* Index-specific mobile adjustments from otherStyles.css */
+  body.page-index .modalbox .box {
+    top: 20vh !important;
+  }
+}
+
+/* Animation */
 @keyframes boing {
   0% {
     transform: scale(1.2);
@@ -407,86 +511,7 @@ Arrows .arrows {
   }
 }
 
-/* -------------------------------------- */
-/* Slider Layouts */
-
-.slider {
-  margin-bottom: 0; /* Remove individual slider margins */
-  position: relative;
-  clear: both;
-}
-
-#slider2 {
-  flex: 1; /* 1 part */
-  max-width: calc(33.333% - 10px);
-}
-
-#slider3 {
-  flex: 2; /* 2 parts */
-  max-width: calc(66.666% - 10px);
-}
-
-#slider4 {
-  flex: 2; /* 2 parts */
-  max-width: calc(70% - 10px);
-}
-
-#slider5 {
-  flex: 1; /* 1 part */
-  max-width: calc(30% - 10px);
-}
-/* Slider 3 Specific */
-#slider3 > div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#slider3 > div span {
-  background: rgba(0, 0, 0, 0.7);
-  padding: 15px 25px;
-  color: white;
-  text-align: center;
-}
-
-/* Row Layout */
-.row2Wrap {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.row2Wrap .slider {
-  flex: 1 1 45%;
-  min-width: 300px;
-}
-
-/* manages rows of sliders */
-.sliders-container {
-  display: flex;
-  flex-direction: column;
-  gap: 40px; /* Increased gap between rows */
-  width: 100%;
-  margin: 30px 0; /* Added vertical spacing */
-}
-
-/* Existing row2Wrap - add margin-bottom removal since gap handles spacing */
-.row2Wrap {
-  /* margin-bottom: 0; */
-  display: flex;
-  gap: 20px;
-  width: 100%;
-  min-height: 500px;
-}
-
-/* Ensure sliders don't overlap */
-
-.content {
-  padding: 50px;
-  margin-bottom: 100px;
-}
-
+/* Additional HTML styles from otherStyles.css */
 html {
   height: 100%;
   box-sizing: border-box;
@@ -513,273 +538,4 @@ p.notIndex {
   font-size: 1.6em;
   text-align: center;
   margin-top: 10px;
-}
-body {
-  font: 15px "Titillium Web", Arial, sans-serif;
-  background: radial-gradient(#121212, #000);
-  /* height: 100%; */
-  color: #aaa;
-  margin: 0;
-  padding: 0;
-}
-
-.content {
-  padding: 10px 15vw;
-}
-
-/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
-
-/* ===== Slider Containers ===== */
-.slider {
-  display: flex;
-  gap: 20px;
-  width: 100%;
-  min-height: 500px;
-}
-
-.row2Wrap {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-/* ===== Slide Backgrounds ===== */
-.slider > div {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  transition: opacity 0.8s ease;
-}
-
-/* Specific Slide Backgrounds */
-#slider1 div:nth-child(1) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg);
-}
-#slider1 div:nth-child(2) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/Gif-pont-lueur-600.gif);
-}
-#slider1 div:nth-child(3) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_Sharpened-version.jpg);
-}
-#slider1 div:nth-child(4) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg);
-}
-#slider1 div:nth-child(5) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_bodie-11.jpg);
-}
-
-#slider2 div:nth-child(1) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg);
-}
-#slider2 div:nth-child(2) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg);
-}
-#slider2 div:nth-child(3) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_bodie-11.jpg);
-}
-
-#slider3 div:nth-child(1) {
-  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036323/indoRTRPix_-4334_rb0axe.webp);
-} /* https://drive.google.com/file/d/1vCLpDSDHgt3cTFgyc4Gt6XxCKFEehfBV/view?usp=sharing */
-#slider3 div:nth-child(2) {
-  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036322/indoRTRPix_-4175_gyxbkj.webp);
-}
-#slider3 div:nth-child(3) {
-  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036321/indoRTRPix_-3922_hglvii.webp);
-}
-#slider3 div:nth-child(4) {
-  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-2060_rzifau.webp);
-}
-#slider3 div:nth-child(5) {
-  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-2621_jtflh9.webp);
-} /* https://drive.google.com/file/d/1vCLpDSDHgt3cTFgyc4Gt6XxCKFEehfBV/view?usp=sharing */
-#slider3 div:nth-child(6) {
-  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-1429_oxhhhq.webp);
-}
-#slider3 div:nth-child(7) {
-  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036317/indoRTRPix_-3263_cplk9b.webp);
-}
-#slider3 div:nth-child(8) {
-  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-4159_equalj.webp);
-}
-
-#slider4 div:nth-child(1) {
-  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744038595/Egypt-RTRPix-7100_ryjm9s.webp);
-}
-#slider4 div:nth-child(2) {
-  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744038597/Egypt-RTRPix-7464_awozqg.webp);
-}
-#slider4 div:nth-child(3) {
-  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744038598/Egypt-RTRPix-7796_uinpu7.webp);
-}
-#slider4 div:nth-child(4) {
-  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744038606/Egypt-RTRPix-8569_wetaaw.webp);
-}
-#slider4 div:nth-child(5) {
-  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744038595/Egypt-RTRPix-7859_xhrawd.webp);
-}
-/* #slider4 div:nth-child(6) {
-  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744038598/Egypt-RTRPix-7796_uinpu7.webp);
-} */
-
-#slider5 div:nth-child(1) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg);
-}
-#slider5 div:nth-child(2) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg);
-}
-#slider5 div:nth-child(3) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_bodie-11.jpg);
-}
-
-/* ===== Navigation Arrows ===== */
-/* ===== Arrow Base Styles ===== */
-/* ----- Arrow Base Styles ----- */
-.arrows {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%) !important; /* Force vertical centering */
-  width: 50px;
-  height: 50px;
-  z-index: 10;
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
-  margin: 0;
-  padding: 0;
-  border: none;
-  background: none;
-  pointer-events: auto; /* Ensure hover works properly */
-}
-
-/* Hover only affects opacity - no movement */
-.arrows:hover {
-  opacity: 1;
-  transform: translateY(-50%) !important; /* Lock position */
-}
-
-/* Specific arrow positions */
-.left {
-  left: 20px;
-  right: auto;
-}
-
-.right {
-  right: 20px;
-  left: auto;
-}
-
-/* SVG styling */
-.arrows svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.arrows path {
-  fill: white;
-}
-
-/* ----- Remove All Conflicting Transforms ----- */
-/* Disable any transforms coming from other rules */
-.slider > i,
-.slider > i:hover,
-.slider > i:active {
-  transform: none !important;
-  background: none !important;
-}
-
-/* ===== Title Bars ===== */
-.titleBar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 12px;
-  z-index: 1;
-}
-
-/* ===== Slider-Specific Customizations ===== */
-/* Slider 2 - Visible Arrows */
-#slider2 .arrows {
-  display: block !important;
-}
-
-/* Slider 3 - Centered Slide Content */
-#slider3 > div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#slider3 > div span {
-  background: rgba(0, 0, 0, 0.7);
-  padding: 15px 25px;
-  color: white;
-  text-align: center;
-}
-
-* {
-  outline: 1px solid red;
-}
-
-.sliders-container {
-  border: 1px solid red;
-}
-.row2Wrap {
-  border: 1px solid blue;
-}
-.slider {
-  border: 1px solid green;
-}
-
-/* ===== Responsive Adjustments ===== */
-@media (max-width: 768px) {
-  .row2Wrap {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .slider {
-    height: 800px;
-  }
-
-  .modalbox .box,
-  .wip .box {
-    width: 90vw !important;
-    left: 5vw !important;
-    height: auto !important;
-    max-height: 80vh;
-    top: 10vh !important;
-  }
-
-  /* Index-specific mobile adjustments */
-  body.page-index .modalbox .box {
-    top: 20vh !important;
-  }
-}
-
-/* For smaller screens, adjust the slider layout */
-@media (max-width: 992px) {
-  .sliders-container {
-    gap: 30px;
-  }
-
-  .row2Wrap {
-    flex-direction: column;
-    min-height: auto;
-  }
-
-  #slider2,
-  #slider3,
-  #slider4,
-  #slider5 {
-    max-width: 100% !important;
-    flex: 1 1 100% !important;
-    height: 400px;
-  }
 }
