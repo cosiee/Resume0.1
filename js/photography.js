@@ -1,3 +1,6 @@
+import { CloudManager } from "./cloudManager.js";
+import { CloudTransition } from "./cloudTransition.js";
+import { Animations } from "./animations.js";
 import { DomUtils } from "./domUtils.js";
 import { initThumbnails, preloadCriticalImages } from "./preload.js";
 import { Navbar } from './navbar.js';
@@ -11,6 +14,13 @@ export const selectors = {
   contactFormClose: "#contactFormClose",
   formButton: "#formButton",
   modalWipClose: "#modalWipClose",
+
+  // Clouds
+  cloud1: "#cloud1",
+  cloud2: "#cloud2",
+  cloud3: "#cloud3",
+  cloud4: "#cloud4",
+  cloud5: "#cloud5",
 
 
   // Navbar Links & Dropdowns
@@ -48,15 +58,20 @@ const navbar = new Navbar(selectors);
 // const duration = Navbar.BASE_SCROLL_DURATION; // For static property
 
 const domUtils = new DomUtils(selectors);
-// const domElements = domUtils.elements
+const domElements = domUtils.elements
+const animations = new Animations(domElements);
 
 
+document.addEventListener("DOMContentLoaded", async function () {
 
-document.addEventListener("DOMContentLoaded", function () {
   const navbar = new Navbar(selectors);
   const domUtils = new DomUtils(selectors);
+  animations.mountainSkyAni();
 
-  // Initialize navbar with contact form handler
+  await CloudTransition.triggerReverse();
+
+
+
   navbar.init(20);
   navbar.initializeFormCloseButton();
   // Set up contact link with proper fallback
@@ -100,7 +115,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   }
+  document.getElementById('home-link').addEventListener('click', async (e) => {
+    e.preventDefault();
+    await CloudTransition.triggerTransition('index.html');
+  });
 
+  // Run reverse transition on load
+  CloudTransition.triggerReverse();
   setupEventListeners();
   // initSliders();
 });

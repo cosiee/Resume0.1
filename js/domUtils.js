@@ -66,6 +66,8 @@ export class DomUtils {
     };
   }
 
+
+
   getModalPosition() {
     const center = this.getViewportCenter();
     const isLandscape = window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches;
@@ -565,3 +567,4 @@ export class DomUtils {
 export function createDomUtils(selectors) {
   return new DomUtils(selectors);
 }
+

@@ -1,5 +1,8 @@
 // navbar.js
+// import { CloudManager } from "./cloudManager.js";
+import { CloudTransition } from "./cloudTransition.js";
 import { DomUtils } from "./domUtils.js";
+
 
 export class Navbar {
   static BASE_SCROLL_DURATION = 6.8;
@@ -220,9 +223,16 @@ export class Navbar {
 
     // Add null checks for click events
     if (this.elements.navHome) {
-
+      this.setupClickEvent(this.elements.navHome, (e) => {
+        if (e.target.hasAttribute('data-transition-nav')) {
+          e.preventDefault();
+          this.handleTransitionNavigation(e.target.getAttribute('data-link'));
+        }
+      });
       this.setupClickEvent(this.elements.navHome, () => this.autoScrollNow());
     }
+
+
 
     if (this.elements.navContact) {
       this.setupClickEvent(this.elements.navContact, (e) => {
@@ -286,8 +296,8 @@ export class Navbar {
     //   });
     // }
 
-
-    ["navAnimation", "navVideo", "navDiy", "navPhotography", "navPython", "navJava", "navSql", "navReact"]
+    // , "navPhotography"
+    ["navAnimation", "navVideo", "navDiy", "navPython", "navJava", "navSql", "navReact"]
       .forEach(id => {
         if (this.elements[id]) {
           this.setupClickEvent(this.elements[id], () => {
@@ -297,6 +307,16 @@ export class Navbar {
         }
       });
 
+    // In setupNavbarEvents() method:
+    if (this.elements.navPhotography) {
+      this.setupClickEvent(this.elements.navPhotography, (e) => {
+        if (e.target.hasAttribute('data-transition-nav')) {
+          e.preventDefault();
+          this.handleTransitionNavigation(e.target.getAttribute('data-link'));
+        }
+      });
+    }
+
     // Close button handler
     const wipClose = document.getElementById("modalWipClose");
     if (wipClose) {
@@ -305,6 +325,25 @@ export class Navbar {
         this.hideWip();
         this.showScrollBar();
       });
+    }
+  }
+
+  async handleTransitionNavigation(url) {
+
+    try {
+      // 1. Trigger cloud transition
+      await CloudTransition.triggerTransition();
+
+      // 2. Hide UI elements
+      this.hideWip();
+      this.hideScrollBar();
+
+      // 3. Load new page
+      window.location.href = url;
+    } catch (error) {
+      console.error('Transition failed:', error);
+      // Fallback to normal navigation
+      window.location.href = url;
     }
   }
 

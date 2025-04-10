@@ -1,5 +1,7 @@
 // mainModular.js
-
+import { CloudManager } from './cloudManager.js';
+import { CloudTransition } from './cloudTransition.js';
+import { Animations } from './animations.js';
 import { DomUtils } from "./domUtils.js";
 import { initThumbnails, preloadCriticalImages } from "./preload.js";
 import { Navbar } from './navbar.js';
@@ -92,6 +94,7 @@ const prioritizedImages = [
 
 const domUtils = new DomUtils(selectors);
 const domElements = domUtils.elements
+const animations = new Animations(domElements);
 
 domElements.seeText.style.opacity = 0;
 domElements.down.style.opacity = 0;
@@ -107,13 +110,37 @@ document.addEventListener("DOMContentLoaded", async function () {
   });
 
   try {
-    // Load critical images first
+    // Load critical images first - this should be FIRST
     await preloadCriticalImages(prioritizedImages);
 
     // Make SVG visible and start animations
     if (domElements.svg) {
       domElements.svg.style.visibility = "visible";
-      mountainSkyAni();
+
+
+      animations.mountainSkyAni();
+
+      // Debugging
+      // Debug cloud positions
+      const debugCloudPositions = () => {
+        ["cloud1", "cloud2", "cloud3", "cloud4", "cloud5"].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            const transform = el.getAttribute("transform") || "none";
+            const bounds = el.getBBox();
+            console.log(`${id}:`, {
+              transform,
+              position: { x: bounds.x, y: bounds.y },
+              computed: gsap.getProperty(el)
+            });
+          }
+        });
+      };
+
+      // Run after SVG loads
+      setTimeout(debugCloudPositions, 500);
+
+      // This should run immediately after preload
     }
 
     // Load remaining assets in background
@@ -121,15 +148,27 @@ document.addEventListener("DOMContentLoaded", async function () {
       initThumbnails();
     }, 0);
 
+    // Setup photography link if available
+    if (domElements.navPhotography) {
+      domElements.navPhotography.addEventListener('click', async (e) => {
+        e.preventDefault();
+        await CloudTransition.triggerTransition('photography.html');
+      });
+    } else {
+      console.warn('Photography link not found in DOM');
+    }
+
+    // Initialize CloudTransition AFTER main animation is set up
+    CloudTransition.triggerReverse();
+
   } catch (error) {
-    console.error("Preloading failed:", error);
+    console.error("Initialization failed:", error);
     // Fallback: Still make SVG visible
     if (domElements.svg) domElements.svg.style.visibility = "visible";
   }
 
+  // Initialize navbar and other components
   navbar.init(320);
-  // navbar.setupDynamicLinks();
-  // navbar.setupNavbar(domElements, 320); //triggers sticky navbar 320 down into scroll
   domUtils.updateEndTopY(); // controls positioning of elements in index.html
 
   // Shows thumbnails background images
@@ -137,11 +176,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const el = document.getElementById(id);
     if (el) el.style.opacity = 1;
   });
-
-
-
 });
-
 // ###################################################################################
 // window listeners:
 
@@ -198,90 +233,147 @@ gsap.set("#mountains", {
   x: "-50%", //these are offseting, sizing needs to be adjusted so these are not required. look at svg and scroll-Dist
 });
 
-// Mountain Sky Animation
-function mountainSkyAni() {
-  try {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: domElements.scrollDist,
-          start: "top top",
-          end: "bottom bottom",
-          duration: 4,
-          scrub: 1,
-        },
-      })
-      .fromTo(
-        "#sky",
-        { scale: 1, x: 0, y: -80 },
-        { scale: 1.3, x: -150, y: -650 },
-        0
-      )
-      .fromTo(
-        "#mountBg",
-        { scale: 1, x: 0, y: 70 },
-        { scale: 1.3, x: -150, y: -600 },
-        0
-      )
-      .fromTo("#cloud2",
-        { x: 400, y: 310 },
-        { x: -200, y: -600 },
-        0
-      )
-      .fromTo(
-        "#mountBg2",
-        { scale: 1, x: 0, y: 110 },
-        { scale: 1.3, x: -150, y: -670 },
-        0
-      )
-      .fromTo("#cloud3",
-        { x: -200, y: 300 },
-        { x: 500, y: -1000 },
-        0
-      )
-      .fromTo(
-        "#mountMg",
-        { scale: 1, x: 0, y: 345 },
-        { scale: 1.3, x: -150, y: -700 },
-        0
-      )
-      .fromTo("#cloud4",
-        { x: 300, y: 320 },
-        { x: -400, y: -850 },
-        0
-      )
-      .fromTo(
-        "#mountMgF",
-        { scale: 1, x: 0, y: 200 },
-        { scale: 1.3, x: -150, y: -750 },
-        0
-      )
-      .fromTo(
-        "#mountFg",
-        { scale: 1, x: 0, y: 220 },
-        { scale: 1.3, x: -150, y: -850 },
-        0
-      )
-      .fromTo(
-        "#cloud5",
-        { scale: 1.5, x: -100, y: 380 },
-        { scale: 3, x: 300, y: -950 },
-        0
-      )
-      .fromTo(
-        "#cloud1, #cloud1M",
-        { scale: 1.3, x: -10, y: 576 },
-        { scale: 2, x: -500, y: -690 },
-        0
-      );
-  } catch (error) {
-    console.error("Animation failed:", error);
-    // Fallback: Show static background
-    gsap.set("#sky, #mountBg, #mountMgF", { opacity: 1 });
-  }
-}
 
-// End of Mountain Sky Animation
+// // function mountainSkyAni() {
+// //   try {
+// //     const tl = gsap.timeline({
+// //       scrollTrigger: {
+// //         trigger: domElements.scrollDist,
+// //         start: "top top",
+// //         end: "bottom bottom",
+// //         scrub: 1
+// //       }
+// //     });
+
+// //     // Mountain animations (always run)
+// //     tl.fromTo("#sky",
+// //       { scale: 1, x: 0, y: -80 },
+// //       { scale: 1.3, x: -150, y: -650 }, 0)
+// //       .fromTo("#mountBg",
+// //         { scale: 1, x: 0, y: 70 },
+// //         { scale: 1.3, x: -150, y: -600 }, 0)
+// //       .fromTo("#mountBg2",
+// //         { scale: 1, x: 0, y: 110 },
+// //         { scale: 1.3, x: -150, y: -670 }, 0)
+// //       .fromTo("#mountMg",
+// //         { scale: 1, x: 0, y: 345 },
+// //         { scale: 1.3, x: -150, y: -700 }, 0)
+// //       .fromTo("#mountMgF",
+// //         { scale: 1, x: 0, y: 200 },
+// //         { scale: 1.3, x: -150, y: -750 }, 0)
+// //       .fromTo("#mountFg",
+// //         { scale: 1, x: 0, y: 220 },
+// //         { scale: 1.3, x: -150, y: -850 }, 0);
+
+// //     // Cloud animations (only when not transitioning)
+// //     if (!CloudManager.isTransitioning) {
+// //       tl.fromTo("#cloud2",
+// //         { opacity: 1, x: 400, y: 310 },
+// //         { x: -200, y: -600 }, 0)
+// //         .fromTo("#cloud3",
+// //           { opacity: 1, x: -200, y: 300 },
+// //           { x: 500, y: -1000 }, 0)
+// //         .fromTo("#cloud4",
+// //           { opacity: 1, x: 300, y: 320 },
+// //           { x: -400, y: -850 }, 0)
+// //         .fromTo("#cloud5",
+// //           { opacity: 1, scale: 1.5, x: -100, y: 380 },
+// //           { scale: 3, x: 300, y: -950 }, 0)
+// //         .fromTo("#cloud1, #cloud1M",
+// //           { opacity: 1, scale: 1.3, x: -10, y: 576 },
+// //           { scale: 2, x: -500, y: -690 }, 0);
+// //     }
+
+// //   } catch (error) {
+// //     console.error("Animation failed:", error);
+// //     // Fallback: Show static background
+// //     gsap.set("#sky, #mountBg, #mountMgF", { opacity: 1 });
+// //   }
+// // }
+// // Mountain Sky Animation
+// function mountainSkyAni() {
+//   try {
+//     gsap
+//       .timeline({
+//         scrollTrigger: {
+//           trigger: domElements.scrollDist,
+//           start: "top top",
+//           end: "bottom bottom",
+//           duration: 4,
+//           scrub: 1,
+//         },
+//       })
+//       .fromTo(
+//         "#sky",
+//         { scale: 1, x: 0, y: -80 },
+//         { scale: 1.3, x: -150, y: -650 },
+//         0
+//       )
+//       .fromTo(
+//         "#mountBg",
+//         { scale: 1, x: 0, y: 70 },
+//         { scale: 1.3, x: -150, y: -600 },
+//         0
+//       )
+//       .fromTo("#cloud2",
+//         { opacity: 1, x: 400, y: 310 },
+//         { x: -200, y: -600 },
+//         0
+//       )
+//       .fromTo(
+//         "#mountBg2",
+//         { scale: 1, x: 0, y: 110 },
+//         { scale: 1.3, x: -150, y: -670 },
+//         0
+//       )
+//       .fromTo("#cloud3",
+//         { opacity: 1, x: -200, y: 300 },
+//         { x: 500, y: -1000 },
+//         0
+//       )
+//       .fromTo(
+//         "#mountMg",
+//         { scale: 1, x: 0, y: 345 },
+//         { scale: 1.3, x: -150, y: -700 },
+//         0
+//       )
+//       .fromTo("#cloud4",
+//         { opacity: 1, x: 300, y: 320 },
+//         { x: -400, y: -850 },
+//         0
+//       )
+//       .fromTo(
+//         "#mountMgF",
+//         { scale: 1, x: 0, y: 200 },
+//         { scale: 1.3, x: -150, y: -750 },
+//         0
+//       )
+//       .fromTo(
+//         "#mountFg",
+//         { scale: 1, x: 0, y: 220 },
+//         { scale: 1.3, x: -150, y: -850 },
+//         0
+//       )
+//       .fromTo(
+//         "#cloud5",
+//         { opacity: 1, scale: 1.5, x: -100, y: 380 },
+//         { scale: 3, x: 300, y: -950 },
+//         0
+//       )
+//       .fromTo(
+//         "#cloud1, #cloud1M",
+//         { opacity: 1, scale: 1.3, x: -10, y: 576 },
+//         { scale: 2, x: -500, y: -690 },
+//         0
+//       );
+//   } catch (error) {
+//     console.error("Animation failed:", error);
+//     // Fallback: Show static background
+//     gsap.set("#sky, #mountBg, #mountMgF", { opacity: 1 });
+//   }
+// }
+
+// // End of Mountain Sky Animation
 
 // Me Element Animations
 
@@ -293,7 +385,7 @@ let animationInterval;
 let isIdleWiggling = false; // Flag to track idle wiggle animation
 let initialTransform = ""; // Store initial centering transform
 
-const thresholdScale = 1.5; //set scale value, to allow for the crossing-fading effect SEE/ME
+const thresholdScale = 1.639; //set scale value, to allow for the crossing-fading effect SEE/ME
 
 function getScaleValue(element) {
   if (!element) {

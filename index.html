@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +16,7 @@
   <script src="https://code.jquery.com/jquery-1.11.0.min.js" defer></script>
 
   <!-- <script src="js/mainNoModul.js" defer></script> -->
+  <script type="module" defer src="js/cloudTransition.js"></script>
   <script type="module" defer src="js/mainModular.js"></script>
   <script type="module" defer src="js/navbar.js"></script>
   <script type="module" defer src="js/domUtils.js"></script>
@@ -49,7 +51,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" id="navHome" aria-current="page" data-link="index.html">Home</a>
+              <a class="nav-link" id="navHome" aria-current="page" data-transition-nav data-link="index.html">Home</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="softwareLink" class="navbarDropdownMenuLink"
@@ -74,7 +76,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" id="photographyLink" data-link="photography.html">Photography</a>
+              <a class="nav-link" id="photographyLink" data-transition-nav data-link="photography.html">Photography</a>
             </li>
 
             <li class="nav-item">
@@ -177,7 +179,6 @@
     </div>
     </svg>
   </div>
-
 
 
   <div class="container-fluid modalbox" id="statementContact" style="display: box;">
