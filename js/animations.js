@@ -4,9 +4,108 @@ import { CloudManager } from './cloudManager.js';
 export class Animations {
     constructor(domElements) {
         this.domElements = domElements;
+        this.transitionDuration = 1.2; // seconds
     }
 
-    mountainSkyAni() {
+    // ==================== PAGE TRANSITIONS ==================== 
+    async cloudTransitionOut(destination) {
+        try {
+            const tl = gsap.timeline();
+
+            // Freeze scroll position
+            document.documentElement.style.overflow = 'hidden';
+
+            // Bring all clouds to front
+            gsap.set(["#cloud1", "#cloud2", "#cloud3", "#cloud4", "#cloud5", "#cloud1M"], {
+                zIndex: 10000,
+                position: 'fixed',
+                top: 0,
+                left: 0
+            });
+
+            // Animate clouds to cover the screen
+            tl.to(["#cloud1", "#cloud2", "#cloud3", "#cloud4", "#cloud5", "#cloud1M"], {
+                scale: 3,
+                x: 0,
+                y: 0,
+                opacity: 1,
+                duration: this.transitionDuration,
+                ease: "power2.inOut"
+            });
+
+            return tl;
+        } catch (error) {
+            console.error("Cloud transition out failed:", error);
+        }
+    }
+
+    async cloudTransitionIn() {
+        try {
+            const tl = gsap.timeline();
+
+            // Start with clouds covering the screen
+            gsap.set(["#cloud1", "#cloud2", "#cloud3", "#cloud4", "#cloud5", "#cloud1M"], {
+                scale: 3,
+                x: 0,
+                y: 0,
+                opacity: 1,
+                zIndex: 10000,
+                position: 'fixed',
+                top: 0,
+                left: 0
+            });
+
+            // Animate clouds back to their positions
+            tl.to(["#cloud1", "#cloud1M"], {
+                x: -420,
+                y: -490,
+                scale: 2.4,
+                duration: this.transitionDuration,
+                ease: "power2.inOut"
+            })
+                .to("#cloud2", {
+                    x: -200,
+                    y: -500,
+                    duration: this.transitionDuration,
+                    ease: "power2.inOut"
+                }, 0)
+                .to("#cloud3", {
+                    x: 500,
+                    y: -900,
+                    duration: this.transitionDuration,
+                    ease: "power2.inOut"
+                }, 0)
+                .to("#cloud4", {
+                    x: -400,
+                    y: -750,
+                    duration: this.transitionDuration,
+                    ease: "power2.inOut"
+                }, 0)
+                .to("#cloud5", {
+                    x: 300,
+                    y: -800,
+                    scale: 3,
+                    duration: this.transitionDuration,
+                    ease: "power2.inOut"
+                }, 0);
+
+            // Restore scrolling after animation
+            tl.eventCallback("onComplete", () => {
+                document.documentElement.style.overflow = '';
+                // Reset cloud positioning
+                gsap.set(["#cloud1", "#cloud2", "#cloud3", "#cloud4", "#cloud5", "#cloud1M"], {
+                    zIndex: 'auto',
+                    position: 'static'
+                });
+            });
+
+            return tl;
+        } catch (error) {
+            console.error("Cloud transition in failed:", error);
+        }
+    }
+
+    async mountainSkyAni() {
         try {
             if (!this.domElements?.scrollDist) {
                 console.warn('scrollDist element not found');

@@ -64,11 +64,42 @@ const animations = new Animations(domElements);
 
 document.addEventListener("DOMContentLoaded", async function () {
 
+  // Check if we're coming from a cloud transition
+  if (sessionStorage.getItem('cloudTransitionActive')) {
+    try {
+      // 1. Immediately show clouds covering the screen
+      gsap.set(["#cloud1", "#cloud2", "#cloud3", "#cloud4", "#cloud5", "#cloud1M"], {
+        opacity: 1,
+        scale: 3,
+        x: 0,
+        y: 0,
+        position: 'fixed',
+        zIndex: 10000,
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%'
+      });
+
+      // 2. Reverse the animation to reveal new page
+      await CloudTransition.triggerReverse();
+
+    } catch (error) {
+      console.error('Reverse transition failed:', error);
+    } finally {
+      sessionStorage.removeItem('cloudTransitionActive');
+      // Ensure scrolling is restored
+      document.documentElement.style.overflow = '';
+      document.documentElement.style.pointerEvents = '';
+    }
+  }
+
+
   const navbar = new Navbar(selectors);
   const domUtils = new DomUtils(selectors);
   animations.mountainSkyAni();
 
-  await CloudTransition.triggerReverse();
+  await animations.cloudTransitionIn();
 
 
 
@@ -115,13 +146,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
   }
-  document.getElementById('home-link').addEventListener('click', async (e) => {
+  document.getElementById('navHome').addEventListener('click', async (e) => {
     e.preventDefault();
-    await CloudTransition.triggerTransition('index.html');
+    await animations.cloudTransitionOut('index.html');
   });
 
   // Run reverse transition on load
-  CloudTransition.triggerReverse();
+  animations.cloudTransitionOut();
   setupEventListeners();
   // initSliders();
 });

@@ -2,7 +2,7 @@
 // import { CloudManager } from "./cloudManager.js";
 import { CloudTransition } from "./cloudTransition.js";
 import { DomUtils } from "./domUtils.js";
-
+import { Animations } from "./animations.js";
 
 export class Navbar {
   static BASE_SCROLL_DURATION = 6.8;
@@ -204,6 +204,8 @@ export class Navbar {
   }
 
   setupNavbarEvents() {
+
+
     // Only setup events if elements exist
     if (this.elements.navSoftware && this.elements.navDropMenuSoftware) {
       this.setupDropdownHover(
@@ -329,19 +331,31 @@ export class Navbar {
   }
 
   async handleTransitionNavigation(url) {
-
     try {
-      // 1. Trigger cloud transition
-      await CloudTransition.triggerTransition();
+      // 1. Freeze UI to prevent interactions during transition
+      document.documentElement.style.pointerEvents = 'none';
 
-      // 2. Hide UI elements
+      // 2. Hide any visible UI elements that might interfere
       this.hideWip();
       this.hideScrollBar();
 
-      // 3. Load new page
+      // 3. Trigger cloud transition with proper error handling
+      const transitionSuccess = await CloudTransition.triggerTransition();
+
+      if (!transitionSuccess) {
+        throw new Error('Cloud transition animation failed');
+      }
+
+      // 4. Add brief delay for smoother transition (optional)
+      await new Promise(resolve => setTimeout(resolve, 300));
+
+      // 5. Navigate to new page
       window.location.href = url;
+
     } catch (error) {
       console.error('Transition failed:', error);
+      // Restore UI interactions before fallback
+      document.documentElement.style.pointerEvents = '';
       // Fallback to normal navigation
       window.location.href = url;
     }

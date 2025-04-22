@@ -54,6 +54,59 @@ body.photography-page .formDiv#contactForm {
   z-index: 1000;
   overflow: auto;
 }
+/* Cloud Animations--page transition */
+#cloud-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+#svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Hide content initially */
+body > *:not(#cloud-transition):not(#transition-overlay) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* After transition, show content */
+body.clouds-complete > *:not(#cloud-transition):not(#transition-overlay) {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease-out;
+}
+
+#cloud1,
+#cloud2,
+#cloud3,
+#cloud4,
+#cloud5,
+#cloud1M {
+  will-change: transform, opacity;
+  pointer-events: none;
+  transform-origin: center center;
+  /* Maintain your existing cloud styles */
+}
+
+/* Ensure transition overlay stays above content but below clouds */
+#transition-overlay {
+  z-index: 9999; /* Below clouds (10000) but above everything else */
+}
+
+/* Temporary class for transition state */
+.body-transitioning {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* End of Cloud Animations--page transition */
 
 /* Slider Core Styles - Fixed Layout */
 .sliders-container {
