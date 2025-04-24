@@ -15,7 +15,7 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 1051; /* highest z-index on page */
 }
 
 .cloud-transition {
@@ -34,8 +34,30 @@
 #cloud5 {
   transform-origin: center;
   will-change: transform, opacity;
-  pointer-events: none; /* Prevent interaction during transitions */
+  pointer-events: none;
+  opacity: 1; /* Start visible */ /* Prevent interaction during transitions */
 }
+[id^="cloud"],
+[id^="cloud"] image {
+  will-change: transform;
+  contain: layout;
+  backface-visibility: hidden;
+}
+
+/* Debug element styling */
+#debugElement {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  background: red;
+  z-index: 9999;
+  opacity: 0;
+}
+/* [id^="cloud"] {
+  border: 2px solid red; 
+} */
 /* 
 .cloud-left {
   left: -300px;
@@ -99,6 +121,13 @@ a[data-transition-nav]::after {
 a[data-transition-nav]:hover::after {
   transform: scaleX(1);
   transform-origin: left;
+
+  .cloud-transition-element {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    pointer-events: none;
+  }
 }
 /*End of Cloud transition styles */
 
@@ -131,7 +160,8 @@ a[data-transition-nav]:hover::after {
   width: 100%;
 }
 #svg {
-  visibility: hidden;
+  /* visibility: hidden; */
+  opacity: 1;
 }
 
 text.lrgtext {

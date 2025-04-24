@@ -42,6 +42,7 @@ export const selectors = {
   navVideo: "#navVideo",
   navContact: "#contactLink",
 
+  // image sliders
   slider1: "#slider1",
   slider2: "#slider2",
   slider3: "#slider3",
@@ -55,56 +56,74 @@ export const selectors = {
 
 
 const navbar = new Navbar(selectors);
-// const duration = Navbar.BASE_SCROLL_DURATION; // For static property
-
 const domUtils = new DomUtils(selectors);
 const domElements = domUtils.elements
 const animations = new Animations(domElements);
 
 
 document.addEventListener("DOMContentLoaded", async function () {
+  // if (sessionStorage.getItem('shouldTransitionIn') === 'true') {
+  //   try {
+  //     // Immediately show clouds covering screen
+  //     gsap.set(["#cloud1", "#cloud2", "#cloud3", "#cloud4", "#cloud5"], {
+  //       opacity: 1,
+  //       scale: 3,
+  //       x: 0,
+  //       y: 0,
+  //       position: 'fixed',
+  //       zIndex: 10000
+  //     });
 
-  // Check if we're coming from a cloud transition
-  if (sessionStorage.getItem('cloudTransitionActive')) {
+  //     // Play reverse animation
+  //     await animations.cloudTransitionIn();
+  //   } catch (error) {
+  //     console.error('Transition in failed:', error);
+  //   } finally {
+  //     // Clean up
+  //     sessionStorage.removeItem('shouldTransitionIn');
+  //     document.documentElement.style.overflow = '';
+  //   }
+  // }
+
+  // const domUtils = new DomUtils(selectors);
+
+
+  // await animations.cloudTransitionIn();
+
+  // navbar.init(20);
+  // navbar.initializeFormCloseButton();
+
+  // Handle incoming transition
+  if (sessionStorage.getItem('shouldTransitionIn') === 'true') {
     try {
-      // 1. Immediately show clouds covering the screen
-      gsap.set(["#cloud1", "#cloud2", "#cloud3", "#cloud4", "#cloud5", "#cloud1M"], {
+      console.log('Starting incoming transition');
+      gsap.set(["#cloud1", "#cloud2", "#cloud3", "#cloud4", "#cloud5", "#cloud6"], {
         opacity: 1,
         scale: 3,
         x: 0,
         y: 0,
         position: 'fixed',
-        zIndex: 10000,
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%'
+        zIndex: 10000
       });
-
-      // 2. Reverse the animation to reveal new page
-      await CloudTransition.triggerReverse();
-
+      await animations.cloudTransitionIn();
     } catch (error) {
-      console.error('Reverse transition failed:', error);
+      console.error('Transition failed:', error);
     } finally {
-      sessionStorage.removeItem('cloudTransitionActive');
-      // Ensure scrolling is restored
+      sessionStorage.removeItem('shouldTransitionIn');
       document.documentElement.style.overflow = '';
-      document.documentElement.style.pointerEvents = '';
     }
   }
 
-
-  const navbar = new Navbar(selectors);
-  const domUtils = new DomUtils(selectors);
-  animations.mountainSkyAni();
-
-  await animations.cloudTransitionIn();
-
-
-
+  // Initialize navbar
   navbar.init(20);
   navbar.initializeFormCloseButton();
+
+
+
+
+
+
+
   // Set up contact link with proper fallback
   if (domUtils.elements.navContact) {
     domUtils.elements.navContact.addEventListener("click", function () {
@@ -113,49 +132,91 @@ document.addEventListener("DOMContentLoaded", async function () {
       domUtils.showStatementContact();
       domUtils.showForm();
     })
+  }
+  $(window).on('load', function () {
+    $("#slider1").sliderResponsive(); // Default settings
 
-    $(window).on('load', function () {
-      $("#slider1").sliderResponsive(); // Default settings
-
-      $("#slider2").sliderResponsive({
-        fadeSpeed: 300,
-        autoPlay: "off",
-        showArrows: "on",
-        hideDots: "on"
-      });
-
-      $("#slider3").sliderResponsive({
-        hoverZoom: "off",
-        hideDots: "on"
-      });
-
-      $("#slider4").sliderResponsive({
-        fadeSpeed: 300,
-        autoPlay: "off",
-        showArrows: "on",
-        hideDots: "on"
-      });
-
-      $("#slider5").sliderResponsive({
-        fadeSpeed: 300,
-        autoPlay: "off",
-        showArrows: "on",
-        hideDots: "on"
-      });
+    $("#slider2").sliderResponsive({
+      fadeSpeed: 300,
+      autoPlay: "off",
+      showArrows: "on",
+      hideDots: "on"
     });
 
+    $("#slider3").sliderResponsive({
+      hoverZoom: "off",
+      hideDots: "on"
+    });
 
-  }
+    $("#slider4").sliderResponsive({
+      fadeSpeed: 300,
+      autoPlay: "off",
+      showArrows: "on",
+      hideDots: "on"
+    });
+
+    $("#slider5").sliderResponsive({
+      fadeSpeed: 300,
+      autoPlay: "off",
+      showArrows: "on",
+      hideDots: "on"
+    });
+  });
+
+
+
   document.getElementById('navHome').addEventListener('click', async (e) => {
     e.preventDefault();
     await animations.cloudTransitionOut('index.html');
   });
+  if (domElements.navHome && !window.location.pathname.endsWith('index.html')) {
+    domElements.navHome.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        sessionStorage.setItem('shouldTransitionIn', 'true');
+        const success = await animations.cloudTransitionOut('index.html');
+        if (!success) {
+          window.location.href = 'index.html';
+        }
+      } catch (error) {
+        console.error("Transition failed:", error);
+        window.location.href = 'index.html';
+      }
+    });
+  } else if (domElements.navHome) {
+    // If already on home page, just prevent default behavior
+    domElements.navHome.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
+  }
+  // Set up photography link with transition - ONLY if we're not already on photography.html
+  if (domElements.navPhotography && !window.location.pathname.endsWith('photography.html')) {
+    domElements.navPhotography.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        sessionStorage.setItem('shouldTransitionIn', 'true');
+        const success = await animations.cloudTransitionOut('photography.html');
+        if (!success) {
+          window.location.href = 'photography.html';
+        }
+      } catch (error) {
+        console.error("Transition failed:", error);
+        window.location.href = 'photography.html';
+      }
+    });
+  } else if (domElements.navPhotography) {
+    // If already on photography page, just prevent default behavior
+    domElements.navPhotography.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
+  }
 
-  // Run reverse transition on load
-  animations.cloudTransitionOut();
+
   setupEventListeners();
   // initSliders();
 });
+
+// ####################################################################
 
 
 function setupEventListeners() {

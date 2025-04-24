@@ -6,7 +6,7 @@ import { DomUtils } from "./domUtils.js";
 import { initThumbnails, preloadCriticalImages } from "./preload.js";
 import { Navbar } from './navbar.js';
 
-
+window.process = window.process || { env: {} };
 
 
 export const selectors = {
@@ -102,96 +102,9 @@ domElements.down.style.opacity = 0;
 const backgroundContainers = ['software', 'photography', 'motion', 'diy'];
 
 
-// document.addEventListener("DOMContentLoaded", async function () {
-//   // Hide background containers initially 
-//   backgroundContainers.forEach(id => {
-//     const el = document.getElementById(id);
-//     if (el) el.style.opacity = 0;
-//   });
-
-//   try {
-//     // 1. Load critical images first
-//     await preloadCriticalImages(prioritizedImages);
-
-//     // 2. Make SVG visible
-//     if (domElements.svg) {
-//       domElements.svg.style.visibility = "visible";
-
-
-
-//       //  Start mountain sky animation
-//       try {
-//         await animations.mountainSkyAni();
-//       } catch (error) {
-//         console.error("Sky animation failed", error);
-//       }
-
-//       // Debug cloud positions (optional)
-//       const debugCloudPositions = () => {
-//         ["cloud1", "cloud2", "cloud3", "cloud4", "cloud5"].forEach(id => {
-//           const el = document.getElementById(id);
-//           if (el) {
-//             const transform = el.getAttribute("transform") || "none";
-//             const bounds = el.getBBox();
-//             console.log(`${id}:`, {
-//               transform,
-//               position: { x: bounds.x, y: bounds.y },
-//               computed: gsap.getProperty(el)
-//             });
-//           }
-//         });
-//       };
-//       setTimeout(debugCloudPositions, 500);
-//     }
-
-//     // 5. Setup photography link
-//     if (domElements.navPhotography) {
-//       domElements.navPhotography.addEventListener('click', async (e) => {
-//         e.preventDefault();
-//         try {
-//           await animations.cloudTransitionOut();
-//           window.location.href = 'photography.html';
-//         } catch (error) {
-//           console.error("Transition failed:", error);
-//           window.location.href = 'photography.html'; // Fallback
-//         }
-//       });
-//     } else {
-//       console.warn('Photography link not found in DOM');
-//     }
-
-//     // 6. Load remaining assets in background
-//     setTimeout(() => {
-//       initThumbnails();
-//     }, 0);
-
-//     // 7. Initialize navbar and other components
-//     navbar.init(320);
-//     domUtils.updateEndTopY();
-
-//     // 8. Show thumbnails background images
-//     backgroundContainers.forEach(id => {
-//       const el = document.getElementById(id);
-//       if (el) el.style.opacity = 1;
-//     });
-
-//   } catch (error) {
-//     console.error("Initialization failed:", error);
-//     // Fallback: Make SVG visible and enable basic functionality
-//     if (domElements.svg) domElements.svg.style.visibility = "visible";
-
-//     // Emergency fallback for photography link
-//     if (domElements.navPhotography) {
-//       domElements.navPhotography.addEventListener('click', (e) => {
-//         e.preventDefault();
-//         window.location.href = 'photography.html';
-//       });
-//     }
-//   }
-// });
-
-
 document.addEventListener("DOMContentLoaded", async function () {
+
+
   // Hide background containers initially 
   backgroundContainers.forEach(id => {
     const el = document.getElementById(id);
@@ -235,20 +148,11 @@ document.addEventListener("DOMContentLoaded", async function () {
       }
     }
 
-    // 4. Setup photography link with transition
-    if (domElements.navPhotography) {
-      domElements.navPhotography.addEventListener('click', async (e) => {
-        e.preventDefault();
-        try {
-          await animations.cloudTransitionOut();
-          window.location.href = 'photography.html';
-        } catch (error) {
-          console.error("Transition failed:", error);
-          // Fallback: Immediate navigation if transition fails
-          window.location.href = 'photography.html';
-        }
-      });
-    }
+
+
+
+    // Call this in your DOMContentLoaded handler
+    setupNavigation();
 
     // 5. Load remaining assets in background
     setTimeout(() => {
@@ -284,85 +188,36 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 });
 
-// document.addEventListener("DOMContentLoaded", async function () {
-//   // Hide background containers initially 
-//   backgroundContainers.forEach(id => {
-//     const el = document.getElementById(id);
-//     if (el) el.style.opacity = 0;
-//   });
-
-//   try {
-//     // Load critical images first - this should be FIRST
-//     await preloadCriticalImages(prioritizedImages);
-
-//     // Make SVG visible and start animations
-//     if (domElements.svg) {
-//       domElements.svg.style.visibility = "visible";
 
 
-//       try {
-//         await animations.mountainSkyAni();
-//       } catch (error) {
-//         console.error("Sky animation failed", error);
-//       }
-//       // Debugging
-//       // Debug cloud positions
-//       const debugCloudPositions = () => {
-//         ["cloud1", "cloud2", "cloud3", "cloud4", "cloud5"].forEach(id => {
-//           const el = document.getElementById(id);
-//           if (el) {
-//             const transform = el.getAttribute("transform") || "none";
-//             const bounds = el.getBBox();
-//             console.log(`${id}:`, {
-//               transform,
-//               position: { x: bounds.x, y: bounds.y },
-//               computed: gsap.getProperty(el)
-//             });
-//           }
-//         });
-//       };
+//  Setup photography link with transition
+function setupNavigation() {
+  // Clean up any existing listeners
+  if (domElements.navPhotography) {
+    domElements.navPhotography.removeEventListener('click', handlePhotographyClick);
+  }
 
-//       // Run after SVG loads
-//       setTimeout(debugCloudPositions, 500);
+  // Single handler instance
+  async function handlePhotographyClick(e) {
+    e.preventDefault();
+    if (window.location.pathname.endsWith('photography.html')) return;
 
-//       // This should run immediately after preload
-//     }
+    console.log('Initiating photography transition');
+    try {
+      sessionStorage.setItem('shouldTransitionIn', 'true');
+      await animations.cloudTransitionOut('photography.html');
+    } catch (error) {
+      console.error('Transition failed:', error);
+      window.location.href = 'photography.html';
+    }
+  }
 
-//     // Load remaining assets in background
-//     setTimeout(() => {
-//       initThumbnails();
-//     }, 0);
+  // Attach listener
+  if (domElements.navPhotography) {
+    domElements.navPhotography.addEventListener('click', handlePhotographyClick);
+  }
+}
 
-//     // Setup photography link if available
-//     if (domElements.navPhotography) {
-//       domElements.navPhotography.addEventListener('click', async (e) => {
-//         e.preventDefault();
-//         await animations.cloudTransitionOut('photography.html');
-//         window.location.href = 'photography.html';
-//       });
-//     } else {
-//       console.warn('Photography link not found in DOM');
-//     }
-
-//     // Initialize CloudTransition AFTER main animation is set up
-//     await animations.cloudTransitionIn();
-
-//   } catch (error) {
-//     console.error("Initialization failed:", error);
-//     // Fallback: Still make SVG visible
-//     if (domElements.svg) domElements.svg.style.visibility = "visible";
-//   }
-
-//   // Initialize navbar and other components
-//   navbar.init(320);
-//   domUtils.updateEndTopY(); // controls positioning of elements in index.html
-
-//   // Shows thumbnails background images
-//   backgroundContainers.forEach(id => {
-//     const el = document.getElementById(id);
-//     if (el) el.style.opacity = 1;
-//   });
-// });
 // ###################################################################################
 // window listeners:
 
@@ -1094,3 +949,8 @@ domElements.modalWipClose.addEventListener("click", function () {
 });
 
 // Handles index.html specify navigation links End
+
+
+
+
+

@@ -17,6 +17,8 @@ export class Navbar {
     this.domUtils = new DomUtils(selectors);
     this.elements = this.domUtils.elements;
     this.hoverTimeout = null;
+    this._lastClick = 0;
+    this._transitionActive = false;
     this.setupMediaListeners();
     this.initializeFormCloseButton();
   }
@@ -71,42 +73,6 @@ export class Navbar {
     });
   }
 
-  // showWip() {
-  //   if (this.domUtils.isIndexPage()) {
-  //     // Original index.html behavior
-  //     if (!this.elements.thumbElements?.length) {
-  //       console.warn("thumbElements missing - using fallback");
-  //     }
-  //     this.updateWIPDimensions();
-  //     document.getElementById("wip").style.display = "block";
-  //     this.domUtils.collectThumbs();
-  //   } else {
-  //     // Standard behavior for all other pages
-  //     this.updateWIPDimensions();
-  //     document.getElementById("wip").style.display = "block";
-  //   }
-  // }
-
-  // showWip() {
-  //   const wipElement = document.getElementById("wip");
-
-  //   // Safely check if WIP element exists
-  //   if (!wipElement) {
-  //     console.warn("WIP element not found in DOM");
-  //     return;
-  //   }
-
-  //   // Update dimensions based on page type
-  //   this.domUtils.updateWIPDimensions();
-
-  //   // Display the WIP message
-  //   wipElement.style.display = "block";
-
-  //   // Only collect thumbs if on index page with thumbnails
-  //   if (this.domUtils.isIndexPage() && this.elements.thumbElements?.length) {
-  //     this.domUtils.collectThumbs();
-  //   }
-  // }
 
   showWip() {
     const wipElement = document.getElementById("wip");
@@ -128,24 +94,6 @@ export class Navbar {
       this.domUtils.collectThumbs();
     }
   }
-
-  // showWip() {
-  //   // if (!this.elements.thumbElements?.length) {
-  //   //   console.error("thumbElements missing!");
-  //   //   return;
-  //   // }
-  //   if (!this.elements.thumbElements || !this.elements.thumbElements.length) {
-  //     console.warn("thumbElements missing - using fallback positioning");
-  //     this.updateWIPDimensionsFallback();
-  //     document.getElementById("wip").style.display = "block";
-  //     return;
-  //   }
-
-  //   this.updateWIPDimensions();
-  //   document.getElementById("wip").style.display = "block";
-  //   this.domUtils.collectThumbs();
-  // }
-
 
   updateWIPDimensionsFallback() {
     const wipBox = document.querySelector(".wip .box");
@@ -272,31 +220,6 @@ export class Navbar {
     this.initializeFormCloseButton();
 
 
-    //     this.hideScrollBar();
-
-    //     const isNotIndexPage = !document.querySelector('#software');
-
-    //     if (isNotIndexPage) {
-    //       // Photography page specific positioning
-    //       const form = document.querySelector(".formDiv#contactForm");
-    //       if (form) {
-    //         form.style.position = "fixed";
-    //         form.style.left = "50%";
-    //         form.style.top = "50%";
-    //         form.style.transform = "translate(-50%, -50%)";
-    //         form.style.zIndex = "1000";
-    //       }
-    //     }
-
-    //     this.domUtils.updateModalDimensions();
-    //     this.domUtils.showStatementContact();
-    //     this.domUtils.showForm();
-    //     this.domUtils.collectThumbs();
-
-
-
-    //   });
-    // }
 
     // , "navPhotography"
     ["navAnimation", "navVideo", "navDiy", "navPython", "navJava", "navSql", "navReact"]
@@ -309,15 +232,78 @@ export class Navbar {
         }
       });
 
+    // Setup other transition-enabled nav items
+
+    // ["navHome", "navAbout", "navContact"].forEach(id => {
+    //   if (this.elements[id]) {
+    //     this.setupClickEvent(this.elements[id], (e) => {
+    //       if (e.target.classList.contains('transition-nav')) {
+    //         e.preventDefault();
+    //         this.handleTransitionNavigation(e.target.href);
+    //       }
+    //     });
+    //   }
+    // });
+
     // In setupNavbarEvents() method:
+
+
+    // if (this.elements.navPhotography) {
+    //   this.elements.navPhotography.addEventListener('click', async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //       // Set flag for incoming page
+    //       sessionStorage.setItem('shouldTransitionIn', 'true');
+
+    //       // Set flag to handle reverse transition if needed
+    //       sessionStorage.setItem('cloudTransitionActive', 'true');
+
+    //       // Start transition
+    //       const success = await animations.cloudTransitionOut('photography.html');
+
+    //       // Only navigate if transition was successful
+    //       if (success) {
+    //         window.location.href = 'photography.html';
+    //       } else {
+    //         // Fallback to immediate navigation
+    //         window.location.href = 'photography.html';
+    //       }
+    //     } catch (error) {
+    //       console.error("Transition failed:", error);
+    //       // Fallback to immediate navigation
+    //       window.location.href = 'photography.html';
+    //     }
+    //   });
+    // }
+
     if (this.elements.navPhotography) {
-      this.setupClickEvent(this.elements.navPhotography, (e) => {
-        if (e.target.hasAttribute('data-transition-nav')) {
-          e.preventDefault();
-          this.handleTransitionNavigation(e.target.getAttribute('data-link'));
-        }
-      });
+      this.setupClickEvent(
+        this.elements.navPhotography,
+        this.handlePhotoClick.bind(this)
+      );
     }
+    // if (this.elements.navPhotography) {
+    //   this.elements.navPhotography.addEventListener('click', async (e) => {
+    //     e.preventDefault();
+    //     await this.handleTransitionNavigation('photography.html');
+    //   });
+    // }
+
+    // if (this.elements.navPhotography) {
+    //   this.setupClickEvent(this.elements.navPhotography, (e) => {
+    //     if (e.target.hasAttribute('data-transition-nav')) {
+    //       e.preventDefault();
+    //       this.handleTransitionNavigation(e.target.getAttribute('data-link'));
+    //     }
+    //   });
+    // }
+
+    // if (this.elements.navPhotography) {
+    //   this.setupClickEvent(this.elements.navPhotography, (e) => {
+    //     e.preventDefault();
+    //     this.handleTransitionNavigation('photography.html');
+    //   });
+    // }
 
     // Close button handler
     const wipClose = document.getElementById("modalWipClose");
@@ -330,36 +316,121 @@ export class Navbar {
     }
   }
 
-  async handleTransitionNavigation(url) {
+  async handlePhotoClick(e) {
+    e.preventDefault();
+    const now = performance.now();
+
+    // 1. Throttle rapid clicks
+    if (now - this._lastClick < 1000) return;
+    this._lastClick = now;
+
+    // 2. Check if already on target page
+    if (window.location.pathname.endsWith('photography.html')) return;
+
+    // 3. Prevent duplicate transitions
+    if (this._transitionActive) {
+      console.log('Transition already in progress');
+      return;
+    }
+    this._transitionActive = true;
+
+    console.log('Initiating photography transition');
+
     try {
-      // 1. Freeze UI to prevent interactions during transition
-      document.documentElement.style.pointerEvents = 'none';
+      // 4. Set transition flag for incoming page
+      sessionStorage.setItem('shouldTransitionIn', 'true');
 
-      // 2. Hide any visible UI elements that might interfere
-      this.hideWip();
-      this.hideScrollBar();
+      // 5. Create animations instance
+      const animations = new Animations(this.domUtils.elements);
 
-      // 3. Trigger cloud transition with proper error handling
-      const transitionSuccess = await CloudTransition.triggerTransition();
+      // 6. Schedule the transition
+      const runTransition = () => {
+        animations.cloudTransitionOut('photography.html')
+          .catch(error => {
+            console.error('Transition failed:', error);
+            window.location.href = 'photography.html';
+          });
+      };
 
-      if (!transitionSuccess) {
-        throw new Error('Cloud transition animation failed');
+      // Use optimal scheduling
+      if (typeof requestIdleCallback === 'function') {
+        requestIdleCallback(runTransition, { timeout: 500 });
+      } else {
+        requestAnimationFrame(() => {
+          setTimeout(runTransition, 0);
+        });
       }
 
-      // 4. Add brief delay for smoother transition (optional)
-      await new Promise(resolve => setTimeout(resolve, 300));
+    } catch (error) {
+      console.error('Transition initialization failed:', error);
+      this._transitionActive = false;
+      window.location.href = 'photography.html';
+    }
+  }
 
-      // 5. Navigate to new page
-      window.location.href = url;
+  async handleNavigationClick(e) {
+    e.preventDefault();
+    await CloudTransition.handleTransitionNavigation(this.href);
+  }
+
+
+  async handleTransitionNavigation(url) {
+    try {
+      // 1. Freeze UI
+      document.documentElement.style.pointerEvents = 'none';
+
+      // 2. Set transition flags
+      sessionStorage.setItem('shouldTransitionIn', 'true');
+
+      // 3. Start transition
+      const animations = new Animations(this.domUtils.elements);
+      const success = await animations.cloudTransitionOut(url);
+
+      if (!success) {
+        throw new Error('Transition failed');
+      }
 
     } catch (error) {
       console.error('Transition failed:', error);
-      // Restore UI interactions before fallback
-      document.documentElement.style.pointerEvents = '';
       // Fallback to normal navigation
       window.location.href = url;
     }
   }
+  // async handleTransitionNavigation(url) {
+  //   try {
+  //     // 1. Freeze UI
+  //     document.documentElement.style.pointerEvents = 'none';
+
+  //     // 2. Hide interfering elements
+  //     this.hideWip();
+  //     this.hideScrollBar();
+
+  //     // 3. Trigger cloud transition
+  //     const transitionSuccess = await CloudTransition.triggerTransition();
+
+  //     if (!transitionSuccess) {
+  //       console.warn('Proceeding with direct navigation');
+  //       window.location.href = url;
+  //       return;
+  //     }
+
+  //     // 4. Optional: Add slight delay before navigation
+  //     await new Promise(resolve => setTimeout(resolve, 300));
+
+  //     // 5. Navigate
+  //     window.location.href = url;
+
+  //   } catch (error) {
+  //     console.error('Transition failed:', error);
+  //     // Fallback to normal navigation
+  //     window.location.href = url;
+  //   } finally {
+  //     // Always restore pointer events if navigation fails
+  //     document.documentElement.style.pointerEvents = '';
+  //   }
+  // }
+
+
 
   initializeFormCloseButton() {
     // Method to attach the event listener
@@ -372,7 +443,7 @@ export class Navbar {
           this.handleFormClose();
         });
         closeButton._closeListenerAttached = true; // Prevent duplicate listeners
-        console.log('Close button initialized');
+
       }
     };
 

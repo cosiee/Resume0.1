@@ -1,3 +1,5 @@
+/* otherStyles.css */
+
 /* Navbar Styles */
 a.nav-link {
   color: #ffffff;
@@ -83,16 +85,15 @@ body.clouds-complete > *:not(#cloud-transition):not(#transition-overlay) {
   transition: opacity 0.5s ease-out;
 }
 
+/* Add to your existing styles */
 #cloud1,
 #cloud2,
 #cloud3,
 #cloud4,
-#cloud5,
-#cloud1M {
+#cloud5 {
+  transform-origin: center;
+  transition: transform 1.2s ease-out, opacity 1s ease;
   will-change: transform, opacity;
-  pointer-events: none;
-  transform-origin: center center;
-  /* Maintain your existing cloud styles */
 }
 
 /* Ensure transition overlay stays above content but below clouds */
@@ -104,6 +105,16 @@ body.clouds-complete > *:not(#cloud-transition):not(#transition-overlay) {
 .body-transitioning {
   overflow: hidden;
   pointer-events: none;
+}
+
+#cloud1,
+#cloud2,
+#cloud3,
+#cloud4,
+#cloud5 {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
 }
 
 /* End of Cloud Animations--page transition */
