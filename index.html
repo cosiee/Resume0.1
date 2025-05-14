@@ -39,7 +39,7 @@
 <body>
   <div class="scrollDist" width="100%" height="200%">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-transparent" id="topNav">
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent page-content" id="topNav">
       <div class="container-fluid" id="navbar">
         <!-- Burger Menu  -->
         <button class="navbar-toggler left" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -105,42 +105,45 @@
       </div>
     </nav>
 
-    <div class="svg-container container-fluid" id="mountains">
-      <svg viewBox="0 0 1200 800" id="svg" xmlns="https://www.w3.org/2000/svg" visibility="hidden">
-        <mask id="m">
-          <g class="img-fluid" id="cloud1">
-            <rect fill="#fff" width="1200" height="800" y="1200" />
-            <image xlink:href="assets/cl1.webp" width="1200" height="800" />
+    <div class="svg-responsive-container">
+      <div class="svg-container container-fluid" id="mountains">
+        <svg viewBox="0 0 1200 800" id="svg" xmlns="https://www.w3.org/2000/svg" visibility="hidden">
+          <mask id="m">
+            <g class="img-fluid" id="cloud1M">
+              <rect fill="#fff" width="1200" height="1800" y="1200" />
+              <image xlink:href="assets/cl1.webp" width="1200" height="800" />
+            </g>
+          </mask>
+
+          <image class="img-fluid" id="sky" xlink:href="assets/sky.webp" width="1200" height="800" />
+          <image class="img-fluid" id="mountBg" xlink:href="assets/mtbg.webp" width="1200" height="800" />
+          <image class="img-fluid" id="cloud2" xlink:href="assets/cl2.webp" width="1200" height="800" />
+          <image class="img-fluid" id="mountBg2" xlink:href="assets/mtbg2.webp" width="1200" height="800" />
+          <image class="img-fluid" id="cloud3" xlink:href="assets/cl4.webp" width="1200" height="800" />
+          <image class="img-fluid" id="mountMg" xlink:href="assets/mtmg.webp" width="1200" height="800" />
+          <image class="img-fluid" id="cloud4" xlink:href="assets/cl4.webp" width="1200" height="800" />
+          <image class="img-fluid" id="mountMgF" xlink:href="assets/mtmfg.webp" width="1200" height="800" />
+          <image class="img-fluid" id="mountFg" xlink:href="assets/mtfg.webp" width="1200" height="800" />
+          <image class="img-fluid" id="cloud5" xlink:href="assets/cl4.webp" width="1200" height="800" />
+          <image class="img-fluid" id="cloud1" xlink:href="assets/cl1.webp" width="1200" height="800" />
+          <image class="img-fluid" id="cloud6" xlink:href="assets/cl1.webp" width="1200" height="800" />
+
+          <text class="lrgtext" id="see" fill="#fff" dominant-baseline="middle" text-anchor="middle"
+            style="visibility: hidden;">SEE</text>
+
+          <g mask="url(#m)">
+            <rect fill="#fff" width="100%" height="100%" />
+            <rect id="meshaker" />
+            <a class="meLink" id="meLink">
+              <text class="lrgtext" id="me" fill="#162a43" aria-disabled="true" dominant-baseline="middle"
+                text-anchor="middle" display="none">ME</text>
+            </a>
+            <div class="scroll-arrow" id="down" x="455" y="330"></div>
           </g>
-        </mask>
-
-        <image class="img-fluid" id="sky" xlink:href="assets/sky.webp" width="1200" height="800" />
-        <image class="img-fluid" id="mountBg" xlink:href="assets/mtbg.webp" width="1200" height="800" />
-        <image class="img-fluid" id="cloud2" xlink:href="assets/cl2.webp" width="1200" height="800" />
-        <image class="img-fluid" id="mountBg2" xlink:href="assets/mtbg2.webp" width="1200" height="800" />
-        <image class="img-fluid" id="cloud3" xlink:href="assets/cl4.webp" width="1200" height="800" />
-        <image class="img-fluid" id="mountMg" xlink:href="assets/mtmg.webp" width="1200" height="800" />
-        <image class="img-fluid" id="cloud4" xlink:href="assets/cl4.webp" width="1200" height="800" />
-        <image class="img-fluid" id="mountMgF" xlink:href="assets/mtmfg.webp" width="1200" height="800" />
-        <image class="img-fluid" id="mountFg" xlink:href="assets/mtfg.webp" width="1200" height="800" />
-        <image class="img-fluid" id="cloud5" xlink:href="assets/cl4.webp" width="1200" height="800" />
-        <image class="img-fluid" id="cloud1" xlink:href="assets/cl1.webp" width="1200" height="800" />
-
-        <text class="lrgtext" id="see" fill="#fff" dominant-baseline="middle" text-anchor="middle"
-          style="visibility: hidden;">SEE</text>
-
-        <g mask="url(#m)">
-          <rect fill="#fff" width="100%" height="100%" />
-          <rect id="meshaker" />
-          <a class="meLink" id="meLink">
-            <text class="lrgtext" id="me" fill="#162a43" aria-disabled="true" dominant-baseline="middle"
-              text-anchor="middle" display="none">ME</text>
-          </a>
-          <div class="scroll-arrow" id="down" x="455" y="330"></div>
-        </g>
+        </svg>
+      </div>
     </div>
-
-    <div class="container-fluid thumbnails" id="thumbnails">
+    <div class="container-fluid thumbnails page-content" id="thumbnails">
       <!-- Software -->
       <a class="thumbs">
         <div class="thumbShape thumbs loading" id="software"
@@ -177,11 +180,11 @@
         </div>
       </a>
     </div>
-    </svg>
+
   </div>
 
 
-  <div class="container-fluid modalbox" id="statementContact" style="display: box;">
+  <div class="container-fluid modalbox page-content" id="statementContact" style="display: box;">
     <div class="box">
       <a class="close" id="modalClose">X</a>
       <p class="title">Welcome</p>
@@ -204,7 +207,7 @@
 
 
 
-  <div class="formDiv" id="contactForm" style="display: none;">
+  <div class="formDiv page-content" id="contactForm" style="display: none;">
     <a class="closeForm" id="contactFormClose">X</a>
     <form action="https://formspree.io/f/meqyreww" method="POST">
       <label> Your name:
@@ -221,7 +224,7 @@
 
   <!-- <script src="js/testTwo.js" defer></script> -->
 
-  <div class="container-fluid modalbox wip" id="wip" style="display: box;">
+  <div class="container-fluid modalbox wip page-content" id="wip" style="display: box;">
     <div class="box">
       <a class="close" id="modalWipClose">X</a>
       <div class="content">
@@ -234,6 +237,7 @@
       </div>
     </div>
   </div>
+  <div class="cloud-overlay"></div>
 </body>
 
 </html>

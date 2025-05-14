@@ -14,16 +14,16 @@ export class Animations {
             }
 
             // 1. FIRST reset all cloud positions (clear any existing transforms)
-            const clouds = ["#cloud1", "#cloud2", "#cloud3", "#cloud4", "#cloud5", "#cloud1M"];
+            const clouds = ["#cloud1", "#cloud2", "#cloud3", "#cloud4", "#cloud5", "#cloud1M", "#cloud6"];
             gsap.set(clouds, { clearProps: "x, y, scale" }); // Reset ONLY position/scale props
 
-            // 2. Set EXACT starting positions (must match fromTo() start values)
+            // 2. Set starting positions 
             gsap.set("#cloud1, #cloud1M", { x: 150, y: 726, scale: 1.3 });
             gsap.set("#cloud2", { x: 400, y: 310, scale: 1 });
             gsap.set("#cloud3", { x: -200, y: 320, scale: 1 });
             gsap.set("#cloud4", { x: 300, y: 400, scale: 1 });
             gsap.set("#cloud5", { x: -100, y: 580, scale: 1.5 });
-
+            gsap.set("#cloud6", { x: 150, y: 826, scale: 1.3 });
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: this.domElements.scrollDist,
@@ -33,7 +33,7 @@ export class Animations {
                 }
             });
 
-            // Mountain animations (unchanged)
+            // Mountain animations
             tl.fromTo("#sky", { scale: 1, x: 0, y: -80 }, { scale: 1.3, x: -150, y: -650 }, 0)
                 .fromTo("#mountBg", { scale: 1, x: 0, y: 70 }, { scale: 1.3, x: -150, y: -600 }, 0)
                 .fromTo("#mountBg2", { scale: 1, x: 0, y: 110 }, { scale: 1.3, x: -150, y: -670 }, 0)
@@ -41,8 +41,8 @@ export class Animations {
                 .fromTo("#mountMgF", { scale: 1, x: 0, y: 200 }, { scale: 1.3, x: -150, y: -750 }, 0)
                 .fromTo("#mountFg", { scale: 1, x: 0, y: 220 }, { scale: 1.3, x: -150, y: -850 }, 0);
 
-            // 3. Cloud animations - REMOVED fromTo() and use to() instead
-            // Since we already set the start positions, we only need to define where they're going
+            // 3. Cloud animations 
+
             tl.to("#cloud2", { x: -200, y: -500 }, 0)
                 .to("#cloud3", { x: 500, y: -900 }, 0)
                 .to("#cloud4", { x: -400, y: -750 }, 0)

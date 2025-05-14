@@ -128,11 +128,11 @@ document.addEventListener("DOMContentLoaded", async function () {
           if (el) {
             const transform = el.getAttribute("transform") || "none";
             const bounds = el.getBBox();
-            console.log(`${id}:`, {
-              transform,
-              position: { x: bounds.x, y: bounds.y },
-              computed: gsap.getProperty(el)
-            });
+            // console.log(`${id}:`, {
+            //   transform,
+            //   position: { x: bounds.x, y: bounds.y },
+            //   computed: gsap.getProperty(el)
+            // });
           }
         });
       };

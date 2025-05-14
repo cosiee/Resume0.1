@@ -258,7 +258,7 @@ export class Navbar {
           this.domUtils.collectThumbs();
 
           // Additional index-specific logic if needed
-          this.handleIndexPageFormOpen();
+          // this.handleIndexPageFormOpen();
         }
 
         // For analytics or debugging
@@ -358,7 +358,7 @@ export class Navbar {
           this.handleFormClose();
         });
         closeButton._closeListenerAttached = true; // Prevent duplicate listeners
-        console.log('Close button initialized');
+
       }
     };
 
