@@ -102,6 +102,7 @@ a[data-transition-nav]:hover::after {
   transform: scaleX(1);
   transform-origin: left;
 }
+
 /*End of Cloud transition styles */
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ SEE/ME Base Styles $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
@@ -135,6 +136,10 @@ a[data-transition-nav]:hover::after {
 #svg {
   visibility: hidden;
 }
+
+/* ---------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------- */
 
 text.lrgtext {
   position: absolute;

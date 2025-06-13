@@ -41,6 +41,7 @@ export const selectors = {
   slider5: "#slider5",
   slider6: "#slider6",
   slider7: "#slider7",
+  slider7: "#slider8"
 };
 
 
@@ -98,6 +99,8 @@ document.addEventListener("DOMContentLoaded", function () {
         showArrows: "on",
         hideDots: "on"
       });
+
+      $("#slider6").sliderResponsive();
     });
 
 

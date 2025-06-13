@@ -1,3 +1,18 @@
+
+.scrollDist {
+  width: 100%;
+  min-height: 100vh; /* Allow container to expand with content */
+  overflow: visible !important; /* Override any hidden overflow */
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto; /* Ensure vertical scrolling is enabled */
+}
+
+/* .scrollDist { border: 2px solid red; }
+#slider6 { border: 2px solid blue; } */
+
 /* Navbar Styles */
 a.nav-link {
   color: #ffffff;
@@ -69,7 +84,8 @@ body.photography-page .formDiv#contactForm {
   display: flex;
   gap: 20px;
   width: 100%;
-  min-height: 500px;
+  /* min-height: 500px; */
+   min-height: auto;
   position: relative;
 }
 
@@ -136,6 +152,18 @@ body.photography-page .formDiv#contactForm {
   flex: 1;
   max-width: calc(30% - 10px);
 }
+
+#slider6 {
+  width: 100% !important;
+  /* margin-top: 40px; 
+  margin-bottom: 100px; Ensure space at bottom for scrolling */
+    margin: 00px 0; /* Add spacing */
+  position: relative !important; /* Override any absolute/fixed positioning */
+  /* overflow: visible !important; */
+}
+
+
+
 
 /* Slider 3 Specific */
 #slider3 > div {
@@ -299,6 +327,7 @@ body.photography-page .formDiv#contactForm {
 }
 
 /* Specific Slide Backgrounds */
+/* Ireland */
 #slider1 div:nth-child(1) {
   background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118986/compressed-img-6855-copy_f9big6.webp);
 }
@@ -313,17 +342,19 @@ body.photography-page .formDiv#contactForm {
   background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118991/compressed-summer-0477_cbnncw.webp);
 }
 #slider1 div:nth-child(5) {
-  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118992/compressed-summer-0505_boozks.webp);
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118993/compressed-summer-0547_ufbms7.webp);
 }
 
+
+/* Malaysia */
 #slider2 div:nth-child(1) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg);
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203043/IMG_7623_abm9su.webp);
 }
 #slider2 div:nth-child(2) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg);
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203049/DSC04958_fez1yc.webp);
 }
 #slider2 div:nth-child(3) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_bodie-11.jpg);
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203058/IMG_8813_tsebmj.webp);
 }
 
 #slider3 div:nth-child(1) {
@@ -382,16 +413,43 @@ body.photography-page .formDiv#contactForm {
 #slider4 div:nth-child(10) {
   background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103544/compressed-egypt-rtrpix-7008_gkdpsx.webp);
 }
-
+/* Nepal */
 #slider5 div:nth-child(1) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg);
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200658/Annnapurna_South_Fang2_vwgzr9.webp);
 }
 #slider5 div:nth-child(2) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg);
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200638/IMG_3438_zou1cl.webp);
 }
 #slider5 div:nth-child(3) {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_bodie-11.jpg);
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200634/IMG_2753_nlwdto.webp);
 }
+#slider5 div:nth-child(4) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200634/IMG_3872_g5lkrk.webp);
+}
+#slider5 div:nth-child(5) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203027/IMG_2845_01_l6wz9a.webp);
+}
+
+/* Jordan */
+#slider6 div:nth-child(1) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207138/Jordan-RTRPix-6082_pgsgwd.webp);
+}
+#slider6 div:nth-child(2) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207316/Jordan-RTRPix-6451_zvwmqz.webp);
+}
+#slider6 div:nth-child(3) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207379/Jordan-RTRPix-6584_ass3ed.webp);
+}
+#slider6 div:nth-child(4) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207320/Jordan-RTRPix-5947_yedzwy.webp);
+}
+#slider6 div:nth-child(5) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207226/Jordan-RTRPix-6064_vjpu7j.webp);
+}
+#slider6 div:nth-child(6) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207138/Jordan-RTRPix-6082_pgsgwd.webp);
+}
+
 
 /* Base Styles */
 body {

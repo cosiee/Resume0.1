@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const el = document.getElementById(id);
     if (el) el.style.opacity = 0;
   });
-
+navbar.hideScrollBar();
   try {
     // Load critical images first - this should be FIRST
     await preloadCriticalImages(prioritizedImages);
