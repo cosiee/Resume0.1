@@ -2,7 +2,7 @@
 // This file is responsible for the photography section of the website.
 import { DomUtils } from "./domUtils.js";
 // import { initThumbnails, preloadCriticalImages } from "./preload.js";
-import { Navbar } from './navbar.js';
+import { Navbar } from "./navbar.js";
 
 export const selectors = {
   scrollDist: ".scrollDist",
@@ -13,7 +13,6 @@ export const selectors = {
   contactFormClose: "#contactFormClose",
   formButton: "#formButton",
   modalWipClose: "#modalWipClose",
-
 
   // Navbar Links & Dropdowns
   navHome: "#navHome",
@@ -41,11 +40,8 @@ export const selectors = {
   slider5: "#slider5",
   slider6: "#slider6",
   slider7: "#slider7",
-  slider7: "#slider8"
+  slider7: "#slider8",
 };
-
-
-
 
 const navbar = new Navbar(selectors);
 // const duration = Navbar.BASE_SCROLL_DURATION; // For static property
@@ -59,16 +55,120 @@ let galleryThumbnails;
 
 
 
+
+
+
+
+
+
+const galleryData = {
+  ireland: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118986/compressed-img-6855-copy_f9big6.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118990/compressed-summer-0468_szmnqj.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118989/compressed-summer-0460_w1ralb.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118991/compressed-summer-0477_cbnncw.webp",
+    ],
+    full: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118993/compressed-summer-0547_ufbms7.webp",
+    ]
+  },
+  maylaysia: {
+    preview: [
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203043/IMG_7623_abm9su.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203049/DSC04958_fez1yc.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203058/IMG_8813_tsebmj.webp'
+
+    ],
+    full: [
+      // 'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203058/IMG_8813_tsebmj.webp'
+    ]
+
+  },
+  indonesia: {
+    preview: [
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036323/indoRTRPix_-4334_rb0axe.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036322/indoRTRPix_-4175_gyxbkj.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036321/indoRTRPix_-3922_hglvii.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036317/indoRTRPix_-3263_cplk9b.webp'
+    ],
+    full: [
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-2621_jtflh9.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-1429_oxhhhq.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036317/indoRTRPix_-3263_cplk9b.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-4159_equalj.webp'
+    ]
+  },
+  egypt: {
+    preview: [
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103545/compressed-egypt-rtrpix-7464_hyfadx.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103545/compressed-egypt-rtrpix-7145_zqfbul.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103552/compressed-egypt-rtrpix-8188_prhy17.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8569_fwdcgz.webp'
+    ],
+    full: [
+
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103555/compressed-egypt-rtrpix-9252_e462bb.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8872_z6fhnb.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8724_xrmxf7.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103548/compressed-egypt-rtrpix-8048_wxzwun.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103546/compressed-egypt-rtrpix-7796_ohjxup.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103544/compressed-egypt-rtrpix-7008_gkdpsx.webp'
+
+    ]
+  },
+  nepal: {
+    preview: [
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200658/Annnapurna_South_Fang2_vwgzr9.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200638/IMG_3438_zou1cl.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200634/IMG_2753_nlwdto.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200634/IMG_3872_g5lkrk.webp'
+    ],
+    full: [
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203027/IMG_2845_01_l6wz9a.webp'
+
+    ]
+  },
+
+  jordan: {
+    preview: [
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207138/Jordan-RTRPix-6082_pgsgwd.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207316/Jordan-RTRPix-6451_zvwmqz.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207379/Jordan-RTRPix-6584_ass3ed.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207320/Jordan-RTRPix-5947_yedzwy.webp'
+
+
+    ],
+
+    full: [
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207226/Jordan-RTRPix-6064_vjpu7j.webp'
+
+    ]
+  }
+};
+
+
+
+function preloadFullGalleryImages() {
+  Object.values(galleryData).forEach(gallery => {
+    gallery.full.forEach(imgUrl => {
+      const img = new Image();
+      img.src = imgUrl;
+    });
+  });
+}
+
+
 // initGalleryModal function
 function initGalleryModal() {
   // Create modal elements if they don't exist
-  let modal = document.getElementById('galleryModal');
+  let modal = document.getElementById("galleryModal");
   if (!modal) {
-    modal = document.createElement('div');
-    modal.id = 'galleryModal';
-    modal.className = 'gallery-modal';
-    modal.style.display = 'none';
-    
+    modal = document.createElement("div");
+    modal.id = "galleryModal";
+    modal.className = "gallery-modal";
+    modal.style.display = "none";
+
     modal.innerHTML = `
       <div class="gallery-modal-content">
         <span class="gallery-modal-close">&times;</span>
@@ -80,26 +180,29 @@ function initGalleryModal() {
   }
 
   // Get all slider images from all sliders
-  const sliders = document.querySelectorAll('.slider');
-  sliders.forEach(slider => {
-    const slides = slider.querySelectorAll('div:not(.arrows):not(.titleBar)');
-    
+  const sliders = document.querySelectorAll(".slider");
+  sliders.forEach((slider) => {
+    const slides = slider.querySelectorAll("div:not(.arrows):not(.titleBar)");
+
     slides.forEach((slide, index) => {
-      if (slide.style.backgroundImage || window.getComputedStyle(slide).backgroundImage !== 'none') {
-        slide.style.cursor = 'pointer';
-        slide.addEventListener('click', function() {
+      if (
+        slide.style.backgroundImage ||
+        window.getComputedStyle(slide).backgroundImage !== "none"
+      ) {
+        slide.style.cursor = "pointer";
+        slide.addEventListener("click", function () {
           openGalleryModal(slide, index, slider);
         });
       }
     });
   });
-  
+
   // Close modal when X is clicked
-  const closeBtn = document.querySelector('.gallery-modal-close');
-  closeBtn.addEventListener('click', closeGalleryModal);
-  
+  const closeBtn = document.querySelector(".gallery-modal-close");
+  closeBtn.addEventListener("click", closeGalleryModal);
+
   // Close modal when clicking outside content
-  modal.addEventListener('click', function(e) {
+  modal.addEventListener("click", function (e) {
     if (e.target === modal) {
       closeGalleryModal();
     }
@@ -107,8 +210,10 @@ function initGalleryModal() {
 }
 
 
+
+
 function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
-  const modal = document.getElementById('galleryModal');
+  const modal = document.getElementById("galleryModal");
   modal.innerHTML = `
     <div class="gallery-modal-content">
       <span class="gallery-close-btn">&times;</span>
@@ -123,473 +228,169 @@ function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
     </div>
   `;
 
-  const slideContainer = modal.querySelector('.gallery-slide-container');
-  const thumbnailsWrapper = modal.querySelector('.gallery-thumbnails-wrapper');
-  const closeBtn = modal.querySelector('.gallery-close-btn');
-  const prevBtn = modal.querySelector('.prev-btn');
-  const nextBtn = modal.querySelector('.next-btn');
+  const slideContainer = modal.querySelector(".gallery-slide-container");
+  const thumbnailsWrapper = modal.querySelector(".gallery-thumbnails-wrapper");
+  const closeBtn = modal.querySelector(".gallery-close-btn");
+  const prevBtn = modal.querySelector(".prev-btn");
+  const nextBtn = modal.querySelector(".next-btn");
 
-  // Debug styling - temporary
-  // thumbnailsWrapper.style.border = '2px solid red';
-  // thumbnailsWrapper.style.backgroundColor = 'rgba(255,0,0,0.1)';
+  // Determine which gallery we're opening based on slider ID
+  const galleryMap = {
+    'slider1': 'ireland',
+    'slider2': 'maylaysia',
+    'slider3': 'indonesia',
+    'slider4': 'egypt',
+    'slider5': 'nepal',
+    'slider6': 'jordan'
+  };
 
-  // Get all slides (excluding arrows and titleBar)
-  const allSlides = Array.from(sliderContainer.children)
-    .filter(div => {
-      const isSlide = div.tagName === 'DIV' && 
-                    !div.classList.contains('arrows') && 
-                    !div.classList.contains('titleBar');
-      return isSlide;
-    });
+  const galleryId = galleryMap[sliderContainer.id] || 'default';
+  
+  // COMBINE PREVIEW + FULL IMAGES
+  const previewImages = galleryData[galleryId]?.preview || [];
+  const fullImages = galleryData[galleryId]?.full || [];
+  const allImages = [...previewImages, ...fullImages]; // Merge both arrays
 
-  // Create slides and thumbnails
-  allSlides.forEach((slide, index) => {
-    const bgImage = window.getComputedStyle(slide).backgroundImage;
-    
+  // Create slides and thumbnails from ALL images
+  allImages.forEach((imgUrl, index) => {
     // Main slide
-    const slideElement = document.createElement('div');
-    slideElement.className = 'gallery-slide';
+    const slideElement = document.createElement("div");
+    slideElement.className = "gallery-slide";
     slideElement.style.cssText = `
-      background-image: ${bgImage};
+      background-image: url(${imgUrl});
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center center;
-      display: ${index === slideIndex ? 'block' : 'none'};
+      display: ${index === slideIndex ? "block" : "none"};
     `;
     slideContainer.appendChild(slideElement);
-    
-    // Thumbnail
-    const thumbElement = document.createElement('div');
-  thumbElement.className = 'gallery-thumb';
-  thumbElement.style.cssText = `
-    background-image: ${bgImage};
-    background-size: cover;
-    background-position: center;
-    width: 60px;  // Changed from 60px to match container
-    height: 60px;
-    flex-shrink: 0;
-    display: block; // Ensure visibility
-    cursor: pointer;
-    border-radius: 6px;
-    border: 2px solid ${index === slideIndex ? '#fff' : 'transparent'};
-    opacity: ${index === slideIndex ? '1' : '0.7'};
-    transition: all 0.3s ease;
-  `;
-  
-  // Keep all interactive functionality
-  thumbElement.addEventListener('click', () => {
-    showSlide(index);
-    thumbElement.scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center'
-    });
-  });
-  
-  console.log(`Appending thumbnail ${index}`, thumbElement);
-  thumbnailsWrapper.appendChild(thumbElement);
-});
 
-thumbnailsWrapper.style.minWidth = `${( 10) * allSlides.length}px`;
-console.log('Forced wrapper width:', thumbnailsWrapper.style.minWidth);
-thumbnailsWrapper.style.margin = '0 auto';
-console.log('Wrapper centered with margin:', thumbnailsWrapper.style.margin);
+    // Thumbnail
+    const thumbElement = document.createElement("div");
+    thumbElement.className = "gallery-thumb";
+    thumbElement.style.cssText = `
+      background-image: url(${imgUrl});
+      background-size: cover;
+      background-position: center;
+      width: 60px;
+      height: 60px;
+      flex-shrink: 0;
+      display: block;
+      cursor: pointer;
+      border-radius: 6px;
+      border: 2px solid ${index === slideIndex ? "#fff" : "transparent"};
+      opacity: ${index === slideIndex ? "1" : "0.7"};
+      transition: all 0.3s ease;
+    `;
+
+    thumbElement.addEventListener("click", () => {
+      showSlide(index);
+      thumbElement.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
+    });
+
+    thumbnailsWrapper.appendChild(thumbElement);
+  });
+
+  // Set wrapper dimensions
+  thumbnailsWrapper.style.minWidth = `${(60 + 10) * allImages.length}px`;
+  thumbnailsWrapper.style.margin = "0 auto";
 
   // Navigation functions
   function showSlide(index) {
-    const slides = modal.querySelectorAll('.gallery-slide');
-    const thumbs = modal.querySelectorAll('.gallery-thumb');
-    
+    const slides = modal.querySelectorAll(".gallery-slide");
+    const thumbs = modal.querySelectorAll(".gallery-thumb");
+
     slides.forEach((slide, i) => {
-      slide.style.display = i === index ? 'block' : 'none';
+      slide.style.display = i === index ? "block" : "none";
     });
-    
+
     thumbs.forEach((thumb, i) => {
-      thumb.style.opacity = i === index ? '1' : '0.7';
-      thumb.style.borderColor = i === index ? '#fff' : 'transparent';
+      thumb.style.opacity = i === index ? "1" : "0.7";
+      thumb.style.borderColor = i === index ? "#fff" : "transparent";
     });
   }
 
   function showNextSlide() {
-    const currentIndex = Array.from(modal.querySelectorAll('.gallery-slide'))
-      .findIndex(slide => slide.style.display === 'block');
-    const nextIndex = (currentIndex + 1) % allSlides.length;
+    const currentIndex = Array.from(modal.querySelectorAll(".gallery-slide"))
+      .findIndex(slide => slide.style.display === "block");
+    const nextIndex = (currentIndex + 1) % allImages.length;
     showSlide(nextIndex);
     
-    const activeThumb = modal.querySelectorAll('.gallery-thumb')[nextIndex];
+    const activeThumb = modal.querySelectorAll(".gallery-thumb")[nextIndex];
     activeThumb?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center'
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center"
     });
   }
 
   function showPrevSlide() {
-    const currentIndex = Array.from(modal.querySelectorAll('.gallery-slide'))
-      .findIndex(slide => slide.style.display === 'block');
-    const prevIndex = (currentIndex - 1 + allSlides.length) % allSlides.length;
+    const currentIndex = Array.from(modal.querySelectorAll(".gallery-slide"))
+      .findIndex(slide => slide.style.display === "block");
+    const prevIndex = (currentIndex - 1 + allImages.length) % images.length;
     showSlide(prevIndex);
     
-    const activeThumb = modal.querySelectorAll('.gallery-thumb')[prevIndex];
+    const activeThumb = modal.querySelectorAll(".gallery-thumb")[prevIndex];
     activeThumb?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center'
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center"
     });
   }
 
   // Event listeners
-  closeBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
+  closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
   });
 
-  prevBtn.addEventListener('click', showPrevSlide);
-  nextBtn.addEventListener('click', showNextSlide);
+  prevBtn.addEventListener("click", showPrevSlide);
+  nextBtn.addEventListener("click", showNextSlide);
   
-  modal.addEventListener('click', (e) => {
+  modal.addEventListener("click", (e) => {
     if (e.target === modal) {
-      modal.style.display = 'none';
-      document.body.style.overflow = 'auto';
+      modal.style.display = "none";
+      document.body.style.overflow = "auto";
     }
   });
 
   // Keyboard navigation
-  document.addEventListener('keydown', function handleKeyDown(e) {
-    if (modal.style.display === 'flex') {
-      if (e.key === 'ArrowLeft') showPrevSlide();
-      if (e.key === 'ArrowRight') showNextSlide();
-      if (e.key === 'Escape') {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
+  document.addEventListener("keydown", function handleKeyDown(e) {
+    if (modal.style.display === "flex") {
+      if (e.key === "ArrowLeft") showPrevSlide();
+      if (e.key === "ArrowRight") showNextSlide();
+      if (e.key === "Escape") {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
       }
     }
   });
 
   // Show modal
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
+  modal.style.display = "flex";
+  document.body.style.overflow = "hidden";
   
   // Center the initial active thumbnail
   setTimeout(() => {
-    const activeThumb = modal.querySelectorAll('.gallery-thumb')[slideIndex];
+    const activeThumb = modal.querySelectorAll(".gallery-thumb")[slideIndex];
     activeThumb?.scrollIntoView({
-      block: 'nearest',
-      inline: 'center'
+      block: "nearest",
+      inline: "center"
     });
   }, 100);
 }
 
 
 
-
-
-// Update the openGalleryModal function
-// function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
-//   const modal = document.getElementById('galleryModal');
-//   const mainSlider = modal.querySelector('.gallery-main-slider');
-//   const thumbnails = modal.querySelector('.gallery-thumbnails');
-  
-//   // Clear previous content
-//   mainSlider.innerHTML = '';
-//   thumbnails.innerHTML = '';
-  
-//   // Get all slides from the clicked slider
-//   const allSlides = Array.from(sliderContainer.children)
-//     .filter(el => {
-//       // Filter out non-slide elements (arrows, title bars, etc.)
-//       return !el.classList.contains('arrows') && 
-//              !el.classList.contains('titleBar') &&
-//              (el.style.backgroundImage || window.getComputedStyle(el).backgroundImage !== 'none');
-//     });
-  
-//   // Create main slider content
-//   allSlides.forEach((slide, index) => {
-//     const slideClone = document.createElement('div');
-//     slideClone.className = 'gallery-slide';
-    
-//     // Copy background image
-//     const bgImage = slide.style.backgroundImage || window.getComputedStyle(slide).backgroundImage;
-//     slideClone.style.backgroundImage = bgImage;
-//     slideClone.style.backgroundSize = 'contain';
-//     slideClone.style.backgroundRepeat = 'no-repeat';
-//     slideClone.style.backgroundPosition = 'center';
-    
-//     slideClone.style.display = index === slideIndex ? 'block' : 'none';
-//     mainSlider.appendChild(slideClone);
-    
-//     // Create thumbnail
-//     const thumb = document.createElement('div');
-//     thumb.className = 'gallery-thumb';
-//     if (index === slideIndex) thumb.classList.add('active');
-    
-//     thumb.style.backgroundImage = bgImage;
-//     thumb.style.backgroundSize = 'cover';
-//     thumb.style.backgroundPosition = 'center';
-    
-//     thumb.addEventListener('click', () => {
-//       // Update main slider
-//       Array.from(mainSlider.children).forEach((s, i) => {
-//         s.style.display = i === index ? 'block' : 'none';
-//       });
-      
-//       // Update active thumbnail
-//       Array.from(thumbnails.children).forEach(t => {
-//         t.classList.toggle('active', t === thumb);
-//       });
-//     });
-    
-//     thumbnails.appendChild(thumb);
-//   });
-  
-//   // Show modal
-//   modal.style.display = 'flex';
-//   document.body.style.overflow = 'hidden';
-// }
-
-// Update the openGalleryModal function to include the new layout structure
-// function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
-//   const modal = document.getElementById('galleryModal');
-//   const mainSlider = modal.querySelector('.gallery-main-slider');
-//   const thumbnails = modal.querySelector('.gallery-thumbnails');
-  
-//   // Clear previous content
-//   mainSlider.innerHTML = '';
-//   thumbnails.innerHTML = '';
-  
-//   // Get all slides from the clicked slider
-//   const allSlides = Array.from(sliderContainer.children)
-//     .filter(el => {
-//       return !el.classList.contains('arrows') && 
-//              !el.classList.contains('titleBar') &&
-//              (el.style.backgroundImage || window.getComputedStyle(el).backgroundImage !== 'none');
-//     });
-  
-//   // Create main slider content with new structure
-//   const galleryContent = document.createElement('div');
-//   galleryContent.className = 'gallery-content-wrapper';
-  
-//   // Create main image container
-//   const mainImageContainer = document.createElement('div');
-//   mainImageContainer.className = 'gallery-main-image';
-  
-//   // Create navigation arrows
-//   const prevArrow = document.createElement('div');
-//   prevArrow.className = 'gallery-prev';
-//   prevArrow.innerHTML = '❮';
-  
-//   const nextArrow = document.createElement('div');
-//   nextArrow.className = 'gallery-next';
-//   nextArrow.innerHTML = '❯';
-  
-//   // Create image counter
-//   const imageCounter = document.createElement('div');
-//   imageCounter.className = 'gallery-counter';
-//   imageCounter.textContent = `${slideIndex + 1} / ${allSlides.length}`;
-  
-//   mainSlider.appendChild(galleryContent);
-//   galleryContent.appendChild(prevArrow);
-//   galleryContent.appendChild(mainImageContainer);
-//   galleryContent.appendChild(nextArrow);
-//   galleryContent.appendChild(imageCounter);
-  
-//   // Create slides
-//   allSlides.forEach((slide, index) => {
-//     const slideClone = document.createElement('div');
-//     slideClone.className = 'gallery-slide';
-    
-//     // Copy background image
-//     const bgImage = slide.style.backgroundImage || window.getComputedStyle(slide).backgroundImage;
-//     slideClone.style.backgroundImage = bgImage;
-//     slideClone.style.backgroundSize = 'contain';
-//     slideClone.style.backgroundRepeat = 'no-repeat';
-//     slideClone.style.backgroundPosition = 'center';
-    
-//     slideClone.style.display = index === slideIndex ? 'block' : 'none';
-//     mainImageContainer.appendChild(slideClone);
-    
-//     // Create thumbnail
-//     const thumb = document.createElement('div');
-//     thumb.className = 'gallery-thumb';
-//     if (index === slideIndex) thumb.classList.add('active');
-    
-//     thumb.style.backgroundImage = bgImage;
-//     thumb.style.backgroundSize = 'cover';
-//     thumb.style.backgroundPosition = 'center';
-    
-//     thumb.addEventListener('click', () => {
-//       // Update main slider
-//       Array.from(mainImageContainer.children).forEach((s, i) => {
-//         s.style.display = i === index ? 'block' : 'none';
-//       });
-      
-//       // Update active thumbnail
-//       Array.from(thumbnails.children).forEach(t => {
-//         t.classList.toggle('active', t === thumb);
-//       });
-      
-//       // Update counter
-//       imageCounter.textContent = `${index + 1} / ${allSlides.length}`;
-//     });
-    
-//     thumbnails.appendChild(thumb);
-//   });
-  
-//   // Add navigation functionality
-//   prevArrow.addEventListener('click', () => {
-//     const currentIndex = Array.from(mainImageContainer.children).findIndex(
-//       slide => slide.style.display === 'block'
-//     );
-//     const prevIndex = (currentIndex - 1 + allSlides.length) % allSlides.length;
-    
-//     mainImageContainer.children[currentIndex].style.display = 'none';
-//     mainImageContainer.children[prevIndex].style.display = 'block';
-    
-//     // Update active thumbnail
-//     Array.from(thumbnails.children).forEach((thumb, i) => {
-//       thumb.classList.toggle('active', i === prevIndex);
-//     });
-    
-//     // Update counter
-//     imageCounter.textContent = `${prevIndex + 1} / ${allSlides.length}`;
-//   });
-  
-//   nextArrow.addEventListener('click', () => {
-//     const currentIndex = Array.from(mainImageContainer.children).findIndex(
-//       slide => slide.style.display === 'block'
-//     );
-//     const nextIndex = (currentIndex + 1) % allSlides.length;
-    
-//     mainImageContainer.children[currentIndex].style.display = 'none';
-//     mainImageContainer.children[nextIndex].style.display = 'block';
-    
-//     // Update active thumbnail
-//     Array.from(thumbnails.children).forEach((thumb, i) => {
-//       thumb.classList.toggle('active', i === nextIndex);
-//     });
-    
-//     // Update counter
-//     imageCounter.textContent = `${nextIndex + 1} / ${allSlides.length}`;
-//   });
-  
-//   // Show modal
-//   modal.style.display = 'flex';
-//   document.body.style.overflow = 'hidden';
-// }
-
-// Update the openGalleryModal function
-// function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
-//   const modal = document.getElementById('galleryModal');
-//   modal.innerHTML = `
-//     <div class="gallery-modal-content">
-//       <span class="gallery-close-btn">&times;</span>
-//       <div class="gallery-main-container">
-//         <div class="gallery-slide-container"></div>
-//         <button class="gallery-nav-btn prev-btn">&#10094;</button>
-//         <button class="gallery-nav-btn next-btn">&#10095;</button>
-//       </div>
-//       <div class="gallery-thumbnails-container"></div>
-//     </div>
-//   `;
-
-//   const slideContainer = modal.querySelector('.gallery-slide-container');
-//   const thumbnailsContainer = modal.querySelector('.gallery-thumbnails-container');
-//   const closeBtn = modal.querySelector('.gallery-close-btn');
-//   const prevBtn = modal.querySelector('.prev-btn');
-//   const nextBtn = modal.querySelector('.next-btn');
-
-//   // Get all slides from the clicked slider
-//   const allSlides = Array.from(sliderContainer.children)
-//     .filter(el => {
-//       return !el.classList.contains('arrows') && 
-//              !el.classList.contains('titleBar') &&
-//              (el.style.backgroundImage || window.getComputedStyle(el).backgroundImage !== 'none');
-//     });
-
-//   // Create slides and thumbnails
-//   allSlides.forEach((slide, index) => {
-//     const bgImage = slide.style.backgroundImage || window.getComputedStyle(slide).backgroundImage;
-    
-//     // Create main slide
-//     const slideElement = document.createElement('div');
-//     slideElement.className = 'gallery-slide';
-//     slideElement.style.backgroundImage = bgImage;
-//     slideElement.style.display = index === slideIndex ? 'block' : 'none';
-//     slideContainer.appendChild(slideElement);
-    
-//     // Create thumbnail
-//     const thumbElement = document.createElement('div');
-//     thumbElement.className = 'gallery-thumb';
-//     thumbElement.style.backgroundImage = bgImage;
-//     if (index === slideIndex) thumbElement.classList.add('active');
-    
-//     thumbElement.addEventListener('click', () => {
-//       showSlide(index);
-//     });
-    
-//     thumbnailsContainer.appendChild(thumbElement);
-//   });
-
-//   // Navigation functions
-//   function showSlide(index) {
-//     const slides = modal.querySelectorAll('.gallery-slide');
-//     const thumbs = modal.querySelectorAll('.gallery-thumb');
-    
-//     slides.forEach((slide, i) => {
-//       slide.style.display = i === index ? 'block' : 'none';
-//     });
-    
-//     thumbs.forEach((thumb, i) => {
-//       thumb.classList.toggle('active', i === index);
-//     });
-//   }
-
-//   function showNextSlide() {
-//     const currentIndex = Array.from(modal.querySelectorAll('.gallery-slide'))
-//       .findIndex(slide => slide.style.display === 'block');
-//     const nextIndex = (currentIndex + 1) % allSlides.length;
-//     showSlide(nextIndex);
-//   }
-
-//   function showPrevSlide() {
-//     const currentIndex = Array.from(modal.querySelectorAll('.gallery-slide'))
-//       .findIndex(slide => slide.style.display === 'block');
-//     const prevIndex = (currentIndex - 1 + allSlides.length) % allSlides.length;
-//     showSlide(prevIndex);
-//   }
-
-//   // Event listeners
-//   closeBtn.addEventListener('click', closeGalleryModal);
-//   prevBtn.addEventListener('click', showPrevSlide);
-//   nextBtn.addEventListener('click', showNextSlide);
-  
-//   modal.addEventListener('click', (e) => {
-//     if (e.target === modal) {
-//       closeGalleryModal();
-//     }
-//   });
-
-//   // Keyboard navigation
-//   document.addEventListener('keydown', function handleKeyDown(e) {
-//     if (modal.style.display === 'flex') {
-//       if (e.key === 'ArrowLeft') showPrevSlide();
-//       if (e.key === 'ArrowRight') showNextSlide();
-//       if (e.key === 'Escape') closeGalleryModal();
-//     }
-//   });
-
-//   // Show modal
-//   modal.style.display = 'flex';
-//   document.body.style.overflow = 'hidden';
-// }
-
-
 function closeGalleryModal() {
-  const modal = document.getElementById('galleryModal');
-  modal.style.display = 'none';
-  document.body.style.overflow = 'auto';
+  const modal = document.getElementById("galleryModal");
+  modal.style.display = "none";
+  document.body.style.overflow = "auto";
 }
-
 
 document.addEventListener("DOMContentLoaded", function () {
   const navbar = new Navbar(selectors);
@@ -605,50 +406,51 @@ document.addEventListener("DOMContentLoaded", function () {
       domUtils.formControl(); // This will use the fallback positioning
       domUtils.showStatementContact();
       domUtils.showForm();
-    })
+    });
 
-    $(window).on('load', function () {
+
+    window.addEventListener('load', preloadFullGalleryImages);
+
+    initSliders();
+    $(window).on("load", function () {
       $("#slider1").sliderResponsive(); // Default settings
 
       $("#slider2").sliderResponsive({
         fadeSpeed: 300,
         autoPlay: "off",
         showArrows: "on",
-        hideDots: "on"
+        hideDots: "on",
       });
 
       $("#slider3").sliderResponsive({
         hoverZoom: "off",
-        hideDots: "on"
+        hideDots: "on",
       });
 
       $("#slider4").sliderResponsive({
         fadeSpeed: 300,
         autoPlay: "off",
         showArrows: "on",
-        hideDots: "on"
+        hideDots: "on",
       });
 
       $("#slider5").sliderResponsive({
         fadeSpeed: 300,
         autoPlay: "off",
         showArrows: "on",
-        hideDots: "on"
+        hideDots: "on",
       });
 
       $("#slider6").sliderResponsive();
     });
-
-
   }
 
   setupEventListeners();
 
-// Initialize gallery modal
+  // Initialize gallery modal
   initGalleryModal();
   // setupSliderClickHandlers();
 });
-
 
 function setupEventListeners() {
   // Setup event listeners for elements that exist on this page
@@ -658,23 +460,14 @@ function setupEventListeners() {
       // Page-specific cleanup if needed
     });
   }
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    function initSliders() {
+      // Nepal slider (now with just 4 preview images)
+      const nepalSlider = document.querySelector('#slider5');
+      galleryData.nepal.preview.forEach((imgUrl, index) => {
+        const slide = document.createElement('div');
+        slide.style.backgroundImage = `url(${imgUrl})`;
+        nepalSlider.appendChild(slide);
+      });
+    }
+  

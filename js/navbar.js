@@ -232,78 +232,30 @@ export class Navbar {
         }
       });
 
-    // Setup other transition-enabled nav items
-
-    // ["navHome", "navAbout", "navContact"].forEach(id => {
-    //   if (this.elements[id]) {
-    //     this.setupClickEvent(this.elements[id], (e) => {
-    //       if (e.target.classList.contains('transition-nav')) {
-    //         e.preventDefault();
-    //         this.handleTransitionNavigation(e.target.href);
-    //       }
-    //     });
-    //   }
-    // });
-
-    // In setupNavbarEvents() method:
 
 
-    // if (this.elements.navPhotography) {
-    //   this.elements.navPhotography.addEventListener('click', async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //       // Set flag for incoming page
-    //       sessionStorage.setItem('shouldTransitionIn', 'true');
-
-    //       // Set flag to handle reverse transition if needed
-    //       sessionStorage.setItem('cloudTransitionActive', 'true');
-
-    //       // Start transition
-    //       const success = await animations.cloudTransitionOut('photography.html');
-
-    //       // Only navigate if transition was successful
-    //       if (success) {
-    //         window.location.href = 'photography.html';
-    //       } else {
-    //         // Fallback to immediate navigation
-    //         window.location.href = 'photography.html';
-    //       }
-    //     } catch (error) {
-    //       console.error("Transition failed:", error);
-    //       // Fallback to immediate navigation
-    //       window.location.href = 'photography.html';
-    //     }
-    //   });
-    // }
-
-    if (this.elements.navPhotography) {
-      this.setupClickEvent(
-        this.elements.navPhotography,
-        this.handlePhotoClick.bind(this)
-      );
-    }
-    // if (this.elements.navPhotography) {
-    //   this.elements.navPhotography.addEventListener('click', async (e) => {
-    //     e.preventDefault();
-    //     await this.handleTransitionNavigation('photography.html');
-    //   });
-    // }
-
-    // if (this.elements.navPhotography) {
-    //   this.setupClickEvent(this.elements.navPhotography, (e) => {
+    //    if (this.elements.navHome) {
+    //   this.setupClickEvent(this.elements.navHome, (e) => {
     //     if (e.target.hasAttribute('data-transition-nav')) {
     //       e.preventDefault();
     //       this.handleTransitionNavigation(e.target.getAttribute('data-link'));
     //     }
     //   });
+    //   this.setupClickEvent(this.elements.navHome, () => this.autoScrollNow());
     // }
 
-    // if (this.elements.navPhotography) {
-    //   this.setupClickEvent(this.elements.navPhotography, (e) => {
-    //     e.preventDefault();
-    //     this.handleTransitionNavigation('photography.html');
-    //   });
-    // }
+
+    if (this.elements.navPhotography) {
+      this.setupClickEvent(this.elements.navPhotography, (e) => {
+         if (e.target.hasAttribute('data-transition-nav')) {
+           e.preventDefault();
+          this.handleTransitionNavigation(e.target.getAttribute('data-link'));
+         }
+      });
+      
+        this.setupClickEvent(this.elements.navPhotography, () => this.autoScrollNow());
+    }
+  
 
     // Close button handler
     const wipClose = document.getElementById("modalWipClose");
