@@ -1,3 +1,6 @@
+Remove scroll option on index on load, is scrolling still works for animation...?
+
+
 fix the thumbnail animation on index.html caused by working on the WIP, modal and 
 form handling in photography.html NO PULL REQUEST TILL RESOLVED
 

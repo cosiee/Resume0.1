@@ -70,6 +70,14 @@
             $slider.find("> ul > li").eq(pos).addClass("showli");
         }
 
+        function onClick(){
+            
+        }
+
         return $slider;
     };
 })(jQuery);
+
+
+
+
