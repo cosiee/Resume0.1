@@ -1,4 +1,3 @@
-/* otherStyles.css - Fixed Version */
 /* Navbar Styles */
 a.nav-link {
   color: #ffffff;
@@ -100,11 +99,21 @@ body.photography-page .formDiv#contactForm {
   opacity: 0;
 }
 
+/* Arrow buttons that appear on hover */
+.slider > .left {
+  left: -100px; /* Start hidden off to the left */
+  transition: left 0.3s ease;
+}
+
+.slider > .right {
+  right: -100px; /* Start hidden off to the right */
+  transition: right 0.3s ease;
+}
 .slider:hover > .left {
-  left: 0;
+  left: 20px;
 }
 .slider:hover > .right {
-  right: 0;
+  right: 20px;
 }
 
 /* Slider Layouts */
@@ -151,10 +160,7 @@ body.photography-page .formDiv#contactForm {
   right: 0;
 }
 
-
 /* ----- Arrow Base Styles ----- */
-
-
 .arrows {
   position: absolute;
   top: 50%;
@@ -171,7 +177,6 @@ body.photography-page .formDiv#contactForm {
   pointer-events: auto; /* Ensure hover works properly */
 }
 
-
 .arrows:hover {
   opacity: 1;
 }
@@ -186,13 +191,8 @@ body.photography-page .formDiv#contactForm {
   fill: white;
 }
 
-
 #slider2 .arrows {
   display: block !important;
-}
-
-.arrows:hover {
-  opacity: 1;
 }
 
 .left {
@@ -202,41 +202,43 @@ body.photography-page .formDiv#contactForm {
   right: 20px;
 }
 
-.arrows svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.arrows path {
-  fill: white;
-}
-
 /* Dots Navigation */
 .slider > ul {
   position: absolute;
   bottom: 8px;
   left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  list-style: none;
+  z-index: 20;
   padding: 0;
   margin: 0;
-  z-index: 4;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 8px; /* Adjust spacing between dots */
+  list-style: none;
+  width: auto;
 }
 
 .slider > ul > li {
+  padding: 0;
   width: 20px;
   height: 16px;
   border-radius: 24%;
-  border: 1px solid #fff;
+  list-style: none;
+  float: left;
+  margin: 6px 6px 0;
   cursor: pointer;
+  border: 1px solid #fff;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
 .slider > ul > .showli {
   background-color: #162a43;
+  -moz-animation: boing 0.5s forwards;
+  -o-animation: boing 0.5s forwards;
+  -webkit-animation: boing 0.5s forwards;
   animation: boing 0.5s forwards;
 }
 
@@ -262,6 +264,27 @@ body.photography-page .formDiv#contactForm {
 
 .slider:hover .titleBar {
   transform: translateY(0);
+}
+
+.titleBar * {
+  transform: translate(-20px, 30px);
+  transition: all 700ms cubic-bezier(0.37, 0.31, 0.2, 0.85) 200ms;
+  opacity: 0;
+}
+
+.titleBarTop .titleBar * {
+  transform: translate(-20px, -30px);
+}
+
+.slider:hover .titleBar * {
+  transform: translate(0);
+  opacity: 1;
+}
+
+.titleBarTop .titleBar {
+  top: 0;
+  bottom: initial;
+  transform: translateY(-100%);
 }
 
 /* ===== Slide Backgrounds ===== */
@@ -304,7 +327,7 @@ body.photography-page .formDiv#contactForm {
 
 #slider3 div:nth-child(1) {
   background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036323/indoRTRPix_-4334_rb0axe.webp);
-} /* https://drive.google.com/file/d/1vCLpDSDHgt3cTFgyc4Gt6XxCKFEehfBV/view?usp=sharing */
+}
 #slider3 div:nth-child(2) {
   background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036322/indoRTRPix_-4175_gyxbkj.webp);
 }
@@ -313,11 +336,10 @@ body.photography-page .formDiv#contactForm {
 }
 #slider3 div:nth-child(4) {
   background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036317/indoRTRPix_-3263_cplk9b.webp);
-);
 }
 #slider3 div:nth-child(5) {
   background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-2621_jtflh9.webp);
-} /* https://drive.google.com/file/d/1vCLpDSDHgt3cTFgyc4Gt6XxCKFEehfBV/view?usp=sharing */
+}
 #slider3 div:nth-child(6) {
   background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-1429_oxhhhq.webp);
 }
@@ -345,7 +367,19 @@ body.photography-page .formDiv#contactForm {
   background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103555/compressed-egypt-rtrpix-9252_e462bb.webp);
 }
 #slider4 div:nth-child(6) {
-  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103553/compressed-egypt-rtrpix-8189_oydwvg.webp);
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8872_z6fhnb.webp);
+}
+#slider4 div:nth-child(7) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8724_xrmxf7.webp);
+}
+#slider4 div:nth-child(8) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103548/compressed-egypt-rtrpix-8048_wxzwun.webp);
+}
+#slider4 div:nth-child(9) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103546/compressed-egypt-rtrpix-7796_ohjxup.webp);
+}
+#slider4 div:nth-child(10) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103544/compressed-egypt-rtrpix-7008_gkdpsx.webp);
 }
 
 #slider5 div:nth-child(1) {
@@ -369,6 +403,58 @@ body {
 
 .content {
   padding: 10px 15vw;
+}
+
+/* Additional styles from otherStyles.css not present in test.css */
+.hoverZoomOff:hover > div {
+  transform: scale(1);
+}
+
+.hideDots > ul {
+  display: none;
+}
+
+.slider > i {
+  color: #5bbd72;
+  position: absolute;
+  font-size: 60px;
+  margin: 20px;
+  top: 40%;
+  text-shadow: 0 10px 2px #223422;
+  transition: 0.3s;
+  width: 30px;
+  padding: 10px 13px;
+  background: #fff;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  line-height: 0;
+  box-sizing: content-box;
+  border-radius: 3px;
+  z-index: 4;
+}
+
+.slider > i svg {
+  margin-top: 3px;
+}
+
+.slider > i.right:active,
+.slider > i.left:active {
+  transform: translateY(1px);
+}
+
+.slider:hover > div {
+  transform: scale(1.01);
+}
+
+.slider > div span {
+  display: block;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  text-align: center;
+  padding: 0;
+  width: 100%;
 }
 
 /* Responsive Adjustments */
@@ -398,6 +484,11 @@ body {
     max-height: 80vh;
     top: 10vh !important;
   }
+
+  /* Index-specific mobile adjustments from otherStyles.css */
+  body.page-index .modalbox .box {
+    top: 20vh !important;
+  }
 }
 
 /* Animation */
@@ -417,4 +508,33 @@ body {
   100% {
     transform: scale(1);
   }
+}
+
+/* Additional HTML styles from otherStyles.css */
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+p.notIndex,
+h1,
+h2,
+h3 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 1em;
+}
+h1.notIndex {
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: 20px;
+}
+
+p.notIndex {
+  font-size: 1.6em;
+  text-align: center;
+  margin-top: 10px;
 }

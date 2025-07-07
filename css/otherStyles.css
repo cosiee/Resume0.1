@@ -1,356 +1,605 @@
 /* otherStyles.css */
-/* Navbar base Styles################################################# */
 
-  
-  a.nav-link {
-    color: #f7f8fa;
- 
-  }
-/*   
-  a.nav-link:hover {
-    color: #162a43;
-    transform: scale(1.15);
- 
-  }
-  
-  a.nav-link.active {
-    color: #162a43;
-    transform: scale(1.3);
-  }
-  
-  .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    border-style: groove;
-    font-size: 14px;
-    background-color: transparent;
-    text-align: left;
-    inline-size: auto;
-    border-width: auto;
-    border-radius: 5px;
-    border-right: none;
-    border-left: none;
-  }
-  
-  a.dropdown-item {
-    color: #6e6f79;
-    font-size: 0.9em;
-    padding: 2px 0px 1px 0px;
-  } */
-  
-  /* a.dropdown-item:hover {
-    color: #162a43;
-    transform: scale(1.1);
-    background-color: transparent !important;
-  } */
-/*   
-  a.dropdown-item:active {
-    transform: scale(1.2);
-    color: #162a43;
-    background-color: transparent !important;
-  }
-  
-  .dropdown .dropdown-menu .navbar-nav {
-    --bs-nav-link-hover-colour: #162a43;
-  }
-  
-  ul.navbar-nav {
-    position: absolute;
-    align-self: center;
-  }
-  
-  .navbar {
-    --bs-navbar-active-color: #162a43;
-    --bs-navbar-brand-color: #162a43;
-    --bs-navbar-brand-hover-color: #162a43;
-    position: fixed;
-    top: 0px;
-    max-height: 50px;
-    width: 100%;
-    padding-top: 30px;
-    background: none;
-    overflow: visible;
-    -webkit-transition: all 1s;
-    transition: all 1s;
-    opacity: 0;
-    top: -700px;
-    padding-bottom: 20px;
-  }
-  
-  /* Burger Icon Styling */
-  /* navbar-toggler left {
-    position: absolute;
-    left: 1rem;
-    top: 1rem;
-    border: none;
-    font-size: 1rem;
-    background-color: transparent;
-    border: none;
-    outline: none;
-  }
-  
-  .sticky {
-    opacity: 1;
-    top: 0px;
-  }
-  
-  .container-fluid#navbar {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    align-self: center;
-    margin: 0 auto;
-    padding: 10px 20px 5px 5px;
-    box-sizing: border-box;
-  }
-  
-  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-    padding: 0px 10px;
-    margin: 0px;
-  } 
- */
+/* Navbar Styles */
+a.nav-link {
+  color: #ffffff;
+}
+a.nav-link:hover {
+  color: #e3e5ea;
+  transform: scale(1.2);
+}
 
-  /*End of overriding Navbar base styles ###############################*/
+#softwareLink.nav-link:hover,
+#motionLink.nav-link:hover,
+#softwareLink.nav-link:focus,
+#motionLink.nav-link:focus {
+  color: #e3e5ea !important;
+  transform: scale(1.2);
+}
 
+/* If you need to target the dropdown toggle arrows too */
+#softwareLink.nav-link.dropdown-toggle:hover::after,
+#motionLink.nav-link.dropdown-toggle:hover::after {
+  transform: rotate(90deg);
+}
 
-.slider, 
-.slider > div {
-    /* Images default to Center Center. Maybe try 'center top'? */
-    background-position: center center;
-    display: block;
-    width: 100%;
-    height: 500px;
-    /* height: 100vh; *//* If you want fullscreen */
-    position: relative;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: #000;
-    overflow: hidden;
-    -moz-transition: transform .4s;
-    -o-transition: transform .4s;
-    -webkit-transition: transform .4s;
-    transition: transform .4s;
+/* Form Styles */
+.formDiv#contactForm {
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.wip .box {
+  transition: all 0.3s ease;
+}
+
+.navbar a[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+#modalClose[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+body.photography-page .formDiv#contactForm {
+  position: fixed !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.modalbox .box,
+.wip .box {
+  z-index: 1000;
+  overflow: auto;
+}
+/* Cloud Animations--page transition */
+#cloud-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+#svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Hide content initially */
+body > *:not(#cloud-transition):not(#transition-overlay) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* After transition, show content */
+body.clouds-complete > *:not(#cloud-transition):not(#transition-overlay) {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease-out;
+}
+
+/* Add to your existing styles */
+#cloud1,
+#cloud2,
+#cloud3,
+#cloud4,
+#cloud5 {
+  transform-origin: center;
+  transition: transform 1.2s ease-out, opacity 1s ease;
+  will-change: transform, opacity;
+}
+
+/* Ensure transition overlay stays above content but below clouds */
+#transition-overlay {
+  z-index: 9999; /* Below clouds (10000) but above everything else */
+}
+
+/* Temporary class for transition state */
+.body-transitioning {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+#cloud1,
+#cloud2,
+#cloud3,
+#cloud4,
+#cloud5 {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+/* End of Cloud Animations--page transition */
+
+/* Slider Core Styles - Fixed Layout */
+.sliders-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  margin: 30px 0;
+  position: relative;
+}
+
+.row2Wrap {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  min-height: 500px;
+  position: relative;
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  background-color: #000;
+  margin-bottom: 0;
 }
 
 .slider > div {
-    position: absolute;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.4s;
+}
+
+.slider > div.show {
+  opacity: 1;
+}
+.slider > div.hide {
+  opacity: 0;
+}
+
+/* Arrow buttons that appear on hover */
+.slider > .left {
+  left: -100px; /* Start hidden off to the left */
+  transition: left 0.3s ease;
+}
+
+.slider > .right {
+  right: -100px; /* Start hidden off to the right */
+  transition: right 0.3s ease;
+}
+.slider:hover > .left {
+  left: 20px;
+}
+.slider:hover > .right {
+  right: 20px;
+}
+
+/* Slider Layouts */
+#slider2 {
+  flex: 1;
+  max-width: calc(33.333% - 10px);
+}
+
+#slider3 {
+  flex: 2;
+  max-width: calc(66.666% - 10px);
+}
+
+#slider4 {
+  flex: 2;
+  max-width: calc(70% - 10px);
+}
+
+#slider5 {
+  flex: 1;
+  max-width: calc(30% - 10px);
+}
+
+/* Slider 3 Specific */
+#slider3 > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#slider3 > div span {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 15px 25px;
+  color: white;
+  text-align: center;
+}
+
+/* Navigation Controls */
+.showArrows > .left {
+  left: 0;
+}
+
+.showArrows > .right {
+  right: 0;
+}
+
+/* ----- Arrow Base Styles ----- */
+.arrows {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) !important; /* Force vertical centering */
+  width: 50px;
+  height: 50px;
+  z-index: 10;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  pointer-events: auto; /* Ensure hover works properly */
+}
+
+.arrows:hover {
+  opacity: 1;
+}
+
+.arrows svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.arrows path {
+  fill: white;
+}
+
+#slider2 .arrows {
+  display: block !important;
+}
+
+.left {
+  left: 20px;
+}
+.right {
+  right: 20px;
+}
+
+/* Dots Navigation */
+.slider > ul {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  z-index: 20;
+  padding: 0;
+  margin: 0;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 8px; /* Adjust spacing between dots */
+  list-style: none;
+  width: auto;
+}
+
+.slider > ul > li {
+  padding: 0;
+  width: 20px;
+  height: 16px;
+  border-radius: 24%;
+  list-style: none;
+  float: left;
+  margin: 6px 6px 0;
+  cursor: pointer;
+  border: 1px solid #fff;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.slider > ul > .showli {
+  background-color: #162a43;
+  -moz-animation: boing 0.5s forwards;
+  -o-animation: boing 0.5s forwards;
+  -webkit-animation: boing 0.5s forwards;
+  animation: boing 0.5s forwards;
+}
+
+.slider > ul > li:hover {
+  background-color: #1e3d64;
+  transform: scale(1.2);
+}
+
+/* Title Bar */
+.titleBar {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 20px 30px;
+  transform: translateY(100%);
+  transition: 0.3s;
+  z-index: 5;
+}
+
+.slider:hover .titleBar {
+  transform: translateY(0);
+}
+
+.titleBar * {
+  transform: translate(-20px, 30px);
+  transition: all 700ms cubic-bezier(0.37, 0.31, 0.2, 0.85) 200ms;
+  opacity: 0;
+}
+
+.titleBarTop .titleBar * {
+  transform: translate(-20px, -30px);
+}
+
+.slider:hover .titleBar * {
+  transform: translate(0);
+  opacity: 1;
+}
+
+.titleBarTop .titleBar {
+  top: 0;
+  bottom: initial;
+  transform: translateY(-100%);
+}
+
+/* ===== Slide Backgrounds ===== */
+.slider > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+/* Specific Slide Backgrounds */
+#slider1 div:nth-child(1) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118986/compressed-img-6855-copy_f9big6.webp);
+}
+#slider1 div:nth-child(2) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118990/compressed-summer-0468_szmnqj.webp);
+}
+#slider1 div:nth-child(3) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118989/compressed-summer-0460_w1ralb.webp);
+}
+
+#slider1 div:nth-child(4) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118991/compressed-summer-0477_cbnncw.webp);
+}
+#slider1 div:nth-child(5) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118992/compressed-summer-0505_boozks.webp);
+}
+
+#slider2 div:nth-child(1) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg);
+}
+#slider2 div:nth-child(2) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg);
+}
+#slider2 div:nth-child(3) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_bodie-11.jpg);
+}
+
+#slider3 div:nth-child(1) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036323/indoRTRPix_-4334_rb0axe.webp);
+}
+#slider3 div:nth-child(2) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036322/indoRTRPix_-4175_gyxbkj.webp);
+}
+#slider3 div:nth-child(3) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036321/indoRTRPix_-3922_hglvii.webp);
+}
+#slider3 div:nth-child(4) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036317/indoRTRPix_-3263_cplk9b.webp);
+}
+#slider3 div:nth-child(5) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-2621_jtflh9.webp);
+}
+#slider3 div:nth-child(6) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-1429_oxhhhq.webp);
+}
+#slider3 div:nth-child(7) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036317/indoRTRPix_-3263_cplk9b.webp);
+}
+#slider3 div:nth-child(8) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-4159_equalj.webp);
+}
+
+/* Egypt */
+#slider4 div:nth-child(1) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103545/compressed-egypt-rtrpix-7464_hyfadx.webp);
+}
+#slider4 div:nth-child(2) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103545/compressed-egypt-rtrpix-7145_zqfbul.webp);
+}
+#slider4 div:nth-child(3) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103552/compressed-egypt-rtrpix-8188_prhy17.webp);
+}
+#slider4 div:nth-child(4) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8569_fwdcgz.webp);
+}
+#slider4 div:nth-child(5) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103555/compressed-egypt-rtrpix-9252_e462bb.webp);
+}
+#slider4 div:nth-child(6) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8872_z6fhnb.webp);
+}
+#slider4 div:nth-child(7) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8724_xrmxf7.webp);
+}
+#slider4 div:nth-child(8) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103548/compressed-egypt-rtrpix-8048_wxzwun.webp);
+}
+#slider4 div:nth-child(9) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103546/compressed-egypt-rtrpix-7796_ohjxup.webp);
+}
+#slider4 div:nth-child(10) {
+  background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103544/compressed-egypt-rtrpix-7008_gkdpsx.webp);
+}
+
+#slider5 div:nth-child(1) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg);
+}
+#slider5 div:nth-child(2) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_110627-8240-Myst.jpg);
+}
+#slider5 div:nth-child(3) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/1200_bodie-11.jpg);
+}
+
+/* Base Styles */
+body {
+  font: 15px "Titillium Web", Arial, sans-serif;
+  background: radial-gradient(#121212, #000);
+  color: #aaa;
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  padding: 10px 15vw;
+}
+
+/* Additional styles from otherStyles.css not present in test.css */
+.hoverZoomOff:hover > div {
+  transform: scale(1);
+}
+
+.hideDots > ul {
+  display: none;
 }
 
 .slider > i {
-    color: #5bbd72;
-    position: absolute;
-    font-size: 60px;
-    margin: 20px;
-    top: 40%;
-    text-shadow: 0 10px 2px #223422;
-    transition: .3s;
-    width: 30px;
-    padding: 10px 13px;
-    background: #fff;
-    background: rgba(255, 255, 255, .3);
-    cursor: pointer;
-    line-height: 0;
-    box-sizing: content-box;
-    border-radius: 3px;
-    z-index: 4;
+  color: #5bbd72;
+  position: absolute;
+  font-size: 60px;
+  margin: 20px;
+  top: 40%;
+  text-shadow: 0 10px 2px #223422;
+  transition: 0.3s;
+  width: 30px;
+  padding: 10px 13px;
+  background: #fff;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  line-height: 0;
+  box-sizing: content-box;
+  border-radius: 3px;
+  z-index: 4;
 }
 
 .slider > i svg {
-    margin-top: 3px;
-}
-
-.slider > .left {
-    left: -100px;
-}
-.slider > .right {
-    right: -100px;
-}
-.slider:hover > .left {
-    left: 0;
-}
-.slider:hover > .right {
-    right: 0;
-}
-
-.slider > i:hover {
-    background:#fff;
-    background: rgba(255, 255, 255, .8);
-    transform: translateX(-2px);
-}
-
-.slider > i.right:hover {
-    transform: translateX(2px);
+  margin-top: 3px;
 }
 
 .slider > i.right:active,
 .slider > i.left:active {
-    transform: translateY(1px);
+  transform: translateY(1px);
 }
 
 .slider:hover > div {
-    transform: scale(1.01);
-}
-
-.hoverZoomOff:hover > div {
-    transform: scale(1);
-}
-
-/* The Dots */
-.slider > ul {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    z-index: 4;
-    padding: 0;
-    margin: 0;
-    transform: translateX(-50%);
-}
-
-.slider > ul > li {
-    padding: 0;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    list-style: none;
-    float: left;
-    margin: 10px 10px 0;
-    cursor: pointer;
-    border: 1px solid #fff;
-    -moz-transition: .3s;
-    -o-transition: .3s;
-    -webkit-transition: .3s;
-    transition: .3s;
-}
-
-.slider > ul > .showli {
-    background-color: #7EC03D;
-    -moz-animation: boing .5s forwards;
-    -o-animation: boing .5s forwards;
-    -webkit-animation: boing .5s forwards;
-    animation: boing .5s forwards;
-}
-
-.slider > ul > li:hover {
-    background-color: #7EC03D;
-}
-
-.slider > .show {
-    z-index: 1;
-}
-
-.hideDots > ul {
-    display: none;
-}
-
-.showArrows > .left {
-    left: 0;
-}
-
-.showArrows > .right {
-    right: 0;
-}
-
-.titleBar {
-    z-index: 2;
-    display: inline-block;
-    background: rgba(0,0,0,.5);
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    transform: translateY(100%);
-    padding: 20px 30px;
-    transition: .3s;
-    color: #fff;
-}
-
-.titleBar * {
-    transform: translate(-20px, 30px);
-    transition: all 700ms cubic-bezier(0.37, 0.31, 0.2, 0.85) 200ms;
-    opacity: 0;
-}
-
-.titleBarTop .titleBar * {
-    transform: translate(-20px, -30px);
-}
-
-.slider:hover .titleBar,
-.slider:hover .titleBar * {
-    transform: translate(0);
-    opacity: 1;
-}
-
-.titleBarTop .titleBar {
-    top: 0;
-    bottom: initial;
-    transform: translateY(-100%);
+  transform: scale(1.01);
 }
 
 .slider > div span {
-    display: block;
-    background: rgba(0,0,0,.5);
-    position: absolute;
-    bottom: 0;
-    color: #fff;
-    text-align: center;
-    padding: 0;
-    width: 100%;
+  display: block;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  text-align: center;
+  padding: 0;
+  width: 100%;
 }
 
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .row2Wrap {
+    flex-direction: column;
+  }
 
+  #slider2,
+  #slider3,
+  #slider4,
+  #slider5 {
+    max-width: 100% !important;
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .slider {
+    height: 300px;
+  }
+
+  .modalbox .box,
+  .wip .box {
+    width: 90vw !important;
+    left: 5vw !important;
+    max-height: 80vh;
+    top: 10vh !important;
+  }
+
+  /* Index-specific mobile adjustments from otherStyles.css */
+  body.page-index .modalbox .box {
+    top: 20vh !important;
+  }
+}
+
+/* Animation */
 @keyframes boing {
-    0% {
-        transform: scale(1.2);
-    }
-    40% {
-        transform: scale(.6);
-    }
-    60% {
-        transform: scale(1.2);
-    }
-    80% {
-        transform: scale(.8);
-    }
-    100% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(1.2);
+  }
+  40% {
+    transform: scale(0.6);
+  }
+  60% {
+    transform: scale(1.2);
+  }
+  80% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
-/* -------------------------------------- */
-
-#slider2 {
-    max-width: 30%;
-    margin-right: 20px;
-}
-
-.row2Wrap {
-    display: flex;
-}
-
-.content {
-    padding: 50px;
-    margin-bottom: 100px;
-}
-
+/* Additional HTML styles from otherStyles.css */
 html {
-    height: 100%;
-    box-sizing: border-box;
+  height: 100%;
+  box-sizing: border-box;
 }
-*, *:before, *:after {
-    box-sizing: inherit;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
-h1, h2, h3 {
-    font-family: 'Crimson Text', sans-serif;
-    font-weight: 100;
+p.notIndex,
+h1,
+h2,
+h3 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 1em;
 }
-body {
-    font: 15px 'Titillium Web', Arial, sans-serif;
-    background: radial-gradient(#121212, #000);
-    height: 100%;
-    color: #aaa;
-    margin: 0;
-    padding: 0;
+h1.notIndex {
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: 20px;
 }
 
-.content {
-    padding: 10px 15vw;
+p.notIndex {
+  font-size: 1.6em;
+  text-align: center;
+  margin-top: 10px;
 }

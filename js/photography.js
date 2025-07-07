@@ -1,229 +1,418 @@
-import {
-  getDomElements, debounce,
-  updateDimensions, updateEndBottomY, endLeftX, endRightX, endBottomY,
-  updateModalDimensions, formControl, showStatementContact, showForm
-} from "./domUtils.js";
+import { CloudManager } from "./cloudManager.js";
+import { CloudTransition } from "./cloudTransition.js";
+import { Animations } from "./animations.js";
+import { DomUtils } from "./domUtils.js";
+import { initThumbnails, preloadCriticalImages } from "./preload.js";
+import { Navbar } from './navbar.js';
 
-import { thumbnailImages } from "./config.js";
-import { initThumbnails, setRandomBackgroundWithTransition } from "./preload.js";
-import {
-  SCROLL_DURATION, landscapeMediaQuery, setupNavbar, updateWIPDimensions,
-  hideScrollBar, showScrollBar, enableStickyNavbar, setupDynamicLinks, setupNavbarEvents,
-  autoScrollNow, showWip, hideWip
-} from "./navbar.js";
+export const selectors = {
+  scrollDist: ".scrollDist",
+
+  //Navigation buttons, Statements & Form
+  modalClose: "#modalClose",
+  modalSig: "#modalSig",
+  contactFormClose: "#contactFormClose",
+  formButton: "#formButton",
+  modalWipClose: "#modalWipClose",
+
+  // Clouds
+  cloud1: "#cloud1",
+  cloud2: "#cloud2",
+  cloud3: "#cloud3",
+  cloud4: "#cloud4",
+  cloud5: "#cloud5",
+
+
+  // Navbar Links & Dropdowns
+  navHome: "#navHome",
+  navSoftware: "#softwareLink",
+  navDropMenuSoftware: "#softwareDropMenuLink",
+  navHtml: "#navHtml",
+  navCss: "#navCss",
+  navJavascript: "#navJavascript",
+  navJava: "#navJava",
+  navPython: "#navPython",
+  navSql: "#navSql",
+  navReact: "#navReact",
+  navPhotography: "#photographyLink",
+  navDiy: "#diyLink",
+  navMotion: "#motionLink",
+  navDropMenuMotion: "#motionDropMenuLink",
+  navAnimation: "#navAnimation",
+  navVideo: "#navVideo",
+  navContact: "#contactLink",
+
+  // image sliders
+  slider1: "#slider1",
+  slider2: "#slider2",
+  slider3: "#slider3",
+  slider4: "#slider4",
+  slider5: "#slider5",
+  slider6: "#slider6",
+  slider7: "#slider7",
+};
 
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
-  const domElements = getDomElements();
-  console.log("domElements:", domElements);
+const navbar = new Navbar(selectors);
+const domUtils = new DomUtils(selectors);
+const domElements = domUtils.elements
+const animations = new Animations(domElements);
 
-  Object.entries(domElements).forEach(([key, value]) => {
-    if (!value) console.error(`Missing DOM element: ${key}`);
+
+document.addEventListener("DOMContentLoaded", async function () {
+  // if (sessionStorage.getItem('shouldTransitionIn') === 'true') {
+  //   try {
+  //     // Immediately show clouds covering screen
+  //     gsap.set(["#cloud1", "#cloud2", "#cloud3", "#cloud4", "#cloud5"], {
+  //       opacity: 1,
+  //       scale: 3,
+  //       x: 0,
+  //       y: 0,
+  //       position: 'fixed',
+  //       zIndex: 10000
+  //     });
+
+  //     // Play reverse animation
+  //     await animations.cloudTransitionIn();
+  //   } catch (error) {
+  //     console.error('Transition in failed:', error);
+  //   } finally {
+  //     // Clean up
+  //     sessionStorage.removeItem('shouldTransitionIn');
+  //     document.documentElement.style.overflow = '';
+  //   }
+  // }
+
+  // const domUtils = new DomUtils(selectors);
+
+
+  // await animations.cloudTransitionIn();
+
+  // navbar.init(20);
+  // navbar.initializeFormCloseButton();
+
+  // Handle incoming transition
+  if (sessionStorage.getItem('shouldTransitionIn') === 'true') {
+    try {
+      console.log('Starting incoming transition');
+      gsap.set(["#cloud1", "#cloud2", "#cloud3", "#cloud4", "#cloud5", "#cloud6"], {
+        opacity: 1,
+        scale: 3,
+        x: 0,
+        y: 0,
+        position: 'fixed',
+        zIndex: 10000
+      });
+      await animations.cloudTransitionIn();
+    } catch (error) {
+      console.error('Transition failed:', error);
+    } finally {
+      sessionStorage.removeItem('shouldTransitionIn');
+      document.documentElement.style.overflow = '';
+    }
+  }
+
+  // Initialize navbar
+  navbar.init(20);
+  navbar.initializeFormCloseButton();
+
+
+
+
+
+
+
+  // Set up contact link with proper fallback
+  if (domUtils.elements.navContact) {
+    domUtils.elements.navContact.addEventListener("click", function () {
+      navbar.hideScrollBar();
+      domUtils.formControl(); // This will use the fallback positioning
+      domUtils.showStatementContact();
+      domUtils.showForm();
+    })
+  }
+  $(window).on('load', function () {
+    $("#slider1").sliderResponsive(); // Default settings
+
+    $("#slider2").sliderResponsive({
+      fadeSpeed: 300,
+      autoPlay: "off",
+      showArrows: "on",
+      hideDots: "on"
+    });
+
+    $("#slider3").sliderResponsive({
+      hoverZoom: "off",
+      hideDots: "on"
+    });
+
+    $("#slider4").sliderResponsive({
+      fadeSpeed: 300,
+      autoPlay: "off",
+      showArrows: "on",
+      hideDots: "on"
+    });
+
+    $("#slider5").sliderResponsive({
+      fadeSpeed: 300,
+      autoPlay: "off",
+      showArrows: "on",
+      hideDots: "on"
+    });
   });
 
 
 
+  document.getElementById('navHome').addEventListener('click', async (e) => {
+    e.preventDefault();
+    await animations.cloudTransitionOut('index.html');
+  });
+  if (domElements.navHome && !window.location.pathname.endsWith('index.html')) {
+    domElements.navHome.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        sessionStorage.setItem('shouldTransitionIn', 'true');
+        const success = await animations.cloudTransitionOut('index.html');
+        if (!success) {
+          window.location.href = 'index.html';
+        }
+      } catch (error) {
+        console.error("Transition failed:", error);
+        window.location.href = 'index.html';
+      }
+    });
+  } else if (domElements.navHome) {
+    // If already on home page, just prevent default behavior
+    domElements.navHome.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
+  }
+  // Set up photography link with transition - ONLY if we're not already on photography.html
+  if (domElements.navPhotography && !window.location.pathname.endsWith('photography.html')) {
+    domElements.navPhotography.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        sessionStorage.setItem('shouldTransitionIn', 'true');
+        const success = await animations.cloudTransitionOut('photography.html');
+        if (!success) {
+          window.location.href = 'photography.html';
+        }
+      } catch (error) {
+        console.error("Transition failed:", error);
+        window.location.href = 'photography.html';
+      }
+    });
+  } else if (domElements.navPhotography) {
+    // If already on photography page, just prevent default behavior
+    domElements.navPhotography.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
+  }
 
-  enableStickyNavbar(20)
-  setupNavbar(domElements, 20);
-  console.log("Sticky navbar enabled");
+
+  setupEventListeners();
+  // initSliders();
 });
 
-// $(window).scroll(function () {
-//   var scrollDistOffset = $(".scrollDist").offset().top;
-//   var scrollDistHeight = $(".scrollDist").outerHeight();
-//   var scrollTop = $(window).scrollTop();
-//   var windowHeight = $(window).height();
-
-//   var isLandscapeSmall = window.matchMedia(
-//     "(orientation: landscape) and (max-width: 991.98px)"
-//   ).matches;
-//   var isSmallHeight = windowHeight < 6;
+// ####################################################################
 
 
-
-//   console.log("triggerOffset: ", triggerOffset);
-//   console.log("scrollDistOffset: ", scrollDistOffset);
-//   console.log("scrollDistHeight: ", scrollDistHeight);
-//   console.log("scrollTop: ", scrollTop);
-
-
-//   var inSmallHeightScrollRange =
-//     scrollTop > scrollDistOffset &&
-//     scrollTop < scrollDistOffset + scrollDistHeight;
-//   var inNormalHeightScrollRange =
-//     scrollTop > scrollDistOffset + 6 &&
-//     scrollTop < scrollDistOffset + scrollDistHeight;
-
-//   // Apply sticky logic
-//   if (
-//     inNormalHeightScrollRange ||
-//     (isLandscapeSmall && isSmallHeight && inSmallHeightScrollRange)
-//   ) {
-//     $(".navbar").addClass("sticky");
-//   } else {
-//     $(".navbar").removeClass("sticky");
-//   }
-// });
-
-
-// Photography Sliders
-
-
-(function ($) {
-  "use strict";
-  $.fn.sliderResponsive = function (settings) {
-
-    var set = $.extend(
-      {
-        slidePause: 5000,
-        fadeSpeed: 800,
-        autoPlay: "on",
-        showArrows: "off",
-        hideDots: "off",
-        hoverZoom: "on",
-        titleBarTop: "off"
-      },
-      settings
-    );
-
-    var $slider = $(this);
-    var size = $slider.find("> div").length; //number of slides
-    var position = 0; // current position of carousal
-    var sliderIntervalID; // used to clear autoplay
-
-    // Add a Dot for each slide
-    $slider.append("<ul></ul>");
-    $slider.find("> div").each(function () {
-      $slider.find("> ul").append('<li></li>');
+function setupEventListeners() {
+  // Setup event listeners for elements that exist on this page
+  if (domUtils.elements.modalClose) {
+    domUtils.elements.modalClose.addEventListener("click", function () {
+      navbar.showScrollBar();
+      // Page-specific cleanup if needed
     });
+  }
 
-    // Put .show on the first Slide
-    $slider.find("div:first-of-type").addClass("show");
+  // Add other event listeners as needed
+}
 
-    // Put .showLi on the first dot
-    $slider.find("li:first-of-type").addClass("showli")
+// function initSliders() {
+//   // Your existing slider initialization code
+//   $("#slider1").sliderResponsive({
+//     slidePause: 5000,
+//   });
 
-    //fadeout all items except .show
-    $slider.find("> div").not(".show").fadeOut();
+//   $("#slider2").sliderResponsive({
+//     fadeSpeed: 300,
+//     autoPlay: "off",
+//     showArrows: "on",
+//     hideDots: "on"
+//   });
 
-    // If Autoplay is set to 'on' than start it
-    if (set.autoPlay === "on") {
-      startSlider();
-    }
+//   $("#slider3").sliderResponsive({
+//     hoverZoom: "off",
+//     hideDots: "on"
+//   });
+// }
 
-    // If showarrows is set to 'on' then don't hide them
-    if (set.showArrows === "on") {
-      $slider.addClass('showArrows');
-    }
+// // $(window).scroll(function () {
+// //   var scrollDistOffset = $(".scrollDist").offset().top;
+// //   var scrollDistHeight = $(".scrollDist").outerHeight();
+// //   var scrollTop = $(window).scrollTop();
+// //   var windowHeight = $(window).height();
 
-    // If hideDots is set to 'on' then hide them
-    if (set.hideDots === "on") {
-      $slider.addClass('hideDots');
-    }
-
-    // If hoverZoom is set to 'off' then stop it
-    if (set.hoverZoom === "off") {
-      $slider.addClass('hoverZoomOff');
-    }
-
-    // If titleBarTop is set to 'on' then move it up
-    if (set.titleBarTop === "on") {
-      $slider.addClass('titleBarTop');
-    }
-
-    // function to start auto play
-    function startSlider() {
-      sliderIntervalID = setInterval(function () {
-        nextSlide();
-      }, set.slidePause);
-    }
-
-    // on mouseover stop the autoplay and clear interval
-    $slider.mouseover(function () {
-      clearInterval(sliderIntervalID);
-    });
-
-    // on mouseout starts the autoplay by calling startSlider
-    $slider.mouseout(function () {
-      startSlider();
-    });
-
-    //on right arrow click
-    $slider.find("> .right").click(nextSlide)
-
-    //on left arrow click
-    $slider.find("> .left").click(prevSlide);
-
-    // Go to next slide
-    function nextSlide() {
-      position = $slider.find(".show").index() + 1;
-      if (position > size - 1) position = 0;
-      changeCarousel(position);
-    }
-
-    // Go to previous slide
-    function prevSlide() {
-      position = $slider.find(".show").index() - 1;
-      if (position < 0) position = size - 1;
-      changeCarousel(position);
-    }
-
-    //when user clicks slider button
-    $slider.find(" > ul > li").click(function () {
-      position = $(this).index();
-      changeCarousel($(this).index());
-    });
-
-    //this changes the image and button selection
-    function changeCarousel() {
-      $slider.find(".show").removeClass("show").fadeOut();
-      $slider
-        .find("> div")
-        .eq(position)
-        .fadeIn(set.fadeSpeed)
-        .addClass("show");
-      // The Dots
-      $slider.find("> ul").find(".showli").removeClass("showli");
-      $slider.find("> ul > li").eq(position).addClass("showli");
-    }
-
-    return $slider;
-  };
-})(jQuery);
+// //   var isLandscapeSmall = window.matchMedia(
+// //     "(orientation: landscape) and (max-width: 991.98px)"
+// //   ).matches;
+// //   var isSmallHeight = windowHeight < 6;
 
 
 
-//////////////////////////////////////////////
-// Activate each slider - change options
-//////////////////////////////////////////////
-$(document).ready(function () {
+// //   console.log("triggerOffset: ", triggerOffset);
+// //   console.log("scrollDistOffset: ", scrollDistOffset);
+// //   console.log("scrollDistHeight: ", scrollDistHeight);
+// //   console.log("scrollTop: ", scrollTop);
 
-  $("#slider1").sliderResponsive({
-    // Using default everything
-    slidePause: 5000,
-    // fadeSpeed: 800,
-    // autoPlay: "on",
-    // showArrows: "off", 
-    // hideDots: "off", 
-    // hoverZoom: "on", 
-    // titleBarTop: "off"
-  });
 
-  $("#slider2").sliderResponsive({
-    fadeSpeed: 300,
-    autoPlay: "off",
-    showArrows: "on",
-    hideDots: "on"
-  });
+// //   var inSmallHeightScrollRange =
+// //     scrollTop > scrollDistOffset &&
+// //     scrollTop < scrollDistOffset + scrollDistHeight;
+// //   var inNormalHeightScrollRange =
+// //     scrollTop > scrollDistOffset + 6 &&
+// //     scrollTop < scrollDistOffset + scrollDistHeight;
 
-  $("#slider3").sliderResponsive({
-    hoverZoom: "off",
-    hideDots: "on"
-  });
+// //   // Apply sticky logic
+// //   if (
+// //     inNormalHeightScrollRange ||
+// //     (isLandscapeSmall && isSmallHeight && inSmallHeightScrollRange)
+// //   ) {
+// //     $(".navbar").addClass("sticky");
+// //   } else {
+// //     $(".navbar").removeClass("sticky");
+// //   }
+// // });
 
-});
+
+// // // Photography Sliders
+
+// (function ($) {
+//   "use strict";
+//   $.fn.sliderResponsive = function (settings) {
+
+//     var set = $.extend(
+//       {
+//         slidePause: 5000,
+//         fadeSpeed: 800,
+//         autoPlay: "on",
+//         showArrows: "off",
+//         hideDots: "off",
+//         hoverZoom: "on",
+//         titleBarTop: "off"
+//       },
+//       settings
+//     );
+
+//     var $slider = $(this);
+//     var size = $slider.find("> div").length; //number of slides
+//     var position = 0; // current position of carousal
+//     var sliderIntervalID; // used to clear autoplay
+
+//     // Add a Dot for each slide
+//     $slider.append("<ul></ul>");
+//     $slider.find("> div").each(function () {
+//       $slider.find("> ul").append('<li></li>');
+//     });
+
+//     // Put .show on the first Slide
+//     $slider.find("div:first-of-type").addClass("show");
+
+//     // Put .showLi on the first dot
+//     $slider.find("li:first-of-type").addClass("showli")
+
+//     //fadeout all items except .show
+//     $slider.find("> div").not(".show").fadeOut();
+
+//     // If Autoplay is set to 'on' than start it
+//     if (set.autoPlay === "on") {
+//       startSlider();
+//     }
+
+//     // If showarrows is set to 'on' then don't hide them
+//     if (set.showArrows === "on") {
+//       $slider.addClass('showArrows');
+//     }
+
+//     // If hideDots is set to 'on' then hide them
+//     if (set.hideDots === "on") {
+//       $slider.addClass('hideDots');
+//     }
+
+//     // If hoverZoom is set to 'off' then stop it
+//     if (set.hoverZoom === "off") {
+//       $slider.addClass('hoverZoomOff');
+//     }
+
+//     // If titleBarTop is set to 'on' then move it up
+//     if (set.titleBarTop === "on") {
+//       $slider.addClass('titleBarTop');
+//     }
+
+//     // function to start auto play
+//     function startSlider() {
+//       sliderIntervalID = setInterval(function () {
+//         nextSlide();
+//       }, set.slidePause);
+//     }
+
+//     // on mouseover stop the autoplay and clear interval
+//     $slider.mouseover(function () {
+//       clearInterval(sliderIntervalID);
+//     });
+
+//     // on mouseout starts the autoplay by calling startSlider
+//     $slider.mouseout(function () {
+//       startSlider();
+//     });
+
+//     //on right arrow click
+//     $slider.find("> .right").click(nextSlide)
+
+//     //on left arrow click
+//     $slider.find("> .left").click(prevSlide);
+
+//     // Go to next slide
+//     function nextSlide() {
+//       position = $slider.find(".show").index() + 1;
+//       if (position > size - 1) position = 0;
+//       changeCarousel(position);
+//     }
+
+//     // Go to previous slide
+//     function prevSlide() {
+//       position = $slider.find(".show").index() - 1;
+//       if (position < 0) position = size - 1;
+//       changeCarousel(position);
+//     }
+
+//     //when user clicks slider button
+//     $slider.find(" > ul > li").click(function () {
+//       position = $(this).index();
+//       changeCarousel($(this).index());
+//     });
+
+//     //this changes the image and button selection
+//     function changeCarousel() {
+//       $slider.find(".show").removeClass("show").fadeOut();
+//       $slider
+//         .find("> div")
+//         .eq(position)
+//         .fadeIn(set.fadeSpeed)
+//         .addClass("show");
+//       // The Dots
+//       $slider.find("> ul").find(".showli").removeClass("showli");
+//       $slider.find("> ul > li").eq(position).addClass("showli");
+//     }
+
+//     return $slider;
+//   };
+// })(jQuery);
+
+
+
 
 

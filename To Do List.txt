@@ -1,3 +1,19 @@
+fix the thumbnail animation on index.html caused by working on the WIP, modal and 
+form handling in photography.html NO PULL REQUEST TILL RESOLVED
+
+handling of form, WIP and modal on photography == for all pages
+
+if slider is in viewport, it is sliding. Not in viewport slider is not using resources
+
+cloud animation between pages?
+
+spaceOutThumbs() index.html behaves differently.  As expected:
+click 'contact'click formClose: correctly
+click 'me' click modalClose: correctly
+click 'me' click 'signature' and then click formClose: NOT correct!
+
+reposition WIP to match that of Modal on all pages other than index.html
+...furthering from this the disable and enable should close WIP if open
 
 hide scroll bar when WIP msg shows
 

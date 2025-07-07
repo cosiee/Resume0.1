@@ -19,6 +19,81 @@ export class DomUtils {
   /* ======================== */
   /* === DOM Element Utils === */
   /* ======================== */
+  // Each page gets a reference here, used then to determine shared
+  // page elements behaviour. Identifiers need adjusting and unique to each page
+  detectPage() {
+    if (document.querySelector('#software')) {
+      return 'index';
+    } else if (document.querySelector('#software')) {
+      return 'software';
+    } else if (document.querySelector('#slider1')) {
+      return 'photography';
+    } else if (document.querySelector('#diy')) {
+      return 'diy';
+    } else if (document.querySelector('#motion')) {
+      return 'motion';
+    } else if (document.querySelector('#animation')) {
+      return 'animation';
+    } else if (document.querySelector('#video')) {
+      return 'video';
+    }
+    return 'unknown';
+  }
+
+  isIndexPage() {
+    return this.detectPage() === 'index';
+  }
+  isPhotographyPage() {
+    return this.detectPage() === 'photography';
+  }
+  isDiyPage() {
+    return this.detectPage() === 'diy';
+  }
+  isMotionPage() {
+    return this.detectPage() === 'motion';
+  }
+  isAnimationPage() {
+    return this.detectPage() === 'animation';
+  }
+  isVideoPage() {
+    return this.detectPage() === 'video';
+  }
+
+  getViewportCenter() {
+    return {
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2
+    };
+  }
+
+
+
+  getModalPosition() {
+    const center = this.getViewportCenter();
+    const isLandscape = window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches;
+
+    // Default modal size
+    const baseSize = Math.min(500, window.innerWidth * 0.8);
+
+    return {
+      width: baseSize,
+      height: baseSize,
+      left: center.x - (baseSize / 2),
+      top: isLandscape ? center.y * 0.7 : center.y * 0.65
+    };
+  }
+
+  getWipPosition() {
+    const center = this.getViewportCenter();
+    const isLandscape = window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches;
+
+    return {
+      width: Math.min(600, window.innerWidth * 0.8),
+      height: Math.min(600, window.innerWidth * 0.8),
+      left: center.x - (Math.min(600, window.innerWidth * 0.8) / 2),
+      top: isLandscape ? center.y * 0.6 : center.y * 0.55
+    };
+  }
 
   getDomElements() {
     const elements = {};
@@ -29,12 +104,6 @@ export class DomUtils {
         elements[key] = document.querySelector(selector);
       }
     });
-
-    // Log missing elements
-    Object.entries(elements).forEach(([key, value]) => {
-      if (!value) console.error(`Missing DOM element: ${key}`);
-    });
-
     return elements;
   }
 
@@ -44,15 +113,15 @@ export class DomUtils {
 
   getThumbWidthWithMargin() {
     if (!this.elements?.thumbElements?.[0]) {
-      console.error("thumbElements not found!");
-      return 0;
+
+      return 300;
     }
     const style = window.getComputedStyle(this.elements.thumbElements[0]);
     return parseFloat(style.width) + parseFloat(style.marginRight) * 2;
   }
 
   getThumbWidthWithoutMargin() {
-    if (!this.elements?.thumbElements?.[0]) return 0;
+    if (!this.elements?.thumbElements?.[0]) return 325;
     return parseFloat(window.getComputedStyle(this.elements.thumbElements[0]).width);
   }
 
@@ -91,8 +160,39 @@ export class DomUtils {
     return this.cachedEndTopY;
   }
 
+  // updateEndBottomY() {
+  //   const isLandscape = window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches;
+  //   const thumbWidth = this.getThumbWidthWithMargin();
+
+  //   if (!this.elements?.thumbElements?.length) {
+  //     return isLandscape ?
+  //       window.innerHeight * 0.7 :
+  //       window.innerHeight * 0.75;
+  //   }
+
+  //   return isLandscape ?
+  //     window.innerHeight * 1.275 + thumbWidth :
+  //     window.innerHeight * 1.325 + thumbWidth;
+
+
+  //   this.endBottomY = isLandscape ?
+  //     window.innerHeight * 1.275 + thumbWidth :
+  //     window.innerHeight * 1.325 + thumbWidth;
+  //   return this.endBottomY;
+  // }
+
   updateEndBottomY() {
     const isLandscape = window.matchMedia("(orientation: landscape) and (max-width: 991.98px)").matches;
+
+    // For pages without thumbnails (like photography.html)
+    if (!this.elements?.thumbElements?.length) {
+      this.endBottomY = isLandscape ?
+        window.innerHeight * 0.7 :
+        window.innerHeight * 0.75;
+      return this.endBottomY;
+    }
+
+    // Original positioning logic for index.html
     const thumbWidth = this.getThumbWidthWithMargin();
     this.endBottomY = isLandscape ?
       window.innerHeight * 1.275 + thumbWidth :
@@ -112,7 +212,7 @@ export class DomUtils {
   /* ======================== */
 
   collectThumbs() {
-    if (!this.elements) return;
+    if (!this.isIndexPage()) return;
 
     const endTopY = this.getEndTopY();
     const endBottomY = this.getEndBottomY();
@@ -130,18 +230,32 @@ export class DomUtils {
     ];
 
     elements.forEach(({ selector, x, y }) => {
-      gsap.to(selector, {
-        scale: 1,
-        x: x,
-        y: y,
-        duration: 1,
-        ease: "power2.out"
-      });
+      const element = document.querySelector(selector);
+      if (element) {
+        gsap.to(selector, {
+          scale: 1,
+          x: x,
+          y: y,
+          duration: 1,
+          ease: "power2.out"
+        });
+      }
     });
   }
 
+
+
   spaceoutThumbs() {
-    if (!this.elements) return;
+    if (!this.isIndexPage()) return;
+
+    // Clear cached positions to force recalculation
+    this.cachedEndTopY = null;
+    this.cachedEndBottomY = null;
+
+    // Recalculate positions
+    this.updateEndTopY();
+    this.updateEndBottomY();
+
 
     gsap.to("#software", {
       x: this.endLeftX,
@@ -157,13 +271,13 @@ export class DomUtils {
     });
     gsap.to("#diy", {
       x: this.endRightX,
-      y: this.endBottomY,
+      y: this.getEndBottomY(),
       duration: 1,
       ease: "power2.out",
     });
     gsap.to("#motion", {
       x: this.endLeftX,
-      y: this.endBottomY,
+      y: this.getEndBottomY(),
       duration: 1,
       ease: "power2.out",
     });
@@ -173,71 +287,138 @@ export class DomUtils {
   /* === Modal/Form Utils === */
   /* ======================== */
 
+
   updateModalDimensions() {
     const modalBox = document.querySelector(".modalbox .box");
     const softwareThumb = document.querySelector("#software");
 
-    if (!modalBox || !softwareThumb || !this.elements?.thumbElements?.[0]) return;
+    if (!modalBox) return;
 
-    // 1. Keep existing sizing/X-position logic
-    const thumbWidth = this.getThumbWidthWithoutMargin();
-    const newWidth = Math.max(thumbWidth * 2 + 4, 300);
-    const centerX = window.innerWidth / 2 + 8;
-    const newLeft = centerX - newWidth / 2;
+    if (this.isIndexPage() && softwareThumb) {
+      // Original index.html positioning logic
+      const thumbWidth = this.getThumbWidthWithoutMargin();
+      const newWidth = Math.max(thumbWidth * 2 + 4, 300);
+      const centerX = window.innerWidth / 2 + 8;
+      const newLeft = centerX - newWidth / 2;
 
-    // 2. NEW: Set Y-position to match #software (with optional offset)
-    const softwareRect = softwareThumb.getBoundingClientRect();
-    const softwareY = softwareRect.top + window.scrollY;
-    const offsetY = 9.4; // Adjust this if needed (matches your original +9.4 offset)
-    const newTop = softwareY + offsetY;
+      const softwareRect = softwareThumb.getBoundingClientRect();
+      const softwareY = softwareRect.top + window.scrollY;
+      const offsetY = 9.4;
+      const newTop = softwareY + offsetY;
 
-    // Apply styles
-    modalBox.style.width = `${newWidth}px`;
-    modalBox.style.height = `${newWidth}px`;
-    modalBox.style.left = `${newLeft}px`;
-    modalBox.style.top = `${newTop}px`;
+      modalBox.style.width = `${newWidth}px`;
+      modalBox.style.height = `${newWidth}px`;
+      modalBox.style.left = `${newLeft}px`;
+      modalBox.style.top = `${newTop}px`;
+    } else {
+      // Standard positioning for all other pages
+      const center = this.getViewportCenter();
+      const baseSize = Math.min(500, window.innerWidth * 0.8);
 
+      modalBox.style.width = `${baseSize}px`;
+      modalBox.style.height = `${baseSize}px`;
+      modalBox.style.left = `${center.x - (baseSize / 2)}px`;
+      modalBox.style.top = `${center.y * 0.3}px`;
+      modalBox.style.position = "fixed";
+    }
   }
 
   // formControl() {
   //   const contactForm = document.querySelector(".formDiv#contactForm");
   //   if (!contactForm) return;
 
-  //   const style = window.getComputedStyle(contactForm);
-  //   const formX = window.innerWidth / 2 - (parseFloat(style.width) / 2) + 6.75;
-  //   const formY = this.getEndTopY() + 12;
+  //   const closeButton = document.getElementById("contactFormClose");
+  //   if (closeButton) {
+  //     closeButton.addEventListener("click", (e) => {
+  //       e.preventDefault();
+  //       this.hideForm();
 
-  //   contactForm.style.left = `${formX}px`;
-  //   contactForm.style.top = `${formY}px`;
+  //       // Show thumbs only on index page
+  //       if (this.isIndexPage()) {
+  //         document.getElementById("thumbnails").style.display = "block";
+  //         this.spaceoutThumbs();
+  //       }
+
+  //       // Always show scrollbar
+  //       document.documentElement.style.overflow = "";
+  //     });
+  //   }
+
+  //   if (this.isIndexPage()) {
+  //     //index.html positioning logic
+  //     const softwareThumb = document.querySelector("#software");
+  //     if (softwareThumb) {
+  //       const softwareRect = softwareThumb.getBoundingClientRect();
+  //       const softwareY = softwareRect.top + window.scrollY;
+  //       const offsetY = 12;
+  //       const formY = softwareY + offsetY;
+
+  //       const style = window.getComputedStyle(contactForm);
+  //       const formWidth = parseFloat(style.width);
+  //       const formX = window.innerWidth / 2 - (formWidth / 2) + 6.75;
+
+  //       contactForm.style.left = `${formX}px`;
+  //       contactForm.style.top = `${formY}px`;
+  //     }
+  //   } else {
+  //     // Photography page and other pages
+  //     contactForm.style.position = "fixed";
+  //     contactForm.style.left = "50%";
+  //     contactForm.style.top = "50%";
+  //     contactForm.style.transform = "translate(-50%, -50%)";
+  //     contactForm.style.maxWidth = "90%";
+  //     contactForm.style.maxHeight = "90%";
+  //     contactForm.style.overflowY = "auto";
+  //   }
   // }
   formControl() {
-    const contactForm = document.querySelector(".formDiv#contactForm");
-    const softwareThumb = document.querySelector("#software");
+    const contactForm = document.getElementById("contactForm");
+    if (!contactForm) return;
 
-    if (!contactForm || !softwareThumb) return;
+    // For index page, position relative to thumbnails
+    if (this.isIndexPage()) {
+      const softwareThumb = document.querySelector("#software");
+      if (softwareThumb) {
+        const softwareRect = softwareThumb.getBoundingClientRect();
+        const softwareY = softwareRect.top + window.scrollY;
+        const offsetY = 12;
+        const formY = softwareY + offsetY;
 
-    // Keep existing horizontal centering logic
-    const style = window.getComputedStyle(contactForm);
-    const formWidth = parseFloat(style.width);
-    const formX = window.innerWidth / 2 - (formWidth / 2) + 6.75; // Maintains original offset
+        const style = window.getComputedStyle(contactForm);
+        const formWidth = parseFloat(style.width);
+        const formX = window.innerWidth / 2 - (formWidth / 2) + 6.75;
 
-    // Align Y-position with #software (like other functions)
-    const softwareRect = softwareThumb.getBoundingClientRect();
-    const softwareY = softwareRect.top + window.scrollY;
-    const offsetY = 12; // Matches original +12 offset from getEndTopY()
-    const formY = softwareY + offsetY;
+        contactForm.style.left = `${formX}px`;
+        contactForm.style.top = `${formY}px`;
+      }
+    } else {
+      // For other pages, center the form
+      contactForm.style.position = "fixed";
+      contactForm.style.left = "50%";
+      contactForm.style.top = "50%";
+      contactForm.style.transform = "translate(-50%, -50%)";
+    }
 
-    // Apply positioning
-    contactForm.style.left = `${formX}px`;
-    contactForm.style.top = `${formY}px`;
-
-    console.log("Contact form positioned:", {
-      softwareY,
-      formX,
-      formY,
-      formWidth
-    });
+    // Ensure modal is behind form
+    const statement = document.getElementById("statementContact");
+    if (statement) {
+      statement.style.zIndex = "1000";
+      contactForm.style.zIndex = "1001";
+    }
   }
+  hideForm() {
+    const form = document.getElementById("contactForm");
+    if (form) form.style.display = "none";
+
+    // Ensure statement is hidden on all pages
+    const statement = document.getElementById("statementContact");
+    if (statement) statement.style.display = "none";
+
+    // Always restore scrolling
+    document.documentElement.style.overflow = "";
+    this.enablePageInteractions();
+  }
+
 
   /* ======================== */
   /* === Update Methods ===== */
@@ -316,17 +497,68 @@ export class DomUtils {
   showStatementContact() {
     const statement = document.getElementById("statementContact");
     const form = document.getElementById("contactForm");
-    if (statement) statement.style.display = "block";
+
+    if (statement) {
+      // Reset position and display
+      statement.style.display = "block";
+      this.updateModalDimensions();
+
+      // For non-index pages, center the modal
+      if (!this.isIndexPage()) {
+        const center = this.getViewportCenter();
+        const modalBox = statement.querySelector(".box");
+        if (modalBox) {
+          modalBox.style.position = "fixed";
+          modalBox.style.left = `${center.x - (modalBox.offsetWidth / 2)}px`;
+          modalBox.style.top = `${center.y - (modalBox.offsetWidth / 3.4)}px`;
+        }
+      }
+    }
+
     if (form) form.style.display = "none";
+  }
+
+  disablePageInteractions() {
+    // Disable navbar links
+    const navLinks = document.querySelectorAll('.navbar a');
+    navLinks.forEach(link => {
+      link.style.pointerEvents = 'none';
+      link.style.opacity = '0.5';
+    });
+
+    // Disable modal close button
+    const modalClose = document.getElementById('modalClose');
+    if (modalClose) {
+      modalClose.style.pointerEvents = 'none';
+      modalClose.style.opacity = '0.5';
+    }
+  }
+
+  enablePageInteractions() {
+    // Re-enable navbar links
+    const navLinks = document.querySelectorAll('.navbar a');
+    navLinks.forEach(link => {
+      link.style.pointerEvents = 'auto';
+      link.style.opacity = '1';
+    });
+
+    // Re-enable modal close button
+    const modalClose = document.getElementById('modalClose');
+    if (modalClose) {
+      modalClose.style.pointerEvents = 'auto';
+      modalClose.style.opacity = '1';
+    }
   }
 
   showForm() {
     this.formControl();
     const form = document.getElementById("contactForm");
-    if (form) form.style.display = "block";
+    if (form)
+      form.style.display = "block";
+    this.disablePageInteractions();
   }
-}
 
+}
 /* ======================== */
 /* === Standalone Exports == */
 /* ======================== */
@@ -335,3 +567,4 @@ export class DomUtils {
 export function createDomUtils(selectors) {
   return new DomUtils(selectors);
 }
+

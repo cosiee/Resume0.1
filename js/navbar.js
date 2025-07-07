@@ -1,5 +1,8 @@
 // navbar.js
+// import { CloudManager } from "./cloudManager.js";
+import { CloudTransition } from "./cloudTransition.js";
 import { DomUtils } from "./domUtils.js";
+import { Animations } from "./animations.js";
 
 export class Navbar {
   static BASE_SCROLL_DURATION = 6.8;
@@ -14,7 +17,10 @@ export class Navbar {
     this.domUtils = new DomUtils(selectors);
     this.elements = this.domUtils.elements;
     this.hoverTimeout = null;
+    this._lastClick = 0;
+    this._transitionActive = false;
     this.setupMediaListeners();
+    this.initializeFormCloseButton();
   }
 
   setupMediaListeners() {
@@ -67,19 +73,50 @@ export class Navbar {
     });
   }
 
+
   showWip() {
-    if (!this.elements.thumbElements?.length) {
-      console.error("thumbElements missing!");
+    const wipElement = document.getElementById("wip");
+
+    // Safely check if WIP element exists
+    if (!wipElement) {
+      console.warn("WIP element not found in DOM");
       return;
     }
 
+    // Update dimensions based on page type
     this.updateWIPDimensions();
-    document.getElementById("wip").style.display = "block";
-    this.domUtils.collectThumbs();
+
+    // Display the WIP message
+    wipElement.style.display = "block";
+
+    // Only collect thumbs if on index page with thumbnails
+    if (this.domUtils.isIndexPage() && this.elements.thumbElements?.length) {
+      this.domUtils.collectThumbs();
+    }
   }
 
+  updateWIPDimensionsFallback() {
+    const wipBox = document.querySelector(".wip .box");
+    if (!wipBox) return;
+
+    // Center the WIP modal in the viewport
+    const newWidth = Math.min(600, window.innerWidth * 0.8);
+    wipBox.style.width = `${newWidth}px`;
+    wipBox.style.height = `${newWidth}px`;
+    wipBox.style.left = `${(window.innerWidth - newWidth) / 2}px`;
+    wipBox.style.top = `${window.innerHeight * 0.2}px`;
+    wipBox.style.position = "fixed";
+  }
+
+  // hideWip() {
+  //   document.getElementById("wip").style.display = "none";
+  // }
+
   hideWip() {
-    document.getElementById("wip").style.display = "none";
+    const wipElement = document.getElementById("wip");
+    if (wipElement) {
+      wipElement.style.display = "none";
+    }
   }
 
   hideScrollBar() {
@@ -115,6 +152,8 @@ export class Navbar {
   }
 
   setupNavbarEvents() {
+
+
     // Only setup events if elements exist
     if (this.elements.navSoftware && this.elements.navDropMenuSoftware) {
       this.setupDropdownHover(
@@ -134,67 +173,417 @@ export class Navbar {
 
     // Add null checks for click events
     if (this.elements.navHome) {
-
+      this.setupClickEvent(this.elements.navHome, (e) => {
+        if (e.target.hasAttribute('data-transition-nav')) {
+          e.preventDefault();
+          this.handleTransitionNavigation(e.target.getAttribute('data-link'));
+        }
+      });
       this.setupClickEvent(this.elements.navHome, () => this.autoScrollNow());
     }
 
-    if (this.elements.navContact) {
 
-      this.setupClickEvent(this.elements.navContact, () => {
+
+    if (this.elements.navContact) {
+      this.setupClickEvent(this.elements.navContact, (e) => {
+        if (this.elements.navContact.tagName === 'A') {
+          e.preventDefault();
+        }
+
+        // 1. Hide scrollbar to prevent background scrolling
         this.hideScrollBar();
-        this.domUtils.updateModalDimensions();
+
+        // 2. Initialize form positioning - critical for all pages
+        this.domUtils.formControl();
+
+        // 3. Show the initial statement (before form)
         this.domUtils.showStatementContact();
+
+        // 4. Display the form itself
         this.domUtils.showForm();
-        this.domUtils.collectThumbs();
+
+        // 5. Special handling for index page only
+        if (this.domUtils.isIndexPage()) {
+          // Reposition thumbnails around the form
+          this.domUtils.collectThumbs();
+
+          // Additional index-specific logic if needed
+          this.handleIndexPageFormOpen();
+        }
+
+        // For analytics or debugging
+        console.log('Contact form opened on:', this.domUtils.detectPage());
       });
     }
 
-    // WIP events
-    ["navAnimation", "navVideo", "navDiy", "navPhotography", "navPython", "navJava", "navSql", "navReact"]
-      .forEach(id => this.setupClickEvent(this.elements[id], () => this.showWip()));
+    // Ensure close button works even if initialized early
+    this.initializeFormCloseButton();
+
+
+
+    // , "navPhotography"
+    ["navAnimation", "navVideo", "navDiy", "navPython", "navJava", "navSql", "navReact"]
+      .forEach(id => {
+        if (this.elements[id]) {
+          this.setupClickEvent(this.elements[id], () => {
+            this.showWip();
+            this.hideScrollBar();
+          });
+        }
+      });
+
+    // Setup other transition-enabled nav items
+
+    // ["navHome", "navAbout", "navContact"].forEach(id => {
+    //   if (this.elements[id]) {
+    //     this.setupClickEvent(this.elements[id], (e) => {
+    //       if (e.target.classList.contains('transition-nav')) {
+    //         e.preventDefault();
+    //         this.handleTransitionNavigation(e.target.href);
+    //       }
+    //     });
+    //   }
+    // });
+
+    // In setupNavbarEvents() method:
+
+
+    // if (this.elements.navPhotography) {
+    //   this.elements.navPhotography.addEventListener('click', async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //       // Set flag for incoming page
+    //       sessionStorage.setItem('shouldTransitionIn', 'true');
+
+    //       // Set flag to handle reverse transition if needed
+    //       sessionStorage.setItem('cloudTransitionActive', 'true');
+
+    //       // Start transition
+    //       const success = await animations.cloudTransitionOut('photography.html');
+
+    //       // Only navigate if transition was successful
+    //       if (success) {
+    //         window.location.href = 'photography.html';
+    //       } else {
+    //         // Fallback to immediate navigation
+    //         window.location.href = 'photography.html';
+    //       }
+    //     } catch (error) {
+    //       console.error("Transition failed:", error);
+    //       // Fallback to immediate navigation
+    //       window.location.href = 'photography.html';
+    //     }
+    //   });
+    // }
+
+    if (this.elements.navPhotography) {
+      this.setupClickEvent(
+        this.elements.navPhotography,
+        this.handlePhotoClick.bind(this)
+      );
+    }
+    // if (this.elements.navPhotography) {
+    //   this.elements.navPhotography.addEventListener('click', async (e) => {
+    //     e.preventDefault();
+    //     await this.handleTransitionNavigation('photography.html');
+    //   });
+    // }
+
+    // if (this.elements.navPhotography) {
+    //   this.setupClickEvent(this.elements.navPhotography, (e) => {
+    //     if (e.target.hasAttribute('data-transition-nav')) {
+    //       e.preventDefault();
+    //       this.handleTransitionNavigation(e.target.getAttribute('data-link'));
+    //     }
+    //   });
+    // }
+
+    // if (this.elements.navPhotography) {
+    //   this.setupClickEvent(this.elements.navPhotography, (e) => {
+    //     e.preventDefault();
+    //     this.handleTransitionNavigation('photography.html');
+    //   });
+    // }
+
+    // Close button handler
+    const wipClose = document.getElementById("modalWipClose");
+    if (wipClose) {
+      wipClose.addEventListener("click", (e) => {
+        e.preventDefault();
+        this.hideWip();
+        this.showScrollBar();
+      });
+    }
   }
+
+  async handlePhotoClick(e) {
+    e.preventDefault();
+    const now = performance.now();
+
+    // 1. Throttle rapid clicks
+    if (now - this._lastClick < 1000) return;
+    this._lastClick = now;
+
+    // 2. Check if already on target page
+    if (window.location.pathname.endsWith('photography.html')) return;
+
+    // 3. Prevent duplicate transitions
+    if (this._transitionActive) {
+      console.log('Transition already in progress');
+      return;
+    }
+    this._transitionActive = true;
+
+    console.log('Initiating photography transition');
+
+    try {
+      // 4. Set transition flag for incoming page
+      sessionStorage.setItem('shouldTransitionIn', 'true');
+
+      // 5. Create animations instance
+      const animations = new Animations(this.domUtils.elements);
+
+      // 6. Schedule the transition
+      const runTransition = () => {
+        animations.cloudTransitionOut('photography.html')
+          .catch(error => {
+            console.error('Transition failed:', error);
+            window.location.href = 'photography.html';
+          });
+      };
+
+      // Use optimal scheduling
+      if (typeof requestIdleCallback === 'function') {
+        requestIdleCallback(runTransition, { timeout: 500 });
+      } else {
+        requestAnimationFrame(() => {
+          setTimeout(runTransition, 0);
+        });
+      }
+
+    } catch (error) {
+      console.error('Transition initialization failed:', error);
+      this._transitionActive = false;
+      window.location.href = 'photography.html';
+    }
+  }
+
+  async handleNavigationClick(e) {
+    e.preventDefault();
+    await CloudTransition.handleTransitionNavigation(this.href);
+  }
+
+
+  async handleTransitionNavigation(url) {
+    try {
+      // 1. Freeze UI
+      document.documentElement.style.pointerEvents = 'none';
+
+      // 2. Set transition flags
+      sessionStorage.setItem('shouldTransitionIn', 'true');
+
+      // 3. Start transition
+      const animations = new Animations(this.domUtils.elements);
+      const success = await animations.cloudTransitionOut(url);
+
+      if (!success) {
+        throw new Error('Transition failed');
+      }
+
+    } catch (error) {
+      console.error('Transition failed:', error);
+      // Fallback to normal navigation
+      window.location.href = url;
+    }
+  }
+  // async handleTransitionNavigation(url) {
+  //   try {
+  //     // 1. Freeze UI
+  //     document.documentElement.style.pointerEvents = 'none';
+
+  //     // 2. Hide interfering elements
+  //     this.hideWip();
+  //     this.hideScrollBar();
+
+  //     // 3. Trigger cloud transition
+  //     const transitionSuccess = await CloudTransition.triggerTransition();
+
+  //     if (!transitionSuccess) {
+  //       console.warn('Proceeding with direct navigation');
+  //       window.location.href = url;
+  //       return;
+  //     }
+
+  //     // 4. Optional: Add slight delay before navigation
+  //     await new Promise(resolve => setTimeout(resolve, 300));
+
+  //     // 5. Navigate
+  //     window.location.href = url;
+
+  //   } catch (error) {
+  //     console.error('Transition failed:', error);
+  //     // Fallback to normal navigation
+  //     window.location.href = url;
+  //   } finally {
+  //     // Always restore pointer events if navigation fails
+  //     document.documentElement.style.pointerEvents = '';
+  //   }
+  // }
+
+
+
+  initializeFormCloseButton() {
+    // Method to attach the event listener
+    const attachCloseHandler = () => {
+      const closeButton = document.getElementById('contactFormClose');
+
+      if (closeButton && !closeButton._closeListenerAttached) {
+        closeButton.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.handleFormClose();
+        });
+        closeButton._closeListenerAttached = true; // Prevent duplicate listeners
+
+      }
+    };
+
+    // Check if the close button is already in the DOM
+    attachCloseHandler();
+  }
+
+  handleFormClose() {
+    // Hide the form
+    const form = document.getElementById('contactForm');
+    if (form) form.style.display = 'none';
+
+    // Hide statement if visible
+    const statement = document.getElementById('statementContact');
+    if (statement) statement.style.display = 'none';
+
+    // Restore scrolling
+    this.showScrollBar();
+    this.domUtils.enablePageInteractions();
+    // Special handling for index page
+    if (this.domUtils.isIndexPage()) {
+      document.getElementById('thumbnails').style.display = 'block';
+      this.domUtils.spaceoutThumbs();
+    }
+  }
+
 
   setupDynamicLinks() {
     document.querySelectorAll("a[data-link]").forEach(link => {
       link.setAttribute("href", link.dataset.link);
     });
   }
-
-  // 
   updateWIPDimensions() {
     const wipBox = document.querySelector(".wip .box");
-    const softwareThumb = document.querySelector("#software");
+    if (!wipBox) return;
 
-    if (!wipBox || !softwareThumb || !this.elements?.thumbElements?.[0]) {
-      console.error("Missing elements for WIP dimensions");
-      return;
+    if (this.domUtils.isIndexPage()) {
+      // Original index.html thumbnail-based positioning
+      const softwareThumb = document.querySelector("#software");
+      if (softwareThumb && this.elements?.thumbElements?.[0]) {
+        const thumbWidth = this.getThumbWidthWithoutMargin();
+        const newWidth = Math.max(thumbWidth * 2 + 4, 300);
+        const centerX = window.innerWidth / 2 + 8;
+        const newLeft = centerX - newWidth / 2;
+
+        const softwareRect = softwareThumb.getBoundingClientRect();
+        const softwareY = softwareRect.top + window.scrollY;
+        const offsetY = 9.4;
+        const newTop = softwareY + offsetY;
+
+        wipBox.style.width = `${newWidth}px`;
+        wipBox.style.height = `${newWidth}px`;
+        wipBox.style.left = `${newLeft}px`;
+        wipBox.style.top = `${newTop}px`;
+        wipBox.style.position = "absolute";
+        return;
+      }
     }
 
-    // Keep existing sizing logic
-    const thumbWidth = this.getThumbWidthWithoutMargin();
-    const newWidth = Math.max(thumbWidth * 2 + 4, 300);
-    const centerX = window.innerWidth / 2 + 8;
-    const newLeft = centerX - newWidth / 2;
+    // Fallback positioning for all other pages
+    const center = this.domUtils.getViewportCenter();
+    const baseSize = Math.min(550, window.innerWidth * 0.85);
 
-    // Align Y-position with #software (like updateModalDimensions)
-    const softwareRect = softwareThumb.getBoundingClientRect();
-    const softwareY = softwareRect.top + window.scrollY;
-    const offsetY = 9.4; // Match modal's offset for consistency
-    const newTop = softwareY + offsetY;
-
-    // Apply styles
-    wipBox.style.width = `${newWidth}px`;
-    wipBox.style.height = `${newWidth}px`;
-    wipBox.style.left = `${newLeft}px`;
-    wipBox.style.top = `${newTop}px`;
-    wipBox.style.position = "absolute";
-
-    console.log("WIP positioned:", {
-      softwareY,
-      finalTop: newTop,
-      width: newWidth
-    });
+    wipBox.style.width = `${baseSize}px`;
+    wipBox.style.height = `${baseSize}px`;
+    wipBox.style.left = `${center.x - (baseSize / 2)}px`;
+    wipBox.style.top = `${center.y * 0.25}px`;
+    wipBox.style.position = "fixed";
   }
+
+  // updateWIPDimensions() {
+  //   const wipBox = document.querySelector(".wip .box");
+  //   const softwareThumb = document.querySelector("#software");
+
+  //   if (!wipBox) return;
+
+  //   if (this.domUtils.isIndexPage() && softwareThumb) {
+  //     // Original index.html positioning logic
+  //     const thumbWidth = this.getThumbWidthWithoutMargin();
+  //     const newWidth = Math.max(thumbWidth * 2 + 4, 300);
+  //     const centerX = window.innerWidth / 2 + 8;
+  //     const newLeft = centerX - newWidth / 2;
+
+  //     const softwareRect = softwareThumb.getBoundingClientRect();
+  //     const softwareY = softwareRect.top + window.scrollY;
+  //     const offsetY = 9.4;
+  //     const newTop = softwareY + offsetY;
+
+  //     wipBox.style.width = `${newWidth}px`;
+  //     wipBox.style.height = `${newWidth}px`;
+  //     wipBox.style.left = `${newLeft}px`;
+  //     wipBox.style.top = `${newTop}px`;
+  //     wipBox.style.position = "absolute";
+  //   } else {
+  //     // Standard positioning for all other pages
+  //     const center = this.domUtils.getViewportCenter();
+  //     const baseSize = Math.min(550, window.innerWidth * 0.85);
+
+  //     wipBox.style.width = `${baseSize}px`;
+  //     wipBox.style.height = `${baseSize}px`;
+  //     wipBox.style.left = `${center.x - (baseSize / 2)}px`;
+  //     wipBox.style.top = `${center.y * 0.25}px`;
+  //     wipBox.style.position = "fixed";
+  //   }
+  // }
+  // 
+  // updateWIPDimensions() {
+  //   const wipBox = document.querySelector(".wip .box");
+  //   const softwareThumb = document.querySelector("#software");
+
+  //   if (!wipBox || !softwareThumb || !this.elements?.thumbElements?.[0]) {
+  //     console.error("Missing elements for WIP dimensions");
+  //     return;
+  //   }
+
+  //   // Keep existing sizing logic
+  //   const thumbWidth = this.getThumbWidthWithoutMargin();
+  //   const newWidth = Math.max(thumbWidth * 2 + 4, 300);
+  //   const centerX = window.innerWidth / 2 + 8;
+  //   const newLeft = centerX - newWidth / 2;
+
+  //   // Align Y-position with #software (like updateModalDimensions)
+  //   const softwareRect = softwareThumb.getBoundingClientRect();
+  //   const softwareY = softwareRect.top + window.scrollY;
+  //   const offsetY = 9.4; // Match modal's offset for consistency
+  //   const newTop = softwareY + offsetY;
+
+  //   // Apply styles
+  //   wipBox.style.width = `${newWidth}px`;
+  //   wipBox.style.height = `${newWidth}px`;
+  //   wipBox.style.left = `${newLeft}px`;
+  //   wipBox.style.top = `${newTop}px`;
+  //   wipBox.style.position = "absolute";
+
+  //   console.log("WIP positioned:", {
+  //     softwareY,
+  //     finalTop: newTop,
+  //     width: newWidth
+  //   });
+  // }
 
   /* -------------------- Helper Methods -------------------- */
 
