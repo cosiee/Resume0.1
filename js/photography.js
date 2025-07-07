@@ -192,6 +192,8 @@ function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
 
 thumbnailsWrapper.style.minWidth = `${( 10) * allSlides.length}px`;
 console.log('Forced wrapper width:', thumbnailsWrapper.style.minWidth);
+thumbnailsWrapper.style.margin = '0 auto';
+console.log('Wrapper centered with margin:', thumbnailsWrapper.style.margin);
 
   // Navigation functions
   function showSlide(index) {

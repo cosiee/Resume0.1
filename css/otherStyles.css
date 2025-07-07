@@ -9,11 +9,10 @@
 body {
   overflow-x: hidden;
   overflow-y: auto;
-  /* Ensure vertical scrolling is enabled */
+ 
 }
 
-/* .scrollDist { border: 2px solid red; }
-#slider6 { border: 2px solid blue; } */
+
 
 /* Navbar Styles */
 a.nav-link {
@@ -956,11 +955,6 @@ body {
   .gallery-main-slider {
     height: 50vh;
   }
-
-
-
-
-
 
   .gallery-main-container {
     padding-top: 100%;
