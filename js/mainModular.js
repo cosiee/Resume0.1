@@ -896,3 +896,8 @@ domElements.modalWipClose.addEventListener("click", function () {
 });
 
 // Handles index.html specify navigation links End
+
+
+
+
+
