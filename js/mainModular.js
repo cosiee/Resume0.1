@@ -6,7 +6,7 @@ import { DomUtils } from "./domUtils.js";
 import { initThumbnails, preloadCriticalImages } from "./preload.js";
 import { Navbar } from './navbar.js';
 
-window.process = window.process || { env: {} };
+
 
 
 export const selectors = {
@@ -103,121 +103,80 @@ const backgroundContainers = ['software', 'photography', 'motion', 'diy'];
 
 
 document.addEventListener("DOMContentLoaded", async function () {
-
-
   // Hide background containers initially 
   backgroundContainers.forEach(id => {
     const el = document.getElementById(id);
     if (el) el.style.opacity = 0;
   });
-
+navbar.hideScrollBar();
   try {
-    // 1. Load critical images first
+    // Load critical images first - this should be FIRST
     await preloadCriticalImages(prioritizedImages);
 
-    // 2. Make SVG visible
+    // Make SVG visible and start animations
     if (domElements.svg) {
       domElements.svg.style.visibility = "visible";
 
-      // 3. Start mountain sky animation (now working without cloudTransitionIn)
-      try {
-        await animations.mountainSkyAni();
-      } catch (error) {
-        console.error("Sky animation failed", error);
-        // Fallback: Ensure mountains are at least visible
-        gsap.set("#mountains", { opacity: 1 });
-      }
 
-      // Debug cloud positions (optional development tool)
-      if (process.env.NODE_ENV === 'development') {
-        const debugCloudPositions = () => {
-          ["cloud1", "cloud2", "cloud3", "cloud4", "cloud5"].forEach(id => {
-            const el = document.getElementById(id);
-            if (el) {
-              const transform = el.getAttribute("transform") || "none";
-              const bounds = el.getBBox();
-              console.log(`${id}:`, {
-                transform,
-                position: { x: bounds.x, y: bounds.y },
-                computed: gsap.getProperty(el)
-              });
-            }
-          });
-        };
-        setTimeout(debugCloudPositions, 500);
-      }
+      animations.mountainSkyAni();
+
+      // Debugging
+      // Debug cloud positions
+      const debugCloudPositions = () => {
+        ["cloud1", "cloud2", "cloud3", "cloud4", "cloud5"].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            const transform = el.getAttribute("transform") || "none";
+            const bounds = el.getBBox();
+            // console.log(`${id}:`, {
+            //   transform,
+            //   position: { x: bounds.x, y: bounds.y },
+            //   computed: gsap.getProperty(el)
+            // });
+          }
+        });
+      };
+
+      // Run after SVG loads
+      setTimeout(debugCloudPositions, 500);
+
+      // This should run immediately after preload
     }
 
-
-
-
-    // Call this in your DOMContentLoaded handler
-    setupNavigation();
-
-    // 5. Load remaining assets in background
+    // Load remaining assets in background
     setTimeout(() => {
-      try {
-        initThumbnails();
-      } catch (error) {
-        console.error("Thumbnail initialization failed:", error);
-      }
+      initThumbnails();
     }, 0);
 
-    // 6. Initialize navbar and UI components
-    navbar.init(320);
-    domUtils.updateEndTopY();
+    // Setup photography link if available
+    if (domElements.navPhotography) {
+      domElements.navPhotography.addEventListener('click', async (e) => {
+        e.preventDefault();
+        await CloudTransition.triggerTransition('photography.html');
+      });
+    } else {
+      console.warn('Photography link not found in DOM');
+    }
 
-    // 7. Show thumbnails background images
-    backgroundContainers.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.style.opacity = 1;
-    });
+    // Initialize CloudTransition AFTER main animation is set up
+    CloudTransition.triggerReverse();
 
   } catch (error) {
     console.error("Initialization failed:", error);
-    // Comprehensive fallbacks:
+    // Fallback: Still make SVG visible
     if (domElements.svg) domElements.svg.style.visibility = "visible";
-
-    // Ensure basic navigation works
-    if (domElements.navPhotography) {
-      domElements.navPhotography.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.location.href = 'photography.html';
-      });
-    }
   }
+
+  // Initialize navbar and other components
+  navbar.init(320);
+  domUtils.updateEndTopY(); // controls positioning of elements in index.html
+
+  // Shows thumbnails background images
+  backgroundContainers.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.opacity = 1;
+  });
 });
-
-
-
-//  Setup photography link with transition
-function setupNavigation() {
-  // Clean up any existing listeners
-  if (domElements.navPhotography) {
-    domElements.navPhotography.removeEventListener('click', handlePhotographyClick);
-  }
-
-  // Single handler instance
-  async function handlePhotographyClick(e) {
-    e.preventDefault();
-    if (window.location.pathname.endsWith('photography.html')) return;
-
-    console.log('Initiating photography transition');
-    try {
-      sessionStorage.setItem('shouldTransitionIn', 'true');
-      await animations.cloudTransitionOut('photography.html');
-    } catch (error) {
-      console.error('Transition failed:', error);
-      window.location.href = 'photography.html';
-    }
-  }
-
-  // Attach listener
-  if (domElements.navPhotography) {
-    domElements.navPhotography.addEventListener('click', handlePhotographyClick);
-  }
-}
-
 // ###################################################################################
 // window listeners:
 
@@ -416,19 +375,7 @@ gsap.set("#mountains", {
 
 // // End of Mountain Sky Animation
 
-// Me Element Animations and transitions
-
-function setupPhotoLink() {
-  if (domElements.navPhotography) {
-    domElements.navPhotography.addEventListener('click', async (e) => {
-      e.preventDefault();
-      await animations.cloudTransitionOut();
-      window.location.href = 'photography.html';
-    });
-  } else {
-    console.warn('Photography link not found in DOM');
-  }
-}
+// Me Element Animations
 
 // Function to start the hover wiggle animation, functions, variables and listeners
 let hoverAnimationInterval;
@@ -949,8 +896,6 @@ domElements.modalWipClose.addEventListener("click", function () {
 });
 
 // Handles index.html specify navigation links End
-
-
 
 
 

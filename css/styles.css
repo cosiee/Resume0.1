@@ -28,10 +28,12 @@
 
 /* Ensure SVG clouds can be animated properly */
 #cloud1,
+#cloud1M,
 #cloud2,
 #cloud3,
 #cloud4,
-#cloud5 {
+#cloud5,
+#cloud6 {
   transform-origin: center;
   will-change: transform, opacity;
   pointer-events: none;
@@ -95,6 +97,7 @@ a[data-transition-nav]:hover::after {
     pointer-events: none;
   }
 }
+
 /*End of Cloud transition styles */
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ SEE/ME Base Styles $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
@@ -129,6 +132,10 @@ a[data-transition-nav]:hover::after {
   /* visibility: hidden; */
   opacity: 1;
 }
+
+/* ---------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------- */
 
 text.lrgtext {
   position: absolute;

@@ -208,7 +208,7 @@ export class Navbar {
           this.domUtils.collectThumbs();
 
           // Additional index-specific logic if needed
-          this.handleIndexPageFormOpen();
+          // this.handleIndexPageFormOpen();
         }
 
         // For analytics or debugging
