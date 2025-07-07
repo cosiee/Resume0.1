@@ -1,46 +1,27 @@
+
+// cloudTransition.js
+
+import { Animations } from './animations.js';
 import { CloudManager } from './cloudManager.js';
-
 export class CloudTransition {
-    static async triggerTransition(targetPage) {
-        if (CloudManager.animationInProgress) return;
+    static async handleTransitionNavigation(url) {
+        const animations = new Animations();
+        try {
+            // Freeze UI
+            document.documentElement.style.pointerEvents = 'none';
 
-        CloudManager.prepareForTransition();
+            // Start transition
+            const success = await animations.cloudTransitionOut(url);
 
-        // Animate clouds to center screen
-        await gsap.to(["#cloud1", "#cloud2", "#cloud3", "#cloud4", "#cloud5", "#cloud1M"], {
-            opacity: 1,
-            scale: 3,
-            x: 0,
-            y: 0,
-            duration: 1.5,
-            ease: "power2.inOut",
-            overwrite: true
-        });
+            if (!success) {
+                window.location.href = url;
+            }
 
-        // Navigate after animation completes
-        if (targetPage) {
-            window.location.href = targetPage;
+        } catch (error) {
+            console.error('Transition failed:', error);
+            document.documentElement.style.pointerEvents = '';
+            window.location.href = url;
         }
-    }
-
-    static async triggerReverse() {
-        if (CloudManager.animationInProgress) return;
-
-        // First make clouds visible if they're hidden
-        gsap.set(["#cloud1", "#cloud2", "#cloud3", "#cloud4", "#cloud5", "#cloud1M"], {
-            opacity: 0,
-            visibility: 'visible'
-        });
-
-        // Then fade in quickly
-        await gsap.to(["#cloud1", "#cloud2", "#cloud3", "#cloud4", "#cloud5", "#cloud1M"], {
-            opacity: 1,
-            duration: 0.3,
-            ease: "power2.out"
-        });
-
-        // Finally restore original states
-        await CloudManager.restoreAfterTransition();
     }
 
     static async resetClouds() {
@@ -48,3 +29,42 @@ export class CloudTransition {
         CloudManager.reset();
     }
 }
+// cloudTransition.js
+// import { CloudManager } from './cloudManager.js';
+
+// export class CloudTransition {
+//     async handleTransitionNavigation(url) {
+//         try {
+//             // 1. Freeze UI to prevent interactions during transition
+//             document.documentElement.style.pointerEvents = 'none';
+
+//             // 2. Hide any visible UI elements that might interfere
+//             this.hideWip();
+//             this.hideScrollBar();
+
+//             // 3. Trigger cloud transition with proper error handling
+//             const transitionSuccess = await CloudTransition.triggerTransition();
+
+//             if (!transitionSuccess) {
+//                 throw new Error('Cloud transition animation failed');
+//             }
+
+//             // 4. Add brief delay for smoother transition (optional)
+//             await new Promise(resolve => setTimeout(resolve, 300));
+
+//             // 5. Navigate to new page
+//             window.location.href = url;
+
+//         } catch (error) {
+//             console.error('Transition failed:', error);
+//             // Restore UI interactions before fallback
+//             document.documentElement.style.pointerEvents = '';
+//             // Fallback to normal navigation
+//             window.location.href = url;
+//         }
+//     }
+//     static async resetClouds() {
+//         await CloudManager.restoreAfterTransition();
+//         CloudManager.reset();
+//     }
+// }
