@@ -4,7 +4,6 @@ import { DomUtils } from "./domUtils.js";
 // import { initThumbnails, preloadCriticalImages } from "./preload.js";
 import { Navbar } from "./navbar.js";
 
-console.log('Is sliderResponsive available?', $.fn.sliderResponsive);
 
 
 
@@ -44,7 +43,7 @@ export const selectors = {
   slider5: "#slider5",
   slider6: "#slider6",
   slider7: "#slider7",
-  slider7: "#slider8",
+  slider8: "#slider8",
 };
 
 const navbar = new Navbar(selectors);
@@ -71,10 +70,18 @@ const galleryData = {
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118986/compressed-img-6855-copy_f9big6.webp",
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118990/compressed-summer-0468_szmnqj.webp",
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118989/compressed-summer-0460_w1ralb.webp",
-      
+
     ],
     full: [
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118993/compressed-summer-0547_ufbms7.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118987/compressed-img-7289_kcqe20.webp",
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118987/compressed-img-7639_gwc3qc.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118988/compressed-img-7658-copy_oud2ro.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118987/compressed-lighthouse-fenit-1393_uxbdjj.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118991/compressed-summer-0477_cbnncw.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118990/compressed-summer-0474_qx1fkk.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118993/compressed-summer-1364_c7yegp.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118992/compressed-summer-0505_boozks.webp'
     ]
   },
   maylaysia: {
@@ -85,7 +92,17 @@ const galleryData = {
 
     ],
     full: [
-      // 'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203058/IMG_8813_tsebmj.webp'
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203037/IMG_0669_d2bkqo.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203062/DSC04937_xasjqr.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203057/IMG_8734_ujgnhi.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203055/IMG_9441_skeod6.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203054/IMG_9060_wnlhmf.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203040/IMG_8680_y4mpjx.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203040/DSC05086_ps4lhu.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203040/IMG_7594_2_ees3nh.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203037/IMG_0669_d2bkqo.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203035/IMG_0087_uhzopu.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203055/IMG_9433_x4pv3x.webp'
     ]
 
   },
@@ -100,13 +117,19 @@ const galleryData = {
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-2621_jtflh9.webp',
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-1429_oxhhhq.webp',
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036317/indoRTRPix_-3263_cplk9b.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-4159_equalj.webp'
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-4159_equalj.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036323/indoRTRPix_--5_bgkrpk.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-1559_mjrr5c.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-1620_q0exvq.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036319/indoRTRPix_-4040_dgsnkc.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036323/indoRTRPix_--5_bgkrpk.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-2890_ckspew.webp'
     ]
   },
   egypt: {
     preview: [
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103545/compressed-egypt-rtrpix-7464_hyfadx.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103545/compressed-egypt-rtrpix-7145_zqfbul.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103546/compressed-egypt-rtrpix-7796_ohjxup.webp',
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8872_z6fhnb.webp',
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8569_fwdcgz.webp'
     ],
@@ -116,20 +139,40 @@ const galleryData = {
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103552/compressed-egypt-rtrpix-8188_prhy17.webp',
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8724_xrmxf7.webp',
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103548/compressed-egypt-rtrpix-8048_wxzwun.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103546/compressed-egypt-rtrpix-7796_ohjxup.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103544/compressed-egypt-rtrpix-7008_gkdpsx.webp'
-
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103543/compressed-egypt-rtrpix-6758_eeixsa.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103544/compressed-egypt-rtrpix-7008_gkdpsx.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103545/compressed-egypt-rtrpix-7145_zqfbul.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103544/compressed-egypt-rtrpix-7111_e30c1f.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103544/compressed-egypt-rtrpix-4711_cc3unk.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103546/compressed-egypt-rtrpix-7859_w2fx7r.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103546/compressed-egypt-rtrpix-7219_seve1r.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103548/compressed-egypt-rtrpix-8030_dsh4hp.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103549/compressed-egypt-rtrpix-8057_mgaf4a.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103549/compressed-egypt-rtrpix-8062_fyvf50.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103549/compressed-egypt-rtrpix-7021_ht5f14.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103551/compressed-egypt-rtrpix-8170_wewwra.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103550/compressed-egypt-rtrpix-8113_irwa5m.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103553/compressed-egypt-rtrpix-8079_gz6fdl.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103552/compressed-egypt-rtrpix-8185_efwwkj.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103553/compressed-egypt-rtrpix-8341_ypzs7a.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103553/compressed-egypt-rtrpix-8191_fbgf33.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103553/compressed-egypt-rtrpix-8189_oydwvg.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118960/compressed-great-giza-pyramids-egypt-2014-9_wwzogz.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118960/compressed-great-giza-pyramids-egypt-2014-4_muyz5z.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-9055_kxcv3s.webp'
+      
     ]
   },
   nepal: {
     preview: [
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200658/Annnapurna_South_Fang2_vwgzr9.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200638/IMG_3438_zou1cl.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203027/IMG_2845_01_l6wz9a.webp',
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200634/IMG_2753_nlwdto.webp',
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200634/IMG_3872_g5lkrk.webp'
     ],
     full: [
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203027/IMG_2845_01_l6wz9a.webp'
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200638/IMG_3438_zou1cl.webp'
+
 
     ]
   },
@@ -145,13 +188,18 @@ const galleryData = {
     ],
 
     full: [
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207316/Jordan-RTRPix-6451_zvwmqz.webp'
-      
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207316/Jordan-RTRPix-6451_zvwmqz.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207182/Jordan-RTRPix-6132_in2kkk.webp',
+
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207271/Jordan-RTRPix-5758_jw3lyk.webp',
+
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207410/Jordan-RTRPix-6568_xsskaa.webp'
+
 
     ]
   }
 
-  
+
 };
 
 
@@ -177,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener('load', preloadFullGalleryImages);
 
 
-  initializeSliders();
+    initializeSliders();
 
   }
 
@@ -285,7 +333,7 @@ function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
   };
 
   const galleryId = galleryMap[sliderContainer.id] || 'default';
-  
+
   // COMBINE PREVIEW + FULL IMAGES
   const previewImages = galleryData[galleryId]?.preview || [];
   const fullImages = galleryData[galleryId]?.full || [];
@@ -312,6 +360,7 @@ function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
       background-image: url(${imgUrl});
       background-size: cover;
       background-position: center;
+      background-repeat: no;
       width: 60px;
       height: 60px;
       flex-shrink: 0;
@@ -359,7 +408,7 @@ function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
       .findIndex(slide => slide.style.display === "block");
     const nextIndex = (currentIndex + 1) % allImages.length;
     showSlide(nextIndex);
-    
+
     const activeThumb = modal.querySelectorAll(".gallery-thumb")[nextIndex];
     activeThumb?.scrollIntoView({
       behavior: "smooth",
@@ -373,7 +422,7 @@ function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
       .findIndex(slide => slide.style.display === "block");
     const prevIndex = (currentIndex - 1 + allImages.length) % images.length;
     showSlide(prevIndex);
-    
+
     const activeThumb = modal.querySelectorAll(".gallery-thumb")[prevIndex];
     activeThumb?.scrollIntoView({
       behavior: "smooth",
@@ -390,7 +439,7 @@ function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
 
   prevBtn.addEventListener("click", showPrevSlide);
   nextBtn.addEventListener("click", showNextSlide);
-  
+
   modal.addEventListener("click", (e) => {
     if (e.target === modal) {
       modal.style.display = "none";
@@ -413,7 +462,7 @@ function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
   // Show modal
   modal.style.display = "flex";
   document.body.style.overflow = "hidden";
-  
+
   // Center the initial active thumbnail
   setTimeout(() => {
     const activeThumb = modal.querySelectorAll(".gallery-thumb")[slideIndex];
@@ -489,7 +538,7 @@ function setupEventListeners() {
 //     // Initialize with timeout to ensure DOM is ready
 //     setTimeout(() => {
 //       $slider.sliderResponsive(config.options);
-      
+
 //       // Verify initialization
 //       if (!$slider.data('sliderResponsive')) {
 //         console.error(`Failed to initialize ${sliderId}`);
@@ -507,19 +556,19 @@ function initializeSliders() {
 
   const sliderConfigs = {
     '#slider1': { gallery: 'ireland', options: {} },
-    '#slider2': { 
+    '#slider2': {
       gallery: 'maylaysia',
       options: { fadeSpeed: 300, autoPlay: "off", showArrows: "on", hideDots: "on" }
     },
-    '#slider3': { 
+    '#slider3': {
       gallery: 'indonesia',
       options: { hoverZoom: "off", hideDots: "on" }
     },
-    '#slider4': { 
+    '#slider4': {
       gallery: 'egypt',
       options: { fadeSpeed: 300, autoPlay: "off", showArrows: "on", hideDots: "on" }
     },
-    '#slider5': { 
+    '#slider5': {
       gallery: 'nepal',
       options: { fadeSpeed: 300, autoPlay: "off", showArrows: "on", hideDots: "on" }
     },
@@ -527,11 +576,11 @@ function initializeSliders() {
   };
 
   // First initialize all sliders with their default content
-  $(window).on("load", function() {
+  $(window).on("load", function () {
     $("#slider1").sliderResponsive();
     $("#slider2").sliderResponsive({
       fadeSpeed: 300,
- 
+
       showArrows: "on",
       hideDots: "on",
     });
@@ -541,13 +590,13 @@ function initializeSliders() {
     });
     $("#slider4").sliderResponsive({
       fadeSpeed: 300,
-     
+
       showArrows: "on",
       hideDots: "on",
     });
     $("#slider5").sliderResponsive({
       fadeSpeed: 300,
- 
+
       showArrows: "on",
       hideDots: "on",
     });
@@ -556,42 +605,42 @@ function initializeSliders() {
 
   // Then replace content while preserving functionality
   // setTimeout(() => {
-    Object.entries(sliderConfigs).forEach(([sliderId, config]) => {
-      const $slider = $(sliderId);
-      if (!$slider.length) return;
+  Object.entries(sliderConfigs).forEach(([sliderId, config]) => {
+    const $slider = $(sliderId);
+    if (!$slider.length) return;
 
-      // Get reference to plugin instance before modifying DOM
-      const sliderInstance = $slider.data('sliderResponsive');
-      
-      // Store structural elements
-      const $arrows = $slider.find('.arrows').detach();
-      const $titleBar = $slider.find('.titleBar').detach();
-      const $dots = $slider.find('ul').detach();
+    // Get reference to plugin instance before modifying DOM
+    const sliderInstance = $slider.data('sliderResponsive');
 
-      // Clear slides only
-      $slider.find('> div').not('.arrows, .titleBar').remove();
+    // Store structural elements
+    const $arrows = $slider.find('.arrows').detach();
+    const $titleBar = $slider.find('.titleBar').detach();
+    const $dots = $slider.find('ul').detach();
 
-      // Add new slides
-      galleryData[config.gallery]?.preview.forEach(imgUrl => {
-        $slider.append($('<div>').css('background-image', `url(${imgUrl})`));
-      });
+    // Clear slides only
+    $slider.find('> div').not('.arrows, .titleBar').remove();
 
-      // Reattach structural elements
-      $slider.append($arrows);
-      $slider.append($titleBar);
-      if ($dots.length) $slider.append($dots);
-
-      // Reinitialize if needed
-      if (sliderInstance) {
-        sliderInstance.size = $slider.find("> div").length;
-        sliderInstance.position = 0;
-        $slider.find("div:first-of-type").addClass("show").show();
-        $slider.find("> div").not(".show").hide();
-        if ($dots.length) {
-          $slider.find(".showli").removeClass("showli");
-          $slider.find("> ul > li:first").addClass("showli");
-        }
-      }
+    // Add new slides
+    galleryData[config.gallery]?.preview.forEach(imgUrl => {
+      $slider.append($('<div>').css('background-image', `url(${imgUrl})`));
     });
+
+    // Reattach structural elements
+    $slider.append($arrows);
+    $slider.append($titleBar);
+    if ($dots.length) $slider.append($dots);
+
+    // Reinitialize if needed
+    if (sliderInstance) {
+      sliderInstance.size = $slider.find("> div").length;
+      sliderInstance.position = 0;
+      $slider.find("div:first-of-type").addClass("show").show();
+      $slider.find("> div").not(".show").hide();
+      if ($dots.length) {
+        $slider.find(".showli").removeClass("showli");
+        $slider.find("> ul > li:first").addClass("showli");
+      }
+    }
+  });
   // }, 20); // Delay to ensure initial initialization completes
 }
