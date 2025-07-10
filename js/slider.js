@@ -1,10 +1,12 @@
+// slider.js
+
 (function ($) {
     $.fn.sliderResponsive = function (settings) {
         const set = $.extend({
             slidePause: 5000,
             fadeSpeed: 800,
             autoPlay: "on",
-            showArrows: "off",
+            showArrows: "on",
             hideDots: "off",
             hoverZoom: "on",
             titleBarTop: "off"

@@ -4,6 +4,10 @@ import { DomUtils } from "./domUtils.js";
 // import { initThumbnails, preloadCriticalImages } from "./preload.js";
 import { Navbar } from "./navbar.js";
 
+console.log('Is sliderResponsive available?', $.fn.sliderResponsive);
+
+
+
 export const selectors = {
   scrollDist: ".scrollDist",
 
@@ -103,13 +107,13 @@ const galleryData = {
     preview: [
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103545/compressed-egypt-rtrpix-7464_hyfadx.webp',
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103545/compressed-egypt-rtrpix-7145_zqfbul.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103552/compressed-egypt-rtrpix-8188_prhy17.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8872_z6fhnb.webp',
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8569_fwdcgz.webp'
     ],
     full: [
 
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103555/compressed-egypt-rtrpix-9252_e462bb.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8872_z6fhnb.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103552/compressed-egypt-rtrpix-8188_prhy17.webp',
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8724_xrmxf7.webp',
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103548/compressed-egypt-rtrpix-8048_wxzwun.webp',
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103546/compressed-egypt-rtrpix-7796_ohjxup.webp',
@@ -133,7 +137,7 @@ const galleryData = {
   jordan: {
     preview: [
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207138/Jordan-RTRPix-6082_pgsgwd.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207316/Jordan-RTRPix-6451_zvwmqz.webp',
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207226/Jordan-RTRPix-6064_vjpu7j.webp',
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207379/Jordan-RTRPix-6584_ass3ed.webp',
       'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207320/Jordan-RTRPix-5947_yedzwy.webp'
 
@@ -141,12 +145,48 @@ const galleryData = {
     ],
 
     full: [
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207226/Jordan-RTRPix-6064_vjpu7j.webp'
+      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207316/Jordan-RTRPix-6451_zvwmqz.webp'
+      
 
     ]
   }
+
+  
 };
 
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const navbar = new Navbar(selectors);
+  const domUtils = new DomUtils(selectors);
+
+  // Initialize navbar with contact form handler
+  navbar.init(20);
+  navbar.initializeFormCloseButton();
+  // Set up contact link with proper fallback
+  if (domUtils.elements.navContact) {
+    domUtils.elements.navContact.addEventListener("click", function () {
+      navbar.hideScrollBar();
+      domUtils.formControl(); // This will use the fallback positioning
+      domUtils.showStatementContact();
+      domUtils.showForm();
+    });
+
+
+    window.addEventListener('load', preloadFullGalleryImages);
+
+
+  initializeSliders();
+
+  }
+
+  setupEventListeners();
+
+  // Initialize gallery modal
+  initGalleryModal();
+  // setupSliderClickHandlers();
+});
 
 
 function preloadFullGalleryImages() {
@@ -392,65 +432,6 @@ function closeGalleryModal() {
   document.body.style.overflow = "auto";
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const navbar = new Navbar(selectors);
-  const domUtils = new DomUtils(selectors);
-
-  // Initialize navbar with contact form handler
-  navbar.init(20);
-  navbar.initializeFormCloseButton();
-  // Set up contact link with proper fallback
-  if (domUtils.elements.navContact) {
-    domUtils.elements.navContact.addEventListener("click", function () {
-      navbar.hideScrollBar();
-      domUtils.formControl(); // This will use the fallback positioning
-      domUtils.showStatementContact();
-      domUtils.showForm();
-    });
-
-
-    window.addEventListener('load', preloadFullGalleryImages);
-
-    initSliders();
-    $(window).on("load", function () {
-      $("#slider1").sliderResponsive(); // Default settings
-
-      $("#slider2").sliderResponsive({
-        fadeSpeed: 300,
-        autoPlay: "off",
-        showArrows: "on",
-        hideDots: "on",
-      });
-
-      $("#slider3").sliderResponsive({
-        hoverZoom: "off",
-        hideDots: "on",
-      });
-
-      $("#slider4").sliderResponsive({
-        fadeSpeed: 300,
-        autoPlay: "off",
-        showArrows: "on",
-        hideDots: "on",
-      });
-
-      $("#slider5").sliderResponsive({
-        fadeSpeed: 300,
-        autoPlay: "off",
-        showArrows: "on",
-        hideDots: "on",
-      });
-
-      $("#slider6").sliderResponsive();
-    });
-  }
-
-  setupEventListeners();
-
-  // Initialize gallery modal
-  initGalleryModal();
-  // setupSliderClickHandlers();
-});
 
 function setupEventListeners() {
   // Setup event listeners for elements that exist on this page
@@ -461,13 +442,156 @@ function setupEventListeners() {
     });
   }
 }
-    function initSliders() {
-      // Nepal slider (now with just 4 preview images)
-      const nepalSlider = document.querySelector('#slider5');
-      galleryData.nepal.preview.forEach((imgUrl, index) => {
-        const slide = document.createElement('div');
-        slide.style.backgroundImage = `url(${imgUrl})`;
-        nepalSlider.appendChild(slide);
+
+
+
+
+// function initializeSliders() {
+//   // Verify plugin exists
+//   if (!$.fn.sliderResponsive) {
+//     console.error('Slider plugin not loaded!');
+//     return;
+//   }
+
+//   const sliderConfigs = {
+//     '#slider1': { gallery: 'ireland', options: {} },
+//     '#slider2': { 
+//       gallery: 'maylaysia',
+//       options: { fadeSpeed: 300, showArrows: "on", hideDots: "on" }
+//     },
+//     '#slider3': { 
+//       gallery: 'indonesia',
+//       options: { fadeSpeed: 300, showArrows: "on", hideDots: "on" }
+//     },
+//     '#slider4': { 
+//       gallery: 'egypt',
+//       options: { fadeSpeed: 300, showArrows: "on", hideDots: "on" }
+//     },
+//     '#slider5': { 
+//       gallery: 'nepal',
+//       options: { fadeSpeed: 300, showArrows: "on", hideDots: "on" }
+//     },
+//     '#slider6': { gallery: 'jordan', options: {} }
+//   };
+
+//   Object.entries(sliderConfigs).forEach(([sliderId, config]) => {
+//     const $slider = $(sliderId);
+//     if (!$slider.length) return;
+
+//     // Clear only slide divs (keep arrows and titleBar)
+//     $slider.children('div').not('.arrows, .titleBar').remove();
+
+//     // Add new slides
+//     galleryData[config.gallery]?.preview.forEach(imgUrl => {
+//       $slider.append($('<div>').css('background-image', `url(${imgUrl})`));
+//     });
+
+//     // Initialize with timeout to ensure DOM is ready
+//     setTimeout(() => {
+//       $slider.sliderResponsive(config.options);
+      
+//       // Verify initialization
+//       if (!$slider.data('sliderResponsive')) {
+//         console.error(`Failed to initialize ${sliderId}`);
+//       }
+//     }, 50);
+//   });
+// }
+
+function initializeSliders() {
+  // Verify plugin is available
+  if (!$.fn.sliderResponsive) {
+    console.error('sliderResponsive plugin not found');
+    return;
+  }
+
+  const sliderConfigs = {
+    '#slider1': { gallery: 'ireland', options: {} },
+    '#slider2': { 
+      gallery: 'maylaysia',
+      options: { fadeSpeed: 300, autoPlay: "off", showArrows: "on", hideDots: "on" }
+    },
+    '#slider3': { 
+      gallery: 'indonesia',
+      options: { hoverZoom: "off", hideDots: "on" }
+    },
+    '#slider4': { 
+      gallery: 'egypt',
+      options: { fadeSpeed: 300, autoPlay: "off", showArrows: "on", hideDots: "on" }
+    },
+    '#slider5': { 
+      gallery: 'nepal',
+      options: { fadeSpeed: 300, autoPlay: "off", showArrows: "on", hideDots: "on" }
+    },
+    '#slider6': { gallery: 'jordan', options: {} }
+  };
+
+  // First initialize all sliders with their default content
+  $(window).on("load", function() {
+    $("#slider1").sliderResponsive();
+    $("#slider2").sliderResponsive({
+      fadeSpeed: 300,
+ 
+      showArrows: "on",
+      hideDots: "on",
+    });
+    $("#slider3").sliderResponsive({
+      hoverZoom: "off",
+      hideDots: "on",
+    });
+    $("#slider4").sliderResponsive({
+      fadeSpeed: 300,
+     
+      showArrows: "on",
+      hideDots: "on",
+    });
+    $("#slider5").sliderResponsive({
+      fadeSpeed: 300,
+ 
+      showArrows: "on",
+      hideDots: "on",
+    });
+    $("#slider6").sliderResponsive();
+  });
+
+  // Then replace content while preserving functionality
+  // setTimeout(() => {
+    Object.entries(sliderConfigs).forEach(([sliderId, config]) => {
+      const $slider = $(sliderId);
+      if (!$slider.length) return;
+
+      // Get reference to plugin instance before modifying DOM
+      const sliderInstance = $slider.data('sliderResponsive');
+      
+      // Store structural elements
+      const $arrows = $slider.find('.arrows').detach();
+      const $titleBar = $slider.find('.titleBar').detach();
+      const $dots = $slider.find('ul').detach();
+
+      // Clear slides only
+      $slider.find('> div').not('.arrows, .titleBar').remove();
+
+      // Add new slides
+      galleryData[config.gallery]?.preview.forEach(imgUrl => {
+        $slider.append($('<div>').css('background-image', `url(${imgUrl})`));
       });
-    }
-  
+
+      // Reattach structural elements
+      $slider.append($arrows);
+      $slider.append($titleBar);
+      if ($dots.length) $slider.append($dots);
+
+      // Reinitialize if needed
+      if (sliderInstance) {
+        sliderInstance.size = $slider.find("> div").length;
+        sliderInstance.position = 0;
+        $slider.find("div:first-of-type").addClass("show").show();
+        $slider.find("> div").not(".show").hide();
+        if ($dots.length) {
+          $slider.find(".showli").removeClass("showli");
+          $slider.find("> ul > li:first").addClass("showli");
+        }
+      }
+    });
+  // }, 20); // Delay to ensure initial initialization completes
+}

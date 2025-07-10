@@ -232,19 +232,6 @@ export class Navbar {
         }
       });
 
-
-
-    //    if (this.elements.navHome) {
-    //   this.setupClickEvent(this.elements.navHome, (e) => {
-    //     if (e.target.hasAttribute('data-transition-nav')) {
-    //       e.preventDefault();
-    //       this.handleTransitionNavigation(e.target.getAttribute('data-link'));
-    //     }
-    //   });
-    //   this.setupClickEvent(this.elements.navHome, () => this.autoScrollNow());
-    // }
-
-
     if (this.elements.navPhotography) {
       this.setupClickEvent(this.elements.navPhotography, (e) => {
          if (e.target.hasAttribute('data-transition-nav')) {
