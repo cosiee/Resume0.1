@@ -142,12 +142,12 @@ body.photography-page .formDiv#contactForm {
 /* Slider Layouts */
 #slider2 {
   flex: 1;
-  max-width: calc(33.333% - 10px);
+  max-width: calc(25% - 10px);
 }
 
 #slider3 {
   flex: 2;
-  max-width: calc(66.666% - 10px);
+  max-width: calc(75% - 10px);
 }
 
 #slider4 {
