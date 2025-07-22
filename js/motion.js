@@ -1,8 +1,59 @@
 //videography.js
-// This file is responsible for the photography section of the website.
+
 import { DomUtils } from "./domUtils.js";
-// import { initThumbnails, preloadCriticalImages } from "./preload.js";
-import { Navbar } from "./navbar.js";
+import { Navbar } from "./navbar.js"
+
+class WebPAnimationController {
+  constructor() {
+    this.localStaticBase = "assets/animationStills/";
+    this.sliders = [];
+  }
+
+  init() {
+    this.sliders = document.querySelectorAll('.slider');
+    this.processSliders();
+  }
+
+  processSliders() {
+    this.sliders.forEach(slider => {
+      const slides = slider.querySelectorAll('div:not(.arrows):not(.titleBar)');
+      
+      slides.forEach(slide => {
+        const bgImage = window.getComputedStyle(slide).backgroundImage;
+        const cloudinaryUrl = this.extractUrl(bgImage);
+        
+        if (!cloudinaryUrl) return;
+
+        const staticFilename = this.getLocalStaticPath(cloudinaryUrl);
+        slide.dataset.animatedUrl = cloudinaryUrl;
+        slide.dataset.staticUrl = staticFilename;
+        
+        // Set initial static image
+        slide.style.backgroundImage = `url(${staticFilename})`;
+        
+        // Event listeners
+        slide.addEventListener('mouseenter', () => {
+          slide.style.backgroundImage = `url(${cloudinaryUrl})`;
+        });
+        
+        slide.addEventListener('mouseleave', () => {
+          slide.style.backgroundImage = `url(${staticFilename})`;
+        });
+      });
+    });
+  }
+
+  extractUrl(bgImage) {
+    const urlMatch = bgImage.match(/url\(["']?(https:\/\/res\.cloudinary\.com[^"']+)["']?\)/);
+    return urlMatch ? urlMatch[1] : null;
+  }
+
+  getLocalStaticPath(cloudinaryUrl) {
+    const filename = cloudinaryUrl.split('/').pop();
+    const baseName = filename.replace('.webp', '-static.webp');
+    return `${this.localStaticBase}${baseName}`;
+  }
+}
 
 export const selectors = {
   scrollDist: ".scrollDist",
@@ -162,39 +213,63 @@ const galleryData = {
   },
 };
 
+// // Hybrid Cloudinary/Local Solution
+// class WebPAnimationController {
+//   constructor() {
+//     this.localStaticBase = '/assets/animationStills/';
+//     this.sliders = [];
+//   }
 
-function controlWebPAnimations() {
-  const sliders = document.querySelectorAll('.slider');
-  
-  sliders.forEach(slider => {
-    const slides = slider.querySelectorAll('div:not(.arrows):not(.titleBar)');
-    let animations = [];
+//   init() {
+//     this.sliders = document.querySelectorAll('.slider');
+//     this.processSliders();
+//   }
+
+//   processSliders() {
+//     this.sliders.forEach(slider => {
+//       const slides = slider.querySelectorAll('div:not(.arrows):not(.titleBar)');
+      
+//       slides.forEach(slide => {
+//         const bgImage = window.getComputedStyle(slide).backgroundImage;
+//         const cloudinaryUrl = this.extractUrl(bgImage);
+        
+//         if (!cloudinaryUrl) return;
+
+//         const staticFilename = this.getLocalStaticPath(cloudinaryUrl);
+//         slide.dataset.animatedUrl = cloudinaryUrl;
+//         slide.dataset.staticUrl = staticFilename;
+        
+//         // Set initial static image
+//         slide.style.backgroundImage = `url(${staticFilename})`;
+        
+//         // Event listeners
+//         slide.addEventListener('mouseenter', () => {
+//           slide.style.backgroundImage = `url(${cloudinaryUrl})`;
+//         });
+        
+//         slide.addEventListener('mouseleave', () => {
+//           slide.style.backgroundImage = `url(${staticFilename})`;
+//         });
+//       });
+//     });
+//   }
+
+//   extractUrl(bgImage) {
+//     const urlMatch = bgImage.match(/url\(["']?(https:\/\/res\.cloudinary\.com[^"']+)["']?\)/);
+//     return urlMatch ? urlMatch[1] : null;
+//   }
+
+//   getLocalStaticPath(cloudinaryUrl) {
+//     // Extract filename from Cloudinary URL
+//     const filename = cloudinaryUrl.split('/').pop();
+//     const baseName = filename.replace('.webp', '-static.webp');
     
-    // Pause all animations initially
-    slides.forEach(slide => {
-      const bgImage = window.getComputedStyle(slide).backgroundImage;
-      if (bgImage.includes('.webp')) {
-        const anim = gsap.to(slide, { 
-          paused: true,
-          onComplete: function() {
-            this.restart();
-          }
-        });
-        animations.push(anim);
-      }
-    });
-    
-    // Play on hover
-    slider.addEventListener('mouseenter', () => {
-      animations.forEach(anim => anim.play());
-    });
-    
-    // Pause on mouse leave
-    slider.addEventListener('mouseleave', () => {
-      animations.forEach(anim => anim.pause());
-    });
-  });
-}
+//     // Return local path
+//     return `${this.localStaticBase}${baseName}`;
+//   }
+// }
+
+
 
 
 
@@ -202,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const navbar = new Navbar(selectors);
   const domUtils = new DomUtils(selectors);
 
-  controlWebPAnimations();
+
 
   // Initialize navbar with contact form handler
   navbar.init(20);
@@ -229,41 +304,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const sliders = document.querySelectorAll('.slider');
   
-  // Function to pause all animations in a slider
-  function pauseSliderAnimations(slider) {
-    const images = slider.querySelectorAll('img');
-    images.forEach(img => {
-      if (img.src.endsWith('.webp')) {
-        img.style.animationPlayState = 'paused';
-      }
-    });
-  }
   
-  // Function to play all animations in a slider
-  function playSliderAnimations(slider) {
-    const images = slider.querySelectorAll('img');
-    images.forEach(img => {
-      if (img.src.endsWith('.webp')) {
-        img.style.animationPlayState = 'running';
-      }
-    });
-  }
-  
-  // Initialize all sliders with paused animations
-  sliders.forEach(slider => {
-    pauseSliderAnimations(slider);
-    
-    // Add hover event listeners
-    slider.addEventListener('mouseenter', () => {
-      playSliderAnimations(slider);
-    });
-    
-    slider.addEventListener('mouseleave', () => {
-      pauseSliderAnimations(slider);
-    });
-  });
 
-
+const animationController = new WebPAnimationController();
+  animationController.init();
+  console.log('Testing static path:', 
+  animationController.getLocalStaticPath(
+    "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752940235/Philippines_optimized2_hsqssk.webp"
+  )
+);
 
 
 });
