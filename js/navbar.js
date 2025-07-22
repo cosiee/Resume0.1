@@ -231,7 +231,7 @@ export class Navbar {
           });
         }
       });
-
+// this is handling navbar and corresponding thumbnail links
     if (this.elements.navPhotography) {
       this.setupClickEvent(this.elements.navPhotography, (e) => {
          if (e.target.hasAttribute('data-transition-nav')) {

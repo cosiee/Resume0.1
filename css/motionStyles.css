@@ -1,0 +1,149 @@
+/* Video Gallery Styles */
+.video-gallery-container {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.video-gallery-title {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #fff;
+  font-size: 2.5rem;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 20px;
+}
+
+.video-item {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.video-item:hover {
+  transform: translateY(-10px);
+}
+
+.video-preview {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  overflow: hidden;
+}
+
+.video-thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.play-button::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-left: 25px solid #333;
+  border-bottom: 15px solid transparent;
+  margin-left: 5px;
+}
+
+.video-info {
+  padding: 20px;
+  color: #fff;
+}
+
+.video-title {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.video-description {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Video Modal Styles */
+.video-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-modal-content {
+  width: 80%;
+  max-width: 1000px;
+  position: relative;
+}
+
+.video-modal-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.video-player-container {
+  position: relative;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+}
+
+#modalVideoPlayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-info {
+  margin-top: 20px;
+  color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .video-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .video-modal-content {
+    width: 95%;
+  }
+}
+/*  */

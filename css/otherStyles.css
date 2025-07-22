@@ -68,8 +68,13 @@ body.photography-page .formDiv#contactForm {
 
 .modalbox .box,
 .wip .box {
+  /* padding-bottom: 0px;
+padding-left: 0px;
+padding-right: 0px;
+padding-top:0px; */
   z-index: 1000;
   overflow: auto;
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 /* Slider Core Styles - Fixed Layout */
@@ -651,6 +656,7 @@ body.photography-page .formDiv#contactForm {
   flex: 0 0 auto; /* Prevent growing/shrinking */
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   border-radius: 4px;
   cursor: pointer;
   opacity: 0.8;

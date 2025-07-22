@@ -1,4 +1,4 @@
-//photography.js
+//videography.js
 // This file is responsible for the photography section of the website.
 import { DomUtils } from "./domUtils.js";
 // import { initThumbnails, preloadCriticalImages } from "./preload.js";
@@ -54,35 +54,15 @@ let galleryMainSlider;
 let galleryThumbnails;
 
 const galleryData = {
-  ireland: {
+  philippines: {
     preview: [
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507660/_MG_3449_cnkwkn.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507660/_MG_3439_erby5e.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507663/_MG_3240_fqtxam.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507661/_MG_3108_hmfkom.webp",
+
+       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752940235/Philippines_optimized2_hsqssk.webp",
+    //   "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749032621/untitled-ezgif.com-optiwebp_1_ngxxyx.webp",
+
     ],
     full: [
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118993/compressed-summer-0547_ufbms7.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118987/compressed-img-7289_kcqe20.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118987/compressed-img-7639_gwc3qc.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118988/compressed-img-7658-copy_oud2ro.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118987/compressed-lighthouse-fenit-1393_uxbdjj.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118991/compressed-summer-0477_cbnncw.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118992/compressed-summer-0505_boozks.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507662/_MG_2885_jnamx3.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507659/_MG_3350_cqmd1c.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507662/_MG_2899_cxuqz6.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507661/_MG_3076_xa6xnc.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118989/compressed-summer-0460_w1ralb.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118990/compressed-summer-0468_szmnqj.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507660/_MG_3408_c9dmdn.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118986/compressed-img-6855-copy_f9big6.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507659/_MG_3346_bqsk2e.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507659/_MG_3342_entsia.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507658/_MG_3241_gbnkaw.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507657/_MG_3278_dcwh3w.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507656/_MG_3233_qg4gdh.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507656/_MG_3156_fhlypn.webp"
+
     ],
   },
   maylaysia: {
@@ -106,10 +86,7 @@ const galleryData = {
   },
   indonesia: {
     preview: [
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036323/indoRTRPix_-4334_rb0axe.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036322/indoRTRPix_-4175_gyxbkj.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036321/indoRTRPix_-3922_hglvii.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036317/indoRTRPix_-3263_cplk9b.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752940235/Philippines_optimized2_hsqssk.webp",
     ],
     full: [
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-2621_jtflh9.webp",
@@ -185,9 +162,47 @@ const galleryData = {
   },
 };
 
+
+function controlWebPAnimations() {
+  const sliders = document.querySelectorAll('.slider');
+  
+  sliders.forEach(slider => {
+    const slides = slider.querySelectorAll('div:not(.arrows):not(.titleBar)');
+    let animations = [];
+    
+    // Pause all animations initially
+    slides.forEach(slide => {
+      const bgImage = window.getComputedStyle(slide).backgroundImage;
+      if (bgImage.includes('.webp')) {
+        const anim = gsap.to(slide, { 
+          paused: true,
+          onComplete: function() {
+            this.restart();
+          }
+        });
+        animations.push(anim);
+      }
+    });
+    
+    // Play on hover
+    slider.addEventListener('mouseenter', () => {
+      animations.forEach(anim => anim.play());
+    });
+    
+    // Pause on mouse leave
+    slider.addEventListener('mouseleave', () => {
+      animations.forEach(anim => anim.pause());
+    });
+  });
+}
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
   const navbar = new Navbar(selectors);
   const domUtils = new DomUtils(selectors);
+
+  controlWebPAnimations();
 
   // Initialize navbar with contact form handler
   navbar.init(20);
@@ -211,6 +226,46 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize gallery modal
   initGalleryModal();
   // setupSliderClickHandlers();
+
+  const sliders = document.querySelectorAll('.slider');
+  
+  // Function to pause all animations in a slider
+  function pauseSliderAnimations(slider) {
+    const images = slider.querySelectorAll('img');
+    images.forEach(img => {
+      if (img.src.endsWith('.webp')) {
+        img.style.animationPlayState = 'paused';
+      }
+    });
+  }
+  
+  // Function to play all animations in a slider
+  function playSliderAnimations(slider) {
+    const images = slider.querySelectorAll('img');
+    images.forEach(img => {
+      if (img.src.endsWith('.webp')) {
+        img.style.animationPlayState = 'running';
+      }
+    });
+  }
+  
+  // Initialize all sliders with paused animations
+  sliders.forEach(slider => {
+    pauseSliderAnimations(slider);
+    
+    // Add hover event listeners
+    slider.addEventListener('mouseenter', () => {
+      playSliderAnimations(slider);
+    });
+    
+    slider.addEventListener('mouseleave', () => {
+      pauseSliderAnimations(slider);
+    });
+  });
+
+
+
+
 });
 
 function preloadFullGalleryImages() {
@@ -302,6 +357,7 @@ function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
     slider4: "egypt",
     slider5: "nepal",
     slider6: "jordan",
+    slider7: "philippines",
   };
 
   const galleryId = galleryMap[sliderContainer.id] || "default";
@@ -556,6 +612,8 @@ function initializeSliders() {
       },
     },
     "#slider6": { gallery: "jordan", options: {} },
+    "#slider7": { gallery: "philippines", options: {} },
+
   };
 
   // First initialize all sliders with their default content
@@ -584,7 +642,14 @@ function initializeSliders() {
       hideDots: "on",
     });
     $("#slider6").sliderResponsive();
+
+    $("#slider7").sliderResponsive();
   });
+
+
+
+
+
 
   // Then replace content while preserving functionality
   // setTimeout(() => {
@@ -596,7 +661,7 @@ function initializeSliders() {
     const sliderInstance = $slider.data("sliderResponsive");
 
     // Store structural elements
-    const $arrows = $slider.find(".arrows").detach();
+    // const $arrows = $slider.find(".arrows").detach();
     const $titleBar = $slider.find(".titleBar").detach();
     const $dots = $slider.find("ul").detach();
 
@@ -608,8 +673,8 @@ function initializeSliders() {
       $slider.append($("<div>").css("background-image", `url(${imgUrl})`));
     });
 
-    // Reattach structural elements
-    $slider.append($arrows);
+    // Reattach structural element
+    
     $slider.append($titleBar);
     if ($dots.length) $slider.append($dots);
 
