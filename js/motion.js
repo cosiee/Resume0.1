@@ -84,14 +84,13 @@ export const selectors = {
   navVideo: "#navVideo",
   navContact: "#contactLink",
 
-  slider1: "#slider1",
-  slider2: "#slider2",
-  slider3: "#slider3",
-  slider4: "#slider4",
-  slider5: "#slider5",
-  slider6: "#slider6",
+
   slider7: "#slider7",
   slider8: "#slider8",
+  slider9: "#slider9",
+  slider10: "#slider10",
+  slider11: "#slider11",
+  slider12: "#slider12"
 };
 
 const navbar = new Navbar(selectors);
@@ -105,170 +104,132 @@ let galleryMainSlider;
 let galleryThumbnails;
 
 const galleryData = {
+
+  // Videos
   philippines: {
-    preview: [
-
-       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752940235/Philippines_optimized2_hsqssk.webp",
-    //   "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749032621/untitled-ezgif.com-optiwebp_1_ngxxyx.webp",
-
-    ],
-    full: [
-
-    ],
-  },
-  maylaysia: {
-    preview: [
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203043/IMG_7623_abm9su.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203049/DSC04958_fez1yc.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203058/IMG_8813_tsebmj.webp",
-    ],
-    full: [
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203037/IMG_0669_d2bkqo.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203062/DSC04937_xasjqr.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203057/IMG_8734_ujgnhi.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203055/IMG_9441_skeod6.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203054/IMG_9060_wnlhmf.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203040/IMG_8680_y4mpjx.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203040/DSC05086_ps4lhu.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203040/IMG_7594_2_ees3nh.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203035/IMG_0087_uhzopu.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203055/IMG_9433_x4pv3x.webp",
-    ],
-  },
-  indonesia: {
     preview: [
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752940235/Philippines_optimized2_hsqssk.webp",
     ],
-    full: [
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-2621_jtflh9.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-1429_oxhhhq.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-4159_equalj.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036323/indoRTRPix_--5_bgkrpk.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-1559_mjrr5c.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-1620_q0exvq.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036319/indoRTRPix_-4040_dgsnkc.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-2890_ckspew.webp",
+    video: "qhpP6xXJFHI" // YouTube video ID
+  },
+  
+  indonesia: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1753215210/Indonesia_dmqffm.webp",
     ],
+    video: "xQlCL6j8dsA" // YouTube video ID
+  },
+  newzealand: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1753701614/NewZealand_wwi4sl.webp",
+   ],
+    video: "05Tj8vPWId0" // YouTube video ID
   },
   egypt: {
     preview: [
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103545/compressed-egypt-rtrpix-7464_hyfadx.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103546/compressed-egypt-rtrpix-7796_ohjxup.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8872_z6fhnb.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8569_fwdcgz.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1753704798/egypt_qtskpg.webp",
     ],
-    full: [
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103555/compressed-egypt-rtrpix-9252_e462bb.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103552/compressed-egypt-rtrpix-8188_prhy17.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8724_xrmxf7.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103548/compressed-egypt-rtrpix-8048_wxzwun.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103543/compressed-egypt-rtrpix-6758_eeixsa.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103544/compressed-egypt-rtrpix-7008_gkdpsx.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103545/compressed-egypt-rtrpix-7145_zqfbul.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103544/compressed-egypt-rtrpix-7111_e30c1f.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103544/compressed-egypt-rtrpix-4711_cc3unk.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103546/compressed-egypt-rtrpix-7859_w2fx7r.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103546/compressed-egypt-rtrpix-7219_seve1r.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103548/compressed-egypt-rtrpix-8030_dsh4hp.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103549/compressed-egypt-rtrpix-8057_mgaf4a.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103549/compressed-egypt-rtrpix-8062_fyvf50.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103549/compressed-egypt-rtrpix-7021_ht5f14.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103551/compressed-egypt-rtrpix-8170_wewwra.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103550/compressed-egypt-rtrpix-8113_irwa5m.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103553/compressed-egypt-rtrpix-8079_gz6fdl.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103552/compressed-egypt-rtrpix-8185_efwwkj.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103553/compressed-egypt-rtrpix-8341_ypzs7a.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103553/compressed-egypt-rtrpix-8191_fbgf33.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103553/compressed-egypt-rtrpix-8189_oydwvg.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118960/compressed-great-giza-pyramids-egypt-2014-9_wwzogz.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118960/compressed-great-giza-pyramids-egypt-2014-4_muyz5z.webp",
-    ],
+    video: "rDUgpw18aLg" // YouTube video ID
+  },
+
+  samoa: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1753788913/samoa_bg2tli.webp",
+       ],
+    video: "76nhoXgqC7c" // YouTube video ID
   },
   nepal: {
     preview: [
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200658/Annnapurna_South_Fang2_vwgzr9.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203027/IMG_2845_01_l6wz9a.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200634/IMG_2753_nlwdto.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200634/IMG_3872_g5lkrk.webp",
-    ],
-    full: [
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200638/IMG_3438_zou1cl.webp",
-    ],
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1753790248/nepal_cix1jj.webp",
+       ],
+    video: "m4PsWWbZiDI" // YouTube video ID
   },
 
-  jordan: {
+  // Animations
+  craicinit: {
     preview: [
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207138/Jordan-RTRPix-6082_pgsgwd.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207226/Jordan-RTRPix-6064_vjpu7j.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207379/Jordan-RTRPix-6584_ass3ed.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207320/Jordan-RTRPix-5947_yedzwy.webp",
-    ],
-
-    full: [
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207316/Jordan-RTRPix-6451_zvwmqz.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207182/Jordan-RTRPix-6132_in2kkk.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207271/Jordan-RTRPix-5758_jw3lyk.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207410/Jordan-RTRPix-6568_xsskaa.webp",
-    ],
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1753790248/nepal_cix1jj.webp",
+       ],
+    video: "Hk5KfzTXpuI" // YouTube video ID
   },
+
+
+
+
+
 };
 
-// // Hybrid Cloudinary/Local Solution
-// class WebPAnimationController {
-//   constructor() {
-//     this.localStaticBase = '/assets/animationStills/';
-//     this.sliders = [];
-//   }
 
-//   init() {
-//     this.sliders = document.querySelectorAll('.slider');
-//     this.processSliders();
-//   }
 
-//   processSliders() {
-//     this.sliders.forEach(slider => {
-//       const slides = slider.querySelectorAll('div:not(.arrows):not(.titleBar)');
-      
-//       slides.forEach(slide => {
-//         const bgImage = window.getComputedStyle(slide).backgroundImage;
-//         const cloudinaryUrl = this.extractUrl(bgImage);
-        
-//         if (!cloudinaryUrl) return;
+function openVideoModal(sliderContainer) {
+  // Create or get modal element
+  const modal = document.getElementById('galleryModal') || document.createElement('div');
+  modal.id = 'galleryModal';
+  modal.className = 'video-modal';
+  if (!document.getElementById('galleryModal')) {
+    document.body.appendChild(modal);
+  }
 
-//         const staticFilename = this.getLocalStaticPath(cloudinaryUrl);
-//         slide.dataset.animatedUrl = cloudinaryUrl;
-//         slide.dataset.staticUrl = staticFilename;
-        
-//         // Set initial static image
-//         slide.style.backgroundImage = `url(${staticFilename})`;
-        
-//         // Event listeners
-//         slide.addEventListener('mouseenter', () => {
-//           slide.style.backgroundImage = `url(${cloudinaryUrl})`;
-//         });
-        
-//         slide.addEventListener('mouseleave', () => {
-//           slide.style.backgroundImage = `url(${staticFilename})`;
-//         });
-//       });
-//     });
-//   }
+  // Gallery mapping
+  const galleryMap = {
+    slider7: "philippines",
+    slider8: "newzealand",
+    slider9: "indonesia",
+    slider10: "egypt",
+    slider11: "samoa",
+    slider12: "nepal"
+    // Add other sliders as needed
+  };
 
-//   extractUrl(bgImage) {
-//     const urlMatch = bgImage.match(/url\(["']?(https:\/\/res\.cloudinary\.com[^"']+)["']?\)/);
-//     return urlMatch ? urlMatch[1] : null;
-//   }
+  const galleryId = galleryMap[sliderContainer.id];
+  const videoId = galleryData[galleryId]?.video;
 
-//   getLocalStaticPath(cloudinaryUrl) {
-//     // Extract filename from Cloudinary URL
-//     const filename = cloudinaryUrl.split('/').pop();
-//     const baseName = filename.replace('.webp', '-static.webp');
+  if (!videoId) return; // Exit if no video
+
+  // Modal HTML with centered 90% container
+  modal.innerHTML = `
+    <div class="video-modal-overlay">
+      <div class="video-modal-container">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
+                  frameborder="0" 
+                  allowfullscreen></iframe>
+        </div>
+        <button class="close-btn">&times;</button>
+      </div>
+    </div>
+  `;
+
+  // Show modal
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+
+  // Close functionality
+  const closeModal = () => {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    modal.querySelector('iframe').src = '';
+  };
+
+  modal.querySelector('.close-btn').addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => e.target === modal && closeModal());
+  document.addEventListener('keydown', (e) => e.key === 'Escape' && closeModal());
+}
+
+// function openVideoModal(sliderContainer) {
+// Update initGalleryModal to use the simplified video modal
+function initGalleryModal() {
+  const sliders = document.querySelectorAll(".slider");
+  
+  sliders.forEach((slider) => {
+    const slides = slider.querySelectorAll("div:not(.arrows):not(.titleBar)");
     
-//     // Return local path
-//     return `${this.localStaticBase}${baseName}`;
-//   }
-// }
-
+    slides.forEach((slide) => {
+      slide.style.cursor = "pointer";
+      slide.addEventListener("click", () => openVideoModal(slider));
+    });
+  });
+}
 
 
 
@@ -291,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
       domUtils.showForm();
     });
 
-    window.addEventListener("load", preloadFullGalleryImages);
+    // window.addEventListener("load", preloadFullGalleryImages);
 
     initializeSliders();
   }
@@ -317,34 +278,6 @@ const animationController = new WebPAnimationController();
 
 });
 
-function preloadFullGalleryImages() {
-  Object.values(galleryData).forEach((gallery) => {
-    gallery.full.forEach((imgUrl) => {
-      const img = new Image();
-      img.src = imgUrl;
-    });
-  });
-}
-
-// initGalleryModal function
-function initGalleryModal() {
-  // Create modal elements if they don't exist
-  let modal = document.getElementById("galleryModal");
-  if (!modal) {
-    modal = document.createElement("div");
-    modal.id = "galleryModal";
-    modal.className = "gallery-modal";
-    modal.style.display = "none";
-
-    modal.innerHTML = `
-      <div class="gallery-modal-content">
-        <span class="gallery-modal-close">&times;</span>
-        <div class="gallery-main-slider"></div>
-        <div class="gallery-thumbnails"></div>
-      </div>
-    `;
-    document.body.appendChild(modal);
-  }
 
   // Get all slider images from all sliders
   const sliders = document.querySelectorAll(".slider");
@@ -374,7 +307,7 @@ function initGalleryModal() {
       closeGalleryModal();
     }
   });
-}
+
 
 function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
   const modal = document.getElementById("galleryModal");
@@ -400,13 +333,13 @@ function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
 
   // Determine which gallery we're opening based on slider ID
   const galleryMap = {
-    slider1: "ireland",
-    slider2: "maylaysia",
-    slider3: "indonesia",
-    slider4: "egypt",
-    slider5: "nepal",
-    slider6: "jordan",
+
     slider7: "philippines",
+    slider8: "newzealand",
+    slider9: "indonesia",
+    slider10: "egypt",
+    slider11: "samoa",
+    slider12: "nepal"
   };
 
   const galleryId = galleryMap[sliderContainer.id] || "default";
@@ -568,57 +501,6 @@ function setupEventListeners() {
   }
 }
 
-// function initializeSliders() {
-//   // Verify plugin exists
-//   if (!$.fn.sliderResponsive) {
-//     console.error('Slider plugin not loaded!');
-//     return;
-//   }
-
-//   const sliderConfigs = {
-//     '#slider1': { gallery: 'ireland', options: {} },
-//     '#slider2': {
-//       gallery: 'maylaysia',
-//       options: { fadeSpeed: 300, showArrows: "on", hideDots: "on" }
-//     },
-//     '#slider3': {
-//       gallery: 'indonesia',
-//       options: { fadeSpeed: 300, showArrows: "on", hideDots: "on" }
-//     },
-//     '#slider4': {
-//       gallery: 'egypt',
-//       options: { fadeSpeed: 300, showArrows: "on", hideDots: "on" }
-//     },
-//     '#slider5': {
-//       gallery: 'nepal',
-//       options: { fadeSpeed: 300, showArrows: "on", hideDots: "on" }
-//     },
-//     '#slider6': { gallery: 'jordan', options: {} }
-//   };
-
-//   Object.entries(sliderConfigs).forEach(([sliderId, config]) => {
-//     const $slider = $(sliderId);
-//     if (!$slider.length) return;
-
-//     // Clear only slide divs (keep arrows and titleBar)
-//     $slider.children('div').not('.arrows, .titleBar').remove();
-
-//     // Add new slides
-//     galleryData[config.gallery]?.preview.forEach(imgUrl => {
-//       $slider.append($('<div>').css('background-image', `url(${imgUrl})`));
-//     });
-
-//     // Initialize with timeout to ensure DOM is ready
-//     setTimeout(() => {
-//       $slider.sliderResponsive(config.options);
-
-//       // Verify initialization
-//       if (!$slider.data('sliderResponsive')) {
-//         console.error(`Failed to initialize ${sliderId}`);
-//       }
-//     }, 50);
-//   });
-// }
 
 function initializeSliders() {
   // Verify plugin is available
@@ -628,71 +510,28 @@ function initializeSliders() {
   }
 
   const sliderConfigs = {
-    "#slider1": { gallery: "ireland", options: {} },
-    "#slider2": {
-      gallery: "maylaysia",
-      options: {
-        fadeSpeed: 300,
-        autoPlay: "off",
-        showArrows: "on",
-        hideDots: "on",
-      },
-    },
-    "#slider3": {
-      gallery: "indonesia",
-      options: { hoverZoom: "off", hideDots: "on" },
-    },
-    "#slider4": {
-      gallery: "egypt",
-      options: {
-        fadeSpeed: 300,
-        autoPlay: "off",
-        showArrows: "on",
-        hideDots: "on",
-      },
-    },
-    "#slider5": {
-      gallery: "nepal",
-      options: {
-        fadeSpeed: 300,
-        autoPlay: "off",
-        showArrows: "on",
-        hideDots: "on",
-      },
-    },
-    "#slider6": { gallery: "jordan", options: {} },
+   
     "#slider7": { gallery: "philippines", options: {} },
+    "#slider8": { gallery: "newzealand", options: {} },
+    "#slider9": { gallery: "indonesia", options: {} },
+    "#slider10": { gallery: "egypt", options: {} },
+    "#slider11": { gallery: "samoa", options: {} },
+    "#slider12": { gallery: "nepal", options: {} },
+
 
   };
 
   // First initialize all sliders with their default content
   $(window).on("load", function () {
-    $("#slider1").sliderResponsive();
-    $("#slider2").sliderResponsive({
-      fadeSpeed: 300,
 
-      showArrows: "on",
-      hideDots: "on",
-    });
-    $("#slider3").sliderResponsive({
-      hoverZoom: "off",
-      hideDots: "on",
-    });
-    $("#slider4").sliderResponsive({
-      fadeSpeed: 300,
-
-      showArrows: "on",
-      hideDots: "on",
-    });
-    $("#slider5").sliderResponsive({
-      fadeSpeed: 300,
-
-      showArrows: "on",
-      hideDots: "on",
-    });
-    $("#slider6").sliderResponsive();
 
     $("#slider7").sliderResponsive();
+    $("#slider8").sliderResponsive();
+    $("#slider9").sliderResponsive();
+    $("#slider10").sliderResponsive();
+    $("#slider11").sliderResponsive();
+    $("#slider12").sliderResponsive();
+
   });
 
 
@@ -709,10 +548,10 @@ function initializeSliders() {
     // Get reference to plugin instance before modifying DOM
     const sliderInstance = $slider.data("sliderResponsive");
 
-    // Store structural elements
-    // const $arrows = $slider.find(".arrows").detach();
+    // Store structural element
+    
     const $titleBar = $slider.find(".titleBar").detach();
-    const $dots = $slider.find("ul").detach();
+
 
     // Clear slides only
     $slider.find("> div").not(".arrows, .titleBar").remove();
@@ -725,7 +564,7 @@ function initializeSliders() {
     // Reattach structural element
     
     $slider.append($titleBar);
-    if ($dots.length) $slider.append($dots);
+  
 
     // Reinitialize if needed
     if (sliderInstance) {
@@ -733,10 +572,10 @@ function initializeSliders() {
       sliderInstance.position = 0;
       $slider.find("div:first-of-type").addClass("show").show();
       $slider.find("> div").not(".show").hide();
-      if ($dots.length) {
-        $slider.find(".showli").removeClass("showli");
-        $slider.find("> ul > li:first").addClass("showli");
-      }
+      // if ($dots.length) {
+      //   $slider.find(".showli").removeClass("showli");
+      //   $slider.find("> ul > li:first").addClass("showli");
+      // }
     }
   });
   // }, 20); // Delay to ensure initial initialization completes

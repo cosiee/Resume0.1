@@ -146,4 +146,102 @@
     width: 95%;
   }
 }
-/*  */
+
+.slider>div {
+
+  opacity: 1;
+/* transition: none; */
+}
+
+.slider>div {
+
+  opacity: 1;
+  transition: opacity 1s ease, transform 100s;
+}
+
+.slider>div.show {
+  opacity: 1;
+}
+
+.slider>div.hide {
+  opacity: 1;
+}
+
+
+
+/* dots on sliders hidden */
+.slider>ul {
+  display: none;
+}
+
+.video-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
+.video-modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-modal-container {
+  width: 80vw;
+  height: 80vh;
+  max-width: 80%;
+  max-height: 80%;
+  position: relative;
+}
+
+.video-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.close-btn {
+  position: absolute;
+  top: -40px;
+  right: -5px;
+  color: white;
+  font-size: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* Maintain 16:9 aspect ratio */
+@media (max-aspect-ratio: 16/9) {
+  .video-modal-container {
+    width: calc(80vh * 16 / 9);
+    height: 80vh;
+  }
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .video-modal-container {
+    width: 80vw;
+    height: calc(80+vw * 9 / 16);
+  }
+}

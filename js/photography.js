@@ -192,6 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize navbar with contact form handler
   navbar.init(20);
   navbar.initializeFormCloseButton();
+
   // Set up contact link with proper fallback
   if (domUtils.elements.navContact) {
     domUtils.elements.navContact.addEventListener("click", function () {
@@ -521,6 +522,7 @@ function initializeSliders() {
     console.error("sliderResponsive plugin not found");
     return;
   }
+    const isMobile = window.innerWidth <= 992;
 
   const sliderConfigs = {
     "#slider1": { gallery: "ireland", options: {} },
@@ -529,8 +531,8 @@ function initializeSliders() {
       options: {
         fadeSpeed: 300,
         autoPlay: "off",
-        showArrows: "on",
-        hideDots: "on",
+        showArrows: isMobile ? "off" : "on",
+        hideDots: isMobile ? "off" : "on",
       },
     },
     "#slider3": {
@@ -542,8 +544,8 @@ function initializeSliders() {
       options: {
         fadeSpeed: 300,
         autoPlay: "off",
-        showArrows: "on",
-        hideDots: "on",
+        showArrows: isMobile ? "off" : "on",
+        hideDots: isMobile ? "off" : "on",
       },
     },
     "#slider5": {
@@ -551,8 +553,8 @@ function initializeSliders() {
       options: {
         fadeSpeed: 300,
         autoPlay: "off",
-        showArrows: "on",
-        hideDots: "on",
+        showArrows: isMobile ? "off" : "on",
+        hideDots: isMobile ? "off" : "on",
       },
     },
     "#slider6": { gallery: "jordan", options: {} },

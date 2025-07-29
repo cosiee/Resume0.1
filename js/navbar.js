@@ -52,6 +52,7 @@ export class Navbar {
     this.enableStickyNavbar(triggerOffset);
     this.setupNavbarEvents();
     this.setupDynamicLinks();
+    this.setupMobileBehavior();
   }
 
   autoScrollNow() {
@@ -72,7 +73,30 @@ export class Navbar {
       ),
     });
   }
-
+setupMobileBehavior() {
+  // Make mobile navbar appear on scroll like desktop
+  const navToggler = document.querySelector('.navbar-toggler');
+  if (navToggler) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        document.querySelector('.navbar').classList.add('scrolled');
+        navToggler.style.visibility = 'visible';
+        navToggler.style.opacity = '1';
+      } else {
+        document.querySelector('.navbar').classList.remove('scrolled');
+        navToggler.style.visibility = 'hidden';
+        navToggler.style.opacity = '0';
+      }
+    });
+    
+    // Initialize state on load
+    if (window.scrollY > 20) {
+      document.querySelector('.navbar').classList.add('scrolled');
+      navToggler.style.visibility = 'visible';
+      navToggler.style.opacity = '1';
+    }
+  }
+}
 
   showWip() {
     const wipElement = document.getElementById("wip");
@@ -179,7 +203,7 @@ export class Navbar {
           this.handleTransitionNavigation(e.target.getAttribute('data-link'));
         }
       });
-      this.setupClickEvent(this.elements.navHome, () => this.autoScrollNow());
+      // this.setupClickEvent(this.elements.navHome, () => this.autoScrollNow());
     }
 
 
@@ -221,8 +245,8 @@ export class Navbar {
 
 
 
-    // , "navPhotography"
-    ["navAnimation", "navVideo", "navDiy", "navPython", "navJava", "navSql", "navReact"]
+    // , "navPhotography, "navVideo",
+    ["navAnimation", "navDiy", "navPython", "navJava", "navSql", "navReact"]
       .forEach(id => {
         if (this.elements[id]) {
           this.setupClickEvent(this.elements[id], () => {
@@ -240,8 +264,23 @@ export class Navbar {
          }
       });
       
-        this.setupClickEvent(this.elements.navPhotography, () => this.autoScrollNow());
+        // this.setupClickEvent(this.elements.navPhotography, () => this.autoScrollNow());
     }
+
+    if (this.elements.navVideo) {
+      this.setupClickEvent(this.elements.navVideo, (e) => {
+         if (e.target.hasAttribute('data-transition-nav')) {
+           e.preventDefault();
+          this.handleTransitionNavigation(e.target.getAttribute('data-link'));
+         }
+      });
+      
+        // this.setupClickEvent(this.elements.navVideo, () => this.autoScrollNow());
+      
+    }
+
+
+
   
 
     // Close button handler
