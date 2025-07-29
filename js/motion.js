@@ -90,7 +90,14 @@ export const selectors = {
   slider9: "#slider9",
   slider10: "#slider10",
   slider11: "#slider11",
-  slider12: "#slider12"
+  slider12: "#slider12",
+
+  slider13: "#slider13",
+  slider14: "#slider14",
+  slider15: "#slider15",
+  slider16: "#slider16",
+  slider17: "#slider17",
+  slider18: "#slider18"
 };
 
 const navbar = new Navbar(selectors);
@@ -148,7 +155,7 @@ const galleryData = {
   // Animations
   craicinit: {
     preview: [
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1753790248/nepal_cix1jj.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1753811577/craicinit_yrql3l.webp",
        ],
     video: "Hk5KfzTXpuI" // YouTube video ID
   },
@@ -172,12 +179,22 @@ function openVideoModal(sliderContainer) {
 
   // Gallery mapping
   const galleryMap = {
+
+    // Videos
     slider7: "philippines",
     slider8: "newzealand",
     slider9: "indonesia",
     slider10: "egypt",
     slider11: "samoa",
-    slider12: "nepal"
+    slider12: "nepal",
+
+    // Animations
+    slider13: "craicinit",
+    slider14: "newzealand",
+    slider15: "indonesia",
+    slider16: "egypt",
+    slider17: "samoa",
+    slider18: "nepal"
     // Add other sliders as needed
   };
 
@@ -518,6 +535,13 @@ function initializeSliders() {
     "#slider11": { gallery: "samoa", options: {} },
     "#slider12": { gallery: "nepal", options: {} },
 
+    "#slider13": { gallery: "craicinit", options: {} },
+    "#slider14": { gallery: "newzealand", options: {} },
+    "#slider15": { gallery: "indonesia", options: {} },
+    "#slider16": { gallery: "egypt", options: {} },
+    "#slider17": { gallery: "samoa", options: {} },
+    "#slider18": { gallery: "nepal", options: {} },
+
 
   };
 
@@ -531,6 +555,13 @@ function initializeSliders() {
     $("#slider10").sliderResponsive();
     $("#slider11").sliderResponsive();
     $("#slider12").sliderResponsive();
+
+    $("#slider13").sliderResponsive();
+    $("#slider14").sliderResponsive();
+    $("#slider15").sliderResponsive();
+    $("#slider16").sliderResponsive();
+    $("#slider17").sliderResponsive();
+    $("#slider18").sliderResponsive();
 
   });
 
@@ -572,11 +603,7 @@ function initializeSliders() {
       sliderInstance.position = 0;
       $slider.find("div:first-of-type").addClass("show").show();
       $slider.find("> div").not(".show").hide();
-      // if ($dots.length) {
-      //   $slider.find(".showli").removeClass("showli");
-      //   $slider.find("> ul > li:first").addClass("showli");
-      // }
     }
   });
-  // }, 20); // Delay to ensure initial initialization completes
+ 
 }
