@@ -201,6 +201,8 @@ padding-top:0px; */
   /* Override any absolute/fixed positioning */
   /* overflow: visible !important; */
 }
+
+
 #slider8{
 flex: 1;
 max-width: calc(40% -10px);
@@ -216,6 +218,27 @@ max-width: calc(40% -10px);
 #slider11 {
   flex: 2;
   max-width: calc(30% - 10px)
+}
+
+/* Animation.html styles for sliders */
+#slider14 {
+  flex: 1;
+  max-width: calc(70% - 10px);
+}
+#slider15 {
+  flex: 2;
+  max-width: calc(30% - 10px)
+}
+#slider16 {
+  flex: 1;
+  max-width: calc(35% - 10px)
+}
+#slider17 {
+  flex: 12;
+  max-width: calc(65% - 10px);
+}
+#slider18 {
+  
 }
 
 

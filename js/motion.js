@@ -3,6 +3,58 @@
 import { DomUtils } from "./domUtils.js";
 import { Navbar } from "./navbar.js"
 
+// class WebPAnimationController {
+//   constructor() {
+//     this.localStaticBase = "assets/animationStills/";
+//     this.sliders = [];
+//   }
+
+//   init() {
+//     this.sliders = document.querySelectorAll('.slider');
+//     this.processSliders();
+//   }
+
+//   processSliders() {
+//     this.sliders.forEach(slider => {
+//       const slides = slider.querySelectorAll('div:not(.arrows):not(.titleBar)');
+      
+//       slides.forEach(slide => {
+//         const bgImage = window.getComputedStyle(slide).backgroundImage;
+//         const cloudinaryUrl = this.extractUrl(bgImage);
+        
+//         if (!cloudinaryUrl) return;
+
+//         const staticFilename = this.getLocalStaticPath(cloudinaryUrl);
+//         slide.dataset.animatedUrl = cloudinaryUrl;
+//         slide.dataset.staticUrl = staticFilename;
+        
+//         // Set initial static image
+//         slide.style.backgroundImage = `url(${staticFilename})`;
+        
+//         // Event listeners
+//         slide.addEventListener('mouseenter', () => {
+//           slide.style.backgroundImage = `url(${cloudinaryUrl})`;
+//         });
+        
+//         slide.addEventListener('mouseleave', () => {
+//           slide.style.backgroundImage = `url(${staticFilename})`;
+//         });
+//       });
+//     });
+//   }
+
+//   extractUrl(bgImage) {
+//     const urlMatch = bgImage.match(/url\(["']?(https:\/\/res\.cloudinary\.com[^"']+)["']?\)/);
+//     return urlMatch ? urlMatch[1] : null;
+//   }
+
+//   getLocalStaticPath(cloudinaryUrl) {
+//     const filename = cloudinaryUrl.split('/').pop();
+//     const baseName = filename.replace('.webp', '-static.webp');
+//     return `${this.localStaticBase}${baseName}`;
+//   }
+// }
+
 class WebPAnimationController {
   constructor() {
     this.localStaticBase = "assets/animationStills/";
@@ -33,11 +85,19 @@ class WebPAnimationController {
         
         // Event listeners
         slide.addEventListener('mouseenter', () => {
-          slide.style.backgroundImage = `url(${cloudinaryUrl})`;
+          if (cloudinaryUrl.endsWith('.mp4')) {
+            this.handleVideoHover(slide, cloudinaryUrl);
+          } else {
+            slide.style.backgroundImage = `url(${cloudinaryUrl})`;
+          }
         });
         
         slide.addEventListener('mouseleave', () => {
-          slide.style.backgroundImage = `url(${staticFilename})`;
+          if (cloudinaryUrl.endsWith('.mp4')) {
+            this.handleVideoLeave(slide);
+          } else {
+            slide.style.backgroundImage = `url(${staticFilename})`;
+          }
         });
       });
     });
@@ -50,8 +110,52 @@ class WebPAnimationController {
 
   getLocalStaticPath(cloudinaryUrl) {
     const filename = cloudinaryUrl.split('/').pop();
-    const baseName = filename.replace('.webp', '-static.webp');
+    let baseName;
+    
+    if (filename.endsWith('.webp')) {
+      baseName = filename.replace('.webp', '-static.webp');
+    } else if (filename.endsWith('.mp4')) {
+      baseName = filename.replace('.mp4', '-static.webp');
+    } else {
+      // Fallback for other file types if needed
+      baseName = filename;
+    }
+    
     return `${this.localStaticBase}${baseName}`;
+  }
+
+  handleVideoHover(slide, videoUrl) {
+    // Create video element if it doesn't exist
+    if (!slide.dataset.videoElement) {
+      const video = document.createElement('video');
+      video.src = videoUrl;
+      video.autoplay = true;
+      video.loop = true;
+      video.muted = true;
+      video.playsInline = true;
+      video.style.position = 'absolute';
+      video.style.top = '0';
+      video.style.left = '0';
+      video.style.width = '100%';
+      video.style.height = '100%';
+      video.style.objectFit = 'cover';
+      
+      slide.appendChild(video);
+      slide.dataset.videoElement = 'true';
+      slide.style.backgroundImage = 'none';
+      
+      // Attempt to play the video (may need user interaction on some browsers)
+      video.play().catch(e => console.log('Video play failed:', e));
+    }
+  }
+
+  handleVideoLeave(slide) {
+    const video = slide.querySelector('video');
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
+    }
+    slide.style.backgroundImage = `url(${slide.dataset.staticUrl})`;
   }
 }
 
@@ -159,7 +263,12 @@ const galleryData = {
        ],
     video: "Hk5KfzTXpuI" // YouTube video ID
   },
-
+  invite: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/video/upload/v1753906046/invite_fbiqoj.mp4",
+       ],
+    video: "YYtQM6siWnk" // YouTube video ID
+  },
 
 
 
@@ -190,7 +299,7 @@ function openVideoModal(sliderContainer) {
 
     // Animations
     slider13: "craicinit",
-    slider14: "newzealand",
+    slider14: "invite",
     slider15: "indonesia",
     slider16: "egypt",
     slider17: "samoa",
@@ -536,7 +645,7 @@ function initializeSliders() {
     "#slider12": { gallery: "nepal", options: {} },
 
     "#slider13": { gallery: "craicinit", options: {} },
-    "#slider14": { gallery: "newzealand", options: {} },
+    "#slider14": { gallery: "invite", options: {} },
     "#slider15": { gallery: "indonesia", options: {} },
     "#slider16": { gallery: "egypt", options: {} },
     "#slider17": { gallery: "samoa", options: {} },

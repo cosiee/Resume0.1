@@ -147,24 +147,20 @@
   }
 }
 
-.slider>div {
 
-  opacity: 1;
-/* transition: none; */
-}
 
 .slider>div {
 
-  opacity: 1;
+  opacity: 1 !important;
   transition: opacity 1s ease, transform 100s;
 }
 
 .slider>div.show {
-  opacity: 1;
+  opacity: 1 !important;
 }
 
 .slider>div.hide {
-  opacity: 1;
+  opacity: 1 !important;
 }
 
 
