@@ -23,6 +23,29 @@ a.nav-link:hover {
   color: #e3e5ea;
   transform: scale(1.2);
 }
+/* 888888888888888888888888888888888888888888888888 */
+
+/* Burger Icon Styling */
+navbar-toggler left {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  border: none;
+  font-size: 1rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.navbar-toggler-icon { /* the element was span.navbar-toggler-icon */
+  filter: invert(1) grayscale(1) brightness(15);
+}
+
+button.navbar-toggler.left {
+  border-color: #fff;
+  border-width: 1.5px;
+}
+
 
 #softwareLink.nav-link:hover,
 #motionLink.nav-link:hover,
@@ -37,6 +60,8 @@ a.nav-link:hover {
 #motionLink.nav-link.dropdown-toggle:hover::after {
   transform: rotate(90deg);
 }
+
+
 
 /* Form Styles */
 .formDiv#contactForm {
@@ -68,8 +93,13 @@ body.photography-page .formDiv#contactForm {
 
 .modalbox .box,
 .wip .box {
+  /* padding-bottom: 0px;
+padding-left: 0px;
+padding-right: 0px;
+padding-top:0px; */
   z-index: 1000;
   overflow: auto;
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 /* Slider Core Styles - Fixed Layout */
@@ -89,6 +119,7 @@ body.photography-page .formDiv#contactForm {
   /* min-height: 500px; */
   min-height: auto;
   position: relative;
+  flex-wrap: wrap;
 }
 
 .slider {
@@ -169,6 +200,45 @@ body.photography-page .formDiv#contactForm {
   position: relative !important;
   /* Override any absolute/fixed positioning */
   /* overflow: visible !important; */
+}
+
+
+#slider8{
+flex: 1;
+max-width: calc(40% -10px);
+}
+#slider9 {
+  flex: 2;
+  max-width: calc(60% - 10px);
+}
+#slider10 {
+  flex: 1;
+  max-width: calc(70% - 10px);
+}
+#slider11 {
+  flex: 2;
+  max-width: calc(30% - 10px)
+}
+
+/* Animation.html styles for sliders */
+#slider14 {
+  flex: 1;
+  max-width: calc(70% - 10px);
+}
+#slider15 {
+  flex: 2;
+  max-width: calc(30% - 10px)
+}
+#slider16 {
+  flex: 1;
+  max-width: calc(35% - 10px)
+}
+#slider17 {
+  flex: 12;
+  max-width: calc(65% - 10px);
+}
+#slider18 {
+  
 }
 
 
@@ -651,6 +721,7 @@ body.photography-page .formDiv#contactForm {
   flex: 0 0 auto; /* Prevent growing/shrinking */
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   border-radius: 4px;
   cursor: pointer;
   opacity: 0.8;
@@ -881,8 +952,31 @@ body {
 
 /* Responsive Adjustments */
 @media (max-width: 992px) {
+
+    /* Larger tap target for mobile */
+  .navbar-toggler {
+    padding: 0.75rem;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    visibility: hidden;
+    opacity: 0;
+  }
+  
+  /* Ensure dropdowns are visible */
+  .dropdown-menu {
+    background-color: rgba(254, 253, 253, 0.9);
+  }
+  
+  /* Better spacing for mobile nav items */
+  .navbar-nav {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+
   .row2Wrap {
-    flex-direction: column;
+        flex-direction: column;
+    gap: 40px;
   }
 
   #slider2,
@@ -892,11 +986,36 @@ body {
     max-width: 100% !important;
     height: 400px;
   }
+  .navbar.scrolled .navbar-toggler {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* Make sure navbar is visible when expanded */
+  .navbar.show .navbar-toggler,
+  .navbar.collapsing .navbar-toggler {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* Adjust navbar appearance on scroll */
+  .navbar.scrolled {
+    background-color: rgba(0, 0, 0, 0.0) !important;
+    transition: background-color 0.3s ease;
+  }
+
 }
+
+
+
+
 
 @media (max-width: 768px) {
   .slider {
-    height: 300px;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 60vh;
+    min-height: 300px;
   }
 
   .modalbox .box,
@@ -1007,6 +1126,11 @@ body {
 }
 
 /* Additional HTML styles from otherStyles.css */
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
 html {
   height: 100%;
   box-sizing: border-box;

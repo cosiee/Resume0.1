@@ -162,16 +162,30 @@ text.lrgtext {
 #me {
   position: absolute;
   fill: #162a43;
+
+
+    /* z-index: 1100;  */
+   pointer-events: all !important;
+  
 }
 
 #meshaker {
   position: absolute;
-  z-index: 0;
+  /* z-index: 1099; */
   width: 100%;
   height: 125px;
   transform: translate(0px, 12vh);
   opacity: 0;
 }
+
+
+/* #svg {
+  pointer-events: none;
+}
+#svg > *:not(#me):not(#meshaker) {
+  pointer-events: none;
+} */
+
 
 a {
   text-decoration: none;
@@ -357,6 +371,7 @@ navbar-toggler left {
   outline: none;
 }
 
+
 .sticky {
   /* background-color: #ffffff; */
   opacity: 1;
@@ -402,7 +417,7 @@ navbar-toggler left {
 .container-fluid.thumbnails {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: auto;
   z-index: 2; /* Between background and clouds */
 }
 

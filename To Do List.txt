@@ -1,8 +1,15 @@
-Remove scroll option on index on load, is scrolling still works for animation...?
 
 
-fix the thumbnail animation on index.html caused by working on the WIP, modal and 
-form handling in photography.html NO PULL REQUEST TILL RESOLVED
+
+
+Cloud transitions the end point for the cloud transition to index.html is the begining 
+keyframes for the mountain sky animation. can a 3 point loop ofclouds be worked- cloud 
+transition start point finishing at mountainSky starting points and this has a end point,
+which feeds to cloud transition start point... specifcally only thought of index.htmt 
+More thought for other pages required. shifting of svg's z-index...
+
+
+
 
 handling of form, WIP and modal on photography == for all pages
 
@@ -50,9 +57,14 @@ because there is a new layer created for fading in new image which doesn't have
  the overlay trigger when is should. all behaviour for overlay hover and opacity 
  of 0.5 need to be given to fade layer or alternative needs to be sought... (DOne-AC)
 
+ me and meshaker not working as required-fine tune code is there just not triggering. 
+Is this a svg z-index issue? -(Done AC)
 
+fix the thumbnail animation on index.html caused by working on the WIP, modal and 
+form handling in photography.html NO PULL REQUEST TILL RESOLVED (Done-AC)
 
-
+Remove scroll option on index on load, is scrolling still works for animation...? (Done-AC: auto scrolling 
+working without scrollbar)
 
 Navbar sticky rewrite logic, this:   (isLandscapeSmall && isSmallHeight && inSmallHeightScrollRange) ||
       (inNormalHeightScrollRange) is not working need t combine new logic with old but functions running

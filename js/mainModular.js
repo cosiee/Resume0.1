@@ -142,7 +142,14 @@ navbar.hideScrollBar();
 
       // This should run immediately after preload
     }
-
+console.log("Z-Index Hierarchy:");
+const elements = [
+  {zIndex: window.getComputedStyle(domElements.meElement).zIndex, element: domElements.meElement},
+  {zIndex: window.getComputedStyle(domElements.meShaker).zIndex, element: domElements.meShaker},
+  {zIndex: 1050, element: document.querySelector('#topNav')},
+  {zIndex: 2, element: document.querySelector('#thumbnails')}
+];
+console.log(elements.filter(e => e.element));
     // Load remaining assets in background
     setTimeout(() => {
       initThumbnails();
@@ -159,7 +166,7 @@ navbar.hideScrollBar();
     }
 
     // Initialize CloudTransition AFTER main animation is set up
-    CloudTransition.triggerReverse();
+    // CloudTransition.triggerReverse();
 
   } catch (error) {
     console.error("Initialization failed:", error);
@@ -450,8 +457,14 @@ function animateMeAndWiggles() {
     );
     return; // Stop further execution if elements are missing
   }
+  if (domElements.meShaker && domElements.meElement) {
+  domElements.meShaker.addEventListener("mouseenter", function() {
+    console.log("meShaker hover detected"); // Debug log
+    domElements.meElement.style.transform = `${initialTransform} rotate(${angle}deg)`;
+    startHoverWiggle();
+  });
 
-
+  }
   // Function to get the width of the text element
   function getTextWidth(element) {
     return element.getBBox().width; // Get bounding box width of text element
@@ -626,6 +639,7 @@ function wiggle() {
 // Event listeners for hover wiggle on "ME"
 domElements.meShaker.addEventListener("mouseenter", function () {
   // Combine scaling with the existing transform (centering + wiggle)
+console.log("where is meShaker?");
   domElements.meElement.style.transform = `${initialTransform} rotate(${angle}deg)`;
   startHoverWiggle(); // Start hover wiggle
 });
@@ -810,10 +824,25 @@ domElements.software.addEventListener("click", function () {
   navbar.showWip(domElements.thumbElements[0]);
 });
 
-// Handles photography Thumbs link click - to WIP message
-domElements.photography.addEventListener("click", function () {
-  navbar.showWip(domElements.thumbElements[1]);
-});
+
+// if (this.elements.navPhotography) {
+//       this.setupClickEvent(this.elements.navPhotography, (e) => {
+//          if (e.target.hasAttribute('data-transition-nav')) {
+//            e.preventDefault();
+//           this.handleTransitionNavigation(e.target.getAttribute('data-link'));
+//          }
+//       });
+      
+//         this.setupClickEvent(this.elements.navPhotography, () => this.autoScrollNow());
+//     }
+
+
+// ***********Check navbar.js
+
+// // Handles photography Thumbs link click - to WIP message
+// domElements.photography.addEventListener("click", function () {
+//   navbar.showWip(domElements.thumbElements[1]);
+// });
 
 // Handles motion Thumbs link click - to WIP message
 domElements.motion.addEventListener("click", function () {

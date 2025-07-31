@@ -4,9 +4,6 @@ import { DomUtils } from "./domUtils.js";
 // import { initThumbnails, preloadCriticalImages } from "./preload.js";
 import { Navbar } from "./navbar.js";
 
-
-
-
 export const selectors = {
   scrollDist: ".scrollDist",
 
@@ -56,154 +53,137 @@ let galleryModal;
 let galleryMainSlider;
 let galleryThumbnails;
 
-
-
-
-
-
-
-
-
 const galleryData = {
   ireland: {
     preview: [
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118986/compressed-img-6855-copy_f9big6.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118990/compressed-summer-0468_szmnqj.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118989/compressed-summer-0460_w1ralb.webp",
-
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507660/_MG_3449_cnkwkn.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507660/_MG_3439_erby5e.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507663/_MG_3240_fqtxam.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507661/_MG_3108_hmfkom.webp",
     ],
     full: [
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118993/compressed-summer-0547_ufbms7.webp",
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118987/compressed-img-7289_kcqe20.webp",
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118987/compressed-img-7639_gwc3qc.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118988/compressed-img-7658-copy_oud2ro.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118987/compressed-lighthouse-fenit-1393_uxbdjj.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118991/compressed-summer-0477_cbnncw.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118990/compressed-summer-0474_qx1fkk.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118993/compressed-summer-1364_c7yegp.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118992/compressed-summer-0505_boozks.webp'
-    ]
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118987/compressed-img-7639_gwc3qc.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118988/compressed-img-7658-copy_oud2ro.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118987/compressed-lighthouse-fenit-1393_uxbdjj.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118991/compressed-summer-0477_cbnncw.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118992/compressed-summer-0505_boozks.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507662/_MG_2885_jnamx3.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507659/_MG_3350_cqmd1c.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507662/_MG_2899_cxuqz6.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507661/_MG_3076_xa6xnc.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118989/compressed-summer-0460_w1ralb.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118990/compressed-summer-0468_szmnqj.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507660/_MG_3408_c9dmdn.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118986/compressed-img-6855-copy_f9big6.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507659/_MG_3346_bqsk2e.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507659/_MG_3342_entsia.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507658/_MG_3241_gbnkaw.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507657/_MG_3278_dcwh3w.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507656/_MG_3233_qg4gdh.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507656/_MG_3156_fhlypn.webp"
+    ],
   },
   maylaysia: {
     preview: [
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203043/IMG_7623_abm9su.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203049/DSC04958_fez1yc.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203058/IMG_8813_tsebmj.webp'
-
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203043/IMG_7623_abm9su.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203049/DSC04958_fez1yc.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203058/IMG_8813_tsebmj.webp",
     ],
     full: [
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203037/IMG_0669_d2bkqo.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203062/DSC04937_xasjqr.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203057/IMG_8734_ujgnhi.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203055/IMG_9441_skeod6.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203054/IMG_9060_wnlhmf.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203040/IMG_8680_y4mpjx.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203040/DSC05086_ps4lhu.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203040/IMG_7594_2_ees3nh.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203037/IMG_0669_d2bkqo.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203035/IMG_0087_uhzopu.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203055/IMG_9433_x4pv3x.webp'
-    ]
-
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203037/IMG_0669_d2bkqo.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203062/DSC04937_xasjqr.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203057/IMG_8734_ujgnhi.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203055/IMG_9441_skeod6.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203054/IMG_9060_wnlhmf.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203040/IMG_8680_y4mpjx.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203040/DSC05086_ps4lhu.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203040/IMG_7594_2_ees3nh.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203035/IMG_0087_uhzopu.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203055/IMG_9433_x4pv3x.webp",
+    ],
   },
   indonesia: {
     preview: [
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036323/indoRTRPix_-4334_rb0axe.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036322/indoRTRPix_-4175_gyxbkj.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036321/indoRTRPix_-3922_hglvii.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036317/indoRTRPix_-3263_cplk9b.webp'
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036323/indoRTRPix_-4334_rb0axe.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036322/indoRTRPix_-4175_gyxbkj.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036321/indoRTRPix_-3922_hglvii.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036317/indoRTRPix_-3263_cplk9b.webp",
     ],
     full: [
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-2621_jtflh9.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-1429_oxhhhq.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036317/indoRTRPix_-3263_cplk9b.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-4159_equalj.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036323/indoRTRPix_--5_bgkrpk.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-1559_mjrr5c.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-1620_q0exvq.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036319/indoRTRPix_-4040_dgsnkc.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036323/indoRTRPix_--5_bgkrpk.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-2890_ckspew.webp'
-    ]
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-2621_jtflh9.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-1429_oxhhhq.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036320/indoRTRPix_-4159_equalj.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036323/indoRTRPix_--5_bgkrpk.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-1559_mjrr5c.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-1620_q0exvq.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036319/indoRTRPix_-4040_dgsnkc.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744036318/indoRTRPix_-2890_ckspew.webp",
+    ],
   },
   egypt: {
     preview: [
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103545/compressed-egypt-rtrpix-7464_hyfadx.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103546/compressed-egypt-rtrpix-7796_ohjxup.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8872_z6fhnb.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8569_fwdcgz.webp'
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103545/compressed-egypt-rtrpix-7464_hyfadx.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103546/compressed-egypt-rtrpix-7796_ohjxup.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8872_z6fhnb.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8569_fwdcgz.webp",
     ],
     full: [
-
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103555/compressed-egypt-rtrpix-9252_e462bb.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103552/compressed-egypt-rtrpix-8188_prhy17.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8724_xrmxf7.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103548/compressed-egypt-rtrpix-8048_wxzwun.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103543/compressed-egypt-rtrpix-6758_eeixsa.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103544/compressed-egypt-rtrpix-7008_gkdpsx.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103545/compressed-egypt-rtrpix-7145_zqfbul.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103544/compressed-egypt-rtrpix-7111_e30c1f.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103544/compressed-egypt-rtrpix-4711_cc3unk.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103546/compressed-egypt-rtrpix-7859_w2fx7r.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103546/compressed-egypt-rtrpix-7219_seve1r.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103548/compressed-egypt-rtrpix-8030_dsh4hp.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103549/compressed-egypt-rtrpix-8057_mgaf4a.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103549/compressed-egypt-rtrpix-8062_fyvf50.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103549/compressed-egypt-rtrpix-7021_ht5f14.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103551/compressed-egypt-rtrpix-8170_wewwra.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103550/compressed-egypt-rtrpix-8113_irwa5m.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103553/compressed-egypt-rtrpix-8079_gz6fdl.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103552/compressed-egypt-rtrpix-8185_efwwkj.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103553/compressed-egypt-rtrpix-8341_ypzs7a.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103553/compressed-egypt-rtrpix-8191_fbgf33.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103553/compressed-egypt-rtrpix-8189_oydwvg.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118960/compressed-great-giza-pyramids-egypt-2014-9_wwzogz.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118960/compressed-great-giza-pyramids-egypt-2014-4_muyz5z.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-9055_kxcv3s.webp'
-      
-    ]
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103555/compressed-egypt-rtrpix-9252_e462bb.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103552/compressed-egypt-rtrpix-8188_prhy17.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103554/compressed-egypt-rtrpix-8724_xrmxf7.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103548/compressed-egypt-rtrpix-8048_wxzwun.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103543/compressed-egypt-rtrpix-6758_eeixsa.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103544/compressed-egypt-rtrpix-7008_gkdpsx.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103545/compressed-egypt-rtrpix-7145_zqfbul.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103544/compressed-egypt-rtrpix-7111_e30c1f.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103544/compressed-egypt-rtrpix-4711_cc3unk.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103546/compressed-egypt-rtrpix-7859_w2fx7r.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103546/compressed-egypt-rtrpix-7219_seve1r.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103548/compressed-egypt-rtrpix-8030_dsh4hp.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103549/compressed-egypt-rtrpix-8057_mgaf4a.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103549/compressed-egypt-rtrpix-8062_fyvf50.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103549/compressed-egypt-rtrpix-7021_ht5f14.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103551/compressed-egypt-rtrpix-8170_wewwra.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103550/compressed-egypt-rtrpix-8113_irwa5m.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103553/compressed-egypt-rtrpix-8079_gz6fdl.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103552/compressed-egypt-rtrpix-8185_efwwkj.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103553/compressed-egypt-rtrpix-8341_ypzs7a.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103553/compressed-egypt-rtrpix-8191_fbgf33.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744103553/compressed-egypt-rtrpix-8189_oydwvg.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118960/compressed-great-giza-pyramids-egypt-2014-9_wwzogz.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118960/compressed-great-giza-pyramids-egypt-2014-4_muyz5z.webp",
+    ],
   },
   nepal: {
     preview: [
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200658/Annnapurna_South_Fang2_vwgzr9.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203027/IMG_2845_01_l6wz9a.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200634/IMG_2753_nlwdto.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200634/IMG_3872_g5lkrk.webp'
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200658/Annnapurna_South_Fang2_vwgzr9.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749203027/IMG_2845_01_l6wz9a.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200634/IMG_2753_nlwdto.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200634/IMG_3872_g5lkrk.webp",
     ],
     full: [
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200638/IMG_3438_zou1cl.webp'
-
-
-    ]
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749200638/IMG_3438_zou1cl.webp",
+    ],
   },
 
   jordan: {
     preview: [
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207138/Jordan-RTRPix-6082_pgsgwd.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207226/Jordan-RTRPix-6064_vjpu7j.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207379/Jordan-RTRPix-6584_ass3ed.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207320/Jordan-RTRPix-5947_yedzwy.webp'
-
-
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207138/Jordan-RTRPix-6082_pgsgwd.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207226/Jordan-RTRPix-6064_vjpu7j.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207379/Jordan-RTRPix-6584_ass3ed.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207320/Jordan-RTRPix-5947_yedzwy.webp",
     ],
 
     full: [
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207316/Jordan-RTRPix-6451_zvwmqz.webp',
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207182/Jordan-RTRPix-6132_in2kkk.webp',
-
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207271/Jordan-RTRPix-5758_jw3lyk.webp',
-
-      'https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207410/Jordan-RTRPix-6568_xsskaa.webp'
-
-
-    ]
-  }
-
-
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207316/Jordan-RTRPix-6451_zvwmqz.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207182/Jordan-RTRPix-6132_in2kkk.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207271/Jordan-RTRPix-5758_jw3lyk.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207410/Jordan-RTRPix-6568_xsskaa.webp",
+    ],
+  },
 };
-
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
   const navbar = new Navbar(selectors);
@@ -212,6 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize navbar with contact form handler
   navbar.init(20);
   navbar.initializeFormCloseButton();
+
   // Set up contact link with proper fallback
   if (domUtils.elements.navContact) {
     domUtils.elements.navContact.addEventListener("click", function () {
@@ -221,12 +202,9 @@ document.addEventListener("DOMContentLoaded", function () {
       domUtils.showForm();
     });
 
-
-    window.addEventListener('load', preloadFullGalleryImages);
-
+    window.addEventListener("load", preloadFullGalleryImages);
 
     initializeSliders();
-
   }
 
   setupEventListeners();
@@ -236,16 +214,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // setupSliderClickHandlers();
 });
 
-
 function preloadFullGalleryImages() {
-  Object.values(galleryData).forEach(gallery => {
-    gallery.full.forEach(imgUrl => {
+  Object.values(galleryData).forEach((gallery) => {
+    gallery.full.forEach((imgUrl) => {
       const img = new Image();
       img.src = imgUrl;
     });
   });
 }
-
 
 // initGalleryModal function
 function initGalleryModal() {
@@ -297,9 +273,6 @@ function initGalleryModal() {
   });
 }
 
-
-
-
 function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
   const modal = document.getElementById("galleryModal");
   modal.innerHTML = `
@@ -324,15 +297,15 @@ function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
 
   // Determine which gallery we're opening based on slider ID
   const galleryMap = {
-    'slider1': 'ireland',
-    'slider2': 'maylaysia',
-    'slider3': 'indonesia',
-    'slider4': 'egypt',
-    'slider5': 'nepal',
-    'slider6': 'jordan'
+    slider1: "ireland",
+    slider2: "maylaysia",
+    slider3: "indonesia",
+    slider4: "egypt",
+    slider5: "nepal",
+    slider6: "jordan",
   };
 
-  const galleryId = galleryMap[sliderContainer.id] || 'default';
+  const galleryId = galleryMap[sliderContainer.id] || "default";
 
   // COMBINE PREVIEW + FULL IMAGES
   const previewImages = galleryData[galleryId]?.preview || [];
@@ -404,8 +377,9 @@ function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
   }
 
   function showNextSlide() {
-    const currentIndex = Array.from(modal.querySelectorAll(".gallery-slide"))
-      .findIndex(slide => slide.style.display === "block");
+    const currentIndex = Array.from(
+      modal.querySelectorAll(".gallery-slide")
+    ).findIndex((slide) => slide.style.display === "block");
     const nextIndex = (currentIndex + 1) % allImages.length;
     showSlide(nextIndex);
 
@@ -413,13 +387,14 @@ function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
     activeThumb?.scrollIntoView({
       behavior: "smooth",
       block: "nearest",
-      inline: "center"
+      inline: "center",
     });
   }
 
   function showPrevSlide() {
-    const currentIndex = Array.from(modal.querySelectorAll(".gallery-slide"))
-      .findIndex(slide => slide.style.display === "block");
+    const currentIndex = Array.from(
+      modal.querySelectorAll(".gallery-slide")
+    ).findIndex((slide) => slide.style.display === "block");
     const prevIndex = (currentIndex - 1 + allImages.length) % images.length;
     showSlide(prevIndex);
 
@@ -427,7 +402,7 @@ function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
     activeThumb?.scrollIntoView({
       behavior: "smooth",
       block: "nearest",
-      inline: "center"
+      inline: "center",
     });
   }
 
@@ -468,19 +443,16 @@ function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
     const activeThumb = modal.querySelectorAll(".gallery-thumb")[slideIndex];
     activeThumb?.scrollIntoView({
       block: "nearest",
-      inline: "center"
+      inline: "center",
     });
   }, 100);
 }
-
-
 
 function closeGalleryModal() {
   const modal = document.getElementById("galleryModal");
   modal.style.display = "none";
   document.body.style.overflow = "auto";
 }
-
 
 function setupEventListeners() {
   // Setup event listeners for elements that exist on this page
@@ -492,9 +464,6 @@ function setupEventListeners() {
   }
 }
 
-
-
-
 // function initializeSliders() {
 //   // Verify plugin exists
 //   if (!$.fn.sliderResponsive) {
@@ -504,19 +473,19 @@ function setupEventListeners() {
 
 //   const sliderConfigs = {
 //     '#slider1': { gallery: 'ireland', options: {} },
-//     '#slider2': { 
+//     '#slider2': {
 //       gallery: 'maylaysia',
 //       options: { fadeSpeed: 300, showArrows: "on", hideDots: "on" }
 //     },
-//     '#slider3': { 
+//     '#slider3': {
 //       gallery: 'indonesia',
 //       options: { fadeSpeed: 300, showArrows: "on", hideDots: "on" }
 //     },
-//     '#slider4': { 
+//     '#slider4': {
 //       gallery: 'egypt',
 //       options: { fadeSpeed: 300, showArrows: "on", hideDots: "on" }
 //     },
-//     '#slider5': { 
+//     '#slider5': {
 //       gallery: 'nepal',
 //       options: { fadeSpeed: 300, showArrows: "on", hideDots: "on" }
 //     },
@@ -550,29 +519,45 @@ function setupEventListeners() {
 function initializeSliders() {
   // Verify plugin is available
   if (!$.fn.sliderResponsive) {
-    console.error('sliderResponsive plugin not found');
+    console.error("sliderResponsive plugin not found");
     return;
   }
+    const isMobile = window.innerWidth <= 992;
 
   const sliderConfigs = {
-    '#slider1': { gallery: 'ireland', options: {} },
-    '#slider2': {
-      gallery: 'maylaysia',
-      options: { fadeSpeed: 300, autoPlay: "off", showArrows: "on", hideDots: "on" }
+    "#slider1": { gallery: "ireland", options: {} },
+    "#slider2": {
+      gallery: "maylaysia",
+      options: {
+        fadeSpeed: 300,
+        autoPlay: "off",
+        showArrows: isMobile ? "off" : "on",
+        hideDots: isMobile ? "off" : "on",
+      },
     },
-    '#slider3': {
-      gallery: 'indonesia',
-      options: { hoverZoom: "off", hideDots: "on" }
+    "#slider3": {
+      gallery: "indonesia",
+      options: { hoverZoom: "off", hideDots: "on" },
     },
-    '#slider4': {
-      gallery: 'egypt',
-      options: { fadeSpeed: 300, autoPlay: "off", showArrows: "on", hideDots: "on" }
+    "#slider4": {
+      gallery: "egypt",
+      options: {
+        fadeSpeed: 300,
+        autoPlay: "off",
+        showArrows: isMobile ? "off" : "on",
+        hideDots: isMobile ? "off" : "on",
+      },
     },
-    '#slider5': {
-      gallery: 'nepal',
-      options: { fadeSpeed: 300, autoPlay: "off", showArrows: "on", hideDots: "on" }
+    "#slider5": {
+      gallery: "nepal",
+      options: {
+        fadeSpeed: 300,
+        autoPlay: "off",
+        showArrows: isMobile ? "off" : "on",
+        hideDots: isMobile ? "off" : "on",
+      },
     },
-    '#slider6': { gallery: 'jordan', options: {} }
+    "#slider6": { gallery: "jordan", options: {} },
   };
 
   // First initialize all sliders with their default content
@@ -610,19 +595,19 @@ function initializeSliders() {
     if (!$slider.length) return;
 
     // Get reference to plugin instance before modifying DOM
-    const sliderInstance = $slider.data('sliderResponsive');
+    const sliderInstance = $slider.data("sliderResponsive");
 
     // Store structural elements
-    const $arrows = $slider.find('.arrows').detach();
-    const $titleBar = $slider.find('.titleBar').detach();
-    const $dots = $slider.find('ul').detach();
+    const $arrows = $slider.find(".arrows").detach();
+    const $titleBar = $slider.find(".titleBar").detach();
+    const $dots = $slider.find("ul").detach();
 
     // Clear slides only
-    $slider.find('> div').not('.arrows, .titleBar').remove();
+    $slider.find("> div").not(".arrows, .titleBar").remove();
 
     // Add new slides
-    galleryData[config.gallery]?.preview.forEach(imgUrl => {
-      $slider.append($('<div>').css('background-image', `url(${imgUrl})`));
+    galleryData[config.gallery]?.preview.forEach((imgUrl) => {
+      $slider.append($("<div>").css("background-image", `url(${imgUrl})`));
     });
 
     // Reattach structural elements
