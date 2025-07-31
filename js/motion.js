@@ -379,6 +379,12 @@ const galleryData = {
     video: "YYtQM6siWnk" // YouTube video ID
   },
 
+  thanks: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/video/upload/v1753956855/Thanks_d1a8ez.mp4",
+       ],
+    video: "1RxAHs7cE0Y" // YouTube video ID
+  },
 
 
 
@@ -409,7 +415,7 @@ function openVideoModal(sliderContainer) {
     // Animations
     slider13: "craicinit",
     slider14: "invite",
-    slider15: "indonesia",
+    slider15: "thanks",
     slider16: "egypt",
     slider17: "samoa",
     slider18: "nepal"
@@ -755,7 +761,7 @@ function initializeSliders() {
 
     "#slider13": { gallery: "craicinit", options: {} },
     "#slider14": { gallery: "invite", options: {} },
-    "#slider15": { gallery: "indonesia", options: {} },
+    "#slider15": { gallery: "thanks", options: {} },
     "#slider16": { gallery: "egypt", options: {} },
     "#slider17": { gallery: "samoa", options: {} },
     "#slider18": { gallery: "nepal", options: {} },
