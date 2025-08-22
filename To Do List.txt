@@ -1,6 +1,8 @@
 
 
+Projects and their photos...
 
+collapsed navbar HOME tooltip is not aligned why and remove underline style.
 
 Cloud transitions the end point for the cloud transition to index.html is the begining 
 keyframes for the mountain sky animation. can a 3 point loop ofclouds be worked- cloud 
@@ -8,7 +10,7 @@ transition start point finishing at mountainSky starting points and this has a e
 which feeds to cloud transition start point... specifcally only thought of index.htmt 
 More thought for other pages required. shifting of svg's z-index...
 
-
+projects add building this computer...look for pictures.
 
 
 handling of form, WIP and modal on photography == for all pages

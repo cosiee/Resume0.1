@@ -386,6 +386,26 @@ const galleryData = {
     video: "1RxAHs7cE0Y" // YouTube video ID
   },
 
+  indoAni: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/video/upload/v1753972928/IndoAni_rv3yus.mp4",
+       ],
+    video: "tpriKnDglCY" // YouTube video ID
+  },
+  philliAni: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/video/upload/v1753972928/PhilliAni_jbsoss.mp4",
+       ],
+    video: "V4ynt1X0rHQ" // YouTube video ID
+  },
+
+  timeLapse: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/video/upload/v1753972927/TimeLapse_dkdhwq.mp4",
+       ],
+    video: "V4ynt1X0rHQ" // YouTube video ID
+  },
+
 
 
 };
@@ -416,9 +436,9 @@ function openVideoModal(sliderContainer) {
     slider13: "craicinit",
     slider14: "invite",
     slider15: "thanks",
-    slider16: "egypt",
-    slider17: "samoa",
-    slider18: "nepal"
+    slider16: "indoAni",
+    slider17: "philliAni",
+    slider18: "timeLapse"
     // Add other sliders as needed
   };
 
@@ -762,9 +782,9 @@ function initializeSliders() {
     "#slider13": { gallery: "craicinit", options: {} },
     "#slider14": { gallery: "invite", options: {} },
     "#slider15": { gallery: "thanks", options: {} },
-    "#slider16": { gallery: "egypt", options: {} },
-    "#slider17": { gallery: "samoa", options: {} },
-    "#slider18": { gallery: "nepal", options: {} },
+    "#slider16": { gallery: "indoAni", options: {} },
+    "#slider17": { gallery: "philliAni", options: {} },
+    "#slider18": { gallery: "timeLapse", options: {} },
 
 
   };

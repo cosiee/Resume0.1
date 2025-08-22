@@ -64,7 +64,7 @@ export class Navbar {
 
     gsap.to(document.documentElement, {
       scrollTo: { y: maxScroll, autoKill: false },
-      duration: 5.8,
+      duration: 3.8,
 
 
       ease: CustomEase.create(

@@ -63,7 +63,9 @@
   opacity: 0;
 }
 
-/* Add to your styles.css */
+
+
+
 a[data-transition-nav] {
   position: relative;
   transition: transform 0.3s ease;
@@ -90,14 +92,18 @@ a[data-transition-nav]:hover::after {
   transform: scaleX(1);
   transform-origin: left;
 
-  .cloud-transition-element {
+
+}
+   .cloud-transition-element {
     will-change: transform, opacity;
     backface-visibility: hidden;
     transform-style: preserve-3d;
     pointer-events: none;
-  }
-}
+  } 
 
+  .nav-link[data-transition-nav][id="navHome"]::after {
+    display: none !important;
+}
 /*End of Cloud transition styles */
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ SEE/ME Base Styles $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
@@ -305,7 +311,7 @@ a.nav-link.active {
   top: 100%;
   border-style: groove;
   font-size: 14px;
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.7);
   text-align: left;
   inline-size: auto;
   border-width: auto;
@@ -323,17 +329,23 @@ a.dropdown-item {
 a.dropdown-item:hover {
   color: #162a43;
   transform: scale(1.1);
-  background-color: transparent !important;
+background-color: transparent !important;
+}
+.dropdown-item:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
 }
 
 a.dropdown-item:active {
   transform: scale(1.2);
   color: #162a43;
-  background-color: transparent !important;
+
 }
 
 .dropdown .dropdown-menu .navbar-nav {
   --bs-nav-link-hover-colour: #162a43;
+  
 }
 
 ul.navbar-nav {
@@ -369,6 +381,53 @@ navbar-toggler left {
   background-color: transparent;
   border: none;
   outline: none;
+}
+
+/* General style for the link */
+.has-tooltip {
+    position: relative; /* Essential for positioning the tooltip */
+    display: inline-block;
+    text-decoration: none;
+    /* Add your other navbar link styles here (color, padding, etc.) */
+}
+
+/* Style for the tooltips */
+.has-tooltip .tooltip-text {
+    visibility: hidden; /* Hide it by default */
+    width: 180px; /* Set a width for your text */
+    background-color: #3338; /* Dark background */
+    color: #fff; /* White text */
+    text-align: center;
+    padding: 5px; 
+    border-radius:8px; 
+    font-size: 0.85rem; /* Slightly smaller text */
+
+    /* Position the tooltip above the link */
+    position: absolute;
+    z-index: 1000; /* Ensure it appears above other elements */
+    bottom: 80%; /* Position it above the parent link */
+    left: 50%;
+    margin-left: -90px; /* Use half of the width to truly center it */
+    opacity: 0; /* Start fully transparent for the fade effect */
+    transition: opacity 0.3s, visibility 0.3s; /* Smooth fade effect */
+}
+
+/* The magic: show the tooltip on hover */
+.has-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Optional: Add a small arrow pointing down */
+.has-tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
 }
 
 
@@ -926,18 +985,18 @@ textarea {
     position: absolute;
     top: 0;
     left: calc(100% + 124px);
-    background-color: #fff;
     padding: 0.2rem;
     min-width: max-content;
     min-width: 265px;
     max-width: 325px;
     flex-wrap: wrap;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.8);
   }
 
   .dropdown-menu:hover {
     display: flex;
     flex-direction: row;
+   
   }
 
   /* Apply relative positioning to the nav-item to use as reference */
@@ -973,6 +1032,24 @@ textarea {
 }
 
 @media (min-width: 399.99px) {
+
+span br{
+  display: none;
+}
+.has-tooltip .tooltip-text {
+    width:max-content;
+    background-color: #3339;/* Dark background */
+    text-align: right;
+    padding: 3px; 
+    font-size: 0.7rem; 
+
+    /* Position the tooltip above the link */
+    bottom: 80%; /* Position it above the parent link */
+    left: 100%;
+    margin-left: -90px; /* Use half of the width to truly center it */
+    
+}
+
   .scroll-arrow {
     top: 18%;
   }
@@ -1054,6 +1131,27 @@ textarea {
 }
 
 @media (min-width: 992px) {
+
+  span br{
+  display:block;
+}
+
+.has-tooltip .tooltip-text {
+    width: 180px; /* Set a width for your text */
+    background-color: #3338; /* Dark background */
+    text-align: center;
+    padding: 5px; 
+    border-radius:8px; 
+    font-size: 0.85rem; /* Slightly smaller text */
+
+    /* Position the tooltip above the link */
+    bottom: 80%; /* Position it above the parent link */
+    left: 50%;
+    margin-left: -90px; /* Use half of the width to truly center it */
+}
+
+
+
   .scroll-arrow {
     top: 30%;
     width: 30px;
@@ -1093,10 +1191,10 @@ textarea {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.7);
     padding: 0.2rem;
     min-width: max-content;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
   }
 
   .dropdown-menu:hover {
@@ -1147,56 +1245,6 @@ textarea {
   }
 }
 
-/* @media (max-width: 991.98px) and (orientation: landscape) 
-and (any-pointer: coarse) and (any-hover: none) and 
-(max-height: 600px){
-  .thumbShape {
-    width: calc(var(--thumb-width)* 0.32);
-    height: calc(var(--thumb-height)* 0.32);
-  }
-
-  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-    padding: 10px 10px;
-    margin: 0px;
-  }
-
-} */
-
-/* 
-@media (max-height: 320px) and (orientation: landscape) 
-and (any-pointer: coarse) and (any-hover: none) and 
-(max-height: 600px){
-  .thumbShape {
-    width: calc(var(--thumb-width)* 0.32);
-    height: calc(var(--thumb-height)* 0.32);
-  }
-
-  .navbar.navbar-expand-lg.navbar-light.bg-transparent.sticky#topNav {
-    padding: 10px 10px;
-    margin: 0px;
-  }
-  
-  
-
-
-
-} */
-
-/* @media (orientation: landscape) and (max-width: 991.98px) 
-and (max-height: 800px) {
-  .scrollDist {
-    min-height: 620px;
-  } */
-
-/* and (any-pointer: coarse) and (any-hover: none) */
-
-/* and (aspect-ratio: 16/9),
-(aspect-ratio: 18/9),
-(aspect-ratio: 19/9),
-(aspect-ratio: 19.5/9),
-(aspect-ratio: 20/9),
-(aspect-ratio: 21/9),
-(aspect-ratio: 22/9) */
 
 @media (orientation: landscape) and (max-width: 991.98px) and (min-width: 200px) and (max-height: 800px) and (min-height: 200px) {
   .scrollDist {
