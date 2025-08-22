@@ -156,14 +156,14 @@ console.log(elements.filter(e => e.element));
     }, 0);
 
     // Setup photography link if available
-    if (domElements.navPhotography) {
-      domElements.navPhotography.addEventListener('click', async (e) => {
-        e.preventDefault();
-        await CloudTransition.triggerTransition('photography.html');
-      });
-    } else {
-      console.warn('Photography link not found in DOM');
-    }
+    // if (domElements.navPhotography) {
+    //   domElements.navPhotography.addEventListener('click', async (e) => {
+    //     e.preventDefault();
+    //     await CloudTransition.triggerTransition('photography.html');
+    //   });
+    // } else {
+    //   console.warn('Photography link not found in DOM');
+    // }
 
     // Initialize CloudTransition AFTER main animation is set up
     // CloudTransition.triggerReverse();

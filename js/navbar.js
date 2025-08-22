@@ -64,7 +64,7 @@ export class Navbar {
 
     gsap.to(document.documentElement, {
       scrollTo: { y: maxScroll, autoKill: false },
-      duration: 5.8,
+      duration: 3.8,
 
 
       ease: CustomEase.create(
@@ -245,8 +245,8 @@ setupMobileBehavior() {
 
 
 
-    // , "navPhotography, "navVideo",
-    ["navAnimation", "navDiy", "navPython", "navJava", "navSql", "navReact"]
+    // , "navPhotography, "navVideo","navAnimation",
+    [ "navDiy", "navPython", "navJava", "navSql", "navReact"]
       .forEach(id => {
         if (this.elements[id]) {
           this.setupClickEvent(this.elements[id], () => {
@@ -264,7 +264,7 @@ setupMobileBehavior() {
          }
       });
       
-        // this.setupClickEvent(this.elements.navPhotography, () => this.autoScrollNow());
+
     }
 
     if (this.elements.navVideo) {
@@ -274,9 +274,17 @@ setupMobileBehavior() {
           this.handleTransitionNavigation(e.target.getAttribute('data-link'));
          }
       });
-      
-        // this.setupClickEvent(this.elements.navVideo, () => this.autoScrollNow());
-      
+
+    }
+
+    if (this.elements.navAnimation) {
+      this.setupClickEvent(this.elements.navAnimation, (e) => {
+         if (e.target.hasAttribute('data-transition-nav')) {
+           e.preventDefault();
+          this.handleTransitionNavigation(e.target.getAttribute('data-link'));
+         }
+      });
+
     }
 
 
