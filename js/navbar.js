@@ -245,8 +245,8 @@ setupMobileBehavior() {
 
 
 
-    // , "navPhotography, "navVideo","navAnimation",
-    [ "navDiy", "navPython", "navJava", "navSql", "navReact"]
+    // , "navPhotography, "navVideo","navAnimation",  "navDiy",
+    [ "navPython", "navJava", "navSql", "navReact"]
       .forEach(id => {
         if (this.elements[id]) {
           this.setupClickEvent(this.elements[id], () => {
@@ -258,6 +258,17 @@ setupMobileBehavior() {
 // this is handling navbar and corresponding thumbnail links
     if (this.elements.navPhotography) {
       this.setupClickEvent(this.elements.navPhotography, (e) => {
+         if (e.target.hasAttribute('data-transition-nav')) {
+           e.preventDefault();
+          this.handleTransitionNavigation(e.target.getAttribute('data-link'));
+         }
+      });
+      
+
+    }
+
+        if (this.elements.navDiy) {
+      this.setupClickEvent(this.elements.navDiy, (e) => {
          if (e.target.hasAttribute('data-transition-nav')) {
            e.preventDefault();
           this.handleTransitionNavigation(e.target.getAttribute('data-link'));
