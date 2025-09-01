@@ -1,8 +1,21 @@
+Navbar collapsed menu 'home's tooltip is not aligning correctly??
 
+fix the black below jordan on photography.html
 
 Projects and their photos...
 
+Navbar Motion dropdown has the underlining animation on hover now, needs removing!
+
+Bootstrap when adjusting the screen width in dev tools some screen widths, cause sliders 
+to disappear particularly the ones that are sharing a row. 
+
 collapsed navbar HOME tooltip is not aligned why and remove underline style.
+
+projects add building this computer...look for pictures.
+
+Projects - include photoshop graphiic design work heshams-shop artwork for brian dolly
+projects should share processes used????
+
 
 Cloud transitions the end point for the cloud transition to index.html is the begining 
 keyframes for the mountain sky animation. can a 3 point loop ofclouds be worked- cloud 
@@ -12,6 +25,8 @@ More thought for other pages required. shifting of svg's z-index...
 
 projects add building this computer...look for pictures.
 
+Projects - include photoshop graphiic design work heshams-shop artwork for brian dolly
+projects should share processes used????
 
 handling of form, WIP and modal on photography == for all pages
 

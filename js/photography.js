@@ -70,7 +70,7 @@ const galleryData = {
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118991/compressed-summer-0477_cbnncw.webp",
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118992/compressed-summer-0505_boozks.webp",
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507662/_MG_2885_jnamx3.webp",
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507659/_MG_3350_cqmd1c.webp",
+      // "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507659/_MG_3350_cqmd1c.webp",
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507662/_MG_2899_cxuqz6.webp",
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507661/_MG_3076_xa6xnc.webp",
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118989/compressed-summer-0460_w1ralb.webp",
