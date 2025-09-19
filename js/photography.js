@@ -464,57 +464,7 @@ function setupEventListeners() {
   }
 }
 
-// function initializeSliders() {
-//   // Verify plugin exists
-//   if (!$.fn.sliderResponsive) {
-//     console.error('Slider plugin not loaded!');
-//     return;
-//   }
 
-//   const sliderConfigs = {
-//     '#slider1': { gallery: 'ireland', options: {} },
-//     '#slider2': {
-//       gallery: 'maylaysia',
-//       options: { fadeSpeed: 300, showArrows: "on", hideDots: "on" }
-//     },
-//     '#slider3': {
-//       gallery: 'indonesia',
-//       options: { fadeSpeed: 300, showArrows: "on", hideDots: "on" }
-//     },
-//     '#slider4': {
-//       gallery: 'egypt',
-//       options: { fadeSpeed: 300, showArrows: "on", hideDots: "on" }
-//     },
-//     '#slider5': {
-//       gallery: 'nepal',
-//       options: { fadeSpeed: 300, showArrows: "on", hideDots: "on" }
-//     },
-//     '#slider6': { gallery: 'jordan', options: {} }
-//   };
-
-//   Object.entries(sliderConfigs).forEach(([sliderId, config]) => {
-//     const $slider = $(sliderId);
-//     if (!$slider.length) return;
-
-//     // Clear only slide divs (keep arrows and titleBar)
-//     $slider.children('div').not('.arrows, .titleBar').remove();
-
-//     // Add new slides
-//     galleryData[config.gallery]?.preview.forEach(imgUrl => {
-//       $slider.append($('<div>').css('background-image', `url(${imgUrl})`));
-//     });
-
-//     // Initialize with timeout to ensure DOM is ready
-//     setTimeout(() => {
-//       $slider.sliderResponsive(config.options);
-
-//       // Verify initialization
-//       if (!$slider.data('sliderResponsive')) {
-//         console.error(`Failed to initialize ${sliderId}`);
-//       }
-//     }, 50);
-//   });
-// }
 
 function initializeSliders() {
   // Verify plugin is available

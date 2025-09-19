@@ -1,4 +1,10 @@
-Navbar collapsed menu 'home's tooltip is not aligning correctly??
+Navbar collapsed menu 'home's tooltip is not aligning correctly?? realign to right on smaller devices
+
+sliders 1 & 6, across all pages, need to be the same size as the rest when on smaller devices
+
+focus or hover on sliders causes the images to cycle otherwise paused.
+
+logos: to navbar nailedit logo and Andrew Costigan logo ADD
 
 fix the black below jordan on photography.html
 
