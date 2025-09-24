@@ -3,161 +3,7 @@
 import { DomUtils } from "./domUtils.js";
 import { Navbar } from "./navbar.js"
 
-// class WebPAnimationController {
-//   constructor() {
-//     this.localStaticBase = "assets/animationStills/";
-//     this.sliders = [];
-//   }
 
-//   init() {
-//     this.sliders = document.querySelectorAll('.slider');
-//     this.processSliders();
-//   }
-
-//   processSliders() {
-//     this.sliders.forEach(slider => {
-//       const slides = slider.querySelectorAll('div:not(.arrows):not(.titleBar)');
-      
-//       slides.forEach(slide => {
-//         const bgImage = window.getComputedStyle(slide).backgroundImage;
-//         const cloudinaryUrl = this.extractUrl(bgImage);
-        
-//         if (!cloudinaryUrl) return;
-
-//         const staticFilename = this.getLocalStaticPath(cloudinaryUrl);
-//         slide.dataset.animatedUrl = cloudinaryUrl;
-//         slide.dataset.staticUrl = staticFilename;
-        
-//         // Set initial static image
-//         slide.style.backgroundImage = `url(${staticFilename})`;
-        
-//         // Event listeners
-//         slide.addEventListener('mouseenter', () => {
-//           slide.style.backgroundImage = `url(${cloudinaryUrl})`;
-//         });
-        
-//         slide.addEventListener('mouseleave', () => {
-//           slide.style.backgroundImage = `url(${staticFilename})`;
-//         });
-//       });
-//     });
-//   }
-
-//   extractUrl(bgImage) {
-//     const urlMatch = bgImage.match(/url\(["']?(https:\/\/res\.cloudinary\.com[^"']+)["']?\)/);
-//     return urlMatch ? urlMatch[1] : null;
-//   }
-
-//   getLocalStaticPath(cloudinaryUrl) {
-//     const filename = cloudinaryUrl.split('/').pop();
-//     const baseName = filename.replace('.webp', '-static.webp');
-//     return `${this.localStaticBase}${baseName}`;
-//   }
-// }
-
-// class WebPAnimationController {
-//   constructor() {
-//     this.localStaticBase = "assets/animationStills/";
-//     this.sliders = [];
-//   }
-
-//   init() {
-//     this.sliders = document.querySelectorAll('.slider');
-//     this.processSliders();
-//   }
-
-//   processSliders() {
-//     this.sliders.forEach(slider => {
-//       const slides = slider.querySelectorAll('div:not(.arrows):not(.titleBar)');
-      
-//       slides.forEach(slide => {
-//         const bgImage = window.getComputedStyle(slide).backgroundImage;
-//         const cloudinaryUrl = this.extractUrl(bgImage);
-        
-//         if (!cloudinaryUrl) return;
-
-//         const staticFilename = this.getLocalStaticPath(cloudinaryUrl);
-//         slide.dataset.animatedUrl = cloudinaryUrl;
-//         slide.dataset.staticUrl = staticFilename;
-        
-//         // Set initial static image
-//         slide.style.backgroundImage = `url(${staticFilename})`;
-        
-//         // Event listeners
-//         slide.addEventListener('mouseenter', () => {
-//           if (cloudinaryUrl.endsWith('.mp4')) {
-//             this.handleVideoHover(slide, cloudinaryUrl);
-//           } else {
-//             slide.style.backgroundImage = `url(${cloudinaryUrl})`;
-//           }
-//         });
-        
-//         slide.addEventListener('mouseleave', () => {
-//           if (cloudinaryUrl.endsWith('.mp4')) {
-//             this.handleVideoLeave(slide);
-//           } else {
-//             slide.style.backgroundImage = `url(${staticFilename})`;
-//           }
-//         });
-//       });
-//     });
-//   }
-
-//   extractUrl(bgImage) {
-//     const urlMatch = bgImage.match(/url\(["']?(https:\/\/res\.cloudinary\.com[^"']+)["']?\)/);
-//     return urlMatch ? urlMatch[1] : null;
-//   }
-
-//   getLocalStaticPath(cloudinaryUrl) {
-//     const filename = cloudinaryUrl.split('/').pop();
-//     let baseName;
-    
-//     if (filename.endsWith('.webp')) {
-//       baseName = filename.replace('.webp', '-static.webp');
-//     } else if (filename.endsWith('.mp4')) {
-//       baseName = filename.replace('.mp4', '-static.webp');
-//     } else {
-//       // Fallback for other file types if needed
-//       baseName = filename;
-//     }
-    
-//     return `${this.localStaticBase}${baseName}`;
-//   }
-
-//   handleVideoHover(slide, videoUrl) {
-//     // Create video element if it doesn't exist
-//     if (!slide.dataset.videoElement) {
-//       const video = document.createElement('video');
-//       video.src = videoUrl;
-//       video.autoplay = true;
-//       video.loop = true;
-//       video.muted = true;
-//       video.playsInline = true;
-//       video.style.position = 'absolute';
-//       video.style.top = '0';
-//       video.style.left = '0';
-//       video.style.width = '100%';
-//       video.style.height = '100%';
-//       video.style.objectFit = 'cover';
-      
-//       slide.appendChild(video);
-//       slide.dataset.videoElement = 'true';
-//       slide.style.backgroundImage = 'none';
-      
-//       // Attempt to play the video (may need user interaction on some browsers)
-//       video.play().catch(e => console.log('Video play failed:', e));
-//     }
-//   }
-
-//   handleVideoLeave(slide) {
-//     const video = slide.querySelector('video');
-//     if (video) {
-//       video.pause();
-//       video.currentTime = 0;
-//     }
-//     slide.style.backgroundImage = `url(${slide.dataset.staticUrl})`;
-//   }
-// }
 
 class WebPAnimationController {
   constructor() {
@@ -310,7 +156,17 @@ export const selectors = {
   slider15: "#slider15",
   slider16: "#slider16",
   slider17: "#slider17",
-  slider18: "#slider18"
+  slider18: "#slider18",
+
+  slider19: "#slider19",
+  slider20: "#slider20",
+  slider21: "#slider21",
+  slider22: "#slider22",
+  slider23: "#slider23",
+  slider24: "#slider24",
+  slider25: "#slider25",
+  slider26: "#slider26",
+  slider27: "#slider27"
 };
 
 const navbar = new Navbar(selectors);
@@ -406,7 +262,67 @@ const galleryData = {
     video: "V4ynt1X0rHQ" // YouTube video ID
   },
 
+// Projects
+  loggia: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194494/Loggia_tjmphl.webp",
+       ],
+    video: "wvEHub7-F3s" // YouTube video ID
+  },
+  panelling: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194493/Paneling1-2_a0qnkc.webp",
+       ],
+    video: "QcLegwyHlrM" // YouTube video ID
+  },
 
+  flooring: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194492/Flooring1-1_g7zwmb.webp",
+       ],
+    video: "P5I5u0pv-DI" // YouTube video ID
+  },
+
+  panelling1: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194494/Paneling1-1_lz41eo.webp",
+       ],
+    video: "8zTVQQLQIl0" // YouTube video ID
+  },
+
+  bunks: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194493/BunkBeds_elypk3.webp",
+       ],
+    video: "rqsVKFsAuHg" // YouTube video ID
+  },
+
+  lori: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194494/LoriBed_f1mayu.webp",
+       ],
+    video: "n3SJgvm9DLA" // YouTube video ID
+  },
+  panelling2: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194492/Paneling_kzkmng.webp",
+       ],
+    video: "DaUU-uep3Pk" // YouTube video ID
+  },
+
+  queen: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194493/BunkBeds_elypk3.webp",
+       ],
+    video: "rqsVKFsAuHg" // YouTube video ID
+  },
+
+  computerBuild: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194494/LoriBed_f1mayu.webp",
+       ],
+    video: "n3SJgvm9DLA" // YouTube video ID
+  },
 
 };
 
@@ -438,7 +354,17 @@ function openVideoModal(sliderContainer) {
     slider15: "thanks",
     slider16: "indoAni",
     slider17: "philliAni",
-    slider18: "timeLapse"
+    slider18: "timeLapse",
+
+  slider19: "loggia",
+  slider20: "panelling",
+  slider21: "flooring",
+  slider22: "panelling1",
+  slider23: "bunks",
+  slider24: "lori",
+  slider25: "panelling2",
+  slider26: "queen",
+  slider27: "computerBuild"
     // Add other sliders as needed
   };
 
@@ -592,7 +518,7 @@ function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
   const prevBtn = modal.querySelector(".prev-btn");
   const nextBtn = modal.querySelector(".next-btn");
 
-  // Determine which gallery we're opening based on slider ID
+  // Determine which photo-gallery we're opening based on slider ID
   const galleryMap = {
 
     slider7: "philippines",
@@ -771,7 +697,7 @@ function initializeSliders() {
   }
 
   const sliderConfigs = {
-   
+  //  photography.html
     "#slider7": { gallery: "philippines", options: {} },
     "#slider8": { gallery: "newzealand", options: {} },
     "#slider9": { gallery: "indonesia", options: {} },
@@ -779,12 +705,24 @@ function initializeSliders() {
     "#slider11": { gallery: "samoa", options: {} },
     "#slider12": { gallery: "nepal", options: {} },
 
+// animation.html
     "#slider13": { gallery: "craicinit", options: {} },
     "#slider14": { gallery: "invite", options: {} },
     "#slider15": { gallery: "thanks", options: {} },
     "#slider16": { gallery: "indoAni", options: {} },
     "#slider17": { gallery: "philliAni", options: {} },
     "#slider18": { gallery: "timeLapse", options: {} },
+
+  // diy.html
+    "#slider19": { gallery: "loggia", options: {} },
+    "#slider20": { gallery: "panelling", options: {} },
+    "#slider21": { gallery: "flooring", options: {} },
+    "#slider22": { gallery: "panelling1", options: {} },
+    "#slider23": { gallery: "bunks", options: {} },
+    "#slider24": { gallery: "lori", options: {} },
+    "#slider25": { gallery: "panelling2", options: {} },
+    "#slider26": { gallery: "queen", options: {} },
+    "#slider27": { gallery: "computerBuild", options: {} },
 
 
   };
@@ -806,6 +744,16 @@ function initializeSliders() {
     $("#slider16").sliderResponsive();
     $("#slider17").sliderResponsive();
     $("#slider18").sliderResponsive();
+
+    $("#slider19").sliderResponsive();
+    $("#slider20").sliderResponsive();
+    $("#slider21").sliderResponsive();
+    $("#slider22").sliderResponsive();
+    $("#slider23").sliderResponsive();
+    $("#slider24").sliderResponsive();
+    $("#slider25").sliderResponsive();
+    $("#slider26").sliderResponsive();
+    $("#slider27").sliderResponsive();
 
   });
 

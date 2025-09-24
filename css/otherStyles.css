@@ -112,17 +112,16 @@ padding-top:0px; */
   position: relative;
 }
 
-/* .row2Wrap {
-  display: flex;
-  gap: 20px;
-  width: 100%;
-
-  min-height: auto;
-  position: relative;
-  flex-wrap: wrap;
-} */
 
 .row2Wrap {
+  display: flex;
+  flex-direction: row; /* Default for larger screens */
+  gap: 20px;
+  width: 100%;
+  min-height: auto;
+  position: relative;
+}
+.row3Wrap {
   display: flex;
   flex-direction: row; /* Default for larger screens */
   gap: 20px;
@@ -250,6 +249,49 @@ max-width: calc(40% -10px);
   
 }
 
+#slider19{
+flex: 12;max-width: calc(60% - 10px); 
+}
+
+#slider20{
+  flex: 12;
+  max-width: calc(40% - 10px); 
+}
+#slider21{
+  flex: 1;
+  max-width: calc(35% - 10px)
+}
+
+#slider22{
+  flex: 1;
+  max-width: calc(40% - 10px)
+}
+#slider23{
+  flex: 1;
+  max-width: calc(25% - 10px)
+}
+
+#slider24{
+  flex: 1;
+  max-width: calc(20% - 10px) 
+}
+
+#slider25{
+   flex: 1;
+  max-width: calc(55% - 10px) 
+  
+}
+#slider26{
+    flex: 1;
+  max-width: calc(25% - 10px)
+}
+
+#slider27{
+
+}
+#slider28{
+  
+}
 
 
 
@@ -990,6 +1032,8 @@ body {
     width: 100%;
     align-items: center;
   }
+
+
   .slider {
     max-width: 100% !important;
     width: 100% !important;
@@ -1034,6 +1078,7 @@ body {
   gap: 30px;
   /* padding: 0 10px; */
 }
+
 
   .modalbox .box,
   .wip .box {

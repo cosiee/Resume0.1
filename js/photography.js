@@ -41,6 +41,9 @@ export const selectors = {
   slider6: "#slider6",
   slider7: "#slider7",
   slider8: "#slider8",
+  slider26: "#queen",
+  slider27: "#computerBuild",
+  slider28: "#graphicsDesign",
 };
 
 const navbar = new Navbar(selectors);
@@ -183,6 +186,48 @@ const galleryData = {
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207410/Jordan-RTRPix-6568_xsskaa.webp",
     ],
   },
+
+    queen: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1754403827/IMG_20220829_211725_zk3dq2.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1754403827/IMG_20220829_224954_lr2qyc.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1754403828/IMG_20220917_183836_uppfkm.webp",
+
+    ],
+
+    full: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1754403828/IMG_20220918_104403_koyqad.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1754403828/IMG_20220918_104812_paepeh.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1754403829/IMG_20220918_104806_vlb6jw.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1754403831/IMG_20220921_175339_yj9pcv.webp",
+ 
+    ],
+  },
+    computerBuild: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758708526/IMG_20240111_145247_landscape_ekyh5h.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758708254/IMG_20240111_145242_in2b4t.webp",
+    ],
+
+    full: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758708257/IMG_20240111_145336_t3q7po.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758708258/IMG_20240111_164344_tmrauj.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758708255/IMG_20240111_145258_bb4o5q.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758708255/IMG_20240111_145247_xyb2qu.webp",
+    ],
+  },
+      graphicsDesign: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758709539/Ela3BirthdayCake-site_rrufph.webp",
+
+    ],
+
+    full: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758709539/Ela_cake_4-site_apboun.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758709540/Eabha6-site_rd7s2n.webp",
+
+    ],
+  },
 };
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -303,6 +348,9 @@ function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
     slider4: "egypt",
     slider5: "nepal",
     slider6: "jordan",
+    slider26: "queen",
+    slider27: "computerBuild",
+    slider28: "graphicsDesign",
   };
 
   const galleryId = galleryMap[sliderContainer.id] || "default";
@@ -508,6 +556,9 @@ function initializeSliders() {
       },
     },
     "#slider6": { gallery: "jordan", options: {} },
+    "#slider26": { gallery: "queen", options: {} },
+    "#slider27": { gallery: "computerBuild", options: {} },
+    "#slider28": { gallery: "graphicsDesign", options: {} },
   };
 
   // First initialize all sliders with their default content
@@ -536,6 +587,9 @@ function initializeSliders() {
       hideDots: "on",
     });
     $("#slider6").sliderResponsive();
+    $("#slider26").sliderResponsive();
+    $("#slider27").sliderResponsive();
+    $("#slider28").sliderResponsive();
   });
 
   // Then replace content while preserving functionality
