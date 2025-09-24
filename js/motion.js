@@ -52,7 +52,6 @@ export const selectors = {
   slider23: "#slider23",
   slider24: "#slider24",
   slider25: "#slider25",
-
 };
 
 const navbar = new Navbar(selectors);
@@ -61,93 +60,132 @@ const domUtils = new DomUtils(selectors);
 const galleryData = {
   // Videos
   philippines: {
-    preview: ["https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752940235/Philippines_optimized2_hsqssk.webp"],
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752940235/Philippines_optimized2_hsqssk.webp",
+    ],
     video: "qhpP6xXJFHI", // YouTube video ID
   },
   indonesia: {
-    preview: ["https://res.cloudinary.com/dxwwm0vlj/image/upload/v1753215210/Indonesia_dmqffm.webp"],
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1753215210/Indonesia_dmqffm.webp",
+    ],
     video: "xQlCL6j8dsA", // YouTube video ID
   },
   newzealand: {
-    preview: ["https://res.cloudinary.com/dxwwm0vlj/image/upload/v1753701614/NewZealand_wwi4sl.webp"],
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1753701614/NewZealand_wwi4sl.webp",
+    ],
     video: "05Tj8vPWId0", // YouTube video ID
   },
   egypt: {
-    preview: ["https://res.cloudinary.com/dxwwm0vlj/image/upload/v1753704798/egypt_qtskpg.webp"],
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1753704798/egypt_qtskpg.webp",
+    ],
     video: "rDUgpw18aLg", // YouTube video ID
   },
   samoa: {
-    preview: ["https://res.cloudinary.com/dxwwm0vlj/image/upload/v1753788913/samoa_bg2tli.webp"],
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1753788913/samoa_bg2tli.webp",
+    ],
     video: "76nhoXgqC7c", // YouTube video ID
   },
   nepal: {
-    preview: ["https://res.cloudinary.com/dxwwm0vlj/image/upload/v1753790248/nepal_cix1jj.webp"],
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1753790248/nepal_cix1jj.webp",
+    ],
     video: "m4PsWWbZiDI", // YouTube video ID
   },
 
   // Animations
   craicinit: {
-    preview: ["https://res.cloudinary.com/dxwwm0vlj/video/upload/v1753809078/craicinit_wvskmy.mp4"],
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/video/upload/v1753809078/craicinit_wvskmy.mp4",
+    ],
     video: "Hk5KfzTXpuI", // YouTube video ID
   },
   invite: {
-    preview: ["https://res.cloudinary.com/dxwwm0vlj/video/upload/v1753955518/invite_bqvhyz.mp4"],
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/video/upload/v1753955518/invite_bqvhyz.mp4",
+    ],
     video: "YYtQM6siWnk", // YouTube video ID
   },
   thanks: {
-    preview: ["https://res.cloudinary.com/dxwwm0vlj/video/upload/v1753956855/Thanks_d1a8ez.mp4"],
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/video/upload/v1753956855/Thanks_d1a8ez.mp4",
+    ],
     video: "1RxAHs7cE0Y", // YouTube video ID
   },
   indoAni: {
-    preview: ["https://res.cloudinary.com/dxwwm0vlj/video/upload/v1753972928/IndoAni_rv3yus.mp4"],
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/video/upload/v1753972928/IndoAni_rv3yus.mp4",
+    ],
     video: "tpriKnDglCY", // YouTube video ID
   },
   philliAni: {
-    preview: ["https://res.cloudinary.com/dxwwm0vlj/video/upload/v1753972928/PhilliAni_jbsoss.mp4"],
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/video/upload/v1753972928/PhilliAni_jbsoss.mp4",
+    ],
     video: "V4ynt1X0rHQ", // YouTube video ID
   },
   timeLapse: {
-    preview: ["https://res.cloudinary.com/dxwwm0vlj/video/upload/v1753972927/TimeLapse_dkdhwq.mp4"],
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/video/upload/v1753972927/TimeLapse_dkdhwq.mp4",
+    ],
     video: "V4ynt1X0rHQ", // YouTube video ID
   },
 
   // Projects
   loggia: {
-    preview: ["https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194494/Loggia_tjmphl.webp"],
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194494/Loggia_tjmphl.webp",
+    ],
     video: "wvEHub7-F3s", // YouTube video ID
   },
   panelling: {
-    preview: ["https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194493/Paneling1-2_a0qnkc.webp"],
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194493/Paneling1-2_a0qnkc.webp",
+    ],
     video: "QcLegwyHlrM", // YouTube video ID
   },
   flooring: {
-    preview: ["https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194492/Flooring1-1_g7zwmb.webp"],
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194492/Flooring1-1_g7zwmb.webp",
+    ],
     video: "P5I5u0pv-DI", // YouTube video ID
   },
   panelling1: {
-    preview: ["https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194494/Paneling1-1_lz41eo.webp"],
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194494/Paneling1-1_lz41eo.webp",
+    ],
     video: "8zTVQQLQIl0", // YouTube video ID
   },
   bunks: {
-    preview: ["https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194493/BunkBeds_elypk3.webp"],
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194493/BunkBeds_elypk3.webp",
+    ],
     video: "rqsVKFsAuHg", // YouTube video ID
   },
   lori: {
-    preview: ["https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194494/LoriBed_f1mayu.webp"],
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194494/LoriBed_f1mayu.webp",
+    ],
     video: "n3SJgvm9DLA", // YouTube video ID
   },
   panelling2: {
-    preview: ["https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194492/Paneling_kzkmng.webp"],
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194492/Paneling_kzkmng.webp",
+    ],
     video: "DaUU-uep3Pk", // YouTube video ID
   },
-
 };
 
 function openVideoModal(sliderContainer) {
-  const modal = document.getElementById("galleryModal") || document.createElement("div");
+  const modal =
+    document.getElementById("galleryModal") || document.createElement("div");
   modal.id = "galleryModal";
   modal.className = "video-modal";
-  if (!document.getElementById("galleryModal")) document.body.appendChild(modal);
+  if (!document.getElementById("galleryModal"))
+    document.body.appendChild(modal);
 
   const galleryMap = {
     // Videos
@@ -157,7 +195,6 @@ function openVideoModal(sliderContainer) {
     slider10: "egypt",
     slider11: "samoa",
     slider12: "nepal",
-
     // Animations
     slider13: "craicinit",
     slider14: "invite",
@@ -165,7 +202,6 @@ function openVideoModal(sliderContainer) {
     slider16: "indoAni",
     slider17: "philliAni",
     slider18: "timeLapse",
-
     // Projects
     slider19: "loggia",
     slider20: "panelling",
@@ -174,7 +210,6 @@ function openVideoModal(sliderContainer) {
     slider23: "bunks",
     slider24: "lori",
     slider25: "panelling2",
-
   };
 
   const galleryId = galleryMap[sliderContainer.id];
@@ -203,12 +238,19 @@ function openVideoModal(sliderContainer) {
   };
 
   modal.querySelector(".close-btn").addEventListener("click", closeModal);
-  modal.addEventListener("click", (e) => e.target === modal && closeModal());
-  document.addEventListener("keydown", (e) => e.key === "Escape" && closeModal());
+  modal.addEventListener(
+    "click",
+    (e) => {
+      if (e.target === modal) closeModal();
+    },
+    { passive: true }
+  );
+  document.addEventListener("keydown", (e) => e.key === "Escape" && closeModal(), { passive: true });
+  
 }
 
 function initGalleryModal() {
-  const videoSliders = document.querySelectorAll("#slider7, #slider8, #slider9, #slider10, #slider11, #slider12, #slider13, #slider14, #slider15, #slider16, #slider17, #slider18, #slider19, #slider20, #slider21, #slider22, #slider23, #slider24, #slider25 ");
+  const videoSliders = document.querySelectorAll('.slider[data-type="video"]');
   videoSliders.forEach((slider) => {
     const slides = slider.querySelectorAll("div:not(.arrows):not(.titleBar)");
     slides.forEach((slide) => {
@@ -249,30 +291,32 @@ function initializeSliders() {
     "#slider23": { gallery: "bunks", options: {} },
     "#slider24": { gallery: "lori", options: {} },
     "#slider25": { gallery: "panelling2", options: {} },
-
   };
 
-  $(window).on("load", function () {
-    $("#slider7").sliderResponsive();
-    $("#slider8").sliderResponsive();
-    $("#slider9").sliderResponsive();
-    $("#slider10").sliderResponsive();
-    $("#slider11").sliderResponsive();
-    $("#slider12").sliderResponsive();
-    $("#slider13").sliderResponsive();
-    $("#slider14").sliderResponsive();
-    $("#slider15").sliderResponsive();
-    $("#slider16").sliderResponsive();
-    $("#slider17").sliderResponsive();
-    $("#slider18").sliderResponsive();
-    $("#slider19").sliderResponsive();
-    $("#slider20").sliderResponsive();
-    $("#slider21").sliderResponsive();
-    $("#slider22").sliderResponsive();
-    $("#slider23").sliderResponsive();
-    $("#slider24").sliderResponsive();
-    $("#slider25").sliderResponsive();
+  // $(window).on("load", function () {
+  //   $("#slider7").sliderResponsive();
+  //   $("#slider8").sliderResponsive();
+  //   $("#slider9").sliderResponsive();
+  //   $("#slider10").sliderResponsive();
+  //   $("#slider11").sliderResponsive();
+  //   $("#slider12").sliderResponsive();
+  //   $("#slider13").sliderResponsive();
+  //   $("#slider14").sliderResponsive();
+  //   $("#slider15").sliderResponsive();
+  //   $("#slider16").sliderResponsive();
+  //   $("#slider17").sliderResponsive();
+  //   $("#slider18").sliderResponsive();
+  //   $("#slider19").sliderResponsive();
+  //   $("#slider20").sliderResponsive();
+  //   $("#slider21").sliderResponsive();
+  //   $("#slider22").sliderResponsive();
+  //   $("#slider23").sliderResponsive();
+  //   $("#slider24").sliderResponsive();
+  //   $("#slider25").sliderResponsive();
+  // });
 
+  $(window).on("load", function () {
+    Object.keys(sliderConfigs).forEach((sliderId) => $(sliderId).sliderResponsive());
   });
 
   Object.entries(sliderConfigs).forEach(([sliderId, config]) => {
@@ -304,6 +348,7 @@ function setupEventListeners() {
   if (domUtils.elements.modalClose) {
     domUtils.elements.modalClose.addEventListener("click", function () {
       navbar.showScrollBar();
+      closeVideoModal();
     });
   }
 }
@@ -326,10 +371,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const animationController = new WebPAnimationController();
   animationController.init();
-  console.log(
-    "Testing static path:",
-    animationController.getLocalStaticPath(
-      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752940235/Philippines_optimized2_hsqssk.webp"
-    )
-  );
 });
+
+function closeVideoModal() {
+  const modal = document.getElementById("galleryModal");
+  if (modal) {
+    const iframe = modal.querySelector("iframe");
+    if (iframe) iframe.src = ""; // Stop YouTube video
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+    modal.remove();
+  }
+}
