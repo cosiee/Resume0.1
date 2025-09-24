@@ -112,17 +112,16 @@ padding-top:0px; */
   position: relative;
 }
 
-/* .row2Wrap {
-  display: flex;
-  gap: 20px;
-  width: 100%;
-
-  min-height: auto;
-  position: relative;
-  flex-wrap: wrap;
-} */
 
 .row2Wrap {
+  display: flex;
+  flex-direction: row; /* Default for larger screens */
+  gap: 20px;
+  width: 100%;
+  min-height: auto;
+  position: relative;
+}
+.row3Wrap {
   display: flex;
   flex-direction: row; /* Default for larger screens */
   gap: 20px;
@@ -137,7 +136,7 @@ padding-top:0px; */
   height: 500px;
   overflow: hidden;
   background-color: #000;
-  margin-bottom: 0;
+  margin-bottom: 0px;
 }
 
 .slider>div {
@@ -250,6 +249,49 @@ max-width: calc(40% -10px);
   
 }
 
+#slider19{
+flex: 12;max-width: calc(60% - 10px); 
+}
+
+#slider20{
+  flex: 12;
+  max-width: calc(40% - 10px); 
+}
+#slider21{
+  flex: 1;
+  max-width: calc(35% - 10px)
+}
+
+#slider22{
+  flex: 1;
+  max-width: calc(40% - 10px)
+}
+#slider23{
+  flex: 1;
+  max-width: calc(25% - 10px)
+}
+
+#slider24{
+  flex: 1;
+  max-width: calc(20% - 10px) 
+}
+
+#slider25{
+   flex: 1;
+  max-width: calc(55% - 10px) 
+  
+}
+#slider26{
+    flex: 1;
+  max-width: calc(25% - 10px)
+}
+
+#slider27{
+
+}
+#slider28{
+  
+}
 
 
 
@@ -983,39 +1025,31 @@ body {
   }
 
 
-  .row2Wrap {
-        flex-direction: column;
-    gap: 40px;
-
-    width: 100%;
-    align-items: center;
-  }
-  #slider1,
-  #slider2,
-  #slider3,
-  #slider4,
-  #slider5,
-  #slider6,
-  #slider7,
-  #slider8,
-  #slider9,
-  #slider10,
-    #slider11,
-  #slider12,
-  #slider13,
-  #slider14,
-  #slider15,
-    #slider16,
-  #slider17,
-  #slider18,
-  #slider19,
-  #slider20 {
-    max-width: 100% !important;
+ .slider {
     width: 100% !important;
-    flex: none;
-    height: 400px;
-    margin-bottom: 20px;
+    max-width: 100% !important;
+    height: 60vh;
+    min-height: 600px;
+    /* margin-bottom: px; */
   }
+
+  .slider .titleBar {
+    width: 100%; 
+    text-align: center; 
+  }
+
+
+  .slider .arrows {
+    display: none; 
+  }
+
+.row2Wrap,
+.row3Wrap {
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  /* padding: 0 10px; */
+}
   .navbar.scrolled .navbar-toggler {
     visibility: visible;
     opacity: 1;
@@ -1044,15 +1078,30 @@ body {
   .slider {
     width: 100% !important;
     max-width: 100% !important;
-    height: 60vh;
-    min-height: 300px;
+    height: auto;
+    min-height: 200px;
+    /* margin-bottom: px; */
   }
 
-.row2Wrap{
+  .slider .titleBar {
+    width: 100%; 
+    text-align: center; 
+    font-size: 0.5em;
+  }
+
+
+  .slider .arrows {
+    display: none; 
+  }
+
+.row2Wrap,
+.row3Wrap {
   flex-direction: column;
+  align-items: center;
   gap: 30px;
   /* padding: 0 10px; */
 }
+
 
   .modalbox .box,
   .wip .box {

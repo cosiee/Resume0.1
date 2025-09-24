@@ -1,57 +1,19 @@
-//photography.js
-// This file is responsible for the photography section of the website.
+import { galleryUtils } from "./galleryUtils.js";
 import { DomUtils } from "./domUtils.js";
-// import { initThumbnails, preloadCriticalImages } from "./preload.js";
 import { Navbar } from "./navbar.js";
 
 export const selectors = {
-  scrollDist: ".scrollDist",
-
-  //Navigation buttons, Statements & Form
-  modalClose: "#modalClose",
-  modalSig: "#modalSig",
-  contactFormClose: "#contactFormClose",
-  formButton: "#formButton",
-  modalWipClose: "#modalWipClose",
-
-  // Navbar Links & Dropdowns
-  navHome: "#navHome",
-  navSoftware: "#softwareLink",
-  navDropMenuSoftware: "#softwareDropMenuLink",
-  navHtml: "#navHtml",
-  navCss: "#navCss",
-  navJavascript: "#navJavascript",
-  navJava: "#navJava",
-  navPython: "#navPython",
-  navSql: "#navSql",
-  navReact: "#navReact",
-  navPhotography: "#photographyLink",
-  navDiy: "#diyLink",
-  navMotion: "#motionLink",
-  navDropMenuMotion: "#motionDropMenuLink",
-  navAnimation: "#navAnimation",
-  navVideo: "#navVideo",
-  navContact: "#contactLink",
-
+  ...galleryUtils.selectors,
   slider1: "#slider1",
   slider2: "#slider2",
   slider3: "#slider3",
   slider4: "#slider4",
   slider5: "#slider5",
   slider6: "#slider6",
-  slider7: "#slider7",
-  slider8: "#slider8",
+  slider26: "#slider26",
+  slider27: "#slider27",
+  slider28: "#slider28",
 };
-
-const navbar = new Navbar(selectors);
-// const duration = Navbar.BASE_SCROLL_DURATION; // For static property
-
-const domUtils = new DomUtils(selectors);
-// const domElements = domUtils.elements
-// Gallery Modal Elements
-let galleryModal;
-let galleryMainSlider;
-let galleryThumbnails;
 
 const galleryData = {
   ireland: {
@@ -70,7 +32,6 @@ const galleryData = {
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118991/compressed-summer-0477_cbnncw.webp",
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118992/compressed-summer-0505_boozks.webp",
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507662/_MG_2885_jnamx3.webp",
-      // "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507659/_MG_3350_cqmd1c.webp",
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507662/_MG_2899_cxuqz6.webp",
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1752507661/_MG_3076_xa6xnc.webp",
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118989/compressed-summer-0460_w1ralb.webp",
@@ -183,98 +144,72 @@ const galleryData = {
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207410/Jordan-RTRPix-6568_xsskaa.webp",
     ],
   },
+
+    queen: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1754403827/IMG_20220829_211725_zk3dq2.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1754403827/IMG_20220829_224954_lr2qyc.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1754403828/IMG_20220917_183836_uppfkm.webp",
+
+    ],
+
+    full: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1754403828/IMG_20220918_104403_koyqad.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1754403828/IMG_20220918_104812_paepeh.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1754403829/IMG_20220918_104806_vlb6jw.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1754403831/IMG_20220921_175339_yj9pcv.webp",
+ 
+    ],
+  },
+    computerBuild: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758708526/IMG_20240111_145247_landscape_ekyh5h.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758708254/IMG_20240111_145242_in2b4t.webp",
+    ],
+
+    full: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758708257/IMG_20240111_145336_t3q7po.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758708258/IMG_20240111_164344_tmrauj.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758708255/IMG_20240111_145258_bb4o5q.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758708255/IMG_20240111_145247_xyb2qu.webp",
+    ],
+  },
+      graphicsDesign: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758709539/Ela3BirthdayCake-site_rrufph.webp",
+
+    ],
+
+    full: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758709539/Ela_cake_4-site_apboun.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758709540/Eabha6-site_rd7s2n.webp",
+
+    ],
+  },
 };
-
-document.addEventListener("DOMContentLoaded", function () {
-  const navbar = new Navbar(selectors);
-  const domUtils = new DomUtils(selectors);
-
-  // Initialize navbar with contact form handler
-  navbar.init(20);
-  navbar.initializeFormCloseButton();
-
-  // Set up contact link with proper fallback
-  if (domUtils.elements.navContact) {
-    domUtils.elements.navContact.addEventListener("click", function () {
-      navbar.hideScrollBar();
-      domUtils.formControl(); // This will use the fallback positioning
-      domUtils.showStatementContact();
-      domUtils.showForm();
-    });
-
-    window.addEventListener("load", preloadFullGalleryImages);
-
-    initializeSliders();
-  }
-
-  setupEventListeners();
-
-  // Initialize gallery modal
-  initGalleryModal();
-  // setupSliderClickHandlers();
-});
-
-function preloadFullGalleryImages() {
-  Object.values(galleryData).forEach((gallery) => {
-    gallery.full.forEach((imgUrl) => {
-      const img = new Image();
-      img.src = imgUrl;
-    });
-  });
-}
-
-// initGalleryModal function
-function initGalleryModal() {
-  // Create modal elements if they don't exist
-  let modal = document.getElementById("galleryModal");
-  if (!modal) {
-    modal = document.createElement("div");
-    modal.id = "galleryModal";
-    modal.className = "gallery-modal";
-    modal.style.display = "none";
-
-    modal.innerHTML = `
-      <div class="gallery-modal-content">
-        <span class="gallery-modal-close">&times;</span>
-        <div class="gallery-main-slider"></div>
-        <div class="gallery-thumbnails"></div>
-      </div>
-    `;
-    document.body.appendChild(modal);
-  }
-
-  // Get all slider images from all sliders
-  const sliders = document.querySelectorAll(".slider");
-  sliders.forEach((slider) => {
-    const slides = slider.querySelectorAll("div:not(.arrows):not(.titleBar)");
-
-    slides.forEach((slide, index) => {
-      if (
-        slide.style.backgroundImage ||
-        window.getComputedStyle(slide).backgroundImage !== "none"
-      ) {
-        slide.style.cursor = "pointer";
-        slide.addEventListener("click", function () {
-          openGalleryModal(slide, index, slider);
-        });
-      }
-    });
-  });
-
-  // Close modal when X is clicked
-  const closeBtn = document.querySelector(".gallery-modal-close");
-  closeBtn.addEventListener("click", closeGalleryModal);
-
-  // Close modal when clicking outside content
-  modal.addEventListener("click", function (e) {
-    if (e.target === modal) {
-      closeGalleryModal();
-    }
-  });
-}
-
 function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
-  const modal = document.getElementById("galleryModal");
+  const modal = document.getElementById("galleryModal") || document.createElement("div");
+  modal.id = "galleryModal";
+  modal.className = "gallery-modal";
+  if (!document.getElementById("galleryModal")) document.body.appendChild(modal);
+
+  const galleryMap = {
+    slider1: "ireland",
+    slider2: "maylaysia",
+    slider3: "indonesia",
+    slider4: "egypt",
+    slider5: "nepal",
+    slider6: "jordan",
+    slider26: "queen",
+    slider27: "computerBuild",
+    slider28: "graphicsDesign",
+  };
+
+  const galleryId = galleryMap[sliderContainer.id] || "default";
+  const previewImages = galleryData[galleryId]?.preview || [];
+  const fullImages = galleryData[galleryId]?.full || [];
+  const allImages = [...previewImages, ...fullImages];
+
   modal.innerHTML = `
     <div class="gallery-modal-content">
       <span class="gallery-close-btn">&times;</span>
@@ -295,81 +230,29 @@ function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
   const prevBtn = modal.querySelector(".prev-btn");
   const nextBtn = modal.querySelector(".next-btn");
 
-  // Determine which gallery we're opening based on slider ID
-  const galleryMap = {
-    slider1: "ireland",
-    slider2: "maylaysia",
-    slider3: "indonesia",
-    slider4: "egypt",
-    slider5: "nepal",
-    slider6: "jordan",
-  };
-
-  const galleryId = galleryMap[sliderContainer.id] || "default";
-
-  // COMBINE PREVIEW + FULL IMAGES
-  const previewImages = galleryData[galleryId]?.preview || [];
-  const fullImages = galleryData[galleryId]?.full || [];
-  const allImages = [...previewImages, ...fullImages]; // Merge both arrays
-
-  // Create slides and thumbnails from ALL images
   allImages.forEach((imgUrl, index) => {
-    // Main slide
     const slideElement = document.createElement("div");
     slideElement.className = "gallery-slide";
-    slideElement.style.cssText = `
-      background-image: url(${imgUrl});
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center center;
-      display: ${index === slideIndex ? "block" : "none"};
-    `;
+    slideElement.style.cssText = `background-image: url(${imgUrl}); background-size: contain; background-repeat: no-repeat; background-position: center center; display: ${index === slideIndex ? "block" : "none"}`;
     slideContainer.appendChild(slideElement);
 
-    // Thumbnail
     const thumbElement = document.createElement("div");
     thumbElement.className = "gallery-thumb";
-    thumbElement.style.cssText = `
-      background-image: url(${imgUrl});
-      background-size: cover;
-      background-position: center;
-      background-repeat: no;
-      width: 60px;
-      height: 60px;
-      flex-shrink: 0;
-      display: block;
-      cursor: pointer;
-      border-radius: 6px;
-      border: 2px solid ${index === slideIndex ? "#fff" : "transparent"};
-      opacity: ${index === slideIndex ? "1" : "0.7"};
-      transition: all 0.3s ease;
-    `;
-
+    thumbElement.style.cssText = `background-image: url(${imgUrl}); background-size: cover; background-position: center; background-repeat: no; width: 60px; height: 60px; flex-shrink: 0; display: block; cursor: pointer; border-radius: 6px; border: 2px solid ${index === slideIndex ? "#fff" : "transparent"}; opacity: ${index === slideIndex ? "1" : "0.7"}; transition: all 0.3s ease`;
     thumbElement.addEventListener("click", () => {
       showSlide(index);
-      thumbElement.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "center",
-      });
+      thumbElement.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
     });
-
     thumbnailsWrapper.appendChild(thumbElement);
   });
 
-  // Set wrapper dimensions
   thumbnailsWrapper.style.minWidth = `${(60 + 10) * allImages.length}px`;
   thumbnailsWrapper.style.margin = "0 auto";
 
-  // Navigation functions
   function showSlide(index) {
     const slides = modal.querySelectorAll(".gallery-slide");
     const thumbs = modal.querySelectorAll(".gallery-thumb");
-
-    slides.forEach((slide, i) => {
-      slide.style.display = i === index ? "block" : "none";
-    });
-
+    slides.forEach((slide, i) => slide.style.display = i === index ? "block" : "none");
     thumbs.forEach((thumb, i) => {
       thumb.style.opacity = i === index ? "1" : "0.7";
       thumb.style.borderColor = i === index ? "#fff" : "transparent";
@@ -377,245 +260,78 @@ function openGalleryModal(clickedSlide, slideIndex, sliderContainer) {
   }
 
   function showNextSlide() {
-    const currentIndex = Array.from(
-      modal.querySelectorAll(".gallery-slide")
-    ).findIndex((slide) => slide.style.display === "block");
+    const currentIndex = Array.from(modal.querySelectorAll(".gallery-slide")).findIndex(slide => slide.style.display === "block");
     const nextIndex = (currentIndex + 1) % allImages.length;
     showSlide(nextIndex);
-
-    const activeThumb = modal.querySelectorAll(".gallery-thumb")[nextIndex];
-    activeThumb?.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "center",
-    });
+    modal.querySelectorAll(".gallery-thumb")[nextIndex]?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
   }
 
   function showPrevSlide() {
-    const currentIndex = Array.from(
-      modal.querySelectorAll(".gallery-slide")
-    ).findIndex((slide) => slide.style.display === "block");
-    const prevIndex = (currentIndex - 1 + allImages.length) % images.length;
+    const currentIndex = Array.from(modal.querySelectorAll(".gallery-slide")).findIndex(slide => slide.style.display === "block");
+    const prevIndex = (currentIndex - 1 + allImages.length) % allImages.length;
     showSlide(prevIndex);
-
-    const activeThumb = modal.querySelectorAll(".gallery-thumb")[prevIndex];
-    activeThumb?.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "center",
-    });
+    modal.querySelectorAll(".gallery-thumb")[prevIndex]?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
   }
 
-  // Event listeners
-  closeBtn.addEventListener("click", () => {
-    modal.style.display = "none";
-    document.body.style.overflow = "auto";
-  });
-
+  closeBtn.addEventListener("click", () => { modal.style.display = "none"; document.body.style.overflow = "auto"; });
   prevBtn.addEventListener("click", showPrevSlide);
   nextBtn.addEventListener("click", showNextSlide);
-
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.style.display = "none";
-      document.body.style.overflow = "auto";
-    }
-  });
-
-  // Keyboard navigation
-  document.addEventListener("keydown", function handleKeyDown(e) {
+  modal.addEventListener("click", (e) => e.target === modal && (modal.style.display = "none", document.body.style.overflow = "auto"));
+  document.addEventListener("keydown", (e) => {
     if (modal.style.display === "flex") {
       if (e.key === "ArrowLeft") showPrevSlide();
       if (e.key === "ArrowRight") showNextSlide();
-      if (e.key === "Escape") {
-        modal.style.display = "none";
-        document.body.style.overflow = "auto";
-      }
+      if (e.key === "Escape") { modal.style.display = "none"; document.body.style.overflow = "auto"; }
     }
   });
 
-  // Show modal
   modal.style.display = "flex";
   document.body.style.overflow = "hidden";
-
-  // Center the initial active thumbnail
-  setTimeout(() => {
-    const activeThumb = modal.querySelectorAll(".gallery-thumb")[slideIndex];
-    activeThumb?.scrollIntoView({
-      block: "nearest",
-      inline: "center",
-    });
-  }, 100);
+  setTimeout(() => modal.querySelectorAll(".gallery-thumb")[slideIndex]?.scrollIntoView({ block: "nearest", inline: "center" }), 100);
 }
-
-function closeGalleryModal() {
-  const modal = document.getElementById("galleryModal");
-  modal.style.display = "none";
-  document.body.style.overflow = "auto";
-}
-
-function setupEventListeners() {
-  // Setup event listeners for elements that exist on this page
-  if (domUtils.elements.modalClose) {
-    domUtils.elements.modalClose.addEventListener("click", function () {
-      navbar.showScrollBar();
-      // Page-specific cleanup if needed
-    });
-  }
-}
-
-// function initializeSliders() {
-//   // Verify plugin exists
-//   if (!$.fn.sliderResponsive) {
-//     console.error('Slider plugin not loaded!');
-//     return;
-//   }
-
-//   const sliderConfigs = {
-//     '#slider1': { gallery: 'ireland', options: {} },
-//     '#slider2': {
-//       gallery: 'maylaysia',
-//       options: { fadeSpeed: 300, showArrows: "on", hideDots: "on" }
-//     },
-//     '#slider3': {
-//       gallery: 'indonesia',
-//       options: { fadeSpeed: 300, showArrows: "on", hideDots: "on" }
-//     },
-//     '#slider4': {
-//       gallery: 'egypt',
-//       options: { fadeSpeed: 300, showArrows: "on", hideDots: "on" }
-//     },
-//     '#slider5': {
-//       gallery: 'nepal',
-//       options: { fadeSpeed: 300, showArrows: "on", hideDots: "on" }
-//     },
-//     '#slider6': { gallery: 'jordan', options: {} }
-//   };
-
-//   Object.entries(sliderConfigs).forEach(([sliderId, config]) => {
-//     const $slider = $(sliderId);
-//     if (!$slider.length) return;
-
-//     // Clear only slide divs (keep arrows and titleBar)
-//     $slider.children('div').not('.arrows, .titleBar').remove();
-
-//     // Add new slides
-//     galleryData[config.gallery]?.preview.forEach(imgUrl => {
-//       $slider.append($('<div>').css('background-image', `url(${imgUrl})`));
-//     });
-
-//     // Initialize with timeout to ensure DOM is ready
-//     setTimeout(() => {
-//       $slider.sliderResponsive(config.options);
-
-//       // Verify initialization
-//       if (!$slider.data('sliderResponsive')) {
-//         console.error(`Failed to initialize ${sliderId}`);
-//       }
-//     }, 50);
-//   });
-// }
 
 function initializeSliders() {
-  // Verify plugin is available
   if (!$.fn.sliderResponsive) {
     console.error("sliderResponsive plugin not found");
     return;
   }
-    const isMobile = window.innerWidth <= 992;
+
+  const isMobile = window.innerWidth <= 992;
 
   const sliderConfigs = {
     "#slider1": { gallery: "ireland", options: {} },
-    "#slider2": {
-      gallery: "maylaysia",
-      options: {
-        fadeSpeed: 300,
-        autoPlay: "off",
-        showArrows: isMobile ? "off" : "on",
-        hideDots: isMobile ? "off" : "on",
-      },
-    },
-    "#slider3": {
-      gallery: "indonesia",
-      options: { hoverZoom: "off", hideDots: "on" },
-    },
-    "#slider4": {
-      gallery: "egypt",
-      options: {
-        fadeSpeed: 300,
-        autoPlay: "off",
-        showArrows: isMobile ? "off" : "on",
-        hideDots: isMobile ? "off" : "on",
-      },
-    },
-    "#slider5": {
-      gallery: "nepal",
-      options: {
-        fadeSpeed: 300,
-        autoPlay: "off",
-        showArrows: isMobile ? "off" : "on",
-        hideDots: isMobile ? "off" : "on",
-      },
-    },
+    "#slider2": { gallery: "maylaysia", options: { fadeSpeed: 300, autoPlay: "off", showArrows: isMobile ? "off" : "on", hideDots: isMobile ? "off" : "on" } },
+    "#slider3": { gallery: "indonesia", options: { hoverZoom: "off", hideDots: "on" } },
+    "#slider4": { gallery: "egypt", options: { fadeSpeed: 300, autoPlay: "off", showArrows: isMobile ? "off" : "on", hideDots: isMobile ? "off" : "on" } },
+    "#slider5": { gallery: "nepal", options: { fadeSpeed: 300, autoPlay: "off", showArrows: isMobile ? "off" : "on", hideDots: isMobile ? "off" : "on" } },
     "#slider6": { gallery: "jordan", options: {} },
+    "#slider26": { gallery: "queen", options: {} },
+    "#slider27": { gallery: "computerBuild", options: {} },
+    "#slider28": { gallery: "graphicsDesign", options: {} },
   };
 
-  // First initialize all sliders with their default content
   $(window).on("load", function () {
-    $("#slider1").sliderResponsive();
-    $("#slider2").sliderResponsive({
-      fadeSpeed: 300,
-
-      showArrows: "on",
-      hideDots: "on",
-    });
-    $("#slider3").sliderResponsive({
-      hoverZoom: "off",
-      hideDots: "on",
-    });
-    $("#slider4").sliderResponsive({
-      fadeSpeed: 300,
-
-      showArrows: "on",
-      hideDots: "on",
-    });
-    $("#slider5").sliderResponsive({
-      fadeSpeed: 300,
-
-      showArrows: "on",
-      hideDots: "on",
-    });
-    $("#slider6").sliderResponsive();
+    Object.keys(sliderConfigs).forEach((sliderId) => $(sliderId).sliderResponsive());
   });
 
-  // Then replace content while preserving functionality
-  // setTimeout(() => {
   Object.entries(sliderConfigs).forEach(([sliderId, config]) => {
     const $slider = $(sliderId);
     if (!$slider.length) return;
 
-    // Get reference to plugin instance before modifying DOM
     const sliderInstance = $slider.data("sliderResponsive");
-
-    // Store structural elements
     const $arrows = $slider.find(".arrows").detach();
     const $titleBar = $slider.find(".titleBar").detach();
     const $dots = $slider.find("ul").detach();
 
-    // Clear slides only
     $slider.find("> div").not(".arrows, .titleBar").remove();
-
-    // Add new slides
     galleryData[config.gallery]?.preview.forEach((imgUrl) => {
       $slider.append($("<div>").css("background-image", `url(${imgUrl})`));
     });
 
-    // Reattach structural elements
     $slider.append($arrows);
     $slider.append($titleBar);
     if ($dots.length) $slider.append($dots);
 
-    // Reinitialize if needed
     if (sliderInstance) {
       sliderInstance.size = $slider.find("> div").length;
       sliderInstance.position = 0;
@@ -627,5 +343,36 @@ function initializeSliders() {
       }
     }
   });
-  // }, 20); // Delay to ensure initial initialization completes
+
+  // Attach event listeners after sliders are initialized
+  const photoSliders = document.querySelectorAll('.slider[data-type="photo"]');
+  photoSliders.forEach((slider) => {
+    const slides = slider.querySelectorAll("div:not(.arrows):not(.titleBar)");
+    slides.forEach((slide, index) => {
+      if (window.getComputedStyle(slide).backgroundImage !== "none") { // Check computed style after initialization
+        slide.style.cursor = "pointer";
+        slide.addEventListener("click", () => openGalleryModal(slide, index, slider));
+      }
+    });
+  });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const domUtils = new DomUtils(selectors);
+  const navbar = new Navbar(selectors);
+  navbar.init(20);
+  navbar.initializeFormCloseButton();
+
+  if (domUtils.elements.navContact) {
+    domUtils.elements.navContact.addEventListener("click", () => {
+      navbar.hideScrollBar();
+      domUtils.formControl();
+      domUtils.showStatementContact();
+      domUtils.showForm();
+    });
+    window.addEventListener("load", () => Object.values(galleryData).forEach(gallery => gallery.full.forEach(imgUrl => new Image().src = imgUrl)));
+  }
+
+  // Initial slider setup
+  initializeSliders();
+});
