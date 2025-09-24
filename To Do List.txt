@@ -4,6 +4,8 @@ sliders 1 & 6, across all pages, need to be the same size as the rest when on sm
 
 focus or hover on sliders causes the images to cycle otherwise paused.
 
+Navbar dropdowns menu showing column and row behaviour should only have row...
+
 logos: to navbar nailedit logo and Andrew Costigan logo ADD
 
 fix the black below jordan on photography.html
