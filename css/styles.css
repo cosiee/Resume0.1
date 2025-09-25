@@ -388,46 +388,25 @@ navbar-toggler left {
     position: relative; /* Essential for positioning the tooltip */
     display: inline-block;
     text-decoration: none;
-    /* Add your other navbar link styles here (color, padding, etc.) */
 }
 
 /* Style for the tooltips */
 .has-tooltip .tooltip-text {
-    visibility: hidden; /* Hide it by default */
-    width: 180px; /* Set a width for your text */
-    background-color: #3338; /* Dark background */
+    visibility: hidden; /* Hide by default */
+    width: auto; 
+    max-width: 350px;
+    background-color: #3339; 
     color: #fff; /* White text */
     text-align: center;
-    padding: 5px; 
-    border-radius:8px; 
-    font-size: 0.85rem; /* Slightly smaller text */
+    padding: 3px;
+    border-radius: 8px;
+    font-size: 0.85rem;
 
-    /* Position the tooltip above the link */
+    /* Base positioning */
     position: absolute;
     z-index: 1000; /* Ensure it appears above other elements */
-    bottom: 80%; /* Position it above the parent link */
-    left: 50%;
-    margin-left: -90px; /* Use half of the width to truly center it */
-    opacity: 0; /* Start fully transparent for the fade effect */
-    transition: opacity 0.3s, visibility 0.3s; /* Smooth fade effect */
-}
-
-/* The magic: show the tooltip on hover */
-.has-tooltip:hover .tooltip-text {
-    visibility: visible;
-    opacity: 1;
-}
-
-/* Optional: Add a small arrow pointing down */
-.has-tooltip .tooltip-text::after {
-    content: "";
-    position: absolute;
-    top: 100%; /* At the bottom of the tooltip */
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #333 transparent transparent transparent;
+    opacity: 0; /* Start fully transparent for fade effect */
+    transition: opacity 0.3s, visibility 0s linear 0.3s; /* Delay visibility change */
 }
 
 
@@ -1036,19 +1015,7 @@ textarea {
 span br{
   display: none;
 }
-.has-tooltip .tooltip-text {
-    width:max-content;
-    background-color: #3339;/* Dark background */
-    text-align: right;
-    padding: 3px; 
-    font-size: 0.7rem; 
 
-    /* Position the tooltip above the link */
-    bottom: 80%; /* Position it above the parent link */
-    left: 100%;
-    margin-left: -90px; /* Use half of the width to truly center it */
-    
-}
 
   .scroll-arrow {
     top: 18%;
@@ -1130,25 +1097,57 @@ span br{
   }
 }
 
+@media (max-width: 991.98px) {
+    .navbar-collapse .has-tooltip .tooltip-text {
+        bottom: 100%; /* Position above the link */
+        left: 0; /* Align with start of text */
+        width: auto; /* Allow natural width */
+        min-width: 200;
+        max-width: 350px; /* Prevent excessive width */
+        text-align: left; /* Left-aligned text */
+        margin-left: 0; /* No offset */
+        white-space: nowrap;
+    }
+}
+
+/* Hover effect for both states */
+.has-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s; /* Smooth fade-in */
+}
+
+/* Optional: Add a small arrow pointing down */
+.has-tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+/* tool-tip Arrow */
+@media (max-width: 991.98px) {
+    .navbar-collapse .has-tooltip .tooltip-text::after {
+        left: 8px; /* Offset to align with first letter */
+    }
+}
 @media (min-width: 992px) {
+.navbar-expand-lg .navbar-nav .has-tooltip .tooltip-text {
+        bottom: 100%; /* Position above the link */
+        left: 50%;
+        margin-left: -90px; /* Half of width to center */
+        transform: translateX(0); /* Ensure precise centering */
+    }
+
 
   span br{
   display:block;
 }
 
-.has-tooltip .tooltip-text {
-    width: 180px; /* Set a width for your text */
-    background-color: #3338; /* Dark background */
-    text-align: center;
-    padding: 5px; 
-    border-radius:8px; 
-    font-size: 0.85rem; /* Slightly smaller text */
 
-    /* Position the tooltip above the link */
-    bottom: 80%; /* Position it above the parent link */
-    left: 50%;
-    margin-left: -90px; /* Use half of the width to truly center it */
-}
 
 
 
