@@ -1,5 +1,7 @@
 Navbar collapsed menu 'home's tooltip is not aligning correctly?? realign to right on smaller devices
 
+focus triggers titleBars animation... see scrollUtils.js
+
 sliders 1 & 6, across all pages, need to be the same size as the rest when on smaller devices
 
 focus or hover on sliders causes the images to cycle otherwise paused.

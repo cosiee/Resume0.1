@@ -1,6 +1,7 @@
 import { galleryUtils } from "./galleryUtils.js";
 import { DomUtils } from "./domUtils.js";
 import { Navbar } from "./navbar.js";
+import { setupScrollFocus } from "./scrollUtils.js";
 
 export const selectors = {
   ...galleryUtils.selectors,
@@ -375,4 +376,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initial slider setup
   initializeSliders();
+  setupScrollFocus();
 });

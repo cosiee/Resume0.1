@@ -9,10 +9,7 @@
 body {
   overflow-x: hidden;
   overflow-y: auto;
- 
 }
-
-
 
 /* Navbar Styles */
 a.nav-link {
@@ -37,7 +34,8 @@ navbar-toggler left {
   outline: none;
 }
 
-.navbar-toggler-icon { /* the element was span.navbar-toggler-icon */
+.navbar-toggler-icon {
+  /* the element was span.navbar-toggler-icon */
   filter: invert(1) grayscale(1) brightness(15);
 }
 
@@ -45,7 +43,6 @@ button.navbar-toggler.left {
   border-color: #fff;
   border-width: 1.5px;
 }
-
 
 #softwareLink.nav-link:hover,
 #motionLink.nav-link:hover,
@@ -60,8 +57,6 @@ button.navbar-toggler.left {
 #motionLink.nav-link.dropdown-toggle:hover::after {
   transform: rotate(90deg);
 }
-
-
 
 /* Form Styles */
 .formDiv#contactForm {
@@ -112,7 +107,6 @@ padding-top:0px; */
   position: relative;
 }
 
-
 .row2Wrap {
   display: flex;
   flex-direction: row; /* Default for larger screens */
@@ -139,7 +133,7 @@ padding-top:0px; */
   margin-bottom: 0px;
 }
 
-.slider>div {
+.slider > div {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -149,32 +143,32 @@ padding-top:0px; */
   transition: opacity 0.8s ease, transform 0.4s;
 }
 
-.slider>div.show {
+.slider > div.show {
   opacity: 1;
 }
 
-.slider>div.hide {
+.slider > div.hide {
   opacity: 0;
 }
 
 /* Arrow buttons that appear on hover */
-.slider>.left {
+.slider > .left {
   left: -100px;
   /* Start hidden off to the left */
   transition: left 0.3s ease;
 }
 
-.slider>.right {
+.slider > .right {
   right: -100px;
   /* Start hidden off to the right */
   transition: right 0.3s ease;
 }
 
-.slider:hover>.left {
+.slider:hover > .left {
   left: 20px;
 }
 
-.slider:hover>.right {
+.slider:hover > .right {
   right: 20px;
 }
 
@@ -210,10 +204,9 @@ padding-top:0px; */
   /* overflow: visible !important; */
 }
 
-
-#slider8{
-flex: 1;
-max-width: calc(40% -10px);
+#slider8 {
+  flex: 1;
+  max-width: calc(40% -10px);
 }
 #slider9 {
   flex: 2;
@@ -225,7 +218,7 @@ max-width: calc(40% -10px);
 }
 #slider11 {
   flex: 2;
-  max-width: calc(30% - 10px)
+  max-width: calc(30% - 10px);
 }
 
 /* Animation.html styles for sliders */
@@ -235,74 +228,75 @@ max-width: calc(40% -10px);
 }
 #slider15 {
   flex: 2;
-  max-width: calc(30% - 10px)
+  max-width: calc(30% - 10px);
 }
 #slider16 {
   flex: 1;
-  max-width: calc(35% - 10px)
+  max-width: calc(35% - 10px);
 }
 #slider17 {
   flex: 12;
   max-width: calc(65% - 10px);
 }
 #slider18 {
-  
+  max-width: calc(100% - 10px);
 }
 
-#slider19{
-flex: 12;max-width: calc(60% - 10px); 
-}
-
-#slider20{
+/* DIY.html */
+#slider19 {
   flex: 12;
-  max-width: calc(40% - 10px); 
-}
-#slider21{
-  flex: 1;
-  max-width: calc(35% - 10px)
+  max-width: calc(60% - 10px);
 }
 
-#slider22{
-  flex: 1;
-  max-width: calc(40% - 10px)
+#slider20 {
+  flex: 12;
+  max-width: calc(40% - 10px);
 }
-#slider23{
+#slider21 {
   flex: 1;
-  max-width: calc(25% - 10px)
+  max-width: calc(35% - 10px);
 }
 
-#slider24{
+#slider22 {
   flex: 1;
-  max-width: calc(20% - 10px) 
+  max-width: calc(40% - 10px);
+}
+#slider23 {
+  flex: 1;
+  max-width: calc(25% - 10px);
 }
 
-#slider25{
-   flex: 1;
-  max-width: calc(55% - 10px) 
-  
+#slider24 {
+  flex: 1;
+  max-width: calc(25% - 10px);
 }
-#slider26{
+
+#slider25 {
+  flex: 1;
+  max-width: calc(50% - 10px);
+}
+#slider26 {
+  flex: 1;
+  max-width: calc(25% - 10px);
+}
+
+#slider27 {
     flex: 1;
-  max-width: calc(25% - 10px)
+  max-width: calc(60% - 10px);
 }
-
-#slider27{
-
+#slider28 {
+    flex: 1;
+  max-width: calc(40% - 10px);
 }
-#slider28{
-  
-}
-
-
 
 /* Slider 3 Specific */
-#slider3>div {
+#slider3 > div {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-#slider3>div span {
+#slider3 > div span {
   background: rgba(0, 0, 0, 0.7);
   padding: 15px 25px;
   color: white;
@@ -310,11 +304,11 @@ flex: 12;max-width: calc(60% - 10px);
 }
 
 /* Navigation Controls */
-.showArrows>.left {
+.showArrows > .left {
   left: 0;
 }
 
-.showArrows>.right {
+.showArrows > .right {
   right: 0;
 }
 
@@ -364,7 +358,7 @@ flex: 12;max-width: calc(60% - 10px);
 }
 
 /* Dots Navigation */
-.slider>ul {
+.slider > ul {
   position: absolute;
   bottom: 8px;
   left: 50%;
@@ -380,7 +374,7 @@ flex: 12;max-width: calc(60% - 10px);
   width: auto;
 }
 
-.slider>ul>li {
+.slider > ul > li {
   padding: 0;
   width: 20px;
   height: 16px;
@@ -396,7 +390,7 @@ flex: 12;max-width: calc(60% - 10px);
   transition: 0.3s;
 }
 
-.slider>ul>.showli {
+.slider > ul > .showli {
   background-color: #162a43;
   -moz-animation: boing 0.5s forwards;
   -o-animation: boing 0.5s forwards;
@@ -404,7 +398,7 @@ flex: 12;max-width: calc(60% - 10px);
   animation: boing 0.5s forwards;
 }
 
-.slider>ul>li:hover {
+.slider > ul > li:hover {
   background-color: #1e3d64;
   transform: scale(1.2);
 }
@@ -422,6 +416,10 @@ flex: 12;max-width: calc(60% - 10px);
   transform: translateY(100%);
   transition: 0.3s;
   z-index: 5;
+}
+
+.titleBar {
+  padding: 10px 20px;
 }
 
 .slider:hover .titleBar {
@@ -449,8 +447,24 @@ flex: 12;max-width: calc(60% - 10px);
   transform: translateY(-100%);
 }
 
+/* ?????????????????????????????????????????????????????? */
+/* styles to trigger titleBar by viewport focus, see scrollUtils.js */
+
+/* .slider.is-focused {
+  border: 4px solid #007bff; 
+  
+} */
+
+
+
+
+
+/* ?????????????????????????????????????????????????????????? */
+
+
+
 /* ===== Slide Backgrounds ===== */
-.slider>div {
+.slider > div {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -481,7 +495,6 @@ flex: 12;max-width: calc(60% - 10px);
 #slider1 div:nth-child(5) {
   background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1744118993/compressed-summer-0547_ufbms7.webp);
 }
-
 
 /* Malaysia */
 #slider2 div:nth-child(1) {
@@ -615,23 +628,9 @@ flex: 12;max-width: calc(60% - 10px);
   background-image: url(https://res.cloudinary.com/dxwwm0vlj/image/upload/v1749207138/Jordan-RTRPix-6082_pgsgwd.webp);
 } */
 
-
-
 /* ******************************************************************************** */
 
 /* Gallery Modal Styles */
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* ------------------------------------------------------------------ */
 
@@ -658,11 +657,6 @@ flex: 12;max-width: calc(60% - 10px);
   background: rgba(255, 255, 255, 0.2);
 }
 
-
-
-
-
-
 .gallery-counter {
   position: absolute;
   bottom: 20px;
@@ -676,8 +670,6 @@ flex: 12;max-width: calc(60% - 10px);
 }
 
 /* Responsive adjustments */
-
-
 
 .gallery-main-slider {
   width: 100%;
@@ -706,15 +698,9 @@ flex: 12;max-width: calc(60% - 10px);
   overflow: hidden;
 }
 
-
-
 /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
-
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
-
-
 
 .gallery-thumb:hover {
   opacity: 0.9;
@@ -740,7 +726,7 @@ flex: 12;max-width: calc(60% - 10px);
   background: #000;
 
   display: flex;
-  justify-content: center; 
+  justify-content: center;
 
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE/Edge */
@@ -780,9 +766,6 @@ flex: 12;max-width: calc(60% - 10px);
   border: 2px solid transparent;
 }
 
-
-
-
 .gallery-thumbnails-wrapper {
   display: flex !important;
   /* width: 100%; */
@@ -799,10 +782,6 @@ flex: 12;max-width: calc(60% - 10px);
 
 /* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
 
-
-
-
-
 .gallery-modal-content {
   width: 90%;
   max-width: 1200px;
@@ -812,9 +791,7 @@ flex: 12;max-width: calc(60% - 10px);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
-  
 }
-
 
 /* Gallery Modal Styles */
 .gallery-modal {
@@ -831,8 +808,6 @@ flex: 12;max-width: calc(60% - 10px);
   padding: 20px;
   box-sizing: border-box;
 }
-
-
 
 .gallery-slide-container {
   position: absolute;
@@ -910,9 +885,7 @@ flex: 12;max-width: calc(60% - 10px);
 
 /* *************************** */
 
-
 /* Update the thumbnail container styles */
-
 
 /* Adjust the main container to accommodate thumbnails */
 .gallery-main-container {
@@ -923,16 +896,6 @@ flex: 12;max-width: calc(60% - 10px);
   margin-bottom: 0px;
   /* Space for thumbnails */
 }
-
-
-
-
-
-
-
-
-
-
 
 /* ****************************************************************************************** */
 
@@ -950,15 +913,15 @@ body {
 }
 
 /* Additional styles from otherStyles.css not present in test.css */
-.hoverZoomOff:hover>div {
+.hoverZoomOff:hover > div {
   transform: scale(1);
 }
 
-.hideDots>ul {
+.hideDots > ul {
   display: none;
 }
 
-.slider>i {
+.slider > i {
   color: #5bbd72;
   position: absolute;
   font-size: 60px;
@@ -977,20 +940,20 @@ body {
   z-index: 4;
 }
 
-.slider>i svg {
+.slider > i svg {
   margin-top: 3px;
 }
 
-.slider>i.right:active,
-.slider>i.left:active {
+.slider > i.right:active,
+.slider > i.left:active {
   transform: translateY(1px);
 }
 
-.slider:hover>div {
+.slider:hover > div {
   transform: scale(1.01);
 }
 
-.slider>div span {
+.slider > div span {
   display: block;
   background: rgba(0, 0, 0, 0.5);
   position: absolute;
@@ -1003,8 +966,7 @@ body {
 
 /* Responsive Adjustments */
 @media (max-width: 992px) {
-
-    /* Larger tap target for mobile */
+  /* Larger tap target for mobile */
   .navbar-toggler {
     padding: 0.75rem;
     font-size: 1.5rem;
@@ -1012,20 +974,19 @@ body {
     visibility: hidden;
     opacity: 0;
   }
-  
+
   /* Ensure dropdowns are visible */
   .dropdown-menu {
     background-color: rgba(254, 253, 253, 0.9);
   }
-  
+
   /* Better spacing for mobile nav items */
   .navbar-nav {
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
 
-
- .slider {
+  .slider {
     width: 100% !important;
     max-width: 100% !important;
     height: 60vh;
@@ -1034,45 +995,42 @@ body {
   }
 
   .slider .titleBar {
-    width: 100%; 
-    text-align: center; 
+    width: 100%;
+    text-align: center;
+    font-size: 0.6em;
   }
-
 
   .slider .arrows {
-    display: none; 
+    display: none;
   }
-
-.row2Wrap,
-.row3Wrap {
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-  /* padding: 0 10px; */
+.titleBar {
+   padding: 10px 15px;
 }
+  .row2Wrap,
+  .row3Wrap {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    /* padding: 0 10px; */
+  }
   .navbar.scrolled .navbar-toggler {
     visibility: visible;
     opacity: 1;
   }
-  
+
   /* Make sure navbar is visible when expanded */
   .navbar.show .navbar-toggler,
   .navbar.collapsing .navbar-toggler {
     visibility: visible !important;
     opacity: 1 !important;
   }
-  
+
   /* Adjust navbar appearance on scroll */
   .navbar.scrolled {
-    background-color: rgba(0, 0, 0, 0.0) !important;
+    background-color: rgba(0, 0, 0, 0) !important;
     transition: background-color 0.3s ease;
   }
-
 }
-
-
-
-
 
 @media (max-width: 768px) {
   .slider {
@@ -1084,24 +1042,24 @@ body {
   }
 
   .slider .titleBar {
-    width: 100%; 
-    text-align: center; 
-    font-size: 0.5em;
+    width: 100%;
+    text-align: center;
+    font-size: 0.55em;
   }
-
-
-  .slider .arrows {
-    display: none; 
-  }
-
-.row2Wrap,
-.row3Wrap {
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-  /* padding: 0 10px; */
+.titleBar {
+  padding: 5px 10px;
 }
+  .slider .arrows {
+    display: none;
+  }
 
+  .row2Wrap,
+  .row3Wrap {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    /* padding: 0 10px; */
+  }
 
   .modalbox .box,
   .wip .box {
@@ -1116,12 +1074,9 @@ body {
     top: 20vh !important;
   }
 
-
   .gallery-main-image {
     height: 70%;
   }
-
-
 
   .gallery-prev {
     left: 20px;
@@ -1165,18 +1120,11 @@ body {
     /* 1:1 aspect ratio on mobile */
   }
 
- 
-
   .gallery-nav-btn {
     width: 35px;
     height: 35px;
     font-size: 18px;
   }
-
-
-
-
- 
 
   .gallery-main-container {
     margin-bottom: 10px;
@@ -1212,7 +1160,8 @@ body {
 
 /* Additional HTML styles from otherStyles.css */
 
-html, body {
+html,
+body {
   overflow-x: hidden;
   width: 100%;
 }

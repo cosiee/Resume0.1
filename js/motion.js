@@ -1,7 +1,8 @@
 import { galleryUtils } from "./galleryUtils.js";
 import { DomUtils } from "./domUtils.js"; // Add this import
 import { Navbar } from "./navbar.js";
-import { WebPAnimationController } from "./webpAnimationController.js"; // Assuming this is a separate module
+import { WebPAnimationController } from "./webpAnimationController.js";
+import { setupScrollFocus } from "./scrollUtils.js";
 
 export const selectors = {
   scrollDist: ".scrollDist",
@@ -245,8 +246,11 @@ function openVideoModal(sliderContainer) {
     },
     { passive: true }
   );
-  document.addEventListener("keydown", (e) => e.key === "Escape" && closeModal(), { passive: true });
-  
+  document.addEventListener(
+    "keydown",
+    (e) => e.key === "Escape" && closeModal(),
+    { passive: true }
+  );
 }
 
 function initGalleryModal() {
@@ -293,30 +297,10 @@ function initializeSliders() {
     "#slider25": { gallery: "panelling2", options: {} },
   };
 
-  // $(window).on("load", function () {
-  //   $("#slider7").sliderResponsive();
-  //   $("#slider8").sliderResponsive();
-  //   $("#slider9").sliderResponsive();
-  //   $("#slider10").sliderResponsive();
-  //   $("#slider11").sliderResponsive();
-  //   $("#slider12").sliderResponsive();
-  //   $("#slider13").sliderResponsive();
-  //   $("#slider14").sliderResponsive();
-  //   $("#slider15").sliderResponsive();
-  //   $("#slider16").sliderResponsive();
-  //   $("#slider17").sliderResponsive();
-  //   $("#slider18").sliderResponsive();
-  //   $("#slider19").sliderResponsive();
-  //   $("#slider20").sliderResponsive();
-  //   $("#slider21").sliderResponsive();
-  //   $("#slider22").sliderResponsive();
-  //   $("#slider23").sliderResponsive();
-  //   $("#slider24").sliderResponsive();
-  //   $("#slider25").sliderResponsive();
-  // });
-
   $(window).on("load", function () {
-    Object.keys(sliderConfigs).forEach((sliderId) => $(sliderId).sliderResponsive());
+    Object.keys(sliderConfigs).forEach((sliderId) =>
+      $(sliderId).sliderResponsive()
+    );
   });
 
   Object.entries(sliderConfigs).forEach(([sliderId, config]) => {
@@ -368,6 +352,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   initializeSliders();
   initGalleryModal();
+  setupScrollFocus();
 
   const animationController = new WebPAnimationController();
   animationController.init();
