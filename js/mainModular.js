@@ -825,36 +825,7 @@ domElements.software.addEventListener("click", function () {
 });
 
 
-// if (this.elements.navPhotography) {
-//       this.setupClickEvent(this.elements.navPhotography, (e) => {
-//          if (e.target.hasAttribute('data-transition-nav')) {
-//            e.preventDefault();
-//           this.handleTransitionNavigation(e.target.getAttribute('data-link'));
-//          }
-//       });
-      
-//         this.setupClickEvent(this.elements.navPhotography, () => this.autoScrollNow());
-//     }
 
-
-// ***********Check navbar.js
-
-// // Handles photography Thumbs link click - to WIP message
-// domElements.photography.addEventListener("click", function () {
-//   navbar.showWip(domElements.thumbElements[1]);
-// });
-
-// Handles motion Thumbs link click - to WIP message
-domElements.motion.addEventListener("click", function () {
-  navbar.showWip(domElements.thumbElements[2]);
-});
-
-// Handles DIY Thumbs link click - to WIP message
-domElements.diy.addEventListener("click", function () {
-  navbar.showWip(domElements.thumbElements[3]);
-});
-
-//Thumbnails functions, variables & listeners end
 
 
 
