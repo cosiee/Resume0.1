@@ -18,22 +18,10 @@ a.nav-link {
 
 a.nav-link:hover {
   color: #e3e5ea;
-  transform: scale(1.2);
 }
 /* 888888888888888888888888888888888888888888888888 */
 
 /* Burger Icon Styling */
-navbar-toggler left {
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  border: none;
-  font-size: 1rem;
-  background-color: transparent;
-  border: none;
-  outline: none;
-}
-
 .navbar-toggler-icon {
   /* the element was span.navbar-toggler-icon */
   filter: invert(1) grayscale(1) brightness(15);
@@ -963,10 +951,89 @@ body {
   padding: 0;
   width: 100%;
 }
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/* Ensure dropdown toggle is hoverable */
+.navbar-nav .nav-item .dropdown-toggle {
+  cursor: pointer;
+}
 
-/* Responsive Adjustments */
-@media (max-width: 992px) {
-  /* Larger tap target for mobile */
+/* Show dropdown on hover over nav-item or menu */
+.navbar-nav .nav-item.dropdown:hover > .dropdown-menu,
+.navbar-nav .nav-item.dropdown > .dropdown-menu:hover {
+  display: flex !important;
+  flex-direction: row !important;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.7); /* Match styles.css */
+  padding: 0.2rem;
+  min-width: max-content;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Match styles.css */
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s ease, visibility 0s; /* Match styles.css transition */
+  z-index: 1001; /* Ensure it’s above other elements, match styles.css context */
+}
+
+/* Hide dropdown when not hovering over nav-item */
+.navbar-nav .nav-item.dropdown:not(:hover) > .dropdown-menu {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0s linear 0.2s; /* Match styles.css */
+}
+
+/* Ensure dropdown items align in row */
+.dropdown-menu .dropdown-item {
+  flex: 1 1 auto;
+  text-align: left;
+  padding: 0.5rem 2rem;
+}
+
+
+  /* £££££££££££££££££££££££££££££££££££££££££££££££££££££££££££££££££££££££££££££££££££££ */
+
+
+@media (max-width: 991.98px) {
+.navbar-collapse .nav-item.dropdown:hover > .dropdown-menu {
+    display: none !important; /* Disable hover in collapsed state */
+  }
+  .navbar-collapse .nav-item.dropdown.show > .dropdown-menu {
+    display: block !important; /* Allow Bootstrap click behavior */
+    flex-direction: column-reverse !important; /* Match styles.css mobile layout */
+  }
+
+    .navbar-nav .dropdown-menu .dropdown-menu .dropdown-item{
+    position: absolute;
+    top: 0;
+    left: calc(100% + 124px);
+    padding: 0.2rem;
+    min-width: max-content;
+    min-width: 265px;
+    max-width: 325px;
+    flex-wrap: wrap;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+/* } */
+
+Responsive Adjustments */
+/* @media (max-width: 992px) { */
+  /* Larger tap target for mobile
+
+.navbar-expand-lg .navbar-nav .nav-item.dropdown:hover > .dropdown-menu,
+  .navbar-expand-lg .nav-item.dropdown > .dropdown-menu:hover {
+    display: flex !important;
+    flex-direction: row !important;
+  }
+  .navbar-nav .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 0.2rem;
+    min-width: max-content;
+  }
+
   .navbar-toggler {
     padding: 0.75rem;
     font-size: 1.5rem;
@@ -986,6 +1053,8 @@ body {
     padding-bottom: 1rem;
   }
 
+  
+
   .slider {
     width: 100% !important;
     max-width: 100% !important;
@@ -998,6 +1067,7 @@ body {
     width: 100%;
     text-align: center;
     font-size: 0.6em;
+    
   }
 
   .slider .arrows {
@@ -1030,6 +1100,11 @@ body {
     background-color: rgba(0, 0, 0, 0) !important;
     transition: background-color 0.3s ease;
   }
+  .notIndex{
+  margin-left: 20px;
+  margin-right: none;
+  
+}
 }
 
 @media (max-width: 768px) {
@@ -1195,3 +1270,4 @@ p.notIndex {
   text-align: center;
   margin-top: 10px;
 }
+
