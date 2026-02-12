@@ -2,3 +2,6 @@ change sliders: If nailedIt.html use this video/image at this this link
 
 Get the scroll and navbar bar working after send  and after closing
 
+Sort hero layout for all devices, AI grid layouts work arounds?
+
+Click on class not Index should present contact form
