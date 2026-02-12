@@ -1,58 +1,377 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Responsive Video Gallery</title>
-    <link rel="stylesheet" href="test.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Resume Andrew Costigan Other_Projects</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">   
+    <link rel="stylesheet" href="css/otherStyles.css">
+    <link rel="stylesheet" href="css/motionStyles.css">
+   
+    <link rel="stylesheet" href="css/nailedIt.css">
+
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js" defer></script>
+    <script src="js/slider.js" defer></script>
+    <script type="module" src="js/navbar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script type="module" src="js/cloudTransition.js" defer></script>
+    <script type="module" src="js/motion.js" defer></script>
+    <script type="module" src="js/photography.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+  
+    <script src="js/nailedIt.js" defer></script>
 </head>
+
 <body>
-    <div class="video-gallery">
-        <!-- Video Card 1 -->
-        <div class="video-card" data-video-id="CfPIb9H8rtg">
-            <div class="video-thumbnail">
-                <img src="https://img.youtube.com/vi/CfPIb9H8rtg/maxresdefault.jpg" alt="Video Thumbnail">
-                <div class="overlay">
-                    <p>Learn the best techniques for video creation and editing with this comprehensive tutorial.</p>
+    <div class="scrollDist">
+        <nav class="navbar navbar-expand-lg navbar-light bg-transparent" id="topNav">
+            <div class="container-fluid" id="navbar">
+               
+<!-- Logo – absolutely positioned to top-right corner -->
+<a href="#" class="navbar-brand logo-trigger" id="logoHover">
+    <img src="/assets/LOGO-Sml.png" alt="Andrew Costigan" class="logo-img">
+</a>
+
+
+
+                <button class="navbar-toggler left" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link has-tooltip" id="navHome" data-transition-nav data-link="index.html">Home<span class="tooltip-text">Takes you back main page.</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link has-tooltip dropdown-toggle" href="#" id="softwareLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Software<span class="tooltip-text">View code examples on Github</span>
+                            </a>
+                            <ul class="dropdown-menu" id="softwareDropMenuLink">
+                                <li><a class="dropdown-item" href="https://github.com/cosiee/Resume0.1/blob/main/photography.html" target="_blank" rel="noopener noreferrer">HTML</a></li>
+                                <li><a class="dropdown-item" href="https://github.com/cosiee/Resume0.1/tree/main/css" target="_blank" rel="noopener noreferrer">CSS</a></li>
+                                <li><a class="dropdown-item" href="https://github.com/cosiee/Resume0.1/tree/main/js" target="_blank" rel="noopener noreferrer">JavaScript</a></li>
+                                <li><a class="dropdown-item">Java</a></li>
+                                <li><a class="dropdown-item">Python</a></li>
+                                <li><a class="dropdown-item">SQL</a></li>
+                                <li><a class="dropdown-item">React</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-tooltip" data-link="photography.html">Photography <span class="tooltip-text">Photography Portfolio</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-tooltip" id="diyLink" data-link="diy.html">Projects <span class="tooltip-text">Various projects from concept to completion.</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link has-tooltip dropdown-toggle" href="#" id="motionLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Motion<span class="tooltip-text">Portfolio of Motion Media Projects</span>
+                            </a>
+                            <ul class="dropdown-menu" id="motionDropMenuLink">
+                                <li><a class="dropdown-item" data-transition-nav data-link="videography.html">Videography</a></li>
+                                <li><a class="dropdown-item" data-transition-nav data-link="animation.html">Animation</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-tooltip" id="contactLink">Contact<span class="tooltip-text">I look forward to hearing from you.</span></a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </nav>
+
+
+
+      <!-- Hero reveal – full-screen, hidden until logo hover -->
+<div class="hero-reveal-wrapper" id="heroReveal">
+    <section class="hero-section">
+        <button class="hero-close-btn" aria-label="Close hero">×</button>
+        <div class="hero-bg-overlay"></div>
+
+        <div class="hero-container">
+            <div class="hero-content">
+                
+                <div class="hero-text">
+                    <h1 class="hero-title">Hi, I'm Andrew from Nailed It</h1>
+                    <h2 class="hero-subtitle">
+                        I craft beautiful, functional spaces<br>you'll love coming home to
+                    </h2>
+                    <p class="hero-description">
+                        Bespoke design, carpentry & finishing — from your first idea to the final detail.
+                    </p>
+
+                    <button class="hero-cta" id="hero-contact-btn">
+                        Let's talk about your project
+                        <span class="arrow">→</span>
+                    </button>
+                </div>
+
+                <div class="hero-image">
+                    <img 
+                        src="/assets/AC.jpeg" 
+                        alt="Andrew Costigan – Craftsman & Designer" 
+                        loading="lazy"
+                    >
+                    <div class="image-frame"></div>
                 </div>
             </div>
-            <h3>Video Editing Tutorial</h3>
         </div>
+    </section>
+</div>
+</section>
+        <div class="sliders-container">
+        <div class="row2Wrap">
 
-        <!-- Video Card 2 -->
-        <div class="video-card" data-video-id="dQw4w9WgXcQ">
-            <div class="video-thumbnail">
-                <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Video Thumbnail">
-                <div class="overlay">
-                    <p>A classic! Enjoy this iconic music video in full quality.</p>
+                <!--Loggia-->
+                <div class="slider" id="slider19" data-type="video">
+                    <div></div>
+
+                    <!-- Title Bar -->
+                    <span class="titleBar">
+                        <h1 class="notIndex">From concept to completion, we managed every detail to deliver a 
+                            high-quality loggia and patio. If you’re planning a similar project, get in touch 
+                            — we’d be happy to help.</h1>
+                        <p class="notIndex">Patio Loggia/Covered Garden Space</p>
+                    </span>
+                </div>
+
+                <div class="slider" id="slider20" data-type="video">
+
+                    <!--Panelling-->
+                    <div></div>
+
+                    <!-- Title Bar -->
+                    <span class="titleBar">
+                        <h1 class="notIndex">We handled everything from design and material selection to 
+                            installation and final checks, delivering a seamless result. If you’re considering 
+                            a similar project, get in touch to see how we can help.</h1>
+                        <p class="notIndex">Panelling</p>
+                    </span>
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+
+            <div class="row3Wrap">
+                <div class="slider" id="slider21" data-type="video">
+                    <div></div>
+                    <!-- Title Bar -->
+                    <span class="titleBar">
+                        <h1 class="notIndex">From planning to final review, we delivered a high-quality 
+                            flooring project with precision and care. If you’re thinking about upgrading your 
+                            space, get in touch — we’d love to help.</h1>
+                        <p class="notIndex">Flooring</p>
+                    </span>
+                </div>
+
+
+                <div class="slider" id="slider22" data-type="video">
+                    <!-- Panelling -->
+                    <div></div>
+                    <!-- Title Bar -->
+                    <span class="titleBar">
+                        <h1 class="notIndex">We managed the project from concept to completion, delivering 
+                            expertly crafted panelling with careful planning and quality control throughout. 
+                            If you’re considering a similar upgrade, get in touch to discuss your project.</h1>
+                        <p class="notIndex">Panelling</p>
+                    </span>
+                </div>
+
+
+
+
+
+
+                <div class="slider" id="slider23" data-type="video">
+                    <!-- Bunks Bed -->
+                    <div></div>
+                    <!-- Title Bar -->
+                    <span class="titleBar">
+                        <h1 class="notIndex">We designed and built bespoke bunk beds from concept to completion,
+                             managing every detail to ensure safety, quality, and a perfect finish. If you’re 
+                             considering a custom solution, get in touch — we’d love to help.</h1>
+                        <p class="notIndex">Bunk Beds(3) & Storage</p>
+                    </span>
                 </div>
             </div>
-            <h3>Classic Music Video</h3>
-        </div>
 
-        <!-- Video Card 3 -->
-        <div class="video-card" data-video-id="3fumBcKC6RE">
-            <div class="video-thumbnail">
-                <img src="https://img.youtube.com/vi/3fumBcKC6RE/maxresdefault.jpg" alt="Video Thumbnail">
-                <div class="overlay">
-                    <p>A stunning action-packed video for your enjoyment.</p>
+
+
+
+
+            <div class="row3Wrap">
+
+                <div class="slider" id="slider24" data-type="video">
+                    <!-- Lori/Murphy Bed -->
+                    <div></div>
+                    <!-- Title Bar -->
+                    <span class="titleBar">
+                        <h1 class="notIndex">We created a bespoke Lori bed with integrated workspace, managing 
+                            the project from design through to final delivery. If you’re considering a custom 
+                            furniture solution, get in touch to see how we can help.</h1>
+                        <p class="notIndex">Lori/Murphy Bed & Office</p>
+                    </span>
+                </div>
+
+
+                <div class="slider" id="slider25" data-type="video">
+                    <!-- <h2>Panelling</h2> -->
+                    <div></div>
+                    <!-- Title Bar -->
+                    <span class="titleBar">
+                        <h1 class="notIndex">We delivered high-quality panelling through careful planning, expert 
+                            installation, and attention to detail from start to finish. If you’re considering a similar 
+                            project, get in touch to discuss your ideas.</h1>
+                        <p class="notIndex">Panelling</p>
+                    </span>
+                </div>
+
+                <div class="slider" id="slider26" data-type="photo">
+                    <!-- <h2> Queen Bed </h2> -->
+
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <!-- The Arrows -->
+                    <button type="button" class="left arrows"><svg viewBox="0 0 100 100">
+                            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z">
+                            </path>
+                        </svg></button>
+
+                    <button type="button" class="right arrows" aria-label="Next slide">
+                        <svg viewBox="0 0 100 100">
+                            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
+                                transform="translate(100, 100) rotate(180) ">
+                            </path>
+                        </svg>
+                    </button>
+
+                    <!-- Title Bar -->
+                    <span class="titleBar">
+                        <h1 class="notIndex"> We managed the queen-bed project from design to delivery, 
+                            ensuring quality craftsmanship and timely completion. If you’re looking for a 
+                            custom bed solution, get in touch — we’d love to bring your vision to life.</h1>
+                        <p class="notIndex">Bed Build</p>
+                    </span>
+
                 </div>
             </div>
-            <h3>Action Video</h3>
-        </div>
 
-        <!-- Video Card 4 -->
-        <div class="video-card" data-video-id="J---aiyznGQ">
-            <div class="video-thumbnail">
-                <img src="https://img.youtube.com/vi/J---aiyznGQ/maxresdefault.jpg" alt="Video Thumbnail">
-                <div class="overlay">
-                    <p>An educational video that’s both fun and insightful.</p>
+        
+        <div class="row3Wrap">    
+
+            <div class="slider" id="slider29" data-type="video">
+                    <!-- kitchen-->
+                    <div></div>
+
+
+                    <!-- Title Bar -->
+                    <span class="titleBar">
+
+                        <h1 class="notIndex">We delivered bespoke design projects from client brief to final 
+                            delivery, with clear communication and precise execution every step of the way. 
+                            If you’re looking for a tailored design solution, get in touch to discuss your 
+                            project.</h1>
+                        <p class="notIndex">Kitchen Seating/Dining Area & Storage</p>
+
+                    </span>
                 </div>
-            </div>
-            <h3>Educational Video</h3>
-        </div>
-    </div>
 
-    <script src="test.js"></script>
+            <!-- <div class="row2Wrap"> -->
+
+
+
+                <div class="slider" id="slider27" data-type="photo">
+                    <!-- <h2>Computer Build</h2> -->
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <!-- The Arrows -->
+                    <button type="button" class="left arrows"><svg viewBox="0 0 100 100">
+                            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z">
+                            </path>
+                        </svg></button>
+
+                    <button type="button" class="right arrows" aria-label="Next slide">
+                        <svg viewBox="0 0 100 100">
+                            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
+                                transform="translate(100, 100) rotate(180) ">
+                            </path>
+                        </svg>
+                    </button>
+
+                    <!-- Title Bar -->
+                    <span class="titleBar">
+
+                        <h1 class="notIndex">We handled every step of this computer build — from planning and component 
+                            selection to assembly, optimization, and final delivery. If you want a high-performance, 
+                            ready-to-use system, get in touch to discuss your project.</h1>
+                        <p class="notIndex">Computer Build</p>
+
+                    </span>
+                </div>
+
+                <div class="slider" id="slider28" data-type="photo">
+                    <!-- Graphics Design -->
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <!-- The Arrows -->
+                    <button type="button" class="left arrows"><svg viewBox="0 0 100 100">
+                            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z">
+                            </path>
+                        </svg></button>
+
+                    <button type="button" class="right arrows" aria-label="Next slide">
+                        <svg viewBox="0 0 100 100">
+                            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
+                                transform="translate(100, 100) rotate(180) ">
+                            </path>
+                        </svg>
+                    </button>
+
+                    <!-- Title Bar -->
+                    <span class="titleBar">
+
+                        <h1 class="notIndex">We delivered bespoke design projects from client brief to final 
+                            delivery, with clear communication and precise execution every step of the way. 
+                            If you’re looking for a tailored design solution, get in touch to discuss your 
+                            project.</h1>
+                        <p class="notIndex">Graphics Design</p>
+
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="contact-host"></div>
+
+       <!-- EmailJS SDK + Initialization -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+   
+</body>
+</html>
 </body>
 </html>

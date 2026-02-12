@@ -52,6 +52,10 @@ button.navbar-toggler.left {
   max-height: 80vh;
   overflow-y: auto;
 }
+/* 0000000000000000000000000000000000000000000000000000000000000000000 */
+
+/* 0000000000000000000000000000000000000000000000000000000000000000000 */
+
 
 .wip .box {
   transition: all 0.3s ease;
@@ -270,11 +274,15 @@ padding-top:0px; */
 
 #slider27 {
     flex: 1;
-  max-width: calc(60% - 10px);
+  max-width: calc(40% - 10px);
 }
 #slider28 {
     flex: 1;
   max-width: calc(40% - 10px);
+}
+#slider29 {
+    flex: 1;
+  max-width: calc(20% - 10px);
 }
 
 /* Slider 3 Specific */

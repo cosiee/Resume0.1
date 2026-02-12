@@ -1,0 +1,4 @@
+change sliders: If nailedIt.html use this video/image at this this link
+
+Get the scroll and navbar bar working after send  and after closing
+

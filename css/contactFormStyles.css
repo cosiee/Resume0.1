@@ -1,0 +1,138 @@
+/* css/contactFormStyles.css - Isolated styles for the glass contact modal */
+
+.contact-form-hidden {
+    display: none !important;
+}
+
+.glass-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.glass-contact-modal:not(.contact-form-hidden) ~ .glass-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.glass-contact-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 500px;
+    max-width: 90vw;
+    max-height: 90vh;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    background: rgba(208, 205, 205, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.9);
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.glass-contact-inner {
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    color: #ffffff;
+}
+
+.glass-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.glass-subtitle {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.6rem;
+    margin: 0 0 10px 0;
+}
+
+.glass-field label {
+    display: block;
+    font-weight: bold;
+    margin: 10px 0 3px;
+    font-size: 1.5rem;
+}
+
+.glass-field input,
+.glass-field select,
+.glass-field textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.6rem;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    color: #000;
+    box-sizing: border-box;
+}
+
+.glass-field input:focus,
+.glass-field select:focus,
+.glass-field textarea:focus {
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+
+.glass-submit {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.glass-submit button {
+    padding: 16px 50px;
+    font-size: 1.3rem;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.glass-submit button:hover {
+    background: #555;
+}
+
+#status {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+    min-height: 30px;
+    font-size: 1.1rem;
+}
+
+.glass-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #ffffff;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    text-align: center;
+    z-index: 1002;
+}
+
+.glass-close-btn:hover {
+    color: #ccc;
+}

@@ -13,6 +13,7 @@ export class Navbar {
     if (!selectors) throw new Error("Navbar requires selectors object");
     this.selectors = selectors;
     this.domUtils = new DomUtils(selectors);
+    window.pageDomUtils = this.domUtils; //added for nailedIt
     this.elements = this.domUtils.elements;
     this.hoverTimeout = null;
     this._lastClick = 0;

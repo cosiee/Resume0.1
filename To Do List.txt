@@ -1,3 +1,5 @@
+Navbar's Contact link not working on photography page
+
 The black gap at the end of photography.html is div.scrollDist, needs looking at as this could be useful 
 for the behaviour the sliders titlebars and text... the titlebar and text need to adjust for smaller srceens 
 Never should the cover slider image, as this makes them unclickable.

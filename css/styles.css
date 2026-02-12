@@ -7,6 +7,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300&display=swap");
 
+
+
+
 /*Cloud transition styles */
 .transition-overlay {
   position: fixed;
@@ -796,20 +799,12 @@ navbar-toggler left {
 .formDiv#contactForm {
   position: absolute;
   z-index: 6;
-  /* top: 50%;
-  right: 50%;
-  transform: translate(50%, -50%); */
-
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: medium;
-  /* max-width: 400px;
-  min-width: 270px; */
   width: 300px;
-  /* margin: 50px auto; */
   padding: 10px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12%;
-  /* border-radius: 15px; */
   background-color: rgba(208, 205, 205, 0.4);
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.9);

@@ -1,149 +1,138 @@
-<!-- diy.html -->
+<!-- nailedIt.html -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Online Resume Andrew Costigan Other_Projects</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="css/styles.css">
-
-
+    <link rel="stylesheet" href="css/styles.css">   
     <link rel="stylesheet" href="css/otherStyles.css">
     <link rel="stylesheet" href="css/motionStyles.css">
-    <!-- 
-  <link rel="stylesheet" href="css/test.css"> -->
+   
+    <link rel="stylesheet" href="css/nailedIt.css">
 
-    <!-- <link rel="stylesheet" href="css/test2.css"> -->
-
-
-
-
-    <script src="https://code.jquery.com/jquery-1.11.0.min.js" defer></script> <!-- ✅ jQuery loads first -->
-
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js" defer></script>
     <script src="js/slider.js" defer></script>
-    <script type="module" defer src="js/navbar.js"></script>
+    <script type="module" src="js/navbar.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script type="module" src="js/cloudTransition.js" defer></script>
-
     <script type="module" src="js/motion.js" defer></script>
     <script type="module" src="js/photography.js" defer></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
-
-
-
-</head>
-<!-- <svg viewBox="0 0 1200 800" id="svg" xmlns="https://www.w3.org/2000/svg" visibility="hidden">
-  <mask id="m">
-    <g class="img-fluid" id="cloud1">
-      <rect fill="#fff" width="1200" height="800" y="1200" />
-      <image xlink:href="assets/cl1.webp" width="1200" height="800" />
-    </g>
-  </mask>
-
-  <image class="img-fluid" id="cloud2" xlink:href="assets/cl2.webp" width="1200" height="800" />
-  <image class="img-fluid" id="cloud3" xlink:href="assets/cl4.webp" width="1200" height="800" />
-  <image class="img-fluid" id="cloud4" xlink:href="assets/cl4.webp" width="1200" height="800" />
-  <image class="img-fluid" id="cloud5" xlink:href="assets/cl4.webp" width="1200" height="800" />
-  <image class="img-fluid" id="cloud1" xlink:href="assets/cl1.webp" width="1200" height="800" />
-
-
-</svg> -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+           <!-- EmailJS SDK + Initialization -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  
+    <script src="js/nailedIt.js" defer></script>
 </head>
 
 <body>
-    <div class="scrollDist" width="100%" height="auto">
-
+    <div class="scrollDist">
         <nav class="navbar navbar-expand-lg navbar-light bg-transparent" id="topNav">
             <div class="container-fluid" id="navbar">
-                <!-- Burger Menu  -->
+               
+<!-- Logo – absolutely positioned to top-right corner -->
+<a href="#" class="navbar-brand logo-trigger" id="logoHover">
+    <img src="/assets/LOGO-Sml.png" alt="Andrew Costigan" class="logo-img">
+</a>
+
+
+
                 <button class="navbar-toggler left" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <!-- Main Navbar Menu -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link has-tooltip" id="navHome" aria-current="page" data-transition-nav
-                                data-link="index.html">Home<span class="tooltip-text">Takes you back main
-                                    page.</span></a>
+                            <a class="nav-link has-tooltip" id="navHome" data-transition-nav data-link="index.html">Home<span class="tooltip-text">Takes you back main page.</span></a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link has-tooltip dropdown-toggle" href="#" id="softwareLink"
-                                class="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <a class="nav-link has-tooltip dropdown-toggle" href="#" id="softwareLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Software<span class="tooltip-text">View code examples on Github</span>
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
-                                id="softwareDropMenuLink">
-                                <li><a class="dropdown-item" id="navHtml"
-                                        data-link="https://github.com/cosiee/Resume0.1/blob/main/photography.html"
-                                        target="_blank" rel="noopener noreferrer">HTML</a></li>
-                                <li><a class="dropdown-item" id="navCss"
-                                        data-link="https://github.com/cosiee/Resume0.1/tree/main/css" target="_blank"
-                                        rel="noopener noreferrer">CSS</a></li>
-                                <li><a class="dropdown-item" id="navJavascript"
-                                        data-link="https://github.com/cosiee/Resume0.1/tree/main/js" target="_blank"
-                                        rel="noopener noreferrer">JavaScript</a></li>
-                                <li><a class="dropdown-item" id="navJava">Java</a></li>
-                                <li><a class="dropdown-item" id="navPython">Python</a></li>
-                                <li><a class="dropdown-item" id="navSql">SQL</a></li>
-                                <li><a class="dropdown-item" id="navReact">React</a></li>
+                            <ul class="dropdown-menu" id="softwareDropMenuLink">
+                                <li><a class="dropdown-item" href="https://github.com/cosiee/Resume0.1/blob/main/photography.html" target="_blank" rel="noopener noreferrer">HTML</a></li>
+                                <li><a class="dropdown-item" href="https://github.com/cosiee/Resume0.1/tree/main/css" target="_blank" rel="noopener noreferrer">CSS</a></li>
+                                <li><a class="dropdown-item" href="https://github.com/cosiee/Resume0.1/tree/main/js" target="_blank" rel="noopener noreferrer">JavaScript</a></li>
+                                <li><a class="dropdown-item">Java</a></li>
+                                <li><a class="dropdown-item">Python</a></li>
+                                <li><a class="dropdown-item">SQL</a></li>
+                                <li><a class="dropdown-item">React</a></li>
                             </ul>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link has-tooltip" id="photographyLink"
-                                data-link="photography.html">Photography <span class="tooltip-text">Photography
-                                    Portfolio</span></a>
+                            <a class="nav-link has-tooltip" data-link="photography.html">Photography <span class="tooltip-text">Photography Portfolio</span></a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link has-tooltip" id="diyLink" data-link="diy.html">Projects <span
-                                    class="tooltip-text">Various projects from <br>concept to
-                                    completion.</span></a>
+                            <a class="nav-link has-tooltip" id="diyLink" data-link="diy.html">Projects <span class="tooltip-text">Various projects from concept to completion.</span></a>
                         </li>
-
                         <li class="nav-item dropdown">
-                            <a class="nav-link has-tooltip dropdown-toggle" href="#" id="motionLink"
-                                class="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Motion<span class="tooltip-text">Profolio of Motion <br>Media Projects</span>
+                            <a class="nav-link has-tooltip dropdown-toggle" href="#" id="motionLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Motion<span class="tooltip-text">Portfolio of Motion Media Projects</span>
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="motionDropMenuLink">
-                                <li><a class="dropdown-item" id="navVideo" aria-current="page" data-transition-nav
-                                        data-link="videography.html">Videography</a></li>
-
-                                <li><a class="dropdown-item" id="navAnimation" aria-current="page" data-transition-nav
-                                        data-link="animation.html">Animation</a></li>
-
+                            <ul class="dropdown-menu" id="motionDropMenuLink">
+                                <li><a class="dropdown-item" data-transition-nav data-link="videography.html">Videography</a></li>
+                                <li><a class="dropdown-item" data-transition-nav data-link="animation.html">Animation</a></li>
                             </ul>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link has-tooltip" id="contactLink">Contact<span class="tooltip-text">I look
-                                    forward to hearing from you.</span></a>
+                            <a class="nav-link has-tooltip" id="contactLink">Contact<span class="tooltip-text">I look forward to hearing from you.</span></a>
                         </li>
                     </ul>
                 </div>
+
             </div>
+
         </nav>
 
 
 
-        <div class="sliders-container">
+      <!-- Hero reveal – full-screen, hidden until logo hover -->
+<div class="hero-reveal-wrapper" id="heroReveal">
+    <section class="hero-section">
+        <!-- <button class="hero-close-btn" aria-label="Close hero">×</button> -->
+        <div class="hero-bg-overlay"></div>
 
-            <div class="row2Wrap">
+        <div class="hero-container">
+            <div class="hero-content">
+                
+                <div class="hero-text">
+                    <h1 class="hero-title">Hi, I'm Andrew from Nailed It</h1>
+                    <h2 class="hero-subtitle">
+                        I craft beautiful, functional spaces<br>you'll love coming home to
+                    </h2>
+                    <p class="hero-description">
+                        Bespoke design, carpentry & finishing — from your first idea to the final detail.
+                    </p>
+
+                    <button class="hero-cta" id="hero-contact-btn">
+                        Let's talk about your project
+                        <span class="arrow">→</span>
+                    </button>
+                </div>
+
+                <div class="hero-image">
+                    <img 
+                        src="/assets/AC.jpeg" 
+                        alt="Andrew Costigan – Craftsman & Designer" 
+                        loading="lazy"
+                    >
+                    <div class="image-frame"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</section>
+        <div class="sliders-container">
+        <div class="row2Wrap">
 
                 <!--Loggia-->
                 <div class="slider" id="slider19" data-type="video">
@@ -151,18 +140,10 @@
 
                     <!-- Title Bar -->
                     <span class="titleBar">
-                        <h1 class="notIndex">The project was launched with an inception phase that entailed articulating
-                            the strategic design vision, procuring optimal resources, and establishing an initial
-                            project
-                            charter inclusive of budgetary parameters, temporal milestones, and risk mitigation
-                            frameworks.
-                            This transitioned into an implementation phase, encompassing site mobilization, execution of
-                            core deliverables, and iterative quality assurance evaluations, followed by a governance and
-                            oversight phase that ensured compliance with the planning framework and maintained
-                            performance
-                            standards, culminating in a closure phase that finalized the loggia and patio
-                            deployment with an audit.</h1>
-                        <p class="notIndex">Patio Loggia</p>
+                        <h1 class="notIndex">From concept to completion, we managed every detail to deliver a 
+                            high-quality loggia and patio. If you’re planning a similar project, get in touch 
+                            — we’d be happy to help.</h1>
+                        <p class="notIndex">Patio Loggia/Covered Garden Space</p>
                     </span>
                 </div>
 
@@ -173,12 +154,9 @@
 
                     <!-- Title Bar -->
                     <span class="titleBar">
-                        <h1 class="notIndex">The project was initiated with a concept phase that involved selecting a
-                            style and materials, narrowing down details, and planning project specifics, budget,
-                            timeline, and risks. This was followed by an execution phase, including preparation,
-                            installing details, and conducting quality checks, then a monitoring and control phase that
-                            ensured adherence to the planning phase while guaranteeing a quality product, culminating
-                            in a delivery phase that concluded with a successful installation.</h1>
+                        <h1 class="notIndex">We handled everything from design and material selection to 
+                            installation and final checks, delivering a seamless result. If you’re considering 
+                            a similar project, get in touch to see how we can help.</h1>
                         <p class="notIndex">Panelling</p>
                     </span>
                 </div>
@@ -197,13 +175,9 @@
                     <div></div>
                     <!-- Title Bar -->
                     <span class="titleBar">
-                        <h1 class="notIndex">This project followed a structured project lifecycle from initiation to
-                            closure. The planning phase established the scope, budget, timeline, and risk-mitigating
-                            safety protocols. Execution involved sequential critical path activities: surface leveling,
-                            subfloor installation, and flooring installation, with continuous quality control checks.
-                            Through monitoring and controlling, we ensured adherence to the project baseline and quality
-                            standards. The project concluded with stakeholder delivery and a final review,
-                            closing the project.</h1>
+                        <h1 class="notIndex">From planning to final review, we delivered a high-quality 
+                            flooring project with precision and care. If you’re thinking about upgrading your 
+                            space, get in touch — we’d love to help.</h1>
                         <p class="notIndex">Flooring</p>
                     </span>
                 </div>
@@ -214,12 +188,9 @@
                     <div></div>
                     <!-- Title Bar -->
                     <span class="titleBar">
-                        <h1 class="notIndex">The project kicked off with an initiation phase that defined the panelling
-                            vision, scoped resources, and outlined objectives, budget, timeline, and risk plans. This
-                            moved into an execution phase with site setup, panel assembly, and quality reviews, followed
-                            by a control phase ensuring plan compliance and performance targets, concluding with a
-                            closure
-                            phase delivering the finished panelling after a final assessment.</h1>
+                        <h1 class="notIndex">We managed the project from concept to completion, delivering 
+                            expertly crafted panelling with careful planning and quality control throughout. 
+                            If you’re considering a similar upgrade, get in touch to discuss your project.</h1>
                         <p class="notIndex">Panelling</p>
                     </span>
                 </div>
@@ -234,12 +205,9 @@
                     <div></div>
                     <!-- Title Bar -->
                     <span class="titleBar">
-                        <h1 class="notIndex">The project commenced with an initiation phase that outlined the bunk bed
-                            design, identified required materials, and established goals, budget, timeline, and safety
-                            protocols. This transitioned into an execution phase involving frame assembly, ladder
-                            installation, and quality inspections, followed by a control phase ensuring adherence to
-                            specifications and structural integrity, concluding with a closure phase delivering the
-                            completed bunk beds after a thorough evaluation.</h1>
+                        <h1 class="notIndex">We designed and built bespoke bunk beds from concept to completion,
+                             managing every detail to ensure safety, quality, and a perfect finish. If you’re 
+                             considering a custom solution, get in touch — we’d love to help.</h1>
                         <p class="notIndex">Bunk Beds(3) & Storage</p>
                     </span>
                 </div>
@@ -256,13 +224,9 @@
                     <div></div>
                     <!-- Title Bar -->
                     <span class="titleBar">
-                        <h1 class="notIndex">This project began with an initiation phase that scoped the loft/Murphy bed
-                            with office layout, sourced multifunctional materials, and outlined objectives, budget,
-                            timeline, and space optimization strategies. This moved into an execution phase with frame
-                            building, desk integration, and quality checks, followed by a control phase ensuring design
-                            alignment and functionality, culminating in a closure phase delivering the finished unit
-                            with
-                            a comprehensive assessment.</h1>
+                        <h1 class="notIndex">We created a bespoke Lori bed with integrated workspace, managing 
+                            the project from design through to final delivery. If you’re considering a custom 
+                            furniture solution, get in touch to see how we can help.</h1>
                         <p class="notIndex">Lori/Murphy Bed & Office</p>
                     </span>
                 </div>
@@ -273,15 +237,9 @@
                     <div></div>
                     <!-- Title Bar -->
                     <span class="titleBar">
-                        <h1 class="notIndex">The project launched with a planning phase establishing the panelling
-                            strategy, allocating materials, and setting milestones, cost estimates, and risk
-                            controls.
-                            This transitioned into an implementation phase with task coordination, panel
-                            installation,
-                            and progress tracking, followed by a monitoring phase verifying schedule adherence and
-                            quality standards, ending with a delivery phase completing the panelling with a
-                            post-project
-                            review.</h1>
+                        <h1 class="notIndex">We delivered high-quality panelling through careful planning, expert 
+                            installation, and attention to detail from start to finish. If you’re considering a similar 
+                            project, get in touch to discuss your ideas.</h1>
                         <p class="notIndex">Panelling</p>
                     </span>
                 </div>
@@ -310,24 +268,36 @@
 
                     <!-- Title Bar -->
                     <span class="titleBar">
-                        <h1 class="notIndex"> Project launched with a planning phase that defined the queen bed
-                            concept, allocated wood and hardware resources, and set milestones, cost estimates, and
-                            risk mitigation plans. This progressed into an implementation phase with headboard
-                            construction, mattress frame setup, and progress monitoring, followed by a monitoring
-                            phase verifying timeline compliance and craftsmanship standards, ending with a 
-                            delivery phase finalizing the queen bed..</h1>
+                        <h1 class="notIndex"> We managed the queen-bed project from design to delivery, 
+                            ensuring quality craftsmanship and timely completion. If you’re looking for a 
+                            custom bed solution, get in touch — we’d love to bring your vision to life.</h1>
                         <p class="notIndex">Bed Build</p>
                     </span>
 
                 </div>
-
-
-
-
-
             </div>
 
-            <div class="row2Wrap">
+        
+        <div class="row3Wrap">    
+
+            <div class="slider" id="slider29" data-type="video">
+                    <!-- kitchen-->
+                    <div></div>
+
+
+                    <!-- Title Bar -->
+                    <span class="titleBar">
+
+                        <h1 class="notIndex">We delivered bespoke design projects from client brief to final 
+                            delivery, with clear communication and precise execution every step of the way. 
+                            If you’re looking for a tailored design solution, get in touch to discuss your 
+                            project.</h1>
+                        <p class="notIndex">Kitchen Seating/Dining Area & Storage</p>
+
+                    </span>
+                </div>
+
+            <!-- <div class="row2Wrap"> -->
 
 
 
@@ -355,15 +325,9 @@
                     <!-- Title Bar -->
                     <span class="titleBar">
 
-                        <h1 class="notIndex">This project's initial phase involved a feasibility study to determine
-                            the PC build specifications, sourcing compatiable components, developing clear
-                            objectives, detailed budgetary allocations, timeline milestones, and comprehensive
-                            risk management protocols. This transitioned into an execution phase,
-                            featuring assembly of hardware components, system testing, iterative quality
-                            assurance audits to ensure optimal performance, and stakeholder feedback to enforce
-                            adherence to the established project baseline while mitigating scope creep,
-                            culminating in a closure phase that finalized the PC build and documentation of
-                            lessons learned.</h1>
+                        <h1 class="notIndex">We handled every step of this computer build — from planning and component 
+                            selection to assembly, optimization, and final delivery. If you want a high-performance, 
+                            ready-to-use system, get in touch to discuss your project.</h1>
                         <p class="notIndex">Computer Build</p>
 
                     </span>
@@ -393,101 +357,23 @@
                     <!-- Title Bar -->
                     <span class="titleBar">
 
-                        <h1 class="notIndex">These graphic design projects moved from the client's initial
-                            brief through a structured process of research, concept development, and
-                            iterative design revisions. We maintained clear communication and feedback
-                            loops to ensure alignment at every stage. Upon final sign-off, all assets were
-                            meticulously prepared, packaged, and delivered according to the project
-                            specifications, successfully meeting the deadline and quality standards.</h1>
+                        <h1 class="notIndex">We delivered bespoke design projects from client brief to final 
+                            delivery, with clear communication and precise execution every step of the way. 
+                            If you’re looking for a tailored design solution, get in touch to discuss your 
+                            project.</h1>
                         <p class="notIndex">Graphics Design</p>
 
                     </span>
                 </div>
 
             </div>
-
-
-
-
-
-            <div class="container-fluid modalbox" id="statementContact" style="display: box;">
-                <div class="box">
-                    <a class="close" id="modalClose">X</a>
-                    <p class="title">Welcome</p>
-                    <div class="content">
-                        <p class="thanks">Thanks for having a look-see!</p>
-
-                        <p class="toExit">To get in touch, click on the signature below...</p>
-
-                        <p>To exit this message, click the 'X' above.</p>
-
-                        <p class="allTheBest">All the Best!</p>
-
-                        <a class="sig" id="modalSig">
-
-                            <img class="sig" src="assets/sigw.webp">
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="formDiv" id="contactForm" style="display: none;">
-                <a class="closeForm" id="contactFormClose">X</a>
-                <form action="https://formspree.io/f/meqyreww" method="POST">
-                    <label> Your name:
-                        <input autocomplete="false" type="text" id="name" name="name" required>
-                    </label>
-                    <label> Your email:
-                        <input autocomplete="false" type="text" id="email" name="email" required>
-                    </label>
-                    <label>Your message:
-                        <textarea id="message" name="message" rows="3" required></textarea>
-                    </label>
-                    <button type="submit" id="formButton">Send</button>
-            </div>
-
-
-            <div class="container-fluid modalbox wip" id="wip" style="display: box;">
-                <div class="box">
-                    <a class="close" id="modalWipClose">X</a>
-                    <div class="content">
-                        <p class="thanks">Thanks for having a look!</p>
-                        <br>
-                        <p class="toExit">At the moment this site segment is under development. Currently I have three
-                            hours
-                            per weekday for this project, so progress can be slow...
-                            It's undertaking is to present a personnel portfolio of projects undertaken, this site
-                            included,
-                            to date.
-                        </p>
-                        <br>
-                        <p class="allTheBest">All the Best!</p>
-
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="gallery-container" id="galleryContainer">
-                <!-- This will be populated dynamically by javaScript -->
-            </div>
-
-            <!-- <svg viewBox="0 0 1200 800" id="svg" xmlns="https://www.w3.org/2000/svg" visibility="hidden">
-      <mask id="m">
-        <g class="img-fluid" id="cloud1">
-          <rect fill="#fff" width="1200" height="800" y="1200" />
-          <image xlink:href="assets/cl1.webp" width="1200" height="800" />
-        </g>
-      </mask>
-      <image class="img-fluid" id="cloud2" xlink:href="assets/cl2.webp" width="1200" height="800" />
-      <image class="img-fluid" id="cloud3" xlink:href="assets/cl4.webp" width="1200" height="800" />
-      <image class="img-fluid" id="cloud4" xlink:href="assets/cl4.webp" width="1200" height="800" />
-      <image class="img-fluid" id="cloud5" xlink:href="assets/cl4.webp" width="1200" height="800" />
-      <image class="img-fluid" id="cloud1" xlink:href="assets/cl1.webp" width="1200" height="800" />
-    </svg> -->
         </div>
-</body>
 
+        <div id="contact-host"></div>
+
+
+   
+</body>
+</html>
+</body>
 </html>
