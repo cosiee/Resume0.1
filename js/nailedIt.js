@@ -1,3 +1,9 @@
+    //  nailedIt.js — handles hero reveal and contact modal
+
+    import { DomUtils } from "./domUtils.js";
+
+import { Navbar } from './navbar.js';
+
      (function() {
             emailjs.init("BSXVEqtYjrl5zOaJX"); // Your actual public key — perfect!
         })();
@@ -21,12 +27,12 @@
                     <div class="glass-overlay"></div>
 
                     <div class="glass-contact-inner">
-                        <h2 class="glass-title">Contact Andrew</h2>
+                        <h2 class="glass-title">Contact Andrew at Nailed</h2>
                         <p class="glass-subtitle">Enter your details below, And I'll take it from there</p>
 
                         <form id="contactForm">
                             <div class="glass-field">
-                                <label for="reason">Reason for Contact *</label>
+                                <label for="reason">How can we help you?*</label>
                                 <select id="reason" required>
                                     <option value="">Select an option</option>
                                     <option value="Request of work">Need a Job Done</option>
@@ -99,12 +105,24 @@
             }
 
             const closeModal = () => {
-                modal.classList.add('contact-form-hidden');
-                document.body.style.overflow = '';
-                document.body.style.paddingRight = '';
-                if (window.pageDomUtils?.enablePageInteractions) {
-                    window.pageDomUtils.enablePageInteractions();
-                }
+                console.log('closeModal triggered');
+    modal.classList.add('contact-form-hidden');
+    
+    console.log('Before reset → overflow:', document.body.style.overflow);
+    console.log('Before reset → paddingRight:', document.body.style.paddingRight);
+    
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+    
+    console.log('After reset → overflow:', document.body.style.overflow);
+    console.log('After reset → paddingRight:', document.body.style.paddingRight);
+    
+    if (window.pageDomUtils?.enablePageInteractions) {
+        console.log('Calling enablePageInteractions');
+        window.pageDomUtils.enablePageInteractions();
+    } else {
+        console.log('pageDomUtils.enablePageInteractions not available');
+    }
             };
 
             contactLink.addEventListener('click', (e) => {
@@ -164,9 +182,24 @@
             });
         }, 100); 
 
+// glass-close-btn.addEventListener("click", function () {
+//   navbar.showScrollBar();
+//   showThumbs();
+//   domUtils.updateDimensions();
+//   domUtils.spaceoutThumbs();
+// });
 
 document.addEventListener('DOMContentLoaded', () => {
     // Your animate-on-scroll logic (unchanged)
+
+    const notIndexElements = document.querySelectorAll('.notIndex');
+    notIndexElements.forEach(element => {
+        element.style.cursor = 'pointer'; // Optional: make it look clickable
+        element.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('contactLink')?.click(); // Trigger contact form
+        });
+    });
     const elements = document.querySelectorAll('.animate-on-scroll');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -191,6 +224,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let hideTimeout = null;
+   
+   // TEMP: auto-show hero on page load for testing
+    // if (heroReveal) {
+    //     heroReveal.classList.add('active');
+    //     // Optional: don't lock scroll during testing
+    //     // document.body.style.overflow = 'visible';  // already handled in your showHero
+    // }
+
 
     const showHero = () => {
         clearTimeout(hideTimeout);
@@ -214,7 +255,9 @@ document.addEventListener('DOMContentLoaded', () => {
     logo.addEventListener('mouseenter', showHero);
 
     // When mouse leaves the **whole** hero wrapper → schedule hide
-    heroReveal.addEventListener('mouseleave', scheduleHide);
+
+    //TEMP remove below//
+   heroReveal.addEventListener('mouseleave', scheduleHide);
 
     // When mouse enters hero (from logo or anywhere) → cancel any pending hide
     heroReveal.addEventListener('mouseenter', cancelHide);
@@ -259,4 +302,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.matchMedia('(hover: none)').matches) {
         setTimeout(showHero, 1800);
     }
+
+ 
 });
