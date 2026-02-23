@@ -104,26 +104,64 @@ import { Navbar } from './navbar.js';
                 return;
             }
 
-            const closeModal = () => {
-                console.log('closeModal triggered');
+// const closeModal = () => {
+//                 console.log('closeModal triggered');
+//     modal.classList.add('contact-form-hidden');
+    
+//     console.log('Before reset → overflow:', document.body.style.overflow);
+//     console.log('Before reset → paddingRight:', document.body.style.paddingRight);
+    
+//     document.body.style.overflow = '';
+//     document.body.style.paddingRight = '';
+    
+//     console.log('After reset → overflow:', document.body.style.overflow);
+//     console.log('After reset → paddingRight:', document.body.style.paddingRight);
+    
+//     if (window.pageDomUtils?.enablePageInteractions) {
+//         console.log('Calling enablePageInteractions');
+//         window.pageDomUtils.enablePageInteractions();
+//     } else {
+//         console.log('pageDomUtils.enablePageInteractions not available');
+//     }
+//             };
+
+const closeModal = () => {
+    console.log('closeModal triggered');
+
     modal.classList.add('contact-form-hidden');
-    
-    console.log('Before reset → overflow:', document.body.style.overflow);
-    console.log('Before reset → paddingRight:', document.body.style.paddingRight);
-    
-    document.body.style.overflow = '';
-    document.body.style.paddingRight = '';
-    
-    console.log('After reset → overflow:', document.body.style.overflow);
-    console.log('After reset → paddingRight:', document.body.style.paddingRight);
-    
-    if (window.pageDomUtils?.enablePageInteractions) {
+
+    // 1. Full scroll unlock
+    document.body.style.overflow = 'visible';
+    document.body.style.overflowY = 'scroll';       // Explicitly allow vertical scroll
+    document.body.style.paddingRight = '';          // Remove scrollbar compensation
+    document.body.style.touchAction = 'auto';       // Restore touch scrolling on mobile
+
+    // 2. Re-enable interactions via domUtils if available
+    if (window.pageDomUtils && typeof window.pageDomUtils.enablePageInteractions === 'function') {
         console.log('Calling enablePageInteractions');
         window.pageDomUtils.enablePageInteractions();
     } else {
-        console.log('pageDomUtils.enablePageInteractions not available');
+        console.warn('pageDomUtils.enablePageInteractions not available – using fallback');
+        // Fallback: re-enable pointer events everywhere
+        document.querySelectorAll('body, html, a, button, input, select, textarea, .navbar-toggler')
+            .forEach(el => {
+                el.style.pointerEvents = 'auto';
+                if (el.tagName === 'BUTTON' || el.tagName === 'INPUT' || el.tagName === 'SELECT') {
+                    el.disabled = false;
+                }
+            });
     }
-            };
+
+    // 3. Force browser reflow to restore scroll (works in most cases)
+    const scrollPos = window.pageYOffset;
+    window.scrollTo(0, scrollPos - 1);
+    setTimeout(() => {
+        window.scrollTo(0, scrollPos);
+    }, 10);
+
+    // 4. Optional: ensure html also allows scroll
+    document.documentElement.style.overflowY = 'scroll';
+};
 
             contactLink.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -172,12 +210,15 @@ import { Navbar } from './navbar.js';
             status.textContent = 'Message sent successfully! Thank you.';
             status.style.color = '#aaffaa';
             form.reset();
-            setTimeout(() => { status.textContent = ''; }, 6000);
+            setTimeout(() => {
+                closeModal();
+            }, 500);
         })
         .catch((error) => {
-            status.textContent = 'Failed to send. Check console.';
+            status.textContent = 'Failed to send. Please try again or contact directly.';
             status.style.color = '#ff6666';
             console.error('EmailJS error:', error);
+            // Modal stays open so user can retry or copy message
         });
             });
         }, 100); 
