@@ -27,8 +27,8 @@
 /* Logo – absolute top-right corner (screen edge) */
 .navbar-brand.logo-trigger {
     position: absolute;
-    right: 30px;                        /* distance from right screen edge */
-    top: 9px;                          /* vertical alignment */
+    right: 5px;                        /* distance from right screen edge */
+    top: 2px;                          /* vertical alignment */
     z-index: 1002;                      /* above links & burger */
     padding: 0;
     margin: 0 !important;
@@ -77,12 +77,12 @@
 /* Mobile – keep logo in top-right corner, clear of burger */
 @media (max-width: 991.98px) {
     .navbar-brand.logo-trigger {
-        right: 75px;                    /* extra space for burger (toggler ~60px wide) */
-        top: 12px;
+        right: 5px;                    /* extra space for burger (toggler ~60px wide) */
+        top: 2px;
     }
 
     .logo-img {
-        height: 38px;
+        height: 80px;
     }
 
     /* Burger safety – make sure toggler is clickable */
@@ -90,19 +90,23 @@
         z-index: 1003;
         margin-right: 15px;
     }
+    .navbar-toggler.left {
+        margin-left: 5px !important;     /* push to left edge */
+        margin-right: auto !important;    /* override any centering */
+        order: -1;                        /* ensure it's first in flex order */
+    }
 }
 
 @media (max-width: 576px) {
     .navbar-brand.logo-trigger {
-        right: 70px;
+        right: 5px;
     }
     .logo-img {
-        height: 34px;
+        height: 60px;
     }
 }
 
-/*  */
-/* Floating logo – top-right, appears after scroll */
+
 
 .floating-logo {
     position: fixed;

@@ -1,106 +1,130 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Online Resume Andrew Costigan Other_Projects</title>
+  <meta charset="UTF-8" />
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css">   
-    <link rel="stylesheet" href="css/otherStyles.css">
-    <link rel="stylesheet" href="css/motionStyles.css">
-   
-    <link rel="stylesheet" href="css/nailedIt.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Resume Andrew Costigan</title>
 
-    <script src="https://code.jquery.com/jquery-1.11.0.min.js" defer></script>
-    <script src="js/slider.js" defer></script>
-    <script type="module" src="js/navbar.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script type="module" src="js/cloudTransition.js" defer></script>
-    <script type="module" src="js/motion.js" defer></script>
-    <script type="module" src="js/photography.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/nailedIt.css">
+  <!-- <link rel="stylesheet" href="css/test.css"> -->
+
+  <script src="https://code.jquery.com/jquery-1.11.0.min.js" defer></script>
+
+  <!-- <script src="js/mainNoModul.js" defer></script> -->
+  <script type="module" defer src="js/cloudTransition.js"></script>
+  <script type="module" defer src="js/mainModular.js"></script>
+  <script type="module" defer src="js/navbar.js"></script>
+  <script type="module" defer src="js/domUtils.js"></script>
+
+
+  <script nomodule defer src="js/mainNonModular.js"></script>
+
+
+  <!-- <script src="js/test.js" defer></script> -->
   
-    <script src="js/nailedIt.js" defer></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+
+
+      <script type="module" src="js/nailedIt.js" defer></script>
+
 </head>
 
 <body>
-    <div class="scrollDist">
-        <nav class="navbar navbar-expand-lg navbar-light bg-transparent" id="topNav">
-            <div class="container-fluid" id="navbar">
-               
-<!-- Logo – absolutely positioned to top-right corner -->
-<a href="#" class="navbar-brand logo-trigger" id="logoHover">
-    <img src="/assets/LOGO-Sml.png" alt="Andrew Costigan" class="logo-img">
-</a>
+  <div class="scrollDist" width="100%" height="200%">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent" id="topNav">
+      <div class="container-fluid" id="navbar">
+
+         <!-- Logo – absolutely positioned to top-right corner -->
+                <a href="#" class="navbar-brand logo-trigger" id="logoHover">
+                    <img src="/assets/LOGO-Sml.png" alt="Andrew Costigan" class="logo-img">
+                </a>
+
+        <!-- Burger Menu  -->
+        <button class="navbar-toggler left" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Main Navbar Menu -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link has-tooltip" id="navHome" aria-current="page" data-transition-nav data-link="index.html">Home<span class="tooltip-text">See animation again.</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link has-tooltip dropdown-toggle" href="#" id="softwareLink" class="navbarDropdownMenuLink"
+                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Software<span class="tooltip-text">View code examples on Github</span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="softwareDropMenuLink">
+                <li><a class="dropdown-item" id="navHtml"
+                    data-link="https://github.com/cosiee/Resume0.1/blob/main/photography.html" target="_blank"
+                    rel="noopener noreferrer">HTML</a></li>
+                <li><a class="dropdown-item" id="navCss" data-link="https://github.com/cosiee/Resume0.1/tree/main/css"
+                    target="_blank" rel="noopener noreferrer">CSS</a></li>
+                <li><a class="dropdown-item" id="navJavascript"
+                    data-link="https://github.com/cosiee/Resume0.1/tree/main/js" target="_blank"
+                    rel="noopener noreferrer">JavaScript</a></li>
+                <li><a class="dropdown-item" id="navJava">Java</a></li>
+                <li><a class="dropdown-item" id="navPython">Python</a></li>
+                <li><a class="dropdown-item" id="navSql">SQL</a></li>
+                <li><a class="dropdown-item" id="navReact">React</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link has-tooltip" id="photographyLink" data-link="photography.html">Photography <span class="tooltip-text">Photography Portfolio</span></a>
+            </li>
 
 
-
-                <button class="navbar-toggler left" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link has-tooltip" id="navHome" data-transition-nav data-link="index.html">Home<span class="tooltip-text">Takes you back main page.</span></a>
+                            <a class="nav-link has-tooltip" id="diyLink" data-link="diy.html">Projects <span
+                                    class="tooltip-text">Various projects from <br>concept to
+                                    completion.</span></a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link has-tooltip dropdown-toggle" href="#" id="softwareLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Software<span class="tooltip-text">View code examples on Github</span>
-                            </a>
-                            <ul class="dropdown-menu" id="softwareDropMenuLink">
-                                <li><a class="dropdown-item" href="https://github.com/cosiee/Resume0.1/blob/main/photography.html" target="_blank" rel="noopener noreferrer">HTML</a></li>
-                                <li><a class="dropdown-item" href="https://github.com/cosiee/Resume0.1/tree/main/css" target="_blank" rel="noopener noreferrer">CSS</a></li>
-                                <li><a class="dropdown-item" href="https://github.com/cosiee/Resume0.1/tree/main/js" target="_blank" rel="noopener noreferrer">JavaScript</a></li>
-                                <li><a class="dropdown-item">Java</a></li>
-                                <li><a class="dropdown-item">Python</a></li>
-                                <li><a class="dropdown-item">SQL</a></li>
-                                <li><a class="dropdown-item">React</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link has-tooltip" data-link="photography.html">Photography <span class="tooltip-text">Photography Portfolio</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link has-tooltip" id="diyLink" data-link="diy.html">Projects <span class="tooltip-text">Various projects from concept to completion.</span></a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link has-tooltip dropdown-toggle" href="#" id="motionLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Motion<span class="tooltip-text">Portfolio of Motion Media Projects</span>
-                            </a>
-                            <ul class="dropdown-menu" id="motionDropMenuLink">
-                                <li><a class="dropdown-item" data-transition-nav data-link="videography.html">Videography</a></li>
-                                <li><a class="dropdown-item" data-transition-nav data-link="animation.html">Animation</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link has-tooltip" id="contactLink">Contact<span class="tooltip-text">I look forward to hearing from you.</span></a>
-                        </li>
-                    </ul>
-                </div>
 
-            </div>
+            <li class="nav-item dropdown">
+              <a class="nav-link has-tooltip dropdown-toggle" href="#" id="motionLink" class="navbarDropdownMenuLink" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Motion<span class="tooltip-text">Profolio of Motion<br>Media Projects</span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="motionDropMenuLink">
+                <li><a class="dropdown-item" id="navVideo" aria-current="page" data-transition-nav data-link="videography.html">Videography</a></li>
+           
+                <li><a class="dropdown-item" id="navAnimation" aria-current="page" data-transition-nav data-link="animation.html">Animation</a></li>
+              
+              </ul>
+            </li>
 
-        </nav>
+            <li class="nav-item">
+              <a class="nav-link has-tooltip" id="contactLink">Contact<span class="tooltip-text">I look forward to hearing from you.</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
 
-
-      <!-- Hero reveal – full-screen, hidden until logo hover -->
 <div class="hero-reveal-wrapper" id="heroReveal">
     <section class="hero-section">
-        <button class="hero-close-btn" aria-label="Close hero">×</button>
         <div class="hero-bg-overlay"></div>
 
-        <div class="hero-container">
-            <div class="hero-content">
-                
-                <div class="hero-text">
+        <div class="container hero-container">
+            <div class="row align-items-center hero-content">
+                <!-- Text column -->
+                <div class="col-lg-6 hero-text">
                     <h1 class="hero-title">Hi, I'm Andrew from Nailed It</h1>
                     <h2 class="hero-subtitle">
                         I craft beautiful, functional spaces<br>you'll love coming home to
@@ -109,16 +133,18 @@
                         Bespoke design, carpentry & finishing — from your first idea to the final detail.
                     </p>
 
-                    <button class="hero-cta" id="hero-contact-btn">
+                    <button class="hero-cta btn btn-lg px-5 py-3" id="hero-contact-btn">
                         Let's talk about your project
                         <span class="arrow">→</span>
                     </button>
                 </div>
 
-                <div class="hero-image">
+                <!-- Image column -->
+                <div class="col-lg-6 text-center hero-image">
                     <img 
                         src="/assets/AC.jpeg" 
                         alt="Andrew Costigan – Craftsman & Designer" 
+                        class="img-fluid rounded-circle shadow-lg"
                         loading="lazy"
                     >
                     <div class="image-frame"></div>
@@ -127,251 +153,150 @@
         </div>
     </section>
 </div>
-</section>
-        <div class="sliders-container">
-        <div class="row2Wrap">
-
-                <!--Loggia-->
-                <div class="slider" id="slider19" data-type="video">
-                    <div></div>
-
-                    <!-- Title Bar -->
-                    <span class="titleBar">
-                        <h1 class="notIndex">From concept to completion, we managed every detail to deliver a 
-                            high-quality loggia and patio. If you’re planning a similar project, get in touch 
-                            — we’d be happy to help.</h1>
-                        <p class="notIndex">Patio Loggia/Covered Garden Space</p>
-                    </span>
-                </div>
-
-                <div class="slider" id="slider20" data-type="video">
-
-                    <!--Panelling-->
-                    <div></div>
-
-                    <!-- Title Bar -->
-                    <span class="titleBar">
-                        <h1 class="notIndex">We handled everything from design and material selection to 
-                            installation and final checks, delivering a seamless result. If you’re considering 
-                            a similar project, get in touch to see how we can help.</h1>
-                        <p class="notIndex">Panelling</p>
-                    </span>
-                </div>
 
 
+    <div class="svg-responsive-container">
+      <div class="svg-container container-fluid" id="mountains">
+        <svg viewBox="0 0 1200 800" id="svg" xmlns="https://www.w3.org/2000/svg" visibility="hidden">
+          <mask id="m">
+            <g class="img-fluid" id="cloud1M">
+              <rect fill="#fff" width="1200" height="1800" y="1200" />
+              <image xlink:href="assets/cl1.webp" width="1200" height="800" />
+            </g>
+          </mask>
 
+          <image class="img-fluid" id="sky" xlink:href="assets/sky.webp" width="1200" height="800" />
+          <image class="img-fluid" id="mountBg" xlink:href="assets/mtbg.webp" width="1200" height="800" />
+          <image class="img-fluid" id="cloud2" xlink:href="assets/cl2.webp" width="1200" height="800" />
+          <image class="img-fluid" id="mountBg2" xlink:href="assets/mtbg2.webp" width="1200" height="800" />
+          <image class="img-fluid" id="cloud3" xlink:href="assets/cl4.webp" width="1200" height="800" />
+          <image class="img-fluid" id="mountMg" xlink:href="assets/mtmg.webp" width="1200" height="800" />
+          <image class="img-fluid" id="cloud4" xlink:href="assets/cl4.webp" width="1200" height="800" />
+          <image class="img-fluid" id="mountMgF" xlink:href="assets/mtmfg.webp" width="1200" height="800" />
+          <image class="img-fluid" id="mountFg" xlink:href="assets/mtfg.webp" width="1200" height="800" />
+          <image class="img-fluid" id="cloud5" xlink:href="assets/cl4.webp" width="1200" height="800" />
+          <image class="img-fluid" id="cloud1" xlink:href="assets/cl1.webp" width="1200" height="800" />
+          <image class="img-fluid" id="cloud6" xlink:href="assets/cl1.webp" width="1200" height="800" />
 
+          <text class="lrgtext" id="see" fill="#fff" dominant-baseline="middle" text-anchor="middle"
+            style="visibility: hidden;">SEE</text>
 
-
-            </div>
-
-
-
-            <div class="row3Wrap">
-                <div class="slider" id="slider21" data-type="video">
-                    <div></div>
-                    <!-- Title Bar -->
-                    <span class="titleBar">
-                        <h1 class="notIndex">From planning to final review, we delivered a high-quality 
-                            flooring project with precision and care. If you’re thinking about upgrading your 
-                            space, get in touch — we’d love to help.</h1>
-                        <p class="notIndex">Flooring</p>
-                    </span>
-                </div>
-
-
-                <div class="slider" id="slider22" data-type="video">
-                    <!-- Panelling -->
-                    <div></div>
-                    <!-- Title Bar -->
-                    <span class="titleBar">
-                        <h1 class="notIndex">We managed the project from concept to completion, delivering 
-                            expertly crafted panelling with careful planning and quality control throughout. 
-                            If you’re considering a similar upgrade, get in touch to discuss your project.</h1>
-                        <p class="notIndex">Panelling</p>
-                    </span>
-                </div>
-
-
-
-
-
-
-                <div class="slider" id="slider23" data-type="video">
-                    <!-- Bunks Bed -->
-                    <div></div>
-                    <!-- Title Bar -->
-                    <span class="titleBar">
-                        <h1 class="notIndex">We designed and built bespoke bunk beds from concept to completion,
-                             managing every detail to ensure safety, quality, and a perfect finish. If you’re 
-                             considering a custom solution, get in touch — we’d love to help.</h1>
-                        <p class="notIndex">Bunk Beds(3) & Storage</p>
-                    </span>
-                </div>
-            </div>
-
-
-
-
-
-            <div class="row3Wrap">
-
-                <div class="slider" id="slider24" data-type="video">
-                    <!-- Lori/Murphy Bed -->
-                    <div></div>
-                    <!-- Title Bar -->
-                    <span class="titleBar">
-                        <h1 class="notIndex">We created a bespoke Lori bed with integrated workspace, managing 
-                            the project from design through to final delivery. If you’re considering a custom 
-                            furniture solution, get in touch to see how we can help.</h1>
-                        <p class="notIndex">Lori/Murphy Bed & Office</p>
-                    </span>
-                </div>
-
-
-                <div class="slider" id="slider25" data-type="video">
-                    <!-- <h2>Panelling</h2> -->
-                    <div></div>
-                    <!-- Title Bar -->
-                    <span class="titleBar">
-                        <h1 class="notIndex">We delivered high-quality panelling through careful planning, expert 
-                            installation, and attention to detail from start to finish. If you’re considering a similar 
-                            project, get in touch to discuss your ideas.</h1>
-                        <p class="notIndex">Panelling</p>
-                    </span>
-                </div>
-
-                <div class="slider" id="slider26" data-type="photo">
-                    <!-- <h2> Queen Bed </h2> -->
-
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <!-- The Arrows -->
-                    <button type="button" class="left arrows"><svg viewBox="0 0 100 100">
-                            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z">
-                            </path>
-                        </svg></button>
-
-                    <button type="button" class="right arrows" aria-label="Next slide">
-                        <svg viewBox="0 0 100 100">
-                            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
-                                transform="translate(100, 100) rotate(180) ">
-                            </path>
-                        </svg>
-                    </button>
-
-                    <!-- Title Bar -->
-                    <span class="titleBar">
-                        <h1 class="notIndex"> We managed the queen-bed project from design to delivery, 
-                            ensuring quality craftsmanship and timely completion. If you’re looking for a 
-                            custom bed solution, get in touch — we’d love to bring your vision to life.</h1>
-                        <p class="notIndex">Bed Build</p>
-                    </span>
-
-                </div>
-            </div>
-
-        
-        <div class="row3Wrap">    
-
-            <div class="slider" id="slider29" data-type="video">
-                    <!-- kitchen-->
-                    <div></div>
-
-
-                    <!-- Title Bar -->
-                    <span class="titleBar">
-
-                        <h1 class="notIndex">We delivered bespoke design projects from client brief to final 
-                            delivery, with clear communication and precise execution every step of the way. 
-                            If you’re looking for a tailored design solution, get in touch to discuss your 
-                            project.</h1>
-                        <p class="notIndex">Kitchen Seating/Dining Area & Storage</p>
-
-                    </span>
-                </div>
-
-            <!-- <div class="row2Wrap"> -->
-
-
-
-                <div class="slider" id="slider27" data-type="photo">
-                    <!-- <h2>Computer Build</h2> -->
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <!-- The Arrows -->
-                    <button type="button" class="left arrows"><svg viewBox="0 0 100 100">
-                            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z">
-                            </path>
-                        </svg></button>
-
-                    <button type="button" class="right arrows" aria-label="Next slide">
-                        <svg viewBox="0 0 100 100">
-                            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
-                                transform="translate(100, 100) rotate(180) ">
-                            </path>
-                        </svg>
-                    </button>
-
-                    <!-- Title Bar -->
-                    <span class="titleBar">
-
-                        <h1 class="notIndex">We handled every step of this computer build — from planning and component 
-                            selection to assembly, optimization, and final delivery. If you want a high-performance, 
-                            ready-to-use system, get in touch to discuss your project.</h1>
-                        <p class="notIndex">Computer Build</p>
-
-                    </span>
-                </div>
-
-                <div class="slider" id="slider28" data-type="photo">
-                    <!-- Graphics Design -->
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <!-- The Arrows -->
-                    <button type="button" class="left arrows"><svg viewBox="0 0 100 100">
-                            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z">
-                            </path>
-                        </svg></button>
-
-                    <button type="button" class="right arrows" aria-label="Next slide">
-                        <svg viewBox="0 0 100 100">
-                            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
-                                transform="translate(100, 100) rotate(180) ">
-                            </path>
-                        </svg>
-                    </button>
-
-                    <!-- Title Bar -->
-                    <span class="titleBar">
-
-                        <h1 class="notIndex">We delivered bespoke design projects from client brief to final 
-                            delivery, with clear communication and precise execution every step of the way. 
-                            If you’re looking for a tailored design solution, get in touch to discuss your 
-                            project.</h1>
-                        <p class="notIndex">Graphics Design</p>
-
-                    </span>
-                </div>
-
-            </div>
+          <g mask="url(#m)">
+            <rect fill="#fff" width="100%" height="100%" />
+            <rect id="meshaker" />
+            <a class="meLink" id="meLink">
+              <text class="lrgtext" id="me" fill="#162a43" aria-disabled="true" dominant-baseline="middle"
+                text-anchor="middle" display="none">ME</text>
+            </a>
+            <div class="scroll-arrow" id="down" x="455" y="330"></div>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="container-fluid thumbnails page-content" id="thumbnails">
+      <!-- Software -->
+      <a class="thumbs">
+        <div class="thumbShape thumbs loading" id="software"
+          data-images='["css/assets/b1.webp","css/assets/b2.webp","css/assets/b3.webp","css/assets/b4.webp","css/assets/b5.webp","css/assets/b6.webp","css/assets/b7.webp","css/assets/b8.webp","css/assets/b9.webp","css/assets/b10.webp","css/assets/b12.webp","css/assets/b13.webp","css/assets/b14.webp"]'
+          data-loaded="0">
+          <div class="overlay"></div>
         </div>
+      </a>
 
+
+
+      
+      <!-- Photography -->
+      <a class="thumbs" id="photographyLink" aria-current="page" data-transition-nav data-link="photography.html">
+        <div class="thumbShape thumbs loading" id="photography"
+          data-images='["css/assets/r1.webp","css/assets/r2.webp","css/assets/r3.webp","css/assets/r4.webp","css/assets/r5.webp","css/assets/r6.webp","css/assets/r7.webp","css/assets/r8.webp","css/assets/r9.webp","css/assets/r10.webp","css/assets/r11.webp","css/assets/r12.webp"]'
+          data-loaded="0">
+          <div class="overlay"></div>
+        </div>
+      </a>
+
+      <!-- Motion -->
+      <a class="thumbs" id="animationLink" aria-current="page" data-transition-nav data-link="animation.html">
+        <div class="thumbShape thumbs loading" id="motion"
+          data-images='["css/assets/g1.webp","css/assets/g2.webp","css/assets/g3.webp","css/assets/g4.webp","css/assets/g5.webp","css/assets/g6.webp","css/assets/g7.webp","css/assets/g8.webp","css/assets/g9.webp","css/assets/g10.webp"]'
+          data-loaded="0">
+          <div class="overlay"></div>
+        </div>
+      </a>
+
+      <!-- DIY -->
+      <a class="thumbs" id="diyLink" aria-current="page" data-transition-nav data-link="diy.html">
+        <div class="thumbShape thumbs loading" id="diy"
+          data-images='["css/assets/y1.webp","css/assets/y2.webp","css/assets/y3.webp","css/assets/y4.webp","css/assets/y5.webp","css/assets/y6.webp","css/assets/y7.webp","css/assets/y8.webp","css/assets/y9.webp","css/assets/y10.webp","css/assets/y11.webp"]'
+          data-loaded="0">
+          <div class="overlay"></div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+
+  <div class="container-fluid modalbox page-content" id="statementContact" style="display: box;">
+    <div class="box">
+      <a class="close" id="modalClose">X</a>
+      <p class="title">Welcome</p>
+      <div class="content">
+        <p class="thanks">Thanks for having a look-see!</p>
+
+        <p class="toExit">To get in touch, click on the signature below...</p>
+
+        <p>To exit this message, click the 'X' above.</p>
+
+        <p class="allTheBest">All the Best!</p>
+
+        <a class="sig" id="modalSig">
+
+          <img class="sig" src="assets/sigw.webp">
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="formDiv page-content" id="contactForm" style="display: none;">
+    <a class="closeForm" id="contactFormClose">X</a>
+    <form action="https://formspree.io/f/meqyreww" method="POST">
+      <label> Your name:
+        <input autocomplete="false" type="text" id="name" name="name" required>
+      </label>
+      <label> Your email:
+        <input autocomplete="false" type="text" id="email" name="email" required>
+      </label>
+      <label>Your message:
+        <textarea id="message" name="message" rows="3" required></textarea>
+      </label>
+      <button type="submit" id="formButton">Send</button>
+  </div>
+
+
+
+  <div class="container-fluid modalbox wip page-content" id="wip" style="display: box;">
+    <div class="box">
+      <a class="close" id="modalWipClose">X</a>
+      <div class="content">
+        <br>
+        <p class="thanks">Thanks for having a look!</p>
+        <br>
+        <p class="toExit">At the moment this site segment is under development. Currently I have three hours per weekday for this project, so progress can be slow...
+          It's undertaking is to present a personnel portfolio of projects undertaken, this site included, to date. 
+        </p>
+        <br>
+        <p class="allTheBest">All the Best!</p>
+
+      </div>
+    </div>
+  </div>
+  <div class="cloud-overlay"></div>
+
+          <!-- see javascript for thsi form -->
         <div id="contact-host"></div>
+</body>
 
-       <!-- EmailJS SDK + Initialization -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-   
-</body>
-</html>
-</body>
 </html>
