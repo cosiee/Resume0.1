@@ -178,12 +178,16 @@ const galleryData = {
       graphicsDesign: {
     preview: [
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758709539/Ela3BirthdayCake-site_rrufph.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1765366823/Nailed_It_x4xczv.webp",
 
     ],
 
     full: [
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758709539/Ela_cake_4-site_apboun.webp",
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758709540/Eabha6-site_rd7s2n.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1765366823/Nailed_It_x4xczv.webp",
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1765366823/Cake67blurred_f5wkgo.jpg"
+
 
     ],
   },

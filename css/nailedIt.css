@@ -1,0 +1,299 @@
+/* nailedIt.css */
+
+/* Full-width navbar container – allows logo to reach screen edge */
+.container-fluid#navbar {
+    max-width: 100% !important;
+    width: 100%;
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;            /* centers the collapse content */
+    position: relative;
+}
+
+/* Center the nav links group */
+.navbar-collapse#navbarNav {
+    justify-content: center !important;
+    flex-grow: 0 !important;            /* prevents stretching */
+}
+
+/* Center the ul inside collapse */
+.navbar-nav {
+    margin-top: 40px !important;   
+    justify-content: center !important;       /* centers the list */
+    text-align: center;
+}
+
+/* Logo – absolute top-right corner (screen edge) */
+.navbar-brand.logo-trigger {
+    position: absolute;
+    right: 5px;                        /* distance from right screen edge */
+    top: 2px;                          /* vertical alignment */
+    z-index: 1002;                      /* above links & burger */
+    padding: 0;
+    margin: 0 !important;
+    transition: transform 0.4s ease;
+    cursor: pointer;
+}
+
+.logo-img {
+    height: 102px;
+    width: auto;
+    border-radius: 50%;
+    box-shadow: 
+        0 3px 12px rgba(0,0,0,0.18),
+        0 0 10px rgba(255, 255, 255, 0.8);
+    filter: brightness(1.15) contrast(1.1) saturate(1.15);
+    transition: all 0.4s ease;
+}
+
+.logo-trigger:hover .logo-img {
+    transform: scale(1.25) rotate(8deg);
+    filter: brightness(1.3) contrast(1.2) saturate(1.3);
+    box-shadow: 
+        0 8px 30px rgba(0,0,0,0.25),
+        0 0 25px rgba(255, 255, 255, 0.9);
+}
+
+.logo-img {
+    height: 102px;
+    width: auto;
+    border-radius: 50%;
+    box-shadow: 
+        0 3px 12px rgba(0,0,0,0.18),
+        0 0 20px rgba(255, 255, 255, 0.8);
+    filter: brightness(1.15) contrast(3) saturate(3.15);
+    transition: all 0.4s ease;
+}
+
+.logo-trigger:hover .logo-img {
+    transform: scale(1.25) rotate(8deg);
+    filter: brightness(1.3) contrast(4.2) saturate(4.3);
+    box-shadow: 
+        0 8px 30px rgba(0,0,0,0.25),
+        0 0 35px rgba(255, 255, 255, 0.9);
+} 
+
+/* Mobile – keep logo in top-right corner, clear of burger */
+@media (max-width: 991.98px) {
+    .navbar-brand.logo-trigger {
+        right: 5px;                    /* extra space for burger (toggler ~60px wide) */
+        top: 2px;
+    }
+
+    .logo-img {
+        height: 80px;
+    }
+
+    /* Burger safety – make sure toggler is clickable */
+    .navbar-toggler {
+        z-index: 1003;
+        margin-right: 15px;
+    }
+    .navbar-toggler.left {
+        margin-left: 5px !important;     /* push to left edge */
+        margin-right: auto !important;    /* override any centering */
+        order: -1;                        /* ensure it's first in flex order */
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-brand.logo-trigger {
+        right: 5px;
+    }
+    .logo-img {
+        height: 60px;
+    }
+}
+
+
+
+.floating-logo {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    z-index: 2000;
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: all 0.6s ease;
+    cursor: pointer;
+}
+
+.floating-logo.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.floating-logo img {
+    height: 50px;
+    width: auto;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.4s ease;
+}
+
+.floating-logo:hover img {
+    transform: scale(1.2) rotate(10deg);
+}
+
+
+/* Mobile – keep outlines but thinner to avoid clutter */
+@media (max-width: 991px) {
+    .hero-reveal-wrapper,
+    .hero-section,
+    .hero-container,
+    .hero-content,
+    .hero-text,
+    .hero-image,
+    .hero-image img,
+    .hero-cta {
+        outline-width: 2px !important;
+    }
+}
+
+
+/* ────────────────────────────────────────────────
+   Hero reveal wrapper 
+───────────────────────────────────────────────── */
+.hero-reveal-wrapper .hero-section .hero-container,
+.hero-reveal-wrapper .container.hero-container {
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    
+}
+.hero-reveal-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 1500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.4s ease;
+    transform: scale(0.92) translateY(60px);
+    background: rgba(0,0,0,0.35);
+}
+
+.hero-reveal-wrapper.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1) translateY(0);
+}
+
+/* Hero section base */
+.hero-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #fdfaf5 0%, #f8f1e9 100%);
+    position: relative;
+}
+
+/* Optional subtle overlay */
+.hero-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.03);
+    pointer-events: none;
+}
+
+/* Image frame (your original style) */
+.image-frame {
+    position: absolute;
+    inset: -12px;
+    border: 8px solid rgba(255,255,255,0.7);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+/* Custom typography & button (minimal overrides) */
+.hero-title {
+    font-size: clamp(2.8rem, 6vw, 4.8rem);
+    font-weight: 800;
+    line-height: 1.05;
+    margin-bottom: 1.25rem;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 1.75rem;
+}
+
+.hero-description {
+    font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+    line-height: 1.65;
+    margin-bottom: 2.25rem;
+    color: #555;
+    max-width: 90%;
+}
+
+.hero-cta {
+    background: #c85a17;
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 50px;
+    padding: 1rem 2.5rem;
+    font-size: 1.25rem;
+    transition: all 0.3s ease;
+}
+
+.hero-cta:hover {
+    background: #a34712;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(200, 90, 23, 0.3);
+}
+
+.hero-content, .hero-text, .hero-image, .row, .col-lg-6 {
+    position: relative;     /* ← comment out or change to relative / static */
+}
+.container.hero-container,
+.hero-container .row,
+.hero-container .hero-content,
+.hero-container .hero-text,
+.hero-container .hero-image {
+    position: relative !important;  
+}
+
+/* .hero-container,
+.container.hero-container {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+  */
+
+/* Mobile adjustments */
+@media (max-width: 991.98px) {
+    .hero-section {
+        min-height: auto;
+        padding: 6rem 0 8rem;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero-text {
+        margin-bottom: 3rem;
+    }
+
+    .hero-image img {
+        max-width: 320px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 2.4rem;
+    }
+    .hero-subtitle {
+        font-size: 1.8rem;
+    }
+    .hero-cta {
+        width: 100%;
+        max-width: 320px;
+    }
+}
+

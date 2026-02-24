@@ -1,10 +1,20 @@
-Navbar collapsed menu 'home's tooltip is not aligning correctly?? realign to right on smaller devices
+Navbar's Contact link not working on photography page
 
-focus triggers titleBars animation... see scrollUtils.js
+The black gap at the end of photography.html is div.scrollDist, needs looking at as this could be useful 
+for the behaviour the sliders titlebars and text... the titlebar and text need to adjust for smaller srceens 
+Never should the cover slider image, as this makes them unclickable.
+
+Navbar collapsed menu 'home's tooltip is not aligning correctly?? realign to right on smaller devices(Done-AC)
+Git rid of WIPip for diy any other no longer required for link and thumbnails
+
+focus triggers titleBars animation... see scrollUtils.js...
 
 sliders 1 & 6, across all pages, need to be the same size as the rest when on smaller devices
 
-focus or hover on sliders causes the images to cycle otherwise paused.
+**focus or hover on sliders causes the images to cycle otherwise paused. the hover and the focus are
+working together, but not correctly. if the slider is not in range the mouse hover will present the
+titleBar but no text, see this on the sliders not in focus when you hover mouse! Logic need fine tuning
+Need the focus to cause what is happening when the hover when slider is in focus.
 
 Navbar dropdowns menu showing column and row behaviour should only have row...
 

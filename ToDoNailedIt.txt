@@ -1,0 +1,17 @@
+Need to consider the navbar links as they dont match
+nailedIt purpose.
+
+
+
+
+change sliders: If nailedIt.html use this video/image at this this link( Done by AC)
+
+Get the scroll and navbar bar working after send  and after closing( Done by AC)
+
+Sort hero layout for all devices, AI grid layouts work arounds?( Done by AC)
+
+Click on class not Index should present contact form( Done by AC)
+
+
+Navbar burger menu is centre screen...Also Nailed It logo too smal on smaller
+ screens(And needs to be closer to right side)(Done by AC)

@@ -4,6 +4,9 @@ import { Navbar } from "./navbar.js";
 import { WebPAnimationController } from "./webpAnimationController.js";
 import { setupScrollFocus } from "./scrollUtils.js";
 
+//Check to see what page to apply coreect videos
+const isNailedItPage = () => window.location.pathname.includes('nailedit.html');
+
 export const selectors = {
   scrollDist: ".scrollDist",
 
@@ -53,6 +56,7 @@ export const selectors = {
   slider23: "#slider23",
   slider24: "#slider24",
   slider25: "#slider25",
+  slider29: "#slider29",
 };
 
 const navbar = new Navbar(selectors);
@@ -140,43 +144,49 @@ const galleryData = {
     preview: [
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194494/Loggia_tjmphl.webp",
     ],
-    video: "wvEHub7-F3s", // YouTube video ID
+    video: isNailedItPage() ? "vlXgJA2RGFQ" : "V4ynt1X0rHQ", // YouTube video IDs
   },
   panelling: {
     preview: [
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194493/Paneling1-2_a0qnkc.webp",
     ],
-    video: "QcLegwyHlrM", // YouTube video ID
+    video: isNailedItPage() ? "JhYTDktVIIE" : "QcLegwyHlrM", // YouTube video ID
   },
   flooring: {
     preview: [
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194492/Flooring1-1_g7zwmb.webp",
     ],
-    video: "P5I5u0pv-DI", // YouTube video ID
+    video: isNailedItPage() ? "mguVizKT5lw" : "P5I5u0pv-DI", // YouTube video ID
   },
   panelling1: {
     preview: [
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194494/Paneling1-1_lz41eo.webp",
     ],
-    video: "8zTVQQLQIl0", // YouTube video ID
+    video: isNailedItPage() ? "G4HBEyi37PQ" : "P5I5u0pv-DI", // YouTube video ID
   },
   bunks: {
     preview: [
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194493/BunkBeds_elypk3.webp",
     ],
-    video: "rqsVKFsAuHg", // YouTube video ID
+    video: isNailedItPage() ? "PiMZ1FoyG-I" : "rqsVKFsAuHg", // YouTube video ID
   },
   lori: {
     preview: [
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194494/LoriBed_f1mayu.webp",
     ],
-    video: "n3SJgvm9DLA", // YouTube video ID
+    video: isNailedItPage() ? "yiQozmHdHAY" : "n3SJgvm9DLA", // YouTube video ID
   },
   panelling2: {
     preview: [
       "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194492/Paneling_kzkmng.webp",
     ],
-    video: "DaUU-uep3Pk", // YouTube video ID
+    video: isNailedItPage() ? "Su36F2cKqyY" : "DaUU-uep3Pk", // YouTube video ID
+  },
+   kitchen: {
+    preview: [
+      "https://res.cloudinary.com/dxwwm0vlj/image/upload/v1758194493/Kitchen_wbhgxb.webp",
+    ],
+    video: isNailedItPage() ? "k5Qa7ieUQ2M" : "IFvNA4ngcRI", // YouTube video ID
   },
 };
 
@@ -211,6 +221,7 @@ function openVideoModal(sliderContainer) {
     slider23: "bunks",
     slider24: "lori",
     slider25: "panelling2",
+    slider29: "kitchen",
   };
 
   const galleryId = galleryMap[sliderContainer.id];
@@ -295,6 +306,7 @@ function initializeSliders() {
     "#slider23": { gallery: "bunks", options: {} },
     "#slider24": { gallery: "lori", options: {} },
     "#slider25": { gallery: "panelling2", options: {} },
+    "#slider29": { gallery: "kitchen", options: {} },
   };
 
   $(window).on("load", function () {
